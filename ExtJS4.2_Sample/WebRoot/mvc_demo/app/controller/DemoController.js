@@ -12,7 +12,8 @@ Ext.define('mvc.controller.DemoController', {
         this.control({
         	'demoView': {
         		show: Ext.Msg.alert("測試11","測試11"),
-        		resize: this.onDemoShow
+        		//resize: this.onDemoShow,
+        		viewready: this.onDemoViewReady
         	},
             'demoView button[action=updatePanelBody]': {
                 click: this.onDemoUpdate
@@ -20,8 +21,8 @@ Ext.define('mvc.controller.DemoController', {
         });
         
         this.application.on({
-            show: this.onDemoShow,
-            scope: this
+//            show: this.onDemoShow,
+//            scope: this
         });
     },
 
@@ -31,6 +32,10 @@ Ext.define('mvc.controller.DemoController', {
 	
 	onDemoShow: function() {
 		this.getDemoView().updateBody('body show');
+	},
+	
+	onDemoViewReady: function() {
+		this.getDemoView().updateBody('Demo View Ready');
 	}
 	
 });

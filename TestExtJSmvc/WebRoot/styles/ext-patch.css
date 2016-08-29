@@ -1,0 +1,70 @@
+.x-btn-default-small .x-btn-inner,
+.x-btn-default-toolbar-small .x-btn-inner,
+.x-column-header,
+.x-grid-row .x-grid-cell,
+.x-panel-header-text-default,
+.x-panel-header-text-default-framed,
+.x-tab button,
+.x-toolbar,
+.x-toolbar .x-toolbar-text,
+.x-tree-node-text,
+.x-tab-default-icon-text-left .x-tab-inner,
+.x-tab-default-active .x-tab-inner,
+.x-tab-default .x-tab-inner
+{font-size:12px}
+
+.icon-add {
+	background-image: url('../../../../examples/shared/icons/fam/add.png')
+}
+
+.icon-edit {
+	background-image: url('../../../../examples/shared/icons/fam/cog_edit.png')
+}
+
+.icon-delete {
+	background-image: url('../../../../examples/shared/icons/fam/delete.gif')
+}
+
+.icon-sys {
+	background-image: url('../../../../examples/shared/icons/fam/cog.png')
+}
+
+.icon-user {
+	background-image: url('../../../../examples/shared/icons/fam/user.png')
+}
+
+.icon-org {
+	background-image: url('../../../../examples/shared/icons/fam/user_green.png')
+}
+
+.icon-auth {
+	background-image: url('../../../../examples/shared/icons/fam/feed_error.png')
+}
+
+.icon-content {
+	background-image: url('../../../../examples/shared/icons/fam/folder_wrench.png')
+}
+
+.icon-catalog {
+	background-image: url('../../../../examples/shared/icons/fam/connect.png')
+}
+
+.icon-article {
+	background-image: url('../../../../examples/shared/icons/fam/book.png')
+}
+
+.icon-report {
+	background-image: url('../../../../examples/shared/icons/fam/plugin.gif')
+}
+
+.icon-chart {
+	background-image: url('../../../../examples/shared/icons/fam/table_refresh.png')
+}
+
+.icon-login {
+	background-image: url('../../../../examples/shared/icons/fam/user_gray.png')
+}
+
+.icon-password {
+	background-image: url('../../../../examples/shared/icons/fam/cog_edit.png')
+}
