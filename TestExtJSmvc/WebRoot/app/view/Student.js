@@ -17,7 +17,8 @@
                ];
  
     Ext.define('app.view.Student', {
-        extend: 'Ext.grid.GridPanel',
+        //extend: 'Ext.grid.GridPanel',
+    	extend: 'Ext.grid.Panel',
         alias: 'widget.Student',
         title: '学生信息列表',
         iconCls: 'icon-user',
