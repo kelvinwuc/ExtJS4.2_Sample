@@ -12,7 +12,6 @@ Ext.define('mvc.controller.DemoController', {
         this.control({
         	'demoView': {
         		show: Ext.Msg.alert("測試11","測試11"),
-        		//show: this.onDemoShow,
         		resize: this.onDemoShow
         	},
             'demoView button[action=updatePanelBody]': {
