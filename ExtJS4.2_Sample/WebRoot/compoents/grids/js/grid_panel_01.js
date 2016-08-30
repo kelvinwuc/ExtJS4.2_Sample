@@ -1,7 +1,9 @@
 Ext.onReady(function(){
 
 	var datas = [
-		[100, '張三', 24], [200, '李四', 25], [300, '王五', 26]
+		[100, '張三', 24, true, new Date(2000,01,01)], 
+		[200, '李四', 25, false, new Date(2001,02,02)], 
+		[300, '王五', 26, false, new Date(2002,03,03)]
 	];
 	
 	Ext.create('Ext.grid.Panel', {
@@ -24,7 +26,7 @@ Ext.onReady(function(){
 //	        }
 		},
 		store:{
-			fields: ['id', 'name', 'age'],
+			fields: ['id', 'name', 'age', 'leader', 'birthday'],
 			proxy: {
 				type: 'memory',
 				data: datas,
@@ -44,16 +46,58 @@ Ext.onReady(function(){
 	        items: [{
 	            text: 'id',
 	            dataIndex: 'id',
-	            flex: 25 / 100,
+	            flex: 20 / 100,
 	            sortable: false
 	        }, {
-	            text: 'name',
+	            text: '姓名',
 	            dataIndex: 'name',
-	            flex: 25 / 100
+	            flex: 20 / 100
 	        }, {
-	            text: 'age',
+	            text: '年齡',
 	            dataIndex: 'age',
-	            flex: 50 / 100
+	            flex: 20 / 100
+	        }, {
+	        	text: '主管',
+	        	dataIndex: 'leader',
+	        	xtype: 'booleancolumn',
+	        	trueText: '是',
+	        	falseText: '否',
+	        	flex: 20 / 100
+	        }, {
+	        	text: '生日',
+	        	dataIndex: 'birthday',
+	        	xtype: 'datecolumn',
+	        	format: 'Y年m月d日',
+	        	flex: 20 / 100
+	        }, {
+	        	text: '操作', 
+	        	flex: 10 / 100,
+	        	xtype: 'actioncolumn',
+	        	items: [{
+	        		icon: '../grids/images/edit.gif',
+	        		handler: function(grid, rowIndex, colIndex) {
+						var record = grid.getStore().getAt(rowIndex);
+						gridColumns = grid.headerCt.getGridColumns();
+						var fieldName = gridColumns[1].text;
+						Ext.Msg.alert("編輯",fieldName + ":" + record.get('name'));
+	        		}
+	        	}, {
+	        		icon: '../grids/images/del.gif',
+	        		handler: function(grid, rowIndex, colIndex) {
+						var record = grid.getStore().getAt(rowIndex);
+						gridColumns = grid.headerCt.getGridColumns();
+						var fieldName = gridColumns[2].text;
+						Ext.Msg.alert("刪除",fieldName + ":" + record.get('age'));
+	        		}
+	        	}, {
+	        		icon: '../grids/images/save.gif',
+	        		handler: function(grid, rowIndex, colIndex) {
+						var record = grid.getStore().getAt(rowIndex);
+						gridColumns = grid.headerCt.getGridColumns();
+						var fieldName = gridColumns[4].text;
+						Ext.Msg.alert("儲存",fieldName + ":" + record.get('birthday'));
+	        		}
+	        	}]
 	        }]
 		}
 	});
