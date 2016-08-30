@@ -82,7 +82,7 @@ Ext.onReady(function(){
 	        		handler: function(grid, rowIndex, colIndex) {
 						var record = grid.getStore().getAt(rowIndex);
 						gridColumns = grid.headerCt.getGridColumns();
-						var fieldName = gridColumns[1].text;
+						var fieldName = gridColumns[2].text;
 						Ext.Msg.alert("編輯",fieldName + ":" + record.get('name'));
 	        		}
 	        	}, {
@@ -90,15 +90,15 @@ Ext.onReady(function(){
 	        		handler: function(grid, rowIndex, colIndex) {
 						var record = grid.getStore().getAt(rowIndex);
 						gridColumns = grid.headerCt.getGridColumns();
-						var fieldName = gridColumns[2].text;
-						Ext.Msg.alert("刪除",fieldName + ":" + record.get('age'));
+						var fieldName = gridColumns[4].text;
+						Ext.Msg.alert("刪除",fieldName + ":" + record.get('leader'));
 	        		}
 	        	}, {
 	        		icon: '../grids/images/save.gif',
 	        		handler: function(grid, rowIndex, colIndex) {
 						var record = grid.getStore().getAt(rowIndex);
 						gridColumns = grid.headerCt.getGridColumns();
-						var fieldName = gridColumns[4].text;
+						var fieldName = gridColumns[5].text;
 						Ext.Msg.alert("儲存",fieldName + ":" + record.get('birthday'));
 	        		}
 	        	}]
