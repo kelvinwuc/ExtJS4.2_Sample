@@ -7,20 +7,21 @@ Ext.onReady(function(){
 	Ext.create('Ext.grid.Panel', {
 		title: 'grid範例',
 		renderTo: Ext.getBody(),
-		width: 300,
-		height: 130,
+		//不指定width及height時,grid會滿整個畫
+//		width: 300,
+//		height: 130,
 		frame: true,
 		viewConfig:{
 			forceFit: true,
-			stripeRows: true,
-			listeners: {
-            refresh: function(dataview) {
-                Ext.each(dataview.panel.columns, function(column) {
-                    if (column.autoSizeColumn === true)
-                        column.autoSize();
-	                })
-	            }
-	        }
+//			stripeRows: true,
+//			listeners: {
+//            refresh: function(dataview) {
+//                Ext.each(dataview.panel.columns, function(column) {
+//                    if (column.autoSizeColumn === true)
+//                        column.autoSize();
+//	                })
+//	            }
+//	        }
 		},
 		store:{
 			fields: ['id', 'name', 'age'],
