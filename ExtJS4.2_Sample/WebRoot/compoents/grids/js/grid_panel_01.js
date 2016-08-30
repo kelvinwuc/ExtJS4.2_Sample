@@ -1,9 +1,9 @@
 Ext.onReady(function(){
 
 	var datas = [
-		[100, '張三', 24, true, new Date(2000,01,01)], 
-		[200, '李四', 25, false, new Date(2001,02,02)], 
-		[300, '王五', 26, false, new Date(2002,03,03)]
+		[100, '張三', 24, true, new Date(2000,01,01), 'man'], 
+		[200, '李四', 25, false, new Date(2001,02,02), 'woman'], 
+		[300, '王五', 26, false, new Date(2002,03,03), 'man']
 	];
 	
 	Ext.create('Ext.grid.Panel', {
@@ -26,7 +26,7 @@ Ext.onReady(function(){
 //	        }
 		},
 		store:{
-			fields: ['id', 'name', 'age', 'leader', 'birthday'],
+			fields: ['id', 'name', 'age', 'leader', 'birthday', 'sex'],
 			proxy: {
 				type: 'memory',
 				data: datas,
@@ -43,32 +43,36 @@ Ext.onReady(function(){
 			defaults: {
 	            resizable: false
 	        },
-	        items: [{
+	        
+	        items: [
+	        Ext.create('Ext.grid.RowNumberer',{text : '行號', width : 35}),
+	        {
 	            text: 'id',
 	            dataIndex: 'id',
-	            flex: 20 / 100,
+	            flex: 10 / 100,
 	            sortable: false
 	        }, {
 	            text: '姓名',
 	            dataIndex: 'name',
-	            flex: 20 / 100
+	            flex: 10 / 100
 	        }, {
 	            text: '年齡',
 	            dataIndex: 'age',
-	            flex: 20 / 100
+	            flex: 10 / 100,
+	            renderer: formatAge
 	        }, {
 	        	text: '主管',
 	        	dataIndex: 'leader',
 	        	xtype: 'booleancolumn',
 	        	trueText: '是',
 	        	falseText: '否',
-	        	flex: 20 / 100
+	        	flex: 10 / 100
 	        }, {
 	        	text: '生日',
 	        	dataIndex: 'birthday',
 	        	xtype: 'datecolumn',
 	        	format: 'Y年m月d日',
-	        	flex: 20 / 100
+	        	flex: 10 / 100
 	        }, {
 	        	text: '操作', 
 	        	flex: 10 / 100,
@@ -98,8 +102,29 @@ Ext.onReady(function(){
 						Ext.Msg.alert("儲存",fieldName + ":" + record.get('birthday'));
 	        		}
 	        	}]
+	        }, {
+	        	text: '描述',
+	        	xtype: 'templatecolumn',
+	        	tpl: '{name}<tpl if="leader==false">不</tpl>是主',
+	        	flex: 30 / 100
+	        }, {
+	        	text: '性',
+	        	dataIndex: 'sex',
+	        	flex: 10 /100,
+	        	renderer: formatSex
 	        }]
 		}
 	});
+	
+	function formatAge(value, metadata) {
+		if(value<25) {
+			metadata.style = 'background-color:#CCFFFF;';
+		}
+		return value;
+	}
+	
+	function formatSex(value) {
+		return value=='man' ? '男':'<font color=red>女</font>'
+	}
 	
 });
