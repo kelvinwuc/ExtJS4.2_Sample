@@ -108,7 +108,7 @@ Ext.onReady(function(){
 	        	tpl: '{name}<tpl if="leader==false">不</tpl>是主',
 	        	flex: 30 / 100
 	        }, {
-	        	text: '性',
+	        	text: '性別',
 	        	dataIndex: 'sex',
 	        	flex: 10 /100,
 	        	renderer: formatSex
