@@ -127,4 +127,6 @@ Ext.onReady(function(){
 		return value=='man' ? '男':'<font color=red>女</font>'
 	}
 	
+	
+	
 });
