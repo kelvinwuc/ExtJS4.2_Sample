@@ -13,7 +13,7 @@ Ext.onReady(function(){
 		frame: true,
 		viewConfig:{
 			forceFit: true,
-//			stripeRows: true,
+			stripeRows: true
 //			listeners: {
 //            refresh: function(dataview) {
 //                Ext.each(dataview.panel.columns, function(column) {
