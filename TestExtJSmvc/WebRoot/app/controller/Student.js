@@ -38,7 +38,7 @@ Ext.define('app.controller.Student', {
 		var record = sm.selected;
 		var nameArr = [];
 		for(var i=0; i<record.getCount(); i++){
-			nameArr.push(record.get(i).get('name'));
+			nameArr.push((i+1) + ":" + record.get(i).get('name'));
 		}		
 		Ext.Msg.alert("共計選取" + record.getCount() + "列資料", "姓名:<br>" + nameArr.join("<br>"));
 		
