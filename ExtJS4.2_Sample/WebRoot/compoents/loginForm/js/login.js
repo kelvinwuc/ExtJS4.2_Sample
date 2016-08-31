@@ -55,7 +55,8 @@ Ext.onReady(function() {
 					});
 				}//end if
 			}
-		},{
+		},
+		{
 			text: '重置',
 		  	handler : function(){
 		  		loginForm.form.reset();
