@@ -20,6 +20,7 @@ Ext.define('AM.controller.Users', {
 		console.log('The panel was rendered');
 	},
 	editUser: function(grid, record) {
+		//創建useredit view的方式有三種:1.Ext.create 2.Ext.widget 3.xtype
 		var view = Ext.widget('useredit');
 		view.down('form').loadRecord(record);
 	},
