@@ -12,7 +12,9 @@ Ext.onReady(function() {
 		}],
 		buttons: [{
 			text: 'Save',
-			action: 'save'
+			handler: function() {
+				Ext.Msg.alert('form元件的按鈕事件', 'Save按鈕執行了!')
+			}
 		}, {
 			text: 'Cancel',
 			scope: this,
@@ -22,7 +24,7 @@ Ext.onReady(function() {
 	
 	var win = Ext.create('Ext.window.Window', {
 		title: 'window demo',
-		//Slayout: 'fit',
+		layout: 'fit',
 		autoShow: true,
 		items: form
 	});
