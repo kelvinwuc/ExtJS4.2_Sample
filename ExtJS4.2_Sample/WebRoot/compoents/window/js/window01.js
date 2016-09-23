@@ -1,13 +1,19 @@
 Ext.onReady(function() {
 	
 	var form = Ext.create('Ext.form.Panel', {
+		title: '這是表單',		
 		items: [{
 			xtype: 'textfield', 
 			name: 'name', 
+			labelAlign: 'right',
+			allowBlank: false,
+			blankText: '帳號不可空白',
+			anchor: '90%',
 			fieldLabel: 'name'
 		}, {
 			xtype: 'textfield',
 			name: 'email',
+			labelAlign: 'right',
 			fieldLabel: 'email'
 		}],
 		buttons: [{
