@@ -41,7 +41,7 @@ Ext.onReady(function() {
 						url : '../../servlet/LoginController', //提交到servlet地址
 						method:'POST',
 						success : function(form, action) {
-  							Ext.Msg.alert('系统提示','登录成功!');
+  							Ext.Msg.alert('系统提示','登录成功!--' + action.result.text);
   							//可以进行别的业务操作，比如跳转页面到你到主页面
   							window.location = '../grids/index.html';
 						},
