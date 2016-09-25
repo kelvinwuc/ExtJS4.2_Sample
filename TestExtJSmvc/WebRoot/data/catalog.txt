@@ -1,0 +1,4 @@
+{totalCount:16,result:[
+{id:1,name:'普通分类'},
+{id:2,name:'专属分类'}
+]}

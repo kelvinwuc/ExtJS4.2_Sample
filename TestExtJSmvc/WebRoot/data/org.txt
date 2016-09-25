@@ -1,0 +1,17 @@
+[{
+    id: 1,
+    text: '研发部',
+    leaf: true
+}, {
+    id: 2,
+    text: '销售部',
+    leaf: true
+}, {
+    id: 3,
+    text: '行政部',
+    leaf: true
+}, {
+    id: 4,
+    text: '人事部',
+    leaf: true
+}]
