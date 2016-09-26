@@ -1,0 +1,17 @@
+﻿Ext.define("Northwind.store.SupplierCombo",{
+	extend:"Ext.data.Store",
+	autoLoad:true,
+	fields:[
+		{name:"SupplierID",type:"int"},
+		"CompanyName"
+	],
+	idProperty:"SupplierID",
+	proxy:{
+		type:"direct",
+		directFn:Ext.app.Supplier.ComboList,
+		reader:{
+			type:"json",
+			root:"data"
+		}
+	}
+})

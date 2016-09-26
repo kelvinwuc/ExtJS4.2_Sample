@@ -1,0 +1,17 @@
+﻿Ext.define("Northwind.store.CategoryCombo",{
+	extend:"Ext.data.Store",
+	autoLoad:true,
+	fields:[
+		{name:"CategoryID",type:"int"},
+		"CategoryName"
+	],
+	idProperty:"CategoryID",
+	proxy:{
+		type:"direct",
+		directFn:Ext.app.Category.ComboList,
+		reader:{
+			type:"json",
+			root:"data"
+		}
+	}
+})

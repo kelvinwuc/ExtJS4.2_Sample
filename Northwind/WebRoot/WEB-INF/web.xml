@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Northwind</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <servlet-name>DjnServlet</servlet-name>
+    <servlet-class>
+			com.softwarementors.extjs.djn.servlet.DirectJNgineServlet
+		</servlet-class>
+    <init-param>
+      <param-name>providersUrl</param-name>
+      <param-value>djn/directprovider</param-value>
+    </init-param>
+    <init-param>
+      <param-name>apis</param-name>
+      <param-value>app</param-value>
+    </init-param>
+    <init-param>
+      <param-name>app.apiFile</param-name>
+      <param-value>app/Api.js</param-value>
+    </init-param>
+    <init-param>
+      <param-name>app.apiNamespace</param-name>
+      <param-value>Ext.app</param-value>
+    </init-param>
+    <init-param>
+      <param-name>app.actionsNamespace</param-name>
+      <param-value>Ext.app</param-value>
+    </init-param>
+    <init-param>
+      <param-name>app.classes</param-name>
+      <param-value>				
+				Product,Supplier,Category,Login,Order,Customer
+			</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DjnServlet</servlet-name>
+    <url-pattern>/djn/directprovider/*</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
