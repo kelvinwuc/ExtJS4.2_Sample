@@ -1,0 +1,858 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=big5">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>Tool Bar</TITLE>
+<SCRIPT language=JavaScript >
+<!--
+var iInterval = "";
+var strVendor = ""; //'M':Microsoft,'N':Netscape
+/**
+函數名稱:	ShowButton(strFunctionKey)
+函數功能:	顯示功能鍵
+傳入參數:	asFunctionKey:功能鍵字串陣列
+				A:新增
+				AC:新增CAPSIL
+				AF:新增FF
+				U:修改
+				D:刪除
+				I:查詢
+				E:離開
+				R:清除
+				P:列印
+				H:確定
+				J:上一頁
+				K:下一頁
+				S:儲存
+				L:報表Report
+				X:另存新檔
+				Y:最前頁				
+				Z:最終頁
+				DISBDownload : 下載
+				DISBPaymentConfirm:支付確認
+				DISBCancelConfirm: 取消確認
+				DISBPVoidable : 作廢
+				DISBRemitFailed : 匯退
+				DISBRemit:整批匯款
+				DISBCheckOpen:票據開立
+				DISBBack : 回上一層
+				DISBCRejected:票據退回
+				DISBCCreate :人工開票
+				DISBCheckCashed:票據回銷
+				Upload:上傳
+				
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+---------	----------	-----------------------------------------
+*/
+function ShowButton(strFunctionKey)
+{
+	var i=0;
+	var iOffsetWidth = 80;
+	var strDelemeter = ",";
+
+	if( iInterval != "")
+	{
+		window.clearInterval(iInterval);
+		iInterval = "";
+	}
+	if( strFunctionKey != null )
+	{
+		var coll = document.getElementsByTagName("INPUT");
+		for(i=(coll.length)-1;i>=0;i--)
+		{
+			document.forms["MainForm"].removeChild(coll[i]);
+		}
+		while( strFunctionKey.length > 0 )
+		{
+			var iEndOffset = strFunctionKey.indexOf(strDelemeter);
+			var strOneFunctionKey = "";
+			if( iEndOffset == -1 )
+			{
+				strOneFunctionKey = strFunctionKey.substring(0,strFunctionKey.length);
+				strFunctionKey = "";
+			}
+			else
+			{
+				strOneFunctionKey = strFunctionKey.substring(0,iEndOffset);
+				strFunctionKey = strFunctionKey.substring(iEndOffset+1,strFunctionKey.length);
+			}
+			if( strOneFunctionKey == 'A' )	//新增
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnAdd" onclick="OnClickBtn(this.id)" name="btnAdd" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/Add.gif);WIDTH: 62px;HEIGHT: 27px ">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnAdd');
+					elmElement.setAttribute('name','btnAdd');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','新  增');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;BACKGROUND-IMAGE: url(../images/Botton/Add.gif); WIDTH: 62px; HEIGHT: 27px');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			if( strOneFunctionKey == 'AC' )	//新增CAPSIL
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnAddC" onclick="OnClickBtn(this.id)" name="btnAddC" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/AddCAPSIL.gif);WIDTH: 62px;HEIGHT: 27px ">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnAddC');
+					elmElement.setAttribute('name','btnAddC');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','新  增 CAPSIL');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;BACKGROUND-IMAGE: url(../images/Botton/AddCAPSIL.gif); WIDTH: 62px; HEIGHT: 27px');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}			
+			if( strOneFunctionKey == 'AF' )	//新增FF
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnAddF" onclick="OnClickBtn(this.id)" name="btnAddF" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/AddFF.gif);WIDTH: 62px;HEIGHT: 27px ">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnAddF');
+					elmElement.setAttribute('name','btnAddF');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','新  增 FF');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;BACKGROUND-IMAGE: url(../images/Botton/AddFF.gif); WIDTH: 62px; HEIGHT: 27px');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'U' )	//修改
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnUpdate" onclick="OnClickBtn(this.id)" name="btnUpdate" class="eServiceButton"  style="BACKGROUND-IMAGE: url(../images/Botton/Update.gif); WIDTH: 62px; HEIGHT: 27px">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnUpdate');
+					elmElement.setAttribute('name','btnUpdate');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','修  改');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'D' )	//刪除
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnDelete" onclick="OnClickBtn(this.id)" name="btnDelete" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/Delete.gif); WIDTH: 62px; HEIGHT: 27px">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnDelete');
+					elmElement.setAttribute('name','btnDelete');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','刪  除');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'X' )	//另存新檔
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnSaveAs"  onclick="OnClickBtn(this.id)" name="btnDelete" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/SaveAs.gif); WIDTH: 62px; HEIGHT: 27px">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnSaveAs');
+					elmElement.setAttribute('name','btnSaveAs');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','另存新檔');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'Y' )	//最前頁
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnFirst" onclick="OnClickBtn(this.id)" name="btnDelete" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/First.gif); WIDTH: 62px; HEIGHT: 27px">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnFirst');
+					elmElement.setAttribute('name','btnFirst');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','最前頁');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'Z' )	//最終頁
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnLast"  onclick="OnClickBtn(this.id)" name="btnDelete" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/Last.gif); WIDTH: 62px; HEIGHT: 27px">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnLast');
+					elmElement.setAttribute('name','btnLast');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','最終頁');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'I' )	//查詢
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnInquiry" onclick="OnClickBtn(this.id)" name="btnInquiry" class="eServiceButton"  style="BACKGROUND-IMAGE: url(../images/Botton/Inquiry.gif); WIDTH: 62px; HEIGHT: 27px">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnInquiry');
+					elmElement.setAttribute('name','btnInquiry');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','查  詢');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'E' )	//離開
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnExit"  onclick="OnClickBtn(this.id)" name="btnExit" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/Exit.gif); WIDTH: 62px; HEIGHT: 27px">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnExit');
+					elmElement.setAttribute('name','btnExit');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','離  開');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'R' )	//清除
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnReset" onclick="OnClickBtn(this.id)" name="btnReset" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/Reset.gif); WIDTH: 62px; HEIGHT: 27px">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnReset');
+					elmElement.setAttribute('name','btnReset');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','清  除');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'P' )	//列印
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnPrint" onclick="OnClickBtn(this.id)" name="btnPrint" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/Print.gif); WIDTH: 62px; HEIGHT: 27px">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnPrint');
+					elmElement.setAttribute('name','btnPrint');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','列  印');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'H' )	//確定
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnOk"  onclick="OnClickBtn(this.id)" name="btnOk" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/Ok.gif); WIDTH: 62px; HEIGHT: 27px">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnOk');
+					elmElement.setAttribute('name','btnOk');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','確  定');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'J' )	//上一頁
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnPrevPage"  onclick="OnClickBtn(this.id)" name="btnPrevPage" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/PreviousPage.gif); WIDTH: 62px; HEIGHT: 27px">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnPrevPage');
+					elmElement.setAttribute('name','btnPrevPage');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','上一頁');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'K' )	//下一頁
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnNextPage"   onclick="OnClickBtn(this.id)" name="btnNextPage" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/NextPage.gif); WIDTH: 62px; HEIGHT: 27px">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnNextPage');
+					elmElement.setAttribute('name','btnNextPage');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','下一頁');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'S' )	//儲存
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnSave"  onclick="OnClickBtn(this.id)" name="btnSave" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/Save.gif); WIDTH: 62px; HEIGHT: 27px">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnSave');
+					elmElement.setAttribute('name','btnSave');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','儲  存');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'L' )	//報表Report
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnReport" onclick="OnClickBtn(this.id)" name="btnReport" class="eServiceButton" style="BACKGROUND-IMAGE: url(../images/Botton/Report.gif); WIDTH: 62px; HEIGHT: 27px">');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnReport');
+					elmElement.setAttribute('name','btnReport');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','報  表');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}
+			else if( strOneFunctionKey == 'DISBDownload' )	//下載  Elsa 2004/11/08
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnDISBDownload" onclick="OnClickBtn(this.id)" name="btnDISBDownload" value="下載" class="eServiceButton"  >');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnDISBDownload');
+					elmElement.setAttribute('name','btnDISBDownload');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','下載');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}	
+			else if( strOneFunctionKey == 'DISBPaymentConfirm' )	//支付確認  Elsa 2004/9/23
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnDISBPaymentConfirm" onclick="OnClickBtn(this.id)" name="btnDISBPaymentConfirm" value="支付確認" class="eServiceButton"  >');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnDISBPaymentConfirm');
+					elmElement.setAttribute('name','btnDISBPaymentConfirm');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','支付確認');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}
+			}	
+			else if( strOneFunctionKey == 'DISBCancelConfirm' )	//取消確認 Elsa 2004/9/23
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnDISBCancelConfirm" onclick="OnClickBtn(this.id)" name="btnDISBCancelConfirm" value="取消確認" class="eServiceButton"  >');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnDISBCancelConfirm');
+					elmElement.setAttribute('name','btnDISBCancelConfirm');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','取消確認');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}	
+			}	
+			else if( strOneFunctionKey == 'DISBPVoidable' )	//作廢 Elsa 2004/9/23
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnDISBPVoidable" onclick="OnClickBtn(this.id)" name="btnDISBPVoidable" value="作廢" class="eServiceButton"  >');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnDISBPVoidable');
+					elmElement.setAttribute('name','btnDISBPVoidable');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','作廢');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}	
+			}
+			else if( strOneFunctionKey == 'DISBRemitFailed' )	//匯退 Elsa 2004/10/08
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnDISBRemitFailed" onclick="OnClickBtn(this.id)" name="btnDISBRemitFailed" value="退匯" class="eServiceButton"  >');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnDISBRemitFailed');
+					elmElement.setAttribute('name','btnDISBRemitFailed');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','退匯');//R10314
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}	
+			}																
+			else if( strOneFunctionKey == 'DISBRemit' )	//整批匯款 Elsa 2004/10/19
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnDISBRemit" onclick="OnClickBtn(this.id)" name="btnDISBRemit" value="整批匯款" class="eServiceButton"  >');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnDISBRemit');
+					elmElement.setAttribute('name','btnDISBRemit');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','整批匯款');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}	
+			}
+			else if( strOneFunctionKey == 'DISBCheckOpen' )	//票據開立 Elsa 2004/10/19
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnDISBCheckOpen" onclick="OnClickBtn(this.id)" name="btnDISBCheckOpen" value="票據開立" class="eServiceButton"  >');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnDISBCheckOpen');
+					elmElement.setAttribute('name','btnDISBCheckOpen');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','票據開立');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}	
+			}
+			else if( strOneFunctionKey == 'DISBBack' )	//回上一層 Elsa 2004/10/19
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnDISBBack" onclick="OnClickBtn(this.id)" name="btnDISBBack" value="回上一層" class="eServiceButton"  >');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnDISBBack');
+					elmElement.setAttribute('name','btnDISBBack');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','回上一層');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}	
+			}
+			else if( strOneFunctionKey == 'DISBCRejected' )	//票據退回 Elsa 2004/10/29
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnDISBCRejected" onclick="OnClickBtn(this.id)" name="btnDISBCRejected" value="票據退回" class="eServiceButton"  >');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnDISBCRejected');
+					elmElement.setAttribute('name','btnDISBCRejected');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','票據退回');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}	
+			}
+			else if( strOneFunctionKey == 'DISBCCreate' )	//人工開票 Elsa 2004/10/29
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnDISBCCreate" onclick="OnClickBtn(this.id)" name="btnDISBCCreate" value="人工開票" class="eServiceButton"  >');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnDISBCCreate');
+					elmElement.setAttribute('name','btnDISBCCreate');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','人工開票');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}	
+			}
+			else if( strOneFunctionKey == 'DISBCheckCashed' )	//票據回銷 Elsa 2005/02/21
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnDISBCheckCashed" onclick="OnClickBtn(this.id)" name="btnDISBCheckCashed" value="票據回銷" class="eServiceButton"  >');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnDISBCheckCashed');
+					elmElement.setAttribute('name','btnDISBCheckCashed');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','票據回銷');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}	
+			}		
+			else if( strOneFunctionKey == 'Upload' )	//上傳
+			{
+				if( strVendor == 'M' )
+					document.all("MainForm").insertAdjacentHTML('BeforeEnd','<INPUT type="button" id="btnUpload" onclick="OnClickBtn(this.id)" name="btnUpload" value="上傳" class="eServiceButton"  >');
+				else
+				{
+					var elmElement = document.createElement('INPUT');
+					elmElement.setAttribute('id','btnUpload');
+					elmElement.setAttribute('name','btnUpload');
+					elmElement.setAttribute('type','button');
+					elmElement.setAttribute('value','上傳');
+					eventAdder(elmElement,"onclick","OnClickBtn(this.id)");
+					elmElement.setAttribute('class','eServiceButton');
+					elmElement.setAttribute('style','padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0px;margin-left : 0px;margin-right : 0px;margin-bottom : 0px;height:20;');
+					var oForm = document.getElementById('MainForm');
+					oForm.appendChild(elmElement);
+				}	
+			}
+		}
+	}
+}
+
+/**
+函數名稱:	OnClickBtn(strId)
+函數功能:	各按鈕onClick時執行本函數,再將按鈕值傳至content frame
+		傳至content frame各字母之涵義為:
+				A:新增
+				AC:新增CAPSIL
+				AF:新增FF
+				U:修改
+				D:刪除
+				I:查詢
+				E:離開
+				R:清除
+				P:列印
+				H:確定
+				J:上一頁
+				K:下一頁
+				S:儲存
+				L:報表Report
+				DISBDownload : 下載
+				DISBPaymentConfirm:支付確認
+				DISBCancelConfirm: 取消確認
+				DISBPVoidable : 作廢
+				DISBRemit :整批匯款
+				DISBCheckOpen : 票據開立
+				DISBBack : 回上一層
+				DISBCRejected:票據退回
+				DISBCCreate:人工開票
+				DISBCheckCashed:票據回銷
+				Upload:上傳
+
+
+傳入參數:	strId:功能鍵之Id
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+		---------	----------	-----------------------------------------
+*/
+function OnClickBtn(strId)
+{
+//	alert( strId );
+	var i,j;
+	var strAction = "";
+//	alert( window.parent.frames.length );	
+	if( window.parent.frames.length != 0 )
+	{
+		i = 0;
+		while( i < window.parent.frames.length )
+		{
+			var winTarget = window.parent.frames[i];
+//			alert( winTarget.name );
+			if( winTarget.name == 'contentFrame' )
+			{
+				if( strId == "btnAdd" )
+				{
+					var strCommand = 'ToolBarOnClick("A")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+					strAction = "新增";
+				} 
+				if( strId == "btnAddC" )
+				{
+					var strCommand = 'ToolBarOnClick("AC")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+					strAction = "新增CAPSIL";
+				} 
+				if( strId == "btnAddF" )
+				{
+					var strCommand = 'ToolBarOnClick("AF")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+					strAction = "新增FF";
+				} 
+				else if( strId == "btnUpdate" )
+				{
+					var strCommand = 'ToolBarOnClick("U")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnDelete" )
+				{
+					var strCommand = 'ToolBarOnClick("D")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnInquiry" )
+				{
+					var strCommand = 'ToolBarOnClick("I")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnExit" )
+				{
+					var strCommand = 'ToolBarOnClick("E")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnOk" )
+				{
+					var strCommand = 'ToolBarOnClick("H")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnReset" )
+				{
+					var strCommand = 'ToolBarOnClick("R")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnPrint" )
+				{
+					var strCommand = 'ToolBarOnClick("P")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnSaveAs" )
+				{
+					var strCommand = 'ToolBarOnClick("X")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnFirst" )
+				{
+					var strCommand = 'ToolBarOnClick("Y")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnLast" )
+				{
+					var strCommand = 'ToolBarOnClick("Z")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnPrevPage" )
+				{
+					var strCommand = 'ToolBarOnClick("J")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnReQuery" )
+				{
+					var strCommand = 'ToolBarOnClick("V")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnNextPage" )
+				{
+					var strCommand = 'ToolBarOnClick("K")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnSave" )
+				{
+					var strCommand = 'ToolBarOnClick("S")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnReport" )
+				{
+					var strCommand = 'ToolBarOnClick("L")';
+					winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnDISBDownload" ) 
+				{
+				        var strCommand = 'ToolBarOnClick("DISBDownload")';
+				        winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}		
+				else if( strId == "btnDISBPaymentConfirm" ) 
+				{
+				        var strCommand = 'ToolBarOnClick("DISBPaymentConfirm")';
+				        winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}		
+				else if( strId == "btnDISBCancelConfirm" ) 
+				{
+				        var strCommand = 'ToolBarOnClick("DISBCancelConfirm")';
+				        winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}		
+				else if( strId == "btnDISBPVoidable" ) 
+				{
+				        var strCommand = 'ToolBarOnClick("DISBPVoidable")';
+				        winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}	
+				else if( strId == "btnDISBRemitFailed" ) 
+				{
+				        var strCommand = 'ToolBarOnClick("DISBRemitFailed")';
+				        winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}			
+				else if( strId == "btnDISBRemit" ) 
+				{
+				        var strCommand = 'ToolBarOnClick("DISBRemit")';
+				        winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}		
+				else if( strId == "btnDISBCheckOpen" ) 
+				{
+				        var strCommand = 'ToolBarOnClick("DISBCheckOpen")';
+				        winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}		
+				else if( strId == "btnDISBBack" ) 
+				{
+				        var strCommand = 'ToolBarOnClick("DISBBack")';
+				        winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}		
+				else if( strId == "btnDISBCRejected" ) 
+				{
+				        var strCommand = 'ToolBarOnClick("DISBCRejected")';
+				        winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnDISBCCreate" ) 
+				{
+				        var strCommand = 'ToolBarOnClick("DISBCCreate")';
+				        winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnDISBCheckCashed" ) 
+				{
+				        var strCommand = 'ToolBarOnClick("DISBCheckCashed")';
+				        winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+				else if( strId == "btnUpload" ) 
+				{
+				        var strCommand = 'ToolBarOnClick("Upload")';
+				        winTarget.iInterval = winTarget.setInterval(strCommand,100);
+				}
+			}
+			i++;
+		} 
+	}
+}
+
+/**
+函數名稱:	BodyOnload()
+函數功能:	隱藏功能鍵
+傳入參數:	無
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+		---------	----------	-----------------------------------------
+*/
+function BodyOnLoad()
+{
+	if( window.navigator.appName.indexOf('Microsoft') != -1 )
+		strVendor = 'M';
+	else if( window.navigator.appName.indexOf('Netscape') != -1 )
+		strVendor = 'N';
+	else
+	{
+		alert( '請使用 Microsoft 或 Netscape 之瀏覽器' );
+	}
+	//因為 Windows XP 無法顯示正確的圖案,暫時先改為文字顯示
+	strVendor = 'N';	
+}
+
+function eventAdder(objAttrib,handler,addFunction){
+     
+   if ((!document.all)&&(document.getElementById)){
+       objAttrib.setAttribute(handler,addFunction);
+   }    
+   //workaround for IE 5.x
+   if ((document.all)&&(document.getElementById)){
+       objAttrib[handler]=new Function(addFunction);
+   }
+}
+
+
+</SCRIPT>
+</HEAD>
+<BODY onload="BodyOnLoad();"  topmargin=0px bgcolor="#DFDFDF">
+	<DIV id=txtAction name=txtAction ></DIV>
+	<FORM id="MainForm" name="MainForm"   style="PADDING-RIGHT: 0px; BACKGROUND-POSITION: 0px 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0pt; PADDING-TOP: 0px; offset-top: 0px"  >
+	</FORM>
+</BODY>
+</HTML>

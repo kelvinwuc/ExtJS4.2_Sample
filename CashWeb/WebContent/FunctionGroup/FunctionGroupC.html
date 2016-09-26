@@ -1,0 +1,657 @@
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=big5">
+<META name="GENERATOR" content="Microsoft FrontPage 4.0">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>功能群組資料維護</TITLE>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../Theme/global/theme.css" >
+<LINK REL="stylesheet" TYPE="text/css" HREF="../Theme/global/graph0.css" >
+<LINK REL="stylesheet" TYPE="text/css" HREF="../Theme/global/color0.css" >
+<LINK REL="stylesheet" TYPE="text/css" HREF="../Theme/global/custom.css" >
+<SCRIPT language="JavaScript" src="../ScriptLibrary/Common.js"></SCRIPT>
+<SCRIPT language="JavaScript" src="../ScriptLibrary/ClientM1.js"></SCRIPT>
+<script LANGUAGE="javascript">
+
+var strFirstKey 			= "selGRPID";		//第一個可輸入之Key欄位名稱
+var strFirstData 			= "selGrandedFunction";		//第一個可輸入之Data欄位名稱
+var strServerProgram 		= "FunctionGroupS.jsp";	//Post至Server時,要呼叫之程式名稱
+
+// *************************************************************
+/*
+函數名稱:	WindowOnLoad()
+函數功能:	當前端程式開始時,本函數會被執行
+傳入參數:	無
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+		---------	----------	-----------------------------------------
+*/
+function WindowOnLoad() 
+{
+	strFunctionKeyInitial = "I";
+	if( document.getElementById("txtMsg").value != "")
+		window.alert(document.getElementById("txtMsg").value) ;
+	WindowOnLoadCommon( document.title , '' , strFunctionKeyInitial,'' ) ;
+	LoadServerDataGRPID();	//自Server端下載資料:群組代號
+	window.status = "請先選擇新增或查詢功能鍵,若要修改或刪除資料,可經由查詢功能後再進入";
+//	disableKey();
+//	disableData();
+}
+
+
+/**
+函數名稱:	checkClientField(objThisItem,bShowMsg)
+函數功能:	檢核傳入之欄位是否正確
+傳入參數:	objThisItem:待測試的欄位物件
+			bShowMsg:true:即時顯示錯誤訊息,false:不要即時顯示錯誤訊息,將錯誤訊息累積至strErrMsg中
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+		---------	----------	-----------------------------------------
+*/
+function checkClientField( objThisItem,bShowMsg )
+{
+	var bReturnStatus = true;
+	var strTmpMsg = "";
+	if( objThisItem.name == "selGRPID" )
+	{
+		if( objThisItem.value == "")
+		{
+			strTmpMsg = "請選擇群組名稱";
+			bReturnStatus = false;
+		}
+	}
+	if( !bReturnStatus )
+	{
+		//if( bShowMsg )
+			alert( strTmpMsg );
+		//else
+		//	strErrMsg = strErrMsg + strTmpMsg + "\r\n";
+	}
+	return bReturnStatus;
+}
+
+/*
+函數名稱:	addAction()
+函數功能:	當toolbar frame 中之新增按鈕被點選時,本函數會被執行
+傳入參數:	無
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+		---------	----------	-----------------------------------------
+*/
+function addAction()
+{
+	window.status = "";
+	winToolBar.ShowButton( strFunctionKeyAdd );
+	enableAll();
+	document.getElementById("txtAction").value = "A";
+	if( strFirstKey != "" )
+	{
+		if( document.getElementById(strFirstKey) != null )
+			document.getElementById(strFirstKey).focus() ;
+	}
+}
+
+/*
+函數名稱:	updateAction()
+函數功能:	當toolbar frame 中之修改按鈕被點選時,本函數會被執行
+傳入參數:	無
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+		---------	----------	-----------------------------------------
+*/
+function updateAction()
+{
+	window.status = "";
+	winToolBar.ShowButton( strFunctionKeyUpdate );
+	disableKey();
+	enableData();
+	if( strFirstKey != "" )
+	{
+		if( document.getElementById(strFirstData) != null )
+			document.getElementById(strFirstData).focus() ;
+	}
+	document.getElementById("txtAction").value = "U";
+}
+
+/*
+函數名稱:	inquiryAction()
+函數功能:	當toolbar frame 中之查詢按鈕被點選時,本函數會被執行
+傳入參數:	無
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+		---------	----------	-----------------------------------------
+*/
+function inquiryAction()
+{
+if (checkClientField("txtGRPID",true))
+	{
+	if (areAllFieldsOK())
+		{
+			LoadServerDataGrandedFunction();	//自Server端下載資料:已選取功能項目
+			LoadServerDataAvailableFunction();	//自Server端下載資料:可選取功能項目
+			winToolBar.ShowButton( strFunctionKeyUpdate );
+			disableKey();
+			enableData();
+		}
+	}
+}
+
+/*
+函數名稱:	deleteAction()
+函數功能:	當toolbar frame 中之刪除按鈕被點選時,本函數會被執行
+傳入參數:	無
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+		---------	----------	-----------------------------------------
+*/
+function deleteAction()
+{
+	var bConfirm = window.confirm("是否確定刪除該筆資料?");
+	if( bConfirm )
+	{
+		enableAll();
+		document.getElementById("txtAction").value = "D";
+		document.getElementById("frmMain").submit();
+	}
+}
+
+/*
+函數名稱:	resetAction()
+函數功能:	當toolbar frame 中之清除按鈕被點選時,本函數會被執行
+傳入參數:	無
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+		---------	----------	-----------------------------------------
+*/
+function resetAction()
+{
+	var strSaveAction = document.getElementById("txtAction").value;
+	document.forms("frmMain").reset();
+	document.getElementById("txtAction").value = strSaveAction;
+	if( strFirstKey != "" )
+	{
+		if( document.getElementById(strFirstKey) != null )
+			document.getElementById(strFirstKey).focus() ;
+	}
+}
+
+/*
+函數名稱:	exitAction()
+函數功能:	當toolbar frame 中之離開按鈕被點選時,本函數會被執行
+傳入參數:	無
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+		---------	----------	-----------------------------------------
+*/
+function exitAction()
+{
+	ClearSelectItem();
+	winToolBar.ShowButton( strFunctionKeyInitial );
+	document.getElementById("txtAction").value = "";
+	document.getElementById("selGRPID").value = ""; //群組名稱-->顯示:請選擇
+	enableAll();
+}
+
+
+/*
+函數名稱:	saveAction()
+函數功能:	當toolbar frame 中之儲存按鈕被點選時,本函數會被執行
+傳入參數:	無
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+		---------	----------	-----------------------------------------
+*/
+function saveAction()
+{
+	//enableAll();
+	if( areAllFieldsOK() )
+	{
+		document.getElementById("txtAction").value = "U";
+		document.getElementById("frmMain").submit();
+	}
+	else
+	{
+		alert( strErrMsg );
+	}
+	enableAll();
+}
+
+
+/*
+函數名稱:	postToServer()
+函數功能:	將Client之資料以 XMLHTTP 之方式傳送到 Server 端,並接收傳回之訊息
+傳入參數:	無
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+		---------	----------	-----------------------------------------
+*/
+function postToServer()
+{
+	var xmldomData = new ActiveXObject("Microsoft.XMLDOM");
+	//將畫面上之資料先存入 XMLDOM 物件中
+	if( pushToXML( xmldomData ) != 0 )
+		return;
+
+	var xmlHttp = new ActiveXObject( "msxml2.XMLHTTP" );
+	//設定 Server 端程式, 第一個參數為 POST 表示使用 POST 呼叫 Server , 第二個參數為 Server 端程式名稱
+	// 第三個參數是表示是否使用非同步呼叫,若使用 false 時,則在下面使用 send() 呼叫時會等 Server 會應完成後才繼續進行
+	xmlHttp.open('POST',strServerProgram, false );	
+	xmlHttp.setRequestHeader("Content-type","text/xml");
+	//呼叫 Server 端程式, 並等待回應
+	xmlHttp.send( xmldomData );
+	//	alert( xmlHttp.responseText );
+	//	document.getElementById("txtShow").outerHTML = xmlHttp.responseText;
+	// xmlHttp.status 表示 Server 回應碼, 為一般之 HTTP 回應碼, 小於 300 表示正常, 通常是 200 
+	if( xmlHttp.status < 300 )
+	{	// Server 端程式正常結束
+		var xmldomResponseData = new ActiveXObject("Microsoft.XMLDOM");
+		// xmlhttp.responseText 中存放著 Server 端回應之 XML 資料, 使用 loadXML() 將該資料載入 XMLDOM 物件中
+		xmldomResponseData.loadXML( xmlHttp.responseText );
+		// 若 txtMsg 不為空白(一般都不為空白), 則先顯示訊息
+
+		if( xmldomResponseData.getElementsByTagName("txtMsg").length != 0 )
+		{
+			if( xmldomResponseData.getElementsByTagName("txtMsg").item(0).text != "" )
+				alert(xmldomResponseData.getElementsByTagName("txtMsg").item(0).text );
+		}
+
+		// debug XML ***do not delete***
+		//alert(xmldomResponseData.xml);	//debug
+		winToolBar.ShowButton(strFunctionKeyInquiry_1); //只顯示離開鍵
+
+		/*
+		// 若是為查詢時,則設定為查詢功能鍵,並將傳回之資料搬到畫面上,否則為標準之功能鍵
+		if( document.getElementById("txtAction").value == "I" )
+		{
+			//moveToForm( xmldomResponseData );
+			winToolBar.ShowButton( strFunctionKeyInquiry );
+			window.status = "目前為查詢狀態,若要修改或刪除資料,請先選擇＜＜或＞＞功能鍵";
+		}
+		else
+		{
+			winToolBar.ShowButton( strFunctionKeyInitial );
+			window.status = "請先選擇新增或查詢功能鍵,若要修改或刪除資料,可經由查詢功能後再進入";
+		}
+		*/
+		disableKey();
+		disableData();
+		//enableAll();
+	}
+	else
+	{	// xmlHttp.responseText 中存放著 Server 端傳回之錯誤畫面, 使用 alert() 並不十分恰當, 以後可再改善
+		alert( xmlHttp.responseText );
+	}
+}
+
+/*
+函數名稱:	pushToXML( xmldomData )
+函數功能:	將畫面中要上傳之欄位資料存入 xmldomData 中
+傳入參數:	XMLDOM xmldomData	: 要存入之 xmldom 資料結構物件
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+		---------	----------	-----------------------------------------
+*/
+function pushToXML( xmldomData )
+{
+	
+	var oRootNode = xmldomData.createElement("XML");
+	xmldomData.appendChild( oRootNode );
+
+	//將 FORM 中所有之 INPUT 資料, 以其原來之 id 為 tag name 存入 XML 中
+	var formMain = document.getElementsByName("divMain").item(0);
+	var formInputs = formMain.getElementsByTagName("INPUT");
+	if( formInputs != null )
+	{
+		for(var i=0;i< formInputs.length;i++)
+		{
+			if( formInputs.item(i).type == "radio" )
+				if( !formInputs.item(i).checked )
+					continue;
+			var oTmpNode = xmldomData.createElement(formInputs.item(i).id);
+			oTmpNode.text = formInputs.item(i).value;
+			oRootNode.appendChild( oTmpNode );
+		}
+	}
+
+	//將GRPID(1筆)存入XML中
+	oTmpNode = xmldomData.createElement("GRPID");
+	oTmpNode.text = document.getElementById("selGRPID").value;
+	oRootNode.appendChild( oTmpNode );
+
+	//將FUNID(多筆)存入XML中
+	var selGrandedFunction = document.getElementById("selGrandedFunction");
+	for(i=0; i < selGrandedFunction.length; i++)
+	{
+		oTmpNode = xmldomData.createElement("FUNID");
+		oTmpNode.text = selGrandedFunction.item(i).value ;
+		oRootNode.appendChild( oTmpNode );
+	}
+	// debug XML ***do not delete***
+	//alert(xmldomData.xml);	//debug
+	return 0;
+}
+
+/*
+函數名稱:	moveToForm( xmldomData )
+函數功能:	當 Server 傳回資料後,將 xmldomData 資料搬到畫面上
+傳入參數:	XMLDOM xmldomData	: Server 傳回之資料
+傳回值:	無
+修改紀錄:	修改日期	修改者	修   改   摘   要
+		---------	----------	-----------------------------------------
+*/
+/*
+function moveToForm( xmldomData )
+{
+	document.getElementById("txtUserId").value = xmldomData.getElementsByTagName("txtUserId").item(0).text;
+	document.getElementById("txtCollector").value = xmldomData.getElementsByTagName("txtCollector").item(0).text;
+	document.getElementById("txtInputDate").value = getROCDateTime(2, new Date(xmldomData.getElementsByTagName("txtInputDate").item(0).text));
+	for( var i=0;i<document.getElementsByName("radAuditType").length;i++)
+	{
+		if( document.getElementsByName("radAuditType").item(i).value == xmldomData.getElementsByTagName("radAuditType").item(0).text )
+		{
+			document.getElementsByName("radAuditType").item(i).checked = true;
+			break;
+		}
+	}
+	
+	document.getElementById("txtTotalItem").value = xmldomData.getElementsByTagName("txtTotalItem").item(0).text;
+	document.getElementById("txtPrintType").value = xmldomData.getElementsByTagName("txtPrintType").item(0).text;
+	if( xmldomData.getElementsByTagName("txtAuditDate").item(0).text != "" )
+		document.getElementById("txtAuditDate").value = getROCDateTime(2, new Date(xmldomData.getElementsByTagName("txtAuditDate").item(0).text));
+	else
+		document.getElementById("txtAuditDate").value = "";
+	if(xmldomData.getElementsByTagName("txtCheckDate").item(0).text != "")
+		document.getElementById("txtCheckDate").value = getROCDateTime(2, new Date(xmldomData.getElementsByTagName("txtCheckDate").item(0).text));
+	else
+		document.getElementById("txtCheckDate").value = "";
+	
+	for(var i=0;i<xmldomData.getElementsByTagName("txtPolNo").length;i++)
+	{
+		addOneDetail(	xmldomData.getElementsByTagName("txtPolNo").item(i).text , 
+						xmldomData.getElementsByTagName("txtReceiptNo").item(i).text,
+						xmldomData.getElementsByTagName("txtCheckResult").item(i).text,
+						xmldomData.getElementsByTagName("txtAuditResult").item(i).text );
+	}
+	
+}
+*/
+
+
+function changeFunction( thisButton )
+{
+	var selSource, selTarger;
+	if( thisButton.id == "btnGrand" )
+	{
+		selSource = document.getElementById("selAvailableFunction");
+		selTarget = document.getElementById("selGrandedFunction");
+	}
+	else
+	{
+		selSource = document.getElementById("selGrandedFunction");
+		selTarget = document.getElementById("selAvailableFunction");
+	}
+	for(var i=selSource.options.length-1;i>=0;i--)
+	{
+		if( selSource.options.item(i).selected )
+		{
+			var option = document.createElement("OPTION");
+			option.setAttribute("value",selSource.options.item(i).value);
+			option.setAttribute("text",selSource.options.item(i).text);
+			selTarget.options.add( option );
+			selSource.options.remove(i);
+		}
+	}
+}
+
+
+function changeSeq( thisButton )
+{
+	var selSource = document.getElementById("selGrandedFunction");
+	var iOffset = 0;
+	var iMultiSelection = 0;
+	for(var i=selSource.options.length-1;i>=0;i--)
+	{
+		if( selSource.options.item(i).selected )
+			iMultiSelection++;
+	}
+	if( iMultiSelection == 0 )
+	{
+		alert( "必須選取一個項目");
+		return;
+	}
+	else if( iMultiSelection > 1 )
+	{
+		alert( "只能選取一個項目");
+		return;
+	}
+	if( thisButton.id == "btnUp" )
+	{
+		iOffset = -1;
+	}
+	else
+	{
+		iOffset = 1;
+	}
+	for(var i=selSource.options.length-1;i>=0;i--)
+	{
+		if( selSource.options.item(i).selected )
+		{
+			if ( ( iOffset > 0 && iOffset+i < selSource.options.length  ) ||
+			     ( iOffset < 0 && iOffset+i >= 0 ) )
+			{
+				var strValue = selSource.options.item(i).value;
+				var strText = selSource.options.item(i).text;
+				selSource.options.item(i).value = selSource.options.item(i+iOffset).value;
+				selSource.options.item(i).text = selSource.options.item(i+iOffset).text;
+				selSource.options.item(i+iOffset).value = strValue;
+				selSource.options.item(i+iOffset).text = strText;
+				selSource.options.item(i+iOffset).selected = true;
+				selSource.options.item(i).selected = false;
+				break;
+			}
+		}
+	}
+}
+
+function LoadServerDataGRPID()
+{//群組代號
+	var strSql = "select * from FGROUP";
+	var xmldomTmp = executeSql( strSql );
+	if( xmldomTmp.getElementsByTagName("txtMsg").length != 0 )
+	{
+		if( xmldomTmp.getElementsByTagName("txtMsg").item(0).text != "" )
+		{
+			alert( xmldomTmp.getElementsByTagName("txtMsg").item(0).text );
+		}
+		else
+		{
+			var j=0;
+			for(j=document.getElementById("selGRPID").options.length-1;j>=0;j--)
+			{
+				document.getElementById("selGRPID").options.remove(j);
+			}
+
+			var oOption = document.createElement("OPTION");
+			oOption.text="請選擇"
+			oOption.value = ""
+			document.getElementById("selGRPID").add(oOption);
+
+			for(j=0;j<xmldomTmp.getElementsByTagName("GRPID").length;j++)
+			{
+				var oOption = document.createElement("OPTION");
+				oOption.text=xmldomTmp.getElementsByTagName("GRPNAM").item(j).text;
+				oOption.value = xmldomTmp.getElementsByTagName("GRPID").item(j).text;
+				document.getElementById("selGRPID").add(oOption);
+			}
+		}
+	}
+	else
+	{
+		alert("executeSql error : '"+strSql+"'");
+	}
+}
+
+function LoadServerDataGrandedFunction()
+{//已選取功能項目
+	var strSql="";
+	strSql+="SELECT FGROUP.GRPID AS GRPID, GRPFUN.FUNID AS FUNID, FUNC.FUNNAM AS FUNNAM ";
+	strSql+="FROM FUNC JOIN GRPFUN ON " ;
+	strSql+="FUNC.FUNID = GRPFUN.FUNID JOIN ";
+	strSql+="FGROUP ON GRPFUN.GRPID = FGROUP.GRPID ";
+	strSql+="where FGROUP.GRPID='"+document.getElementById("selGRPID").value+"'";
+		
+	var xmldomTmp = executeSql( strSql );
+	if( xmldomTmp.getElementsByTagName("txtMsg").length != 0 )
+	{
+		if( xmldomTmp.getElementsByTagName("txtMsg").item(0).text != "" )
+		{
+			alert( xmldomTmp.getElementsByTagName("txtMsg").item(0).text );
+		}
+		else
+		{
+			var j=0;
+			for(j=document.getElementById("selGrandedFunction").options.length-1;j>=0;j--)
+			{
+				document.getElementById("selGrandedFunction").options.remove(j);
+			}
+			for(j=0;j<xmldomTmp.getElementsByTagName("FUNID").length;j++)
+			{
+				var oOption = document.createElement("OPTION");
+				oOption.text=xmldomTmp.getElementsByTagName("FUNNAM").item(j).text;
+				oOption.value = xmldomTmp.getElementsByTagName("FUNID").item(j).text;
+				document.getElementById("selGrandedFunction").add(oOption);
+			}
+		}
+	}
+	else
+	{
+		alert("executeSql error : '"+strSql+"'");
+	}
+}
+
+function LoadServerDataAvailableFunction()
+{//可選取功能項目
+	var strSql="";
+	strSql+="select FUNC.FUNID,FUNC.FUNNAM from FUNC where FUNID not in ";
+	strSql+="(select GRPFUN.FUNID from FGROUP LEFT OUTER JOIN GRPFUN ON ";
+	strSql+="FGROUP.GRPID = GRPFUN.GRPID where ";
+	strSql+="FGROUP.GRPID='"+document.getElementById("selGRPID").value+"')";
+
+	var xmldomTmp = executeSql( strSql );
+	if( xmldomTmp.getElementsByTagName("txtMsg").length != 0 )
+	{
+		if( xmldomTmp.getElementsByTagName("txtMsg").item(0).text != "" )
+		{
+			alert( xmldomTmp.getElementsByTagName("txtMsg").item(0).text );
+		}
+		else
+		{
+			var j=0;
+			for(j=document.getElementById("selAvailableFunction").options.length-1;j>=0;j--)
+			{
+				document.getElementById("selAvailableFunction").options.remove(j);
+			}
+			for(j=0;j<xmldomTmp.getElementsByTagName("FUNID").length;j++)
+			{
+				var oOption = document.createElement("OPTION");
+				oOption.text=xmldomTmp.getElementsByTagName("FUNNAM").item(j).text;
+				oOption.value = xmldomTmp.getElementsByTagName("FUNID").item(j).text;
+				document.getElementById("selAvailableFunction").add(oOption);
+			}
+		}
+	}
+	else
+	{
+		alert("executeSql error : '"+strSql+"'");
+	}
+}
+
+function ClearSelectItem()
+{//將已選取功能項目&可選取功能項目清除
+	var j=0;
+	for(j=document.getElementById("selGrandedFunction").options.length-1;j>=0;j--)
+	{
+		document.getElementById("selGrandedFunction").options.remove(j);
+	}
+	j=0;
+	for(j=document.getElementById("selAvailableFunction").options.length-1;j>=0;j--)
+	{
+		document.getElementById("selAvailableFunction").options.remove(j);
+	}
+}
+</script>
+</HEAD>
+
+<BODY onload="WindowOnLoad()">
+<form action="javascript:postToServer();" id="frmMain" method="post" name="frmMain">
+<CENTER>
+<DIV id="divMain" name="divMain" >
+	<TABLE id="tblMain" name="tblMain" width="600" border="1">
+		<TR>
+			<TD width="100" align="right">群組名稱：</TD>
+			<TD width="500">
+				<SELECT class="Key" id="selGRPID" name="selGRPID" >
+				</SELECT>
+			</TD>
+		</TR>
+	</TABLE>
+	<table width="600" border="1" cellPadding="1" cellSpacing="1">
+		<TR>
+			<TD width="280" align="center">
+				<font size=3 color="#000099" ><B>已選取功能項目</B></font>
+			</TD>
+			<TD width="40" valign="top">
+			</TD>
+			<TD width="280" align="center">
+				<font size=3 color="#000099" ><B>可選取功能項目</B></font>
+			</TD>
+		</TR>
+		<TR>
+			<TD width="280" align="right">
+				<SELECT class="Data" id="selGrandedFunction" name="selGrandedFunction" multiple size=10 Style="width:250px;" >
+				</SELECT>
+			</TD>
+			<TD width="40" valign="top">
+				<INPUT class="Data" type="button" id="btnGrand" name="btnGrand" onClick="changeFunction(this);" value="＜＜" Style="width:40px;">
+				<INPUT class="Data" type="button" id="btnRemove" name="btnRemove" onClick="changeFunction(this);" value="＞＞"  Style="width:40px;">
+				<INPUT class="Data" type="button" id="btnUp" name="btnUp" onClick="changeSeq(this);" value="︽"  Style="width:40px;">
+				<INPUT class="Data" type="button" id="btnDown" name="btnDown" onClick="changeSeq(this);" value="︾"  Style="width:40px;">
+			</TD>
+			<TD width="280">
+				<SELECT class="Data" id="selAvailableFunction" name="selAvailableFunction" multiple size=10 Style="width:250px;" >
+				</SELECT>
+			</TD>
+		</TR>
+		<TR>
+			<table border="0" width=600 cellspacing="0" cellpadding="0" id="copyright" name="copyright">
+				<tr> 
+		<td width="100%" valign="middle" align="right" height="11" class='TableDeclare'>
+	        <Font Style="font-size: 12px; line-height: 16px; color: #666666; font-family: "新細明體";>著作權所有全球人壽</font>
+        </td>
+	</tr>
+	<tr> 
+		<td width="100%" valign="middle" align="right" height="11" class='TableDeclare'><Font Style="font-size: 12px; line-height: 16px; color: #666666; font-family: "新細明體";> 
+					<script language=JavaScript >
+			        var dteDate = new Date( document.lastModified );
+			        var strOut = '更新日期:';
+			        if( dteDate.getMonth() + 1 < 10 )
+			    	    strOut += "0"+(dteDate.getMonth()+1)+"/";
+			        else
+				        strOut += (dteDate.getMonth()+1)+"/";
+			        if( dteDate.getDate() < 10 )
+				        strOut += "0"+dteDate.getDate()+"/";
+			        else
+				        strOut += dteDate.getDate()+"/";
+				        strOut += dteDate.getFullYear();
+				        document.write( strOut );
+					</script></font></td>
+				</tr>
+			</table>		
+		</TR>
+	</table>
+	<INPUT name="txtAction" id="txtAction"  type="hidden" value="">
+	<INPUT name="txtMsg" id="txtMsg"  type="hidden" value="">
+</DIV>
+</CENTER>
+</FORM>
+</BODY>
+</HTML>

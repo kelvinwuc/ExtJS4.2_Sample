@@ -1,0 +1,45 @@
+A:link
+{
+    COLOR: #999900
+}
+A:visited
+{
+    COLOR: #cc9966
+}
+A:active
+{
+    COLOR: #990066
+}
+BODY
+{
+    BACKGROUND-COLOR: white
+}
+TABLE
+{
+    table-border-color-light: rgb(153,153,51);
+    table-border-color-dark: rgb(153,102,0)
+}
+H1
+{
+    COLOR: #cc9933
+}
+H2
+{
+    COLOR: #666666
+}
+H3
+{
+    COLOR: #663300
+}
+H4
+{
+    COLOR: #cc9933
+}
+H5
+{
+    COLOR: #666600
+}
+H6
+{
+    COLOR: #663300
+}

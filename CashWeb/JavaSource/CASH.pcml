@@ -1,0 +1,8 @@
+<pcml version="1.0">
+
+	<program name="programCAPDISB09" path="/QSYS.LIB/%libl%.lib/CAPDISB09.PGM" timeout="20000">
+		<data name="PAYNO" type="char" length="20" usage="input" />
+		<data name="FINCFMDATE" type="char" length="10" usage="input" />
+	</program>
+
+</pcml>

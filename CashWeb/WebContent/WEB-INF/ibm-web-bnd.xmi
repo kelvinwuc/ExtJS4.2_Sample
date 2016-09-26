@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webappbnd:WebAppBinding xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:webappbnd="webappbnd.xmi" xmi:id="WebAppBinding_1" virtualHostName="default_host">
+  <webapp href="WEB-INF/web.xml#WebApp"/>
+  <resRefBindings xmi:id="ResourceRefBinding_1083948803437" jndiName="jdbc/AEGON400">
+    <bindingResourceRef href="WEB-INF/web.xml#ResourceRef_1083948803437"/>
+  </resRefBindings>
+  <resRefBindings xmi:id="ResourceRefBinding_1083948803438" jndiName="jdbc/AEGON401">
+    <bindingResourceRef href="WEB-INF/web.xml#ResourceRef_1083948803438"/>
+  </resRefBindings>
+  <resourceEnvRefBindings xmi:id="ResourceEnvRefBinding_1083948803453" jndiName="jdbc/AEGON400">
+    <bindingResourceEnvRef href="WEB-INF/web.xml#ResourceEnvRef_1083948803453"/>
+  </resourceEnvRefBindings>
+  <resourceEnvRefBindings xmi:id="ResourceEnvRefBinding_1083948803454" jndiName="jdbc/AEGON401">
+    <bindingResourceEnvRef href="WEB-INF/web.xml#ResourceEnvRef_1083948803454"/>
+  </resourceEnvRefBindings>
+</webappbnd:WebAppBinding>

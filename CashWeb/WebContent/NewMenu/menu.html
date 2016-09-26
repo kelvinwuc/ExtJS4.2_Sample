@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=big5">
+<META name="GENERATOR" content="IBM WebSphere Page Designer V3.5 for Windows">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>
+eService menu page
+</TITLE>
+<link rel="stylesheet" href="menu.css"></link>
+<STYLE type="text/css">
+<!--
+.mTag{
+  background-attachment : fixed;background-position : left center;
+  text-align : left;
+  cursor : hand;
+width:117;
+  font-weight : normal;
+  
+  color : white;
+}
+-->
+</STYLE>
+</HEAD>
+<!--<BODY style="padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0pt;margin-left : 0pt;margin-right : 0pt;margin-bottom : 0pt;">-->
+<BODY style="background-color:#DFDFDF">
+<script type='text/javascript'>
+
+//HV Menu- by Ger Versluis (http://www.burmees.nl/)
+//Submitted to Dynamic Drive (http://www.dynamicdrive.com)
+//Visit http://www.dynamicdrive.com for this script and more
+
+//function Go(){return}
+function disableAllSelect()
+{
+	var objDocument = window.top.contentFrame.document;
+	var formSelects = objDocument.getElementsByTagName("SELECT");
+	if( formSelects != null )
+	{
+		for(var i=0;i< formSelects.length;i++)
+		{
+			formSelects.item(i).style.display = "none";
+		}
+	}
+	
+}
+
+function enableAllSelect()
+{
+	var objDocument = window.top.contentFrame.document;
+	var formSelects = objDocument.getElementsByTagName("SELECT");
+	if( formSelects != null )
+	{
+		for(var i=0;i< formSelects.length;i++)
+		{
+			formSelects.item(i).style.display = "block";
+		}
+	}
+	
+}
+</script>
+<!--
+<script type='text/javascript' src='exmplmenu_var.js'></script>
+<script type='text/javascript' src='menu_com.js'></script>
+-->
+<noscript>Your browser does not support script</noscript><!--
+<table width="520">
+<tr>
+	<td width=130>
+		<DIV id="AppForm"  href="../ApplicationForm/ApplicationFormC.html" target="contentFrame" onClick="mOnClick('AppForm','../ApplicationForm/ApplicationFormC.html','content');" style="background-color:0033FF;cursor:hand;width:130px;text-decoration: none; border:3px white outset;padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0pt;margin-left : 0pt;margin-right : 0pt;margin-bottom : 0pt;" onMouseOver="changeActive(this.id);">
+			<FONT size=2 style="position: relative;top:2;left:2;color:white; ">
+			建議書/要保書
+			</FONT>
+		</DIV>
+	</td>
+	<td width=130>
+		<DIV id="Customer"  href="../Customer/CustomerC.html" target="contentFrame" onClick="mOnClick('Customer','../Customer/CustomerC.html','content');" style="background-color:0033FF;cursor:hand;width:130px;text-decoration: none; border:3px white outset;padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0pt;margin-left : 0pt;margin-right : 0pt;margin-bottom : 0pt;" onMouseOver="changeActive(this.id);">
+			<FONT size=2 style="position: relative;top:2;left:2;color:white; ">
+			客戶資料維護
+			</FONT>
+		</DIV>
+	</td>
+	<td width=130>
+		<DIV id="Single"  href="../SingleTable/SingleC.html" target="contentFrame" onClick="mOnClick('Single','../SingleTable/SingleC.html','content');" style="background-color:0033FF;cursor:hand;width:130px;text-decoration: none; border:3px white outset;padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0pt;margin-left : 0pt;margin-right : 0pt;margin-bottom : 0pt;" onMouseOver="changeActive(this.id);">
+			<FONT size=2 style="position: relative;top:2;left:2;color:white; ">
+			單一資料集維護
+			</FONT>
+		</DIV>
+	</td>
+	<td width=130>
+		<DIV id="MasterDetail"  href="../MasterDetail/MasterDetailC.html" target="contentFrame" onClick="mOnClick('MasterDetail','../MasterDetail/MasterDetailC.html','content');" style="background-color:0033FF;cursor:hand;width:130px;text-decoration: none; border:3px white outset;padding-top : 0px;padding-left : 0px;padding-right : 0px;padding-bottom : 0px;margin-top : 0pt;margin-left : 0pt;margin-right : 0pt;margin-bottom : 0pt;" onMouseOver="changeActive(this.id);">
+			<FONT size=2 style="position: relative;top:2;left:2;color:white; ">
+			主從資料集維護
+			</FONT>
+		</DIV>
+	</td>
+</tr>
+<div id="subAppForm" name="subAppForm" Style="width:130px;height:200px;border:2px white outset;position:absolute;background-color:blue;display:none;" top="0">
+	<FONT size=2 style="position: relative;top:2;left:2;color:white; ">
+	建議書/要保書新增<BR>
+	建議書/要保書修改
+	</FONT>
+</div>
+<div id="subCustomer" name="subCustomer" Style="width:130px;height:200px;border:2px white outset;position:absolute;background-color:blue;display:none;" top="0">
+	<FONT size=2 style="position: relative;top:2;left:2;color:white; ">
+	客戶資料新增<BR>
+	客戶資料修改
+	</FONT>
+</div>
+<div id="subSingle" name="subSingle" Style="width:130px;height:200px;border:2px white outset;position:absolute;background-color:blue;display:none;" top="0">
+	<FONT size=2 style="position: relative;top:2;left:2;color:white; ">
+	單一資料集新增<BR>
+	單一資料集修改
+	</FONT>
+</div>
+<div id="subMasterDetail" name="subMasterDetail" Style="width:130px;height:200px;border:2px white outset;position:absolute;background-color:blue;display:none;" top="0">
+	<FONT size=2 style="position: relative;top:2;left:2;color:white; ">
+	主從資料集新增<BR>
+	主從資料集修改
+	</FONT>
+</div>
+-->
+</BODY>
+</HTML>

@@ -1,0 +1,756 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app id="WebApp">
+	<display-name>CashWebPIC05</display-name>
+
+	<filter>
+		<filter-name>SetHtmlHeader</filter-name>
+		<filter-class>com.aegon.filter.SetHtmlHeader</filter-class>
+		<init-param>
+			<param-name>logflag</param-name>
+			<param-value>Y</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>SetHtmlHeader</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SetHtmlHeader</filter-name>
+		<url-pattern>*.htm</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SetHtmlHeader</filter-name>
+		<url-pattern>*.html</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SetHtmlHeader</filter-name>
+		<url-pattern>/servlet/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>AppStartUpServlet</servlet-name>
+		<display-name>AppStartUpServlet</display-name>
+		<servlet-class>com.aegon.AppStartUpServlet</servlet-class>
+		<init-param id="AppHomeDirectory">
+			<param-name>AppHomeDirectory</param-name>
+			<param-value>E:\WASApp\CashWeb</param-value>
+		</init-param>
+		<init-param id="Debug">
+			<param-name>Debug</param-name>
+			<param-value>3</param-value>
+		</init-param>
+		<init-param id="DebugFileName">
+			<param-name>DebugFileName</param-name>
+			<param-value>E:\WASApp\CashWeb\DebugLog.txt</param-value>
+		</init-param>
+		<init-param id="DbCharset">
+			<param-name>DbCharset</param-name>
+			<param-value>big5</param-value>
+		</init-param>
+		<init-param id="CheckPasswordAging">
+			<param-name>CheckPasswordAging</param-name>
+			<param-value>yes</param-value>
+		</init-param>
+		<init-param id="PasswordValidDay">
+			<param-name>PasswordValidDay</param-name>
+			<param-value>36</param-value>
+		</init-param>
+		<init-param id="PasswordValidWarnningDay">
+			<param-name>PasswordValidWarnningDay</param-name>
+			<param-value>7</param-value>
+		</init-param>
+		<init-param id="AS400DbJdbcUrlAEGON400">
+			<param-name>AS400DbJdbcUrlAEGON400</param-name>
+			<param-value>jdbc:as400://AEGON400;trace=false;</param-value>
+		</init-param>
+		<init-param id="AS400DbUserIdAEGON400">
+			<param-name>AS400DbUserIdAEGON400</param-name>
+			<param-value>WEBCASH</param-value>
+		</init-param>
+		<init-param id="AS400DbPasswordAEGON400">
+			<param-name>AS400DbPasswordAEGON400</param-name>
+			<param-value>CASHWEB</param-value>
+		</init-param>
+		<init-param id="AS400SystemNameAEGON400">
+			<param-name>AS400SystemNameAEGON400</param-name>
+			<param-value>AEGON400</param-value>
+		</init-param>
+		<init-param id="AS400SystemUserNameAEGON400">
+			<param-name>AS400SystemUserNameAEGON400</param-name>
+			<param-value>WEBCASH</param-value>
+		</init-param>
+		<init-param id="AS400SystemPasswordAEGON400">
+			<param-name>AS400SystemPasswordAEGON400</param-name>
+			<param-value>CASHWEB</param-value>
+		</init-param>
+		<init-param id="AS400DataSourceNameAEGON400">
+			<param-name>AS400DataSourceNameAEGON400</param-name>
+			<param-value>jdbc/AEGON400</param-value>
+		</init-param>
+		<init-param id="AS400DbJdbcUrlAEGON401">
+			<param-name>AS400DbJdbcUrlAEGON401</param-name>
+			<param-value>jdbc:as400://AEGON401;trace=false;</param-value>
+		</init-param>
+		<init-param id="AS400DbUserIdAEGON401">
+			<param-name>AS400DbUserIdAEGON401</param-name>
+			<param-value>WEBCASH</param-value>
+		</init-param>
+		<init-param id="AS400DbPasswordAEGON401">
+			<param-name>AS400DbPasswordAEGON401</param-name>
+			<param-value>CASHWEB</param-value>
+		</init-param>
+		<init-param id="AS400SystemNameAEGON401">
+			<param-name>AS400SystemNameAEGON401</param-name>
+			<param-value>AEGON401</param-value>
+		</init-param>
+		<init-param id="AS400SystemUserNameAEGON401">
+			<param-name>AS400SystemUserNameAEGON401</param-name>
+			<param-value>WEBCASH</param-value>
+		</init-param>
+		<init-param id="AS400SystemPasswordAEGON401">
+			<param-name>AS400SystemPasswordAEGON401</param-name>
+			<param-value>CASHWEB</param-value>
+		</init-param>
+		<init-param id="AS400DataSourceNameAEGON401">
+			<param-name>AS400DataSourceNameAEGON401</param-name>
+			<param-value>jdbc/AEGON401</param-value>
+		</init-param>
+		<init-param id="AS400DbJdbcDriverName">
+			<param-name>AS400DbJdbcDriverName</param-name>
+			<param-value>com.ibm.as400.access.AS400JDBCDriver</param-value>
+		</init-param>
+		<init-param id="AS400PCMLFileName">
+			<param-name>AS400PCMLFileName</param-name>
+			<param-value>CASH.pcml</param-value>
+		</init-param>
+		<init-param id="AuditLogLevel">
+			<param-name>AuditLogLevel</param-name>
+			<param-value>3</param-value>
+		</init-param>
+		<init-param id="PasswordEncrypted">
+			<param-name>PasswordEncrypted</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param id="PasswordCaseSenstivity">
+			<param-name>PasswordCaseSenstivity</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param id="TableNameUserId">
+			<param-name>TableNameUserId</param-name>
+			<param-value>USER</param-value>
+		</init-param>
+		<init-param id="TableNameFunction">
+			<param-name>TableNameFunction</param-name>
+			<param-value>FUNC</param-value>
+		</init-param>
+		<init-param id="TableNameGroup">
+			<param-name>TableNameGroup</param-name>
+			<param-value>FGROUP</param-value>
+		</init-param>
+		<init-param id="TableNameFunctionTree">
+			<param-name>TableNameFunctionTree</param-name>
+			<param-value>FUNCTREE</param-value>
+		</init-param>
+		<init-param id="TableNameGroupFunction">
+			<param-name>TableNameGroupFunction</param-name>
+			<param-value>GRPFUN</param-value>
+		</init-param>
+		<init-param id="TableNameUserGroup">
+			<param-name>TableNameUserGroup</param-name>
+			<param-value>USERGRP</param-value>
+		</init-param>
+		<init-param id="TableNameUserFunction">
+			<param-name>TableNameUserFunction</param-name>
+			<param-value>USRFUN</param-value>
+		</init-param>
+		<init-param id="TableNameSubFunction">
+			<param-name>TableNameSubFunction</param-name>
+			<param-value>SUBFUNC</param-value>
+		</init-param>
+		<init-param id="FieldNameUserId">
+			<param-name>FieldNameUserId</param-name>
+			<param-value>USRID</param-value>
+		</init-param>
+		<init-param id="FieldNameUserName">
+			<param-name>FieldNameUserName</param-name>
+			<param-value>USRNAM</param-value>
+		</init-param>
+		<init-param id="FieldNameDefaultGroupId">
+			<param-name>FieldNameDefaultGroupId</param-name>
+			<param-value>DFTGRP</param-value>
+		</init-param>
+		<init-param id="FieldNamePassword">
+			<param-name>FieldNamePassword</param-name>
+			<param-value>PWD</param-value>
+		</init-param>
+		<init-param id="FieldNameLastPasswordDate">
+			<param-name>FieldNameLastPasswordDate</param-name>
+			<param-value>LPWDTE</param-value>
+		</init-param>
+		<init-param id="FieldNameLastLogonDate">
+			<param-name>FieldNameLastLogonDate</param-name>
+			<param-value>LLOGD</param-value>
+		</init-param>
+		<init-param id="FieldNamePasswordValidDay">
+			<param-name>FieldNamePasswordValidDay</param-name>
+			<param-value>PWDVAL</param-value>
+		</init-param>
+		<init-param id="FieldNameUserType">
+			<param-name>FieldNameUserType</param-name>
+			<param-value>USRTYP</param-value>
+		</init-param>
+		<init-param id="FieldNameUserDept">
+			<param-name>FieldNameUserDept</param-name>
+			<param-value>DEPT</param-value>
+		</init-param>
+		<init-param id="FieldNameUserRight">
+			<param-name>FieldNameUserRight</param-name>
+			<param-value>USRAUTH</param-value>
+		</init-param>
+		<init-param id="FieldNameUserStatus">
+			<param-name>FieldNameUserStatus</param-name>
+			<param-value>STAT</param-value>
+		</init-param>
+		<init-param id="FieldNameHitCountUrl">
+			<param-name>FieldNameHitCountUrl</param-name>
+			<param-value>CNTURL</param-value>
+		</init-param>
+		<init-param id="FieldNameSubFunction">
+			<param-name>FieldNameSubFunction</param-name>
+			<param-value>SUBFUN</param-value>
+		</init-param>
+		<init-param id="FieldNameSubFunctionName">
+			<param-name>FieldNameSubFunctionName</param-name>
+			<param-value>FUNNAM</param-value>
+		</init-param>
+		<init-param id="FieldNameFunctionId">
+			<param-name>FieldNameFunctionId</param-name>
+			<param-value>FUNID</param-value>
+		</init-param>
+		<init-param id="FieldNameFunctionIdUp">
+			<param-name>FieldNameFunctionIdUp</param-name>
+			<param-value>FUNUP</param-value>
+		</init-param>
+		<init-param id="FieldNameSeq">
+			<param-name>FieldNameSeq</param-name>
+			<param-value>SEQ</param-value>
+		</init-param>
+		<init-param id="FieldNameFunctionIdDown">
+			<param-name>FieldNameFunctionIdDown</param-name>
+			<param-value>FUNDWN</param-value>
+		</init-param>
+		<init-param id="FieldNameFunctionName">
+			<param-name>FieldNameFunctionName</param-name>
+			<param-value>FUNNAM</param-value>
+		</init-param>
+		<init-param id="FieldNameRemark">
+			<param-name>FieldNameRemark</param-name>
+			<param-value>REMK</param-value>
+		</init-param>
+		<init-param id="FieldNameProperty">
+			<param-name>FieldNameProperty</param-name>
+			<param-value>PROP</param-value>
+		</init-param>
+		<init-param id="FieldNameUrl">
+			<param-name>FieldNameUrl</param-name>
+			<param-value>RUL</param-value>
+		</init-param>
+		<init-param id="FieldNameTargetWindow">
+			<param-name>FieldNameTargetWindow</param-name>
+			<param-value>TWIN</param-value>
+		</init-param>
+		<init-param id="FieldNameGroupId">
+			<param-name>FieldNameGroupId</param-name>
+			<param-value>GRPID</param-value>
+		</init-param>
+		<init-param id="FieldNameUserGroupUserId">
+			<param-name>FieldNameUserGroupUserId</param-name>
+			<param-value>USRID</param-value>
+		</init-param>
+		<init-param id="FieldNameSubFunctionFunctionId">
+			<param-name>FieldNameSubFunctionFunctionId</param-name>
+			<param-value>FUNID</param-value>
+		</init-param>
+		<init-param id="FieldNameExclude">
+			<param-name>FieldNameExclude</param-name>
+			<param-value>EXCLUD</param-value>
+		</init-param>
+		<init-param id="FieldNameGroupFunctionSubFunction">
+			<param-name>FieldNameGroupFunctionSubFunction</param-name>
+			<param-value>SUBFUN</param-value>
+		</init-param>
+		<init-param id="AS400Naming">
+			<param-name>AS400Naming</param-name>
+			<param-value>system</param-value>
+		</init-param>
+		<init-param id="ActiveDataSource">
+			<param-name>ActiveDataSource</param-name>
+			<param-value>jdbc/AEGON401</param-value>
+		</init-param>
+		<init-param id="RAS_SERVER_NAME">
+			<param-name>RAS_SERVER_NAME</param-name>
+			<param-value>TMWCRS2</param-value>
+		</init-param>
+		<init-param id="RAS_USER_ID">
+			<param-name>RAS_USER_ID</param-name>
+			<param-value>WEBCASH</param-value>
+		</init-param>
+		<init-param id="RAS_PASSWORD">
+			<param-name>RAS_PASSWORD</param-name>
+			<param-value>CASHWEB</param-value>
+		</init-param>
+		<init-param id="RAS_ODBC_NAME">
+			<param-name>RAS_ODBC_NAME</param-name>
+			<param-value>ODBC_CASH</param-value>
+		</init-param>
+		<init-param>
+			<param-name>RootPath</param-name>
+			<param-value>D:\\WAS5App\\CashWeb.ear\\CashWeb.war\\</param-value>
+		</init-param>
+		<init-param>
+			<param-name>AppPath</param-name>
+			<param-value>E:\\WASApp\\CashWeb\\WebContent\\</param-value>
+		</init-param>
+		<init-param>
+			<param-name>CapsilSwitch</param-name>
+			<param-value>F</param-value>
+		</init-param>
+
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!--登錄 -->
+	<servlet>
+		<servlet-name>com.aegon.logon.LogonBean</servlet-name>
+		<display-name>com.aegon.logon.LogonBean</display-name>
+		<servlet-class>com.aegon.logon.LogonBean</servlet-class>
+	</servlet>
+	<!--各銀行未銷已銷帳彙總表 -->
+	<servlet>
+		<servlet-name>com.aegon.balchkrpt.BalanceRptServlet</servlet-name>
+		<display-name>com.aegon.balchkrpt.BalanceRptServlet</display-name>
+		<servlet-class>com.aegon.balchkrpt.BalanceRptServlet</servlet-class>
+	</servlet>
+	<!--銀行登帳報表 -->
+	<servlet>
+		<servlet-name>com.aegon.crystalreport.CreateReportRS</servlet-name>
+		<display-name>com.aegon.crystalreport.CreateReportRS</display-name>
+		<servlet-class>com.aegon.crystalreport.CreateReportRS</servlet-class>
+	</servlet>
+	<!--現金收入日報表 -->
+	<servlet>
+		<servlet-name>com.aegon.crystalreport.CreateReport</servlet-name>
+		<display-name>com.aegon.crystalreport.CreateReport</display-name>
+		<servlet-class>com.aegon.crystalreport.CreateReport</servlet-class>
+	</servlet>
+	<!--支票功能_票據回銷作業 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckCashedServlet</servlet-name>
+		<display-name>com.aegon.disb.disbcheck.DISBCheckCashedServlet</display-name>
+		<servlet-class>com.aegon.disb.disbcheck.DISBCheckCashedServlet</servlet-class>
+	</servlet>
+	<!--出納功能_人工開票 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckCreateServlet</servlet-name>
+		<display-name>com.aegon.disb.disbcheck.DISBCheckCreateServlet</display-name>
+		<servlet-class>com.aegon.disb.disbcheck.DISBCheckCreateServlet</servlet-class>
+	</servlet>
+	<!--出納系統_整批人工開票 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckCreateBatchServlet</servlet-name>
+		<display-name>com.aegon.disb.disbcheck.DISBCheckCreateBatchServlet</display-name>
+		<servlet-class>com.aegon.disb.disbcheck.DISBCheckCreateBatchServlet</servlet-class>
+	</servlet>
+	<!--支票功能_票據狀態維護作業 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckMaintainServlet</servlet-name>
+		<display-name>com.aegon.disb.disbcheck.DISBCheckMaintainServlet</display-name>
+		<servlet-class>com.aegon.disb.disbcheck.DISBCheckMaintainServlet</servlet-class>
+	</servlet>
+	<!--出納功能_票據還原 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckModifyServlet</servlet-name>
+		<display-name>com.aegon.disb.disbcheck.DISBCheckModifyServlet</display-name>
+		<servlet-class>com.aegon.disb.disbcheck.DISBCheckModifyServlet</servlet-class>
+	</servlet>
+	<!--票據開立 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckOpenServlet</servlet-name>
+		<display-name>com.aegon.disb.disbcheck.DISBCheckOpenServlet</display-name>
+		<servlet-class>com.aegon.disb.disbcheck.DISBCheckOpenServlet</servlet-class>
+	</servlet>
+	<!--支付功能_票據退回 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckRejectedServlet</servlet-name>
+		<display-name>com.aegon.disb.disbcheck.DISBCheckRejectedServlet</display-name>
+		<servlet-class>com.aegon.disb.disbcheck.DISBCheckRejectedServlet</servlet-class>
+	</servlet>
+	<!--管理系統_票據庫存 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckStockServlet</servlet-name>
+		<display-name>com.aegon.disb.disbcheck.DISBCheckStockServlet</display-name>
+		<servlet-class>com.aegon.disb.disbcheck.DISBCheckStockServlet</servlet-class>
+	</servlet>
+	<!--支票功能_票據單筆回銷作業 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbcheck.DISBOneCCreateServlet</servlet-name>
+		<display-name>com.aegon.disb.disbcheck.DISBOneCCreateServlet</display-name>
+		<servlet-class>com.aegon.disb.disbcheck.DISBOneCCreateServlet</servlet-class>
+	</servlet>
+	<!--管理系統_財務急件會計分錄 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBAccCdDpServlet</servlet-name>
+		<display-name>com.aegon.disb.disbmaintain.DISBAccCdDpServlet</display-name>
+		<servlet-class>com.aegon.disb.disbmaintain.DISBAccCdDpServlet</servlet-class>
+	</servlet>
+	<!--管理系統_現金日報分錄 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBAccDayCasServlet</servlet-name>
+		<display-name>com.aegon.disb.disbmaintain.DISBAccDayCasServlet</display-name>
+		<servlet-class>com.aegon.disb.disbmaintain.DISBAccDayCasServlet</servlet-class>
+	</servlet>
+	<!--管理系統_出納匯款會計分錄 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBAccFinRmtServlet</servlet-name>
+		<display-name>com.aegon.disb.disbmaintain.DISBAccFinRmtServlet</display-name>
+		<servlet-class>com.aegon.disb.disbmaintain.DISBAccFinRmtServlet</servlet-class>
+	</servlet>
+	<!--管理系統_財務會計分錄 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBAccCodeServlet</servlet-name>
+		<display-name>com.aegon.disb.disbmaintain.DISBAccCodeServlet</display-name>
+		<servlet-class>com.aegon.disb.disbmaintain.DISBAccCodeServlet</servlet-class>
+	</servlet>
+	<!--管理系統_反轉退匯會計分錄 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBAccRevRmtFailServlet</servlet-name>
+		<display-name>com.aegon.disb.disbmaintain.DISBAccRevRmtFailServlet</display-name>
+		<servlet-class>com.aegon.disb.disbmaintain.DISBAccRevRmtFailServlet</servlet-class>
+	</servlet>
+	<!--管理系統_退匯會計分錄 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBAccRmtFailServlet</servlet-name>
+		<display-name>com.aegon.disb.disbmaintain.DISBAccRmtFailServlet</display-name>
+		<servlet-class>com.aegon.disb.disbmaintain.DISBAccRmtFailServlet</servlet-class>
+	</servlet>
+	<!--管理系統_金資銀行檔 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBCAPccbfServlet</servlet-name>
+		<display-name>com.aegon.disb.disbmaintain.DISBCAPccbfServlet</display-name>
+		<servlet-class>com.aegon.disb.disbmaintain.DISBCAPccbfServlet</servlet-class>
+	</servlet>
+	<!--管理系統_支票異動會計分錄 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBCStatusAccCdServlet</servlet-name>
+		<display-name>com.aegon.disb.disbmaintain.DISBCStatusAccCdServlet</display-name>
+		<servlet-class>com.aegon.disb.disbmaintain.DISBCStatusAccCdServlet</servlet-class>
+	</servlet>
+	<!--應收帳款逾二年轉其他收入 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBFinTransToOther</servlet-name>
+		<display-name>com.aegon.disb.disbmaintain.DISBFinTransToOther</display-name>
+		<servlet-class>com.aegon.disb.disbmaintain.DISBFinTransToOther</servlet-class>
+	</servlet>
+	<!--支付功能_支付確認 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbpayment.DISBPConfirmServlet</servlet-name>
+		<display-name>com.aegon.disb.disbpayment.DISBPConfirmServlet</display-name>
+		<servlet-class>com.aegon.disb.disbpayment.DISBPConfirmServlet</servlet-class>
+	</servlet>
+	<!--支付功能_支付維護 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbpayment.DISBPMaintainServlet</servlet-name>
+		<display-name>com.aegon.disb.disbpayment.DISBPMaintainServlet</display-name>
+		<servlet-class>com.aegon.disb.disbpayment.DISBPMaintainServlet</servlet-class>
+	</servlet>
+	<!--支付功能_支付備註 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbpayment.DISBPMemoServlet</servlet-name>
+		<display-name>com.aegon.disb.disbpayment.DISBPMemoServlet</display-name>
+		<servlet-class>com.aegon.disb.disbpayment.DISBPMemoServlet</servlet-class>
+	</servlet>
+	<!--修改付款日 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbpsource.DISBSChangePDateServlet</servlet-name>
+		<display-name>com.aegon.disb.disbpsource.DISBSChangePDateServlet</display-name>
+		<servlet-class>com.aegon.disb.disbpsource.DISBSChangePDateServlet</servlet-class>
+	</servlet>
+	<!--支付來源_整批確認修改 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbpsource.DISBSMaintainServlet</servlet-name>
+		<display-name>com.aegon.disb.disbpsource.DISBSMaintainServlet</display-name>
+		<servlet-class>com.aegon.disb.disbpsource.DISBSMaintainServlet</servlet-class>
+	</servlet>
+	<!--支付來源_整批確認 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbpsource.DISBSConfirmServlet</servlet-name>
+		<display-name>com.aegon.disb.disbpsource.DISBSConfirmServlet</display-name>
+		<servlet-class>com.aegon.disb.disbpsource.DISBSConfirmServlet</servlet-class>
+	</servlet>
+	<!--應付票據統計 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbquery.DISBCDetailServlet</servlet-name>
+		<display-name>com.aegon.disb.disbquery.DISBCDetailServlet</display-name>
+		<servlet-class>com.aegon.disb.disbquery.DISBCDetailServlet</servlet-class>
+	</servlet>
+	<!--出納功能_後收手續費輸入作業 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbremit.DISBRemitBackFeeServlet</servlet-name>
+		<display-name>com.aegon.disb.disbremit.DISBRemitBackFeeServlet</display-name>
+		<servlet-class>com.aegon.disb.disbremit.DISBRemitBackFeeServlet</servlet-class>
+	</servlet>
+	<!--匯款功能_整批匯款作業 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbremit.DISBRemitDisposeServlet</servlet-name>
+		<display-name>com.aegon.disb.disbremit.DISBRemitDisposeServlet</display-name>
+		<servlet-class>com.aegon.disb.disbremit.DISBRemitDisposeServlet</servlet-class>
+	</servlet>
+	<!--出納功能_匯款檔案 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbremit.DISBRemitExportServlet</servlet-name>
+		<display-name>com.aegon.disb.disbremit.DISBRemitExportServlet</display-name>
+		<servlet-class>com.aegon.disb.disbremit.DISBRemitExportServlet</servlet-class>
+	</servlet>
+	<!--支付功能_退匯處理作業 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbremit.DISBRemitFailedServlet</servlet-name>
+		<display-name>com.aegon.disb.disbremit.DISBRemitFailedServlet</display-name>
+		<servlet-class>com.aegon.disb.disbremit.DISBRemitFailedServlet</servlet-class>
+	</servlet>
+	<!--每日付款明細報表 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbreports.DISBDailyPRServlet</servlet-name>
+		<display-name>com.aegon.disb.disbreports.DISBDailyPRServlet</display-name>
+		<servlet-class>com.aegon.disb.disbreports.DISBDailyPRServlet</servlet-class>
+	</servlet>
+	<!--給付通知書 -->
+	<servlet>
+		<servlet-name>com.aegon.disb.disbreports.DISBPaymentNoticeServlet</servlet-name>
+		<display-name>com.aegon.disb.disbreports.DISBPaymentNoticeServlet</display-name>
+		<servlet-class>com.aegon.disb.disbreports.DISBPaymentNoticeServlet</servlet-class>
+	</servlet>
+	<!--出納功能_匯款報表 -->
+	<!-- servlet>
+		<servlet-name>com.aegon.disb.disbreports.DISBPReportsServlet</servlet-name>
+		<display-name>com.aegon.disb.disbreports.DISBPReportsServlet</display-name>
+		<servlet-class>com.aegon.disb.disbreports.DISBPReportsServlet</servlet-class>
+	</servlet-->
+	<!--登銷帳查詢 -->
+	<servlet>
+		<servlet-name>com.aegon.entCroInq.EntCroInqServlet</servlet-name>
+		<display-name>com.aegon.entCroInq.EntCroInqServlet</display-name>
+		<servlet-class>com.aegon.entCroInq.EntCroInqServlet</servlet-class>
+	</servlet>
+	<!--檢查密碼 -->
+	<servlet>
+		<servlet-name>com.aegon.logon.CheckPassword</servlet-name>
+		<display-name>com.aegon.logon.CheckPassword</display-name>
+		<servlet-class>com.aegon.logon.CheckPassword</servlet-class>
+	</servlet>
+   	<!-- SWIFT CODE增刪改查功能 William 2013/02/18 -->
+	<servlet>
+	    <servlet-name>com.aegon.disb.disbmaintain.DISBSwiftCodeManageServlet</servlet-name>
+		<display-name>com.aegon.disb.disbmaintain.DISBSwiftCodeManageServlet</display-name>
+		<servlet-class>com.aegon.disb.disbmaintain.DISBSwiftCodeManageServlet</servlet-class>
+	</servlet>
+	<!-- SWIFT CODE上傳文件功能 William 2013/02/19 -->
+	<servlet>
+	    <servlet-name>com.aegon.disb.disbmaintain.DISBSwiftCodeUploadServlet</servlet-name>
+		<display-name>com.aegon.disb.disbmaintain.DISBSwiftCodeUploadServlet</display-name>
+		<servlet-class>com.aegon.disb.disbmaintain.DISBSwiftCodeUploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBSwiftCodeUploadServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbmaintain.DISBSwiftCodeUploadServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBSwiftCodeManageServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbmaintain.DISBSwiftCodeManageServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.logon.CheckPassword</servlet-name>
+		<url-pattern>/servlet/com.aegon.logon.CheckPassword</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.entCroInq.EntCroInqServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.entCroInq.EntCroInqServlet</url-pattern>
+	</servlet-mapping>
+	<!-- servlet-mapping>
+		<servlet-name>com.aegon.disb.disbreports.DISBPReportsServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbreports.DISBPReportsServlet</url-pattern>
+	</servlet-mapping-->
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbreports.DISBPaymentNoticeServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbreports.DISBPaymentNoticeServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbreports.DISBDailyPRServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbreports.DISBDailyPRServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbremit.DISBRemitFailedServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbremit.DISBRemitFailedServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbremit.DISBRemitExportServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbremit.DISBRemitExportServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbremit.DISBRemitDisposeServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbremit.DISBRemitDisposeServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbremit.DISBRemitBackFeeServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbremit.DISBRemitBackFeeServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbquery.DISBCDetailServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbquery.DISBCDetailServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbpsource.DISBSConfirmServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbpsource.DISBSConfirmServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbpsource.DISBSMaintainServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbpsource.DISBSMaintainServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbpsource.DISBSChangePDateServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbpsource.DISBSChangePDateServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbpayment.DISBPMemoServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbpayment.DISBPMemoServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbpayment.DISBPMaintainServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbpayment.DISBPMaintainServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbpayment.DISBPConfirmServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbpayment.DISBPConfirmServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBFinTransToOther</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbmaintain.DISBFinTransToOther</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBCStatusAccCdServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbmaintain.DISBCStatusAccCdServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBCAPccbfServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbmaintain.DISBCAPccbfServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBAccRmtFailServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbmaintain.DISBAccRmtFailServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBAccRevRmtFailServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbmaintain.DISBAccRevRmtFailServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBAccCodeServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbmaintain.DISBAccCodeServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBAccFinRmtServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbmaintain.DISBAccFinRmtServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBAccDayCasServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbmaintain.DISBAccDayCasServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbmaintain.DISBAccCdDpServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbmaintain.DISBAccCdDpServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbcheck.DISBOneCCreateServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbcheck.DISBOneCCreateServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckStockServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbcheck.DISBCheckStockServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckRejectedServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbcheck.DISBCheckRejectedServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckOpenServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbcheck.DISBCheckOpenServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckModifyServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbcheck.DISBCheckModifyServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckMaintainServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbcheck.DISBCheckMaintainServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckCreateBatchServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbcheck.DISBCheckCreateBatchServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckCreateServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbcheck.DISBCheckCreateServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.disb.disbcheck.DISBCheckCashedServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.disb.disbcheck.DISBCheckCashedServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.crystalreport.CreateReport</servlet-name>
+		<url-pattern>/servlet/com.aegon.crystalreport.CreateReport</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.crystalreport.CreateReportRS</servlet-name>
+		<url-pattern>/servlet/com.aegon.crystalreport.CreateReportRS</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.balchkrpt.BalanceRptServlet</servlet-name>
+		<url-pattern>/servlet/com.aegon.balchkrpt.BalanceRptServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>com.aegon.logon.LogonBean</servlet-name>
+		<url-pattern>/servlet/com.aegon.logon.LogonBean</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<resource-ref id="ResourceRef_1083948803437">
+		<res-ref-name>jdbc/AEGON400</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Application</res-auth>
+		<res-sharing-scope>Unshareable</res-sharing-scope>
+	</resource-ref>
+	<resource-ref id="ResourceRef_1083948803438">
+		<res-ref-name>jdbc/AEGON401</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Application</res-auth>
+		<res-sharing-scope>Unshareable</res-sharing-scope>
+	</resource-ref>
+</web-app>

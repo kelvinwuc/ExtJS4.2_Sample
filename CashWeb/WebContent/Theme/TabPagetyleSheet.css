@@ -1,0 +1,41 @@
+.MenuClass
+{
+    BORDER-TOP: gold 2px solid;
+    FONT-SIZE: 16px;
+    VERTICAL-ALIGN: middle;
+    BORDER-LEFT: gold 2px solid;
+    WIDTH: 55px;
+    CURSOR: hand;
+    COLOR: blue;
+    FONT-FAMILY: 標楷體;
+    HEIGHT: 50px;
+    BACKGROUND-COLOR: lightyellow;
+    TEXT-ALIGN: center
+}
+.tab_panel
+{
+    BORDER-RIGHT: gold 2px solid;
+    BORDER-TOP: gold 2px solid;
+    FONT-SIZE: 10px;
+    BORDER-LEFT: gold 2px solid;
+    WIDTH: 600px;
+    BORDER-BOTTOM: gold 2px solid;
+    FONT-FAMILY: 標楷體;
+    HEIGHT: 150px;
+    BACKGROUND-COLOR: #ffffaf
+}
+.required_field
+{
+    FONT-SIZE: 12pt;
+    FONT-FAMILY: 標楷體;
+    BACKGROUND-COLOR: wheat
+}
+.TabPageContentTable
+{
+    FONT-WEIGHT: bolder;
+    FONT-SIZE: 15px;
+    COLOR: blue;
+    BORDER: 3px insert red;
+    FONT-FAMILY: 標楷體,細明體;
+    WIDTH: 600px;
+}

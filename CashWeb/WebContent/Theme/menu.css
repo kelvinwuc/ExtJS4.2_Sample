@@ -1,0 +1,11 @@
+.lowText { text-decoration: none; color: #0033FF; font: 14px 細明體,標楷體 }
+.highText { text-decoration: none; color: #FFFFFF; font: 14px 細明體,標楷體,新細明體 }
+.itemBorder { border: 1px solid #666666 }
+.itemBorderBlank { border: 1px solid #CCCCDD }
+
+.buttonText { text-decoration: none; color: #FFCC99; font: Bold 14px 細明體,標楷體 }
+.buttonHover { text-decoration: none; color: #99CCFF; font: Bold 14px 細明體,標楷體; padding: 1px }
+.buttonBorder { border: 1px outset #339966 }
+.buttonBorderOver { border: 1px inset #CC9966 }
+
+.TabPageContentTable {border:2px ; width:600px}
