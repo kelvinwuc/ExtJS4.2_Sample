@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     2016年8月17日 上午9:42:51                                                        
+
+     project    
+     description
+                   
+     KelvinWuMBPR                                                                
+     ====================================================================== -->
+<project name="TestANT" default="Hello" basedir=".">
+    <description>
+            description
+    </description>
+	<target name="Hello">
+	        <echo>${HelloText}</echo>
+	    </target>
+		
+	    <target name="clean">
+	    	<delete dir="classess"/>
+	    </target>
+		
+		<target name="compile" depends="clean"></target>
+
+</project>
