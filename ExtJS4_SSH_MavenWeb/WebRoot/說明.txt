@@ -1,0 +1,23 @@
+1.pom.xml的depency for jackson:
+		<artifactId>jackson-databind</artifactId>是用在Spring 4.2；
+		<artifactId>jackson-core-asl</artifactId>及<artifactId>jackson-mapper-asl</artifactId>是用在Spring 3.2
+
+2.WAS 8.5 for Devloper的下載及安裝:
+		url是從http://www.ibm.com/tw-zh/的最底下選擇[開發人員]，在新頁面的最底下選擇downloads,在下個新頁面選擇WebSphere Application Server for Developers
+		下載網址為http://www.ibm.com/developerworks/downloads/ws/wasdevelopers/index.html
+		IBM ID：bennywu99@hotmail.com
+		是採用Installation Manager安裝
+	
+3. WAS 8.5的MySQL DataSource設定:
+		EverNote有自己寫一篇在MySQL記事本；
+		資料來源的MySQL JDBC Provider自訂內容要設定連線參數		
+		1. serverName: localhost
+		2. port:3306
+		3. databaseName: sakila
+		4. user:root
+		5. password:xxxxx
+		
+4. MyEclipse設定Exclude JavaScript Validation:
+		在該project的properties-->MyEclipse-->JavaScript Resources的Source設定
+
+		
