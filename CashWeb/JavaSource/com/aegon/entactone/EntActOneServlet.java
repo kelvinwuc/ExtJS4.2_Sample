@@ -91,7 +91,7 @@ public class EntActOneServlet extends InitDBServlet {
 		}
 
 		if(!bReturnStatus) {
-			strMsg = "±b¸¹: "+strEBKCD+"-"+strEATNO+" ,¹ô§O:"+strCURRENCY+" ª÷¿Ä³æ¦ìª¬ºA¬°°±¥Î!";
+			strMsg = "å¸³è™Ÿ: "+strEBKCD+"-"+strEATNO+" ,å¹£åˆ¥:"+strCURRENCY+" é‡‘èå–®ä½ç‹€æ…‹ç‚ºåœç”¨!";
 			request.setAttribute("txtMsg", strMsg);
 		}
 
@@ -112,19 +112,19 @@ public class EntActOneServlet extends InitDBServlet {
 		String strMsg = "";
 
 		if( strEBKCD.equals("") ) {
-			strMsg += "ª÷¿Ä³æ¦ì¥N¸¹¤£¥iªÅ¥Õ,";
+			strMsg += "é‡‘èå–®ä½ä»£è™Ÿä¸å¯ç©ºç™½,";
 		}
 		if( strEATNO.equals("")) {
-			strMsg += "ª÷¿Ä³æ¦ì±b¸¹¤£¥iªÅ¥Õ,";
+			strMsg += "é‡‘èå–®ä½å¸³è™Ÿä¸å¯ç©ºç™½,";
 		}
 		if( strCURRENCY.equals("")) {
-			strMsg += "¹ô§O¤£¥iªÅ¥Õ,";
+			strMsg += "å¹£åˆ¥ä¸å¯ç©ºç™½,";
 		}
 		if( strEBKRMD.equals("0") ) {
-			strMsg += "»È¦æ¶×´Ú¤é¤£¥iªÅ¥Õ,";
+			strMsg += "éŠ€è¡ŒåŒ¯æ¬¾æ—¥ä¸å¯ç©ºç™½,";
 		}
 		if( Double.parseDouble(strENTAMT) < 0 ) {
-			strMsg += "¶×´Úª÷ÃB¤£¥i¤p©ó0,";
+			strMsg += "åŒ¯æ¬¾é‡‘é¡ä¸å¯å°æ–¼0,";
 		}
 
 		if(strMsg.equals("")) 
@@ -164,9 +164,9 @@ public class EntActOneServlet extends InitDBServlet {
 				pstmt.setString(16, strCURRENCY);
 				int iReturn = pstmt.executeUpdate();
 				if( iReturn != 1 ) {
-					strMsg = "·s¼W¥¢±Ñ!!";
+					strMsg = "æ–°å¢å¤±æ•—!!";
 				} else {
-					strMsg = "±b¸¹: "+strEBKCD+"-"+strEATNO+" ,¹ô§O:"+strCURRENCY+" ,¶×´Ú¤é:"+strEBKRMD+", ¶×´Úª÷ÃB:"+strENTAMT+" ·s¼W§¹¦¨!!";
+					strMsg = "å¸³è™Ÿ: "+strEBKCD+"-"+strEATNO+" ,å¹£åˆ¥:"+strCURRENCY+" ,åŒ¯æ¬¾æ—¥:"+strEBKRMD+", åŒ¯æ¬¾é‡‘é¡:"+strENTAMT+" æ–°å¢å®Œæˆ!!";
 				}
 			} catch( SQLException e ) {
 				System.err.println("EntActOneServlet.insertDb= " + e);
@@ -209,19 +209,19 @@ public class EntActOneServlet extends InitDBServlet {
 		String strMsg = "";
 
 		if( strEBKCD.equals("") ) {
-			strMsg += "ª÷¿Ä³æ¦ì¥N¸¹¤£¥iªÅ¥Õ,";
+			strMsg += "é‡‘èå–®ä½ä»£è™Ÿä¸å¯ç©ºç™½,";
 		}
 		if( strEATNO.equals("")) {
-			strMsg += "ª÷¿Ä³æ¦ì±b¸¹¤£¥iªÅ¥Õ,";
+			strMsg += "é‡‘èå–®ä½å¸³è™Ÿä¸å¯ç©ºç™½,";
 		}
 		if( strCURRENCY.equals("")) {
-			strMsg += "¹ô§O¤£¥iªÅ¥Õ,";
+			strMsg += "å¹£åˆ¥ä¸å¯ç©ºç™½,";
 		}
 		if( strEBKRMD.equals("0") ) {
-			strMsg += "»È¦æ¶×´Ú¤é¤£¥iªÅ¥Õ,";
+			strMsg += "éŠ€è¡ŒåŒ¯æ¬¾æ—¥ä¸å¯ç©ºç™½,";
 		}
 		if( Double.parseDouble(strENTAMT) < 0 ) {
-			strMsg += "¶×´Úª÷ÃB¤£¥i¤p©ó0,";
+			strMsg += "åŒ¯æ¬¾é‡‘é¡ä¸å¯å°æ–¼0,";
 		}
 
 		if(strMsg.equals("")) 
@@ -262,9 +262,9 @@ public class EntActOneServlet extends InitDBServlet {
 				pstmt.setInt(17, Integer.parseInt(strCSHFAT));
 				int iReturn = pstmt.executeUpdate();
 				if( iReturn != 1 ) {
-					strMsg = "­×§ï¥¢±Ñ!!";
+					strMsg = "ä¿®æ”¹å¤±æ•—!!";
 				} else {
-					strMsg = "±b¸¹: "+strEBKCD+"-"+strEATNO+" ,¹ô§O:"+strCURRENCY+" ,¶×´Ú¤é:"+strEBKRMD+", ¶×´Úª÷ÃB:"+strENTAMT+" ­×§ï§¹¦¨!!";
+					strMsg = "å¸³è™Ÿ: "+strEBKCD+"-"+strEATNO+" ,å¹£åˆ¥:"+strCURRENCY+" ,åŒ¯æ¬¾æ—¥:"+strEBKRMD+", åŒ¯æ¬¾é‡‘é¡:"+strENTAMT+" ä¿®æ”¹å®Œæˆ!!";
 				}
 			} catch( SQLException e ) {
 				System.err.println("EntActOneServlet.updateDb= " + e);
@@ -314,9 +314,9 @@ public class EntActOneServlet extends InitDBServlet {
 			pstmt.setInt(8, Integer.parseInt(strCSHFAT));
 			int iReturn = pstmt.executeUpdate();
 			if( iReturn != 1 ) {
-				strMsg = "§R°£¥¢±Ñ!!";
+				strMsg = "åˆªé™¤å¤±æ•—!!";
 			} else {
-				strMsg = "±b¸¹: "+strEBKCD+"-"+strEATNO+" ,¹ô§O:"+strCURRENCY+" ,¶×´Ú¤é:"+strEBKRMD+", ¶×´Úª÷ÃB:"+strENTAMT+" §R°£§¹¦¨!!";
+				strMsg = "å¸³è™Ÿ: "+strEBKCD+"-"+strEATNO+" ,å¹£åˆ¥:"+strCURRENCY+" ,åŒ¯æ¬¾æ—¥:"+strEBKRMD+", åŒ¯æ¬¾é‡‘é¡:"+strENTAMT+" åˆªé™¤å®Œæˆ!!";
 			}
 		} catch( SQLException e ) {
 			System.err.println("EntActOneServlet.deleteDb= " + e);

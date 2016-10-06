@@ -26,53 +26,53 @@ import com.aegon.disb.util.DISBPaymentDetailVO;
  * 
  * $$Log: DISBPaymentNoticeDAO.java,v $
  * $Revision 1.9  2014/02/26 07:16:11  misariel
- * $EB0536-BC264 ¨K§Q¦h§Q²vÅÜ°Ê«¬¾i¦Ñ«OÀISIE
+ * $EB0536-BC264 æ²›åˆ©å¤šåˆ©ç‡è®Šå‹•å‹é¤Šè€ä¿éšªSIE
  * $
  * $Revision 1.8  2013/12/27 03:42:50  MISSALLY
- * $EB0194-PB0016---·s¼W¥i­×§ïµ¹¥I³qª¾®Ñªº¦¬¥ó¤H
+ * $EB0194-PB0016---æ–°å¢å¯ä¿®æ”¹çµ¦ä»˜é€šçŸ¥æ›¸çš„æ”¶ä»¶äºº
  * $
  * $Revision 1.7  2013/11/08 05:52:33  MISSALLY
- * $EB0194-PB0016-BC255§Q²vÅÜ°Ê«¬§Y´Á¦~ª÷«OÀI±M®×
+ * $EB0194-PB0016-BC255åˆ©ç‡è®Šå‹•å‹å³æœŸå¹´é‡‘ä¿éšªå°ˆæ¡ˆ
  * $
  * $Revision 1.2  2013/04/15 01:13:24  MISSALLY
- * $RA0074 FNEº¡´Á¥Í¦sª÷¨ü¯q¤H±b¤á¤Îµ¹¥I
+ * $RA0074 FNEæ»¿æœŸç”Ÿå­˜é‡‘å—ç›Šäººå¸³æˆ¶åŠçµ¦ä»˜
  * $
  * $Revision 1.6  2013/02/26 10:19:12  ODCWilliam
  * $william wu
  * $RA0074
  * $
  * $Revision 1.5  2009/11/11 06:20:13  missteven
- * $R90474 ­×§ïCASH¥\¯à
+ * $R90474 ä¿®æ”¹CASHåŠŸèƒ½
  * $
  * $Revision 1.4  2007/04/20 03:13:00  MISODIN
  * $R60713 FOR AWD
  * $
  * $Revision 1.3  2007/01/04 03:17:35  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $Revision 1.2  2006/12/05 10:21:04  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $Revision 1.1  2006/06/29 09:40:39  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.11  2006/04/27 09:27:21  misangel
- * $R50891:VA¬ü¤¸«O³æ-Åã¥Ü¹ô§O
+ * $R50891:VAç¾å…ƒä¿å–®-é¡¯ç¤ºå¹£åˆ¥
  * $
  * $Revision 1.1.2.10  2005/10/14 07:49:34  misangel
- * $R50820:¤ä¥I¥\¯à´£¤É
+ * $R50820:æ”¯ä»˜åŠŸèƒ½æå‡
  * $
  * $Revision 1.1.2.8  2005/04/12 10:08:05  miselsa
- * $R30530_¤ä¥I³qª¾®Ñ
+ * $R30530_æ”¯ä»˜é€šçŸ¥æ›¸
  * $
  * $Revision 1.1.2.7  2005/04/12 07:50:18  miselsa
- * $R30530_¤ä¥I³qª¾®Ñ
+ * $R30530_æ”¯ä»˜é€šçŸ¥æ›¸
  * $
  * $Revision 1.1.2.6  2005/04/12 03:14:12  miselsa
- * $R30530_­×§ï¨ú©ÒÄİ³¡ªù¸ê®ÆªºJOIN SQL
+ * $R30530_ä¿®æ”¹å–æ‰€å±¬éƒ¨é–€è³‡æ–™çš„JOIN SQL
  * $
  * $Revision 1.1.2.5  2005/04/04 07:02:19  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -362,10 +362,10 @@ public class DISBPaymentNoticeDAO {
 		return ret;										
 	}	
 		
-	//¦Û DbFactory ¤¤¨ú±o¤@­Ó Connection	
+	//è‡ª DbFactory ä¸­å–å¾—ä¸€å€‹ Connection	
 	private Connection getConnection()throws SQLException{
 		
-		//¥ı¨ú±o¸ê®Æ®w³sµ²¤Î·Ç³ÆSQL
+		//å…ˆå–å¾—è³‡æ–™åº«é€£çµåŠæº–å‚™SQL
     	return dbFactory.getConnection(DISBPaymentNoticeDAO.class+".DataClass.getConnection()");
 	}
 

@@ -17,7 +17,7 @@ import com.aegon.disb.util.LapsePaymentVO;
 /**
  * System   : CashWeb
  * 
- * Function : ¥¢®Äµ¹¥I³qª¾®Ñ¤u§@ÀÉºûÅ@
+ * Function : å¤±æ•ˆçµ¦ä»˜é€šçŸ¥æ›¸å·¥ä½œæª”ç¶­è­·
  * 
  * Remark   : 
  * 
@@ -33,7 +33,7 @@ import com.aegon.disb.util.LapsePaymentVO;
  * 
  * $$Log: DISBLapsePayServlet.java,v $
  * $Revision 1.1  2013/05/02 11:07:05  MISSALLY
- * $R10190 ¬ü¤¸¥¢®Ä«O³æ§@·~
+ * $R10190 ç¾å…ƒå¤±æ•ˆä¿å–®ä½œæ¥­
  * $$
  *  
  */
@@ -54,9 +54,9 @@ public class DISBLapsePayServlet extends InitDBServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType(CONTENT_TYPE);
-		String strAction = request.getParameter("txtAction"); // ¨ú±o­¶­±°Ê§@
+		String strAction = request.getParameter("txtAction"); // å–å¾—é é¢å‹•ä½œ
 
-		if (strAction.equals("S")) { // Àx¦s
+		if (strAction.equals("S")) { // å„²å­˜
 			save(request, response);
 		}
 
@@ -85,25 +85,25 @@ public class DISBLapsePayServlet extends InitDBServlet {
 		Connection conn = null;
 		try {
 			LapsePaymentVO lapsePayVO = new LapsePaymentVO();
-			lapsePayVO.setPNO(strPno);			//¤ä¥I§Ç¸¹
-			lapsePayVO.setPolicyNo(strPono);	//«O³æ¸¹½X
-			lapsePayVO.setReceiverId(strRecId);	//¨ü´Ú¤HID
-			lapsePayVO.setReceiverName(strRecNM);//¨ü´Ú¤H©m¦W
-			lapsePayVO.setPaymentAmt(Double.parseDouble(strAmt));//µ¹¥Iª÷ÃB
-			lapsePayVO.setRemitDate(Integer.parseInt(strRDT));	//¥X¯Ç½T»{¤é
-			lapsePayVO.setSendSwitch(strSend);					//¬O§_±H°e
-			lapsePayVO.setRemitFailed(strRF);					//¤w±H°e¡A¦ı°h¶×
-			lapsePayVO.setSendDate(Integer.parseInt(strSDT));	//±H°e¤é´Á
-			lapsePayVO.setUpdatedUser(strUserId);				//²§°ÊªÌ
-			lapsePayVO.setUpdatedDate(iUpdDate);				//²§°Ê¤é´Á
+			lapsePayVO.setPNO(strPno);			//æ”¯ä»˜åºè™Ÿ
+			lapsePayVO.setPolicyNo(strPono);	//ä¿å–®è™Ÿç¢¼
+			lapsePayVO.setReceiverId(strRecId);	//å—æ¬¾äººID
+			lapsePayVO.setReceiverName(strRecNM);//å—æ¬¾äººå§“å
+			lapsePayVO.setPaymentAmt(Double.parseDouble(strAmt));//çµ¦ä»˜é‡‘é¡
+			lapsePayVO.setRemitDate(Integer.parseInt(strRDT));	//å‡ºç´ç¢ºèªæ—¥
+			lapsePayVO.setSendSwitch(strSend);					//æ˜¯å¦å¯„é€
+			lapsePayVO.setRemitFailed(strRF);					//å·²å¯„é€ï¼Œä½†é€€åŒ¯
+			lapsePayVO.setSendDate(Integer.parseInt(strSDT));	//å¯„é€æ—¥æœŸ
+			lapsePayVO.setUpdatedUser(strUserId);				//ç•°å‹•è€…
+			lapsePayVO.setUpdatedDate(iUpdDate);				//ç•°å‹•æ—¥æœŸ
 
 			DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);
 			conn = dbFactory.getAS400Connection("DISBLapsePayServlet.save");
 			disbBean.callCAP0314O(conn, lapsePayVO);
 
-			strMsg = "§ó·s¦¨¥\.";
+			strMsg = "æ›´æ–°æˆåŠŸ.";
 		} catch (Exception e) {
-			strMsg = "§ó·s¥¢±Ñ.";
+			strMsg = "æ›´æ–°å¤±æ•—.";
 			e.printStackTrace();
 		} finally {
 			if(conn != null) dbFactory.releaseAS400Connection(conn);

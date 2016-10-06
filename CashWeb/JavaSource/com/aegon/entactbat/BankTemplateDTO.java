@@ -3,7 +3,7 @@ package com.aegon.entactbat;
 /**
  * System   : CashWeb
  * 
- * Function : »È¦æ¼ÒªO¶Ç¿é¹ï¶H
+ * Function : éŠ€è¡Œæ¨¡æ¿å‚³è¼¸å°è±¡
  * 
  * Remark   : 
  * 
@@ -19,55 +19,55 @@ package com.aegon.entactbat;
  * 
  * $Log: BankTemplateDTO.java,v $
  * Revision 1.3  2013/12/24 06:16:27  MISSALLY
- * R00135---PA0024---CASH¦~«×±M®×
+ * R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ
  *
  *  
  */
 
 public class BankTemplateDTO {
-	// »È¦æ¥N½X
+	// éŠ€è¡Œä»£ç¢¼
 	private String bankCode;
-	// ¤W¶Ç¤å¥óÃş«¬ TXT CSV DAT FLT
+	// ä¸Šå‚³æ–‡ä»¶é¡å‹ TXT CSV DAT FLT
 	private String fileType;
-	// ¤À³Î¤å¥óÃş«¬ ©wªø ³r¸¹¤À¹j ¤À¸¹¤À¹j
+	// åˆ†å‰²æ–‡ä»¶é¡å‹ å®šé•· é€—è™Ÿåˆ†éš” åˆ†è™Ÿåˆ†éš”
 	private String splitFileType;
-	// ®É¶¡Ãş«¬ ¦è¤¸ ¥Á°ê¦~
+	// æ™‚é–“é¡å‹ è¥¿å…ƒ æ°‘åœ‹å¹´
 	private String dateTpye;
-	// ®É¶¡¬O§_¦³¡§/¡¨¤À³Î²Å
+	// æ™‚é–“æ˜¯å¦æœ‰â€œ/â€åˆ†å‰²ç¬¦
 	private String isSlant;
-	// ®É¶¡°_¦ì
+	// æ™‚é–“èµ·ä½
 	private String dateStart;
-	// ®É¶¡µ²§ô¦ì
+	// æ™‚é–“çµæŸä½
 	private String dateEnd;
-	// ª÷ÃB°_¦ì
+	// é‡‘é¡èµ·ä½
 	private String feeStart;
-	// ª÷ÃBµ²§ô¦ì
+	// é‡‘é¡çµæŸä½
 	private String feeEnd;
-	// ¬O§_¥k¾a¥ª¸É0
+	// æ˜¯å¦å³é å·¦è£œ0
 	private String isLeftZero;
-	// ¬O§_¦³¤p¼ÆÂI
+	// æ˜¯å¦æœ‰å°æ•¸é»
 	private String isPoint;
-	// ¬O§_¦³¨â¦ì¤p¼Æ
+	// æ˜¯å¦æœ‰å…©ä½å°æ•¸
 	private String isTwoNum;
-	// ¬O§_¦³¤d¤À¸¹
+	// æ˜¯å¦æœ‰åƒåˆ†è™Ÿ
 	private String isPermille;
-	// ¬O§_¥k¾a¥ª¸ÉªÅ
+	// æ˜¯å¦å³é å·¦è£œç©º
 	private String isLeftSpace;
-	// ¬O§_¥k²Ä1½X¬°¥¿­t¸¹
+	// æ˜¯å¦å³ç¬¬1ç¢¼ç‚ºæ­£è² è™Ÿ
 	private String isFristNum;
-	// ¬O§_³Ì«á1½X­t¸¹©ÎªÅ¥Õ
+	// æ˜¯å¦æœ€å¾Œ1ç¢¼è² è™Ÿæˆ–ç©ºç™½
 	private String islastNum;
-	// ¤À³ÎÄæ¦ì¼Æ
+	// åˆ†å‰²æ¬„ä½æ•¸
 	private String splitNum;
-	// ³Æµù°_¦ì
+	// å‚™è¨»èµ·ä½
 	private String conStart;
-	// ³Æµùµ²§ô¦ì
+	// å‚™è¨»çµæŸä½
 	private String conEnd;
-	// ¤é´Á§Ç¦C¦ì
+	// æ—¥æœŸåºåˆ—ä½
 	private String dateIndex;
-	// ª÷ÃB§Ç¦C¦ì
+	// é‡‘é¡åºåˆ—ä½
 	private String feeIndex;
-	// ³Æµù§Ç¦C¦ì
+	// å‚™è¨»åºåˆ—ä½
 	private String conIndex;
 
 	public String getConStart() {

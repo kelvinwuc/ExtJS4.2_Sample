@@ -1,13 +1,13 @@
 package com.aegon.disb.disbremit;
 
 /**
- * RD0440-·s¼W¥~¹ô«ü©w»È¦æ-¥xÆW»È¦æ:¤âÄò¶O­pºâ,±Ncall DISBBean.getETable();
+ * RD0440-æ–°å¢å¤–å¹£æŒ‡å®šéŠ€è¡Œ-å°ç£éŠ€è¡Œ:æ‰‹çºŒè²»è¨ˆç®—,å°‡call DISBBean.getETable();
  */
 
 /**
  * System   :
  * 
- * Function : ¥X¯Ç¥\¯à-¾ã§å¶×´Ú
+ * Function : å‡ºç´åŠŸèƒ½-æ•´æ‰¹åŒ¯æ¬¾
  * 
  * Remark   :
  * 
@@ -29,94 +29,94 @@ package com.aegon.disb.disbremit;
  * $RC0036-3
  * $
  * $Revision 1.24  2014/07/18 07:16:38  misariel
- * $EC0342-RC0036·s¼W¤À¤½¥q¦æ¬F¤H­û¨Ï¥ÎCAPSIL
+ * $EC0342-RC0036æ–°å¢åˆ†å…¬å¸è¡Œæ”¿äººå“¡ä½¿ç”¨CAPSIL
  * $
  * $Revision 1.23  2013/05/02 11:07:05  MISSALLY
- * $R10190 ¬ü¤¸¥¢®Ä«O³æ§@·~
+ * $R10190 ç¾å…ƒå¤±æ•ˆä¿å–®ä½œæ¥­
  * $
  * $Revision 1.22  2013/02/27 05:35:34  ODCZheJun
- * $R10190 ¬ü¤¸¶Ç²Î«¬«O³æ¥¢®Ä§@·~
+ * $R10190 ç¾å…ƒå‚³çµ±å‹ä¿å–®å¤±æ•ˆä½œæ¥­
  * $
  * $Revision 1.21  2013/01/08 04:24:03  MISSALLY
- * $±N¤À¤äªºµ{¦¡Merge¦ÜHEAD
+ * $å°‡åˆ†æ”¯çš„ç¨‹å¼Mergeè‡³HEAD
  * $
  * $Revision 1.20.4.2  2012/09/06 02:03:07  MISSALLY
- * $QA0281---­×¥¿¤@»È¤âÄò¶O¦]¤âÄò¶O¤ä¥I¤è¦¡­Y¬°BEN¦Ó¨S¦³­pºâ¨ìªº°İÃD
+ * $QA0281---ä¿®æ­£ä¸€éŠ€æ‰‹çºŒè²»å› æ‰‹çºŒè²»æ”¯ä»˜æ–¹å¼è‹¥ç‚ºBENè€Œæ²’æœ‰è¨ˆç®—åˆ°çš„å•é¡Œ
  * $
  * $Revision 1.20.4.1  2012/08/31 01:21:30  MISSALLY
- * $RA0140---·s¼W¥üÂ×¬°¥~¹ô«ü©w¦æ
+ * $RA0140---æ–°å¢å…†è±ç‚ºå¤–å¹£æŒ‡å®šè¡Œ
  * $
  * $Revision 1.20  2011/11/08 09:16:39  MISSALLY
  * $Q10312
- * $¶×´Ú¥\¯à-¾ã§å¶×´Ú§@·~
- * $1.­×¥¿»È¦æ±b¸¹¤£¤@­P
- * $2.½Õ¾ã¥üÂ×¶×´ÚÀÉ
+ * $åŒ¯æ¬¾åŠŸèƒ½-æ•´æ‰¹åŒ¯æ¬¾ä½œæ¥­
+ * $1.ä¿®æ­£éŠ€è¡Œå¸³è™Ÿä¸ä¸€è‡´
+ * $2.èª¿æ•´å…†è±åŒ¯æ¬¾æª”
  * $
  * $Revision 1.19  2011/05/12 06:13:07  MISJIMMY
- * $R00440 SNº¡´Áª÷
+ * $R00440 SNæ»¿æœŸé‡‘
  * $
  * $Revision 1.17  2010/11/23 06:50:42  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.16  2010/05/04 07:12:14  missteven
  * $R90735
  * $
  * $Revision 1.15  2008/08/06 06:53:25  MISODIN
- * $R80338 ½Õ¾ãCASH¨t²Î for ¥X¯Ç¥~¹ô¤@¹ï¤@»İ¨D
+ * $R80338 èª¿æ•´CASHç³»çµ± for å‡ºç´å¤–å¹£ä¸€å°ä¸€éœ€æ±‚
  * $
  * $Revision 1.14  2007/09/07 10:24:36  MISVANESSA
  * $R70455_TARGET OUT
  * $
  * $Revision 1.13  2007/08/03 09:54:43  MISODIN
- * $R70477 ¥~¹ô«O³æ¶×´Ú¤âÄò¶O
+ * $R70477 å¤–å¹£ä¿å–®åŒ¯æ¬¾æ‰‹çºŒè²»
  * $
  * $Revision 1.12  2007/03/16 01:52:57  MISVANESSA
- * $R70088_SPUL°t®§­×§ï¤âÄò¶Orule
+ * $R70088_SPULé…æ¯ä¿®æ”¹æ‰‹çºŒè²»rule
  * $
  * $Revision 1.11  2007/03/08 10:11:33  MISVANESSA
- * $R70088_SPUL°t®§­×§ï¤âÄò¶O
+ * $R70088_SPULé…æ¯ä¿®æ”¹æ‰‹çºŒè²»
  * $
  * $Revision 1.10  2007/03/06 01:36:26  MISVANESSA
- * $R70088_SPUL°t®§·s¼W«È¤á­t¾á¤âÄò¶O
+ * $R70088_SPULé…æ¯æ–°å¢å®¢æˆ¶è² æ“”æ‰‹çºŒè²»
  * $
  * $Revision 1.9  2007/01/31 07:58:10  MISVANESSA
- * $R70088_SPUL°t®§
+ * $R70088_SPULé…æ¯
  * $
  * $Revision 1.8  2007/01/09 04:06:01  miselsa
- * $R60550_¾ã§å¶×´Úª÷ÃB§ï¬°¤p¼ÆÂI4¦ì
+ * $R60550_æ•´æ‰¹åŒ¯æ¬¾é‡‘é¡æ”¹ç‚ºå°æ•¸é»4ä½
  * $
  * $Revision 1.7  2007/01/05 01:46:04  miselsa
- * $R60550_¥~¹ô¶×´Ú¥ó©l¶·¯S§O¿z¿ï¬O§_¬°SPUL
+ * $R60550_å¤–å¹£åŒ¯æ¬¾ä»¶å§‹é ˆç‰¹åˆ¥ç¯©é¸æ˜¯å¦ç‚ºSPUL
  * $
  * $Revision 1.6  2007/01/03 08:32:51  miselsa
- * $R60550_SPUL §ë¸ê°_©l¤é¤§«e ¼W¥[ «È¤á¶×¥X»È¦æ±ø¥ó
+ * $R60550_SPUL æŠ•è³‡èµ·å§‹æ—¥ä¹‹å‰ å¢åŠ  å®¢æˆ¶åŒ¯å‡ºéŠ€è¡Œæ¢ä»¶
  * $
  * $Revision 1.5  2006/12/27 09:51:43  miselsa
- * $R60463¤ÎR60550_SPUL«O³æ§ë¸ê°_©l¤é«eªº¶×¶O
+ * $R60463åŠR60550_SPULä¿å–®æŠ•è³‡èµ·å§‹æ—¥å‰çš„åŒ¯è²»
  * $
  * $Revision 1.4  2006/12/07 22:00:34  miselsa
- * $R60463¤ÎR60550¥~¹ô¤ÎSPUL«O³æ
+ * $R60463åŠR60550å¤–å¹£åŠSPULä¿å–®
  * $
  * $Revision 1.3  2006/11/30 09:16:46  miselsa
- * $R60463¤ÎR60550¥~¹ô¤ÎSPUL«O³æ
+ * $R60463åŠR60550å¤–å¹£åŠSPULä¿å–®
  * $
  * $Revision 1.2  2006/09/04 09:43:35  miselsa
- * $R60747_1.¾ã§å¶×´Ú¼W¥[¥X¯Ç½T»{¤é 2.¶×¥X³øªí¶×´Ú¤é´Á§ï¬°¥X¯Ç½T»{¤é 3.¤ä¥I¬d¸ß¥I´Ú¤é´Á¬°¥X¯Ç½T»{¤é
+ * $R60747_1.æ•´æ‰¹åŒ¯æ¬¾å¢åŠ å‡ºç´ç¢ºèªæ—¥ 2.åŒ¯å‡ºå ±è¡¨åŒ¯æ¬¾æ—¥æœŸæ”¹ç‚ºå‡ºç´ç¢ºèªæ—¥ 3.æ”¯ä»˜æŸ¥è©¢ä»˜æ¬¾æ—¥æœŸç‚ºå‡ºç´ç¢ºèªæ—¥
  * $
  * $Revision 1.1  2006/06/29 09:40:20  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.8  2006/04/27 09:25:45  misangel
- * $R50891:VA¬ü¤¸«O³æ-Åã¥Ü¹ô§O
+ * $R50891:VAç¾å…ƒä¿å–®-é¡¯ç¤ºå¹£åˆ¥
  * $
  * $Revision 1.1.2.7  2005/08/19 06:56:18  misangel
- * $R50427 : ¶×´Ú¥ó¨Ì³¡ªù+©m¦W+±b¸¹¦X¨Ö
+ * $R50427 : åŒ¯æ¬¾ä»¶ä¾éƒ¨é–€+å§“å+å¸³è™Ÿåˆä½µ
  * $
  * $Revision 1.1.2.6  2005/04/08 02:56:54  MISANGEL
- * $R30530:¤ä¥I¨t²Î
+ * $R30530:æ”¯ä»˜ç³»çµ±
  * $
  * $Revision 1.1.2.5  2005/04/04 07:02:27  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -191,10 +191,10 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 		String strCurrency = request.getParameter("selCurrency");
 		String SYMBOL = request.getParameter("txtSYMBOL");
 		// String BeforePINVDT = request.getParameter("selBeforePINVDT");
-		String PRBank = request.getParameter("txtPRBank");// «È¤á¶×¥X»È¦æ
-		String PCURR = request.getParameter("selCurrency");// R70477 «O³æ¹ô§O
-		// String ProjectCode = request.getParameter("selProjectCode");//R80338 // ±M®×½X
-		String payRule = request.getParameter("txtPayRule"); // R00386 ¥I´Ú³W«h
+		String PRBank = request.getParameter("txtPRBank");// å®¢æˆ¶åŒ¯å‡ºéŠ€è¡Œ
+		String PCURR = request.getParameter("selCurrency");// R70477 ä¿å–®å¹£åˆ¥
+		// String ProjectCode = request.getParameter("selProjectCode");//R80338 // å°ˆæ¡ˆç¢¼
+		String payRule = request.getParameter("txtPayRule"); // R00386 ä»˜æ¬¾è¦å‰‡
 		String company = request.getParameter("selCompany"); // RD0382:OIU
 
 		Vector disbPaymentDetailVec = null;
@@ -214,7 +214,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 			dao.removeConn();
 		}
 		if (disbPaymentDetailVec == null || disbPaymentDetailVec.size() <= 0) {
-			request.setAttribute("msg", "¬dµL¸ê®Æ");
+			request.setAttribute("msg", "æŸ¥ç„¡è³‡æ–™");
 			path = "/DISB/DISBRemit/DISBRemitDispose.jsp";
 		} else {
 			path = "/DISB/DISBRemit/DISBRemitDisposeList.jsp";
@@ -226,11 +226,11 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 		request.setAttribute("selCurrency", PCURR); // R70477
 		request.setAttribute("payRule", payRule); // R00386
 		request.setAttribute("pDispatch", pDispatch); // RC0036
-		request.setAttribute("SELCompany", company); //RE0189:³Í°òOIU
+		request.setAttribute("SELCompany", company); //RE0189:å‡±åŸºOIU
 	}
 
 	private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String PMETHOD = request.getParameter("PMETHOD").trim();// ¥I´Ú¤è¦¡
+		String PMETHOD = request.getParameter("PMETHOD").trim();// ä»˜æ¬¾æ–¹å¼
 
 		if (PMETHOD.equals("D")) {
 			updateD(request, response);
@@ -247,10 +247,10 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 	private void updateB(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		path = "/DISB/DISBRemit/DISBRemitDispose.jsp";
 		String[] PNO = request.getParameterValues("PNO");
-		String PBANK = request.getParameter("PBBANK").trim();// ¥I´Ú»È¦æ,¥I´Ú±b¸¹
-		String PMETHOD = request.getParameter("PMETHOD").trim();// ¥I´Ú¤è¦¡
+		String PBANK = request.getParameter("PBBANK").trim();// ä»˜æ¬¾éŠ€è¡Œ,ä»˜æ¬¾å¸³è™Ÿ
+		String PMETHOD = request.getParameter("PMETHOD").trim();// ä»˜æ¬¾æ–¹å¼
 
-		/* R60747 ¼W¥[¥X¯Ç½T»{¤éÄæ¦ì Start */
+		/* R60747 å¢åŠ å‡ºç´ç¢ºèªæ—¥æ¬„ä½ Start */
 		String PCSHCM = request.getParameter("txtPCSHCM");
 		int iPCSHCM = 0;
 		if (PCSHCM != null)
@@ -259,7 +259,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 			PCSHCM = "";
 		if (!PCSHCM.equals(""))
 			iPCSHCM = Integer.parseInt(PCSHCM);
-		/* R60747 ¼W¥[¥X¯Ç½T»{¤éÄæ¦ì End */
+		/* R60747 å¢åŠ å‡ºç´ç¢ºèªæ—¥æ¬„ä½ End */
 		
 		String strCNo = request.getParameter("txtCHKNO")!=null?request.getParameter("txtCHKNO"):"";
 
@@ -272,15 +272,15 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 		int updateTime = Integer.parseInt((new SimpleDateFormat("HHmmss")).format(cldToday.getTime()));
 		String logonUser = (String) request.getSession().getAttribute(Constant.LOGON_USER_ID);
 		String batNo = disBBean.getPBatNo(PMETHOD, updateDate, updateTime, PBANK);
-		int count = 0;// ¶×´Úµ§¼Æ
-		double amt = 0;// ¶×´ÚÁ`ª÷ÃB
-		double amtFee = 0;// ¶×¶OÁ`ª÷ÃB
-		String wsPNO = ""; // ¤ä¥I§Ç¸¹
-		String wsBANK = ""; // ¦¬´Ú»È¦æ
-		String wsACCOUNT = ""; // ¦¬´Ú±b¸¹
-		String wsPNAME = ""; // ¦¬´Ú¤H
-		String wsENTRYUSR = "";// ¿é¤JªÌ
-		//String wsPDESC = "";// ¤ä¥I´y­z@R90735
+		int count = 0;// åŒ¯æ¬¾ç­†æ•¸
+		double amt = 0;// åŒ¯æ¬¾ç¸½é‡‘é¡
+		double amtFee = 0;// åŒ¯è²»ç¸½é‡‘é¡
+		String wsPNO = ""; // æ”¯ä»˜åºè™Ÿ
+		String wsBANK = ""; // æ”¶æ¬¾éŠ€è¡Œ
+		String wsACCOUNT = ""; // æ”¶æ¬¾å¸³è™Ÿ
+		String wsPNAME = ""; // æ”¶æ¬¾äºº
+		String wsENTRYUSR = "";// è¼¸å…¥è€…
+		//String wsPDESC = "";// æ”¯ä»˜æè¿°@R90735
 		String wsRMEMO = "";// @R90735
 		List ls = null;// @R90735
 		double wsAMT = 0;
@@ -288,7 +288,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 		String strCBNO = "" ;
 		CaprmtfVO rmtVO = new CaprmtfVO();
 		
-		//ÀË®Ö²¼¸¹
+		//æª¢æ ¸ç¥¨è™Ÿ
 		Connection con = dbFactory.getAS400Connection("DISBRemitDisposeServlet.updateB()");
 		PreparedStatement pstmtTmp = null;
 		ResultSet rs = null;
@@ -305,7 +305,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 				if (rs.next()) {
 					strCBNO = rs.getString("CBNO");
 				}else{
-					request.setAttribute("msg","¤ä²¼¸¹½X[" + strCNo + "]¤£¦s¦b!");
+					request.setAttribute("msg","æ”¯ç¥¨è™Ÿç¢¼[" + strCNo + "]ä¸å­˜åœ¨!");
 					return;
 				}
 			}
@@ -314,46 +314,46 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 				DISBPaymentDetailVO payment = new DISBPaymentDetailVO();
 
 				payment.setStrPNO(PNO[index].trim());
-				dao.query(payment);// QUERY ¤ä¥Iª÷ÃB
+				dao.query(payment);// QUERY æ”¯ä»˜é‡‘é¡
 
 				payment.setStrPBBank(PBANK.substring(0, 7));
 				payment.setStrPBAccount(PBANK.substring(8));
 				payment.setStrPMethod(PMETHOD);
-				payment.setStrBatNo(batNo);// ¶×´Ú§å¸¹
-				payment.setIPCshDt(updateDate);// ¥X¯Ç¤é´Á
-				payment.setIUpdDt(updateDate);// ²§°Ê¤é´Á
-				payment.setIUpdTm(updateTime);// ²§°Ê®É¶¡
-				payment.setStrUpdUsr(logonUser);// ²§°ÊªÌ
-				payment.setIPCSHCM(iPCSHCM);/* R60747 ¼W¥[¥X¯Ç½T»{¤éÄæ¦ì */
+				payment.setStrBatNo(batNo);// åŒ¯æ¬¾æ‰¹è™Ÿ
+				payment.setIPCshDt(updateDate);// å‡ºç´æ—¥æœŸ
+				payment.setIUpdDt(updateDate);// ç•°å‹•æ—¥æœŸ
+				payment.setIUpdTm(updateTime);// ç•°å‹•æ™‚é–“
+				payment.setStrUpdUsr(logonUser);// ç•°å‹•è€…
+				payment.setIPCSHCM(iPCSHCM);/* R60747 å¢åŠ å‡ºç´ç¢ºèªæ—¥æ¬„ä½ */
 				payment.setStrPCheckNO(strCNo);//RC0036
 
-				if (PMETHOD.equals("B")) {// ¥x¹ô¶×´Ú
+				if (PMETHOD.equals("B")) {// å°å¹£åŒ¯æ¬¾
 					if (index == 0) {
-						// §Ç¸¹@R90735
+						// åºè™Ÿ@R90735
 						ISeqNo += 1;
 						wsPNO = payment.getStrPNO() != null ? payment.getStrPNO().trim() : "";
 						wsBANK = payment.getStrPRBank() != null ? payment.getStrPRBank().trim() : "";
 						wsACCOUNT = payment.getStrPRAccount() != null ? payment.getStrPRAccount().trim() : "";
-						wsPNAME = payment.getStrPName() != null ? payment.getStrPName().replace('¡@', ' ').trim() : "";
+						wsPNAME = payment.getStrPName() != null ? payment.getStrPName().replace('ã€€', ' ').trim() : "";
 						wsENTRYUSR = payment.getStrEntryUsr() != null ? payment.getStrEntryUsr().trim() : "";
 						// wsPDESC = payment.getStrPDesc()!=null?payment.getStrPDesc().trim():"";
 						rmtVO = prepareData(payment);
 					}
-					// °ê¤º¶×´Ú¥[Á`³W«h -->¦P¤@»È¦æ¦P¤@±b¸¹ ¦P¤@¨ü´Ú¤H ¦P¤@¿é¤JªÌ
+					// åœ‹å…§åŒ¯æ¬¾åŠ ç¸½è¦å‰‡ -->åŒä¸€éŠ€è¡ŒåŒä¸€å¸³è™Ÿ åŒä¸€å—æ¬¾äºº åŒä¸€è¼¸å…¥è€…
 					if (!wsBANK.equals(payment.getStrPRBank().trim())
 							|| !wsACCOUNT.equals(payment.getStrPRAccount().trim())
-							|| !wsPNAME.equals(payment.getStrPName().replace('¡@', ' ').trim())
+							|| !wsPNAME.equals(payment.getStrPName().replace('ã€€', ' ').trim())
 							|| !wsENTRYUSR.equals(payment.getStrEntryUsr().trim())) 
 					{
-						rmtVO.setBATNO(batNo);// ¶×´Ú§å¸¹
-						rmtVO.setSEQNO(String.valueOf(ISeqNo));// §Ç¸¹
-						rmtVO.setPBK(PBANK.substring(0, 7));// ¥I´Ú»È¦æ
-						rmtVO.setPACCT(PBANK.substring(8));// ¥I´Ú±b¸¹
-						rmtVO.setRAMT(wsAMT);// ª÷ÃBx(13)
-						log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");
-						rmtVO.setRMTFEE((int) disBBean.getPFee(payment.getStrPBBank().trim(), wsBANK, wsAMT, payment.getStrPMethod().trim(), "", ""));// ¶×¶O
-						rmtVO.setENTRYDT(updateDate);// ¿é¤J¤é´Á
-						rmtVO.setENTRYTM(updateTime);// ¿é¤J®É¶¡
+						rmtVO.setBATNO(batNo);// åŒ¯æ¬¾æ‰¹è™Ÿ
+						rmtVO.setSEQNO(String.valueOf(ISeqNo));// åºè™Ÿ
+						rmtVO.setPBK(PBANK.substring(0, 7));// ä»˜æ¬¾éŠ€è¡Œ
+						rmtVO.setPACCT(PBANK.substring(8));// ä»˜æ¬¾å¸³è™Ÿ
+						rmtVO.setRAMT(wsAMT);// é‡‘é¡x(13)
+						log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");
+						rmtVO.setRMTFEE((int) disBBean.getPFee(payment.getStrPBBank().trim(), wsBANK, wsAMT, payment.getStrPMethod().trim(), "", ""));// åŒ¯è²»
+						rmtVO.setENTRYDT(updateDate);// è¼¸å…¥æ—¥æœŸ
+						rmtVO.setENTRYTM(updateTime);// è¼¸å…¥æ™‚é–“
 
 						// R90735
 						if (ls.size() > 0) {
@@ -377,12 +377,12 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 						ISeqNo += 1;
 						wsBANK = payment.getStrPRBank() != null ? payment.getStrPRBank().trim() : "";
 						wsACCOUNT = payment.getStrPRAccount() != null ? payment.getStrPRAccount().trim() : "";
-						wsPNAME = payment.getStrPName() != null ? payment.getStrPName().replace('¡@', ' ').trim() : "";
+						wsPNAME = payment.getStrPName() != null ? payment.getStrPName().replace('ã€€', ' ').trim() : "";
 						wsENTRYUSR = payment.getStrEntryUsr() != null ? payment.getStrEntryUsr().trim() : "";
 						//wsPDESC = payment.getStrPDesc() != null ? payment.getStrPDesc().trim() : "";
 						ls.clear();
 						if (wsBANK.startsWith("822") && PBANK.startsWith("822"))
-							ls.add("¢Ñ¢â¢Ñ¢Ğ" + (payment.getStrPDesc() != null ? payment.getStrPDesc().trim() : ""));
+							ls.add("ï¼£ï¼´ï¼£ï¼¢" + (payment.getStrPDesc() != null ? payment.getStrPDesc().trim() : ""));
 						else
 							ls.add((payment.getStrPDesc() != null ? payment.getStrPDesc().trim() : ""));
 					} else {
@@ -392,30 +392,30 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 							ls = new ArrayList();
 
 						if (wsBANK.startsWith("822") && PBANK.startsWith("822"))
-							ls.add("¢Ñ¢â¢Ñ¢Ğ" + (payment.getStrPDesc() != null ? payment.getStrPDesc().trim() : ""));
+							ls.add("ï¼£ï¼´ï¼£ï¼¢" + (payment.getStrPDesc() != null ? payment.getStrPDesc().trim() : ""));
 						else
 							ls.add((payment.getStrPDesc() != null ? payment.getStrPDesc().trim() : ""));
 					}
 
 				}
 
-				// ¼g¤JlogÀÉ
+				// å¯«å…¥logæª”
 				disBBean.insertCAPPAYFLOG(payment.getStrPNO(), logonUser, updateDate, updateTime);
 
 				count += dao.update(payment, String.valueOf(ISeqNo));
 				amt += payment.getIRmtFee() + payment.getIPAMT();
 			}
 
-			rmtVO.setBATNO(batNo);// ¶×´Ú§å¸¹
+			rmtVO.setBATNO(batNo);// åŒ¯æ¬¾æ‰¹è™Ÿ
 			rmtVO.setSEQNO(String.valueOf(ISeqNo));
-			rmtVO.setPBK(PBANK.substring(0, 7));// ¥I´Ú»È¦æ
-			rmtVO.setPACCT(PBANK.substring(8));// ¥I´Ú±b¸¹
-			rmtVO.setRAMT(wsAMT);// ª÷ÃBx(13)
-			log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");
-			rmtVO.setRMTFEE((int) disBBean.getPFee(PBANK.substring(0, 7), wsBANK, wsAMT, PMETHOD, "", ""));// ¶×¶O
-			rmtVO.setENTRYDT(updateDate);// ¿é¤J¤é´Á
-			rmtVO.setENTRYTM(updateTime);// ¿é¤J®É¶¡
-			// R90735 ªş¨¥
+			rmtVO.setPBK(PBANK.substring(0, 7));// ä»˜æ¬¾éŠ€è¡Œ
+			rmtVO.setPACCT(PBANK.substring(8));// ä»˜æ¬¾å¸³è™Ÿ
+			rmtVO.setRAMT(wsAMT);// é‡‘é¡x(13)
+			log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");
+			rmtVO.setRMTFEE((int) disBBean.getPFee(PBANK.substring(0, 7), wsBANK, wsAMT, PMETHOD, "", ""));// åŒ¯è²»
+			rmtVO.setENTRYDT(updateDate);// è¼¸å…¥æ—¥æœŸ
+			rmtVO.setENTRYTM(updateTime);// è¼¸å…¥æ™‚é–“
+			// R90735 é™„è¨€
 			if (ls.size() > 0) {
 				List rm = removeDuplicate(ls);
 				for (int i = 0; i < rm.size(); i++) {
@@ -444,9 +444,9 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 		} finally {
 			dao.removeConn();
 		}
-		request.setAttribute("count", String.valueOf(count));// ¶×´Úµ§¼Æ
-		request.setAttribute("amt", String.valueOf(amt));// ¶×´ÚÁ`ª÷ÃB
-		request.setAttribute("batNo", batNo);// ¶×´Ú§å¸¹
+		request.setAttribute("count", String.valueOf(count));// åŒ¯æ¬¾ç­†æ•¸
+		request.setAttribute("amt", String.valueOf(amt));// åŒ¯æ¬¾ç¸½é‡‘é¡
+		request.setAttribute("batNo", batNo);// åŒ¯æ¬¾æ‰¹è™Ÿ
 
 	}
 
@@ -465,8 +465,8 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 	private void updateD(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		path = "/DISB/DISBRemit/DISBRemitDispose.jsp";
 		String[] PNO = request.getParameterValues("PNO");
-		String PBANK = request.getParameter("PBBANK").trim();// ¥I´Ú»È¦æ,¥I´Ú±b¸¹
-		String PMETHOD = request.getParameter("PMETHOD").trim();// ¥I´Ú¤è¦¡
+		String PBANK = request.getParameter("PBBANK").trim();// ä»˜æ¬¾éŠ€è¡Œ,ä»˜æ¬¾å¸³è™Ÿ
+		String PMETHOD = request.getParameter("PMETHOD").trim();// ä»˜æ¬¾æ–¹å¼
 		DecimalFormat df = new DecimalFormat("###,###,##0.0000");
 		
 		String company = "";//RD0382:OIU
@@ -479,7 +479,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 			company = "";
 		}
 
-		/* R60747 ¼W¥[¥X¯Ç½T»{¤éÄæ¦ì Start */
+		/* R60747 å¢åŠ å‡ºç´ç¢ºèªæ—¥æ¬„ä½ Start */
 		String PCSHCM = request.getParameter("txtPCSHCM");
 		int iPCSHCM = 0;
 		if (PCSHCM != null)
@@ -488,7 +488,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 			PCSHCM = "";
 		if (!PCSHCM.equals(""))
 			iPCSHCM = Integer.parseInt(PCSHCM);
-		/* R60747 ¼W¥[¥X¯Ç½T»{¤éÄæ¦ì End */
+		/* R60747 å¢åŠ å‡ºç´ç¢ºèªæ—¥æ¬„ä½ End */
 
 		DbFactory dbFactory = (DbFactory) getServletContext().getAttribute(Constant.DB_FACTORY);
 		DISBRemitDisposeDAO dao = new DISBRemitDisposeDAO(dbFactory);
@@ -501,32 +501,32 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 		// R00393
 		String logonUser = (String) request.getSession().getAttribute(Constant.LOGON_USER_ID);
 		String batNo = disBBean.getPBatNo(PMETHOD, updateDate, updateTime, PBANK);
-		int count = 0;// ¶×´Úµ§¼Æ
-		double amt = 0;// ¶×´ÚÁ`ª÷ÃB
-		double RPAYamt = 0;// ¥~¹ô¶×´ÚÁ`ª÷ÃB
+		int count = 0;// åŒ¯æ¬¾ç­†æ•¸
+		double amt = 0;// åŒ¯æ¬¾ç¸½é‡‘é¡
+		double RPAYamt = 0;// å¤–å¹£åŒ¯æ¬¾ç¸½é‡‘é¡
 		String wsSWIFT = ""; // SWIFTCODE
-		String wsBANK = "";// «È¤á¶×¤J»È¦æ
-		String wsACCOUNT = ""; // ¦¬´Ú±b¸¹
-		String wsPNAME = ""; // ¦¬´Ú¤H
-		String wsPID = ""; // ¦¬´Ú¤HID R70088
-		String wsPENGNAME = "";// ¦¬´Ú¤H­^¤å¦W¦r
-		String wsENTRYUSR = "";// ¿é¤JªÌ
-		String wsPAYFEEWAY = "";// ¥~¹ô¥[¤J¦¬Äò¶O¤ä¥I¤è¦¡
-		String wsPPAYCURR = "";// ¥~¹ô¹ô?
-		String wsPBKBRCH = "";// ¤À¦æ
-		String wsPBKCITY = "";// «°¥«
-		String wsPCOUNTRY = "";// °ê§O
-		double wsRPAYAMT = 0;// ¥~¹ôª÷ÃB
-		double wsRPAYRATE = 0;// ¥~¹ô¶×²vR70088
-		double wsRBENFEE = 0;// «È¤á­t¾á¤âÄò¶OR70088
-		String wsPSRCCODE = "";// ¤ä¥I­ì¦]½XR70088
-		String wsSWITCH = "";// §PÂ_¬O§_¬°§ë¸ê°_©l¤é«e©Î°t®§¥óR70088
-		String wsRPCURR = "";// R70477«O³æ¹ô§O
+		String wsBANK = "";// å®¢æˆ¶åŒ¯å…¥éŠ€è¡Œ
+		String wsACCOUNT = ""; // æ”¶æ¬¾å¸³è™Ÿ
+		String wsPNAME = ""; // æ”¶æ¬¾äºº
+		String wsPID = ""; // æ”¶æ¬¾äººID R70088
+		String wsPENGNAME = "";// æ”¶æ¬¾äººè‹±æ–‡åå­—
+		String wsENTRYUSR = "";// è¼¸å…¥è€…
+		String wsPAYFEEWAY = "";// å¤–å¹£åŠ å…¥æ”¶çºŒè²»æ”¯ä»˜æ–¹å¼
+		String wsPPAYCURR = "";// å¤–å¹£å¹£?
+		String wsPBKBRCH = "";// åˆ†è¡Œ
+		String wsPBKCITY = "";// åŸå¸‚
+		String wsPCOUNTRY = "";// åœ‹åˆ¥
+		double wsRPAYAMT = 0;// å¤–å¹£é‡‘é¡
+		double wsRPAYRATE = 0;// å¤–å¹£åŒ¯ç‡R70088
+		double wsRBENFEE = 0;// å®¢æˆ¶è² æ“”æ‰‹çºŒè²»R70088
+		String wsPSRCCODE = "";// æ”¯ä»˜åŸå› ç¢¼R70088
+		String wsSWITCH = "";// åˆ¤æ–·æ˜¯å¦ç‚ºæŠ•è³‡èµ·å§‹æ—¥å‰æˆ–é…æ¯ä»¶R70088
+		String wsRPCURR = "";// R70477ä¿å–®å¹£åˆ¥
 		double wsAMT = 0;
 		int ISeqNo = 0;
-		int wsEntryDt = 0;// ¿é¤J¤é
-		int wsPINVDT = 0;// §ë¸ê°_©l¤é
-		String wsPSYMBOL = "";// ¬O§_¬°SPUL«O³æ
+		int wsEntryDt = 0;// è¼¸å…¥æ—¥
+		int wsPINVDT = 0;// æŠ•è³‡èµ·å§‹æ—¥
+		String wsPSYMBOL = "";// æ˜¯å¦ç‚ºSPULä¿å–®
 		CaprmtfVO rmtVO = new CaprmtfVO();
 
 		double wsTEMPamt = 0;// R70455
@@ -541,19 +541,19 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 				DISBPaymentDetailVO payment = new DISBPaymentDetailVO();
 
 				payment.setStrPNO(PNO[index].trim());
-				dao.query(payment);// QUERY ¤ä¥Iª÷ÃB
+				dao.query(payment);// QUERY æ”¯ä»˜é‡‘é¡
 				payment.setStrPBBank(PBANK.substring(0, 7));
 				payment.setStrPBAccount(PBANK.substring(8));
 				payment.setStrPMethod(PMETHOD);
-				payment.setStrBatNo(batNo);// ¶×´Ú§å¸¹
-				payment.setIPCshDt(updateDate);// ¥X¯Ç¤é´Á
-				payment.setIUpdDt(updateDate);// ²§°Ê¤é´Á
-				payment.setIUpdTm(updateTime);// ²§°Ê®É¶¡
-				payment.setStrUpdUsr(logonUser);// ²§°ÊªÌ
-				payment.setIPCSHCM(iPCSHCM);/* R60747 ¼W¥[¥X¯Ç½T»{¤éÄæ¦ì */
+				payment.setStrBatNo(batNo);// åŒ¯æ¬¾æ‰¹è™Ÿ
+				payment.setIPCshDt(updateDate);// å‡ºç´æ—¥æœŸ
+				payment.setIUpdDt(updateDate);// ç•°å‹•æ—¥æœŸ
+				payment.setIUpdTm(updateTime);// ç•°å‹•æ™‚é–“
+				payment.setStrUpdUsr(logonUser);// ç•°å‹•è€…
+				payment.setIPCSHCM(iPCSHCM);/* R60747 å¢åŠ å‡ºç´ç¢ºèªæ—¥æ¬„ä½ */
 				payment.setStrPCheckNO("");//RC0036
-				currFcTri = (payment.getStrPPlant().equals(" ") && !payment.getStrPCurr().equals("NT")); // R00386 ¬ü¤¸¶Ç²Î«¬«O³æ
-				//log.info("index¬O" + index);
+				currFcTri = (payment.getStrPPlant().equals(" ") && !payment.getStrPCurr().equals("NT")); // R00386 ç¾å…ƒå‚³çµ±å‹ä¿å–®
+				//log.info("indexæ˜¯" + index);
 				try{
 					oiuFlag = payment.getCompany().trim();
 					swiftFlag = payment.getStrPSWIFT().trim();
@@ -562,64 +562,64 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 				}
 				
 				if (index == 0) {
-					ISeqNo += 1;// §Ç¸¹
+					ISeqNo += 1;// åºè™Ÿ
 
 					wsSWIFT = payment.getStrPSWIFT().trim();// SWIFT CODE
 					wsBANK = payment.getStrPRBank();
 					wsACCOUNT = payment.getStrPRAccount().trim();
-					wsPNAME = payment.getStrPName().replace('¡@', ' ').trim();
-					wsPID = payment.getStrPId().trim();// R70088 SPUL°t®§
+					wsPNAME = payment.getStrPName().replace('ã€€', ' ').trim();
+					wsPID = payment.getStrPId().trim();// R70088 SPULé…æ¯
 					wsENTRYUSR = payment.getStrEntryUsr().trim();
-					wsPAYFEEWAY = payment.getStrPFEEWAY();// ¥~¹ô¥[¤J¦¬Äò¶O¤ä¥I¤è¦¡
-					wsPPAYCURR = payment.getStrPPAYCURR(); // ¶×¥X¹ô§O
-					wsPENGNAME = payment.getStrPENGNAME();// ­^¤å©m¦W
-					wsPBKBRCH = payment.getStrPBKBRCH();// ¤À¦æ
-					wsPBKCITY = payment.getStrPBKCITY();// «°¥«
-					wsPCOUNTRY = payment.getStrPBKCOTRY();// °ê§O
+					wsPAYFEEWAY = payment.getStrPFEEWAY();// å¤–å¹£åŠ å…¥æ”¶çºŒè²»æ”¯ä»˜æ–¹å¼
+					wsPPAYCURR = payment.getStrPPAYCURR(); // åŒ¯å‡ºå¹£åˆ¥
+					wsPENGNAME = payment.getStrPENGNAME();// è‹±æ–‡å§“å
+					wsPBKBRCH = payment.getStrPBKBRCH();// åˆ†è¡Œ
+					wsPBKCITY = payment.getStrPBKCITY();// åŸå¸‚
+					wsPCOUNTRY = payment.getStrPBKCOTRY();// åœ‹åˆ¥
 					wsAMT = payment.getIPAMT();
-					// R70455¥ı¥|±Ë¤­¤J¦A¥[Á` wsRPAYAMT = payment.getIPPAYAMT();//¥~¹ôª÷ÃB
+					// R70455å…ˆå››æ¨äº”å…¥å†åŠ ç¸½ wsRPAYAMT = payment.getIPPAYAMT();//å¤–å¹£é‡‘é¡
 					wsRPAYAMT = disBBean.DoubleRound(payment.getIPPAYAMT(), 2);// R70455
-					wsRPAYRATE = payment.getIPPAYRATE();// ¥~¹ô¶×²vR70088
-					wsPSRCCODE = payment.getStrPSrcCode().trim();// ¤ä¥I­ì¦]½XR70088
+					wsRPAYRATE = payment.getIPPAYRATE();// å¤–å¹£åŒ¯ç‡R70088
+					wsPSRCCODE = payment.getStrPSrcCode().trim();// æ”¯ä»˜åŸå› ç¢¼R70088
 					wsEntryDt = payment.getIEntryDt();
 					wsPINVDT = payment.getIPINVDT();
 					wsPSYMBOL = payment.getStrPSYMBOL();
-					wsRPCURR = payment.getStrPCurr(); // R70477«O³æ¹ô§O
+					wsRPCURR = payment.getStrPCurr(); // R70477ä¿å–®å¹£åˆ¥
 					wsFcTri = currFcTri;
 					rmtVO = prepareData(payment);
 				}
 				/*
-				 * °ê¥~¶×´Ú¥[Á`³W«h -->¦P¤@SWIFT CODE ¦P¤@±b¸¹ ¦P¤@¨ü´Ú¤H ¦P¤@¿é¤JªÌ ¦P¤@¨ü´Ú¤H­^¤å©m¦W ¦P¤@«°¥« ¦P¤@¤À¦æ
-				 * ¦P¤@¹ô§O
+				 * åœ‹å¤–åŒ¯æ¬¾åŠ ç¸½è¦å‰‡ -->åŒä¸€SWIFT CODE åŒä¸€å¸³è™Ÿ åŒä¸€å—æ¬¾äºº åŒä¸€è¼¸å…¥è€… åŒä¸€å—æ¬¾äººè‹±æ–‡å§“å åŒä¸€åŸå¸‚ åŒä¸€åˆ†è¡Œ
+				 * åŒä¸€å¹£åˆ¥
 				 */
 				if (index > 0) {
 
 					if (!wsSWIFT.equals(payment.getStrPSWIFT().trim())
 							|| !wsACCOUNT.equals(payment.getStrPRAccount().trim())
-							|| !wsPNAME.replace('¡@', ' ').trim().equals(payment.getStrPName().replace('¡@', ' ').trim())
+							|| !wsPNAME.replace('ã€€', ' ').trim().equals(payment.getStrPName().replace('ã€€', ' ').trim())
 							|| !wsENTRYUSR.equals(payment.getStrEntryUsr().trim())
-							|| !wsPENGNAME.replace('¡@', ' ').trim().equals(payment.getStrPENGNAME().replace('¡@', ' ').trim())
-							|| !wsPBKBRCH.replace('¡@', ' ').trim().equals(payment.getStrPBKBRCH().replace('¡@', ' ').trim())
-							|| !wsPBKCITY.replace('¡@', ' ').trim().equals(payment.getStrPBKCITY().replace('¡@', ' ').trim())
-							|| !wsPPAYCURR.replace('¡@', ' ').trim().equals(payment.getStrPPAYCURR().replace('¡@', ' ').trim())
-							|| wsFcTri != currFcTri) // R00386 ¶Ç²Î«¬»P§ë¸ê«¬ ¥Îªº¤âÄò¶O¤£¦P, ¤À¶}ºâ
+							|| !wsPENGNAME.replace('ã€€', ' ').trim().equals(payment.getStrPENGNAME().replace('ã€€', ' ').trim())
+							|| !wsPBKBRCH.replace('ã€€', ' ').trim().equals(payment.getStrPBKBRCH().replace('ã€€', ' ').trim())
+							|| !wsPBKCITY.replace('ã€€', ' ').trim().equals(payment.getStrPBKCITY().replace('ã€€', ' ').trim())
+							|| !wsPPAYCURR.replace('ã€€', ' ').trim().equals(payment.getStrPPAYCURR().replace('ã€€', ' ').trim())
+							|| wsFcTri != currFcTri) // R00386 å‚³çµ±å‹èˆ‡æŠ•è³‡å‹ ç”¨çš„æ‰‹çºŒè²»ä¸åŒ, åˆ†é–‹ç®—
 					{
 						wsFcTri = currFcTri;
 
-						rmtVO.setBATNO(batNo);// ¶×´Ú§å¸¹
-						rmtVO.setSEQNO(String.valueOf(ISeqNo));// §Ç¸¹
-						rmtVO.setPBK(PBANK.substring(0, 7));// ¥I´Ú»È¦æ
-						rmtVO.setPACCT(PBANK.substring(8));// ¥I´Ú±b¸¹
-						rmtVO.setRID(wsPID);// ¨ü´Ú¤HID
-						rmtVO.setRAMT(wsAMT);// ª÷ÃBx(13)
-						rmtVO.setRPCURR(wsRPCURR);// R70477 «O³æ¹ô§O
-						// ¶×¶O(¤½¥q­t¾á)SPUL«O³æ§ë¸ê°_©l¤é¤§«eªº¤ä¥I¥ó©M«È¤á­t¾á¶×¶O¬°0 ,BEN:¤¤«H¦Û¤v·|±q¤ä¥Iª÷ÃB¦©´Ú
-						// R70088§ï¬°BEN->´N¬O¥Ñ«È¤á­t¾á,¶×¶O¬°¹s
-						// OUR->¤½¥q­t¾á,­Y¬°¤¤«H¥BSWIFTCODE=CTCBTW¥´ÀYªÌ©Î°t®§¶×¶O¬°¹s,¨ä¾l¤¤«H¥ó¶×¶O¬°500
-						// ¤@»È100;ªáºX10us
+						rmtVO.setBATNO(batNo);// åŒ¯æ¬¾æ‰¹è™Ÿ
+						rmtVO.setSEQNO(String.valueOf(ISeqNo));// åºè™Ÿ
+						rmtVO.setPBK(PBANK.substring(0, 7));// ä»˜æ¬¾éŠ€è¡Œ
+						rmtVO.setPACCT(PBANK.substring(8));// ä»˜æ¬¾å¸³è™Ÿ
+						rmtVO.setRID(wsPID);// å—æ¬¾äººID
+						rmtVO.setRAMT(wsAMT);// é‡‘é¡x(13)
+						rmtVO.setRPCURR(wsRPCURR);// R70477 ä¿å–®å¹£åˆ¥
+						// åŒ¯è²»(å…¬å¸è² æ“”)SPULä¿å–®æŠ•è³‡èµ·å§‹æ—¥ä¹‹å‰çš„æ”¯ä»˜ä»¶å’Œå®¢æˆ¶è² æ“”åŒ¯è²»ç‚º0 ,BEN:ä¸­ä¿¡è‡ªå·±æœƒå¾æ”¯ä»˜é‡‘é¡æ‰£æ¬¾
+						// R70088æ”¹ç‚ºBEN->å°±æ˜¯ç”±å®¢æˆ¶è² æ“”,åŒ¯è²»ç‚ºé›¶
+						// OUR->å…¬å¸è² æ“”,è‹¥ç‚ºä¸­ä¿¡ä¸”SWIFTCODE=CTCBTWæ‰“é ­è€…æˆ–é…æ¯åŒ¯è²»ç‚ºé›¶,å…¶é¤˜ä¸­ä¿¡ä»¶åŒ¯è²»ç‚º500
+						// ä¸€éŠ€100;èŠ±æ——10us
 						// R70455 if(wsPSYMBOL.equals("S") &&
 						// (wsEntryDt<=wsPINVDT || wsPSRCCODE.equals("B8"))){
-						// R00440 SNº¡´Áª÷ if(wsPSYMBOL.equals("S") &&
+						// R00440 SNæ»¿æœŸé‡‘ if(wsPSYMBOL.equals("S") &&
 						// (wsEntryDt<=wsPINVDT || wsPSRCCODE.equals("B8") ||
 						// wsPSRCCODE.equals("B9"))){
 						if (wsPSYMBOL.equals("S")
@@ -627,45 +627,45 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 										|| wsPSRCCODE.equals("BB")
 										|| wsPSRCCODE.equals("B8") 
 										|| wsPSRCCODE.equals("B9"))) 
-						{// R00440 SNº¡´Áª÷
+						{// R00440 SNæ»¿æœŸé‡‘
 							wsSWITCH = "Y";
 						} else {
 							wsSWITCH = "";
 						}
-						//log.info("wsPAYFEEWAY¬O" + wsPAYFEEWAY);
+						//log.info("wsPAYFEEWAYæ˜¯" + wsPAYFEEWAY);
 						if (wsPAYFEEWAY.equals("OUR") || wsPAYFEEWAY.equals("SHA")) {
 							try {
-								//log.info("payment.getCompany()¬O" + payment.getCompany() + ",PBANK.substring(0, 3)¬O" + PBANK.substring(0, 3));
-								//RD0440:·s¼W¥~¹ô«ü©w»È¦æ-¥xÆW»È¦æ
+								//log.info("payment.getCompany()æ˜¯" + payment.getCompany() + ",PBANK.substring(0, 3)æ˜¯" + PBANK.substring(0, 3));
+								//RD0440:æ–°å¢å¤–å¹£æŒ‡å®šéŠ€è¡Œ-å°ç£éŠ€è¡Œ
 								if(PBANK.substring(0, 3).equals("004")) {
 									//rmtVO.setRMTFEE((int) disBBean.getPayFee004(payment.getStrPBBank(), wsBANK, wsACCOUNT, wsAMT, PCSHCM));
-									//log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");
+									//log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");
 									rmtVO.setRMTFEE((int) disBBean.getPayFee004(payment.getStrPBBank(), wsBANK, wsACCOUNT, wsAMT, PCSHCM, wsPPAYCURR, wsRPAYRATE));
 								}else if(PBANK.substring(0, 3).equals("017") && "OIU".equals(payment.getCompany().trim())){
-									//RD0382:OIU,¥üÂ×
+									//RD0382:OIU,å…†è±
 									rmtVO.setRMTFEE((int) disBBean.getPayFeeOIU(payment.getStrPBBank(), wsBANK, wsACCOUNT, wsAMT, payment.getStrPSWIFT()));
 								}else if(PBANK.substring(0, 3).equals("812") && "OIU".equals(payment.getCompany().trim())){
-									//RD0382:OIU,¥x·s
+									//RD0382:OIU,å°æ–°
 									rmtVO.setRMTFEE((int) disBBean.getPayFeeOIU(payment.getStrPBBank(), wsBANK, wsACCOUNT, wsAMT, payment.getStrPSWIFT()));
 								}else if(PBANK.substring(0, 3).equals("809") && "OIU".equals(payment.getCompany().trim())){
-									//RE0189:OIU,³Í°ò
+									//RE0189:OIU,å‡±åŸº
 									rmtVO.setRMTFEE((int) disBBean.getPayFeeOIU(payment.getStrPBBank(), wsBANK, wsACCOUNT, wsAMT, payment.getStrPSWIFT()));
 								}else{
-									//log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");
+									//log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");
 									rmtVO.setRMTFEE((int) disBBean.getPayFee(payment.getStrPBBank(), wsBANK, wsACCOUNT));
 								}	
 							} catch (RemittanceFeeNotFoundException e) {
 								/*log.info("RemittanceFeeNotFoundException");
-								log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");*/
+								log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");*/
 								rmtVO.setRMTFEE((int) disBBean.getPFee(payment.getStrPBBank().trim(), wsBANK, wsAMT, payment.getStrPMethod().trim(), wsSWIFT, wsSWITCH));
 							}
 						} else {
-							//log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");
+							//log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");
 							rmtVO.setRMTFEE((int) 0);
 						}
-						rmtVO.setENTRYDT(updateDate);// ¿é¤J¤é´Á
-						rmtVO.setENTRYTM(updateTime);// ¿é¤J®É¶¡
-						// «È¤á­t¾á¶×¶OR70088
+						rmtVO.setENTRYDT(updateDate);// è¼¸å…¥æ—¥æœŸ
+						rmtVO.setENTRYTM(updateTime);// è¼¸å…¥æ™‚é–“
+						// å®¢æˆ¶è² æ“”åŒ¯è²»R70088
 						if (wsPAYFEEWAY.equals("BEN")) {
 							// try{
 							// wsRBENFEE = disBBean.getPayFee(
@@ -674,19 +674,19 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 							// wsRBENFEE = (double)
 							// disBBean.getPFeeBEN(payment.getStrPBBank().trim(),
 							// wsRPAYRATE);
-							//log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");
+							//log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");
 							rmtVO.setRMTFEE(0);
 							wsRBENFEE = 0;
 						}
 
-						//QA0281 ¥I´Ú»È¦æ¬°¤@»È®É¦³¤âÄò¶O²£¥Í
+						//QA0281 ä»˜æ¬¾éŠ€è¡Œç‚ºä¸€éŠ€æ™‚æœ‰æ‰‹çºŒè²»ç”¢ç”Ÿ
 						if(PBANK.substring(0, 3).equals("007")) {
 							try {
-								//log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");
+								//log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");
 								rmtVO.setRMTFEE((int) disBBean.getPayFee(payment.getStrPBBank(), wsBANK, wsACCOUNT));
 							} catch (RemittanceFeeNotFoundException e) {
 								/*log.info("RemittanceFeeNotFoundException");
-								log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");*/
+								log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");*/
 								rmtVO.setRMTFEE((int) disBBean.getPFee(payment.getStrPBBank().trim(), wsBANK, wsAMT, payment.getStrPMethod().trim(), wsSWIFT, wsSWITCH));
 							}
 						}
@@ -695,17 +695,17 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 						rmtVO.setRBENFEE(wsRBENFEE);
 						rmtVO.setRPAYRATE(wsRPAYRATE);
 
-						rmtVO.setRPAYFEEWAY(wsPAYFEEWAY);// ¤âÄò¶O¥I´Ú¤è¦¡
-						rmtVO.setRPAYAMT(wsRPAYAMT);// ¥~¹ôª÷ÃB¥[Á`
-						rmtVO.setRPAYCURR(wsPPAYCURR);// ¥~¹ô¹ô§O
+						rmtVO.setRPAYFEEWAY(wsPAYFEEWAY);// æ‰‹çºŒè²»ä»˜æ¬¾æ–¹å¼
+						rmtVO.setRPAYAMT(wsRPAYAMT);// å¤–å¹£é‡‘é¡åŠ ç¸½
+						rmtVO.setRPAYCURR(wsPPAYCURR);// å¤–å¹£å¹£åˆ¥
 						rmtVO.setSWIFTCODE(wsSWIFT); // SWIFT CODE
-						rmtVO.setPENGNAME(wsPENGNAME);// ­^¤å©m¦W
-						rmtVO.setRBKBRCH(wsPBKBRCH); // ¤À¦æ
-						rmtVO.setRBKCITY(wsPBKCITY);// «°¥«
-						rmtVO.setRBKCOUNTRY(wsPCOUNTRY);// °ê§O
+						rmtVO.setPENGNAME(wsPENGNAME);// è‹±æ–‡å§“å
+						rmtVO.setRBKBRCH(wsPBKBRCH); // åˆ†è¡Œ
+						rmtVO.setRBKCITY(wsPBKCITY);// åŸå¸‚
+						rmtVO.setRBKCOUNTRY(wsPCOUNTRY);// åœ‹åˆ¥
 						// System.out.println("0wsRPAYAMT="+wsRPAYAMT);
-						/* «e­±¬Û¦Pªº¥[Á`¸ê®Æ */
-						//log.info("wsPPAYCURR¬O" + wsPPAYCURR);
+						/* å‰é¢ç›¸åŒçš„åŠ ç¸½è³‡æ–™ */
+						//log.info("wsPPAYCURRæ˜¯" + wsPPAYCURR);
 						dao.insertRMTF(rmtVO);
 
 						rmtVO = new CaprmtfVO();
@@ -715,39 +715,39 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 						// System.out.println("1wsRPAYAMT="+wsRPAYAMT);
 						// System.out.println("1payment.getIPPAYAMT()="+payment.getIPPAYAMT());
 						wsRPAYAMT = 0;// R70088
-						// R70455¥ı¥|±Ë¤­¤J¦A¥[Á` wsRPAYAMT += payment.getIPPAYAMT();//¥~¹ôª÷ÃB
+						// R70455å…ˆå››æ¨äº”å…¥å†åŠ ç¸½ wsRPAYAMT += payment.getIPPAYAMT();//å¤–å¹£é‡‘é¡
 						wsTEMPamt = disBBean.DoubleRound(payment.getIPPAYAMT(), 2);
-						wsRPAYAMT = disBBean.DoubleAdd(wsRPAYAMT, wsTEMPamt);// R70455  ¥~¹ôª÷ÃB
+						wsRPAYAMT = disBBean.DoubleAdd(wsRPAYAMT, wsTEMPamt);// R70455  å¤–å¹£é‡‘é¡
 						// System.out.println("2wsRPAYAMT="+wsRPAYAMT);
-						// §Ç¸¹
+						// åºè™Ÿ
 						ISeqNo += 1;
 
 						wsSWIFT = payment.getStrPSWIFT().trim();// SWIFT CODE
 						wsBANK = payment.getStrPRBank();
 						wsACCOUNT = payment.getStrPRAccount().trim();
-						wsPNAME = payment.getStrPName().replace('¡@', ' ').trim();
+						wsPNAME = payment.getStrPName().replace('ã€€', ' ').trim();
 						wsPID = payment.getStrPId().trim();// R70088
 						wsENTRYUSR = payment.getStrEntryUsr().trim();
-						wsPAYFEEWAY = payment.getStrPFEEWAY();// ¥~¹ô¥[¤J¦¬Äò¶O¤ä¥I¤è¦¡
-						wsPPAYCURR = payment.getStrPPAYCURR(); // ¶×¥X¹ô§O
-						wsPENGNAME = payment.getStrPENGNAME();// ­^¤å©m¦W
-						wsPBKBRCH = payment.getStrPBKBRCH();// ¤À¦æ
-						wsPBKCITY = payment.getStrPBKCITY(); // «°¥«
-						wsPCOUNTRY = payment.getStrPBKCOTRY();// °ê§O
-						wsRPAYRATE = payment.getIPPAYRATE();// ¥~¹ô¶×²vR70088
-						wsPSRCCODE = payment.getStrPSrcCode().trim();// ¤ä¥I­ì¦]½XR70088
-						wsEntryDt = payment.getIEntryDt();// ¿é¤J¤é´ÁR70088
-						wsRPCURR = payment.getStrPCurr(); // R70477«O³æ¹ô§O
+						wsPAYFEEWAY = payment.getStrPFEEWAY();// å¤–å¹£åŠ å…¥æ”¶çºŒè²»æ”¯ä»˜æ–¹å¼
+						wsPPAYCURR = payment.getStrPPAYCURR(); // åŒ¯å‡ºå¹£åˆ¥
+						wsPENGNAME = payment.getStrPENGNAME();// è‹±æ–‡å§“å
+						wsPBKBRCH = payment.getStrPBKBRCH();// åˆ†è¡Œ
+						wsPBKCITY = payment.getStrPBKCITY(); // åŸå¸‚
+						wsPCOUNTRY = payment.getStrPBKCOTRY();// åœ‹åˆ¥
+						wsRPAYRATE = payment.getIPPAYRATE();// å¤–å¹£åŒ¯ç‡R70088
+						wsPSRCCODE = payment.getStrPSrcCode().trim();// æ”¯ä»˜åŸå› ç¢¼R70088
+						wsEntryDt = payment.getIEntryDt();// è¼¸å…¥æ—¥æœŸR70088
+						wsRPCURR = payment.getStrPCurr(); // R70477ä¿å–®å¹£åˆ¥
 					} else {
 						wsAMT += payment.getIPAMT();
 						// System.out.println("3wsRPAYAMT="+wsRPAYAMT);
 						// System.out.println("3payment.getIPPAYAMT()="+payment.getIPPAYAMT());
-						// R70455¥ı¥|±Ë¤­¤J¦A¥[Á` wsRPAYAMT += payment.getIPPAYAMT();
+						// R70455å…ˆå››æ¨äº”å…¥å†åŠ ç¸½ wsRPAYAMT += payment.getIPPAYAMT();
 						wsTEMPamt = disBBean.DoubleRound(payment.getIPPAYAMT(), 2);
-						wsRPAYAMT = disBBean.DoubleAdd(wsRPAYAMT, wsTEMPamt);// R70455 ¥~¹ôª÷ÃB
+						wsRPAYAMT = disBBean.DoubleAdd(wsRPAYAMT, wsTEMPamt);// R70455 å¤–å¹£é‡‘é¡
 						// System.out.println("4wsRPAYAMT="+wsRPAYAMT);
 						/*
-						 * 0:OUR, 1:SHA, 2:BEN ¦p¤âÄò¶O¦¬¶O¤è¦¡¤£¦P®Éªº¨M©w³W«h , OUR --> SHA
+						 * 0:OUR, 1:SHA, 2:BEN å¦‚æ‰‹çºŒè²»æ”¶è²»æ–¹å¼ä¸åŒæ™‚çš„æ±ºå®šè¦å‰‡ , OUR --> SHA
 						 * -->BEN
 						 */
 						if (getPayFeeWaySeq(wsPAYFEEWAY) < getPayFeeWaySeq(payment.getStrPFEEWAY())) {
@@ -757,106 +757,106 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 					}
 				}
 
-				// ¼g¤JlogÀÉ
+				// å¯«å…¥logæª”
 				disBBean.insertCAPPAYFLOG(payment.getStrPNO(), logonUser, updateDate, updateTime);
 
 				count += dao.update(payment, String.valueOf(ISeqNo));
 				amt += payment.getIRmtFee() + payment.getIPAMT();
 				// R70455 RPAYamt += payment.getIPPAYAMT();
 				wsTEMPamt = disBBean.DoubleRound(payment.getIPPAYAMT(), 2);
-				RPAYamt = disBBean.DoubleAdd(RPAYamt, wsTEMPamt);// R70455 ¥~¹ôª÷ÃB
+				RPAYamt = disBBean.DoubleAdd(RPAYamt, wsTEMPamt);// R70455 å¤–å¹£é‡‘é¡
 
-				//R10190 ±N¥~¹ô¥¢®Ä«O³æªº¶×´Ú¸ê°T¼g¤J¥¢®Äµ¹¥I³qª¾®Ñ¤u§@ÀÉ 
+				//R10190 å°‡å¤–å¹£å¤±æ•ˆä¿å–®çš„åŒ¯æ¬¾è³‡è¨Šå¯«å…¥å¤±æ•ˆçµ¦ä»˜é€šçŸ¥æ›¸å·¥ä½œæª” 
 				if(payment.getStrPMethod() != null && payment.getStrPMethod().equals("D") && payment.getStrPSrcCode() != null && payment.getStrPSrcCode().equals("CE")) {
 					lapsePayVO = new LapsePaymentVO();
-					lapsePayVO.setPNO(payment.getStrPNO());				//¤ä¥I§Ç¸¹
-					lapsePayVO.setPolicyNo(payment.getStrPolicyNo());	//«O³æ¸¹½X
-					lapsePayVO.setReceiverId(payment.getStrPId());		//¨ü´Ú¤HID
-					lapsePayVO.setReceiverName(payment.getStrPName());	//¨ü´Ú¤H©m¦W
-					lapsePayVO.setPaymentAmt(payment.getIPAMT());		//µ¹¥Iª÷ÃB
-					lapsePayVO.setRemitDate(iPCSHCM);					//¥X¯Ç½T»{¤é
-					lapsePayVO.setSendSwitch("Y");						//¬O§_±H°e
-					lapsePayVO.setRemitFailed("N" );					//¤w±H°e¡A¦ı°h¶×
-					lapsePayVO.setSendDate(0);							//±H°e¤é´Á
-					lapsePayVO.setUpdatedUser(logonUser);				//²§°ÊªÌ
-					lapsePayVO.setUpdatedDate(updateDate);				//²§°Ê¤é´Á
+					lapsePayVO.setPNO(payment.getStrPNO());				//æ”¯ä»˜åºè™Ÿ
+					lapsePayVO.setPolicyNo(payment.getStrPolicyNo());	//ä¿å–®è™Ÿç¢¼
+					lapsePayVO.setReceiverId(payment.getStrPId());		//å—æ¬¾äººID
+					lapsePayVO.setReceiverName(payment.getStrPName());	//å—æ¬¾äººå§“å
+					lapsePayVO.setPaymentAmt(payment.getIPAMT());		//çµ¦ä»˜é‡‘é¡
+					lapsePayVO.setRemitDate(iPCSHCM);					//å‡ºç´ç¢ºèªæ—¥
+					lapsePayVO.setSendSwitch("Y");						//æ˜¯å¦å¯„é€
+					lapsePayVO.setRemitFailed("N" );					//å·²å¯„é€ï¼Œä½†é€€åŒ¯
+					lapsePayVO.setSendDate(0);							//å¯„é€æ—¥æœŸ
+					lapsePayVO.setUpdatedUser(logonUser);				//ç•°å‹•è€…
+					lapsePayVO.setUpdatedDate(updateDate);				//ç•°å‹•æ—¥æœŸ
 
 					listlapsePay.add(lapsePayVO);
 				}
 
 			}//end for
 
-			rmtVO.setBATNO(batNo);// ¶×´Ú§å¸¹
+			rmtVO.setBATNO(batNo);// åŒ¯æ¬¾æ‰¹è™Ÿ
 			rmtVO.setSEQNO(String.valueOf(ISeqNo));
-			rmtVO.setPBK(PBANK.substring(0, 7));// ¥I´Ú»È¦æ
-			rmtVO.setPACCT(PBANK.substring(8));// ¥I´Ú±b¸¹
-			rmtVO.setRID(wsPID);// ¨ü´Ú¤HID
-			rmtVO.setRAMT(wsAMT);// ª÷ÃBx(13)
-			rmtVO.setRPCURR(wsRPCURR);// R70477 «O³æ¹ô§O
-			// ¶×¶O SPUL«O³æ§ë¸ê°_©l¤é¤§«eªº¤ä¥I¥ó ¶×¶O¬°0
-			// R70088§ï¬°BEN->´N¬O¥Ñ«È¤á­t¾á,¶×¶O¬°¹s
-			// OUR->¤½¥q­t¾á,­Y¬°¤¤«H¥BSWIFTCODE=CTCBTW¥´ÀYªÌ¶×¶O¬°¹s,¨ä¾l¤¤«H¥ó¶×¶O¬°500
-			// ¤@»È100;ªáºX10us
+			rmtVO.setPBK(PBANK.substring(0, 7));// ä»˜æ¬¾éŠ€è¡Œ
+			rmtVO.setPACCT(PBANK.substring(8));// ä»˜æ¬¾å¸³è™Ÿ
+			rmtVO.setRID(wsPID);// å—æ¬¾äººID
+			rmtVO.setRAMT(wsAMT);// é‡‘é¡x(13)
+			rmtVO.setRPCURR(wsRPCURR);// R70477 ä¿å–®å¹£åˆ¥
+			// åŒ¯è²» SPULä¿å–®æŠ•è³‡èµ·å§‹æ—¥ä¹‹å‰çš„æ”¯ä»˜ä»¶ åŒ¯è²»ç‚º0
+			// R70088æ”¹ç‚ºBEN->å°±æ˜¯ç”±å®¢æˆ¶è² æ“”,åŒ¯è²»ç‚ºé›¶
+			// OUR->å…¬å¸è² æ“”,è‹¥ç‚ºä¸­ä¿¡ä¸”SWIFTCODE=CTCBTWæ‰“é ­è€…åŒ¯è²»ç‚ºé›¶,å…¶é¤˜ä¸­ä¿¡ä»¶åŒ¯è²»ç‚º500
+			// ä¸€éŠ€100;èŠ±æ——10us
 			// R70455 if(wsPSYMBOL.equals("S") && (wsEntryDt<=wsPINVDT ||
 			// wsPSRCCODE.equals("B8"))){
-			// R00440 SNº¡´Áª÷ if(wsPSYMBOL.equals("S") && (wsEntryDt<=wsPINVDT ||
+			// R00440 SNæ»¿æœŸé‡‘ if(wsPSYMBOL.equals("S") && (wsEntryDt<=wsPINVDT ||
 			// wsPSRCCODE.equals("B8") || wsPSRCCODE.equals("B9")) ){
 			if (wsPSYMBOL.equals("S")
 					&& (wsEntryDt <= wsPINVDT 
 							|| wsPSRCCODE.equals("BB")
 							|| wsPSRCCODE.equals("B8") 
 							|| wsPSRCCODE.equals("B9"))) 
-			{// R00440 SNº¡´Áª÷
+			{// R00440 SNæ»¿æœŸé‡‘
 				wsSWITCH = "Y";
 			} else {
 				wsSWITCH = "";
 			}
-			// R70477¥~¹ô«O³æ, ¦P¦æ¬ÛÂà, ¶×´Ú¤âÄò¶O¾á¤è¦¡ÅÜ§ó¬°OUR
+			// R70477å¤–å¹£ä¿å–®, åŒè¡Œç›¸è½‰, åŒ¯æ¬¾æ‰‹çºŒè²»æ“”æ–¹å¼è®Šæ›´ç‚ºOUR
 			if (wsPSYMBOL.equals("D") && wsBANK.substring(0, 3).equals(PBANK.substring(0, 3))) {
 				wsPAYFEEWAY = "OUR";
 			}
 			if (wsPAYFEEWAY.equals("OUR") || wsPAYFEEWAY.equals("SHA")) {
 				try {
-					//RD0440:·s¼W¥~¹ô«ü©w»È¦æ-¥xÆW»È¦æ
-					//log.info("oiuFlag¬O" + oiuFlag.trim() + ",swiftFlag¬O" + swiftFlag.trim() + ",PBANK.substring(0, 3)¬O" + PBANK.substring(0, 3));
+					//RD0440:æ–°å¢å¤–å¹£æŒ‡å®šéŠ€è¡Œ-å°ç£éŠ€è¡Œ
+					//log.info("oiuFlagæ˜¯" + oiuFlag.trim() + ",swiftFlagæ˜¯" + swiftFlag.trim() + ",PBANK.substring(0, 3)æ˜¯" + PBANK.substring(0, 3));
 					if(PBANK.substring(0, 3).equals("004")) {
 						//rmtVO.setRMTFEE((int) disBBean.getPayFee004(PBANK.substring(0, 7), wsBANK, wsACCOUNT, wsAMT, PCSHCM));
-						//log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");
+						//log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");
 						rmtVO.setRMTFEE((int) disBBean.getPayFee004(PBANK.substring(0, 7), wsBANK, wsACCOUNT, wsAMT, PCSHCM, wsPPAYCURR, wsRPAYRATE));
 					}else if(PBANK.substring(0, 3).equals("017") && "OIU".equals(oiuFlag.trim())){
-						//RD0382:OIU,¥üÂ×
+						//RD0382:OIU,å…†è±
 						rmtVO.setRMTFEE((int) disBBean.getPayFeeOIU(PBANK.substring(0, 3), wsBANK, wsACCOUNT, wsAMT, swiftFlag));
 						
 					}else if(PBANK.substring(0, 3).equals("812") && "OIU".equals(oiuFlag.trim())){
-						//RD0382:OIU,¥x·s
+						//RD0382:OIU,å°æ–°
 						rmtVO.setRMTFEE((int) disBBean.getPayFeeOIU(PBANK.substring(0, 3), wsBANK, wsACCOUNT, wsAMT, swiftFlag));
 						
 					}else if(PBANK.substring(0, 3).equals("809") && "OIU".equals(oiuFlag.trim())){
-						//RE0198:OIU,³Í°ò
+						//RE0198:OIU,å‡±åŸº
 						rmtVO.setRMTFEE((int) disBBean.getPayFeeOIU(PBANK.substring(0, 3), wsBANK, wsACCOUNT, wsAMT, swiftFlag));
 						
 					}else{
-						//log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");
+						//log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");
 						rmtVO.setRMTFEE((int) disBBean.getPayFee(PBANK.substring(0, 7), wsBANK, wsACCOUNT));
 					}					
 				} catch (RemittanceFeeNotFoundException e) {
 					/*log.info("disBBean.getPFee:RemittanceFeeNotFoundException");
-					log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");*/
+					log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");*/
 					rmtVO.setRMTFEE((int) disBBean.getPFee(PBANK.substring(0, 7), wsBANK, wsAMT, PMETHOD, wsSWIFT, wsSWITCH));
 				}
 			} else {
-				//log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");
+				//log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");
 				rmtVO.setRMTFEE((int) 0);
 			}
 			
-			rmtVO.setENTRYDT(updateDate);// ¿é¤J¤é´Á
-			rmtVO.setENTRYTM(updateTime);// ¿é¤J®É¶¡
-			// «È¤á­t¾á¶×¶OR70088
+			rmtVO.setENTRYDT(updateDate);// è¼¸å…¥æ—¥æœŸ
+			rmtVO.setENTRYTM(updateTime);// è¼¸å…¥æ™‚é–“
+			// å®¢æˆ¶è² æ“”åŒ¯è²»R70088
 			if (wsPAYFEEWAY.equals("BEN")) {
 				// try{
 				// wsRBENFEE = disBBean.getPayFee( PBANK.substring(0,7), wsBANK,
 				// wsACCOUNT );
-				//log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");
+				//log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");
 				rmtVO.setRMTFEE(0);
 				wsRBENFEE = 0;
 				// }catch( RemittanceFeeNotFoundException e ) {
@@ -864,14 +864,14 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 				// PBANK.substring(0,7), wsRPAYRATE);
 			}
 
-			//QA0281 ¥I´Ú»È¦æ¬°¤@»È®É¦³¤âÄò¶O²£¥Í
+			//QA0281 ä»˜æ¬¾éŠ€è¡Œç‚ºä¸€éŠ€æ™‚æœ‰æ‰‹çºŒè²»ç”¢ç”Ÿ
 			if(PBANK.substring(0, 3).equals("007")) {
 				try {
-					//log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");
+					//log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");
 					rmtVO.setRMTFEE((int) disBBean.getPayFee(PBANK.substring(0, 7), wsBANK, wsACCOUNT));
 				} catch (RemittanceFeeNotFoundException e) {
 					/*log.info("disBBean.getPFee:007");
-					log.info("rmtVO.setRMTFEE³]©w¤âÄò¶O");*/
+					log.info("rmtVO.setRMTFEEè¨­å®šæ‰‹çºŒè²»");*/
 					rmtVO.setRMTFEE((int) disBBean.getPFee(PBANK.substring(0, 7), wsBANK, wsAMT, PMETHOD, wsSWIFT, wsSWITCH));
 				}
 			}		
@@ -881,20 +881,20 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 			rmtVO.setRPAYRATE(wsRPAYRATE);
 
 			// System.out.println("5wsRPAYAMT="+wsRPAYAMT);
-			rmtVO.setRPAYFEEWAY(wsPAYFEEWAY);// ¤âÄò¶O¥I´Ú¤è¦¡
-			rmtVO.setRPAYAMT(wsRPAYAMT);// ¥~¹ôª÷ÃB¥[Á`
-			rmtVO.setRPAYCURR(wsPPAYCURR);// ¥~¹ô¹ô§O
+			rmtVO.setRPAYFEEWAY(wsPAYFEEWAY);// æ‰‹çºŒè²»ä»˜æ¬¾æ–¹å¼
+			rmtVO.setRPAYAMT(wsRPAYAMT);// å¤–å¹£é‡‘é¡åŠ ç¸½
+			rmtVO.setRPAYCURR(wsPPAYCURR);// å¤–å¹£å¹£åˆ¥
 			rmtVO.setSWIFTCODE(wsSWIFT); // SWIFT CODE
-			rmtVO.setPENGNAME(wsPENGNAME);// ­^¤å©m¦W
-			rmtVO.setRBKBRCH(wsPBKBRCH); // ¤À¦æ
-			rmtVO.setRBKCITY(wsPBKCITY);// «°¥«
-			rmtVO.setRBKCOUNTRY(wsPCOUNTRY);// °ê§O
+			rmtVO.setPENGNAME(wsPENGNAME);// è‹±æ–‡å§“å
+			rmtVO.setRBKBRCH(wsPBKBRCH); // åˆ†è¡Œ
+			rmtVO.setRBKCITY(wsPBKCITY);// åŸå¸‚
+			rmtVO.setRBKCOUNTRY(wsPCOUNTRY);// åœ‹åˆ¥
 
-			/* ³Ì«á¤@µ§ªº·JÁ`¸ê®Æ */
-			//log.info("wsPPAYCURR¬O" + wsPPAYCURR);
+			/* æœ€å¾Œä¸€ç­†çš„å½™ç¸½è³‡æ–™ */
+			//log.info("wsPPAYCURRæ˜¯" + wsPPAYCURR);
 			dao.insertRMTF(rmtVO);
 
-			//R10190 ±N¥~¹ô¥¢®Ä«O³æªº¶×´Ú¸ê°T¼g¤J¥¢®Äµ¹¥I³qª¾®Ñ¤u§@ÀÉ
+			//R10190 å°‡å¤–å¹£å¤±æ•ˆä¿å–®çš„åŒ¯æ¬¾è³‡è¨Šå¯«å…¥å¤±æ•ˆçµ¦ä»˜é€šçŸ¥æ›¸å·¥ä½œæª”
 			if(!listlapsePay.isEmpty()) {
 				Connection conn = dbFactory.getAS400Connection("DISBRemitDisposeServlet.updateD");
 				for(Iterator it=listlapsePay.iterator(); it.hasNext();) {
@@ -909,10 +909,10 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 			dao.removeConn();
 		}
 
-		request.setAttribute("count", String.valueOf(count));	// ¶×´Úµ§¼Æ
-		request.setAttribute("amt", String.valueOf(amt));		// ¶×´ÚÁ`ª÷ÃB
-		request.setAttribute("RPAYAMT", df.format(RPAYamt));	// ¥~¹ô¶×´ÚÁ`ª÷ÃB
-		request.setAttribute("batNo", batNo);	// ¶×´Ú§å¸¹
+		request.setAttribute("count", String.valueOf(count));	// åŒ¯æ¬¾ç­†æ•¸
+		request.setAttribute("amt", String.valueOf(amt));		// åŒ¯æ¬¾ç¸½é‡‘é¡
+		request.setAttribute("RPAYAMT", df.format(RPAYamt));	// å¤–å¹£åŒ¯æ¬¾ç¸½é‡‘é¡
+		request.setAttribute("batNo", batNo);	// åŒ¯æ¬¾æ‰¹è™Ÿ
 	}
 
 	/**
@@ -934,9 +934,9 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 	private CaprmtfVO prepareData(DISBPaymentDetailVO payment) throws Exception {
 		
 		CaprmtfVO rmtVO = new CaprmtfVO();
-		rmtVO.setRID("");// ¨ü´Ú¤HID
-		rmtVO.setRTYPE(payment.getStrPRBank() != null && payment.getStrPRBank().startsWith("822") ? "01" : "11");// ¶×´ÚºØÃş
-		// ?´Ú¦æ ¶×´Ú¦æ,x(3)@todo
+		rmtVO.setRID("");// å—æ¬¾äººID
+		rmtVO.setRTYPE(payment.getStrPRBank() != null && payment.getStrPRBank().startsWith("822") ? "01" : "11");// åŒ¯æ¬¾ç¨®é¡
+		// ?æ¬¾è¡Œ åŒ¯æ¬¾è¡Œ,x(3)@todo
 		String entBank = "";
 		if (payment.getStrPRBank() != null && payment.getStrPRBank().length() >= 7) {
 			entBank = payment.getStrPRBank().substring(0, 7);
@@ -945,7 +945,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 			entBank = "0" + entBank;
 		}
 		rmtVO.setRBK(entBank);
-		// ¦¬´Ú¤H±b¸¹x(14)
+		// æ”¶æ¬¾äººå¸³è™Ÿx(14)
 		if (payment.getStrPRAccount() == null) {
 			rmtVO.setRACCT("");
 		} else if (payment.getStrPRAccount().length() > 14) {
@@ -956,29 +956,29 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 
 		// rmtVO.setRACCT(payment.getStrPRAccount()==null?"":payment.getStrPRAccount());
 
-		// ¦¬´Ú¤H¤á¦Wx(80) ¦]¬°¤á¦W¬°¥ş§Î ©Ò¥HentName.length()*2 @R90735
-		String entName = payment.getStrPName() == null ? "" : payment.getStrPName().replace('¡@', ' ').trim();
+		// æ”¶æ¬¾äººæˆ¶åx(80) å› ç‚ºæˆ¶åç‚ºå…¨å½¢ æ‰€ä»¥entName.length()*2 @R90735
+		String entName = payment.getStrPName() == null ? "" : payment.getStrPName().replace('ã€€', ' ').trim();
 		for (int Ecount = entName.getBytes().length; Ecount < 80; Ecount++) {
 			entName = entName + " ";
 		}
 		rmtVO.setRNAME(entName);
-		rmtVO.setMEMO("");// ªşµù
-		// ¶×´Ú¤é´Áx(6)
-		/* R60747 ¶×´Ú¤é´Á¥Ñ¥X¯Ç¤é´ÁPCshDt§ï¬°¥X¯Ç½T»{¤éPCSHCM Start */
+		rmtVO.setMEMO("");// é™„è¨»
+		// åŒ¯æ¬¾æ—¥æœŸx(6)
+		/* R60747 åŒ¯æ¬¾æ—¥æœŸç”±å‡ºç´æ—¥æœŸPCshDtæ”¹ç‚ºå‡ºç´ç¢ºèªæ—¥PCSHCM Start */
 		// String remitDate = String.valueOf(payment.getIPCshDt());
 		String remitDate = String.valueOf(payment.getIPCSHCM());
-		/* R60747 ¶×´Ú¤é´Á¥Ñ¥X¯Ç¤é´ÁPCshDt§ï¬°¥X¯Ç½T»{¤éPCSHCM End */
+		/* R60747 åŒ¯æ¬¾æ—¥æœŸç”±å‡ºç´æ—¥æœŸPCshDtæ”¹ç‚ºå‡ºç´ç¢ºèªæ—¥PCSHCM End */
 
 		for (int Ecount = remitDate.length(); Ecount < 6; Ecount++) {
 			remitDate = "0" + remitDate;
 		}
 		rmtVO.setRMTDT(remitDate);
 
-		rmtVO.setRTRNCDE("");// ¥æ©öÀË®Ö°¨x(4)
-		rmtVO.setRTRNTM("");// ¶Ç°e¦¸¼Æx(3)
-		rmtVO.setCSTNO("");// «È¤á¶Ç²¼¸¹½Xx(10)
-		rmtVO.setRMTCDE("");// ¶×¶O­t¾á°Ï§O°¨x(1)
-		rmtVO.setENTRYUSR(payment.getStrEntryUsr());// ¿é¤JªÌ
+		rmtVO.setRTRNCDE("");// äº¤æ˜“æª¢æ ¸é¦¬x(4)
+		rmtVO.setRTRNTM("");// å‚³é€æ¬¡æ•¸x(3)
+		rmtVO.setCSTNO("");// å®¢æˆ¶å‚³ç¥¨è™Ÿç¢¼x(10)
+		rmtVO.setRMTCDE("");// åŒ¯è²»è² æ“”å€åˆ¥é¦¬x(1)
+		rmtVO.setENTRYUSR(payment.getStrEntryUsr());// è¼¸å…¥è€…
 		return rmtVO;
 	}
 

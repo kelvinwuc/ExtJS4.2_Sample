@@ -24,9 +24,9 @@ import javax.servlet.http.HttpSession;
 /**
  * System   : CashWeb
  * 
- * Function : ²{ª÷¤ä¥I
+ * Function : ç¾é‡‘æ”¯ä»˜
  * 
- * Remark   : ¥X¯Ç¥\¯à
+ * Remark   : å‡ºç´åŠŸèƒ½
  * 
  * Revision : $$Revision: 1.2 $$
  * 
@@ -40,10 +40,10 @@ import javax.servlet.http.HttpSession;
  * 
  * $$Log: DISBCashConfirmServlet.java,v $
  * $Revision 1.2  2014/07/18 07:17:51  misariel
- * $EC0342-RC0036·s¼W¤À¤½¥q¦æ¬F¤H­û¨Ï¥ÎCAPSIL
+ * $EC0342-RC0036æ–°å¢åˆ†å…¬å¸è¡Œæ”¿äººå“¡ä½¿ç”¨CAPSIL
  * $
  * $Revision 1.1  2013/12/18 07:22:52  MISSALLY
- * $RB0302---·s¼W¥I´Ú¤è¦¡²{ª÷
+ * $RB0302---æ–°å¢ä»˜æ¬¾æ–¹å¼ç¾é‡‘
  * $$
  *  
  */
@@ -113,20 +113,20 @@ public class DISBCashConfirmServlet extends InitDBServlet {
 
 			while(rst.next()) {
 				objPDetailVO = new DISBPaymentDetailVO();
-				objPDetailVO.setStrPNO(rst.getString("PNO")); // ¤ä¥I§Ç¸¹
-				objPDetailVO.setStrPMethod(rst.getString("PMETHOD"));// ¥I´Ú¤è¦¡
-				objPDetailVO.setIPDate(rst.getInt("PDATE")); // ¥I´Ú¤é´Á
-				objPDetailVO.setStrPName(rst.getString("PNAME"));// ¨ü´Ú¤H©m¦W
-				objPDetailVO.setStrPId(rst.getString("PID")); // ¨ü´Ú¤HID
+				objPDetailVO.setStrPNO(rst.getString("PNO")); // æ”¯ä»˜åºè™Ÿ
+				objPDetailVO.setStrPMethod(rst.getString("PMETHOD"));// ä»˜æ¬¾æ–¹å¼
+				objPDetailVO.setIPDate(rst.getInt("PDATE")); // ä»˜æ¬¾æ—¥æœŸ
+				objPDetailVO.setStrPName(rst.getString("PNAME"));// å—æ¬¾äººå§“å
+				objPDetailVO.setStrPId(rst.getString("PID")); // å—æ¬¾äººID
 				objPDetailVO.setStrPCurr(rst.getString("PCURR"));
-				objPDetailVO.setIPAMT(rst.getDouble("PAMT")); // ¤ä¥Iª÷ÃB
-				objPDetailVO.setStrPSrcCode(rst.getString("PSRCCODE"));// ¤ä¥I­ì¦]¥N½X
-				objPDetailVO.setStrPolicyNo(rst.getString("POLICYNO"));// «O³æ¸¹½X
-				objPDetailVO.setStrAppNo(rst.getString("APPNO"));// ­n«O®Ñ¸¹½X
-				objPDetailVO.setStrPDispatch(rst.getString("PDISPATCH"));// «æ¥ó§_
-				objPDetailVO.setStrPVoidable(rst.getString("PVOIDABLE"));// §@¼o§_
-				objPDetailVO.setStrPDesc(rst.getString("PDESC")); // ¤ä¥I´y­z
-				objPDetailVO.setStrUsrDept(rst.getString("USRDEPT")); // RC0036 ©Ó¿ì³æ¦ì
+				objPDetailVO.setIPAMT(rst.getDouble("PAMT")); // æ”¯ä»˜é‡‘é¡
+				objPDetailVO.setStrPSrcCode(rst.getString("PSRCCODE"));// æ”¯ä»˜åŸå› ä»£ç¢¼
+				objPDetailVO.setStrPolicyNo(rst.getString("POLICYNO"));// ä¿å–®è™Ÿç¢¼
+				objPDetailVO.setStrAppNo(rst.getString("APPNO"));// è¦ä¿æ›¸è™Ÿç¢¼
+				objPDetailVO.setStrPDispatch(rst.getString("PDISPATCH"));// æ€¥ä»¶å¦
+				objPDetailVO.setStrPVoidable(rst.getString("PVOIDABLE"));// ä½œå»¢å¦
+				objPDetailVO.setStrPDesc(rst.getString("PDESC")); // æ”¯ä»˜æè¿°
+				objPDetailVO.setStrUsrDept(rst.getString("USRDEPT")); // RC0036 æ‰¿è¾¦å–®ä½
 				alPDetail.add(objPDetailVO);
 			}
 
@@ -135,12 +135,12 @@ public class DISBCashConfirmServlet extends InitDBServlet {
 				request.setAttribute("PDetailListTemp", alPDetail);
 				path = "/DISB/DISBReports/DISBCashConfirmList.jsp";
 			} else {
-				request.setAttribute("txtMsg", "¬dµL¬ÛÃö¸ê®Æ");
+				request.setAttribute("txtMsg", "æŸ¥ç„¡ç›¸é—œè³‡æ–™");
 				path = "/DISB/DISBReports/DISBCashConfirmInq.jsp";
 			}
 
 		} catch (Exception ex) {
-			request.setAttribute("txtMsg", "¬d¸ß¥¢±Ñ" + ex);
+			request.setAttribute("txtMsg", "æŸ¥è©¢å¤±æ•—" + ex);
 			alPDetail = null;
 		} finally {
 			try {
@@ -169,7 +169,7 @@ public class DISBCashConfirmServlet extends InitDBServlet {
 		String[] strPNO = request.getParameterValues("PNO");
 		String strPAmt = request.getParameter("PAMT");
 
-		//step 1:§ó·sCAPPAYFªº¥I´Úª¬ºAPSTATUS='B'
+		//step 1:æ›´æ–°CAPPAYFçš„ä»˜æ¬¾ç‹€æ…‹PSTATUS='B'
 		String strSql = "UPDATE CAPPAYF SET PSTATUS='B',PBBANK=?,PBACCOUNT=?,PCSHDT=?,PCSHCM=?,UPDDT=?,UPDTM=?,UPDUSR=? WHERE PNO=? ";
 		System.out.println("DISBCashConfirmServlet.updateSql=" + strSql);
 
@@ -209,9 +209,9 @@ public class DISBCashConfirmServlet extends InitDBServlet {
 					pstmt.executeUpdate();
 
 					rowCount++;
-					strMsg = "¸ê®Æ§ó·s¦¨¥\!!";
+					strMsg = "è³‡æ–™æ›´æ–°æˆåŠŸ!!";
 				} else {
-					strMsg = "¸ê®Æ§ó·s¥¢±Ñ!!";
+					strMsg = "è³‡æ–™æ›´æ–°å¤±æ•—!!";
 				}
 			}
 
@@ -220,7 +220,7 @@ public class DISBCashConfirmServlet extends InitDBServlet {
 			request.setAttribute("totalAmt", String.valueOf(totalAmt));
 
 		} catch (Exception ex) {
-			request.setAttribute("txtMsg", "¬d¸ß¥¢±Ñ" + ex);
+			request.setAttribute("txtMsg", "æŸ¥è©¢å¤±æ•—" + ex);
 		} finally {
 			try {
 				if (pstmt != null) {

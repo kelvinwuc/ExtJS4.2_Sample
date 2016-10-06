@@ -3,7 +3,7 @@ package com.aegon.disb.disbpsource;
 /**
  * System   : CASHWEB
  * 
- * Function : ¦]À³¹A¾ä¹L¦~°²´Á¸ûªø¡A¥I´Ú¤é¬°°²´Á´Á¶¡ªº¤ä¥I®×¥ó´£¦­µ¹¥I
+ * Function : å› æ‡‰è¾²æ›†éå¹´å‡æœŸè¼ƒé•·ï¼Œä»˜æ¬¾æ—¥ç‚ºå‡æœŸæœŸé–“çš„æ”¯ä»˜æ¡ˆä»¶ææ—©çµ¦ä»˜
  * 
  * Remark   : 
  * 
@@ -19,17 +19,17 @@ package com.aegon.disb.disbpsource;
  * 
  * $$Log: DISBSChangePDateServlet.java,v $
  * $Revision 1.5  2013/04/12 06:10:25  MISSALLY
- * $RA0074 FNEº¡´Á¥Í¦sª÷¨ü¯q¤H±b¤á¤Îµ¹¥I
+ * $RA0074 FNEæ»¿æœŸç”Ÿå­˜é‡‘å—ç›Šäººå¸³æˆ¶åŠçµ¦ä»˜
  * $
  * $Revision 1.3  2013/01/08 04:24:04  MISSALLY
- * $±N¤À¤äªºµ{¦¡Merge¦ÜHEAD
+ * $å°‡åˆ†æ”¯çš„ç¨‹å¼Mergeè‡³HEAD
  * $
  * $Revision 1.1.4.1  2012/10/31 06:07:23  MISSALLY
  * $EA0152 --- VFL PHASE 4
  * $
  * $Revision 1.1  2012/01/11 07:02:38  MISSALLY
  * $E10210
- * $­×§ïCASH¨t²Î¡A¦]BATCH©Ò²£¥Í¦U¶µµ¹¥Iª÷ªº¥I´Ú¤é
+ * $ä¿®æ”¹CASHç³»çµ±ï¼Œå› BATCHæ‰€ç”¢ç”Ÿå„é …çµ¦ä»˜é‡‘çš„ä»˜æ¬¾æ—¥
  * $$
  *  
  */
@@ -84,10 +84,10 @@ public class DISBSChangePDateServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		String strUserRight = (String) session.getAttribute(Constant.LOGON_USER_RIGHT);
 
-		/* Åv­­±±ºŞ */
+		/* æ¬Šé™æ§ç®¡ */
 		if(strUserRight.equals("79"))
 		{
-			request.setAttribute("txtMsg", "µL°õ¦æ¦¹¥\¯àÅv­­!!");
+			request.setAttribute("txtMsg", "ç„¡åŸ·è¡Œæ­¤åŠŸèƒ½æ¬Šé™!!");
 			path = "/DISB/DISBPSource/DISBChangePDateC.jsp";
 		}
 		else
@@ -112,7 +112,7 @@ public class DISBSChangePDateServlet extends HttpServlet {
 	}
 
 	private void inquery(HttpServletRequest request, HttpServletResponse response) {
-		/* ±µ°Ñ¼Æ */
+		/* æ¥åƒæ•¸ */
 		String strFromBatch = (request.getParameter("rdFromBatch") != null) ? CommonUtil.AllTrim(request.getParameter("rdFromBatch")) : "";
 		String strPMethod = (request.getParameter("selPMethod") != null) ? CommonUtil.AllTrim(request.getParameter("selPMethod")) : "";
 		String strPDateS = (request.getParameter("txtPStartDate") != null) ? CommonUtil.AllTrim(request.getParameter("txtPStartDate")) : "";
@@ -123,14 +123,14 @@ public class DISBSChangePDateServlet extends HttpServlet {
 		
 		String strSql = "SELECT PNO,PMETHOD,PDATE,PNAME,PID,PCURR,PAMT,PSRCCODE,PDESC,POLICYNO ";
 		strSql += "FROM CAPPAYF ";
-		strSql += "WHERE PCFMDT2=0 AND PCFMTM2=0 AND PCFMUSR2='' AND ";		//¤ä¥I©|¥¼½T»{
-		strSql += "PVOIDABLE='' AND ";										//¥¼§@¼o
+		strSql += "WHERE PCFMDT2=0 AND PCFMTM2=0 AND PCFMUSR2='' AND ";		//æ”¯ä»˜å°šæœªç¢ºèª
+		strSql += "PVOIDABLE='' AND ";										//æœªä½œå»¢
 		if(!strFromBatch.equals("")) {
-			//BATCH§@·~
+			//BATCHä½œæ¥­
 			if(strFromBatch.equalsIgnoreCase("Y")) {
 				strSql += "PSRCCODE IN (" + Constant.Batch_PAY_SRCCODE + ",'BK') AND ";
 			} else {
-			//½u¤W§@·~
+			//ç·šä¸Šä½œæ¥­
 				strSql += "PSRCCODE NOT IN (" + Constant.Batch_PAY_SRCCODE + ",'BK') AND ";
 			}
 		}
@@ -155,16 +155,16 @@ public class DISBSChangePDateServlet extends HttpServlet {
 			while(rst.next()) 
 			{
 				objPDetailVO = new DISBPaymentDetailVO();
-				objPDetailVO.setStrPNO(CommonUtil.AllTrim(rst.getString("PNO")));			//¤ä¥I§Ç¸¹
-				objPDetailVO.setStrPMethod(CommonUtil.AllTrim(rst.getString("PMETHOD")));	//¥I´Ú¤è¦¡
-				objPDetailVO.setStrPDate(CommonUtil.AllTrim(rst.getString("PDATE")));		//¥I´Ú¤é´Á
-				objPDetailVO.setStrPName(CommonUtil.AllTrim(rst.getString("PNAME")));		//¨ü´Ú¤H©m¦W
-				objPDetailVO.setStrPId(CommonUtil.AllTrim(rst.getString("PID")));			//¨ü´Ú¤HID
-				objPDetailVO.setStrPCurr(CommonUtil.AllTrim(rst.getString("PCURR")));		//¹ô§O
-				objPDetailVO.setIPAMT(rst.getDouble("PAMT"));								//¤ä¥Iª÷ÃB
-				objPDetailVO.setStrPSrcCode(CommonUtil.AllTrim(rst.getString("PSRCCODE")));	//¤ä¥I­ì¦]¥N½X
-				objPDetailVO.setStrPDesc(CommonUtil.AllTrim(rst.getString("PDESC")));		//¤ä¥I´y­z
-				objPDetailVO.setStrPolicyNo(CommonUtil.AllTrim(rst.getString("POLICYNO")));	//«O³æ¸¹½X
+				objPDetailVO.setStrPNO(CommonUtil.AllTrim(rst.getString("PNO")));			//æ”¯ä»˜åºè™Ÿ
+				objPDetailVO.setStrPMethod(CommonUtil.AllTrim(rst.getString("PMETHOD")));	//ä»˜æ¬¾æ–¹å¼
+				objPDetailVO.setStrPDate(CommonUtil.AllTrim(rst.getString("PDATE")));		//ä»˜æ¬¾æ—¥æœŸ
+				objPDetailVO.setStrPName(CommonUtil.AllTrim(rst.getString("PNAME")));		//å—æ¬¾äººå§“å
+				objPDetailVO.setStrPId(CommonUtil.AllTrim(rst.getString("PID")));			//å—æ¬¾äººID
+				objPDetailVO.setStrPCurr(CommonUtil.AllTrim(rst.getString("PCURR")));		//å¹£åˆ¥
+				objPDetailVO.setIPAMT(rst.getDouble("PAMT"));								//æ”¯ä»˜é‡‘é¡
+				objPDetailVO.setStrPSrcCode(CommonUtil.AllTrim(rst.getString("PSRCCODE")));	//æ”¯ä»˜åŸå› ä»£ç¢¼
+				objPDetailVO.setStrPDesc(CommonUtil.AllTrim(rst.getString("PDESC")));		//æ”¯ä»˜æè¿°
+				objPDetailVO.setStrPolicyNo(CommonUtil.AllTrim(rst.getString("POLICYNO")));	//ä¿å–®è™Ÿç¢¼
 
 				alPDetail.add(objPDetailVO);
 			}
@@ -174,12 +174,12 @@ public class DISBSChangePDateServlet extends HttpServlet {
 				request.setAttribute("PDetailList", alPDetail);
 				path = "/DISB/DISBPSource/DISBChangePDateS.jsp";
 			} else {
-				request.setAttribute("txtMsg", "¬dµL¬ÛÃö¸ê®Æ");
+				request.setAttribute("txtMsg", "æŸ¥ç„¡ç›¸é—œè³‡æ–™");
 				path = "/DISB/DISBPSource/DISBChangePDateC.jsp";
 			}
 
 		} catch(Exception ex) {
-			request.setAttribute("txtMsg", "¬d¸ß¥¢±Ñ" + ex);
+			request.setAttribute("txtMsg", "æŸ¥è©¢å¤±æ•—" + ex);
 			path = "/DISB/DISBPSource/DISBChangePDateC.jsp";
 			System.err.println(ex);
 		} finally {
@@ -198,7 +198,7 @@ public class DISBSChangePDateServlet extends HttpServlet {
 
 		DISBBean disbBean = new DISBBean(dbFactory);
 
-		/* ±µ°Ñ¼Æ */
+		/* æ¥åƒæ•¸ */
 		String strPayDate = (request.getParameter("txtPayDate") != null) ? CommonUtil.AllTrim(request.getParameter("txtPayDate")) : "";
 		String[] aryPNO = request.getParameterValues("PNO");
 
@@ -220,10 +220,10 @@ public class DISBSChangePDateServlet extends HttpServlet {
 				for(int i=0; i<aryPNO.length; i++) {
 					tmpPNO = aryPNO[i];
 					try {
-						/* ¼g¤JLOGÀÉ */
+						/* å¯«å…¥LOGæª” */
 						strMsg = disbBean.insertCAPPAYFLOG(tmpPNO, logonUser, updateDate, updateTime, con);
 						if(strMsg.equals("")) {
-							/* §ó·sÄæ¦ì */
+							/* æ›´æ–°æ¬„ä½ */
 							pstmt.clearParameters();
 							pstmt.setString(1, strPayDate);
 							pstmt.setInt(2, updateDate);
@@ -234,7 +234,7 @@ public class DISBSChangePDateServlet extends HttpServlet {
 						}
 					} catch(Exception ex) {
 						System.err.println(ex);
-						strMsg += "¤ä¥I§Ç¸¹["+tmpPNO+"]§ó·s¥¢±Ñ!/n/r";
+						strMsg += "æ”¯ä»˜åºè™Ÿ["+tmpPNO+"]æ›´æ–°å¤±æ•—!/n/r";
 					}
 					strPNO += ",'" + tmpPNO + "'";
 				}
@@ -250,7 +250,7 @@ public class DISBSChangePDateServlet extends HttpServlet {
 			request.setAttribute("aryPNO", strPNO);
 			path = "/DISB/DISBPSource/DISBChangePDateC.jsp";
 		} else {
-			request.setAttribute("txtMsg", "½Ğ¤Ä¿ï±ı­×§ïªº«O³æ!");
+			request.setAttribute("txtMsg", "è«‹å‹¾é¸æ¬²ä¿®æ”¹çš„ä¿å–®!");
 			path = "/DISB/DISBPSource/DISBChangePDateC.jsp";
 		}
 	}

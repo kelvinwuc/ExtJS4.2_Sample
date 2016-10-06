@@ -29,9 +29,9 @@ import org.apache.log4j.Logger;
 /**
  * System   :
  * 
- * Function : ¤ä¥I½T»{
+ * Function : æ”¯ä»˜ç¢ºèª
  * 
- * Remark   : ¤ä¥I¥\¯à
+ * Remark   : æ”¯ä»˜åŠŸèƒ½
  * 
  * Revision : $$Revision: 1.16 $$
  * 
@@ -45,68 +45,68 @@ import org.apache.log4j.Logger;
  * 
  * $$Log: DISBPConfirmServlet.java,v $
  * $Revision 1.16  2013/12/18 07:22:52  MISSALLY
- * $RB0302---·s¼W¥I´Ú¤è¦¡²{ª÷
+ * $RB0302---æ–°å¢ä»˜æ¬¾æ–¹å¼ç¾é‡‘
  * $
  * $Revision 1.15  2013/05/30 02:03:54  MISSALLY
- * $RA0064-CMP±M®×CASH°t¦X­×§ï
+ * $RA0064-CMPå°ˆæ¡ˆCASHé…åˆä¿®æ”¹
  * $
  * $Revision 1.14  2013/04/12 06:10:25  MISSALLY
- * $RA0074 FNEº¡´Á¥Í¦sª÷¨ü¯q¤H±b¤á¤Îµ¹¥I
+ * $RA0074 FNEæ»¿æœŸç”Ÿå­˜é‡‘å—ç›Šäººå¸³æˆ¶åŠçµ¦ä»˜
  * $
  * $Revision 1.12  2013/01/08 04:24:05  MISSALLY
- * $±N¤À¤äªºµ{¦¡Merge¦ÜHEAD
+ * $å°‡åˆ†æ”¯çš„ç¨‹å¼Mergeè‡³HEAD
  * $
  * $Revision 1.10.4.1  2012/12/06 06:28:29  MISSALLY
- * $RA0102¡@PA0041
- * $°t¦Xªk¥O­×§ï¹S¦ş¤ä¥I§@·~
+ * $RA0102ã€€PA0041
+ * $é…åˆæ³•ä»¤ä¿®æ”¹é…¬ä½£æ”¯ä»˜ä½œæ¥­
  * $
  * $Revision 1.10  2011/05/12 06:20:19  MISJIMMY
- * $R00440 SNº¡´Áª÷
+ * $R00440 SNæ»¿æœŸé‡‘
  * $
  * $Revision 1.9  2010/11/23 06:45:20  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.8  2009/08/31 01:59:32  missteven
- * $R90380 ·s¼WCASH³øªí¤Î¶Ç²¼¥\¯à
+ * $R90380 æ–°å¢CASHå ±è¡¨åŠå‚³ç¥¨åŠŸèƒ½
  * $
  * $Revision 1.7  2009/04/01 08:19:55  missteven
- * $R90274_¤ä¥I½T»{µL»İ¿ï¾Ü¨Ó·½¸s²Õ¡A§Y¥i±a¥XFF¤ä¥I©ú²Ó
+ * $R90274_æ”¯ä»˜ç¢ºèªç„¡éœ€é¸æ“‡ä¾†æºç¾¤çµ„ï¼Œå³å¯å¸¶å‡ºFFæ”¯ä»˜æ˜ç´°
  * $
  * $Revision 1.6  2007/09/07 10:20:26  MISVANESSA
  * $R70455_TARGET OUT
  * $
  * $Revision 1.5  2007/04/13 09:43:15  MISVANESSA
- * $R70292_°t®§¤ä²¼¥ó³W«h§ïÅÜ
+ * $R70292_é…æ¯æ”¯ç¥¨ä»¶è¦å‰‡æ”¹è®Š
  * $
  * $Revision 1.4  2007/03/06 01:40:49  MISVANESSA
- * $R70088_SPUL°t®§¤ä²¼¥ó»İ¦P©ó¶×´Ú,©ó¥I´Ú¤é¤~¯à½T»{
+ * $R70088_SPULé…æ¯æ”¯ç¥¨ä»¶éœ€åŒæ–¼åŒ¯æ¬¾,æ–¼ä»˜æ¬¾æ—¥æ‰èƒ½ç¢ºèª
  * $
  * $Revision 1.3  2007/01/04 03:12:43  MISVANESSA
- * $R60550_·s¼WSHOW¥~¹ô¹ô§O.ª÷ÃB
+ * $R60550_æ–°å¢SHOWå¤–å¹£å¹£åˆ¥.é‡‘é¡
  * $
  * $Revision 1.2  2006/12/07 10:11:39  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $Revision 1.1  2006/06/29 09:40:15  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.15  2006/04/27 09:16:11  misangel
- * $R50891:VA¬ü¤¸«O³æ-Åã¥Ü¹ô§O
+ * $R50891:VAç¾å…ƒä¿å–®-é¡¯ç¤ºå¹£åˆ¥
  * $
  * $Revision 1.1.2.14  2005/08/02 02:31:58  misangel
  * $Q50285: 
- * $¥I´Ú¤é´Á³W«h:
- * $1.«æ¥ó:­Y­ì©l¥I´Ú¤é´Á¤p©ó¥I´Ú¤é´Á(°Ñ¼Æ),«h¥H¥I´Ú¤é´Á = ¥I´Ú¤é´Á(°Ñ¼Æ)
- * $2.«D«æ¥ó:­Y­ì©l¥I´Ú¤é´Á¤p©ó¿é¤J¨´¤é(°Ñ¼Æ),«h¥H¥I´Ú¤é´Á = ¿é¤J¨´¤é(°Ñ¼Æ)
+ * $ä»˜æ¬¾æ—¥æœŸè¦å‰‡:
+ * $1.æ€¥ä»¶:è‹¥åŸå§‹ä»˜æ¬¾æ—¥æœŸå°æ–¼ä»˜æ¬¾æ—¥æœŸ(åƒæ•¸),å‰‡ä»¥ä»˜æ¬¾æ—¥æœŸ = ä»˜æ¬¾æ—¥æœŸ(åƒæ•¸)
+ * $2.éæ€¥ä»¶:è‹¥åŸå§‹ä»˜æ¬¾æ—¥æœŸå°æ–¼è¼¸å…¥è¿„æ—¥(åƒæ•¸),å‰‡ä»¥ä»˜æ¬¾æ—¥æœŸ = è¼¸å…¥è¿„æ—¥(åƒæ•¸)
  * $
  * $Revision 1.1.2.12  2005/04/28 08:56:25  miselsa
- * $R30530¥­¦æ´ú¸Õªº­×§ï
+ * $R30530å¹³è¡Œæ¸¬è©¦çš„ä¿®æ”¹
  * $
  * $Revision 1.1.2.11  2005/04/25 07:27:49  miselsa
  * $R30530
  * $
  * $Revision 1.1.2.10  2005/04/04 07:02:24  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -219,9 +219,9 @@ public class DISBPConfirmServlet extends HttpServlet {
 		int iUpdTime = Integer.parseInt((String) sdfFormatter.format(cldToday.getTime()));
 		disbBean = new DISBBean(dbFactory);
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-		int intEntryPDate = 0; // «eºİ¿é¤J:¥I´Ú¤é
-		int intEntryEEDate = 0; // «eºİ¿é¤J:¿é¤J¨´¤é
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		int intEntryPDate = 0; // å‰ç«¯è¼¸å…¥:ä»˜æ¬¾æ—¥
+		int intEntryEEDate = 0; // å‰ç«¯è¼¸å…¥:è¼¸å…¥è¿„æ—¥
 
 		intEntryPDate = Integer.parseInt((String) request.getParameter("txtPDateHold"));
 		intEntryEEDate = Integer.parseInt((String) request.getParameter("txtEEDateHold"));
@@ -232,21 +232,21 @@ public class DISBPConfirmServlet extends HttpServlet {
 
 					for (int i = 0; i < alCheckPnoList.size(); i++) {
 						DISBPaymentDetailVO objPaymentDetailVO = (DISBPaymentDetailVO) alCheckPnoList.get(i);
-						String strPNO = ""; // ¤ä¥I§Ç¸¹
+						String strPNO = ""; // æ”¯ä»˜åºè™Ÿ
 						strPNO = objPaymentDetailVO.getStrPNO();
 						if (strPNO != null)
 							strPNO = strPNO.trim();
 						else
 							strPNO = "";
 						/*
-						 * ¥I´Ú¤é´Á³W«h: 
-						 * 1.«æ¥ó     :­Y­ì©l¥I´Ú¤é´Á¤p©ó¥I´Ú¤é´Á(°Ñ¼Æ),«h¥H¥I´Ú¤é´Á = ¥I´Ú¤é´Á(°Ñ¼Æ)
-						 * 2.«D«æ¥ó:­Y­ì©l¥I´Ú¤é´Á¤p©ó¿é¤J¨´¤é(°Ñ¼Æ),«h¥H¥I´Ú¤é´Á = ¿é¤J¨´¤é(°Ñ¼Æ)
+						 * ä»˜æ¬¾æ—¥æœŸè¦å‰‡: 
+						 * 1.æ€¥ä»¶     :è‹¥åŸå§‹ä»˜æ¬¾æ—¥æœŸå°æ–¼ä»˜æ¬¾æ—¥æœŸ(åƒæ•¸),å‰‡ä»¥ä»˜æ¬¾æ—¥æœŸ = ä»˜æ¬¾æ—¥æœŸ(åƒæ•¸)
+						 * 2.éæ€¥ä»¶:è‹¥åŸå§‹ä»˜æ¬¾æ—¥æœŸå°æ–¼è¼¸å…¥è¿„æ—¥(åƒæ•¸),å‰‡ä»¥ä»˜æ¬¾æ—¥æœŸ = è¼¸å…¥è¿„æ—¥(åƒæ•¸)
 						 */
-						int intPdate = 0; // ¥I´Ú¤é´Á
+						int intPdate = 0; // ä»˜æ¬¾æ—¥æœŸ
 						intPdate = objPaymentDetailVO.getIPDate();
 						log.info("intPdate" + intPdate);
-						String strPDispatch = objPaymentDetailVO.getStrPDispatch(); // «æ¥ó§_
+						String strPDispatch = objPaymentDetailVO.getStrPDispatch(); // æ€¥ä»¶å¦
 						if (strPDispatch.equals("Y")) {
 							if (intPdate < intEntryPDate) {
 								intPdate = intEntryPDate;
@@ -262,7 +262,7 @@ public class DISBPConfirmServlet extends HttpServlet {
 						//RD0382:OIU
 						String company = "";
 						company = objPaymentDetailVO.getCompany();
-						log.info("company¬O" + company);
+						log.info("companyæ˜¯" + company);
 						if("OIU".equals(company) ){
 							strSql += "PAY_COMPANY= 'OIU', ";
 						}else{
@@ -271,10 +271,10 @@ public class DISBPConfirmServlet extends HttpServlet {
 						
 						strSql += "UPDDT= ?, UPDTM = ?, UPDUSR =?  where PNO =? ";
 
-						// ¤Ulog
+						// ä¸‹log
 						strReturnMsg = disbBean.insertCAPPAYFLOG(strPNO, strLogonUser, iUpdDate, iUpdTime, con);
 						if (strReturnMsg.equals("")) {
-							log.info(strSql + ",intPdate¬O" + intPdate);
+							log.info(strSql + ",intPdateæ˜¯" + intPdate);
 							pstmtTmp = con.prepareStatement(strSql);
 							pstmtTmp.setInt(1, intPdate);
 							pstmtTmp.setInt(2, iUpdDate);
@@ -286,11 +286,11 @@ public class DISBPConfirmServlet extends HttpServlet {
 							pstmtTmp.setString(8, strPNO);
 							
 							if (pstmtTmp.executeUpdate() != 1) {
-								strReturnMsg = "½T»{¥¢±Ñ";
+								strReturnMsg = "ç¢ºèªå¤±æ•—";
 							} else {
-								request.setAttribute("txtMsg", "½T»{¦¨¥\");
+								request.setAttribute("txtMsg", "ç¢ºèªæˆåŠŸ");
 
-								//RA0064 §ó·s ORGNPCNF(½T©wµ¹¥I¼È¦sÀÉ)
+								//RA0064 æ›´æ–° ORGNPCNF(ç¢ºå®šçµ¦ä»˜æš«å­˜æª”)
 								disbBean.callCAPDISB09(con, strPNO, String.valueOf(iUpdDate));
 							}
 							pstmtTmp.close();
@@ -305,7 +305,7 @@ public class DISBPConfirmServlet extends HttpServlet {
 				}
 			}
 		} catch (SQLException e) {
-			request.setAttribute("txtMsg", "½T»{¥¢±Ñ-->" + e);
+			request.setAttribute("txtMsg", "ç¢ºèªå¤±æ•—-->" + e);
 		} finally {
 			try {
 				if (pstmtTmp != null)
@@ -342,17 +342,17 @@ public class DISBPConfirmServlet extends HttpServlet {
 		DISBPaymentDetailVO objPDetailVO = null;
 		List alPDetail = new ArrayList();
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-		String strPDate = ""; // ¥I´Ú¤é´Á
-		String strEntryStartDate = ""; // ¿é¤J¤é´Á°_¤é
-		String strEntryEndDate = ""; // ¿é¤J¤é´Á¨´¤é
-		String strDispatch = ""; // «æ¥ó§_
-		String strPSrcGp = ""; // ¨Ó·½¸s²Õ¥N½X
-		String strDept = ""; // ³¡ªù
-		String strEntryUsr = ""; // ¿é¤JªÌ
-		String strCurrency = ""; // ¹ô§O
-		String strPMETHOD = ""; // ¥I´Ú¤è¦¡R60550
-		int iNextDT = 0; // ¤U¤@­Ó¥I´Ú¤éR70292
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strPDate = ""; // ä»˜æ¬¾æ—¥æœŸ
+		String strEntryStartDate = ""; // è¼¸å…¥æ—¥æœŸèµ·æ—¥
+		String strEntryEndDate = ""; // è¼¸å…¥æ—¥æœŸè¿„æ—¥
+		String strDispatch = ""; // æ€¥ä»¶å¦
+		String strPSrcGp = ""; // ä¾†æºç¾¤çµ„ä»£ç¢¼
+		String strDept = ""; // éƒ¨é–€
+		String strEntryUsr = ""; // è¼¸å…¥è€…
+		String strCurrency = ""; // å¹£åˆ¥
+		String strPMETHOD = ""; // ä»˜æ¬¾æ–¹å¼R60550
+		int iNextDT = 0; // ä¸‹ä¸€å€‹ä»˜æ¬¾æ—¥R70292
 		String company = ""; //RD0382:OIU
 
 		strPDate = request.getParameter("txtPDate");
@@ -420,13 +420,13 @@ public class DISBPConfirmServlet extends HttpServlet {
 			company = "";
 		}
 
-		//¥ı¬d¸ß¦³«O³æ¸¹½Xªº°O¿ı
+		//å…ˆæŸ¥è©¢æœ‰ä¿å–®è™Ÿç¢¼çš„è¨˜éŒ„
 		strSql = "select A.ENTRYDT,A.PAMT,A.PCFMDT1,A.PCFMTM1,A.PCFMDT2,A.PCFMTM2,A.PDATE,A.UPDDT,A.UPDTM,A.APPNO,A.POLICYNO,A.ENTRYUSR,A.PAUTHCODE,A.PBACCOUNT,A.PBBANK,A.PCFMUSR1,A.PCFMUSR2,A.PCHECKNO,A.PCRDEFFMY,A.PCRDNO,A.PCRDTYPE,A.PDESC,A.PDISPATCH,A.PID,A.PMETHOD,A.PNAME,A.PNO,A.PNOH,A.PRACCOUNT,A.PRBANK,A.PSRCGP,A.PSRCCODE,A.PSTATUS,A.PVOIDABLE,A.PDISPATCH,A.BRANCH,B.DEPT,A.PCURR ";
 		
 		//if("6".equals(company) || "0".equals(company)){
-		strSql += ",CASE WHEN PO.POIUIND ='6' THEN 'OIU' ELSE 'Á`¤½¥q' END AS POLICY_TYPE";
+		strSql += ",CASE WHEN PO.POIUIND ='6' THEN 'OIU' ELSE 'ç¸½å…¬å¸' END AS POLICY_TYPE";
 		/*}else{
-			strSql += ",'Á`¤½¥q' AS POLICY_TYPE";
+			strSql += ",'ç¸½å…¬å¸' AS POLICY_TYPE";
 		}*/
 		 
 		strSql += ",A.PPAYCURR,A.PPAYAMT ";// R60550
@@ -449,7 +449,7 @@ public class DISBPConfirmServlet extends HttpServlet {
 		}else if("0".equals(company)){
 			strSql += "AND A.PAY_COMPANY<>'OIU' ";
 		}*/
-		//­×¥¿¬°¨ÌORDUPOªºPOIUIND§PÂ_
+		//ä¿®æ­£ç‚ºä¾ORDUPOçš„POIUINDåˆ¤æ–·
 		if("6".equals(company)){
 			strSql += "AND PO.POIUIND='6' ";
 		}else if("0".equals(company)){
@@ -458,11 +458,11 @@ public class DISBPConfirmServlet extends HttpServlet {
 		strSql += " AND A.POLICY_NO<>'' "; 
 		
 		/*
-		 * ­×§ï¨ú±o¤ä¥I±ø¥ó(­­CAPSIL¹ØÀI¸ê®Æ) 
-		 * 1.¦pPMETHOD IN('A','C') -->¿é¤J¤é´Á­n²Å¦X«eºİ©Ò¿é¤§¿é¤J¤é´Á
-		 *   ¦pPMETHOD ='B' -->¥I´Ú¤é´Á­n²Å¦X«eºİ©Ò¿é¤§¥I´Ú¤é´Á R70088 SPUL°t®§¤ä²¼¥ó»İ¦P©ó¶×´Ú,©ó¥I´Ú¤é¤~¯à½T»{
-		 *   R70292 ¤ä²¼¥ó­n¥H¤U¤@¤u§@¤é¬°§ì¨ú±ø¥ó 
-		 * 2.ª÷ÃB > 0
+		 * ä¿®æ”¹å–å¾—æ”¯ä»˜æ¢ä»¶(é™CAPSILå£½éšªè³‡æ–™) 
+		 * 1.å¦‚PMETHOD IN('A','C') -->è¼¸å…¥æ—¥æœŸè¦ç¬¦åˆå‰ç«¯æ‰€è¼¸ä¹‹è¼¸å…¥æ—¥æœŸ
+		 *   å¦‚PMETHOD ='B' -->ä»˜æ¬¾æ—¥æœŸè¦ç¬¦åˆå‰ç«¯æ‰€è¼¸ä¹‹ä»˜æ¬¾æ—¥æœŸ R70088 SPULé…æ¯æ”¯ç¥¨ä»¶éœ€åŒæ–¼åŒ¯æ¬¾,æ–¼ä»˜æ¬¾æ—¥æ‰èƒ½ç¢ºèª
+		 *   R70292 æ”¯ç¥¨ä»¶è¦ä»¥ä¸‹ä¸€å·¥ä½œæ—¥ç‚ºæŠ“å–æ¢ä»¶ 
+		 * 2.é‡‘é¡ > 0
 		 */
 
 		if (strPSrcGp.equals("CP") || strPSrcGp.equals("")) {
@@ -470,20 +470,20 @@ public class DISBPConfirmServlet extends HttpServlet {
 				if (!strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
 					strSql += " and ((A.PMETHOD IN ('B','D')  and A.PDATE <= " + strPDate;// R60550
 					strSql += "   and A.ENTRYDT <= " + strEntryEndDate + " ) ";
-					strSql += "     or (A.PMETHOD IN('A','C','E') and A.ENTRYDT between " + strEntryStartDate + "  and " + strEntryEndDate + " AND A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNº¡´Áª÷
-					strSql += "     or (A.PMETHOD IN('A','C') AND A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT;// R00440 SNº¡´Áª÷
+					strSql += "     or (A.PMETHOD IN('A','C','E') and A.ENTRYDT between " + strEntryStartDate + "  and " + strEntryEndDate + " AND A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNæ»¿æœŸé‡‘
+					strSql += "     or (A.PMETHOD IN('A','C') AND A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT;// R00440 SNæ»¿æœŸé‡‘
 					strSql += "       and A.ENTRYDT <= " + strEntryEndDate + " ))";
 				} else if (!strEntryStartDate.equals("") && strEntryEndDate.equals("")) {
 					strSql += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ")  ";// R60550
-					strSql += "  or (A.PMETHOD IN ('A','C','E') and A.ENTRYDT >= " + strEntryStartDate + " and A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNº¡´Áª÷
-					strSql += "  or (A.PMETHOD IN ('A','C') and A.PDATE <= " + iNextDT + " and A.PSRCCODE IN ('B8','B9','BB')) ) ";// R00440 SNº¡´Áª÷
+					strSql += "  or (A.PMETHOD IN ('A','C','E') and A.ENTRYDT >= " + strEntryStartDate + " and A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNæ»¿æœŸé‡‘
+					strSql += "  or (A.PMETHOD IN ('A','C') and A.PDATE <= " + iNextDT + " and A.PSRCCODE IN ('B8','B9','BB')) ) ";// R00440 SNæ»¿æœŸé‡‘
 				} else if (strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
-					strSql += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN ('A','C') and A.PSRCCODE NOT IN ('B8','B9','BB'))";// /R00440 SNº¡´Áª÷
-					strSql += " or (A.PMETHOD IN ('A','C','E') and A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT + "))";// /R00440 SNº¡´Áª÷
+					strSql += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN ('A','C') and A.PSRCCODE NOT IN ('B8','B9','BB'))";// /R00440 SNæ»¿æœŸé‡‘
+					strSql += " or (A.PMETHOD IN ('A','C','E') and A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT + "))";// /R00440 SNæ»¿æœŸé‡‘
 					strSql += "   and A.ENTRYDT <= " + strEntryEndDate;
 				} else {
-					strSql += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN('A','C','E') and A.PSRCCODE NOT IN ('BB','B8','B9'))";// R00440 SNº¡´Áª÷
-					strSql += " or (A.PMETHOD IN ('A','C') and A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT + "))";// R00440 SNº¡´Áª÷
+					strSql += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN('A','C','E') and A.PSRCCODE NOT IN ('BB','B8','B9'))";// R00440 SNæ»¿æœŸé‡‘
+					strSql += " or (A.PMETHOD IN ('A','C') and A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT + "))";// R00440 SNæ»¿æœŸé‡‘
 				}
 			} else {
 				if (!strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
@@ -495,7 +495,7 @@ public class DISBPConfirmServlet extends HttpServlet {
 				}
 			}
 		} else {
-			// «D capsil¥ó
+			// é capsilä»¶
 			if (!strPDate.equals("")) {
 				strSql += " and A.PDATE <= " + strPDate;
 			}
@@ -535,17 +535,17 @@ public class DISBPConfirmServlet extends HttpServlet {
 			strSql += " and A.PMETHOD = '" + strPMETHOD + "'";
 		}
 
-		// ¨Ì³¡ªù ¿é¤JªÌ¤Î«O³æ¸¹½X±Æ§Ç
+		// ä¾éƒ¨é–€ è¼¸å…¥è€…åŠä¿å–®è™Ÿç¢¼æ’åº
 		//strSql += " order by B.DEPT,A.ENTRYUSR,A.POLICYNO ";
 		
 		
-		//UNIONµL«O³æªº°O¿ı
+		//UNIONç„¡ä¿å–®çš„è¨˜éŒ„
 		strSql2 = "select A.ENTRYDT,A.PAMT,A.PCFMDT1,A.PCFMTM1,A.PCFMDT2,A.PCFMTM2,A.PDATE,A.UPDDT,A.UPDTM,A.APPNO,A.POLICYNO,A.ENTRYUSR,A.PAUTHCODE,A.PBACCOUNT,A.PBBANK,A.PCFMUSR1,A.PCFMUSR2,A.PCHECKNO,A.PCRDEFFMY,A.PCRDNO,A.PCRDTYPE,A.PDESC,A.PDISPATCH,A.PID,A.PMETHOD,A.PNAME,A.PNO,A.PNOH,A.PRACCOUNT,A.PRBANK,A.PSRCGP,A.PSRCCODE,A.PSTATUS,A.PVOIDABLE,A.PDISPATCH,A.BRANCH,B.DEPT,A.PCURR ";
 		
 		//if("6".equals(company) || "0".equals(company)){
-		strSql2 += ",CASE WHEN PO.POIUIND ='6' THEN 'OIU' ELSE 'Á`¤½¥q' END AS POLICY_TYPE";
+		strSql2 += ",CASE WHEN PO.POIUIND ='6' THEN 'OIU' ELSE 'ç¸½å…¬å¸' END AS POLICY_TYPE";
 		/*}else{
-			strSql += ",'Á`¤½¥q' AS POLICY_TYPE";
+			strSql += ",'ç¸½å…¬å¸' AS POLICY_TYPE";
 		}*/
 		
 		strSql2 += ",A.PPAYCURR,A.PPAYAMT ";// R60550
@@ -568,7 +568,7 @@ public class DISBPConfirmServlet extends HttpServlet {
 		}else if("0".equals(company)){
 			strSql += "AND A.PAY_COMPANY<>'OIU' ";
 		}*/
-		//­×¥¿¬°¨ÌORDUPOªºPOIUIND§PÂ_
+		//ä¿®æ­£ç‚ºä¾ORDUPOçš„POIUINDåˆ¤æ–·
 		if("6".equals(company)){
 			strSql2 += "AND PO.POIUIND='6' AND A.POLICY_NO='' ";
 		}else if("0".equals(company)){
@@ -578,11 +578,11 @@ public class DISBPConfirmServlet extends HttpServlet {
 		
 
 		/*
-		 * ­×§ï¨ú±o¤ä¥I±ø¥ó(­­CAPSIL¹ØÀI¸ê®Æ) 
-		 * 1.¦pPMETHOD IN('A','C') -->¿é¤J¤é´Á­n²Å¦X«eºİ©Ò¿é¤§¿é¤J¤é´Á
-		 *   ¦pPMETHOD ='B' -->¥I´Ú¤é´Á­n²Å¦X«eºİ©Ò¿é¤§¥I´Ú¤é´Á R70088 SPUL°t®§¤ä²¼¥ó»İ¦P©ó¶×´Ú,©ó¥I´Ú¤é¤~¯à½T»{
-		 *   R70292 ¤ä²¼¥ó­n¥H¤U¤@¤u§@¤é¬°§ì¨ú±ø¥ó 
-		 * 2.ª÷ÃB > 0
+		 * ä¿®æ”¹å–å¾—æ”¯ä»˜æ¢ä»¶(é™CAPSILå£½éšªè³‡æ–™) 
+		 * 1.å¦‚PMETHOD IN('A','C') -->è¼¸å…¥æ—¥æœŸè¦ç¬¦åˆå‰ç«¯æ‰€è¼¸ä¹‹è¼¸å…¥æ—¥æœŸ
+		 *   å¦‚PMETHOD ='B' -->ä»˜æ¬¾æ—¥æœŸè¦ç¬¦åˆå‰ç«¯æ‰€è¼¸ä¹‹ä»˜æ¬¾æ—¥æœŸ R70088 SPULé…æ¯æ”¯ç¥¨ä»¶éœ€åŒæ–¼åŒ¯æ¬¾,æ–¼ä»˜æ¬¾æ—¥æ‰èƒ½ç¢ºèª
+		 *   R70292 æ”¯ç¥¨ä»¶è¦ä»¥ä¸‹ä¸€å·¥ä½œæ—¥ç‚ºæŠ“å–æ¢ä»¶ 
+		 * 2.é‡‘é¡ > 0
 		 */
 
 		if (strPSrcGp.equals("CP") || strPSrcGp.equals("")) {
@@ -590,20 +590,20 @@ public class DISBPConfirmServlet extends HttpServlet {
 				if (!strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
 					strSql2 += " and ((A.PMETHOD IN ('B','D')  and A.PDATE <= " + strPDate;// R60550
 					strSql2 += "   and A.ENTRYDT <= " + strEntryEndDate + " ) ";
-					strSql2 += "     or (A.PMETHOD IN('A','C','E') and A.ENTRYDT between " + strEntryStartDate + "  and " + strEntryEndDate + " AND A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNº¡´Áª÷
-					strSql2 += "     or (A.PMETHOD IN('A','C') AND A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT;// R00440 SNº¡´Áª÷
+					strSql2 += "     or (A.PMETHOD IN('A','C','E') and A.ENTRYDT between " + strEntryStartDate + "  and " + strEntryEndDate + " AND A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNæ»¿æœŸé‡‘
+					strSql2 += "     or (A.PMETHOD IN('A','C') AND A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT;// R00440 SNæ»¿æœŸé‡‘
 					strSql2 += "       and A.ENTRYDT <= " + strEntryEndDate + " ))";
 				} else if (!strEntryStartDate.equals("") && strEntryEndDate.equals("")) {
 					strSql2 += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ")  ";// R60550
-					strSql2 += "  or (A.PMETHOD IN ('A','C','E') and A.ENTRYDT >= " + strEntryStartDate + " and A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNº¡´Áª÷
-					strSql2 += "  or (A.PMETHOD IN ('A','C') and A.PDATE <= " + iNextDT + " and A.PSRCCODE IN ('B8','B9','BB')) ) ";// R00440 SNº¡´Áª÷
+					strSql2 += "  or (A.PMETHOD IN ('A','C','E') and A.ENTRYDT >= " + strEntryStartDate + " and A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNæ»¿æœŸé‡‘
+					strSql2 += "  or (A.PMETHOD IN ('A','C') and A.PDATE <= " + iNextDT + " and A.PSRCCODE IN ('B8','B9','BB')) ) ";// R00440 SNæ»¿æœŸé‡‘
 				} else if (strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
-					strSql2 += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN ('A','C') and A.PSRCCODE NOT IN ('B8','B9','BB'))";// /R00440 SNº¡´Áª÷
-					strSql2 += " or (A.PMETHOD IN ('A','C','E') and A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT + "))";// /R00440 SNº¡´Áª÷
+					strSql2 += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN ('A','C') and A.PSRCCODE NOT IN ('B8','B9','BB'))";// /R00440 SNæ»¿æœŸé‡‘
+					strSql2 += " or (A.PMETHOD IN ('A','C','E') and A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT + "))";// /R00440 SNæ»¿æœŸé‡‘
 					strSql2 += "   and A.ENTRYDT <= " + strEntryEndDate;
 				} else {
-					strSql2 += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN('A','C','E') and A.PSRCCODE NOT IN ('BB','B8','B9'))";// R00440 SNº¡´Áª÷
-					strSql2 += " or (A.PMETHOD IN ('A','C') and A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT + "))";// R00440 SNº¡´Áª÷
+					strSql2 += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN('A','C','E') and A.PSRCCODE NOT IN ('BB','B8','B9'))";// R00440 SNæ»¿æœŸé‡‘
+					strSql2 += " or (A.PMETHOD IN ('A','C') and A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT + "))";// R00440 SNæ»¿æœŸé‡‘
 				}
 			} else {
 				if (!strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
@@ -615,7 +615,7 @@ public class DISBPConfirmServlet extends HttpServlet {
 				}
 			}
 		} else {
-			// «D capsil¥ó
+			// é capsilä»¶
 			if (!strPDate.equals("")) {
 				strSql2 += " and A.PDATE <= " + strPDate;
 			}
@@ -655,9 +655,9 @@ public class DISBPConfirmServlet extends HttpServlet {
 			strSql2 += " and A.PMETHOD = '" + strPMETHOD + "'";
 		}
 
-		// ¨Ì³¡ªù ¿é¤JªÌ¤Î«O³æ¸¹½X±Æ§Ç
+		// ä¾éƒ¨é–€ è¼¸å…¥è€…åŠä¿å–®è™Ÿç¢¼æ’åº
 		//strSql += " order by B.DEPT,A.ENTRYUSR,A.POLICYNO ";
-		strSqlOrder = " order by DEPT,A.ENTRYUSR,A.POLICYNO,A.PNO ";//20160614,·s¼WA.PNO¬°±Æ§Ç,¨£Aprilªº«H,SPAªº¦şª÷µ¹¥I­n·Óexcelªº¶¶§Ç
+		strSqlOrder = " order by DEPT,A.ENTRYUSR,A.POLICYNO,A.PNO ";//20160614,æ–°å¢A.PNOç‚ºæ’åº,è¦‹Aprilçš„ä¿¡,SPAçš„ä½£é‡‘çµ¦ä»˜è¦ç…§excelçš„é †åº
 		
 		strSql = "SELECT * FROM (" + strSql + " UNION " + strSql2 + ") A " + strSqlOrder;
 		System.out.println("DISBPConfirmServlet.inquiryDB()--> strSql =" + strSql);
@@ -667,43 +667,43 @@ public class DISBPConfirmServlet extends HttpServlet {
 			rs = stmt.executeQuery(strSql);
 			while (rs.next()) {
 				objPDetailVO = new DISBPaymentDetailVO();
-				objPDetailVO.setIEntryDt(rs.getInt("ENTRYDT")); // ¿é¤J¤é´Á
-				objPDetailVO.setIPAMT(rs.getDouble("PAMT")); // ¤ä¥Iª÷ÃB
-				objPDetailVO.setIPCfmDt1(rs.getInt("PCFMDT1"));// ¤ä¥I½T»{¤é¤@
-				objPDetailVO.setIPCfmTm1(rs.getInt("PCFMTM1"));// ¤ä¥I½T»{®É¤@
-				objPDetailVO.setIPCfmDt2(rs.getInt("PCFMDT2"));// ¤ä¥I½T»{¤é¤G
-				objPDetailVO.setIPCfmTm2(rs.getInt("PCFMTM2"));// ¤ä¥I½T»{®É¤G
-				objPDetailVO.setIPDate(rs.getInt("PDATE")); // ¥I´Ú¤é´Á
-				objPDetailVO.setIUpdDt(rs.getInt("UPDDT")); // ²§°Ê¤é´Á
-				objPDetailVO.setIUpdTm(rs.getInt("UPDTM")); // ²§°Ê®É¶¡
-				objPDetailVO.setStrAppNo(rs.getString("APPNO"));// ­n«O®Ñ¸¹½X
-				objPDetailVO.setStrPolicyNo(rs.getString("POLICYNO"));// «O³æ¸¹½X
-				objPDetailVO.setStrEntryUsr(rs.getString("ENTRYUSR"));// ¿é¤J¤H­û
-				objPDetailVO.setStrPAuthCode(rs.getString("PAUTHCODE"));// ±ÂÅv½X
-				objPDetailVO.setStrPBAccount(rs.getString("PBACCOUNT"));// ¥I´Ú»È¦æ
-				objPDetailVO.setStrPBBank(rs.getString("PBBANK"));// ¥I´Ú±b¸¹
-				objPDetailVO.setStrPCfmUsr1(rs.getString("PCFMUSR1"));// ¤ä¥I½T»{ªÌ¤@
-				objPDetailVO.setStrPCfmUsr2(rs.getString("PCFMUSR2"));// ¤ä¥I½T»{ªÌ¤G
-				objPDetailVO.setStrPCheckNO(rs.getString("PCHECKNO"));// ¤ä²¼¸¹½X
-				objPDetailVO.setStrPCrdEffMY(rs.getString("PCRDEFFMY"));// ¦³®Ä¦~¤ë
-				objPDetailVO.setStrPCrdNo(rs.getString("PCRDNO"));// «H¥Î¥d¥d¸¹
-				objPDetailVO.setStrPCrdType(rs.getString("PCRDTYPE"));// ¥d§O
-				objPDetailVO.setStrPDesc(rs.getString("PDESC")); // ¤ä¥I´y­z
-				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));// «æ¥ó§_
-				objPDetailVO.setStrPId(rs.getString("PID")); // ¨ü´Ú¤HID
-				objPDetailVO.setStrPMethod(rs.getString("PMETHOD"));// ¥I´Ú¤è¦¡
-				objPDetailVO.setStrPName(rs.getString("PNAME"));// ¨ü´Ú¤H©m¦W
-				objPDetailVO.setStrPNO(rs.getString("PNO")); // ¤ä¥I§Ç¸¹
-				objPDetailVO.setStrPNoH(rs.getString("PNOH")); // ­ì¤ä¥I§Ç¸¹
-				objPDetailVO.setStrPRAccount(rs.getString("PRACCOUNT"));// ¶×´Ú±b¸¹
-				objPDetailVO.setStrPRBank(rs.getString("PRBANK"));// ¶×´Ú»È¦æ
-				objPDetailVO.setStrPSrcGp(rs.getString("PSRCGP"));// ¨Ó·½²Õ¸s
-				objPDetailVO.setStrPSrcCode(rs.getString("PSRCCODE"));// ¤ä¥I­ì¦]¥N½X
-				objPDetailVO.setStrPStatus(rs.getString("PSTATUS"));// ¥I´Úª¬ºA
-				objPDetailVO.setStrBranch(rs.getString("BRANCH"));// «O³æ©ÒÄİ³æ¦ì
-				objPDetailVO.setStrPVoidable(rs.getString("PVOIDABLE"));// §@¼o§_
+				objPDetailVO.setIEntryDt(rs.getInt("ENTRYDT")); // è¼¸å…¥æ—¥æœŸ
+				objPDetailVO.setIPAMT(rs.getDouble("PAMT")); // æ”¯ä»˜é‡‘é¡
+				objPDetailVO.setIPCfmDt1(rs.getInt("PCFMDT1"));// æ”¯ä»˜ç¢ºèªæ—¥ä¸€
+				objPDetailVO.setIPCfmTm1(rs.getInt("PCFMTM1"));// æ”¯ä»˜ç¢ºèªæ™‚ä¸€
+				objPDetailVO.setIPCfmDt2(rs.getInt("PCFMDT2"));// æ”¯ä»˜ç¢ºèªæ—¥äºŒ
+				objPDetailVO.setIPCfmTm2(rs.getInt("PCFMTM2"));// æ”¯ä»˜ç¢ºèªæ™‚äºŒ
+				objPDetailVO.setIPDate(rs.getInt("PDATE")); // ä»˜æ¬¾æ—¥æœŸ
+				objPDetailVO.setIUpdDt(rs.getInt("UPDDT")); // ç•°å‹•æ—¥æœŸ
+				objPDetailVO.setIUpdTm(rs.getInt("UPDTM")); // ç•°å‹•æ™‚é–“
+				objPDetailVO.setStrAppNo(rs.getString("APPNO"));// è¦ä¿æ›¸è™Ÿç¢¼
+				objPDetailVO.setStrPolicyNo(rs.getString("POLICYNO"));// ä¿å–®è™Ÿç¢¼
+				objPDetailVO.setStrEntryUsr(rs.getString("ENTRYUSR"));// è¼¸å…¥äººå“¡
+				objPDetailVO.setStrPAuthCode(rs.getString("PAUTHCODE"));// æˆæ¬Šç¢¼
+				objPDetailVO.setStrPBAccount(rs.getString("PBACCOUNT"));// ä»˜æ¬¾éŠ€è¡Œ
+				objPDetailVO.setStrPBBank(rs.getString("PBBANK"));// ä»˜æ¬¾å¸³è™Ÿ
+				objPDetailVO.setStrPCfmUsr1(rs.getString("PCFMUSR1"));// æ”¯ä»˜ç¢ºèªè€…ä¸€
+				objPDetailVO.setStrPCfmUsr2(rs.getString("PCFMUSR2"));// æ”¯ä»˜ç¢ºèªè€…äºŒ
+				objPDetailVO.setStrPCheckNO(rs.getString("PCHECKNO"));// æ”¯ç¥¨è™Ÿç¢¼
+				objPDetailVO.setStrPCrdEffMY(rs.getString("PCRDEFFMY"));// æœ‰æ•ˆå¹´æœˆ
+				objPDetailVO.setStrPCrdNo(rs.getString("PCRDNO"));// ä¿¡ç”¨å¡å¡è™Ÿ
+				objPDetailVO.setStrPCrdType(rs.getString("PCRDTYPE"));// å¡åˆ¥
+				objPDetailVO.setStrPDesc(rs.getString("PDESC")); // æ”¯ä»˜æè¿°
+				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));// æ€¥ä»¶å¦
+				objPDetailVO.setStrPId(rs.getString("PID")); // å—æ¬¾äººID
+				objPDetailVO.setStrPMethod(rs.getString("PMETHOD"));// ä»˜æ¬¾æ–¹å¼
+				objPDetailVO.setStrPName(rs.getString("PNAME"));// å—æ¬¾äººå§“å
+				objPDetailVO.setStrPNO(rs.getString("PNO")); // æ”¯ä»˜åºè™Ÿ
+				objPDetailVO.setStrPNoH(rs.getString("PNOH")); // åŸæ”¯ä»˜åºè™Ÿ
+				objPDetailVO.setStrPRAccount(rs.getString("PRACCOUNT"));// åŒ¯æ¬¾å¸³è™Ÿ
+				objPDetailVO.setStrPRBank(rs.getString("PRBANK"));// åŒ¯æ¬¾éŠ€è¡Œ
+				objPDetailVO.setStrPSrcGp(rs.getString("PSRCGP"));// ä¾†æºçµ„ç¾¤
+				objPDetailVO.setStrPSrcCode(rs.getString("PSRCCODE"));// æ”¯ä»˜åŸå› ä»£ç¢¼
+				objPDetailVO.setStrPStatus(rs.getString("PSTATUS"));// ä»˜æ¬¾ç‹€æ…‹
+				objPDetailVO.setStrBranch(rs.getString("BRANCH"));// ä¿å–®æ‰€å±¬å–®ä½
+				objPDetailVO.setStrPVoidable(rs.getString("PVOIDABLE"));// ä½œå»¢å¦
 
-				if (rs.getString("PVOIDABLE") != null || !rs.getString("PVOIDABLE").equals("")) // ¨M©wÄæ¦ì¬O§_¤Ä¿ï
+				if (rs.getString("PVOIDABLE") != null || !rs.getString("PVOIDABLE").equals("")) // æ±ºå®šæ¬„ä½æ˜¯å¦å‹¾é¸
 				{
 					if (rs.getString("PVOIDABLE").equals("Y")) {
 						objPDetailVO.setChecked(false);
@@ -711,16 +711,16 @@ public class DISBPConfirmServlet extends HttpServlet {
 					}
 				}
 
-				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));// «æ¥ó§_
-				if (rs.getString("PDISPATCH") != null || !rs.getString("PDISPATCH").equals("")) // ¨M©wÄæ¦ì¬O§_Disable
+				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));// æ€¥ä»¶å¦
+				if (rs.getString("PDISPATCH") != null || !rs.getString("PDISPATCH").equals("")) // æ±ºå®šæ¬„ä½æ˜¯å¦Disable
 				{
 					if (rs.getString("PDISPATCH").equals("Y")) {
 						objPDetailVO.setChecked(false);
 					}
 				}
-				objPDetailVO.setStrPCurr(rs.getString("PCURR"));// ¹ô§O
-				objPDetailVO.setStrPPAYCURR(rs.getString("PPAYCURR"));// R60550¥~¹ô¹ô§O
-				objPDetailVO.setIPPAYAMT(rs.getDouble("PPAYAMT"));// R60550¥~¹ôª÷ÃB
+				objPDetailVO.setStrPCurr(rs.getString("PCURR"));// å¹£åˆ¥
+				objPDetailVO.setStrPPAYCURR(rs.getString("PPAYCURR"));// R60550å¤–å¹£å¹£åˆ¥
+				objPDetailVO.setIPPAYAMT(rs.getDouble("PPAYAMT"));// R60550å¤–å¹£é‡‘é¡
 				
 				objPDetailVO.setCompany(rs.getString("POLICY_TYPE"));//RD0382:OIU
 
@@ -731,11 +731,11 @@ public class DISBPConfirmServlet extends HttpServlet {
 				session.setAttribute("PDetailListTemp", alPDetail);
 				session.setAttribute("PDetailList", alPDetail);
 			} else {
-				request.setAttribute("txtMsg", "¬dµL¬ÛÃö¸ê®Æ");
+				request.setAttribute("txtMsg", "æŸ¥ç„¡ç›¸é—œè³‡æ–™");
 			}
 		} catch (SQLException ex) {
 			log.error(ex.getMessage(),ex);
-			request.setAttribute("txtMsg", "¬d¸ß¥¢±Ñ" + ex);
+			request.setAttribute("txtMsg", "æŸ¥è©¢å¤±æ•—" + ex);
 			alPDetail = null;
 		} finally {
 			try {
@@ -777,16 +777,16 @@ public class DISBPConfirmServlet extends HttpServlet {
 		DISBPaymentDetailVO objPDetailVO = null;
 		List alPDetail = new ArrayList();
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-		String strPDate = ""; // ¥I´Ú¤é´Á
-		String strEntryStartDate = ""; // ¿é¤J¤é´Á°_¤é
-		String strEntryEndDate = ""; // ¿é¤J¤é´Á¨´¤é
-		String strDispatch = ""; // «æ¥ó§_
-		String strDept = ""; // ³¡ªù
-		String strEntryUsr = ""; // ¿é¤JªÌ
-		String strCurrency = ""; // ¹ô§O
-		String strPMETHOD = ""; // ¥I´Ú¤è¦¡R60550
-		int iNextDT = 0; // ¤U¤@­Ó¥I´Ú¤éR70292
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strPDate = ""; // ä»˜æ¬¾æ—¥æœŸ
+		String strEntryStartDate = ""; // è¼¸å…¥æ—¥æœŸèµ·æ—¥
+		String strEntryEndDate = ""; // è¼¸å…¥æ—¥æœŸè¿„æ—¥
+		String strDispatch = ""; // æ€¥ä»¶å¦
+		String strDept = ""; // éƒ¨é–€
+		String strEntryUsr = ""; // è¼¸å…¥è€…
+		String strCurrency = ""; // å¹£åˆ¥
+		String strPMETHOD = ""; // ä»˜æ¬¾æ–¹å¼R60550
+		int iNextDT = 0; // ä¸‹ä¸€å€‹ä»˜æ¬¾æ—¥R70292
 		String strCompany = ""; //RD0382:OIU
 
 		strPDate = request.getParameter("txtPDate");
@@ -830,28 +830,28 @@ public class DISBPConfirmServlet extends HttpServlet {
 			if (!strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
 				strSql += " and ((A.PMETHOD IN ('B','D')  and A.PDATE <= " + strPDate;
 				strSql += "   and A.ENTRYDT <= " + strEntryEndDate + " ) ";
-				// R00440 SNº¡´Áª÷ strSql += "   or  (A.PMETHOD IN('A','C') and A.ENTRYDT between "+ strEntryStartDate+ "  and "+ strEntryEndDate + AND A.PSRCCODE NOT IN ('B8','B9'))";
-				strSql += "   or  (A.PMETHOD IN('A','C','E') and A.ENTRYDT between " + strEntryStartDate + "  and " + strEntryEndDate + " AND A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNº¡´Áª÷
-				// R00440 SNº¡´Áª÷ strSql += " or (A.PMETHOD IN('A','C') AND A.PSRCCODE IN ('B8','B9') and A.PDATE <= " + iNextDT;
-				strSql += " or (A.PMETHOD IN('A','C') AND A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT;// R00440 SNº¡´Áª÷
+				// R00440 SNæ»¿æœŸé‡‘ strSql += "   or  (A.PMETHOD IN('A','C') and A.ENTRYDT between "+ strEntryStartDate+ "  and "+ strEntryEndDate + AND A.PSRCCODE NOT IN ('B8','B9'))";
+				strSql += "   or  (A.PMETHOD IN('A','C','E') and A.ENTRYDT between " + strEntryStartDate + "  and " + strEntryEndDate + " AND A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNæ»¿æœŸé‡‘
+				// R00440 SNæ»¿æœŸé‡‘ strSql += " or (A.PMETHOD IN('A','C') AND A.PSRCCODE IN ('B8','B9') and A.PDATE <= " + iNextDT;
+				strSql += " or (A.PMETHOD IN('A','C') AND A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT;// R00440 SNæ»¿æœŸé‡‘
 				strSql += " and A.ENTRYDT <= " + strEntryEndDate + " ))";
 			} else if (!strEntryStartDate.equals("") && strEntryEndDate.equals("")) {
 				strSql += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ")  ";
-				// R00440 SNº¡´Áª÷strSql += "  or (A.PMETHOD IN ('A','C') and A.ENTRYDT >= " + strEntryStartDate + " and A.PSRCCODE NOT IN ('B8','B9'))";
-				strSql += "  or (A.PMETHOD IN ('A','C','E') and A.ENTRYDT >= " + strEntryStartDate + " and A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNº¡´Áª÷
-				// R00440 SNº¡´Áª÷ strSql += "  or (A.PMETHOD IN ('A','C') and A.PDATE <= " + iNextDT + " and A.PSRCCODE IN ('B8','B9')) ) ";
+				// R00440 SNæ»¿æœŸé‡‘strSql += "  or (A.PMETHOD IN ('A','C') and A.ENTRYDT >= " + strEntryStartDate + " and A.PSRCCODE NOT IN ('B8','B9'))";
+				strSql += "  or (A.PMETHOD IN ('A','C','E') and A.ENTRYDT >= " + strEntryStartDate + " and A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNæ»¿æœŸé‡‘
+				// R00440 SNæ»¿æœŸé‡‘ strSql += "  or (A.PMETHOD IN ('A','C') and A.PDATE <= " + iNextDT + " and A.PSRCCODE IN ('B8','B9')) ) ";
 				strSql += "  or (A.PMETHOD IN ('A','C') and A.PDATE <= " + iNextDT + " and A.PSRCCODE IN ('B8','B9','BB')) ) ";
 			} else if (strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
-				// R00440 SNº¡´Áª÷strSql += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN ('A','C') and A.PSRCCODE NOT IN ('B8','B9'))";
-				strSql += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN ('A','C','E') and A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNº¡´Áª÷
-				// R00440 SNº¡´Áª÷ strSql += " or (A.PMETHOD IN ('A','C') and A.PSRCCODE IN ('B8','B9') and A.PDATE <= " + iNextDT + "))";
-				strSql += " or (A.PMETHOD IN ('A','C') and A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT + "))";// R00440 SNº¡´Áª÷
+				// R00440 SNæ»¿æœŸé‡‘strSql += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN ('A','C') and A.PSRCCODE NOT IN ('B8','B9'))";
+				strSql += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN ('A','C','E') and A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNæ»¿æœŸé‡‘
+				// R00440 SNæ»¿æœŸé‡‘ strSql += " or (A.PMETHOD IN ('A','C') and A.PSRCCODE IN ('B8','B9') and A.PDATE <= " + iNextDT + "))";
+				strSql += " or (A.PMETHOD IN ('A','C') and A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT + "))";// R00440 SNæ»¿æœŸé‡‘
 				strSql += "   and A.ENTRYDT <= " + strEntryEndDate;
 			} else {
-				// R00440 SNº¡´Áª÷ strSql += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN('A','C') and A.PSRCCODE NOT IN ('B8','B9'))";
-				strSql += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN('A','C','E') and A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNº¡´Áª÷
-				// R00440 SNº¡´Áª÷ strSql += " or (A.PMETHOD IN ('A','C') and A.PSRCCODE IN ('B8','B9') and A.PDATE <= " + iNextDT + "))";
-				strSql += " or (A.PMETHOD IN ('A','C') and A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT + "))";// R00440 SNº¡´Áª÷
+				// R00440 SNæ»¿æœŸé‡‘ strSql += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN('A','C') and A.PSRCCODE NOT IN ('B8','B9'))";
+				strSql += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN('A','C','E') and A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SNæ»¿æœŸé‡‘
+				// R00440 SNæ»¿æœŸé‡‘ strSql += " or (A.PMETHOD IN ('A','C') and A.PSRCCODE IN ('B8','B9') and A.PDATE <= " + iNextDT + "))";
+				strSql += " or (A.PMETHOD IN ('A','C') and A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT + "))";// R00440 SNæ»¿æœŸé‡‘
 			}
 		} else {
 			if (!strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
@@ -861,7 +861,7 @@ public class DISBPConfirmServlet extends HttpServlet {
 			} else if (strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
 				strSql += " and  A.ENTRYDT <= " + strEntryEndDate;
 			} else {
-				// «D capsil¥ó
+				// é capsilä»¶
 				if (!strPDate.equals("")) {
 					strSql += " and A.PDATE <= " + strPDate;
 				}
@@ -902,7 +902,7 @@ public class DISBPConfirmServlet extends HttpServlet {
 			strSql += " and A.PMETHOD = '" + strPMETHOD + "'";
 		}
 
-		// ¨Ì³¡ªù ¿é¤JªÌ¤Î«O³æ¸¹½X±Æ§Ç
+		// ä¾éƒ¨é–€ è¼¸å…¥è€…åŠä¿å–®è™Ÿç¢¼æ’åº
 		strSql += "group by A.ENTRYUSR order by A.ENTRYUSR ";
 
 		System.out.println(" inside DISBPConfirmServlet.inquiryCSCDB()--> strSql =" + strSql);
@@ -912,17 +912,17 @@ public class DISBPConfirmServlet extends HttpServlet {
 			rs = stmt.executeQuery(strSql);
 			while (rs.next()) {
 				objPDetailVO = new DISBPaymentDetailVO();
-				objPDetailVO.setRowCount(rs.getInt("ROWCOUNT"));// Á`µ§¼Æ
-				objPDetailVO.setTPAMT(rs.getBigDecimal("PAMT")); // Á`¤ä¥Iª÷ÃB
-				objPDetailVO.setStrEntryUsr(rs.getString("ENTRYUSR"));// ¿é¤J¤H­û
-				objPDetailVO.setEntryStartDate(strEntryStartDate);// ¿é¤J°_¤é
-				objPDetailVO.setEntryEndDate(strEntryEndDate);// ¿é¤J¨´¤é
-				objPDetailVO.setStrPDate(strPDate);// ¥I´Ú¤é´Á
-				objPDetailVO.setSelPSrcGp("");// ¨Ó·½¸s²Õ
-				objPDetailVO.setStrDispatch(strDispatch);// «æ¥ó
-				objPDetailVO.setStrDept(strDept);// ³¡ªù
-				objPDetailVO.setStrPMETHOD(strPMETHOD);// ¥I´Ú¤è¦¡
-				objPDetailVO.setStrCurrency(strCurrency);// «O³æ¹ô§O
+				objPDetailVO.setRowCount(rs.getInt("ROWCOUNT"));// ç¸½ç­†æ•¸
+				objPDetailVO.setTPAMT(rs.getBigDecimal("PAMT")); // ç¸½æ”¯ä»˜é‡‘é¡
+				objPDetailVO.setStrEntryUsr(rs.getString("ENTRYUSR"));// è¼¸å…¥äººå“¡
+				objPDetailVO.setEntryStartDate(strEntryStartDate);// è¼¸å…¥èµ·æ—¥
+				objPDetailVO.setEntryEndDate(strEntryEndDate);// è¼¸å…¥è¿„æ—¥
+				objPDetailVO.setStrPDate(strPDate);// ä»˜æ¬¾æ—¥æœŸ
+				objPDetailVO.setSelPSrcGp("");// ä¾†æºç¾¤çµ„
+				objPDetailVO.setStrDispatch(strDispatch);// æ€¥ä»¶
+				objPDetailVO.setStrDept(strDept);// éƒ¨é–€
+				objPDetailVO.setStrPMETHOD(strPMETHOD);// ä»˜æ¬¾æ–¹å¼
+				objPDetailVO.setStrCurrency(strCurrency);// ä¿å–®å¹£åˆ¥
 				alPDetail.add(objPDetailVO);
 			}
 			if (alPDetail.size() > 0) {
@@ -930,10 +930,10 @@ public class DISBPConfirmServlet extends HttpServlet {
 				// session.setAttribute("PDetailListTemp", alPDetail);
 				session.setAttribute("PDetailList", alPDetail);
 			} else {
-				request.setAttribute("txtMsg", "¬dµL¬ÛÃö¸ê®Æ");
+				request.setAttribute("txtMsg", "æŸ¥ç„¡ç›¸é—œè³‡æ–™");
 			}
 		} catch (SQLException ex) {
-			request.setAttribute("txtMsg", "¬d¸ß¥¢±Ñ" + ex);
+			request.setAttribute("txtMsg", "æŸ¥è©¢å¤±æ•—" + ex);
 			alPDetail = null;
 		} finally {
 			try {

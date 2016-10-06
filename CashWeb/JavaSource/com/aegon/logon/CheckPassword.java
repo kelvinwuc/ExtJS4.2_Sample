@@ -1,8 +1,8 @@
 /** =============================================================================
  *  ------------------------------------------------------------------------------------------------------------------
- *   »İ¨D³æ¸¹       ­×§ïªÌ                ­×§ï¤é    			  ­×§ï¤º®e
+ *   éœ€æ±‚å–®è™Ÿ       ä¿®æ”¹è€…                ä¿®æ”¹æ—¥    			  ä¿®æ”¹å…§å®¹
  *  ------------------------------------------------------------------------------------------------------------------
- *    R00393            Leo Huang    			2010/09/17           ²{¦b®É¶¡¨úCapsilÀç¹B®É¶¡
+ *    R00393            Leo Huang    			2010/09/17           ç¾åœ¨æ™‚é–“å–Capsilç‡Ÿé‹æ™‚é–“
  *  =============================================================================
  */
 package com.aegon.logon;
@@ -43,35 +43,35 @@ public class CheckPassword extends HttpServlet implements Servlet {
 	final static String PWSSWORD_CHECK_DB_NAME = "CASH";
 
 	class DataClass extends RootClass {
-		//¸ê®Æ®w¬ÛÃöÄæ¦ìÅÜ¼Æ(¥»µ{¦¡¥D­nÄæ¦ì)
+		//è³‡æ–™åº«ç›¸é—œæ¬„ä½è®Šæ•¸(æœ¬ç¨‹å¼ä¸»è¦æ¬„ä½)
 		int iLineCnt = 0; //How many lines had been output in this page, including subtotal line.
-		String strSystemId = ""; //¨t²Î¥N¸¹
-		String strUserId = ""; //¨Ï¥ÎªÌ¥N¸¹
-		String strPassword = ""; //±K½X
-		String strUserType = ""; //¨Ï¥ÎªÌÃş§O
-		//¨Ï¥ÎªÌÃş§O
+		String strSystemId = ""; //ç³»çµ±ä»£è™Ÿ
+		String strUserId = ""; //ä½¿ç”¨è€…ä»£è™Ÿ
+		String strPassword = ""; //å¯†ç¢¼
+		String strUserType = ""; //ä½¿ç”¨è€…é¡åˆ¥
+		//ä½¿ç”¨è€…é¡åˆ¥
 		// P: Public
 		// A: Agency
 		// R: Broker
 		// D: Bank
 		// S: Staff 
 
-		boolean bCaseSensitive = false; //¬O§_°Ï¤À¤j¤p¼g	true : ­n°Ï¤À¤j¤p¼g , false : ¤£°Ï¤À¤j¤p¼g
+		boolean bCaseSensitive = false; //æ˜¯å¦å€åˆ†å¤§å°å¯«	true : è¦å€åˆ†å¤§å°å¯« , false : ä¸å€åˆ†å¤§å°å¯«
 		int historyCount = PASSWORD_CHECK_PASSWORD_COUNT;
 		// counter for old password can't be the same
 		int minLength = PASSWORD_CHECK_MIN_LENGTH; // minimun length
 
-		int iReturnCode = 0; //¶Ç¦^¤§°T®§¥N½X
-		String strReturnMessageE = ""; //¶Ç¦^¤§­^¤å°T®§
-		String strReturnMessageC = ""; //¶Ç¦^¤§¤¤¤å°T®§
+		int iReturnCode = 0; //å‚³å›ä¹‹è¨Šæ¯ä»£ç¢¼
+		String strReturnMessageE = ""; //å‚³å›ä¹‹è‹±æ–‡è¨Šæ¯
+		String strReturnMessageC = ""; //å‚³å›ä¹‹ä¸­æ–‡è¨Šæ¯
 
-		//¸ê®Æ®w³sµ²ÅÜ¼Æ
+		//è³‡æ–™åº«é€£çµè®Šæ•¸
 		public Connection conDb = null; //jdbc connection
 
 		//constructor
 		public DataClass() {
 			super();
-			//±N Date type ªºÅÜ¼Æ³]©w¬°ªì©l¸ê®Æ
+			//å°‡ Date type çš„è®Šæ•¸è¨­å®šç‚ºåˆå§‹è³‡æ–™
 		}
 
 		//destructor
@@ -79,10 +79,10 @@ public class CheckPassword extends HttpServlet implements Servlet {
 			releaseConnection();
 		}
 
-		//¦Û DbFactory ¤¤¨ú±o¤@­Ó Connection
+		//è‡ª DbFactory ä¸­å–å¾—ä¸€å€‹ Connection
 		public boolean getConnection() {
 			boolean bReturnStatus = true;
-			//¥ı¨ú±o¸ê®Æ®w³sµ²¤Î·Ç³ÆSQL
+			//å…ˆå–å¾—è³‡æ–™åº«é€£çµåŠæº–å‚™SQL
 			if (conDb == null) {
 				conDb = dbFactory.getConnection(strThisProgId);
 			}
@@ -122,12 +122,12 @@ public class CheckPassword extends HttpServlet implements Servlet {
 	*/
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
-       //R00393   Edit by Leo Huang (EASONTECH) Start  ¸ÓÅÜ¼Æ¥¼¨Ï¥Î
-		//java.util.Date dteToday = new java.util.Date(System.currentTimeMillis()); //¥Ø«e¤é´Á®É¶¡
+       //R00393   Edit by Leo Huang (EASONTECH) Start  è©²è®Šæ•¸æœªä½¿ç”¨
+		//java.util.Date dteToday = new java.util.Date(System.currentTimeMillis()); //ç›®å‰æ—¥æœŸæ™‚é–“
              //	R00393	Edit by Leo Huang (EASONTECH) End 
 		ServletContext application = getServletContext();
 
-		// ¨ú±oÀô¹Ò¸ê°T
+		// å–å¾—ç’°å¢ƒè³‡è¨Š
 		try {
 
 			if (globalEnviron == null) {
@@ -144,9 +144,9 @@ public class CheckPassword extends HttpServlet implements Servlet {
 			return;
 		}
 
-		DataClass objThisData = new DataClass(); //¥»µ{¦¡¥D­n¦UÄæ¦ì¸ê®Æ
+		DataClass objThisData = new DataClass(); //æœ¬ç¨‹å¼ä¸»è¦å„æ¬„ä½è³‡æ–™
 
-		//¥ı¨ú±o¸ê®Æ®w³s½u
+		//å…ˆå–å¾—è³‡æ–™åº«é€£ç·š
 		if (!objThisData.getConnection()) {
 			objThisData.iReturnCode = -1;
 			if (objThisData.strReturnMessageC.length() != 0) {
@@ -205,11 +205,11 @@ public class CheckPassword extends HttpServlet implements Servlet {
 	}
 
 	/**
-	¨ç¼Æ¦WºÙ:	checkPassword( DataClass objThisData )
-	¨ç¼Æ¥\¯à:	ÀË®Ö¶Ç¤J¤§±K½X
-	¶Ç¤J°Ñ¼Æ:	objThisData	: ©Ò¦³«eºİÅÜ¼Æ¤§¸ê®Æµ²ºc
-	¶Ç ¦^ ­È:	bReturnStatus : true : ¦¨¥\ , false : ¥¢±Ñ
-	­×§ï¬ö¿ı:	­×§ï¤é´Á	­×§ïªÌ	­×   §ï   ºK   ­n
+	å‡½æ•¸åç¨±:	checkPassword( DataClass objThisData )
+	å‡½æ•¸åŠŸèƒ½:	æª¢æ ¸å‚³å…¥ä¹‹å¯†ç¢¼
+	å‚³å…¥åƒæ•¸:	objThisData	: æ‰€æœ‰å‰ç«¯è®Šæ•¸ä¹‹è³‡æ–™çµæ§‹
+	å‚³ å› å€¼:	bReturnStatus : true : æˆåŠŸ , false : å¤±æ•—
+	ä¿®æ”¹ç´€éŒ„:	ä¿®æ”¹æ—¥æœŸ	ä¿®æ”¹è€…	ä¿®   æ”¹   æ‘˜   è¦
 			---------	----------	-----------------------------------------
 	*/
 	private boolean checkPassword(DataClass objThisData) {
@@ -223,7 +223,7 @@ public class CheckPassword extends HttpServlet implements Servlet {
 		String strSql = new String("");
 
 		if (objThisData.strPassword != null) {
-			//ÀË®Ö±K½Xªø«×
+			//æª¢æ ¸å¯†ç¢¼é•·åº¦
 			if (objThisData.strPassword.length() < objThisData.minLength) {
 				objThisData.iReturnCode = -100;
 				if (objThisData.strReturnMessageC.length() != 0) {
@@ -233,21 +233,21 @@ public class CheckPassword extends HttpServlet implements Servlet {
 								+ String.valueOf(objThisData.minLength)
 								+ " ");
 					objThisData.strReturnMessageC
-						+= new String("<BR>±K½Xªø«×¤£¥i¤Ö©ó" + String.valueOf(objThisData.minLength) + "¦ì ");
+						+= new String("<BR>å¯†ç¢¼é•·åº¦ä¸å¯å°‘æ–¼" + String.valueOf(objThisData.minLength) + "ä½ ");
 				} else {
 					objThisData.strReturnMessageE =
 						new String(
 							"Password is less then " + String.valueOf(objThisData.minLength) + " ");
 					objThisData.strReturnMessageC =
-						new String("±K½Xªø«×¤£¥i¤Ö©ó" + String.valueOf(objThisData.minLength) + "¦ì ");
+						new String("å¯†ç¢¼é•·åº¦ä¸å¯å°‘æ–¼" + String.valueOf(objThisData.minLength) + "ä½ ");
 				}
 			}
-			//ÀË®Ö¤å¼Æ¦r²V¦X
+			//æª¢æ ¸æ–‡æ•¸å­—æ··åˆ
 			for (i = 0; i < objThisData.strPassword.length(); i++) {
 				int iChar = objThisData.strPassword.charAt(i);
-				if (iChar >= 48 && iChar <= 57) //¼Æ¦r
+				if (iChar >= 48 && iChar <= 57) //æ•¸å­—
 					bHasNumeric = true;
-				if ((iChar >= 65 && iChar <= 90) || (iChar >= 97 && iChar <= 122)) //¤å¦r
+				if ((iChar >= 65 && iChar <= 90) || (iChar >= 97 && iChar <= 122)) //æ–‡å­—
 					bHasAlphabetic = true;
 			}
 			if (!bHasNumeric) {
@@ -255,11 +255,11 @@ public class CheckPassword extends HttpServlet implements Servlet {
 				if (objThisData.strReturnMessageC.length() != 0) {
 					objThisData.strReturnMessageE
 						+= new String("<BR>Password must contain at least one numeric ");
-					objThisData.strReturnMessageC += new String("<BR>±K½X¤¤¦Ü¤Ö­n¦³¤@­Ó¼Æ¦r ");
+					objThisData.strReturnMessageC += new String("<BR>å¯†ç¢¼ä¸­è‡³å°‘è¦æœ‰ä¸€å€‹æ•¸å­— ");
 				} else {
 					objThisData.strReturnMessageE =
 						new String("Password must contain at least one numeric ");
-					objThisData.strReturnMessageC = new String("±K½X¤¤¦Ü¤Ö­n¦³¤@­Ó¼Æ¦r ");
+					objThisData.strReturnMessageC = new String("å¯†ç¢¼ä¸­è‡³å°‘è¦æœ‰ä¸€å€‹æ•¸å­— ");
 				}
 			}
 			if (!bHasAlphabetic) {
@@ -267,14 +267,14 @@ public class CheckPassword extends HttpServlet implements Servlet {
 				if (objThisData.strReturnMessageC.length() != 0) {
 					objThisData.strReturnMessageE
 						+= new String("<BR>Password must contain at least one alphabetic ");
-					objThisData.strReturnMessageC += new String("<BR>±K½X¤¤¦Ü¤Ö­n¦³¤@­Ó¤å¦r ");
+					objThisData.strReturnMessageC += new String("<BR>å¯†ç¢¼ä¸­è‡³å°‘è¦æœ‰ä¸€å€‹æ–‡å­— ");
 				} else {
 					objThisData.strReturnMessageE =
 						new String("Password must contain at least one alphabetic ");
-					objThisData.strReturnMessageC = new String("±K½X¤¤¦Ü¤Ö­n¦³¤@­Ó¤å¦r ");
+					objThisData.strReturnMessageC = new String("å¯†ç¢¼ä¸­è‡³å°‘è¦æœ‰ä¸€å€‹æ–‡å­— ");
 				}
 			}
-			//¤£¥i¥H¼Æ¦r±aÀY
+			//ä¸å¯ä»¥æ•¸å­—å¸¶é ­
 			/*
 			if ((int) objThisData.strPassword.charAt(0) >= 48
 				&& (int) objThisData.strPassword.charAt(0) <= 57) {
@@ -282,29 +282,29 @@ public class CheckPassword extends HttpServlet implements Servlet {
 				if (objThisData.strReturnMessageC.length() != 0) {
 					objThisData.strReturnMessageE
 						+= new String("<BR>Password can not be started with numeric ");
-					objThisData.strReturnMessageC += new String("<BR>±K½X¤£¥i¥H¼Æ¦r±aÀY ");
+					objThisData.strReturnMessageC += new String("<BR>å¯†ç¢¼ä¸å¯ä»¥æ•¸å­—å¸¶é ­ ");
 				} else {
 					objThisData.strReturnMessageE =
 						new String("Password can not be started with numeric ");
-					objThisData.strReturnMessageC = new String("±K½X¤£¥i¥H¼Æ¦r±aÀY ");
+					objThisData.strReturnMessageC = new String("å¯†ç¢¼ä¸å¯ä»¥æ•¸å­—å¸¶é ­ ");
 				}
 			}
-			//¤£¥i¥H¼Æ¦rµ²§À
+			//ä¸å¯ä»¥æ•¸å­—çµå°¾
 			if ((int) objThisData.strPassword.charAt(objThisData.strPassword.length() - 1) >= 48
 				&& (int) objThisData.strPassword.charAt(objThisData.strPassword.length() - 1) <= 57) {
 				objThisData.iReturnCode = -105;
 				if (objThisData.strReturnMessageC.length() != 0) {
 					objThisData.strReturnMessageE
 						+= new String("<BR>Password can not be ended with numeric ");
-					objThisData.strReturnMessageC += new String("<BR>±K½X¤£¥i¥H¼Æ¦rµ²§À ");
+					objThisData.strReturnMessageC += new String("<BR>å¯†ç¢¼ä¸å¯ä»¥æ•¸å­—çµå°¾ ");
 				} else {
 					objThisData.strReturnMessageE =
 						new String("Password can not be ended with numeric ");
-					objThisData.strReturnMessageC = new String("±K½X¤£¥i¥H¼Æ¦rµ²§À ");
+					objThisData.strReturnMessageC = new String("å¯†ç¢¼ä¸å¯ä»¥æ•¸å­—çµå°¾ ");
 				}
 			}
 			*/
-			//¤£¥i©ó«e PASSWORD_CHECK_PASSWORD_COUNT ¦¸¬Û¦P
+			//ä¸å¯æ–¼å‰ PASSWORD_CHECK_PASSWORD_COUNT æ¬¡ç›¸åŒ
 			if (!objThisData.strUserType.equalsIgnoreCase("A")) {
 
 				strSql =
@@ -340,9 +340,9 @@ public class CheckPassword extends HttpServlet implements Servlet {
 											+ " times");
 								objThisData.strReturnMessageC
 									+= new String(
-										"<BR>±K½X¤£¥i¥H»P«e"
+										"<BR>å¯†ç¢¼ä¸å¯ä»¥èˆ‡å‰"
 											+ String.valueOf(objThisData.historyCount)
-											+ "¦¸¬Û¦P");
+											+ "æ¬¡ç›¸åŒ");
 							} else {
 								objThisData.strReturnMessageE =
 									new String(
@@ -351,9 +351,9 @@ public class CheckPassword extends HttpServlet implements Servlet {
 											+ " times");
 								objThisData.strReturnMessageC =
 									new String(
-										"±K½X¤£¥i¥H»P«e"
+										"å¯†ç¢¼ä¸å¯ä»¥èˆ‡å‰"
 											+ String.valueOf(objThisData.historyCount)
-											+ "¦¸¬Û¦P");
+											+ "æ¬¡ç›¸åŒ");
 							}
 							break;
 						}
@@ -369,13 +369,13 @@ public class CheckPassword extends HttpServlet implements Servlet {
 					bReturnStatus = false;
 				}
 			}
-			//Administrator ­n¥[±jÀË®Ö
+			//Administrator è¦åŠ å¼·æª¢æ ¸
 			/*
 			if (objThisData.strUserType.equalsIgnoreCase("A")) {
 				boolean bHasUpperCase = false;
 				boolean bHasLowerCase = false;
 			
-				//ªø«×­n PASSWORD_CHECK_MIN_LENGTH_ADM ¦ì
+				//é•·åº¦è¦ PASSWORD_CHECK_MIN_LENGTH_ADM ä½
 				if (objThisData.strPassword.length() < PASSWORD_CHECK_MIN_LENGTH_ADM) {
 					objThisData.iReturnCode = -107;
 					if (objThisData.strReturnMessageC.length() != 0) {
@@ -386,9 +386,9 @@ public class CheckPassword extends HttpServlet implements Servlet {
 									+ " ");
 						objThisData.strReturnMessageC
 							+= new String(
-								"<BR>Administrator±K½Xªø«×¤£¥i¤Ö©ó"
+								"<BR>Administratorå¯†ç¢¼é•·åº¦ä¸å¯å°‘æ–¼"
 									+ String.valueOf(PASSWORD_CHECK_MIN_LENGTH_ADM)
-									+ "¦ì ");
+									+ "ä½ ");
 					} else {
 						objThisData.strReturnMessageE =
 							new String(
@@ -397,17 +397,17 @@ public class CheckPassword extends HttpServlet implements Servlet {
 									+ " ");
 						objThisData.strReturnMessageC =
 							new String(
-								"Administrator±K½Xªø«×¤£¥i¤Ö©ó"
+								"Administratorå¯†ç¢¼é•·åº¦ä¸å¯å°‘æ–¼"
 									+ String.valueOf(PASSWORD_CHECK_MIN_LENGTH_ADM)
-									+ "¦ì ");
+									+ "ä½ ");
 					}
 				}
-				//¤j¤p¼g²V¦X
+				//å¤§å°å¯«æ··åˆ
 				for (i = 0; i < objThisData.strPassword.length(); i++) {
 					int iChar = objThisData.strPassword.charAt(i);
-					if ((iChar >= 65 && iChar <= 90)) //¤j¼g
+					if ((iChar >= 65 && iChar <= 90)) //å¤§å¯«
 						bHasUpperCase = true;
-					if ((iChar >= 97 && iChar <= 122)) //¤p¼g
+					if ((iChar >= 97 && iChar <= 122)) //å°å¯«
 						bHasLowerCase = true;
 				}
 				if (!bHasUpperCase || !bHasLowerCase) {
@@ -415,11 +415,11 @@ public class CheckPassword extends HttpServlet implements Servlet {
 					if (objThisData.strReturnMessageC.length() != 0) {
 						objThisData.strReturnMessageE
 							+= new String("<BR>Password of administrator must contain both upper and lower case ");
-						objThisData.strReturnMessageC += new String("<BR>Administratorªº±K½X¥²»İ¬O¤j¤p¼g²V¦X");
+						objThisData.strReturnMessageC += new String("<BR>Administratorçš„å¯†ç¢¼å¿…éœ€æ˜¯å¤§å°å¯«æ··åˆ");
 					} else {
 						objThisData.strReturnMessageE =
 							new String("Password of administrator must contain both upper and lower case ");
-						objThisData.strReturnMessageC = new String("Administratorªº±K½X¥²»İ¬O¤j¤p¼g²V¦X");
+						objThisData.strReturnMessageC = new String("Administratorçš„å¯†ç¢¼å¿…éœ€æ˜¯å¤§å°å¯«æ··åˆ");
 					}
 				}
 			}
@@ -438,12 +438,12 @@ public class CheckPassword extends HttpServlet implements Servlet {
 	}
 
 	/**
-	¨ç¼Æ¦WºÙ:	getInputParameter( Document xmlDom , DataCalss objThisData ) 
-	¨ç¼Æ¥\¯à:	±NClientºİ¶Ç¤J¤§¦UÄæ¦ì­È¦s¤JobjThisData¤¤
-	¶Ç¤J°Ñ¼Æ:	Document xmlDom : Client¶Ç¤J¤§¸ê®Æ
-				DataClass objThisData : ¥»µ{¦¡©Ò¦³ªºÄæ¦ì­È
-	¶Ç¦^­È:		­Y¦³¥ô¤@Äæ¦ì¿ù»~,¶Ç¦^false,§_«h¶Ç¦^true
-	­×§ï¬ö¿ı:	­×§ï¤é´Á	­×§ïªÌ	­×   §ï   ºK   ­n
+	å‡½æ•¸åç¨±:	getInputParameter( Document xmlDom , DataCalss objThisData ) 
+	å‡½æ•¸åŠŸèƒ½:	å°‡Clientç«¯å‚³å…¥ä¹‹å„æ¬„ä½å€¼å­˜å…¥objThisDataä¸­
+	å‚³å…¥åƒæ•¸:	Document xmlDom : Clientå‚³å…¥ä¹‹è³‡æ–™
+				DataClass objThisData : æœ¬ç¨‹å¼æ‰€æœ‰çš„æ¬„ä½å€¼
+	å‚³å›å€¼:		è‹¥æœ‰ä»»ä¸€æ¬„ä½éŒ¯èª¤,å‚³å›false,å¦å‰‡å‚³å›true
+	ä¿®æ”¹ç´€éŒ„:	ä¿®æ”¹æ—¥æœŸ	ä¿®æ”¹è€…	ä¿®   æ”¹   æ‘˜   è¦
 			---------	----------	-----------------------------------------
 	*/
 	private boolean getInputParameter(HttpServletRequest request, DataClass objThisData) {
@@ -454,7 +454,7 @@ public class CheckPassword extends HttpServlet implements Servlet {
 			strThisProgId + ":getInputParameter()",
 			"Enter");
 
-		//±N«eºİ¶Ç¨Ó¤§¸ê®ÆÂà¬° Document ª«¥ó
+		//å°‡å‰ç«¯å‚³ä¾†ä¹‹è³‡æ–™è½‰ç‚º Document ç‰©ä»¶
 		Document xmlDom = null;
 		org.xml.sax.InputSource inputSource = null;
 		try {
@@ -472,7 +472,7 @@ public class CheckPassword extends HttpServlet implements Servlet {
 
 			xmlDom = builder.build(inputSource);
 
-			//¨ú±oClientºİ¤§¸ê®Æ,¦s¤JDataClass¤¤
+			//å–å¾—Clientç«¯ä¹‹è³‡æ–™,å­˜å…¥DataClassä¸­
 			Element root = xmlDom.getRootElement();
 
 			objThisData.strSystemId = root.getChildTextTrim("systemId");
@@ -487,11 +487,11 @@ public class CheckPassword extends HttpServlet implements Servlet {
 			}
 
 			if (objThisData.strSystemId == null) {
-				objThisData.setLastError(strThisProgId + ":getInputParameter()", "systemId ¤£¥iªÅ¥Õ");
+				objThisData.setLastError(strThisProgId + ":getInputParameter()", "systemId ä¸å¯ç©ºç™½");
 				bReturnStatus = false;
 			}
 			if (objThisData.strUserId == null) {
-				objThisData.setLastError(strThisProgId + ":getInputParameter()", "userId ¤£¥iªÅ¥Õ");
+				objThisData.setLastError(strThisProgId + ":getInputParameter()", "userId ä¸å¯ç©ºç™½");
 				bReturnStatus = false;
 			}
 		} catch (IOException ex) {
@@ -516,12 +516,12 @@ public class CheckPassword extends HttpServlet implements Servlet {
 	}
 
 	/**
-	¨ç¼Æ¦WºÙ:	moveToXML(Document xmlDom,DataClass objThisData)
-	¨ç¼Æ¥\¯à:	±NResultSet¤¤¤§­ÈÂà¤Jxml¤¤
-	¶Ç¤J°Ñ¼Æ:	Document xmlDom				: ¶Ç¦^¤§xmlDom
-				DataClass objThisData		: ©Ò¦³«eºİÅÜ¼Æ¤§¸ê®Æµ²ºc
-	¶Ç ¦^ ­È:	strReturn		: ­Y¬°ªÅ¥Õ,«hªí¥Ü¦¨¥\.§_«h¶Ç¦^¿ù»~°T®§
-	­×§ï¬ö¿ı:	­×§ï¤é´Á	­×§ïªÌ	­×   §ï   ºK   ­n
+	å‡½æ•¸åç¨±:	moveToXML(Document xmlDom,DataClass objThisData)
+	å‡½æ•¸åŠŸèƒ½:	å°‡ResultSetä¸­ä¹‹å€¼è½‰å…¥xmlä¸­
+	å‚³å…¥åƒæ•¸:	Document xmlDom				: å‚³å›ä¹‹xmlDom
+				DataClass objThisData		: æ‰€æœ‰å‰ç«¯è®Šæ•¸ä¹‹è³‡æ–™çµæ§‹
+	å‚³ å› å€¼:	strReturn		: è‹¥ç‚ºç©ºç™½,å‰‡è¡¨ç¤ºæˆåŠŸ.å¦å‰‡å‚³å›éŒ¯èª¤è¨Šæ¯
+	ä¿®æ”¹ç´€éŒ„:	ä¿®æ”¹æ—¥æœŸ	ä¿®æ”¹è€…	ä¿®   æ”¹   æ‘˜   è¦
 			---------	----------	-----------------------------------------
 	*/
 	private boolean sendMessage(HttpServletResponse response, DataClass objThisData)
@@ -545,11 +545,11 @@ public class CheckPassword extends HttpServlet implements Servlet {
 	}
 
 	/**
-	¨ç¼Æ¦WºÙ:	writePasswordLog( DataClass objThisData )
-	¨ç¼Æ¥\¯à:	¬ö¿ı­×§ï±K½X
-	¶Ç¤J°Ñ¼Æ:	objThisData	: ©Ò¦³«eºİÅÜ¼Æ¤§¸ê®Æµ²ºc
-	¶Ç ¦^ ­È:	bReturnStatus :	true ¦¨¥\ , false : ¥¢±Ñ
-	­×§ï¬ö¿ı:	­×§ï¤é´Á	­×§ïªÌ	­×   §ï   ºK   ­n
+	å‡½æ•¸åç¨±:	writePasswordLog( DataClass objThisData )
+	å‡½æ•¸åŠŸèƒ½:	ç´€éŒ„ä¿®æ”¹å¯†ç¢¼
+	å‚³å…¥åƒæ•¸:	objThisData	: æ‰€æœ‰å‰ç«¯è®Šæ•¸ä¹‹è³‡æ–™çµæ§‹
+	å‚³ å› å€¼:	bReturnStatus :	true æˆåŠŸ , false : å¤±æ•—
+	ä¿®æ”¹ç´€éŒ„:	ä¿®æ”¹æ—¥æœŸ	ä¿®æ”¹è€…	ä¿®   æ”¹   æ‘˜   è¦
 			---------	----------	-----------------------------------------
 	*/
 	private boolean writePasswordLog(DataClass objThisData) {

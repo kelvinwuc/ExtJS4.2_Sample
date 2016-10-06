@@ -84,7 +84,7 @@ public class CheckPasswordClient extends RootClass {
 		if (docReturn == null) {
 			sa1[0] = "-99";
 			sa1[1] = "Error occurred when connect to server !";
-			sa1[2] = "µLªk¨ú±o¦^À³ !";
+			sa1[2] = "ç„¡æ³•å–å¾—å›æ‡‰ !";
 			return sa1;
 		}
 

@@ -3,7 +3,7 @@ package com.aegon.entactbat;
 /**
  * System   : CashWeb
  * 
- * Function : µn±bÀÉ
+ * Function : ç™»å¸³æª”
  * 
  * Remark   : 
  * 
@@ -19,53 +19,53 @@ package com.aegon.entactbat;
  * 
  * $Log: CapcshfDTO.java,v $
  * Revision 1.3  2013/12/24 06:16:27  MISSALLY
- * R00135---PA0024---CASH¦~«×±M®×
+ * R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ
  *
  *  
  */
 
 public class CapcshfDTO {
 	
-	//CAPCSHF,µn±b®Ö¾PÀÉ¸ê®Æ
-	private String EBKCD = "";//»È¦æ¥N½X
+	//CAPCSHF,ç™»å¸³æ ¸éŠ·æª”è³‡æ–™
+	private String EBKCD = "";//éŠ€è¡Œä»£ç¢¼
 
-	private String EATNO = "";//»È¦æ±b¸¹
+	private String EATNO = "";//éŠ€è¡Œå¸³è™Ÿ
 
-	private int EBKRMD = 0;//»È¦æ¶×´Ú¤é
+	private int EBKRMD = 0;//éŠ€è¡ŒåŒ¯æ¬¾æ—¥
 
-	private int EAEGDT = 0;//¥ş²y¤J±b¤é
+	private int EAEGDT = 0;//å…¨çƒå…¥å¸³æ—¥
 
-	private double ENTAMT = 0;//®Ö¾Pª÷ÃB
+	private double ENTAMT = 0;//æ ¸éŠ·é‡‘é¡
 
-	private String ECRSRC = "2";//®Ö¾P¨Ó·½
+	private String ECRSRC = "2";//æ ¸éŠ·ä¾†æº
 
-	private String ECRDAY = "0";//®Ö¾P±b§@·~¤é
+	private String ECRDAY = "0";//æ ¸éŠ·å¸³ä½œæ¥­æ—¥
 
-	private String EUSREM = "";//¨Ï¥ÎªÌµn±b³Æµù
+	private String EUSREM = "";//ä½¿ç”¨è€…ç™»å¸³å‚™è¨»
 
-	private String EUSREM2 = "";//µn±b³Æµù¢±
+	private String EUSREM2 = "";//ç™»å¸³å‚™è¨»ï¼’
 
-	private String CSHFAU = "EntActBatS";//¸ê®Æ²£¥ÍªÌ
+	private String CSHFAU = "EntActBatS";//è³‡æ–™ç”¢ç”Ÿè€…
 
-	private int CSHFAD = 0;//¸ê®Æ²£¥Í¤é´Á
+	private int CSHFAD = 0;//è³‡æ–™ç”¢ç”Ÿæ—¥æœŸ
 
-	private int CSHFAT = 0;//¸ê®Æ²£¥Í®É¶¡
+	private int CSHFAT = 0;//è³‡æ–™ç”¢ç”Ÿæ™‚é–“
 
-	private String CSHFUU = "";//¸ê®Æ§ó·sªÌ
+	private String CSHFUU = "";//è³‡æ–™æ›´æ–°è€…
 
-	private int CSHFUD = 0;//¸ê®Æ§ó·s¤é´Á
+	private int CSHFUD = 0;//è³‡æ–™æ›´æ–°æ—¥æœŸ
 
-	private int CSHFUT = 0;//¸ê®Æ§ó·s®É¶¡
+	private int CSHFUT = 0;//è³‡æ–™æ›´æ–°æ™‚é–“
 
-	private String CSHFCURR = "";//¹ô§O
+	private String CSHFCURR = "";//å¹£åˆ¥
 
-	private String CROTYPE = "0";//¸ê®ÆÃş§O
+	private String CROTYPE = "0";//è³‡æ–™é¡åˆ¥
 
-	private String CSHFPOCURR = "";//«O³æ¹ô§O
+	private String CSHFPOCURR = "";//ä¿å–®å¹£åˆ¥
 
-	private double CERRATE = 0;//¶×²v
+	private double CERRATE = 0;//åŒ¯ç‡
 
-	private double CENTAMTNT = 0;//¥x¹ôª÷ÃB
+	private double CENTAMTNT = 0;//å°å¹£é‡‘é¡
 
 	public String getEBKCD() {
 		return EBKCD;

@@ -49,7 +49,7 @@ import org.apache.log4j.Logger;
  * 
  * CVS History:
  * 
- * RD0397:20150904,Kelvin Wu,­×§ï¥I´Ú±b¸¹²M³æªº±Æ§Ç
+ * RD0397:20150904,Kelvin Wu,ä¿®æ”¹ä»˜æ¬¾å¸³è™Ÿæ¸…å–®çš„æ’åº
  * 
  * $$Log: DISBBean.java,v $
  * $Revision 1.63  2015/11/24 04:16:23  001946
@@ -62,41 +62,41 @@ import org.apache.log4j.Logger;
  * $RC0036-3
  * $
  * $Revision 1.60  2014/02/26 06:39:32  MISSALLY
- * $EB0537 --- ·s¼W¸U®õ»È¦æ¬°¥~¹ô«ü©w»È¦æ
+ * $EB0537 --- æ–°å¢è¬æ³°éŠ€è¡Œç‚ºå¤–å¹£æŒ‡å®šéŠ€è¡Œ
  * $
  * $Revision 1.59  2013/12/18 07:22:52  MISSALLY
- * $RB0302---·s¼W¥I´Ú¤è¦¡²{ª÷
+ * $RB0302---æ–°å¢ä»˜æ¬¾æ–¹å¼ç¾é‡‘
  * $
  * $Revision 1.58  2013/11/08 05:52:33  MISSALLY
- * $EB0194-PB0016-BC255§Q²vÅÜ°Ê«¬§Y´Á¦~ª÷«OÀI±M®×
+ * $EB0194-PB0016-BC255åˆ©ç‡è®Šå‹•å‹å³æœŸå¹´é‡‘ä¿éšªå°ˆæ¡ˆ
  * $
  * $Revision 1.57  2013/05/30 02:03:54  MISSALLY
- * $RA0064-CMP±M®×CASH°t¦X­×§ï
+ * $RA0064-CMPå°ˆæ¡ˆCASHé…åˆä¿®æ”¹
  * $
  * $Revision 1.56  2013/05/02 11:07:05  MISSALLY
- * $R10190 ¬ü¤¸¥¢®Ä«O³æ§@·~
+ * $R10190 ç¾å…ƒå¤±æ•ˆä¿å–®ä½œæ¥­
  * $
  * $Revision 1.55  2013/04/12 06:10:26  MISSALLY
- * $RA0074 FNEº¡´Á¥Í¦sª÷¨ü¯q¤H±b¤á¤Îµ¹¥I
+ * $RA0074 FNEæ»¿æœŸç”Ÿå­˜é‡‘å—ç›Šäººå¸³æˆ¶åŠçµ¦ä»˜
  * $
  * $Revision 1.54  2013/03/29 09:55:05  MISSALLY
- * $RB0062 PA0047 - ·s¼W«ü©w»È¦æ ¹ü¤Æ»È¦æ
+ * $RB0062 PA0047 - æ–°å¢æŒ‡å®šéŠ€è¡Œ å½°åŒ–éŠ€è¡Œ
  * $
  * $Revision 1.52  2013/01/23 07:53:06  MISSALLY
- * $R00135  ¨ú±oORNBSN§Ç¸¹
+ * $R00135  å–å¾—ORNBSNåºè™Ÿ
  * $
  * $Revision 1.51  2013/01/08 04:24:06  MISSALLY
- * $±N¤À¤äªºµ{¦¡Merge¦ÜHEAD
+ * $å°‡åˆ†æ”¯çš„ç¨‹å¼Mergeè‡³HEAD
  * $
  * $Revision 1.50.4.1  2012/08/31 01:21:31  MISSALLY
- * $RA0140---·s¼W¥üÂ×¬°¥~¹ô«ü©w¦æ
+ * $RA0140---æ–°å¢å…†è±ç‚ºå¤–å¹£æŒ‡å®šè¡Œ
  * $
  * $Revision 1.50  2012/05/18 09:47:35  MISSALLY
- * $R10314 CASH¨t²Î·|­p§@·~­×§ï
+ * $R10314 CASHç³»çµ±æœƒè¨ˆä½œæ¥­ä¿®æ”¹
  * $
  * $Revision 1.49  2012/03/23 02:48:22  MISSALLY
  * $R10285-P10025
- * $¦]À³¥Ç¨¾±M®×©ó¤ä¥I¥DÀÉ·s¼W²z½ß¨ü²z½s¸¹
+ * $å› æ‡‰çŠ¯é˜²å°ˆæ¡ˆæ–¼æ”¯ä»˜ä¸»æª”æ–°å¢ç†è³ å—ç†ç·¨è™Ÿ
  * $
  * $Revision 1.48  2012/01/16 01:28:30  MISSALLY
  * $QA0001
@@ -104,154 +104,154 @@ import org.apache.log4j.Logger;
  * $
  * $Revision 1.47  2012/01/13 02:16:36  MISSALLY
  * $QA0001
- * $­×¥¿¹J¨ì1231¬°«D¤u§@¤é®É·|¦^¶Ç1200
+ * $ä¿®æ­£é‡åˆ°1231ç‚ºéå·¥ä½œæ—¥æ™‚æœƒå›å‚³1200
  * $
  * $Revision 1.46  2011/10/21 10:04:37  MISSALLY
- * $R10260---¥~¹ô¶Ç²Î«¬«O³æ¥Í¦sª÷µ¹¥I§@·~
+ * $R10260---å¤–å¹£å‚³çµ±å‹ä¿å–®ç”Ÿå­˜é‡‘çµ¦ä»˜ä½œæ¥­
  * $
  * $Revision 1.45  2011/07/06 11:45:44  MISSALLY
  * $Q10180
- * $¼W¥[µ¹¥I³qª¾®ÑÀË®Ö¥\¯à
+ * $å¢åŠ çµ¦ä»˜é€šçŸ¥æ›¸æª¢æ ¸åŠŸèƒ½
  * $
  * $Revision 1.44  2011/06/02 10:28:07  MISSALLY
  * $Q90585 / R90884 / R90989
- * $CASH¨t²Î¶×°h³B²z§@·~·s¼W¶×°h­ì¦]Äæ¦ì¨Ã­×¥¿°h¶×©ú²Óªí
+ * $CASHç³»çµ±åŒ¯é€€è™•ç†ä½œæ¥­æ–°å¢åŒ¯é€€åŸå› æ¬„ä½ä¸¦ä¿®æ­£é€€åŒ¯æ˜ç´°è¡¨
  * $
  * $Revision 1.43  2011/04/22 01:46:26  MISSALLY
  * $R10068-P00026
- * $·s¼W¦w®õ»È¦æ¬°¥~¶×«ü©w¦æ¤âÄò¶O¤Î¤U¸üÀÉ³]©w
+ * $æ–°å¢å®‰æ³°éŠ€è¡Œç‚ºå¤–åŒ¯æŒ‡å®šè¡Œæ‰‹çºŒè²»åŠä¸‹è¼‰æª”è¨­å®š
  * $
  * $Revision 1.42  2011/04/14 01:41:28  MISJIMMY
- * $R00566--¤¸¤j»È¦æ·s¼W¶×´ÚÀÉ
+ * $R00566--å…ƒå¤§éŠ€è¡Œæ–°å¢åŒ¯æ¬¾æª”
  * $
  * $Revision 1.41  2010/11/23 07:02:28  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.40  2010/05/21 08:58:57  MISJIMMY
- * $R00217--§ó·s¶×´ÚÀÉ®×¤W­­ÃB
+ * $R00217--æ›´æ–°åŒ¯æ¬¾æª”æ¡ˆä¸Šé™é¡
  * $
  * $Revision 1.39  2009/12/03 04:15:47  missteven
- * $R90628 ²¼¾Ú®w¦s·s¼W
+ * $R90628 ç¥¨æ“šåº«å­˜æ–°å¢
  * $
  * $Revision 1.38  2009/01/21 02:04:53  misvanessa
- * $Q90020_¥Ó½Ğ­«¶}USER¨Ï¥ÎÂI¿ï¤è¦¡
+ * $Q90020_ç”³è«‹é‡é–‹USERä½¿ç”¨é»é¸æ–¹å¼
  * $
  * $Revision 1.37  2009/01/19 08:21:05  MISODIN
- * $Q80691 ¤¤«H¦P¦æ¬ÛÂà§PÂ_½Õ¾ã
+ * $Q80691 ä¸­ä¿¡åŒè¡Œç›¸è½‰åˆ¤æ–·èª¿æ•´
  * $
  * $Revision 1.36  2008/10/31 09:48:11  MISODIN
- * $R80413_À³¦¬±b´Ú¹O´ÁÂà¨ä¥L¦¬¤J
+ * $R80413_æ‡‰æ”¶å¸³æ¬¾é€¾æœŸè½‰å…¶ä»–æ”¶å…¥
  * $
  * $Revision 1.35  2008/09/17 01:49:30  MISODIN
- * $R80338 Åª¨ú¶×²vfor¥X¯Ç¶×´Ú¤À¿ı
+ * $R80338 è®€å–åŒ¯ç‡forå‡ºç´åŒ¯æ¬¾åˆ†éŒ„
  * $
  * $Revision 1.34  2008/09/03 02:11:38  misvanessa
- * $R80685_¤¤«H¤âÄò¶O½Õ­°¬°300
+ * $R80685_ä¸­ä¿¡æ‰‹çºŒè²»èª¿é™ç‚º300
  * $
  * $Revision 1.33  2008/08/21 09:17:01  misvanessa
- * $R80631_·s¼W­ì©l¥I´Ú¤è¦¡ (FOR FF)
+ * $R80631_æ–°å¢åŸå§‹ä»˜æ¬¾æ–¹å¼ (FOR FF)
  * $
  * $Revision 1.32  2008/08/12 06:56:50  misvanessa
- * $R80480_¤W®ü»È¦æ¥~¹ô¾ã§åÂà¦sÀÉ®×
+ * $R80480_ä¸Šæµ·éŠ€è¡Œå¤–å¹£æ•´æ‰¹è½‰å­˜æª”æ¡ˆ
  * $
  * $Revision 1.31  2008/08/06 06:55:48  MISODIN
- * $R80338 ½Õ¾ãCASH¨t²Î for ¥X¯Ç¥~¹ô¤@¹ï¤@»İ¨D
+ * $R80338 èª¿æ•´CASHç³»çµ± for å‡ºç´å¤–å¹£ä¸€å°ä¸€éœ€æ±‚
  * $
  * $Revision 1.30  2008/06/12 09:41:56  misvanessa
- * $R80300_¦¬³æ¦æÂà¥x·s,·s¼W¤W¶ÇÀÉ®×¤Î³øªí
+ * $R80300_æ”¶å–®è¡Œè½‰å°æ–°,æ–°å¢ä¸Šå‚³æª”æ¡ˆåŠå ±è¡¨
  * $
  * $Revision 1.29  2008/04/30 07:49:27  misvanessa
- * $R80300_¦¬³æ¦æÂà¥x·s,·s¼W¤U¸üÀÉ®×¤Î³øªí
+ * $R80300_æ”¶å–®è¡Œè½‰å°æ–°,æ–°å¢ä¸‹è¼‰æª”æ¡ˆåŠå ±è¡¨
  * $
  * $Revision 1.28  2008/03/21 07:35:58  misvanessa
- * $Q80223_¤£¤¹³\²Å¸¹
+ * $Q80223_ä¸å…è¨±ç¬¦è™Ÿ
  * $
  * $Revision 1.26  2008/03/05 02:19:00  MISODIN
- * $R80172 ½Õ¾ã¶×´ÚÀÉDownload File ´«¦æ¤º½X
+ * $R80172 èª¿æ•´åŒ¯æ¬¾æª”Download File æ›è¡Œå…§ç¢¼
  * $
  * $Revision 1.25  2008/03/03 08:38:57  MISODIN
- * $Q80110½Õ¾ã¬°§ì¨ú¦í©Ò¦a§}
+ * $Q80110èª¿æ•´ç‚ºæŠ“å–ä½æ‰€åœ°å€
  * $
  * $Revision 1.24  2008/02/25 09:39:33  misvanessa
- * $Q80122_¤U¤@¤u§@¤é­×¥¿
+ * $Q80122_ä¸‹ä¸€å·¥ä½œæ—¥ä¿®æ­£
  * $
  * $Revision 1.23  2007/10/30 02:03:25  MISVANESSA
- * $Q70494_¤ä¥I¹s,³q°T³B­×§ï
+ * $Q70494_æ”¯ä»˜é›¶,é€šè¨Šè™•ä¿®æ”¹
  * $
  * $Revision 1.22  2007/10/05 09:12:09  MISVANESSA
- * $R70770_ACTCD2 ÂX¦Ü 11 ½X
+ * $R70770_ACTCD2 æ“´è‡³ 11 ç¢¼
  * $
  * $Revision 1.21  2007/10/04 01:34:18  MISODIN
- * $R70477 ¥~¹ô«O³æ¶×´Ú¤âÄò¶O
+ * $R70477 å¤–å¹£ä¿å–®åŒ¯æ¬¾æ‰‹çºŒè²»
  * $
  * $Revision 1.20  2007/09/07 10:25:52  MISVANESSA
  * $R70455_TARGET OUT
  * $
  * $Revision 1.19  2007/08/28 01:38:54  MISVANESSA
- * $R70574_SPUL°t®§·s¼W¶×¥XÀÉ®×
+ * $R70574_SPULé…æ¯æ–°å¢åŒ¯å‡ºæª”æ¡ˆ
  * $
  * $Revision 1.18  2007/08/06 07:53:13  MISVANESSA
- * $R70605_¤j²³»È¦æ¨t²ÎÂà´«
+ * $R70605_å¤§çœ¾éŠ€è¡Œç³»çµ±è½‰æ›
  * $
  * $Revision 1.17  2007/08/03 09:50:33  MISODIN
- * $R70477 ¥~¹ô«O³æ¶×´Ú¤âÄò¶O
+ * $R70477 å¤–å¹£ä¿å–®åŒ¯æ¬¾æ‰‹çºŒè²»
  * $
  * $Revision 1.16  2007/06/08 07:57:48  MISVANESSA
- * $R70366_·|­p¬ì¥Ø©M¶×°h·|­p¬ì¥Ø­×§ï
+ * $R70366_æœƒè¨ˆç§‘ç›®å’ŒåŒ¯é€€æœƒè¨ˆç§‘ç›®ä¿®æ”¹
  * $
  * $Revision 1.15  2007/04/20 03:37:52  MISODIN
  * $R60713 FOR AWD
  * $
  * $Revision 1.14  2007/04/13 09:47:39  MISVANESSA
- * $R70292_°t®§¤ä²¼¥ó³W«h§ïÅÜ
+ * $R70292_é…æ¯æ”¯ç¥¨ä»¶è¦å‰‡æ”¹è®Š
  * $
  * $Revision 1.13  2007/03/16 01:42:47  MISVANESSA
- * $R70088_SPUL°t®§­×§ï¤âÄò¶Orule
+ * $R70088_SPULé…æ¯ä¿®æ”¹æ‰‹çºŒè²»rule
  * $
  * $Revision 1.12  2007/03/08 10:10:57  MISVANESSA
- * $R70088_SPUL°t®§­×§ï¤âÄò¶O
+ * $R70088_SPULé…æ¯ä¿®æ”¹æ‰‹çºŒè²»
  * $
  * $Revision 1.11  2007/03/06 01:31:50  MISVANESSA
- * $R70088_SPUL°t®§·s¼W«È¤á­t¾á¤âÄò¶O
+ * $R70088_SPULé…æ¯æ–°å¢å®¢æˆ¶è² æ“”æ‰‹çºŒè²»
  * $
  * $Revision 1.10  2007/02/08 03:25:26  MISVANESSA
- * $R70088_SPUL°t®§_·s¼WMETHOD
+ * $R70088_SPULé…æ¯_æ–°å¢METHOD
  * $
  * $Revision 1.9  2007/01/31 08:02:06  MISVANESSA
- * $R70088_SPUL°t®§
+ * $R70088_SPULé…æ¯
  * $
  * $Revision 1.8  2007/01/05 01:43:44  miselsa
- * $R60550_ getETable  ¼W¥[ ¨ú»È¦æ§O(¤T½X)ªº³B²z --> valueType =BANKS
+ * $R60550_ getETable  å¢åŠ  å–éŠ€è¡Œåˆ¥(ä¸‰ç¢¼)çš„è™•ç† --> valueType =BANKS
  * $
  * $Revision 1.7  2006/12/07 22:08:52  miselsa
- * $R60463¤ÎR60550­×§ïGETBATNO
+ * $R60463åŠR60550ä¿®æ”¹GETBATNO
  * $
  * $Revision 1.6  2006/11/30 09:37:36  MISVANESSA
- * $R60550_·s¼WSWIFT CODE&COUNTRY CODE
+ * $R60550_æ–°å¢SWIFT CODE&COUNTRY CODE
  * $
  * $Revision 1.5  2006/11/24 08:54:44  miselsa
- * $R60463¤ÎR60550 ¼W¥[getPFeeForD (°ê¥~¶×´Ú¤âÄò¶Oºâªk)
+ * $R60463åŠR60550 å¢åŠ getPFeeForD (åœ‹å¤–åŒ¯æ¬¾æ‰‹çºŒè²»ç®—æ³•)
  * $
  * $Revision 1.4  2006/10/31 09:40:38  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $Revision 1.3  2006/09/04 09:43:36  miselsa
- * $R60747_1.¾ã§å¶×´Ú¼W¥[¥X¯Ç½T»{¤é 2.¶×¥X³øªí¶×´Ú¤é´Á§ï¬°¥X¯Ç½T»{¤é 3.¤ä¥I¬d¸ß¥I´Ú¤é´Á¬°¥X¯Ç½T»{¤é
+ * $R60747_1.æ•´æ‰¹åŒ¯æ¬¾å¢åŠ å‡ºç´ç¢ºèªæ—¥ 2.åŒ¯å‡ºå ±è¡¨åŒ¯æ¬¾æ—¥æœŸæ”¹ç‚ºå‡ºç´ç¢ºèªæ—¥ 3.æ”¯ä»˜æŸ¥è©¢ä»˜æ¬¾æ—¥æœŸç‚ºå‡ºç´ç¢ºèªæ—¥
  * $
  * $Revision 1.2  2006/08/29 02:34:59  miselsa
- * $Q60159_getACTCD3¼W¥x¥[¥É¤s8083
+ * $Q60159_getACTCD3å¢å°åŠ ç‰å±±8083
  * $
  * $Revision 1.1  2006/06/29 09:40:13  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.22  2005/08/19 07:07:58  misangel
- * $R50427 : ¶×´Ú¥ó¨Ì³¡ªù+©m¦W+±b¸¹¦X¨Ö
+ * $R50427 : åŒ¯æ¬¾ä»¶ä¾éƒ¨é–€+å§“å+å¸³è™Ÿåˆä½µ
  * $
  * $Revision 1.1.2.20  2005/04/25 07:23:52  miselsa
  * $R30530
  * $
  * $Revision 1.1.2.19  2005/04/04 07:02:26  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -295,7 +295,7 @@ public class DISBBean extends RootClass {
 	}
 
 	/**
-	 *   strActionType = bank --> »È¦æ±b¸¹¤Î»È¦æ¤¤¤å¦WºÙ, ¶·°µjoin¨ú ET-VALUE ,ET-VALUE-DESC
+	 *   strActionType = bank --> éŠ€è¡Œå¸³è™ŸåŠéŠ€è¡Œä¸­æ–‡åç¨±, é ˆåšjoinå– ET-VALUE ,ET-VALUE-DESC
 	 */
 	public List getETable(String strValueType, String strActionType) {
 		return getETable(strValueType, strActionType, true);
@@ -337,7 +337,7 @@ public class DISBBean extends RootClass {
 				strSql += " LEFT OUTER JOIN CAPCCBF A2 ON SUBSTRING(A1.FLD0004, 1, 7) = A2.BKNO ";
 				strSql += " where A1.FLD0001='  ' AND A1.FLD0002 ='" + strValueType + "' ";
 				strSql += " AND SUBSTRING(A1.FLD0003,1,1) ='P' ";
-				//RD0397:20150904,Kelvin Wu,­×§ï¥I´Ú±b¸¹²M³æªº±Æ§Ç
+				//RD0397:20150904,Kelvin Wu,ä¿®æ”¹ä»˜æ¬¾å¸³è™Ÿæ¸…å–®çš„æ’åº
 				//strSql += " ORDER BY A1.FLD0004 ";
 			} else if (strActionType.equals("BANKFR")) {
 				strSql = "select distinct A1.FLD0002 AS FLD0002,SUBSTR(A1.FLD0004,1,30) AS FLD0003, CASE WHEN A2.BKNM IS NULL THEN '' ELSE A2.BKNM END AS FLD0004 ";
@@ -359,7 +359,7 @@ public class DISBBean extends RootClass {
 				strSql += " where A1.FLD0001='  ' AND A1.FLD0002 ='" + strValueType + "' ";
 				strSql += " ORDER BY FLD0003 ";
 			}
-			// R80132  ¹ô§O¬D¿ï
+			// R80132  å¹£åˆ¥æŒ‘é¸
 			else if (strActionType.equals("CASH")) {
 				strSql = "select FLD0002, FLD0003, FLD0004 ";
 				strSql += " from ORDUET ";
@@ -398,7 +398,7 @@ public class DISBBean extends RootClass {
 						String ETVDesc = rstResultSet.getString("FLD0004");
 						//log.info("ETType:" + ETType + ",ETValue:" + ETValue + ",ETVDesc:" + ETVDesc);
 						
-						//RD0382¤ÎRE0189:¥üÂ×¡B¥x·s¡B³Í°òOIU
+						//RD0382åŠRE0189:å…†è±ã€å°æ–°ã€å‡±åŸºOIU
 						if(!strActionType.equals("BANKDC") && !strActionType.equals("BANKFRC")) {
 							if ("0170701/07058016878".equals(CommonUtil
 									.AllTrim(ETValue))
@@ -431,7 +431,7 @@ public class DISBBean extends RootClass {
 
 									ETVDesc = CommonUtil.AllTrim(ETVDesc) + "-" + strBKCURR;
 									
-									//RD0382¤ÎRE0189:¥üÂ×¡B¥x·s¡B³Í°òOIU
+									//RD0382åŠRE0189:å…†è±ã€å°æ–°ã€å‡±åŸºOIU
 									if ("0170701/07058016878".equals(CommonUtil
 											.AllTrim(ETValue))
 											|| "8120687/068760020883".equals(CommonUtil
@@ -578,13 +578,13 @@ public class DISBBean extends RootClass {
 					Statement stmtStatement = conDb.createStatement();
 					ResultSet rstResultSet = stmtStatement.executeQuery(strSql);
 					if (rstResultSet.next()) {
-						strReturnMsg = "¸Ó¤ä²¼¥»¤w³Q¨Ï¥Î";
+						strReturnMsg = "è©²æ”¯ç¥¨æœ¬å·²è¢«ä½¿ç”¨";
 					}
 					rstResultSet.close();
 					stmtStatement.close();
 				}
 			} catch (Exception ex) {
-				strReturnMsg = "¬d¸ß¤ä²¼¥»¸ê°Tµo¥Í¿ù»~: " + ex;
+				strReturnMsg = "æŸ¥è©¢æ”¯ç¥¨æœ¬è³‡è¨Šç™¼ç”ŸéŒ¯èª¤: " + ex;
 				if (conDb != null)
 					dbFactory.releaseAS400Connection(conDb);
 			} finally {
@@ -675,7 +675,7 @@ public class DISBBean extends RootClass {
 					iDISBSeqNo = getSequenceNumber(strSysId, conDb);
 
 //					if (pstmtTmp.executeUpdate() != 1) {
-//						htReturnInfo.put("ReturnMsg", "²£¥Í¤ä¥I§Ç¥¢±Ñ");
+//						htReturnInfo.put("ReturnMsg", "ç”¢ç”Ÿæ”¯ä»˜åºå¤±æ•—");
 //						htReturnInfo.put("ReturnValue", "");
 //					} else {
 					strDISBSeqNoTemp = Integer.toString(iDISBSeqNo);
@@ -690,7 +690,7 @@ public class DISBBean extends RootClass {
 				}
 
 			} catch (Exception ex) {
-				htReturnInfo.put("returnMsg", "²£¥Í¤ä¥I§Ç¸¹¥¢±Ñ:" + ex);
+				htReturnInfo.put("returnMsg", "ç”¢ç”Ÿæ”¯ä»˜åºè™Ÿå¤±æ•—:" + ex);
 				htReturnInfo.put("ReturnValue", "");
 			}
 		}
@@ -734,14 +734,14 @@ public class DISBBean extends RootClass {
 			pstmtTmp = con.prepareStatement(strSql);
 
 			if (pstmtTmp.executeUpdate() < 1) {
-				strReturnMsg = "·s¼Wlog ¥¢±Ñ";
+				strReturnMsg = "æ–°å¢log å¤±æ•—";
 				log.warn(strReturnMsg);
 			} else {
 				strReturnMsg = "";
 			}
 			pstmtTmp.close();
 		} catch (SQLException e) {
-			strReturnMsg = "·s¼Wlog ¥¢±Ñ" + e;
+			strReturnMsg = "æ–°å¢log å¤±æ•—" + e;
 			log.error(e.getMessage(), e);
 		}
 		return strReturnMsg;
@@ -789,7 +789,7 @@ public class DISBBean extends RootClass {
 		Hashtable htReturnInfo = new Hashtable();
 		if (dbFactory == null || globalEnviron == null) {
 			setLastError(this.getClass().getName() + "getETable()", "The dbFactory is null, can't get Data.");
-		} else { //Q70494 §ì¨úÄæ¦ì¦PCAPSIL¤U¨Ó¸ê®Æ
+		} else { //Q70494 æŠ“å–æ¬„ä½åŒCAPSILä¸‹ä¾†è³‡æ–™
 			//Q70494strSql = "SELECT A1.FLD0002 AS FLD0002,A1.FLD0184 AS FLD0184,A1.FLD0185 AS FLD0185, A2.BD01 AS BD01,A2.BD03 AS BD03 " ;
 			//Q70494strSql += " FROM  ORDUPO A1 LEFT JOIN ";
 			//Q70494strSql += "  BRCCBD A2 ON SUBSTRING(A1.FLD0185, 1, 3) = A2.BD01 ";
@@ -809,7 +809,7 @@ public class DISBBean extends RootClass {
 						htReturnInfo.put("ReturnValue", strPolDiv);
 						htReturnInfo.put("RVSRVBH", strSRVBH);
 					} else {
-						htReturnInfo.put("ReturnMsg", "¨ú±o³æ¦ì¥¢±Ñ-¬dµL¸ê®Æ");
+						htReturnInfo.put("ReturnMsg", "å–å¾—å–®ä½å¤±æ•—-æŸ¥ç„¡è³‡æ–™");
 						htReturnInfo.put("ReturnValue", "");
 						htReturnInfo.put("RVSRVBH", "");
 					}
@@ -818,7 +818,7 @@ public class DISBBean extends RootClass {
 					stmtStatement.close();
 				}
 			} catch (Exception ex) {
-				htReturnInfo.put("ReturnMsg", "¨ú±o³æ¦ì¥¢±Ñ:" + ex);
+				htReturnInfo.put("ReturnMsg", "å–å¾—å–®ä½å¤±æ•—:" + ex);
 				htReturnInfo.put("ReturnValue", "");
 				htReturnInfo.put("RVSRVBH", "");
 			}
@@ -878,7 +878,7 @@ public class DISBBean extends RootClass {
 		if (dbFactory == null || globalEnviron == null) {
 			setLastError(this.getClass().getName() + "getPolMailOffice()", "The dbFactory is null, can't get Data.");
 		} else {
-			// Q80110 §ï§ì BILLAD, BILLZC
+			// Q80110 æ”¹æŠ“ BILLAD, BILLZC
 			//	strSql = " select a.pono,a.mailad,a.mailzc from ornbcl a ";
 			strSql = " select a.pono,a.billad,a.billzc from ornbcl a ";
 			strSql += " where a.pono ='" + strPolNo + "' ";
@@ -891,7 +891,7 @@ public class DISBBean extends RootClass {
 					Statement stmtStatement = conDb.createStatement();
 					ResultSet rstResultSet = stmtStatement.executeQuery(strSql);
 					if (rstResultSet.next()) {
-						// Q80110 §ï§ì BILLAD, BILLZC
+						// Q80110 æ”¹æŠ“ BILLAD, BILLZC
 						//		htPolMailAdd.put("mailzc",(String)rstResultSet.getString("mailzc").trim())
 						//		htPolMailAdd.put("mailad",(String)rstResultSet.getString("mailad").trim());
 						htPolMailAdd.put("mailzc", (String) rstResultSet.getString("billzc").trim());
@@ -934,7 +934,7 @@ public class DISBBean extends RootClass {
 					if (rstResultSet.next()) {
 						//  R60713
 						//	strServiceNm =  (String)rstResultSet.getString("fld0004").trim() + (String)rstResultSet.getString("fld0003").trim();
-						//strServiceNm = (String) rstResultSet.getString("fld0004").replace('¡@', ' ').trim() + (String) rstResultSet.getString("fld0003").replace('¡@', ' ').trim();
+						//strServiceNm = (String) rstResultSet.getString("fld0004").replace('ã€€', ' ').trim() + (String) rstResultSet.getString("fld0003").replace('ã€€', ' ').trim();
 						strServiceNm = CommonUtil.AllTrim(rstResultSet.getString("FLD0070"));
 					}
 					rstResultSet.close();
@@ -973,7 +973,7 @@ public class DISBBean extends RootClass {
 					if (rstResultSet.next()) {
 						//  R60713
 						//	strInsuredNm =  (String)rstResultSet.getString("fld0004").trim() + (String)rstResultSet.getString("fld0003").trim();
-						//strInsuredNm = (String) rstResultSet.getString("fld0004").replace('¡@', ' ').trim() + (String) rstResultSet.getString("fld0003").replace('¡@', ' ').trim();
+						//strInsuredNm = (String) rstResultSet.getString("fld0004").replace('ã€€', ' ').trim() + (String) rstResultSet.getString("fld0003").replace('ã€€', ' ').trim();
 						strInsuredNm = CommonUtil.AllTrim(rstResultSet.getString("FLD0070"));
 					}
 					rstResultSet.close();
@@ -1012,7 +1012,7 @@ public class DISBBean extends RootClass {
 					if (rstResultSet.next()) {
 						// R60713 
 						//	strInsuredNm =  (String)rstResultSet.getString("fld0004").trim() + (String)rstResultSet.getString("fld0003").trim();
-						//strInsuredNm = (String) rstResultSet.getString("fld0004").replace('¡@', ' ').trim() + (String) rstResultSet.getString("fld0003").replace('¡@', ' ').trim();
+						//strInsuredNm = (String) rstResultSet.getString("fld0004").replace('ã€€', ' ').trim() + (String) rstResultSet.getString("fld0003").replace('ã€€', ' ').trim();
 						strInsuredNm = CommonUtil.AllTrim(rstResultSet.getString("FLD0070"));
 					}
 					rstResultSet.close();
@@ -1049,7 +1049,7 @@ public class DISBBean extends RootClass {
 					Statement stmtStatement = conDb.createStatement();
 					ResultSet rstResultSet = stmtStatement.executeQuery(strSql);
 					if (rstResultSet.next()) {
-						strETableDesc = rstResultSet.getString("FLD0004").replace('¡@', ' ').trim();
+						strETableDesc = rstResultSet.getString("FLD0004").replace('ã€€', ' ').trim();
 					}
 					rstResultSet.close();
 					stmtStatement.close();
@@ -1109,7 +1109,7 @@ public class DISBBean extends RootClass {
 	}
 
 	/**
-	 * R60550 ·s¼W°ê§O½X
+	 * R60550 æ–°å¢åœ‹åˆ¥ç¢¼
 	 * @return List
 	 */
 	public List getCotryList() {
@@ -1152,8 +1152,8 @@ public class DISBBean extends RootClass {
 	}
 
 	/**
-	 * R60550 ·s¼WSWIFTÀÉ
-	 * RA0074 §ó´«ÀÉ®×¬°ORCHSWFT
+	 * R60550 æ–°å¢SWIFTæª”
+	 * RA0074 æ›´æ›æª”æ¡ˆç‚ºORCHSWFT
 	 * @return List
 	 */
 	public List getSWIFTList() {
@@ -1196,7 +1196,7 @@ public class DISBBean extends RootClass {
 	} //R60550 END
 
 	/**
-	 * Q90020 ·s¼WUSER LISTÀÉ
+	 * Q90020 æ–°å¢USER LISTæª”
 	 * @return List
 	 */
 	public List getUSERList() {
@@ -1241,7 +1241,7 @@ public class DISBBean extends RootClass {
 	 * @param strPMethod
 	 * @param iUpdDate		
 	 * @param iUpdTime
-	 * @param PBANK   R60550_R60463¥~¹ô¶×´Ú¬ÛÃö³B²z
+	 * @param PBANK   R60550_R60463å¤–å¹£åŒ¯æ¬¾ç›¸é—œè™•ç†
 	 * @return strPBatNo
 	 */
 	public String getPBatNo(String strPMethod, int iUpdDate, int iUpdTime, String PBANK) {
@@ -1252,7 +1252,7 @@ public class DISBBean extends RootClass {
 			if (strUpdDateTemp.length() < 7) {
 				strUpdDateTemp = "0" + strUpdDateTemp;
 			}
-			//R60550_R60463 ¶×´Ú§å¸¹¥[¤J»È¦æ¥N¸¹
+			//R60550_R60463 åŒ¯æ¬¾æ‰¹è™ŸåŠ å…¥éŠ€è¡Œä»£è™Ÿ
 			strPBatNo = strPMethod.trim() + strUpdDateTemp + PBANK.substring(0, 3) + Integer.toString(iUpdTime).trim();
 		} catch(Exception e){
 			log.error(e.getMessage(), e);
@@ -1263,61 +1263,61 @@ public class DISBBean extends RootClass {
 	}
 
 	/**
-		 * @param strBankCode ¥ş²y¥I´Ú»È¦æ
-		 * @param strBankCode «È¤á¤§¶×´Ú»È¦æ
-		 * @param iPAmt ¥I´Úª÷ÃB
-		 * @param strPMethod ¥I´Ú¤è¦¡
+		 * @param strBankCode å…¨çƒä»˜æ¬¾éŠ€è¡Œ
+		 * @param strBankCode å®¢æˆ¶ä¹‹åŒ¯æ¬¾éŠ€è¡Œ
+		 * @param iPAmt ä»˜æ¬¾é‡‘é¡
+		 * @param strPMethod ä»˜æ¬¾æ–¹å¼
 		 * @return iPFee
 		 */
 	public double getPFee(String strBankCode, String strRemitBankCode, double iPAmt, String strPMethod, String strSWIFT, String strSWITCH) {
-		// ¤âÄò¶Oªº­pºâ»İ¨Ì¥I´Ú¤è¦¡°Ï¤À«H¥Î¥d¤Î»È¦æ¶×´Úªº­pºâ
-		//¥[¤J¥~¹ô¶×´Ú(D)ªº­pºâ
-		log.info("getPFee:strPMethod¬O" + strPMethod);
+		// æ‰‹çºŒè²»çš„è¨ˆç®—éœ€ä¾ä»˜æ¬¾æ–¹å¼å€åˆ†ä¿¡ç”¨å¡åŠéŠ€è¡ŒåŒ¯æ¬¾çš„è¨ˆç®—
+		//åŠ å…¥å¤–å¹£åŒ¯æ¬¾(D)çš„è¨ˆç®—
+		log.info("getPFee:strPMethodæ˜¯" + strPMethod);
 		if (strPMethod.equals("D")) {
-			return getPFeeForD(strBankCode, strRemitBankCode, iPAmt, strSWIFT, strSWITCH); //¥I´Ú¤è¦¡¬°¥~¹ô¶×´Ú®É
+			return getPFeeForD(strBankCode, strRemitBankCode, iPAmt, strSWIFT, strSWITCH); //ä»˜æ¬¾æ–¹å¼ç‚ºå¤–å¹£åŒ¯æ¬¾æ™‚
 		} else {
-			return getPFeeForB(strBankCode, strRemitBankCode, iPAmt); //¥I´Ú¤è¦¡¬°»È¦æ®É
+			return getPFeeForB(strBankCode, strRemitBankCode, iPAmt); //ä»˜æ¬¾æ–¹å¼ç‚ºéŠ€è¡Œæ™‚
 		}
 	}
 
 	/**
-	 * @°ê¥~¶×´Ú¤âÄò¶Oºâªk
-	 * @param strBankCode ¥ş²y¥I´Ú»È¦æ
-	 * @param strRemitBankCode «È¤á¤§¶×´Ú»È¦æ
-	 * @param iPAmt ¥I´Úª÷ÃB
+	 * @åœ‹å¤–åŒ¯æ¬¾æ‰‹çºŒè²»ç®—æ³•
+	 * @param strBankCode å…¨çƒä»˜æ¬¾éŠ€è¡Œ
+	 * @param strRemitBankCode å®¢æˆ¶ä¹‹åŒ¯æ¬¾éŠ€è¡Œ
+	 * @param iPAmt ä»˜æ¬¾é‡‘é¡
 	 * @return iPFee
 	 * @return strSWIFTCODE
-	 * @return strSWITCH¬O§_°t®§©M§ë¸ê°_©l¤é«e
+	 * @return strSWITCHæ˜¯å¦é…æ¯å’ŒæŠ•è³‡èµ·å§‹æ—¥å‰
 	 */
 	private double getPFeeForD(String strBankCode, String strRemitBankCode, double iPAmt, String strSWIFT, String strSWITCH) {
 		int iPfee = 0;
-		String strBankCodeTp = ""; //¥ş²y¥I´Ú»È¦æ
+		String strBankCodeTp = ""; //å…¨çƒä»˜æ¬¾éŠ€è¡Œ
 		if (strBankCode.length() > 3) {
 			strBankCodeTp = strBankCode.substring(0, 3);
 		} else {
 			strBankCodeTp = strBankCode;
 		}
 		//Q80691
-		String strRemitBankCodeTp = ""; //¶×´Ú»È¦æ
+		String strRemitBankCodeTp = ""; //åŒ¯æ¬¾éŠ€è¡Œ
 		if (strRemitBankCode.length() > 3) {
 			strRemitBankCodeTp = strRemitBankCode.substring(0, 3);
 		} else {
 			strRemitBankCodeTp = strRemitBankCode;
 		}
 
-		if (strBankCodeTp.equals("822")) //¦p¬°¤¤«H«h¬° 500 ¤¸¥x¹ô,¦P¦æ¬ÛÂà°t®§,§ë¸ê°_©l¤é«e¤£¦¬¶×¶O
+		if (strBankCodeTp.equals("822")) //å¦‚ç‚ºä¸­ä¿¡å‰‡ç‚º 500 å…ƒå°å¹£,åŒè¡Œç›¸è½‰é…æ¯,æŠ•è³‡èµ·å§‹æ—¥å‰ä¸æ”¶åŒ¯è²»
 			{
 			//R80338 if ((!strSWIFT.equals("") && strSWIFT.substring(0,6).equals("CTCBTW")) || strSWITCH.equals("Y")) 
-			//Q80691 if ((!strSWIFT.equals("") && strSWIFT.substring(0,6).equals("CTCBTW"))) // R80338 ½Õ¾ã¬°¥u§PÂ_¬O§_¦P¦æ¬ÛÂà
+			//Q80691 if ((!strSWIFT.equals("") && strSWIFT.substring(0,6).equals("CTCBTW"))) // R80338 èª¿æ•´ç‚ºåªåˆ¤æ–·æ˜¯å¦åŒè¡Œç›¸è½‰
 			if ((!strSWIFT.equals("") && strSWIFT.substring(0, 6).equals("CTCBTW")) 
-				|| (strSWIFT.equals("") && strRemitBankCodeTp.equals("822"))) // Q80691 ½Õ¾ã§PÂ_¬O§_¦P¦æ¬ÛÂàªº±ø¥ó
+				|| (strSWIFT.equals("") && strRemitBankCodeTp.equals("822"))) // Q80691 èª¿æ•´åˆ¤æ–·æ˜¯å¦åŒè¡Œç›¸è½‰çš„æ¢ä»¶
 				iPfee = 0;
 			else
-				iPfee = 300; //R80685 ¤âÄò¶O½Õ¾ã 500 -> 300
-		} else if (strBankCodeTp.equals("007")) {	//¦p¬°¤@»È¦¬¨ú100 ¤¸¥x¹ô
+				iPfee = 300; //R80685 æ‰‹çºŒè²»èª¿æ•´ 500 -> 300
+		} else if (strBankCodeTp.equals("007")) {	//å¦‚ç‚ºä¸€éŠ€æ”¶å–100 å…ƒå°å¹£
 			iPfee = 100;
-		} else if (strBankCodeTp.equals("021")) {	//¦p¬°ªáºX«h¬° 10 ¤¸¬üª÷
-			//R70477 ªáºX¦P¦æ¬ÛÂà, «h¬°0
+		} else if (strBankCodeTp.equals("021")) {	//å¦‚ç‚ºèŠ±æ——å‰‡ç‚º 10 å…ƒç¾é‡‘
+			//R70477 èŠ±æ——åŒè¡Œç›¸è½‰, å‰‡ç‚º0
 			if ((!strSWIFT.equals("") && strSWIFT.substring(0, 4).equals("CITI")))
 				iPfee = 0;
 			else
@@ -1329,13 +1329,13 @@ public class DISBBean extends RootClass {
 	}
 
 	/**
-	 * @°ê¥~¶×´Ú¤âÄò¶Oºâªk(»È¦æ¦V«È¤á¦¬¨ú,«D¤½¥q¦V«È¤á¦¬¨ú)
-	 * @param strBankCode ¥ş²y¥I´Ú»È¦æ
-	 * @param iRPAYRATE ¥~¹ô¶×²v
+	 * @åœ‹å¤–åŒ¯æ¬¾æ‰‹çºŒè²»ç®—æ³•(éŠ€è¡Œå‘å®¢æˆ¶æ”¶å–,éå…¬å¸å‘å®¢æˆ¶æ”¶å–)
+	 * @param strBankCode å…¨çƒä»˜æ¬¾éŠ€è¡Œ
+	 * @param iRPAYRATE å¤–å¹£åŒ¯ç‡
 	 * @return iPFee
 	 */
 	public double getPFeeBEN(String strBankCode, double iRPAYRATE) {
-		String strBankCodeTp = ""; //¥ş²y¥I´Ú»È¦æ(¤ä¥I»È¦æ)
+		String strBankCodeTp = ""; //å…¨çƒä»˜æ¬¾éŠ€è¡Œ(æ”¯ä»˜éŠ€è¡Œ)
 		if (strBankCode.length() > 3) {
 			strBankCodeTp = strBankCode.substring(0, 3);
 		} else {
@@ -1345,14 +1345,14 @@ public class DISBBean extends RootClass {
 	}
 
 	/**
-	 * @°ê¥~¶×´Ú¤âÄò¶Oºâªk(»È¦æ¦V«È¤á¦¬¨ú,«D¤½¥q¦V«È¤á¦¬¨ú)
-	 * @param strBankCode ¥ş²y¥I´Ú»È¦æ
-	 * @param iRPAYRATE ¥~¹ô¶×²v
+	 * @åœ‹å¤–åŒ¯æ¬¾æ‰‹çºŒè²»ç®—æ³•(éŠ€è¡Œå‘å®¢æˆ¶æ”¶å–,éå…¬å¸å‘å®¢æˆ¶æ”¶å–)
+	 * @param strBankCode å…¨çƒä»˜æ¬¾éŠ€è¡Œ
+	 * @param iRPAYRATE å¤–å¹£åŒ¯ç‡
 	 * @return iPFee
 	 */
 	private double getBENFEE(String strBankCode, double iRPAYRATE) {
 		double iPfee = 0;
-		if (strBankCode.equals("007")) {	//¦p¬°¤@»È¦¬¨ú100 ¤¸¥x¹ô
+		if (strBankCode.equals("007")) {	//å¦‚ç‚ºä¸€éŠ€æ”¶å–100 å…ƒå°å¹£
 			iPfee = 100 / iRPAYRATE;
 		} else {
 			iPfee = 0;
@@ -1361,24 +1361,24 @@ public class DISBBean extends RootClass {
 	}
 
 	/**
-	 * ¨ú±o (¥x¹ô) ¶×´Ú¤âÄò¶O <p>
-	 * µù ¡GR00217 ¥HÅª¨ú table (BANKFEE) ªº¤è¦¡¨Ó¨ú¥N­ì¦³µ{¦¡­pºâ³W«h <br>
-	 *    ­ì¦³µ{¦¡§ï¬° {@link #getPFeeForB_old(String, String, double)} <p>
+	 * å–å¾— (å°å¹£) åŒ¯æ¬¾æ‰‹çºŒè²» <p>
+	 * è¨» ï¼šR00217 ä»¥è®€å– table (BANKFEE) çš„æ–¹å¼ä¾†å–ä»£åŸæœ‰ç¨‹å¼è¨ˆç®—è¦å‰‡ <br>
+	 *    åŸæœ‰ç¨‹å¼æ”¹ç‚º {@link #getPFeeForB_old(String, String, double)} <p>
 	 * 
-	 * @¶×´Ú¤âÄò¶Oºâªk
-	 * @param strBankCode ¥ş²y¥I´Ú»È¦æ
-	 * @param strBankCode «È¤á¤§¶×´Ú»È¦æ
-	 * @param iPAmt ¥I´Úª÷ÃB
-	 * @return iPFee Åª¨ú¦¨¥\¦^¶Ç³]©wªºª÷ÃB, Åª¨ú¤£¨ì¦^ -1
+	 * @åŒ¯æ¬¾æ‰‹çºŒè²»ç®—æ³•
+	 * @param strBankCode å…¨çƒä»˜æ¬¾éŠ€è¡Œ
+	 * @param strBankCode å®¢æˆ¶ä¹‹åŒ¯æ¬¾éŠ€è¡Œ
+	 * @param iPAmt ä»˜æ¬¾é‡‘é¡
+	 * @return iPFee è®€å–æˆåŠŸå›å‚³è¨­å®šçš„é‡‘é¡, è®€å–ä¸åˆ°å› -1
 	 */
 	public double getPFeeForB(String strBankCode, String strRemitBankCode, double iPAmt) {
 		return getPFeeForB(strBankCode, strRemitBankCode, iPAmt, "NT");
 	}
 
 	public double getPFeeForB(String strBankCode, String strRemitBankCode, double iPAmt, String currCode) {
-		log.info("strBankCode¬O" + strBankCode + ",strRemitBankCode¬O" + strRemitBankCode);
-		String strBankCodeTp = ""; //¥ş²y¥I´Ú»È¦æ
-		String strRemitBankCodeTp = ""; //«È¤á¤§¶×´Ú»È¦æ
+		log.info("strBankCodeæ˜¯" + strBankCode + ",strRemitBankCodeæ˜¯" + strRemitBankCode);
+		String strBankCodeTp = ""; //å…¨çƒä»˜æ¬¾éŠ€è¡Œ
+		String strRemitBankCodeTp = ""; //å®¢æˆ¶ä¹‹åŒ¯æ¬¾éŠ€è¡Œ
 
 		if (strBankCode.length() > 3) {
 			strBankCodeTp = strBankCode.substring(0, 3);
@@ -1387,20 +1387,20 @@ public class DISBBean extends RootClass {
 		}
 
 		if (strRemitBankCode.length() > 3) {
-			log.info("strRemitBankCode.length() > 3 : strRemitBankCode.length()¬O" +  strRemitBankCode.length());
+			log.info("strRemitBankCode.length() > 3 : strRemitBankCode.length()æ˜¯" +  strRemitBankCode.length());
 			strRemitBankCodeTp = strRemitBankCode.substring(0, 3);
 		} else {
-			log.info("strRemitBankCode.length() <= 3 : strRemitBankCode.length()¬O" +  strRemitBankCode.length());
+			log.info("strRemitBankCode.length() <= 3 : strRemitBankCode.length()æ˜¯" +  strRemitBankCode.length());
 			strRemitBankCodeTp = strRemitBankCode;
 		}
 		
-		log.info("ÀË¬d¥I´Ú»È¦æ¤Î¶×´Ú»È¦æ¬O§_¬Û¦P:strBankCodeTp¬O" + strBankCodeTp + ",strRemitBankCodeTp¬O" + strRemitBankCodeTp);
+		log.info("æª¢æŸ¥ä»˜æ¬¾éŠ€è¡ŒåŠåŒ¯æ¬¾éŠ€è¡Œæ˜¯å¦ç›¸åŒ:strBankCodeTpæ˜¯" + strBankCodeTp + ",strRemitBankCodeTpæ˜¯" + strRemitBankCodeTp);
 		if (strBankCodeTp.equals(strRemitBankCodeTp)) {
-			// ¦p¥I´Ú»È¦æ¤Î¶×´Ú»È¦æ¬Û¦P«h¤âÄò¶O¬°0
-			log.info("ÀË¬d¥I´Ú»È¦æ¤Î¶×´Ú»È¦æ¬O§_¬Û¦P:strBankCodeTp¬O" + strBankCodeTp + ",strRemitBankCodeTp¬O" + strRemitBankCodeTp + "¬Û¦P!¶×¶O=0");
+			// å¦‚ä»˜æ¬¾éŠ€è¡ŒåŠåŒ¯æ¬¾éŠ€è¡Œç›¸åŒå‰‡æ‰‹çºŒè²»ç‚º0
+			log.info("æª¢æŸ¥ä»˜æ¬¾éŠ€è¡ŒåŠåŒ¯æ¬¾éŠ€è¡Œæ˜¯å¦ç›¸åŒ:strBankCodeTpæ˜¯" + strBankCodeTp + ",strRemitBankCodeTpæ˜¯" + strRemitBankCodeTp + "ç›¸åŒ!åŒ¯è²»=0");
 			return 0;
 		}
-		log.info("ÀË¬d¥I´Ú»È¦æ¤Î¶×´Ú»È¦æ¬O§_¬Û¦P:strBankCodeTp¬O" + strBankCodeTp + ",strRemitBankCodeTp¬O" + strRemitBankCodeTp + "¤£¬Û¦P!¶×¶O­pºâ¤¤....");
+		log.info("æª¢æŸ¥ä»˜æ¬¾éŠ€è¡ŒåŠåŒ¯æ¬¾éŠ€è¡Œæ˜¯å¦ç›¸åŒ:strBankCodeTpæ˜¯" + strBankCodeTp + ",strRemitBankCodeTpæ˜¯" + strRemitBankCodeTp + "ä¸ç›¸åŒ!åŒ¯è²»è¨ˆç®—ä¸­....");
 
 		if (currCode == null || currCode.length() == 0)
 			currCode = "NT";
@@ -1411,7 +1411,7 @@ public class DISBBean extends RootClass {
 		ResultSet result1 = null;
 		ResultSet result2 = null;
 		try {
-			// ¥ı¬d³Ì¤j­È, ¥²­nªº¸Ü­n¤À¬q
+			// å…ˆæŸ¥æœ€å¤§å€¼, å¿…è¦çš„è©±è¦åˆ†æ®µ
 			String sql =
 				"SELECT FLD004, FLD005, FLD006, FLD007 "
 					+ " FROM BANKFEE "
@@ -1421,7 +1421,7 @@ public class DISBBean extends RootClass {
 			stat1 = conn.prepareStatement(sql);
 			stat1.setString(1, currCode);
 			stat1.setString(2, currCode);
-			log.info("¶×¶O­pºâ¤¤(#1):" + sql + ",FLD002¬O" + currCode);
+			log.info("åŒ¯è²»è¨ˆç®—ä¸­(#1):" + sql + ",FLD002æ˜¯" + currCode);
 			result1 = stat1.executeQuery();
 			if (!result1.next()) // not found
 				return -1;
@@ -1434,8 +1434,8 @@ public class DISBBean extends RootClass {
 				partialFee = ((int) (iPAmt / maxAmt)) * getPFeeByBankId(strBankCodeTp, strRemitBankCodeTp, result1);
 
 			if (remainder == 0 && partialFee > 0){
-				// ¾ã°£³Ì¤j¶×´Úª÷ÃB (­è­è¦n¼Æ), ¤£»İ¦Aºâ¨ä¾l³¡¥÷
-				log.info("¶×¶O­pºâ§¹¦¨partialFee:" + partialFee + ",¾ã°£³Ì¤j¶×´Úª÷ÃB (­è­è¦n¼Æ), ¤£»İ¦Aºâ¨ä¾l³¡¥÷");
+				// æ•´é™¤æœ€å¤§åŒ¯æ¬¾é‡‘é¡ (å‰›å‰›å¥½æ•¸), ä¸éœ€å†ç®—å…¶é¤˜éƒ¨ä»½
+				log.info("åŒ¯è²»è¨ˆç®—å®ŒæˆpartialFee:" + partialFee + ",æ•´é™¤æœ€å¤§åŒ¯æ¬¾é‡‘é¡ (å‰›å‰›å¥½æ•¸), ä¸éœ€å†ç®—å…¶é¤˜éƒ¨ä»½");
 				return partialFee;
 			}				
 
@@ -1444,21 +1444,21 @@ public class DISBBean extends RootClass {
 			stat2.setString(1, currCode);
 			stat2.setDouble(2, remainder);
 			stat2.setDouble(3, remainder);
-			log.info("¶×¶O­pºâ¤¤(#2):" + sql + ",FLD002¬O" + currCode + ",FLD003¬O" + remainder + "FLD004¬O" + remainder);
+			log.info("åŒ¯è²»è¨ˆç®—ä¸­(#2):" + sql + ",FLD002æ˜¯" + currCode + ",FLD003æ˜¯" + remainder + "FLD004æ˜¯" + remainder);
 			result2 = stat2.executeQuery();
-			// ¦pªG§ä¤£¨ì³]©w, ¦^¶Ç -1
+			// å¦‚æœæ‰¾ä¸åˆ°è¨­å®š, å›å‚³ -1
 			if (!result2.next())
 				return -1;
 
-			//Àu´f¶×¶O ©Î ¤@¯ë¶×¶O			
+			//å„ªæƒ åŒ¯è²» æˆ– ä¸€èˆ¬åŒ¯è²»			
 			double retFee = partialFee + getPFeeByBankId(strBankCodeTp, strRemitBankCodeTp, result2);
-			log.info("¶×¶O­pºâ§¹¦¨retFee:" + retFee + ",Àu´f¶×¶O ©Î ¤@¯ë¶×¶O");
+			log.info("åŒ¯è²»è¨ˆç®—å®ŒæˆretFee:" + retFee + ",å„ªæƒ åŒ¯è²» æˆ– ä¸€èˆ¬åŒ¯è²»");
 			return retFee;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			// ¬°¤F¤£§ï API, §ï¥á RuntimeException
-			throw new RuntimeException("Åª¨ú¶×´Ú¤âÄò¶O¥¢±Ñ¡Amsg=" + e.getMessage());
+			// ç‚ºäº†ä¸æ”¹ API, æ”¹ä¸Ÿ RuntimeException
+			throw new RuntimeException("è®€å–åŒ¯æ¬¾æ‰‹çºŒè²»å¤±æ•—ï¼Œmsg=" + e.getMessage());
 		} finally {
 			try { if (result1 != null) result1.close(); } catch (Exception e) {}
 			try { if (result2 != null) result2.close(); } catch (Exception e) {}
@@ -1477,22 +1477,22 @@ public class DISBBean extends RootClass {
 
 	public double getPFeeForB_old(String strBankCode, String strRemitBankCode, double iPAmt) {
 		double iPFee = 0;
-		String strBankCodeTp = ""; //¥ş²y¥I´Ú»È¦æ
-		String strRemitBankCodeTp = ""; //«È¤á¤§¶×´Ú»È¦æ
+		String strBankCodeTp = ""; //å…¨çƒä»˜æ¬¾éŠ€è¡Œ
+		String strRemitBankCodeTp = ""; //å®¢æˆ¶ä¹‹åŒ¯æ¬¾éŠ€è¡Œ
 
-		//Àu´f¶×¶O
-		double iSBasicFee = 10; // °ò¥»¶×¶O
-		double iSMinAMT = 2000000; //°ò¥»¶×´ÚÃB«×
-		double iSRange = 1000000; //¥[ÃB°Ï¶¡
-		double iSAddFee = 5; //²Ö¥[5¤¸
+		//å„ªæƒ åŒ¯è²»
+		double iSBasicFee = 10; // åŸºæœ¬åŒ¯è²»
+		double iSMinAMT = 2000000; //åŸºæœ¬åŒ¯æ¬¾é¡åº¦
+		double iSRange = 1000000; //åŠ é¡å€é–“
+		double iSAddFee = 5; //ç´¯åŠ 5å…ƒ
 
-		//¤@¯ë¶×¶O
-		double iNBasicFee = 30; // °ò¥»¶×¶O
-		double iNMinAMT = 2000000; //°ò¥»¶×´ÚÃB«×
-		double iNRange = 1000000; //¥[ÃB°Ï¶¡
-		//double iNMaxAMT = 20000000 ; //³Ì¤j¶×´ÚÃB«×
-		double iNMaxAMT = 50000000; //³Ì¤j¶×´ÚÃB«×
-		double iNAddFee = 10; //²Ö¥[10¤¸
+		//ä¸€èˆ¬åŒ¯è²»
+		double iNBasicFee = 30; // åŸºæœ¬åŒ¯è²»
+		double iNMinAMT = 2000000; //åŸºæœ¬åŒ¯æ¬¾é¡åº¦
+		double iNRange = 1000000; //åŠ é¡å€é–“
+		//double iNMaxAMT = 20000000 ; //æœ€å¤§åŒ¯æ¬¾é¡åº¦
+		double iNMaxAMT = 50000000; //æœ€å¤§åŒ¯æ¬¾é¡åº¦
+		double iNAddFee = 10; //ç´¯åŠ 10å…ƒ
 
 		if (strBankCode.length() > 3) {
 			strBankCodeTp = strBankCode.substring(0, 3);
@@ -1506,12 +1506,12 @@ public class DISBBean extends RootClass {
 		}
 
 		if (strBankCodeTp.equals(strRemitBankCodeTp)) {
-			// ¦p¥I´Ú»È¦æ¤Î¶×´Ú»È¦æ¬Û¦P«h¤âÄò¶O¬°0
+			// å¦‚ä»˜æ¬¾éŠ€è¡ŒåŠåŒ¯æ¬¾éŠ€è¡Œç›¸åŒå‰‡æ‰‹çºŒè²»ç‚º0
 			iPFee = 0;
 			return iPFee;
 		}
 
-		if (strBankCodeTp.equals("822")) {	//Àu´f¶×¶O
+		if (strBankCodeTp.equals("822")) {	//å„ªæƒ åŒ¯è²»
 			if (iPAmt >= 0 && iPAmt <= iSMinAMT) {
 				iPFee = iSBasicFee;
 			} else {
@@ -1525,7 +1525,7 @@ public class DISBBean extends RootClass {
 				iPFee = iSBasicFee + iSRangeCount * iSAddFee;
 			}
 
-		} else {	//¤@¯ë¶×¶O
+		} else {	//ä¸€èˆ¬åŒ¯è²»
 			if (iPAmt >= 0 && iPAmt <= iNMinAMT) {
 				iPFee = iNBasicFee;
 			} else if (iPAmt > iNMinAMT && iPAmt <= iNMaxAMT) {
@@ -1536,7 +1536,7 @@ public class DISBBean extends RootClass {
 					iNRangeCount = (int) (iPAmt - iNMinAMT) / (int) iNRange + 1;
 				}
 				iPFee = iNBasicFee + iNRangeCount * iNAddFee;
-			} else if (iPAmt > iNMaxAMT) //¶×´ÚÃB«×¤£±o®t¹LiNMaxAMT
+			} else if (iPAmt > iNMaxAMT) //åŒ¯æ¬¾é¡åº¦ä¸å¾—å·®éiNMaxAMT
 				{
 				iPFee = -1;
 			}
@@ -1547,11 +1547,11 @@ public class DISBBean extends RootClass {
 
 	// R80338 READ  CAPBNKF
 	/**
-	 * @¥X¯Ç¶×´Ú·|­p¬ì¥Ø
-	 * @param strBankCode »È¦æ¥N½X x(03)
-	 * @param strBKAcctNo »È¦æ±b¸¹
-	 * @param strCurrency    ¹ô§O
-	 * @return  GLACT         ·|­p¬ì¥Ø 
+	 * @å‡ºç´åŒ¯æ¬¾æœƒè¨ˆç§‘ç›®
+	 * @param strBankCode éŠ€è¡Œä»£ç¢¼ x(03)
+	 * @param strBKAcctNo éŠ€è¡Œå¸³è™Ÿ
+	 * @param strCurrency    å¹£åˆ¥
+	 * @return  GLACT         æœƒè¨ˆç§‘ç›® 
 	 */
 	//R80413 public String getACTCDFinRmt(String strBankCode,String strBKAcctNo)
 	public String getACTCDFinRmt(String strBankCode, String strBKAcctNo, String strCurrency) {
@@ -1576,7 +1576,7 @@ public class DISBBean extends RootClass {
 					System.out.println("DISBBean.getACTCDFinRmt():" + strSql);
 					ResultSet rstResultSet = stmtStatement.executeQuery(strSql);
 					if (rstResultSet.next()) {
-						strACTCDFinRmt = (String) rstResultSet.getString("GLACT").replace('¡@', ' ').trim();
+						strACTCDFinRmt = (String) rstResultSet.getString("GLACT").replace('ã€€', ' ').trim();
 					}
 					rstResultSet.close();
 					stmtStatement.close();
@@ -1596,11 +1596,11 @@ public class DISBBean extends RootClass {
 
 	// R80338 READ  ORDUER
 	/**
-	 * @¶×²v
-	 * @param strERCURRCODE           ¹ô§O¥N½X x(02)
-	 * @param strEREFFDATE                ¶×²v¤é´Á
-	 * @param strDataType                     ¸ê®ÆÃş§O  S--> Sell Price , B--> Buy Price
-	 * @return  ERRate                            ¶×²v 
+	 * @åŒ¯ç‡
+	 * @param strERCURRCODE           å¹£åˆ¥ä»£ç¢¼ x(02)
+	 * @param strEREFFDATE                åŒ¯ç‡æ—¥æœŸ
+	 * @param strDataType                     è³‡æ–™é¡åˆ¥  S--> Sell Price , B--> Buy Price
+	 * @return  ERRate                            åŒ¯ç‡ 
 	 */
 	public double getERRate(String strERCURRCODE, String strEREFFDATE, String strDataType) {
 		double iERRATE = 0;
@@ -1646,7 +1646,7 @@ public class DISBBean extends RootClass {
 	}
 	// R80338 END		
 	
-	//RD0440-·s¼W¥~¹ô«ü©w»È¦æ-¥xÆW»È¦æ
+	//RD0440-æ–°å¢å¤–å¹£æŒ‡å®šéŠ€è¡Œ-å°ç£éŠ€è¡Œ
 	public double getERRate004(String strERCURRCODE, String strEREFFDATE) {
 		double iERRATE = 0;
 		String strSql = "";
@@ -1706,7 +1706,7 @@ public class DISBBean extends RootClass {
 			strACTCD3 = "8225";
 		else if (strCBkNoTemp.equals("812"))
 			strACTCD3 = "8123";
-		else if (strCBkNoTemp.equals("808")) //Q60159¼W¥[¥É¤s»È¦æ¥N½X
+		else if (strCBkNoTemp.equals("808")) //Q60159å¢åŠ ç‰å±±éŠ€è¡Œä»£ç¢¼
 			strACTCD3 = "8083";
 		else
 			strACTCD3 = "0000";
@@ -1766,7 +1766,7 @@ public class DISBBean extends RootClass {
 	 */
 	public String getACTCD2(String inputCURR) {
 		String strACTCD2 = "";
-		//R70770 ZZ§ï¬°ZZZ 
+		//R70770 ZZæ”¹ç‚ºZZZ 
 		if (inputCURR.equals("TWD"))
 			strACTCD2 = "10172000ZZZ";
 		else if (inputCURR.equals("USD"))
@@ -1793,7 +1793,7 @@ public class DISBBean extends RootClass {
 
 	/**
 	 * @param getSafeCode807 - R70088
-	 * @param returnType, ºâ¥ÃÂ×»È¦æ¦w¥ş½X:«È¤á±b¸¹.¥æ©öª÷ÃB.¶Ã½X§Ç¦C¥[Á`ºâ¥X»Pmaping table±o¥X
+	 * @param returnType, ç®—æ°¸è±éŠ€è¡Œå®‰å…¨ç¢¼:å®¢æˆ¶å¸³è™Ÿ.äº¤æ˜“é‡‘é¡.äº‚ç¢¼åºåˆ—åŠ ç¸½ç®—å‡ºèˆ‡maping tableå¾—å‡º
 	 * @return
 	 */
 	public String getSafeCode807(String inPACCT, String inAMT) {
@@ -1842,7 +1842,7 @@ public class DISBBean extends RootClass {
 			addAMT[i] = Integer.parseInt(inAMT.substring(i, i + 1));
 		}
 		addAMT[13] = 5;
-		//Á`©M
+		//ç¸½å’Œ
 		for (int i = 0; i < 14; i++) {
 			sumAMT[i] = addNUM[i] + addPACCT[i] + addAMT[i];
 			safeCode = safeCode + compNUM[(sumAMT[i] - 1)];
@@ -1852,7 +1852,7 @@ public class DISBBean extends RootClass {
 
 	/**
 	 * @param writeTOfile - R70088
-	 * @param returnType, ¶×¥X¼gTXTÀÉ
+	 * @param returnType, åŒ¯å‡ºå¯«TXTæª”
 	 * @return
 	 */
 	public String writeTOfile(String[][] downloadData, String BATNO, String selCURR, String remitKind, String strLogonUser) {
@@ -1863,7 +1863,7 @@ public class DISBBean extends RootClass {
 		FileOutputStream os = null;
 
 		try {
-			//«Ø¥ß¥Ø¿ı
+			//å»ºç«‹ç›®éŒ„
 			String fileROOT = globalEnviron.getAppPath() + "DISB\\DISBDownData\\";
 			System.out.println("fileROOT : " + fileROOT);
 
@@ -1879,8 +1879,8 @@ public class DISBBean extends RootClass {
 			}
 			System.out.println(export);
 
-			//³B²zÀÉ¦W
-			//R80300 «H¥Î¥dÀÉ®×:
+			//è™•ç†æª”å
+			//R80300 ä¿¡ç”¨å¡æª”æ¡ˆ:
 			if (BATNO.substring(0, 1).equals("C")) {
 				String strMD = BATNO.substring(4, 8);
 				int iY = Integer.parseInt(BATNO.substring(1, 4)) + 1911;
@@ -1888,20 +1888,20 @@ public class DISBBean extends RootClass {
 				fileLOC = "000812000104576" + strYMD + "01.pay";
 			} else if (BATNO.substring(0, 1).equals("D") && BATNO.substring(8, 11).equals("011")) {
 				fileLOC = "VSTRSBB";
-				//R80480¤W®ü°Ó»È 
+				//R80480ä¸Šæµ·å•†éŠ€ 
 			} else if (BATNO.substring(0, 1).equals("D") && BATNO.substring(8, 11).equals("007") && !selCURR.equals("NT")) {
 				fileLOC = "MEDIA.DAT";
 			}
-			//R00566¤¸¤j»È¦æ
+			//R00566å…ƒå¤§éŠ€è¡Œ
 			else if (BATNO.substring(0, 1).equals("D") && BATNO.substring(8, 11).equals("806")) {
 				fileLOC = "70817744_" + selCURR + ".txt";
-			// RB0062 ¹ü¤Æ»È¦æ
+			// RB0062 å½°åŒ–éŠ€è¡Œ
 			} else if(BATNO.substring(0, 1).equals("D") && BATNO.substring(8, 11).equals("009")) {
-				//Âà±bÀÉ
+				//è½‰å¸³æª”
 				if(remitKind.equals("t")) {
 					fileLOC = selCURR + "_PCCUT.TXT";
 				}
-				//¶×´ÚÀÉ
+				//åŒ¯æ¬¾æª”
 				if(remitKind.equals("r")) {
 					String strRMD = String.valueOf(Integer.parseInt(BATNO.substring(1, 8)) + 19110000);
 					DecimalFormat df = new DecimalFormat("00");
@@ -1913,12 +1913,12 @@ public class DISBBean extends RootClass {
 							break;
 					}
 				}
-			// EB0537 ¸U®õ»È¦æ
-			// RE0189:­×§ï³Í°òÂàÀÉªºÀÉ¦Wºû«ù­ì©R¦W
+			// EB0537 è¬æ³°éŠ€è¡Œ
+			// RE0189:ä¿®æ”¹å‡±åŸºè½‰æª”çš„æª”åç¶­æŒåŸå‘½å
 			} else if(BATNO.substring(0, 1).equals("D") && BATNO.substring(8, 11).equals("809") && remitKind.equals("t")) {
 				fileLOC = "WT_" + selCURR + ".txt";
 			} else if(BATNO.substring(0, 1).equals("D") && BATNO.substring(8, 11).equals("004")){
-				//RD0440»OÆW»È¦æ
+				//RD0440è‡ºç£éŠ€è¡Œ
 				if(remitKind.equals("t")){
 					fileLOC = "BS2360015T" + "-" + selCURR + ".TXT";
 				}else if(remitKind.equals("r")){
@@ -1928,7 +1928,7 @@ public class DISBBean extends RootClass {
 				fileLOC = strLogonUser + "_" + BATNO + remitKind + "_" + selCURR + ".txt";
 			} 
 
-			//¼gÀÉ®×
+			//å¯«æª”æ¡ˆ
 			is = new ByteArrayInputStream(export.getBytes());
 			os = new FileOutputStream(fileROOT + fileLOC);
 			int reader = 0;
@@ -1953,7 +1953,7 @@ public class DISBBean extends RootClass {
 
 	/**
 	 * @param writeTOfileXLS - R70088
-	 * @param returnType, ¶×¥X¼gEXCELÀÉ
+	 * @param returnType, åŒ¯å‡ºå¯«EXCELæª”
 	 * @return
 	 */
 	public String writeTOfileXLS(String[][] downloadData, String BATNO, String selCURR, String remitKind, String strLogonUser) {
@@ -1964,7 +1964,7 @@ public class DISBBean extends RootClass {
 		String fileLOC = "";
 		String returnROOT = "";
 		try {
-			//«Ø¥ß¥Ø¿ı
+			//å»ºç«‹ç›®éŒ„
 			//R00231 edit by Leo Huang
 			//String fileROOT = "D:\\WAS5App\\CashWeb_war.ear\\CashWeb.war\\DISB\\DISBDownData\\";
 			String fileROOT = globalEnviron.getAppPath() + "DISB\\DISBDownData\\";
@@ -1985,7 +1985,7 @@ public class DISBBean extends RootClass {
 					+ " xmlns:x=\"urn:schemas-microsoft-com:office:excel\">"
 					+ "<HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"application/vsd.ms-excel; CHARSET=Big5\"></HEAD>"
 					+ "<BODY>"
-					+ "<TABLE border=1 Style=\"background-color:white;font-size:10.0pt;font-family:²Ó©úÅé\" >";
+					+ "<TABLE border=1 Style=\"background-color:white;font-size:10.0pt;font-family:ç´°æ˜é«”\" >";
 			pw.write(xlsHeading);
 
 			for (int index = 0; index < downloadData.length; index++) {
@@ -2016,9 +2016,9 @@ public class DISBBean extends RootClass {
 	}
 
 	/**
-	 * R70292 §ì¤U¤@­Ó¤u§@¤é
-	 * @param ¥I´Ú¤é
-	 * @return ¤U¤@­Ó¤u§@¤é
+	 * R70292 æŠ“ä¸‹ä¸€å€‹å·¥ä½œæ—¥
+	 * @param ä»˜æ¬¾æ—¥
+	 * @return ä¸‹ä¸€å€‹å·¥ä½œæ—¥
 	 */
 	public int GetNextWorkDay(String strPdate) {
 		int nextWorkDate = 0;
@@ -2036,7 +2036,7 @@ public class DISBBean extends RootClass {
 		}
 		
 		return nextWorkDate;
-		/* Mark By Sally QA0001 ­×¥¿¹J¨ì1231¬°«D¤u§@¤é®É·|¦^¶Ç1200
+		/* Mark By Sally QA0001 ä¿®æ­£é‡åˆ°1231ç‚ºéå·¥ä½œæ—¥æ™‚æœƒå›å‚³1200
 		String strSql = "";
 		String[] sDAY = new String[31];
 		int nextDAY = 0;
@@ -2052,11 +2052,11 @@ public class DISBBean extends RootClass {
 		if (dbFactory == null || globalEnviron == null) {
 			setLastError(this.getClass().getName() + "GetNextWordDay(strCheckNoStart,strCheckNoEnd)", "The dbFactory is null, can't get Data.");
 		} else {
-			//¥I´Ú¤é
+			//ä»˜æ¬¾æ—¥
 			wkY = iPdate / 10000;
 			wkM = (iPdate - wkY * 10000) / 100;
 			wkD = iPdate - wkY * 10000 - wkM * 100;
-			//¤U¤@­Ó¤u§@¤é
+			//ä¸‹ä¸€å€‹å·¥ä½œæ—¥
 			if (wkM == 12 && wkD == 31) {
 				nextYEAR = wkY + 1;
 				nextMON = 1;
@@ -2116,8 +2116,8 @@ public class DISBBean extends RootClass {
 	}
 
 	/**
-	 * @param strdate :¥Á°ê¦~YYYMMDD
-	 * @return : ¥Á°ê¦~YYYMMDD
+	 * @param strdate :æ°‘åœ‹å¹´YYYMMDD
+	 * @return : æ°‘åœ‹å¹´YYYMMDD
 	 */
 	public int GetPreWorkDay(String strdate) {
 		int preWorkDate = 0;
@@ -2138,10 +2138,10 @@ public class DISBBean extends RootClass {
 	}
 
 	/**R70455 
-	* ´£¨Ñºë½Tªº¤p?¦ì¥|±Ë¤­¤J³B²z¡C
-	* @param v »İ­n¥|±Ë¤­¤Jªº¼Æ¦r
-	* @param scale ¤p¼ÆÂI«á«O¯d´X¦ì
-	* @return ¥|±Ë¤­¤J«áªº?ªG
+	* æä¾›ç²¾ç¢ºçš„å°?ä½å››æ¨äº”å…¥è™•ç†ã€‚
+	* @param v éœ€è¦å››æ¨äº”å…¥çš„æ•¸å­—
+	* @param scale å°æ•¸é»å¾Œä¿ç•™å¹¾ä½
+	* @return å››æ¨äº”å…¥å¾Œçš„?æœ
 	*/
 	public double DoubleRound(double v, int scale) {
 		if (scale < 0) {
@@ -2153,10 +2153,10 @@ public class DISBBean extends RootClass {
 	}
 
 	/**R70455
-	* ´£¨Ñºë½Tªº¥[ªk¹Bºâ¡C
-	* @param v1 ³Q¥[¼Æ
-	* @param v2 ¥[¼Æ
-	* @return ¤G­Ó?¼Æªº©M
+	* æä¾›ç²¾ç¢ºçš„åŠ æ³•é‹ç®—ã€‚
+	* @param v1 è¢«åŠ æ•¸
+	* @param v2 åŠ æ•¸
+	* @return äºŒå€‹?æ•¸çš„å’Œ
 	*/
 	public double DoubleAdd(double v1, double v2) {
 		BigDecimal b1 = new BigDecimal(Double.toString(v1));
@@ -2165,12 +2165,12 @@ public class DISBBean extends RootClass {
 	}
 
 	/**R70455
-	* ´£¨Ñ¡]¬Û¹ï¡^ºë½Tªº°£ªk¹Bºâ¡C·íµo¥Í°£¤£ºÉªº±¡?®É¡A¥Ñscale?¼Æ«ü
-	* ©wºë«×¡A¥H«áªº¼Æ¦r¥|±Ë¤­¤J¡C
-	* @param v1 ³Q°£¼Æ
-	* @param v2 °£¼Æ
-	* @param scale ªí¥Üªí¥Ü»İ­nºë½T¨ì¤p¼ÆÂI¥H«á´X¦ì¡C
-	* @return ¤G­Ó?¼Æªº°Ó
+	* æä¾›ï¼ˆç›¸å°ï¼‰ç²¾ç¢ºçš„é™¤æ³•é‹ç®—ã€‚ç•¶ç™¼ç”Ÿé™¤ä¸ç›¡çš„æƒ…?æ™‚ï¼Œç”±scale?æ•¸æŒ‡
+	* å®šç²¾åº¦ï¼Œä»¥å¾Œçš„æ•¸å­—å››æ¨äº”å…¥ã€‚
+	* @param v1 è¢«é™¤æ•¸
+	* @param v2 é™¤æ•¸
+	* @param scale è¡¨ç¤ºè¡¨ç¤ºéœ€è¦ç²¾ç¢ºåˆ°å°æ•¸é»ä»¥å¾Œå¹¾ä½ã€‚
+	* @return äºŒå€‹?æ•¸çš„å•†
 	*/
 	public double DoubleDiv(double v1, double v2, int scale) {
 		if (scale < 0) {
@@ -2182,10 +2182,10 @@ public class DISBBean extends RootClass {
 	}
 
 	/**R70455
-	* ´£¨Ñºë½Tªº?ªk¹Bºâ¡C
-	* @param v1 ³Q´î¼Æ
-	* @param v2 ?¼Æ
-	* @return ¤G­Ó?¼Æªº®t
+	* æä¾›ç²¾ç¢ºçš„?æ³•é‹ç®—ã€‚
+	* @param v1 è¢«æ¸›æ•¸
+	* @param v2 ?æ•¸
+	* @return äºŒå€‹?æ•¸çš„å·®
 	*/
 	public double DoubleSub(double v1, double v2) {
 		BigDecimal b1 = new BigDecimal(Double.toString(v1));
@@ -2194,10 +2194,10 @@ public class DISBBean extends RootClass {
 	}
 
 	/**R70455
-	* ´£¨Ñºë½Tªº­¼ªk¹Bºâ¡C
-	* @param v1 ³Q­¼¼Æ
-	* @param v2 ­¼¼Æ
-	* @return ¤G­Ó?¼Æªº©M
+	* æä¾›ç²¾ç¢ºçš„ä¹˜æ³•é‹ç®—ã€‚
+	* @param v1 è¢«ä¹˜æ•¸
+	* @param v2 ä¹˜æ•¸
+	* @return äºŒå€‹?æ•¸çš„å’Œ
 	*/
 	public double DoubleMul(double v1, double v2) {
 		BigDecimal b1 = new BigDecimal(Double.toString(v1));
@@ -2206,9 +2206,9 @@ public class DISBBean extends RootClass {
 	}
 
 	/**Q80223
-	* ¥h°£¤£¤¹³\²Å¸¹¥H¤À¸¹¥N´À¡C
-	* @param ­ì©l¦r¦ê
-	* @return ¥h°£«á¦r¦ê
+	* å»é™¤ä¸å…è¨±ç¬¦è™Ÿä»¥åˆ†è™Ÿä»£æ›¿ã€‚
+	* @param åŸå§‹å­—ä¸²
+	* @return å»é™¤å¾Œå­—ä¸²
 	*/
 	public String replacePunct(String strMemo) {
 		char[] cPunct = { ',', '\'', '"' };
@@ -2219,16 +2219,16 @@ public class DISBBean extends RootClass {
 	}
 
 	/**
-	 * ¶Ç²Î«¬¥~¹ô«O³æ - ¥~¹ô¶×´Ú¤âÄò¶O¤ä¥I¤è¦¡ ( R00386-P00026)
+	 * å‚³çµ±å‹å¤–å¹£ä¿å–® - å¤–å¹£åŒ¯æ¬¾æ‰‹çºŒè²»æ”¯ä»˜æ–¹å¼ ( R00386-P00026)
 	 * 
-	 * @param payCode ¤ä¥I­ì¦]
-	 * @param rBankCode ¶×¤J»È¦æ¥N½X
-	 * @param pCurr «O³æ¹ô§O
+	 * @param payCode æ”¯ä»˜åŸå› 
+	 * @param rBankCode åŒ¯å…¥éŠ€è¡Œä»£ç¢¼
+	 * @param pCurr ä¿å–®å¹£åˆ¥
 	 */
 	/*public String getPayFeeType(String payCode, String rBankCode, String curr) throws SQLException {
 
 		String feeType = getPayFeeType(payCode).trim();
-		// ­Y¤£¬O»İ­n«O¤á¤]¥I¶Oªºª½±µ¦^¶Ç¡A¡@­Y»İ­n«O¤á¥I­tªºÄ~Äò§PÂ_¡A¦b¶×´Ú»È¦æ¤U¥i§ï¬°¤½¥q¤ä¥I
+		// è‹¥ä¸æ˜¯éœ€è¦ä¿æˆ¶ä¹Ÿä»˜è²»çš„ç›´æ¥å›å‚³ï¼Œã€€è‹¥éœ€è¦ä¿æˆ¶ä»˜è² çš„ç¹¼çºŒåˆ¤æ–·ï¼Œåœ¨åŒ¯æ¬¾éŠ€è¡Œä¸‹å¯æ”¹ç‚ºå…¬å¸æ”¯ä»˜
 		if (!feeType.equals("BEN") && !feeType.equals("SHA"))
 			return feeType;
 
@@ -2243,9 +2243,9 @@ public class DISBBean extends RootClass {
 			stat.setString(1, curr + rBankCode);
 			result = stat.executeQuery();
 			if (result.next())
-				return "OUR"; // ¦pªG¦³§ä¨ì¡A¥Nªí¬O¤½¥q«ü©w»È¦æ¡A§ï¬°¤½¥q¤ä¥I
+				return "OUR"; // å¦‚æœæœ‰æ‰¾åˆ°ï¼Œä»£è¡¨æ˜¯å…¬å¸æŒ‡å®šéŠ€è¡Œï¼Œæ”¹ç‚ºå…¬å¸æ”¯ä»˜
 			else
-				return feeType; // ¦pªG¨S§ä¨ì¡A¥Nªí¤£¬O¤½¥q«ü©w»È¦æ¡Aºû«ù­ì¦³¤âÄò¶O¤è¦¡
+				return feeType; // å¦‚æœæ²’æ‰¾åˆ°ï¼Œä»£è¡¨ä¸æ˜¯å…¬å¸æŒ‡å®šéŠ€è¡Œï¼Œç¶­æŒåŸæœ‰æ‰‹çºŒè²»æ–¹å¼
 
 		} finally {
 			try { if (result != null) result.close(); } catch (Exception e) {}
@@ -2292,7 +2292,7 @@ public class DISBBean extends RootClass {
 		return res;
 	}
 
-	// R00386-P00026 ¨ú ETAB - PAYCD ¬°¤ä¥I´y­z
+	// R00386-P00026 å– ETAB - PAYCD ç‚ºæ”¯ä»˜æè¿°
 	public String getPayCodeDesc(String payCode) throws SQLException {
 
 		Connection conn = null;
@@ -2308,7 +2308,7 @@ public class DISBBean extends RootClass {
 			if (result.next())
 				return result.getString("FLD0004");
 
-			return ""; // §ä¤£¨ì¦^ªÅ¦r¦ê
+			return ""; // æ‰¾ä¸åˆ°å›ç©ºå­—ä¸²
 
 		} finally {
 			try { if (result != null) result.close(); } catch (Exception e) {}
@@ -2318,7 +2318,7 @@ public class DISBBean extends RootClass {
 	}*/
 
 	/**
-	 * ¶Ç²Î«¬¥~¹ô«O³æ - ¥~¹ô¶×´Ú¤âÄò¶O ( R00386-P00026)
+	 * å‚³çµ±å‹å¤–å¹£ä¿å–® - å¤–å¹£åŒ¯æ¬¾æ‰‹çºŒè²» ( R00386-P00026)
 	 * @return
 	 */
 	public double[] getPayFees(String bankCode) throws SQLException {
@@ -2334,7 +2334,7 @@ public class DISBBean extends RootClass {
 			stat.setString(1, bankCode);
 			result = stat.executeQuery();
 			if (!result.next())
-				throw new RemittanceFeeNotFoundException("µLªkÅª¨ú¥~¹ô¶×´Ú¤âÄò¶O [" + bankCode + "]");
+				throw new RemittanceFeeNotFoundException("ç„¡æ³•è®€å–å¤–å¹£åŒ¯æ¬¾æ‰‹çºŒè²» [" + bankCode + "]");
 
 			String feeStr = result.getString("FLD0004");
 			try {
@@ -2343,8 +2343,8 @@ public class DISBBean extends RootClass {
 				res[1] = Integer.parseInt(feeStr.substring(6, 11));
 				res[2] = Integer.parseInt(feeStr.substring(12, 17));
 				return res;
-			} catch (RuntimeException e) { // NULL, ªø«×¤£°÷, ®æ¦¡¤£²Åµ¥µ¥
-				throw new RuntimeException("[" + bankCode + "] ªº¥~¹ô¶×´Ú¤âÄò¶O®æ¦¡¤£¥¿½T");
+			} catch (RuntimeException e) { // NULL, é•·åº¦ä¸å¤ , æ ¼å¼ä¸ç¬¦ç­‰ç­‰
+				throw new RuntimeException("[" + bankCode + "] çš„å¤–å¹£åŒ¯æ¬¾æ‰‹çºŒè²»æ ¼å¼ä¸æ­£ç¢º");
 			}
 		} finally {
 			try { if (result != null) result.close(); } catch (Exception e) {}
@@ -2354,12 +2354,12 @@ public class DISBBean extends RootClass {
 	}
 
 	/**
-	 * ¨ú±o¥~¹ô¶×´Ú¤âÄò¶O. °Ñ¼ÆÀ³¬°¤C¦ì»È¦æ¥N½X»P¶×´Ú±b¸¹
+	 * å–å¾—å¤–å¹£åŒ¯æ¬¾æ‰‹çºŒè²». åƒæ•¸æ‡‰ç‚ºä¸ƒä½éŠ€è¡Œä»£ç¢¼èˆ‡åŒ¯æ¬¾å¸³è™Ÿ
 	 * 
-	 * @param payBankCode ¥I´Ú¦æ¥N½X
-	 * @param remitBankCode ¶×´Ú¦æ¥N½X
-	 * @param DBU:¦P¤@»È¦æªº¹Ò¤º(¥xÆW)¤À¦æ
-	 * @param OBU:¦P¤@»È¦æªº¹Ò¥~(¥~°ê)¤À¦æ
+	 * @param payBankCode ä»˜æ¬¾è¡Œä»£ç¢¼
+	 * @param remitBankCode åŒ¯æ¬¾è¡Œä»£ç¢¼
+	 * @param DBU:åŒä¸€éŠ€è¡Œçš„å¢ƒå…§(å°ç£)åˆ†è¡Œ
+	 * @param OBU:åŒä¸€éŠ€è¡Œçš„å¢ƒå¤–(å¤–åœ‹)åˆ†è¡Œ
 	 * @return
 	 * @throws SQLException
 	 */
@@ -2370,9 +2370,9 @@ public class DISBBean extends RootClass {
 		String obuCheckCode = "";
 		double[] n = getPayFees(payBank);
 
-		// ¤£¦P»È¦æ¨ú²Ä¤T­Ó¦^¶Ç­È
+		// ä¸åŒéŠ€è¡Œå–ç¬¬ä¸‰å€‹å›å‚³å€¼
 		if (!payBank.equals(remitBank))
-			return n[2];//¸ó¦æ¤âÄò¶O				
+			return n[2];//è·¨è¡Œæ‰‹çºŒè²»				
 
 		String strSql = "SELECT * FROM ORDUET WHERE FLD0001='  ' AND FLD0002='BNKFF' AND FLD0003 LIKE '" + remitBank + "%' ";
 		Connection con = null;
@@ -2386,7 +2386,7 @@ public class DISBBean extends RootClass {
 			con = dbFactory.getAS400Connection("DISBBean.getPayFee");
 			pstmt = con.prepareStatement(strSql);
 			rst = pstmt.executeQuery();
-			dReturnValue = n[0];//Áp¦æDBU¬Û¦s
+			dReturnValue = n[0];//è¯è¡ŒDBUç›¸å­˜
 			while(rst.next()) {
 				iPosStart = Integer.parseInt(rst.getString("FLD0003").substring(4, 5));
 				iPosEnd = Integer.parseInt(rst.getString("FLD0003").substring(5, 6));
@@ -2396,7 +2396,7 @@ public class DISBBean extends RootClass {
 				System.out.println("remitBank=" + remitBank + " OBUCode=" + strOBUCode + " obuCheckCode=" + obuCheckCode);
 
 				if(obuCheckCode.equals(strOBUCode)) {
-					dReturnValue = n[1];//Áp¦æDBU/OBU¤¬¦s
+					dReturnValue = n[1];//è¯è¡ŒDBU/OBUäº’å­˜
 					break;
 				}
 			}
@@ -2413,14 +2413,14 @@ public class DISBBean extends RootClass {
 	}
 	
 	/**
-	 * RD0440-·s¼W¥~¹ô«ü©w»È¦æ-¥xÆW»È¦æ
+	 * RD0440-æ–°å¢å¤–å¹£æŒ‡å®šéŠ€è¡Œ-å°ç£éŠ€è¡Œ
 	 * 
-	 * ¨ú±o¥~¹ô¶×´Ú¤âÄò¶O. °Ñ¼ÆÀ³¬°¤C¦ì»È¦æ¥N½X»P¶×´Ú±b¸¹
+	 * å–å¾—å¤–å¹£åŒ¯æ¬¾æ‰‹çºŒè²». åƒæ•¸æ‡‰ç‚ºä¸ƒä½éŠ€è¡Œä»£ç¢¼èˆ‡åŒ¯æ¬¾å¸³è™Ÿ
 	 * 
-	 * @param payBankCode ¥I´Ú¦æ¥N½X
-	 * @param remitBankCode ¶×´Ú¦æ¥N½X
-	 * @param DBU:¦P¤@»È¦æªº¹Ò¤º(¥xÆW)¤À¦æ
-	 * @param OBU:¦P¤@»È¦æªº¹Ò¥~(¥~°ê)¤À¦æ
+	 * @param payBankCode ä»˜æ¬¾è¡Œä»£ç¢¼
+	 * @param remitBankCode åŒ¯æ¬¾è¡Œä»£ç¢¼
+	 * @param DBU:åŒä¸€éŠ€è¡Œçš„å¢ƒå…§(å°ç£)åˆ†è¡Œ
+	 * @param OBU:åŒä¸€éŠ€è¡Œçš„å¢ƒå¤–(å¤–åœ‹)åˆ†è¡Œ
 	 */
 	public double getPayFee004(String payBankCode, String remitBankCode, String remitAccount, double wsAMT, String PCSHCM, String wsPPAYCURR, double wsRPAYRATE) throws SQLException {
 		log.info("getPayFee004(" + payBankCode + "," + remitBankCode + "," + remitAccount + "," + wsAMT + "," + PCSHCM + "," + wsPPAYCURR + "," + wsRPAYRATE + ")");
@@ -2429,29 +2429,29 @@ public class DISBBean extends RootClass {
 		String obuCheckCode = "";
 		double[] n = getPayFees(payBank);
 		
-		//¨ú±o¥xÆW»È¦æªº¬ü¤¸¶×²v,¥ş²y¤H¹ØµLOBU¹Ò¥~»È¦æ±b¤á,¬G¤£·|µo¥ÍOBUÂàDBUªº¬ü¤¸¤âÄò¶O
+		//å–å¾—å°ç£éŠ€è¡Œçš„ç¾å…ƒåŒ¯ç‡,å…¨çƒäººå£½ç„¡OBUå¢ƒå¤–éŠ€è¡Œå¸³æˆ¶,æ•…ä¸æœƒç™¼ç”ŸOBUè½‰DBUçš„ç¾å…ƒæ‰‹çºŒè²»
 		int PCSHDT2 = Integer.parseInt(PCSHCM);
 		String DateTemp1 = "";
 		DateTemp1 = Integer.toString(1110000 + PCSHDT2 - 1);
-		//¨ú±o¥x»Èªº¬ü¤¸¶×²v
+		//å–å¾—å°éŠ€çš„ç¾å…ƒåŒ¯ç‡
 		double ERRate004 = 1;
 		if(wsRPAYRATE==1){
 			ERRate004 = getERRate004(wsPPAYCURR.trim(), DateTemp1);
 		}		
 		log.info("ERRate004:" + ERRate004);
 
-		// ¤£¦P»È¦æ¨ú²Ä¤T­Ó¦^¶Ç­È
-		//log.info("payBank¬O" + payBank + ",remitBank¬O" + remitBank);
+		// ä¸åŒéŠ€è¡Œå–ç¬¬ä¸‰å€‹å›å‚³å€¼
+		//log.info("payBankæ˜¯" + payBank + ",remitBankæ˜¯" + remitBank);
 		if (!payBank.equals(remitBank)){
-			double interBankFee = 0; //¸ó¦æ¤âÄò¶O
+			double interBankFee = 0; //è·¨è¡Œæ‰‹çºŒè²»
 			try{
-				//n[2]¬°¶l¹q¶O
-				//1:­pºâ¸ó¦æ¤âÄò¶O
+				//n[2]ç‚ºéƒµé›»è²»
+				//1:è¨ˆç®—è·¨è¡Œæ‰‹çºŒè²»
 				interBankFee = interBankFee004(n[2], wsAMT, ERRate004);
 			} catch(Exception e){
 				System.out.println("interBankFee004 fail!");
 			}
-			//log.info("return interBankFee¬O" + interBankFee);
+			//log.info("return interBankFeeæ˜¯" + interBankFee);
 			return interBankFee;
 		}
 
@@ -2467,23 +2467,23 @@ public class DISBBean extends RootClass {
 			con = dbFactory.getAS400Connection("DISBBean.getPayFee");
 			pstmt = con.prepareStatement(strSql);
 			rst = pstmt.executeQuery();
-			//log.info("dReturnValue¬O" + dReturnValue);
-			dReturnValue = n[0];//2:Áp¦æDBU¬Û¦s
+			//log.info("dReturnValueæ˜¯" + dReturnValue);
+			dReturnValue = n[0];//2:è¯è¡ŒDBUç›¸å­˜
 			while(rst.next()) {
 				iPosStart = Integer.parseInt(rst.getString("FLD0003").substring(4, 5));
 				iPosEnd = Integer.parseInt(rst.getString("FLD0003").substring(5, 6));
-				//¥xÆW»È¦æOBU±b¸¹§PÂ_½X,±b¸¹«e¤T½X¬°069(³]©w¦bORDUETªºFLD0002=BNKFEE & FLD0003¬°§PÂ_½X)
+				//å°ç£éŠ€è¡ŒOBUå¸³è™Ÿåˆ¤æ–·ç¢¼,å¸³è™Ÿå‰ä¸‰ç¢¼ç‚º069(è¨­å®šåœ¨ORDUETçš„FLD0002=BNKFEE & FLD0003ç‚ºåˆ¤æ–·ç¢¼)
 				strOBUCode = CommonUtil.AllTrim(rst.getString("FLD0003").substring(7));
 
-				//«O¤áªº¶×´Ú»È¦æªº§PÂ_OBU±b¸¹
+				//ä¿æˆ¶çš„åŒ¯æ¬¾éŠ€è¡Œçš„åˆ¤æ–·OBUå¸³è™Ÿ
 				obuCheckCode = CommonUtil.AllTrim(remitAccount.substring(iPosStart-1, iPosEnd));				
 				System.out.println("remitBank=" + remitBank + " OBUCode=" + strOBUCode + " obuCheckCode=" + obuCheckCode);
 								
-				//3:Áp¦æDBUÂàOBU¤¬¦s,¥xÆW»È¦æ¦¹¤âÄò¶O¦P¸ó¦æªº­pºâ³W«h
-				//log.info("obuCheckCode¬O" + obuCheckCode + ",strOBUCode" + strOBUCode);
+				//3:è¯è¡ŒDBUè½‰OBUäº’å­˜,å°ç£éŠ€è¡Œæ­¤æ‰‹çºŒè²»åŒè·¨è¡Œçš„è¨ˆç®—è¦å‰‡
+				//log.info("obuCheckCodeæ˜¯" + obuCheckCode + ",strOBUCode" + strOBUCode);
 				if(obuCheckCode.equals(strOBUCode)) {
 					try{
-						//log.info("3:dReturnValue¬O" + dReturnValue + ",interBankFee004(" + n[2] + "," + wsAMT + "," + ERRate004 + ")");
+						//log.info("3:dReturnValueæ˜¯" + dReturnValue + ",interBankFee004(" + n[2] + "," + wsAMT + "," + ERRate004 + ")");
 						dReturnValue = interBankFee004(n[2], wsAMT, ERRate004);
 					} catch(Exception e){
 						System.out.println("interBankFee004 fail!");
@@ -2491,11 +2491,11 @@ public class DISBBean extends RootClass {
 					break;
 				}
 			}
-			//log.info("dReturnValue¬O" + dReturnValue);
+			//log.info("dReturnValueæ˜¯" + dReturnValue);
 			return dReturnValue;
 		} catch(Exception ex) {
 			System.err.println(ex.getMessage());
-			//log.info("return n[0]¬O" + n[0]);
+			//log.info("return n[0]æ˜¯" + n[0]);
 			return n[0];
 		} finally {
 			if(rst != null) rst.close();
@@ -2505,7 +2505,7 @@ public class DISBBean extends RootClass {
 	}
 
 	public double interBankFee004(double postalFee, double wsAMT, double ERRate004){
-		double perRemitFee = 0; //¨Cµ§ªº¸ó¦æ¤âÄò¶O,¥x¹ô­p»ù
+		double perRemitFee = 0; //æ¯ç­†çš„è·¨è¡Œæ‰‹çºŒè²»,å°å¹£è¨ˆåƒ¹
 		
 		perRemitFee = wsAMT * 0.0005 * ERRate004;
 		perRemitFee = Math.round(perRemitFee);
@@ -2519,12 +2519,12 @@ public class DISBBean extends RootClass {
 	/**
 	 * RD0382:OIU
 	 * 
-	 * ¨ú±o¥~¹ô¶×´Ú¤âÄò¶O. °Ñ¼ÆÀ³¬°¤C¦ì»È¦æ¥N½X»P¶×´Ú±b¸¹
+	 * å–å¾—å¤–å¹£åŒ¯æ¬¾æ‰‹çºŒè²». åƒæ•¸æ‡‰ç‚ºä¸ƒä½éŠ€è¡Œä»£ç¢¼èˆ‡åŒ¯æ¬¾å¸³è™Ÿ
 	 * 
-	 * @param payBankCode ¥I´Ú¦æ¥N½X
-	 * @param remitBankCode ¶×´Ú¦æ¥N½X
-	 * @param DBU:¦P¤@»È¦æªº¹Ò¤º(¥xÆW)¤À¦æ
-	 * @param OBU:¦P¤@»È¦æªº¹Ò¥~(¥~°ê)¤À¦æ
+	 * @param payBankCode ä»˜æ¬¾è¡Œä»£ç¢¼
+	 * @param remitBankCode åŒ¯æ¬¾è¡Œä»£ç¢¼
+	 * @param DBU:åŒä¸€éŠ€è¡Œçš„å¢ƒå…§(å°ç£)åˆ†è¡Œ
+	 * @param OBU:åŒä¸€éŠ€è¡Œçš„å¢ƒå¤–(å¤–åœ‹)åˆ†è¡Œ
 	 */
 	public double getPayFeeOIU(String payBankCode, String remitBankCode, String remitAccount, double wsAMT, String swiftCode) throws SQLException {
 		String payBank = payBankCode.substring(0, 3);
@@ -2532,19 +2532,19 @@ public class DISBBean extends RootClass {
 		String obuCheckCode = "";
 		double[] n = getPayFees(payBank + "6");
 
-		// ¤£¦P»È¦æ¨ú²Ä¤T­Ó¦^¶Ç­È
+		// ä¸åŒéŠ€è¡Œå–ç¬¬ä¸‰å€‹å›å‚³å€¼
 		if (!payBank.equals(remitBank))
-			return n[2];//¸ó¦æ¤âÄò¶O,BNKFEªº²Ä3²Õ¼Æ¦r,¥üÂ×9¤¸¡B¥x·s10¤¸¡B³Í°ò7¤¸	
+			return n[2];//è·¨è¡Œæ‰‹çºŒè²»,BNKFEçš„ç¬¬3çµ„æ•¸å­—,å…†è±9å…ƒã€å°æ–°10å…ƒã€å‡±åŸº7å…ƒ	
 		
-		//¦P»È¦æ¬Û¦s¥BSWIFT CODE²Ä5¡B6½X¤£¬°TW®É,¶·¥H¸ó¦æ¤âÄò¶O­pºâ
+		//åŒéŠ€è¡Œç›¸å­˜ä¸”SWIFT CODEç¬¬5ã€6ç¢¼ä¸ç‚ºTWæ™‚,é ˆä»¥è·¨è¡Œæ‰‹çºŒè²»è¨ˆç®—
 		if(swiftCode.length()>=8){
 			if(!"TW".equals(swiftCode.substring(4, 6))){
-				return n[2];//¸ó¦æ¤âÄò¶O,BNKFEªº²Ä3²Õ¼Æ¦r,¥üÂ×9¤¸¡B¥x·s10¤¸¡B³Í°ò7¤¸	
+				return n[2];//è·¨è¡Œæ‰‹çºŒè²»,BNKFEçš„ç¬¬3çµ„æ•¸å­—,å…†è±9å…ƒã€å°æ–°10å…ƒã€å‡±åŸº7å…ƒ	
 			}
 		}
 
-		//¦P»È¦æ¬Û¦s
-		String strSql = "SELECT * FROM ORDUET WHERE FLD0001='  ' AND FLD0002='BNKFF' AND FLD0003 LIKE '" + remitBank + "%' ";//¬d¸ß¦U»È¦æªºOBU±b¸¹ÀË®Ö±ø¥ó
+		//åŒéŠ€è¡Œç›¸å­˜
+		String strSql = "SELECT * FROM ORDUET WHERE FLD0001='  ' AND FLD0002='BNKFF' AND FLD0003 LIKE '" + remitBank + "%' ";//æŸ¥è©¢å„éŠ€è¡Œçš„OBUå¸³è™Ÿæª¢æ ¸æ¢ä»¶
 		Connection con = null;
 		PreparedStatement pstmt= null;
 		ResultSet rst = null;
@@ -2557,25 +2557,25 @@ public class DISBBean extends RootClass {
 			log.info(strSql);
 			pstmt = con.prepareStatement(strSql);
 			rst = pstmt.executeQuery();
-			dReturnValue = n[0];//Áp¦æDBU¬Û¦s
+			dReturnValue = n[0];//è¯è¡ŒDBUç›¸å­˜
 			
-			//§PÂ_¬O§_¬°OBU±b¸¹
+			//åˆ¤æ–·æ˜¯å¦ç‚ºOBUå¸³è™Ÿ
 			while(rst.next()) {
-				iPosStart = Integer.parseInt(rst.getString("FLD0003").substring(4, 5));//OBU±b¸¹ÀË®Ö½Xªº°_©l¦ì¸m
-				iPosEnd = Integer.parseInt(rst.getString("FLD0003").substring(5, 6));//OBU±b¸¹ÀË®Ö½Xªºµ²§ô¦ì¸m
-				strOBUCode = CommonUtil.AllTrim(rst.getString("FLD0003").substring(7));//OBU±b¸¹ÀË®Ö½X
+				iPosStart = Integer.parseInt(rst.getString("FLD0003").substring(4, 5));//OBUå¸³è™Ÿæª¢æ ¸ç¢¼çš„èµ·å§‹ä½ç½®
+				iPosEnd = Integer.parseInt(rst.getString("FLD0003").substring(5, 6));//OBUå¸³è™Ÿæª¢æ ¸ç¢¼çš„çµæŸä½ç½®
+				strOBUCode = CommonUtil.AllTrim(rst.getString("FLD0003").substring(7));//OBUå¸³è™Ÿæª¢æ ¸ç¢¼
 
 				obuCheckCode = CommonUtil.AllTrim(remitAccount.substring(iPosStart-1, iPosEnd));
 				System.out.println("remitBank=" + remitBank + " OBUCode=" + strOBUCode + " obuCheckCode=" + obuCheckCode);
 
 				if(obuCheckCode.equals(strOBUCode)) {
-					dReturnValue = n[1];//Áp¦æDBU/OBU¤¬¦s
+					dReturnValue = n[1];//è¯è¡ŒDBU/OBUäº’å­˜
 					break;
 				}
 			}
 			
-			//RE0189:§PÂ_³Í°òOBU±b¸¹,
-			//20161004,¥X¯ÇSophia»P³Í°ò½T»{µL¦¹­^¤å±b¸¹,¦ıCash¨t²Î­n«O¯d¦¹§PÂ_
+			//RE0189:åˆ¤æ–·å‡±åŸºOBUå¸³è™Ÿ,
+			//20161004,å‡ºç´Sophiaèˆ‡å‡±åŸºç¢ºèªç„¡æ­¤è‹±æ–‡å¸³è™Ÿ,ä½†Cashç³»çµ±è¦ä¿ç•™æ­¤åˆ¤æ–·
 			if("809".equals(remitBank) && remitAccount.substring(0, 4).matches("[a-zA-Z]{4}")) dReturnValue = n[1];
 			
 			return dReturnValue;
@@ -2590,10 +2590,10 @@ public class DISBBean extends RootClass {
 	}
 	
 	/**
-	 * Åª¨úCAPSIL§Ç¸¹µ{¦¡ (CALL NBMCASHB)
+	 * è®€å–CAPSILåºè™Ÿç¨‹å¼ (CALL NBMCASHB)
 	 * 
-	 * @param String ¡G §Ç¸¹Ãş§O(¨Ò¦p¡GDISB¡FGNFB)
-	 * @return int ¡G§Ç¸¹
+	 * @param String ï¼š åºè™Ÿé¡åˆ¥(ä¾‹å¦‚ï¼šDISBï¼›GNFB)
+	 * @return int ï¼šåºè™Ÿ
 	 */
 	public synchronized int getSequenceNumber(String sequenceType, Connection conn) throws Exception {
 		int iReturn = 0;
@@ -2616,7 +2616,7 @@ public class DISBBean extends RootClass {
 			iReturn = Integer.parseInt(cstmt.getString(1).substring(10, 21));
 
 			if(iReturn == 0)
-				throw new Exception("Åª¨ú§Ç¸¹ÀÉ¦³°İÃD!!");
+				throw new Exception("è®€å–åºè™Ÿæª”æœ‰å•é¡Œ!!");
 
 		} catch (Exception e) {
 			globalEnviron.writeDebugLog(Constant.DEBUG_ERROR, "DISBBean.getSequenceNumber", "SerialType="+sequenceType+", exception="+e.getMessage());
@@ -2632,10 +2632,10 @@ public class DISBBean extends RootClass {
 	}
 
 	/**
-	 * R10190 ¥¢®Äµ¹¥I³qª¾®Ñ¤u§@ÀÉ(ORCHLPPY)ºûÅ@
+	 * R10190 å¤±æ•ˆçµ¦ä»˜é€šçŸ¥æ›¸å·¥ä½œæª”(ORCHLPPY)ç¶­è­·
 	 * @param conn java.sql.Connection
-	 * @param payno ¤ä¥I§Ç¸¹
-	 * @param fincfmdt °]°È·|­p½T»{¤é
+	 * @param payno æ”¯ä»˜åºè™Ÿ
+	 * @param fincfmdt è²¡å‹™æœƒè¨ˆç¢ºèªæ—¥
 	 */
 	public void callCAP0314O(Connection conn, LapsePaymentVO voObj) {
 
@@ -2759,10 +2759,10 @@ public class DISBBean extends RootClass {
 	}
 
 	/**
-	 * RA0064  §ó·s ORGNPCNF(½T©wµ¹¥I¼È¦sÀÉ)
+	 * RA0064  æ›´æ–° ORGNPCNF(ç¢ºå®šçµ¦ä»˜æš«å­˜æª”)
 	 * @param conn java.sql.Connection
-	 * @param payno ¤ä¥I§Ç¸¹
-	 * @param fincfmdt °]°È·|­p½T»{¤é
+	 * @param payno æ”¯ä»˜åºè™Ÿ
+	 * @param fincfmdt è²¡å‹™æœƒè¨ˆç¢ºèªæ—¥
 	 */
 	public void callCAPDISB09(Connection conn, String payno, String fincfmdt) {
 		AS400 as400 = null;
@@ -2775,7 +2775,7 @@ public class DISBBean extends RootClass {
 				as400 = new AS400(globalEnviron.getAS400SystemNameAEGON401(),globalEnviron.getAS400SystemUserNameAEGON401(),globalEnviron.getAS400SystemPasswordAEGON401());
 
 			CommonUtil commonUtil = new CommonUtil();
-			fincfmdt = "0" + commonUtil.convertROCDate(fincfmdt);	//¥Á°ê¦~YYYY/MM/DD
+			fincfmdt = "0" + commonUtil.convertROCDate(fincfmdt);	//æ°‘åœ‹å¹´YYYY/MM/DD
 
 			pcml = new ProgramCallDocument(as400, "CASH");
 			pcml.setValue("programCAPDISB09.PAYNO", payno);
@@ -2798,8 +2798,8 @@ public class DISBBean extends RootClass {
 	}
 
 	/**
-	 * @param strCurr : ¨â½X¹ô§O
-	 * @return ¨ú±o·|­p¤À¿ıªºLedger
+	 * @param strCurr : å…©ç¢¼å¹£åˆ¥
+	 * @return å–å¾—æœƒè¨ˆåˆ†éŒ„çš„Ledger
 	 */
 	public String getLedger(String strCurr) {
 		return CommonUtil.AllTrim(getETableDesc("ORAL1", strCurr)).substring(8);

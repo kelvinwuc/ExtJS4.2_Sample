@@ -33,12 +33,12 @@ import com.aegon.disb.util.StringTool;
 import org.apache.log4j.Logger;
 
 /**
- * RD0440-·s¼W¥~¹ô«ü©w»È¦æ-¥xÆW»È¦æ:»È¦æ¶×´ÚÀÉTXT
+ * RD0440-æ–°å¢å¤–å¹£æŒ‡å®šéŠ€è¡Œ-å°ç£éŠ€è¡Œ:éŠ€è¡ŒåŒ¯æ¬¾æª”TXT
  */
 /**
  * System   : CashWeb
  * 
- * Function : ¾ã§å¶×´Ú
+ * Function : æ•´æ‰¹åŒ¯æ¬¾
  * 
  * Remark   :
  * 
@@ -60,7 +60,7 @@ import org.apache.log4j.Logger;
  * * $*** empty log message ***
  * * $
  * $Revision 1.37  2015/10/27 Kelvin Wu
- * $RD0440-·s¼W¥~¹ô«ü©w»È¦æ-¥xÆW»È¦æ
+ * $RD0440-æ–°å¢å¤–å¹£æŒ‡å®šéŠ€è¡Œ-å°ç£éŠ€è¡Œ
  * $
  * $$Log: DISBRemitExportServlet.java,v $
  * $Revision 1.38  2015/12/03 02:41:38  001946
@@ -70,13 +70,13 @@ import org.apache.log4j.Logger;
  * $*** empty log message ***
  * $
  * $Revision 1.36  2015/04/30 02:19:42  001946
- * $RD0144-³Í°ò»È¦æÅÜ§ó¤H¥Á¹ô¥N¸¹¤ÎSWIFT CODE
+ * $RD0144-å‡±åŸºéŠ€è¡Œè®Šæ›´äººæ°‘å¹£ä»£è™ŸåŠSWIFT CODE
  * $
  * $Revision 1.35  2015/01/19 02:33:50  MISDAVID
- * $RD0020¤¤°ê«H°U¶×´ÚÀÉ·s¼W¥æ©ö©Ê½èµù°O©T©wµ¹ªÅS
+ * $RD0020ä¸­åœ‹ä¿¡è¨—åŒ¯æ¬¾æª”æ–°å¢äº¤æ˜“æ€§è³ªè¨»è¨˜å›ºå®šçµ¦ç©ºS
  * $
  * $Revision 1.33  2014/10/07 06:25:11  misariel
- * $RC0036-­×¥¿¬ì¾Ç²Å¸¹ªº°İÃD
+ * $RC0036-ä¿®æ­£ç§‘å­¸ç¬¦è™Ÿçš„å•é¡Œ
  * $
  * $Revision 1.32  2014/08/19 04:04:08  missteven
  * $RC0036-2
@@ -85,55 +85,55 @@ import org.apache.log4j.Logger;
  * $RC0036
  * $
  * $Revision 1.30  2014/07/18 07:17:26  misariel
- * $EC0342-RC0036·s¼W¤À¤½¥q¦æ¬F¤H­û¨Ï¥ÎCAPSIL
+ * $EC0342-RC0036æ–°å¢åˆ†å…¬å¸è¡Œæ”¿äººå“¡ä½¿ç”¨CAPSIL
  * $
  * $Revision 1.29  2014/02/26 06:39:32  MISSALLY
- * $EB0537 --- ·s¼W¸U®õ»È¦æ¬°¥~¹ô«ü©w»È¦æ
+ * $EB0537 --- æ–°å¢è¬æ³°éŠ€è¡Œç‚ºå¤–å¹£æŒ‡å®šéŠ€è¡Œ
  * $
  * $Revision 1.28  2014/01/03 02:49:52  MISSALLY
- * $R00135---PA0024---CASH¦~«×±M®×-02
+ * $R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ-02
  * $
  * $Revision 1.27  2013/04/18 02:09:26  MISSALLY
- * $RA0074 FNEº¡´Á¥Í¦sª÷¨ü¯q¤H±b¤á¤Îµ¹¥I
- * $­×¥¿¤¤«H¶×´ÚÀÉ
+ * $RA0074 FNEæ»¿æœŸç”Ÿå­˜é‡‘å—ç›Šäººå¸³æˆ¶åŠçµ¦ä»˜
+ * $ä¿®æ­£ä¸­ä¿¡åŒ¯æ¬¾æª”
  * $
  * $Revision 1.26  2013/03/29 09:55:05  MISSALLY
- * $RB0062 PA0047 - ·s¼W«ü©w»È¦æ ¹ü¤Æ»È¦æ
+ * $RB0062 PA0047 - æ–°å¢æŒ‡å®šéŠ€è¡Œ å½°åŒ–éŠ€è¡Œ
  * $
  * $Revision 1.25  2013/02/26 10:15:02  ODCWilliam
  * $william wu
  * $RA0074
  * $
  * $Revision 1.24  2013/01/08 04:24:03  MISSALLY
- * $±N¤À¤äªºµ{¦¡Merge¦ÜHEAD
+ * $å°‡åˆ†æ”¯çš„ç¨‹å¼Mergeè‡³HEAD
  * $
  * $Revision 1.23.4.2  2012/12/06 06:28:27  MISSALLY
- * $RA0102¡@PA0041
- * $°t¦Xªk¥O­×§ï¹S¦ş¤ä¥I§@·~
+ * $RA0102ã€€PA0041
+ * $é…åˆæ³•ä»¤ä¿®æ”¹é…¬ä½£æ”¯ä»˜ä½œæ¥­
  * $
  * $Revision 1.23.4.1  2012/09/06 02:03:47  MISSALLY
- * $RA0140---·s¼W¥üÂ×¬°¥~¹ô«ü©w¦æ¡A¨Ì¾Ú»È¦æ­n¨D½Õ¾ã¤À¦æ¥N¸¹
+ * $RA0140---æ–°å¢å…†è±ç‚ºå¤–å¹£æŒ‡å®šè¡Œï¼Œä¾æ“šéŠ€è¡Œè¦æ±‚èª¿æ•´åˆ†è¡Œä»£è™Ÿ
  * $
  * $Revision 1.23  2012/07/17 02:50:31  MISSALLY
  * $RA0043 / RA0081
- * $1.¤@»È¥x·s¤U¸üÀÉ®æ¦¡½Õ¾ã
- * $2.²¼¾Ú®w¦s¤§®Ö­ãÅv­­§ïÅª³]©w
+ * $1.ä¸€éŠ€å°æ–°ä¸‹è¼‰æª”æ ¼å¼èª¿æ•´
+ * $2.ç¥¨æ“šåº«å­˜ä¹‹æ ¸å‡†æ¬Šé™æ”¹è®€è¨­å®š
  * $
  * $Revision 1.22  2011/11/08 09:16:39  MISSALLY
  * $Q10312
- * $¶×´Ú¥\¯à-¾ã§å¶×´Ú§@·~
- * $1.­×¥¿»È¦æ±b¸¹¤£¤@­P
- * $2.½Õ¾ã¥üÂ×¶×´ÚÀÉ
+ * $åŒ¯æ¬¾åŠŸèƒ½-æ•´æ‰¹åŒ¯æ¬¾ä½œæ¥­
+ * $1.ä¿®æ­£éŠ€è¡Œå¸³è™Ÿä¸ä¸€è‡´
+ * $2.èª¿æ•´å…†è±åŒ¯æ¬¾æª”
  * $
  * $Revision 1.21  2011/04/22 01:46:26  MISSALLY
  * $R10068-P00026
- * $·s¼W¦w®õ»È¦æ¬°¥~¶×«ü©w¦æ¤âÄò¶O¤Î¤U¸üÀÉ³]©w
+ * $æ–°å¢å®‰æ³°éŠ€è¡Œç‚ºå¤–åŒ¯æŒ‡å®šè¡Œæ‰‹çºŒè²»åŠä¸‹è¼‰æª”è¨­å®š
  * $
  * $Revision 1.20  2011/04/13 08:51:28  MISJIMMY
- * $R00566--¤¸¤j»È¦æ·s¼W¶×´ÚÀÉ
+ * $R00566--å…ƒå¤§éŠ€è¡Œæ–°å¢åŒ¯æ¬¾æª”
  * $
  * $Revision 1.19  2010/11/23 06:50:41  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.18  2010/05/05 09:20:50  missteven
  * $R90735 FIX BUG
@@ -142,67 +142,67 @@ import org.apache.log4j.Logger;
  * $R90735
  * $
  * $Revision 1.16  2008/08/12 06:57:03  misvanessa
- * $R80480_¤W®ü»È¦æ¥~¹ô¾ã§åÂà¦sÀÉ®×
+ * $R80480_ä¸Šæµ·éŠ€è¡Œå¤–å¹£æ•´æ‰¹è½‰å­˜æª”æ¡ˆ
  * $
  * $Revision 1.15  2008/08/06 06:54:29  MISODIN
- * $R80338 ½Õ¾ãCASH¨t²Î for ¥X¯Ç¥~¹ô¤@¹ï¤@»İ¨D
+ * $R80338 èª¿æ•´CASHç³»çµ± for å‡ºç´å¤–å¹£ä¸€å°ä¸€éœ€æ±‚
  * $
  * $Revision 1.14  2008/06/12 09:41:35  misvanessa
- * $R80300_¦¬³æ¦æÂà¥x·s,·s¼W¤W¶ÇÀÉ®×¤Î³øªí
+ * $R80300_æ”¶å–®è¡Œè½‰å°æ–°,æ–°å¢ä¸Šå‚³æª”æ¡ˆåŠå ±è¡¨
  * $
  * $Revision 1.13  2008/04/30 07:48:45  misvanessa
- * $R80300_¦¬³æ¦æÂà¥x·s,·s¼W¤U¸üÀÉ®×¤Î³øªí
+ * $R80300_æ”¶å–®è¡Œè½‰å°æ–°,æ–°å¢ä¸‹è¼‰æª”æ¡ˆåŠå ±è¡¨
  * $
  * $Revision 1.12  2007/09/07 10:25:20  MISVANESSA
  * $R70455_TARGET OUT
  * $
  * $Revision 1.11  2007/08/28 01:40:11  MISVANESSA
- * $R70574_SPUL°t®§·s¼W¶×¥XÀÉ®×
+ * $R70574_SPULé…æ¯æ–°å¢åŒ¯å‡ºæª”æ¡ˆ
  * $
  * $Revision 1.10  2007/05/02 07:15:16  MISVANESSA
- * $R70088_SPUL°t®§¤¤«H.¥ÃÂ×®æ¦¡
+ * $R70088_SPULé…æ¯ä¸­ä¿¡.æ°¸è±æ ¼å¼
  * $
  * $Revision 1.9  2007/03/16 01:44:19  MISVANESSA
- * $R70088_¥ÃÂ×®æ¦¡­×§ï
+ * $R70088_æ°¸è±æ ¼å¼ä¿®æ”¹
  * $
  * $Revision 1.8  2007/03/06 01:33:37  MISVANESSA
- * $R70088_SPUL°t®§·s¼W«È¤á­t¾á¤âÄò¶O
+ * $R70088_SPULé…æ¯æ–°å¢å®¢æˆ¶è² æ“”æ‰‹çºŒè²»
  * $
  * $Revision 1.7  2007/01/31 08:01:31  MISVANESSA
- * $R70088_SPUL°t®§
+ * $R70088_SPULé…æ¯
  * $
  * $Revision 1.6  2007/01/16 07:48:41  MISVANESSA
- * $R60550_§ì¨ú¤è¦¡­×§ï
+ * $R60550_æŠ“å–æ–¹å¼ä¿®æ”¹
  * $
  * $Revision 1.5  2007/01/05 07:24:01  MISVANESSA
- * $R60550_¶×¥XÀÉ®×.³øªí­×§ï
+ * $R60550_åŒ¯å‡ºæª”æ¡ˆ.å ±è¡¨ä¿®æ”¹
  * $
  * $Revision 1.4  2007/01/04 03:15:29  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $Revision 1.3  2006/11/30 09:15:14  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $Revision 1.2  2006/09/04 09:43:35  miselsa
- * $R60747_1.¾ã§å¶×´Ú¼W¥[¥X¯Ç½T»{¤é 2.¶×¥X³øªí¶×´Ú¤é´Á§ï¬°¥X¯Ç½T»{¤é 3.¤ä¥I¬d¸ß¥I´Ú¤é´Á¬°¥X¯Ç½T»{¤é
+ * $R60747_1.æ•´æ‰¹åŒ¯æ¬¾å¢åŠ å‡ºç´ç¢ºèªæ—¥ 2.åŒ¯å‡ºå ±è¡¨åŒ¯æ¬¾æ—¥æœŸæ”¹ç‚ºå‡ºç´ç¢ºèªæ—¥ 3.æ”¯ä»˜æŸ¥è©¢ä»˜æ¬¾æ—¥æœŸç‚ºå‡ºç´ç¢ºèªæ—¥
  * $
  * $Revision 1.1  2006/06/29 09:40:20  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.8  2006/04/28 02:08:38  misangel
- * $R50891:VA¬ü¤¸«O³æ-Åã¥Ü¹ô§O(­×§ïª÷ÃB¶W¹L¤d¸U¶Ã½X)
+ * $R50891:VAç¾å…ƒä¿å–®-é¡¯ç¤ºå¹£åˆ¥(ä¿®æ”¹é‡‘é¡è¶…éåƒè¬äº‚ç¢¼)
  * $
  * $Revision 1.1.2.7  2006/04/27 09:25:45  misangel
- * $R50891:VA¬ü¤¸«O³æ-Åã¥Ü¹ô§O
+ * $R50891:VAç¾å…ƒä¿å–®-é¡¯ç¤ºå¹£åˆ¥
  * $
  * $Revision 1.1.2.6  2005/09/16 01:39:23  misangel
- * $R50427 : ¶×´Ú¥ó¨Ì³¡ªù+©m¦W+±b¸¹¦X¨Ö(­×¥¿¶×´Ú§Ç¸¹)
+ * $R50427 : åŒ¯æ¬¾ä»¶ä¾éƒ¨é–€+å§“å+å¸³è™Ÿåˆä½µ(ä¿®æ­£åŒ¯æ¬¾åºè™Ÿ)
  * $
  * $Revision 1.1.2.5  2005/08/19 06:56:18  misangel
- * $R50427 : ¶×´Ú¥ó¨Ì³¡ªù+©m¦W+±b¸¹¦X¨Ö
+ * $R50427 : åŒ¯æ¬¾ä»¶ä¾éƒ¨é–€+å§“å+å¸³è™Ÿåˆä½µ
  * $
  * $Revision 1.1.2.4  2005/04/04 07:02:27  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -244,7 +244,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 	private void query(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, Exception{
 		path = "/DISB/DISBRemit/DISBRemitDownload.jsp";
 
-		/*R60747 ±N¥X¯Ç¤é´ÁPCSHDT§ï¬°¥X¯Ç½T»{¤éPCSHCM  START*/
+		/*R60747 å°‡å‡ºç´æ—¥æœŸPCSHDTæ”¹ç‚ºå‡ºç´ç¢ºèªæ—¥PCSHCM  START*/
 		int PCSHCM = Integer.parseInt(StringTool.removeChar(request.getParameter("PCSHCM"),'/'));
 		//RD0382:OIU
 		String company = "";//RD0382:OIU
@@ -255,14 +255,14 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			company = "";
 		}
 		//String company = request.getParameter("selCompany");
-		/*R60747 ±N¥X¯Ç¤é´ÁPCSHDT§ï¬°¥X¯Ç½T»{¤éPCSHCM  END*/
+		/*R60747 å°‡å‡ºç´æ—¥æœŸPCSHDTæ”¹ç‚ºå‡ºç´ç¢ºèªæ—¥PCSHCM  END*/
 		System.out.println("PCSHCM="+Integer.parseInt(StringTool.removeChar(request.getParameter("PCSHCM"),'/')));
 		
 		Vector disbPaymentDetailVec = null;
 		DISBRemitExportDAO dao = null;
 		try {
 			dao = new DISBRemitExportDAO((DbFactory) getServletContext().getAttribute(Constant.DB_FACTORY));
-			disbPaymentDetailVec =  dao.query(PCSHCM, company); /*R60747 ±N¥X¯Ç¤é´ÁPCSHDT§ï¬°¥X¯Ç½T»{¤éPCSHCM */
+			disbPaymentDetailVec =  dao.query(PCSHCM, company); /*R60747 å°‡å‡ºç´æ—¥æœŸPCSHDTæ”¹ç‚ºå‡ºç´ç¢ºèªæ—¥PCSHCM */
 			//disbPaymentDetailVec =  dao.query(PCSHCM, company);
 		} catch(Exception e) {
 			System.err.println(e.toString());			
@@ -280,8 +280,8 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			String fileLOC = "";
 			String BATNO = request.getParameter("para_PBATNO");
 
-			//Åª¨ú¥Ø«e©Ò½æªº¹ô§O t:¥~¹ôÂà±b(Áp¦æ) r:¥~¹ô¶×´Ú(¸ó¦æ)
-			//R80300 ·s¼W«H¥Î¥d¤U¸ü  if(!BATNO.substring(0,1).equals("D"))
+			//è®€å–ç›®å‰æ‰€è³£çš„å¹£åˆ¥ t:å¤–å¹£è½‰å¸³(è¯è¡Œ) r:å¤–å¹£åŒ¯æ¬¾(è·¨è¡Œ)
+			//R80300 æ–°å¢ä¿¡ç”¨å¡ä¸‹è¼‰  if(!BATNO.substring(0,1).equals("D"))
 			if(BATNO.substring(0,1).equals("C"))
 			{
 				fileLOC= convertDownloadData(new DISBRemitExportDAO((DbFactory) getServletContext().getAttribute(Constant.DB_FACTORY)).queryByBatNoC(BATNO,"NT","t"),"NT",BATNO,"t",strLogonUser);
@@ -304,7 +304,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 						Hashtable htPBBankTemp = (Hashtable) alPCURR.get(i);
 						String strETValue = (String) htPBBankTemp.get("ETValue");
 						String strPAYCURR = strETValue.substring(0,2);
-						//RE0189:·s¼W³Í°òOIU¡C¥x·sOIUªº¶×´Ú¤ÎÂà±b¬°¦P¤@ÀÉ®×,¥B¥u¦³¦b¥x·s¹Ò¤ºDBU/OBU±b¸¹¤~»İ²£¥Í,¬G¥u¦³¨Ï¥ÎqueryByBatNoªºt¨Ó¬d¸ß¸ê®Æ
+						//RE0189:æ–°å¢å‡±åŸºOIUã€‚å°æ–°OIUçš„åŒ¯æ¬¾åŠè½‰å¸³ç‚ºåŒä¸€æª”æ¡ˆ,ä¸”åªæœ‰åœ¨å°æ–°å¢ƒå…§DBU/OBUå¸³è™Ÿæ‰éœ€ç”¢ç”Ÿ,æ•…åªæœ‰ä½¿ç”¨queryByBatNoçš„tä¾†æŸ¥è©¢è³‡æ–™
 						if(BATNO.substring(0,1).equals("D") 
 								&& (BATNO.substring(8,11).equals("822") || 
 										BATNO.substring(8,11).equals("009") || 
@@ -312,12 +312,12 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 										BATNO.substring(8,11).equals("017") || 
 										BATNO.substring(8,11).equals("809"))) 
 						{
-							//D:¥~¹ô¶×´Ú,Âà±b(¦P¦æ¬Û¦s,­­RBKªºSWIFT CODE²Ä5¤Î6½X¬°TW)
+							//D:å¤–å¹£åŒ¯æ¬¾,è½‰å¸³(åŒè¡Œç›¸å­˜,é™RBKçš„SWIFT CODEç¬¬5åŠ6ç¢¼ç‚ºTW)
 							fileLOC = convertDownloadData(new DISBRemitExportDAO((DbFactory) getServletContext().getAttribute(Constant.DB_FACTORY)).queryByBatNo(BATNO,strPAYCURR,"t"),strPAYCURR,BATNO,"t",strLogonUser);
 							if (!fileLOC.equals("")){
 								downfile.add(fileLOC);
 							}								
-							//D:¥~¹ô¶×´Ú,¸ó¦æ¶×´Ú
+							//D:å¤–å¹£åŒ¯æ¬¾,è·¨è¡ŒåŒ¯æ¬¾
 							fileLOC = convertDownloadData(new DISBRemitExportDAO((DbFactory) getServletContext().getAttribute(Constant.DB_FACTORY)).queryByBatNo(BATNO,strPAYCURR,"r"),strPAYCURR,BATNO,"r",strLogonUser);
 							if (!fileLOC.equals("")){
 								downfile.add(fileLOC);
@@ -372,7 +372,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		{
 			fileLOC = convertDownloadDataD(payments, strPAYCURR, BATNO.substring(8,11),BATNO,remitKind,strLogonUser);
 		}
-		//R80300 «H¥Î¥d·s¼W¶×´Ú¸ê®Æ
+		//R80300 ä¿¡ç”¨å¡æ–°å¢åŒ¯æ¬¾è³‡æ–™
 		else if(BATNO.substring(0,1).equals("C")) 
 		{
 			fileLOC = convertDownloadDataC(payments, strPAYCURR, BATNO.substring(8,11),BATNO,remitKind,strLogonUser);			
@@ -390,18 +390,18 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 
 	private String convertDownloadDataD(Vector payments, String SelCURR, String BKCode,String BATNO,String remitKind,String strLogonUser) {
 		String fileLOC ="";
-		//¤¤°ê«H°U
+		//ä¸­åœ‹ä¿¡è¨—
 		if(BKCode.equals("822")) {
 			if (remitKind.equals("r"))
 				fileLOC = convertDownloadData822r(payments,SelCURR,BATNO,remitKind,strLogonUser);
 			else
 				fileLOC = convertDownloadData822t(payments,SelCURR,BATNO,remitKind,strLogonUser);
 		}
-		//²Ä¤@»È¦æ
+		//ç¬¬ä¸€éŠ€è¡Œ
 		if(BKCode.equals("007")){
 			fileLOC = convertDownloadData007(payments,SelCURR,BATNO,remitKind,strLogonUser);
 		}
-		//¥üÂ×»È¦æ
+		//å…†è±éŠ€è¡Œ
 		if(BKCode.equals("017")){
 			String payBank = "";
 			/*try{
@@ -412,72 +412,72 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			}*/
 			//RD0382:OIU
 			if(remitKind.equals("r")){
-				//¸ó¦æ¶×´Ú,DISBRemitExportDAO.queryByBatNo()¦³§PÂ_SWIFT CODEªº²Ä5¤Î6½X¤£¥i¬°TW
+				//è·¨è¡ŒåŒ¯æ¬¾,DISBRemitExportDAO.queryByBatNo()æœ‰åˆ¤æ–·SWIFT CODEçš„ç¬¬5åŠ6ç¢¼ä¸å¯ç‚ºTW
 				fileLOC = convertDownloadData017r(payments,SelCURR,BATNO,remitKind,strLogonUser);
 			}else{
-				//Âà±b,¦P¦æ¬Û¦s(­­¶×´Ú»È¦æSWIFT CODEªº²Ä5¤Î6½X¬°TW)
+				//è½‰å¸³,åŒè¡Œç›¸å­˜(é™åŒ¯æ¬¾éŠ€è¡ŒSWIFT CODEçš„ç¬¬5åŠ6ç¢¼ç‚ºTW)
 				fileLOC = convertDownloadData017t(payments,SelCURR,BATNO,remitKind,strLogonUser);
 			}			
 		}
-		//·s¦Ë°Ó»È
+		//æ–°ç«¹å•†éŠ€
 		if(BKCode.equals("052")){
 			fileLOC = convertDownloadData052(payments,SelCURR,BATNO,remitKind,strLogonUser);
 		}
-		//¥ÃÂ×»È¦æ
+		//æ°¸è±éŠ€è¡Œ
 		if(BKCode.equals("807")){
 			fileLOC = convertDownloadData807(payments,SelCURR,BATNO,remitKind,strLogonUser);
 		}		
-		//R70574 ¥x·s»È¦æ
+		//R70574 å°æ–°éŠ€è¡Œ
 		if(BKCode.equals("812")){
-		    // R00386 ¥~¹ô®É§ï²£¥Í¥t¤@ºØ®æ¦¡ªº XLS file
+		    // R00386 å¤–å¹£æ™‚æ”¹ç”¢ç”Ÿå¦ä¸€ç¨®æ ¼å¼çš„ XLS file
 		    fileLOC = convertDownloadData812(payments,SelCURR,BATNO,remitKind,strLogonUser);
 		}
-		//R70574 µØ«n»È¦æ
+		//R70574 è¯å—éŠ€è¡Œ
 		if(BKCode.equals("008")){
 			fileLOC = convertDownloadData008(payments,SelCURR,BATNO,remitKind,strLogonUser);
 		}
-		//R80480 ¤W®ü»È¦æ
+		//R80480 ä¸Šæµ·éŠ€è¡Œ
 		if(BKCode.equals("011")){
 		 	fileLOC = convertDownloadData011(payments,SelCURR,BATNO,remitKind,strLogonUser);
 		}
-		//R00566 ¤¸¤j»È¦æ
+		//R00566 å…ƒå¤§éŠ€è¡Œ
 		if(BKCode.equals("806")) {
 			fileLOC = convertDownloadData806(payments,SelCURR,BATNO,remitKind,strLogonUser);
 		}
-		//R10059 ¦w®õ»È¦æ
+		//R10059 å®‰æ³°éŠ€è¡Œ
 		if(BKCode.equals("816")) {
 			fileLOC = convertDownloadData816(payments,SelCURR,BATNO,remitKind,strLogonUser);
 		}
-		//RB0062 ¹ü¤Æ»È¦æ
+		//RB0062 å½°åŒ–éŠ€è¡Œ
 		if(BKCode.equals("009")) {
 			if (remitKind.equals("r"))
-				//¶×´ÚÀÉ
+				//åŒ¯æ¬¾æª”
 				fileLOC = convertDownloadData009r(payments,SelCURR,BATNO,remitKind,strLogonUser);
 			else
-				//Âà±bÀÉ
+				//è½‰å¸³æª”
 				fileLOC = convertDownloadData009t(payments,SelCURR,BATNO,remitKind,strLogonUser);
 		}
-		//EB0537 ³Í°ò(¸U®õ)»È¦æ
+		//EB0537 å‡±åŸº(è¬æ³°)éŠ€è¡Œ
 		if(BKCode.equals("809")) {
 			if(remitKind.equals("r")){
 				//RE0189
-				//¶×´ÚÀÉÀÉ(·s¼W,»P¥üÂ×layout¬Û¦P),¥~¹ô¥I´Ú,809-OBU --> 809-DBU (¥u­n§PÂ_¨ü´Ú±b¤á¬O§_¬°DBU)
+				//åŒ¯æ¬¾æª”æª”(æ–°å¢,èˆ‡å…†è±layoutç›¸åŒ),å¤–å¹£ä»˜æ¬¾,809-OBU --> 809-DBU (åªè¦åˆ¤æ–·å—æ¬¾å¸³æˆ¶æ˜¯å¦ç‚ºDBU)
 				fileLOC = convertDownloadData809r(payments,SelCURR,BATNO,remitKind,strLogonUser);
 			} else {
-				//Âà±bÀÉ(¬J¦³)
-				//RE0189:¥~¹ô¥I´Ú,¥u¦³809-OBU --> 809-OBU (¥u­n§PÂ_¨ü´Ú±b¤á¬O§_¬°OBU)¤~²£¥Í¸ÓÀÉ®×
+				//è½‰å¸³æª”(æ—¢æœ‰)
+				//RE0189:å¤–å¹£ä»˜æ¬¾,åªæœ‰809-OBU --> 809-OBU (åªè¦åˆ¤æ–·å—æ¬¾å¸³æˆ¶æ˜¯å¦ç‚ºOBU)æ‰ç”¢ç”Ÿè©²æª”æ¡ˆ
 				fileLOC = convertDownloadData809t(payments,SelCURR,BATNO,remitKind,strLogonUser);
 			}			
 		}
 		
-		//RD0440 »OÆW»È¦æ
+		//RD0440 è‡ºç£éŠ€è¡Œ
 		if(BKCode.equals("004")) {
 			
 			if (remitKind.equals("r")){
-				//¶×´ÚÀÉ
+				//åŒ¯æ¬¾æª”
 				fileLOC = convertDownloadData004r(payments,SelCURR,BATNO,remitKind,strLogonUser);
 			}else{
-				//Âà±bÀÉ
+				//è½‰å¸³æª”
 				fileLOC = convertDownloadData004t(payments,SelCURR,BATNO,remitKind,strLogonUser);
 			}
 		}
@@ -487,7 +487,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 
 	private String convertDownloadDataB(Vector payments, String selCURR, String BKCode, String BATNO, String rKind, String strLogonUser) {
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
@@ -497,19 +497,19 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		for (int index = 0; index < payments.size(); index++) {
 			rmtVO = (CaprmtfVO) payments.get(index);
 			String custRemitId = "";
-			// ¦¬´Ú¤HID, x(11)ªÅ¥Õ
+			// æ”¶æ¬¾äººID, x(11)ç©ºç™½
 			for (int count = 0; count < 11; count++) {
 				custRemitId += " ";
 			}
-			// SEQNO ÂàÀÉ§Ç¸¹X(6)
+			// SEQNO è½‰æª”åºè™ŸX(6)
 			String seqNo = String.valueOf(index + 1);
 			for (int count = 0; count < (6 - String.valueOf(index + 1).length()); count++) {
 				seqNo = "0" + seqNo;
 			}
-			// ¶×´ÚºØÃş,x(2)
+			// åŒ¯æ¬¾ç¨®é¡,x(2)
 			String remitKind = rmtVO.getRTYPE();
 
-			// ¶×´Ú¦æ,x(7)
+			// åŒ¯æ¬¾è¡Œ,x(7)
 			String entBank = "";
 			if (rmtVO.getRBK() != null && rmtVO.getRBK().length() >= 7) {
 				entBank = rmtVO.getRBK().substring(0, 7);
@@ -517,12 +517,12 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			for (int count = entBank.length(); count < 3; count++) {
 				entBank = "0" + entBank;
 			}
-			// ª÷ÃBx(13)
+			// é‡‘é¡x(13)
 			//RC0036-3 
 			String remitAmt = Integer.toString((int) rmtVO.getRAMT());
 			//String remitAmt = Double.toString(rmtVO.getRAMT()); 
 			
-			if (remitAmt.indexOf(".") > 0) {// ³B²z"."
+			if (remitAmt.indexOf(".") > 0) {// è™•ç†"."
 				remitAmt = remitAmt.substring(0, remitAmt.indexOf("."));
 				// System.out.println( seqNo + ":" + remitAmt);
 			}
@@ -532,38 +532,38 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 				remitAmt = "0" + remitAmt;
 				// System.out.println(seqNo + ":" +remitAmt);
 			}
-			// ¦¬´Ú¤H±b¸¹x(14)
+			// æ”¶æ¬¾äººå¸³è™Ÿx(14)
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			for (int count = entAccountNo.length(); count < 14; count++) {
 				entAccountNo = entAccountNo + " ";
 			}
-			// ¦¬´Ú¤H¤á¦Wx(80) ¦]¬°¤á¦W¬°¥ş§Î ©Ò¥HentName.length()*2
+			// æ”¶æ¬¾äººæˆ¶åx(80) å› ç‚ºæˆ¶åç‚ºå…¨å½¢ æ‰€ä»¥entName.length()*2
 			//QC0274String entName = rmtVO.getRNAME() != null ? rmtVO.getRNAME().trim() : "";// @R90735 FIX BUG
 			String entName = (rmtVO.getRNAME() == null) ? "" : CommonUtil.AllTrim(rmtVO.getRNAME()).toUpperCase();
 			for (int count = entName.getBytes().length; count < 80; count++) {
 				entName = entName + " ";
 			}
-			// ¶×´Ú¤HID x(11)
+			// åŒ¯æ¬¾äººID x(11)
 			String custId = "70817744";
 			for (int count = custId.length(); count < 11; count++) {
 				custId += " ";
 			}
-			// ¶×´Ú¤H¹q¸Ü¤Î°Ï°¨x(10)
-			String custPhoneNo = "0225068800";// @R90735 §ó´«¤½¥q¥Nªí¸¹
-			// ¶×´Ú¤H©m¦Wx(80)
-			String custName = "¥ş²y¤H¹Ø«OÀIªÑ¥÷¦³­­¤½¥q";
+			// åŒ¯æ¬¾äººé›»è©±åŠå€é¦¬x(10)
+			String custPhoneNo = "0225068800";// @R90735 æ›´æ›å…¬å¸ä»£è¡¨è™Ÿ
+			// åŒ¯æ¬¾äººå§“åx(80)
+			String custName = "å…¨çƒäººå£½ä¿éšªè‚¡ä»½æœ‰é™å…¬å¸";
 			for (int count = custName.length() * 2; count < 80; count++) {
 				custName += " ";
 			}
-			// ªş¨¥x(80)
-			String memo = rmtVO.getRMEMO() != null ? toFullChar(rmtVO.getRMEMO().replace('¡@', ' ').trim()) : "";// R90735 FIX BUG
-			if (memo.startsWith("¸U³q¨t²Î¸ê®Æ")) {
+			// é™„è¨€x(80)
+			String memo = rmtVO.getRMEMO() != null ? toFullChar(rmtVO.getRMEMO().replace('ã€€', ' ').trim()) : "";// R90735 FIX BUG
+			if (memo.startsWith("è¬é€šç³»çµ±è³‡æ–™")) {
 				memo = "";
 			}
 			for (int count = memo.getBytes().length; count < 80; count++) {
 				memo += " ";
 			}
-			// ¶×´Ú¤é´Áx(6)
+			// åŒ¯æ¬¾æ—¥æœŸx(6)
 			String remitDate = rmtVO.getRMTDT();
 			// R00231 edit by Leo Huang
 			if (remitDate.length() > 6) {
@@ -573,44 +573,44 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			for (int count = remitDate.length(); count < 6; count++) {
 				remitDate = "0" + remitDate;
 			}
-			// ¥æ©öÀË®Ö°¨x(4)
+			// äº¤æ˜“æª¢æ ¸é¦¬x(4)
 			String chkCode = rmtVO.getRTRNCDE();
 			for (int count = chkCode.length(); count < 4; count++) {
 				chkCode += " ";
 			}
-			// ¶Ç°e¦¸¼Æx(3)
+			// å‚³é€æ¬¡æ•¸x(3)
 			String submitCount = rmtVO.getRTRNTM();
 			for (int count = submitCount.length(); count < 3; count++) {
 				submitCount += " ";
 			}
-			// «È¤á¶Ç²¼¸¹½Xx(10)
+			// å®¢æˆ¶å‚³ç¥¨è™Ÿç¢¼x(10)
 			String processNo = rmtVO.getCSTNO();
 			for (int count = processNo.length(); count < 10; count++) {
 				processNo += " ";
 			}
 
-			// ¶×¶O­t¾á°Ï§O°¨x(1)
+			// åŒ¯è²»è² æ“”å€åˆ¥é¦¬x(1)
 			String remitFeeCode = " ";
 			// filler x(2)
 			String filler = "  ";
 
-			downloadInfo[index][0] = custRemitId;// ¦¬´Ú¤HID, x(11)ªÅ¥Õ
-			downloadInfo[index][1] = seqNo;// SEQNO ÂàÀÉ§Ç¸¹,
-			downloadInfo[index][2] = remitKind;// ¶×´ÚºØÃş,
-			downloadInfo[index][3] = entBank;// ,?´Ú¦æ ¶×´Ú¦æ,
-			downloadInfo[index][4] = remitAmt;// ª÷ÃB9(11)
-			downloadInfo[index][5] = "2";// ºK­n
-			downloadInfo[index][6] = entAccountNo;// ¦¬´Ú¤H±b¸¹
-			downloadInfo[index][7] = entName;// ¦¬´Ú¤H¤á¦W
-			downloadInfo[index][8] = custId;// ¶×´Ú¤HID
-			downloadInfo[index][9] = custPhoneNo;// ¶×´Ú¤H¹q¸Ü¤Î°Ï°¨
-			downloadInfo[index][10] = custName;// ¶×´Ú¤H©m¦W
-			downloadInfo[index][11] = memo;// ªş¨¥
-			downloadInfo[index][12] = remitDate;// ¶×´Ú¤é´Á
-			downloadInfo[index][13] = chkCode;// ¥æ©öÀË®Ö°¨
-			downloadInfo[index][14] = submitCount;// ¶Ç°e¦¸¼Æ
-			downloadInfo[index][15] = processNo;// «È¤á¶Ç²¼¸¹½X
-			downloadInfo[index][16] = remitFeeCode;// ¶×¶O­t¾á°Ï§O°¨
+			downloadInfo[index][0] = custRemitId;// æ”¶æ¬¾äººID, x(11)ç©ºç™½
+			downloadInfo[index][1] = seqNo;// SEQNO è½‰æª”åºè™Ÿ,
+			downloadInfo[index][2] = remitKind;// åŒ¯æ¬¾ç¨®é¡,
+			downloadInfo[index][3] = entBank;// ,?æ¬¾è¡Œ åŒ¯æ¬¾è¡Œ,
+			downloadInfo[index][4] = remitAmt;// é‡‘é¡9(11)
+			downloadInfo[index][5] = "2";// æ‘˜è¦
+			downloadInfo[index][6] = entAccountNo;// æ”¶æ¬¾äººå¸³è™Ÿ
+			downloadInfo[index][7] = entName;// æ”¶æ¬¾äººæˆ¶å
+			downloadInfo[index][8] = custId;// åŒ¯æ¬¾äººID
+			downloadInfo[index][9] = custPhoneNo;// åŒ¯æ¬¾äººé›»è©±åŠå€é¦¬
+			downloadInfo[index][10] = custName;// åŒ¯æ¬¾äººå§“å
+			downloadInfo[index][11] = memo;// é™„è¨€
+			downloadInfo[index][12] = remitDate;// åŒ¯æ¬¾æ—¥æœŸ
+			downloadInfo[index][13] = chkCode;// äº¤æ˜“æª¢æ ¸é¦¬
+			downloadInfo[index][14] = submitCount;// å‚³é€æ¬¡æ•¸
+			downloadInfo[index][15] = processNo;// å®¢æˆ¶å‚³ç¥¨è™Ÿç¢¼
+			downloadInfo[index][16] = remitFeeCode;// åŒ¯è²»è² æ“”å€åˆ¥é¦¬
 			downloadInfo[index][17] = filler;// filler
 
 		}
@@ -621,7 +621,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 	//RC0036
 	private String convertDownloadDataU(Vector payments, String SelCURR, String BKCode, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC ="";
-		//¥x·s»È¦æ
+		//å°æ–°éŠ€è¡Œ
 		if(BKCode.equals("812")) {
 			if  (BATNO.substring(0,1).equals("B")){
 				fileLOC = convertDownloadData812B(payments,SelCURR,BATNO,remitKind,strLogonUser);
@@ -636,7 +636,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 	private String convertDownloadData812B(Vector payments, String selCURR, String BATNO, String rKind, String strLogonUser) {
 		
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
@@ -673,13 +673,13 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			saveCount = index + 1;
 			saveRMDT = rmtVO.getRMTDT();
               
-			//¦¬´Ú¦æ®w¥N¸¹
+			//æ”¶æ¬¾è¡Œåº«ä»£è™Ÿ
 			String RBKO = rmtVO.getRBK();
 			String RBK = RBKO.substring(0,6);
 			for (int count = RBK.length(); count < 6; count++) {
 				RBK = RBK + " ";
 			}
-			// ¶×´Úª÷ÃB9(11)v99
+			// åŒ¯æ¬¾é‡‘é¡9(11)v99
 			remitAmtD = rmtVO.getRAMT();
 			remitAmtS = rmtVO.getRAMTS();//RC0036-3
 			saveAmt = saveAmt + remitAmtD;
@@ -693,7 +693,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 				remitAmt = "0" + remitAmt;
 			}
 			
-			// ¤âÄò¶O
+			// æ‰‹çºŒè²»
 			double Bankfee = 0;
 			try {
 				   pstmt.clearParameters();
@@ -717,44 +717,44 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 				BankfeeT = "0" + BankfeeT;
 			}
 
-			// ¦¬´Ú¤H±b¸¹x(14)
+			// æ”¶æ¬¾äººå¸³è™Ÿx(14)
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			for (int count = entAccountNo.length(); count < 14; count++) {
 			     entAccountNo = "0" + entAccountNo;
 			}
-			// ¦¬´Ú¤H¦WºÙ x(30)
+			// æ”¶æ¬¾äººåç¨± x(30)
 			//QC0274String entNameT = rmtVO.getRNAME() != null ? rmtVO.getRNAME().trim() : "";
 			String entNameT = (rmtVO.getRNAME() == null) ? "" : CommonUtil.AllTrim(rmtVO.getRNAME()).toUpperCase();
 			for (int count = entNameT.getBytes().length; count < 30; count++) {
 				entNameT = entNameT + " ";
 			}
 
-			// ªş¨¥(¥ş²y¤H¹Ø)
-			String note = "¥ş²y¤H¹Ø";
+			// é™„è¨€(å…¨çƒäººå£½)
+			String note = "å…¨çƒäººå£½";
 			for (int count = note.length(); count < 36; count++) {
 				note = note + " ";
 			}
-	    	// ³Æµù
+	    	// å‚™è¨»
 			String fillerN = "";
 			for (int count = fillerN.length(); count < 9; count++) {
 				fillerN = "0" + fillerN ;
 			}
-			// «O¯dÄæ¦ìD
+			// ä¿ç•™æ¬„ä½D
 			String fillerD = "";
 			for (int count = fillerD.length(); count < 33; count++) {
 				fillerD = fillerD + " ";
 			}
 			
 			//downloadInfo[index + 1][0] = "50"; // INDICATOR
-			downloadInfo[index + 1][0] = RBK; // ¦¬´Ú¦æ®w¥N¸¹
-			downloadInfo[index + 1][1] = remitAmt; // ¶×´Úª÷ÃB
-			downloadInfo[index + 1][2] = BankfeeT; // ³æµ§¤âÄò¶O
-			downloadInfo[index + 1][3] = entAccountNo;// ¦¬´Ú¤H±b¸¹
-			downloadInfo[index + 1][4] = entNameT; // ¦¬´Ú¤H¦WºÙ
-			downloadInfo[index + 1][5] = note; // ªş¨¥
-			downloadInfo[index + 1][6] = fillerN; // ³Æµù
-			downloadInfo[index + 1][7] = fillerD; // «O¯dÄæ¦ì
-			downloadInfo[index + 1][8] = "0";  // °O¿ıµ²§ô¼Ğ°O
+			downloadInfo[index + 1][0] = RBK; // æ”¶æ¬¾è¡Œåº«ä»£è™Ÿ
+			downloadInfo[index + 1][1] = remitAmt; // åŒ¯æ¬¾é‡‘é¡
+			downloadInfo[index + 1][2] = BankfeeT; // å–®ç­†æ‰‹çºŒè²»
+			downloadInfo[index + 1][3] = entAccountNo;// æ”¶æ¬¾äººå¸³è™Ÿ
+			downloadInfo[index + 1][4] = entNameT; // æ”¶æ¬¾äººåç¨±
+			downloadInfo[index + 1][5] = note; // é™„è¨€
+			downloadInfo[index + 1][6] = fillerN; // å‚™è¨»
+			downloadInfo[index + 1][7] = fillerD; // ä¿ç•™æ¬„ä½
+			downloadInfo[index + 1][8] = "0";  // è¨˜éŒ„çµæŸæ¨™è¨˜
 			for (int i = 9; i < 26; i++) {
 				downloadInfo[index + 1][i] = "";
 			}
@@ -766,7 +766,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		} else {
 			strRMDT = saveRMDT;		
 		}
-		// ¶×´ÚÁ`ÃB
+		// åŒ¯æ¬¾ç¸½é¡
 		finalsaveAmt = (int) saveAmt;
 		String totAmt = String.valueOf(finalsaveAmt);
 		if (totAmt.indexOf(".") > 0) {
@@ -777,39 +777,39 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			totAmt = "0" + totAmt;
 		}
 
-		// ©ú²Óµ§¼Æ
+		// æ˜ç´°ç­†æ•¸
 		String totCount = String.valueOf(saveCount);
 		for (int count = 0; count < (7 - String.valueOf(saveCount).length()); count++) {
 			totCount = "0" + totCount;
 		}
-		// ¤âÄò¶OÁ`ÃB
+		// æ‰‹çºŒè²»ç¸½é¡
 		finalBankfee = (int) saveBankfee;
 		String totBankfee = String.valueOf(finalBankfee);
 		for (int count = 0; count < (6 - String.valueOf(finalBankfee).length()); count++) {
 			totBankfee = "0" + totBankfee;
 		}
-		// ¶×´Ú¤H©m¦W
-		String strNM = "¥ş²y¤H¹Ø«OÀIªÑ¥÷¦³­­¤½¥q";
+		// åŒ¯æ¬¾äººå§“å
+		String strNM = "å…¨çƒäººå£½ä¿éšªè‚¡ä»½æœ‰é™å…¬å¸";
 		for (int count = strNM.length() * 2; count < 30; count++) {
 			strNM += " ";
 		}
-		// «O¯dÄæ¦ì x(64)
+		// ä¿ç•™æ¬„ä½ x(64)
 		String fillerH = "";
 		for (int count = fillerH.length(); count < 64; count++) {
 			fillerH = fillerH + " ";
 		}
 		
-		downloadInfo[0][0] = "1";  // ½X§O
-		downloadInfo[0][1] = "0660"; // ¥ø·~½s¸¹
-		downloadInfo[0][2] = "06120001666600"; // ©e¿ì±b¸¹	                         
-		downloadInfo[0][3] = strRMDT; // ¹w©w¶×´Ú¤é´Á
-		downloadInfo[0][4] = "820";// Âà±b¶µ¥Ø
-		downloadInfo[0][5] = totAmt; //  ¶×´ÚÁ`ÃB
-		downloadInfo[0][6] = totCount; // ¶×´Úµ§¼Æ
-		downloadInfo[0][7] = strNM; // ¶×´Ú¤H©m¦W
-		downloadInfo[0][8] = totBankfee; // ¤âÄò¶OÁ`ª÷ÃB
-		downloadInfo[0][9] = fillerH; // «O¯dÄæ¦ì
-		downloadInfo[0][10] = "0";  // °O¿ıµ²§ô¼Ğ°O
+		downloadInfo[0][0] = "1";  // ç¢¼åˆ¥
+		downloadInfo[0][1] = "0660"; // ä¼æ¥­ç·¨è™Ÿ
+		downloadInfo[0][2] = "06120001666600"; // å§”è¾¦å¸³è™Ÿ	                         
+		downloadInfo[0][3] = strRMDT; // é å®šåŒ¯æ¬¾æ—¥æœŸ
+		downloadInfo[0][4] = "820";// è½‰å¸³é …ç›®
+		downloadInfo[0][5] = totAmt; //  åŒ¯æ¬¾ç¸½é¡
+		downloadInfo[0][6] = totCount; // åŒ¯æ¬¾ç­†æ•¸
+		downloadInfo[0][7] = strNM; // åŒ¯æ¬¾äººå§“å
+		downloadInfo[0][8] = totBankfee; // æ‰‹çºŒè²»ç¸½é‡‘é¡
+		downloadInfo[0][9] = fillerH; // ä¿ç•™æ¬„ä½
+		downloadInfo[0][10] = "0";  // è¨˜éŒ„çµæŸæ¨™è¨˜
 		for (int i = 11; i < 26; i++) {
 			downloadInfo[0][i] = "";
 		}
@@ -823,7 +823,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 
 		
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
@@ -860,13 +860,13 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			saveCount = index + 1;
 			saveRMDT = rmtVO.getRMTDT();
               
-			//¦¬´Ú¦æ®w¥N¸¹
+			//æ”¶æ¬¾è¡Œåº«ä»£è™Ÿ
 			String RBKO = rmtVO.getRBK();
 			String RBK = RBKO.substring(0,6);
 			for (int count = RBK.length(); count < 6; count++) {
 				RBK = RBK + " ";
 			}
-			// ¶×´Úª÷ÃBx(13)
+			// åŒ¯æ¬¾é‡‘é¡x(13)
 			remitAmtD = rmtVO.getRAMT();
 			remitAmtS = rmtVO.getRAMTS();//RC0036-3
 			saveAmt = saveAmt + remitAmtD;
@@ -880,7 +880,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 				remitAmt = "0" + remitAmt;
 			}
 			
-			// ¤âÄò¶O
+			// æ‰‹çºŒè²»
 			double Bankfee = 0;
 			try {
 				   pstmt.clearParameters();
@@ -904,12 +904,12 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 				BankfeeT = "0" + BankfeeT;
 			}
 						
-			// ¦¬´Ú¤H±b¸¹x(14)
+			// æ”¶æ¬¾äººå¸³è™Ÿx(14)
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			for (int count = entAccountNo.length(); count < 14; count++) {
 			     entAccountNo = "0" + entAccountNo;
 			}
-			// ¦¬´Ú¤H¦WºÙ x(30)
+			// æ”¶æ¬¾äººåç¨± x(30)
 			//QC0274String entNameT = rmtVO.getRNAME() != null ? rmtVO.getRNAME().trim() : "";
 			String entNameT = (rmtVO.getRNAME() == null) ? "" : CommonUtil.AllTrim(rmtVO.getRNAME()).toUpperCase();
 			//RC0036-3 for (int count = entNameT.getBytes().length; count < 31; count++) {
@@ -917,33 +917,33 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			     entNameT = entNameT + " ";
 			}
 
-			// ªş¨¥(¥ş²y¤H¹Ø)
-			String note = "¥ş²y¤H¹Ø";
+			// é™„è¨€(å…¨çƒäººå£½)
+			String note = "å…¨çƒäººå£½";
 			for (int count = note.length(); count < 36; count++) {
 				note = note + " ";
 			}
 
-			// ³Æµù
+			// å‚™è¨»
 			String fillerN = "";
 			for (int count = fillerN.length(); count < 9; count++) {
 				fillerN = "0" + fillerN ;
 			}
-			// «O¯dÄæ¦ìD
+			// ä¿ç•™æ¬„ä½D
 			String fillerD = "";
 			//RC0036-3 for (int count = fillerD.length(); count < 32; count++) {
             for (int count = fillerD.length(); count < 33; count++) {
 			     fillerD = fillerD + " ";
 			}
 
-			downloadInfo[index + 1][0] = RBK; // ¦¬´Ú¦æ®w¥N¸¹
-			downloadInfo[index + 1][1] = remitAmt; // ¶×´Úª÷ÃB
-			downloadInfo[index + 1][2] = BankfeeT; // ³æµ§¤âÄò¶O
-			downloadInfo[index + 1][3] = entAccountNo;// ¦¬´Ú¤H±b¸¹
-			downloadInfo[index + 1][4] = entNameT; // ¦¬´Ú¤H¦WºÙ
-			downloadInfo[index + 1][5] = note; // ªş¨¥
-			downloadInfo[index + 1][6] = fillerN; // ³Æµù
-			downloadInfo[index + 1][7] = fillerD; // «O¯dÄæ¦ì
-			downloadInfo[index + 1][8] = "0";  // °O¿ıµ²§ô¼Ğ°O
+			downloadInfo[index + 1][0] = RBK; // æ”¶æ¬¾è¡Œåº«ä»£è™Ÿ
+			downloadInfo[index + 1][1] = remitAmt; // åŒ¯æ¬¾é‡‘é¡
+			downloadInfo[index + 1][2] = BankfeeT; // å–®ç­†æ‰‹çºŒè²»
+			downloadInfo[index + 1][3] = entAccountNo;// æ”¶æ¬¾äººå¸³è™Ÿ
+			downloadInfo[index + 1][4] = entNameT; // æ”¶æ¬¾äººåç¨±
+			downloadInfo[index + 1][5] = note; // é™„è¨€
+			downloadInfo[index + 1][6] = fillerN; // å‚™è¨»
+			downloadInfo[index + 1][7] = fillerD; // ä¿ç•™æ¬„ä½
+			downloadInfo[index + 1][8] = "0";  // è¨˜éŒ„çµæŸæ¨™è¨˜
 			//RC0036-3 for (int i = 11; i < 26; i++) {
             for (int i = 9; i < 26; i++) {
 			downloadInfo[index + 1][i] = "";
@@ -956,7 +956,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		} else {
 			strRMDT = saveRMDT;		
 		}
-		// ¶×´ÚÁ`ÃB
+		// åŒ¯æ¬¾ç¸½é¡
 		finalsaveAmt = (int) saveAmt;
 		String totAmt = String.valueOf(finalsaveAmt);
 		if (totAmt.indexOf(".") > 0) {
@@ -967,41 +967,41 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			totAmt = "0" + totAmt;
 		}
 
- 		// ©ú²Óµ§¼Æ
+ 		// æ˜ç´°ç­†æ•¸
 		String totCount = String.valueOf(saveCount);
 		for (int count = 0; count < (7 - String.valueOf(saveCount).length()); count++) {
 			totCount = "0" + totCount;
 		}
-		// ¤âÄò¶OÁ`ÃB
+		// æ‰‹çºŒè²»ç¸½é¡
 		finalBankfee = (int) saveBankfee;
 		String totBankfee = String.valueOf(finalBankfee);
 		for (int count = 0; count < (6 - String.valueOf(finalBankfee).length()); count++) {
 			totBankfee = "0" + totBankfee;
 		}
-		// ¶×´Ú¤H©m¦W
-		String strNM = "¥ş²y¤H¹Ø«OÀIªÑ¥÷¦³­­¤½¥q";
+		// åŒ¯æ¬¾äººå§“å
+		String strNM = "å…¨çƒäººå£½ä¿éšªè‚¡ä»½æœ‰é™å…¬å¸";
 		//RC0036-3 for (int count = strNM.length() * 2; count < 32; count++) {
 		for (int count = strNM.length() * 2; count < 30; count++) {
      		strNM += " ";
 		}
-		// «O¯dÄæ¦ì x(64)
+		// ä¿ç•™æ¬„ä½ x(64)
 		String fillerH = "";
 		for (int count = fillerH.length(); count < 64; count++) {
 			fillerH = fillerH + " ";
 		}
-		downloadInfo[0][0] = "1";  // ½X§O
-		downloadInfo[0][1] = "0660"; // ¥ø·~½s¸¹
-		downloadInfo[0][2] = "06120001666600"; // ©e¿ì±b¸¹
-		downloadInfo[0][3] = strRMDT; // ¹w©w¶×´Ú¤é´Á
-		downloadInfo[0][4] = "820";// Âà±b¶µ¥Ø
-		//RC0036-3 downloadInfo[0][5] = totAmt.substring(0, 11); //  ¶×´ÚÁ`ÃB
-		downloadInfo[0][5] = totAmt; //  ¶×´ÚÁ`ÃB
-		downloadInfo[0][6] = totCount; // ¶×´Úµ§¼Æ
-		downloadInfo[0][7] = strNM; // ¶×´Ú¤H©m¦W
-		downloadInfo[0][8] = totBankfee; // ¤âÄò¶OÁ`ª÷ÃB
-		//RC0036-3 downloadInfo[0][9] = fillerH+"  "; // «O¯dÄæ¦ì
-		downloadInfo[0][9] = fillerH; // «O¯dÄæ¦ì
-		downloadInfo[0][10] = "0";  // °O¿ıµ²§ô¼Ğ°O
+		downloadInfo[0][0] = "1";  // ç¢¼åˆ¥
+		downloadInfo[0][1] = "0660"; // ä¼æ¥­ç·¨è™Ÿ
+		downloadInfo[0][2] = "06120001666600"; // å§”è¾¦å¸³è™Ÿ
+		downloadInfo[0][3] = strRMDT; // é å®šåŒ¯æ¬¾æ—¥æœŸ
+		downloadInfo[0][4] = "820";// è½‰å¸³é …ç›®
+		//RC0036-3 downloadInfo[0][5] = totAmt.substring(0, 11); //  åŒ¯æ¬¾ç¸½é¡
+		downloadInfo[0][5] = totAmt; //  åŒ¯æ¬¾ç¸½é¡
+		downloadInfo[0][6] = totCount; // åŒ¯æ¬¾ç­†æ•¸
+		downloadInfo[0][7] = strNM; // åŒ¯æ¬¾äººå§“å
+		downloadInfo[0][8] = totBankfee; // æ‰‹çºŒè²»ç¸½é‡‘é¡
+		//RC0036-3 downloadInfo[0][9] = fillerH+"  "; // ä¿ç•™æ¬„ä½
+		downloadInfo[0][9] = fillerH; // ä¿ç•™æ¬„ä½
+		downloadInfo[0][10] = "0";  // è¨˜éŒ„çµæŸæ¨™è¨˜
 		for (int i = 11; i < 26; i++) {
 			downloadInfo[0][i] = "";
 		}
@@ -1009,7 +1009,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		return fileLOC;
 	}
 	
-	//R90735 ¥b«¬Âà¥ş«¬­^¤å
+	//R90735 åŠå‹è½‰å…¨å‹è‹±æ–‡
 	private String toFullChar(String s) {
 		if ( s == null || s.equals("")){
 	  		return "";
@@ -1034,10 +1034,10 @@ public class DISBRemitExportServlet  extends InitDBServlet {
     	return String.valueOf(ca);
    }
    
-	// R80300 «H¥Î¥d·s¼W¤U¸üÀÉ®×
+	// R80300 ä¿¡ç”¨å¡æ–°å¢ä¸‹è¼‰æª”æ¡ˆ
 	private String convertDownloadDataC(Vector payments, String selCURR, String BKCode, String BATNO, String rKind, String strLogonUser) {
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
@@ -1052,12 +1052,12 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			paymetVO = (DISBPaymentDetailVO) payments.get(index);
 			saveCount = index + 1;
 
-			// ¥d¸¹x(19)
+			// å¡è™Ÿx(19)
 			String crdNO = paymetVO.getStrPCrdNo();
 			for (int count = crdNO.length(); count < 19; count++) {
 				crdNO = crdNO + " ";
 			}
-			// ¥d¤ù¨ì´Á¤éx(4)
+			// å¡ç‰‡åˆ°æœŸæ—¥x(4)
 			String crdEFFYM = paymetVO.getStrPCrdEffMY() == null ? "" : paymetVO.getStrPCrdEffMY();
 			if (!crdEFFYM.equals("")) {
 				crdEFFYM = paymetVO.getStrPCrdEffMY().substring(0, 2) + paymetVO.getStrPCrdEffMY().substring(4, 6);
@@ -1065,22 +1065,22 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			for (int count = crdEFFYM.length(); count < 4; count++) {
 				crdEFFYM = crdEFFYM + " ";
 			}
-			// ±ÂÅv½Xx(6)
+			// æˆæ¬Šç¢¼x(6)
 			String authcode = paymetVO.getStrPAuthCode();
 			for (int count = authcode.length(); count < 6; count++) {
 				authcode = authcode + " ";
 			}
-			// ¥æ©öª÷ÃBx(12)
+			// äº¤æ˜“é‡‘é¡x(12)
 			String remitAmtT = df.format(paymetVO.getIPAMT());
 			String remitAmt = remitAmtT.substring(0, 10) + remitAmtT.substring(11, 13);
 			saveAmt = disbBean.DoubleAdd(saveAmt, paymetVO.getIPAMT());
-			// ¥æ©ö¤éx(8)
+			// äº¤æ˜“æ—¥x(8)
 			String remitDT = Integer.toString((int) paymetVO.getIPCshDt());
 			for (int count = remitDT.length(); count < 8; count++) {
 				remitDT = "0" + remitDT;
 			}
 			String strRMDTTemp = Integer.toString(1911 + Integer.parseInt(remitDT.substring(0, 4))) + remitDT.substring(4, 6) + remitDT.substring(6, 8);
-			// ³Æµùx(60)
+			// å‚™è¨»x(60)
 			String remark = paymetVO.getStrPNO();
 			for (int count = remark.length(); count < 60; count++) {
 				remark = remark + " ";
@@ -1096,21 +1096,21 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 				filler2 = filler2 + " ";
 			}
 
-			downloadInfo[index][0] = "D"; // ¸ê®ÆÃş§O X1
-			downloadInfo[index][1] = "06"; // ¥æ©öÃş§O X2
-			downloadInfo[index][2] = "000812000104576";// ¯S©±¥N½X X15
-			downloadInfo[index][3] = "6300"; // ¯S©±Ãş¥N½X X4
-			downloadInfo[index][4] = crdNO; // ¥d¤ù¸¹½X X19
-			downloadInfo[index][5] = crdEFFYM; // ¦³®Ä¦~¤é X4 YYMM
-			downloadInfo[index][6] = remitAmt; // ª÷ÃB 10V2
-			downloadInfo[index][7] = "00"; // ±ÂÅv¦^À³½X X2
-			downloadInfo[index][8] = authcode; // ±ÂÅv½X X6
-			downloadInfo[index][9] = strRMDTTemp; // ¥æ©ö¤é´Á X8 YYYYMMDD
+			downloadInfo[index][0] = "D"; // è³‡æ–™é¡åˆ¥ X1
+			downloadInfo[index][1] = "06"; // äº¤æ˜“é¡åˆ¥ X2
+			downloadInfo[index][2] = "000812000104576";// ç‰¹åº—ä»£ç¢¼ X15
+			downloadInfo[index][3] = "6300"; // ç‰¹åº—é¡ä»£ç¢¼ X4
+			downloadInfo[index][4] = crdNO; // å¡ç‰‡è™Ÿç¢¼ X19
+			downloadInfo[index][5] = crdEFFYM; // æœ‰æ•ˆå¹´æ—¥ X4 YYMM
+			downloadInfo[index][6] = remitAmt; // é‡‘é¡ 10V2
+			downloadInfo[index][7] = "00"; // æˆæ¬Šå›æ‡‰ç¢¼ X2
+			downloadInfo[index][8] = authcode; // æˆæ¬Šç¢¼ X6
+			downloadInfo[index][9] = strRMDTTemp; // äº¤æ˜“æ—¥æœŸ X8 YYYYMMDD
 			downloadInfo[index][10] = " "; // SSL/ SET flag X1
-			downloadInfo[index][11] = "   "; // ¥d¤ùÅçÃÒ½X X3
+			downloadInfo[index][11] = "   "; // å¡ç‰‡é©—è­‰ç¢¼ X3
 			downloadInfo[index][12] = filler1; // SET XID X40
-			downloadInfo[index][13] = remark; // ³Æµù X60
-			downloadInfo[index][14] = "02"; // ¥æ©öºØÃş X2
+			downloadInfo[index][13] = remark; // å‚™è¨» X60
+			downloadInfo[index][14] = "02"; // äº¤æ˜“ç¨®é¡ X2
 			downloadInfo[index][15] = "              "; // Store ID X14
 			downloadInfo[index][16] = "            "; // Cash Rebate Order Code X12
 			downloadInfo[index][17] = "0000000"; // Discount Rebate 7
@@ -1127,31 +1127,31 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			downloadInfo[index][28] = filler2; // filler X83
 		}
 		// -----Subtotal Record-----
-		// ¶×´ÚÁ`ÃB
+		// åŒ¯æ¬¾ç¸½é¡
 		String totAmtT = df.format(saveAmt);
 		String totAmt = totAmtT.substring(0, 10) + totAmtT.substring(11, 13);
-		// ©ú²Óµ§¼Æ
+		// æ˜ç´°ç­†æ•¸
 		String totCount = String.valueOf(saveCount);
 		for (int count = 0; count < (6 - String.valueOf(saveCount).length()); count++) {
 			totCount = "0" + totCount;
 		}
-		downloadInfo[saveCount][0] = "S"; // ¸ê®ÆÃş§O
-		downloadInfo[saveCount][1] = "000812000104576";// ¥D¯S©±¥N½X
-		downloadInfo[saveCount][2] = "000000"; // ¾P³f¸ê®Æµ§¼Æ
-		downloadInfo[saveCount][3] = "000000000000"; // ¾P³f¸ê®Æª÷ÃB
-		downloadInfo[saveCount][4] = totCount; // °h³f¸ê®Æµ§¼Æ
-		downloadInfo[saveCount][5] = totAmt; // °h³f¸ê®Æª÷ÃB
+		downloadInfo[saveCount][0] = "S"; // è³‡æ–™é¡åˆ¥
+		downloadInfo[saveCount][1] = "000812000104576";// ä¸»ç‰¹åº—ä»£ç¢¼
+		downloadInfo[saveCount][2] = "000000"; // éŠ·è²¨è³‡æ–™ç­†æ•¸
+		downloadInfo[saveCount][3] = "000000000000"; // éŠ·è²¨è³‡æ–™é‡‘é¡
+		downloadInfo[saveCount][4] = totCount; // é€€è²¨è³‡æ–™ç­†æ•¸
+		downloadInfo[saveCount][5] = totAmt; // é€€è²¨è³‡æ–™é‡‘é¡
 		for (int i = 6; i < 29; i++) {
 			downloadInfo[saveCount][i] = "";
 		}
 
-		// -----Trail Record (¦PSubtotal)-----
-		downloadInfo[saveCount + 1][0] = "T"; // ¸ê®ÆÃş§O
-		downloadInfo[saveCount + 1][1] = "000812000104576";// ¥D¯S©±¥N½X
-		downloadInfo[saveCount + 1][2] = "000000"; // ¾P³f¸ê®Æµ§¼Æ
-		downloadInfo[saveCount + 1][3] = "000000000000"; // ¾P³f¸ê®Æª÷ÃB
-		downloadInfo[saveCount + 1][4] = totCount; // °h³f¸ê®Æµ§¼Æ
-		downloadInfo[saveCount + 1][5] = totAmt; // °h³f¸ê®Æª÷ÃB
+		// -----Trail Record (åŒSubtotal)-----
+		downloadInfo[saveCount + 1][0] = "T"; // è³‡æ–™é¡åˆ¥
+		downloadInfo[saveCount + 1][1] = "000812000104576";// ä¸»ç‰¹åº—ä»£ç¢¼
+		downloadInfo[saveCount + 1][2] = "000000"; // éŠ·è²¨è³‡æ–™ç­†æ•¸
+		downloadInfo[saveCount + 1][3] = "000000000000"; // éŠ·è²¨è³‡æ–™é‡‘é¡
+		downloadInfo[saveCount + 1][4] = totCount; // é€€è²¨è³‡æ–™ç­†æ•¸
+		downloadInfo[saveCount + 1][5] = totAmt; // é€€è²¨è³‡æ–™é‡‘é¡
 		for (int i = 6; i < 29; i++) {
 			downloadInfo[saveCount + 1][i] = "";
 		}
@@ -1160,10 +1160,10 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		return fileLOC;
 	}
 
-	// R60550 ¥~¹ôÀÉ®×¤U¸ü(¤¤«H¥~¹ô¶×´Ú)
+	// R60550 å¤–å¹£æª”æ¡ˆä¸‹è¼‰(ä¸­ä¿¡å¤–å¹£åŒ¯æ¬¾)
 	private String convertDownloadData822r(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
@@ -1190,39 +1190,39 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			saveRMDT = rmtVO.getRMTDT();
 			savePACCT = rmtVO.getPACCT();
 
-			// 2.SEQNO ©ú²Ó§Ç¸¹X(5)
+			// 2.SEQNO æ˜ç´°åºè™ŸX(5)
 			String seqNo = String.valueOf(index + 1);
 			for (int count = 0; count < (5 - String.valueOf(index + 1).length()); count++) {
 				seqNo = "0" + seqNo;
 			}
-			// 3.¶×´Ú¹ô§O,X(3)
+			// 3.åŒ¯æ¬¾å¹£åˆ¥,X(3)
 			String remitCURR = payCURR;
 			for (int count = remitCURR.length(); count < 3; count++) {
 				remitCURR = remitCURR + " ";
 			}
-			// 4.¶×´Úª÷ÃBx(15)
+			// 4.åŒ¯æ¬¾é‡‘é¡x(15)
 			String remitAmtT = df.format(remitAmtNum);
 			String remitAmt = remitAmtT.substring(0, 13) + remitAmtT.substring(14, 16);
-			// R70574 ¶×´Úª÷ÃB¥[Á`
+			// R70574 åŒ¯æ¬¾é‡‘é¡åŠ ç¸½
 			// R70455 saveAmt += Float.parseFloat(remitAmtT);
 			saveAmtT = disbBean.DoubleRound(remitAmtNum, 2);// R70455
 			saveAmt = disbBean.DoubleAdd(saveAmt, saveAmtT);// R70455
 
-			// 5.¨ü¯q¤H±b¸¹x(35)
+			// 5.å—ç›Šäººå¸³è™Ÿx(35)
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			for (int count = entAccountNo.length(); count < 35; count++) {
 				entAccountNo = entAccountNo + " ";
 			}
-			// 6.¦¬´Ú»È¦æSWIFT x(11)
+			// 6.æ”¶æ¬¾éŠ€è¡ŒSWIFT x(11)
 			String remitSWIFTT = rmtVO.getSWIFTCODE() == null ? "" : rmtVO.getSWIFTCODE();
 			String remitSWIFT = remitSWIFTT.trim();
 			for (int count = remitSWIFT.length(); count < 11; count++) {
 				remitSWIFT = remitSWIFT + " ";
 			}
-			// 7.¦¬´Ú»È¦æ¦WºÙ x(35)
-			// 8.¦¬´Ú»È¦æ¦WºÙ©Î¦a§}2 x(35)
-			// 9.¦¬´Ú»È¦æ¦a§}3 x(35)
-			// 10.¦¬´Ú»È¦æ¦a§}4 x(35)
+			// 7.æ”¶æ¬¾éŠ€è¡Œåç¨± x(35)
+			// 8.æ”¶æ¬¾éŠ€è¡Œåç¨±æˆ–åœ°å€2 x(35)
+			// 9.æ”¶æ¬¾éŠ€è¡Œåœ°å€3 x(35)
+			// 10.æ”¶æ¬¾éŠ€è¡Œåœ°å€4 x(35)
 			String entBank1 = "";
 			String entBank2 = "";
 			String entBank3 = "";
@@ -1248,8 +1248,8 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 				entBank3 = entBkaddrT.substring(0, 35);
 				entBank4 = entBkaddrT.substring(35, 70);
 			}
-			// 11.¨ü¯q¤H¦WºÙ x(35)
-			// 12.¨ü¯q¤H¦WºÙ2 x(35)
+			// 11.å—ç›Šäººåç¨± x(35)
+			// 12.å—ç›Šäººåç¨±2 x(35)
 			//QC0274
 			//String entNameT = rmtVO.getPENGNAME() == null ? "" : rmtVO.getPENGNAME();
 			String entNameT = (rmtVO.getPENGNAME() == null) ? "" : CommonUtil.AllTrim(rmtVO.getPENGNAME()).toUpperCase();
@@ -1258,111 +1258,111 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			}
 			String entName1 = entNameT.substring(0, 35);
 			String entName2 = entNameT.substring(35, 70);
-			// 13.¨ü¯q¤H¦a§}3 x(35)
+			// 13.å—ç›Šäººåœ°å€3 x(35)
 			String entName3 = "";
 			for (int count = entName3.length(); count < 35; count++) {
 				entName3 = entName3 + " ";
 			}
-			// 14.¨ü¯q¤H¦a§}4 x(35)
+			// 14.å—ç›Šäººåœ°å€4 x(35)
 			String entName4 = "";
 			for (int count = entName4.length(); count < 35; count++) {
 				entName4 = entName4 + " ";
 			}
-			// 15.ªş¨¥1 x(35)
+			// 15.é™„è¨€1 x(35)
 			String note1 = "";
 			for (int count = note1.length(); count < 35; count++) {
 				note1 = note1 + " ";
 			}
-			// 16.ªş¨¥2 x(35)
+			// 16.é™„è¨€2 x(35)
 			String note2 = "";
 			for (int count = note2.length(); count < 35; count++) {
 				note2 = note2 + " ";
 			}
-			// 17.ªş¨¥3 x(35)
+			// 17.é™„è¨€3 x(35)
 			String note3 = "";
 			for (int count = note3.length(); count < 35; count++) {
 				note3 = note3 + " ";
 			}
-			// 18.ªş¨¥4 x(35)
+			// 18.é™„è¨€4 x(35)
 			String note4 = "";
 			for (int count = note4.length(); count < 35; count++) {
 				note4 = note4 + " ";
 			}
-			// 19.¶×´Ú©Ê½è x(03)
-			// R70088 String rmtFUND = "129";±q129->693 960502 ¤¤«H­n¨D
+			// 19.åŒ¯æ¬¾æ€§è³ª x(03)
+			// R70088 String rmtFUND = "129";å¾129->693 960502 ä¸­ä¿¡è¦æ±‚
 			String rmtFUND = "693";
-			// 20.¨ü´Ú°ê§O¥N½X x(02)
+			// 20.å—æ¬¾åœ‹åˆ¥ä»£ç¢¼ x(02)
 			String rmtCountry = remitSWIFT.substring(4, 6);
 			for (int count = rmtCountry.length(); count < 2; count++) {
 				rmtCountry = rmtCountry + " ";
 			}
-			// 21.¨ÑÀ³°Ó¥N¸¹ x(20)
+			// 21.ä¾›æ‡‰å•†ä»£è™Ÿ x(20)
 			String rmtVendor = "";
 			for (int count = rmtVendor.length(); count < 20; count++) {
 				rmtVendor = rmtVendor + " ";
 			}
-			// 22.¨ü´Ú¤Hemail x(50)
+			// 22.å—æ¬¾äººemail x(50)
 			String rmtEmail = "";
 			for (int count = rmtEmail.length(); count < 50; count++) {
 				rmtEmail = rmtEmail + " ";
 			}
-			// 23.¬O§_¥[µo202 "Y"ªí¥Ü»İ¥[µo x(01)
+			// 23.æ˜¯å¦åŠ ç™¼202 "Y"è¡¨ç¤ºéœ€åŠ ç™¼ x(01)
 			String rmtExtra = "Y";
-			// 24.¦¬´Ú¦æ¤§¦s¦P¦æSWIFT¥N½X x(11)
+			// 24.æ”¶æ¬¾è¡Œä¹‹å­˜åŒè¡ŒSWIFTä»£ç¢¼ x(11)
 			String remitSWIFT2 = "";
 			for (int count = remitSWIFT2.length(); count < 11; count++) {
 				remitSWIFT2 = remitSWIFT2 + " ";
 			}
-			// 25.¦¬¶O§O x(03)
+			// 25.æ”¶è²»åˆ¥ x(03)
 			String remitFEEWAY = rmtVO.getRPAYFEEWAY();
 			for (int count = remitFEEWAY.length(); count < 3; count++) {
 				remitFEEWAY = remitFEEWAY + " ";
 			}
-			// 26.¥æ©ö©Ê½èµù°O x(02)
-			// RD0020¤¤°ê«H°U¶×´ÚÀÉ·s¼W¥æ©ö©Ê½èµù°O©T©wµ¹ªÅS
+			// 26.äº¤æ˜“æ€§è³ªè¨»è¨˜ x(02)
+			// RD0020ä¸­åœ‹ä¿¡è¨—åŒ¯æ¬¾æª”æ–°å¢äº¤æ˜“æ€§è³ªè¨»è¨˜å›ºå®šçµ¦ç©ºS
 			String remitTXNOTE = " S";
 			
-			// 27.«O¯dÄæ¦ì x(20)
+			// 27.ä¿ç•™æ¬„ä½ x(20)
 			String fillerD = "";
 			for (int count = fillerD.length(); count < 20; count++) {
 				fillerD = fillerD + " ";
 			}
 
-			downloadInfo[index + 1][0] = "D"; // ªí©ú²Ó¸ê®Æ
-			downloadInfo[index + 1][1] = seqNo; // SEQNO ÂàÀÉ§Ç¸¹,
-			downloadInfo[index + 1][2] = remitCURR; // ¶×´Ú¹ô§O,
-			downloadInfo[index + 1][3] = remitAmt; // ¶×´Úª÷ÃB,
-			downloadInfo[index + 1][4] = entAccountNo;// ¨ü¯q¤H±b¸¹,
-			downloadInfo[index + 1][5] = remitSWIFT; // ¦¬´Ú»È¦æSWIFT,
-			downloadInfo[index + 1][6] = entBank1; // ¦¬´Ú»È¦æ¦WºÙ1,
-			downloadInfo[index + 1][7] = entBank2; // ¦¬´Ú»È¦æ¦WºÙ2,
-			downloadInfo[index + 1][8] = entBank3; // ¦¬´Ú»È¦æ¦a§}3,
-			downloadInfo[index + 1][9] = entBank4; // ¦¬´Ú»È¦æ¦a§}4,
-			downloadInfo[index + 1][10] = entName1; // ¨ü¯q¤H¦WºÙ1,
-			downloadInfo[index + 1][11] = entName2; // ¨ü¯q¤H¦WºÙ2,
-			downloadInfo[index + 1][12] = entName3; // ¨ü¯q¤H¦a§}3,
-			downloadInfo[index + 1][13] = entName4; // ¨ü¯q¤H¦a§}4,
-			downloadInfo[index + 1][14] = note1; // ªş¨¥1 ,
-			downloadInfo[index + 1][15] = note2; // ªş¨¥2 ,
-			downloadInfo[index + 1][16] = note3; // ªş¨¥3 ,
-			downloadInfo[index + 1][17] = note4; // ªş¨¥4 ,
-			downloadInfo[index + 1][18] = rmtFUND; // ¶×´Ú©Ê½è,
-			downloadInfo[index + 1][19] = rmtCountry; // ¨ü´Ú°ê§O¥N½X,
-			downloadInfo[index + 1][20] = rmtVendor; // ¨ÑÀ³°Ó¥N¸¹,
-			downloadInfo[index + 1][21] = rmtEmail; // ¨ü´Ú¤Hemail,
-			downloadInfo[index + 1][22] = rmtExtra; // ¬O§_¥[µo202 "Y"ªí¥Ü»İ¥[µo,
-			downloadInfo[index + 1][23] = remitSWIFT2;// ¦¬´Ú¦æ¤§¦s¦P¦æSWIFT¥N½X,
-			downloadInfo[index + 1][24] = remitFEEWAY;// ¦¬¶O§O,
-			downloadInfo[index + 1][25] = remitTXNOTE;// ¥æ©ö©Ê½èµù°O,
-			downloadInfo[index + 1][26] = fillerD; // «O¯dÄæ¦ì
+			downloadInfo[index + 1][0] = "D"; // è¡¨æ˜ç´°è³‡æ–™
+			downloadInfo[index + 1][1] = seqNo; // SEQNO è½‰æª”åºè™Ÿ,
+			downloadInfo[index + 1][2] = remitCURR; // åŒ¯æ¬¾å¹£åˆ¥,
+			downloadInfo[index + 1][3] = remitAmt; // åŒ¯æ¬¾é‡‘é¡,
+			downloadInfo[index + 1][4] = entAccountNo;// å—ç›Šäººå¸³è™Ÿ,
+			downloadInfo[index + 1][5] = remitSWIFT; // æ”¶æ¬¾éŠ€è¡ŒSWIFT,
+			downloadInfo[index + 1][6] = entBank1; // æ”¶æ¬¾éŠ€è¡Œåç¨±1,
+			downloadInfo[index + 1][7] = entBank2; // æ”¶æ¬¾éŠ€è¡Œåç¨±2,
+			downloadInfo[index + 1][8] = entBank3; // æ”¶æ¬¾éŠ€è¡Œåœ°å€3,
+			downloadInfo[index + 1][9] = entBank4; // æ”¶æ¬¾éŠ€è¡Œåœ°å€4,
+			downloadInfo[index + 1][10] = entName1; // å—ç›Šäººåç¨±1,
+			downloadInfo[index + 1][11] = entName2; // å—ç›Šäººåç¨±2,
+			downloadInfo[index + 1][12] = entName3; // å—ç›Šäººåœ°å€3,
+			downloadInfo[index + 1][13] = entName4; // å—ç›Šäººåœ°å€4,
+			downloadInfo[index + 1][14] = note1; // é™„è¨€1 ,
+			downloadInfo[index + 1][15] = note2; // é™„è¨€2 ,
+			downloadInfo[index + 1][16] = note3; // é™„è¨€3 ,
+			downloadInfo[index + 1][17] = note4; // é™„è¨€4 ,
+			downloadInfo[index + 1][18] = rmtFUND; // åŒ¯æ¬¾æ€§è³ª,
+			downloadInfo[index + 1][19] = rmtCountry; // å—æ¬¾åœ‹åˆ¥ä»£ç¢¼,
+			downloadInfo[index + 1][20] = rmtVendor; // ä¾›æ‡‰å•†ä»£è™Ÿ,
+			downloadInfo[index + 1][21] = rmtEmail; // å—æ¬¾äººemail,
+			downloadInfo[index + 1][22] = rmtExtra; // æ˜¯å¦åŠ ç™¼202 "Y"è¡¨ç¤ºéœ€åŠ ç™¼,
+			downloadInfo[index + 1][23] = remitSWIFT2;// æ”¶æ¬¾è¡Œä¹‹å­˜åŒè¡ŒSWIFTä»£ç¢¼,
+			downloadInfo[index + 1][24] = remitFEEWAY;// æ”¶è²»åˆ¥,
+			downloadInfo[index + 1][25] = remitTXNOTE;// äº¤æ˜“æ€§è³ªè¨»è¨˜,
+			downloadInfo[index + 1][26] = fillerD; // ä¿ç•™æ¬„ä½
 		}
 		// -----HEAD-----
-		// «È¤á²Î½s
+		// å®¢æˆ¶çµ±ç·¨
 		String custID = "70817744";
 		for (int count = custID.length(); count < 12; count++) {
 			custID += " ";
 		}
-		// ¶×´Ú¤é´Á
+		// åŒ¯æ¬¾æ—¥æœŸ
 		String strRMDTTemp = null;
 		String strRMDTTemp1 = null;
 		if (saveRMDT.trim().length() < 7) {
@@ -1370,40 +1370,40 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		} else {
 			strRMDTTemp = saveRMDT;		// 1000131
 		}
-		// ¶×´Ú¤é´Á¦~¥u¨ú¨â½X000225
+		// åŒ¯æ¬¾æ—¥æœŸå¹´åªå–å…©ç¢¼000225
 		strRMDTTemp1 = Integer.toString(1911 + Integer.parseInt(strRMDTTemp.substring(0, 3))) + strRMDTTemp.substring(3, 5) + strRMDTTemp.substring(5, 7);
 
 		// R00231 edit by Leo Huang
-		// »P¥»¦æ¬ù©w¤§¦©´Ú±b¸¹
+		// èˆ‡æœ¬è¡Œç´„å®šä¹‹æ‰£æ¬¾å¸³è™Ÿ
 		String custACCT = savePACCT;
 		if (custACCT.length() > 12)
 			custACCT = custACCT.substring(0, 12);
 		for (int count = custACCT.length(); count < 12; count++) {
 			custACCT += " ";
 		}
-		// ¶×´ÚÁ`ÃB
+		// åŒ¯æ¬¾ç¸½é¡
 		String totAmtT = df.format(saveAmt);
 		String totAmt = totAmtT.substring(0, 13) + totAmtT.substring(14, 16);
-		// ©ú²Óµ§¼Æ
+		// æ˜ç´°ç­†æ•¸
 		String totCount = String.valueOf(saveCount);
 		for (int count = 0; count < (5 - String.valueOf(saveCount).length()); count++) {
 			totCount = "0" + totCount;
 		}
-		// «O¯dÄæ¦ì x(50)
+		// ä¿ç•™æ¬„ä½ x(50)
 		String fillerH = "";
 		for (int count = fillerH.length(); count < 50; count++) {
 			fillerH = fillerH + " ";
 		}
-		downloadInfo[0][0] = "H"; // ªí¶×Á`¸ê®Æ
-		downloadInfo[0][1] = "BR"; // ¥æ©öÁ`Ãş,
+		downloadInfo[0][0] = "H"; // è¡¨åŒ¯ç¸½è³‡æ–™
+		downloadInfo[0][1] = "BR"; // äº¤æ˜“ç¸½é¡,
 		downloadInfo[0][2] = "DBU"; // DBU/OBU
-		downloadInfo[0][3] = custID; // «È¤á²Î½s
-		downloadInfo[0][4] = strRMDTTemp1;// ¶×´Ú¤é´Á
-		downloadInfo[0][5] = custACCT; // »P¥»¦æ¬ù©w¤§¦©´Ú±b¸¹
-		downloadInfo[0][6] = payCURR; // ¶×´Ú¹ô§O
-		downloadInfo[0][7] = totAmt; // ¶×´ÚÁ`ÃB
-		downloadInfo[0][8] = totCount; // ©ú²Óµ§¼Æ
-		downloadInfo[0][9] = fillerH; // «O¯dÄæ¦ì
+		downloadInfo[0][3] = custID; // å®¢æˆ¶çµ±ç·¨
+		downloadInfo[0][4] = strRMDTTemp1;// åŒ¯æ¬¾æ—¥æœŸ
+		downloadInfo[0][5] = custACCT; // èˆ‡æœ¬è¡Œç´„å®šä¹‹æ‰£æ¬¾å¸³è™Ÿ
+		downloadInfo[0][6] = payCURR; // åŒ¯æ¬¾å¹£åˆ¥
+		downloadInfo[0][7] = totAmt; // åŒ¯æ¬¾ç¸½é¡
+		downloadInfo[0][8] = totCount; // æ˜ç´°ç­†æ•¸
+		downloadInfo[0][9] = fillerH; // ä¿ç•™æ¬„ä½
 		for (int i = 10; i < 27; i++) {
 			downloadInfo[0][i] = "";
 		}
@@ -1411,10 +1411,10 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		return fileLOC;
 	}// R60550 END 
 
-	// R70088 ¥~¹ôÀÉ®×¤U¸ü(¤¤«H¥~¹ôÂà±b)
+	// R70088 å¤–å¹£æª”æ¡ˆä¸‹è¼‰(ä¸­ä¿¡å¤–å¹£è½‰å¸³)
 	private String convertDownloadData822t(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
@@ -1427,7 +1427,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		int saveCount = 0;
 		String saveRMDT = "";
 		String savePACCT = "";
-		// R80132 String payCURR= disbBean.getCurr(selCURR,1);//¹ô§O 2½XÂà¬°3½X
+		// R80132 String payCURR= disbBean.getCurr(selCURR,1);//å¹£åˆ¥ 2ç¢¼è½‰ç‚º3ç¢¼
 		String payCURR = disbBean.getETableDesc("CURRA", selCURR);// R80132
 
 		// -----DETAIL-----
@@ -1442,73 +1442,73 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			saveRMDT = rmtVO.getRMTDT();
 			savePACCT = rmtVO.getPACCT();
 
-			// 2.SEQNO ©ú²Ó§Ç¸¹X(5)
+			// 2.SEQNO æ˜ç´°åºè™ŸX(5)
 			String seqNo = String.valueOf(index + 1);
 			for (int count = 0; count < (5 - String.valueOf(index + 1).length()); count++) {
 				seqNo = "0" + seqNo;
 			}
-			// 3.¨ü´Ú¤HID, x(12)ªÅ¥Õ
+			// 3.å—æ¬¾äººID, x(12)ç©ºç™½
 			String custRemitId = rmtVO.getRID();
 			;
 			for (int count = custRemitId.length(); count < 12; count++) {
 				custRemitId += " ";
 			}
-			// 4.¨ü¯q¤H±b¸¹x(12)
+			// 4.å—ç›Šäººå¸³è™Ÿx(12)
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			if (entAccountNo.length() > 12)
 				entAccountNo = entAccountNo.substring(0, 12);
 			for (int count = entAccountNo.length(); count < 12; count++) {
 				entAccountNo = entAccountNo + " ";
 			}
-			// 6.¶×´Úª÷ÃBx(15)
+			// 6.åŒ¯æ¬¾é‡‘é¡x(15)
 			String remitAmtT = df.format(remitAmtNum);
 			String remitAmt = remitAmtT.substring(0, 13)
 					+ remitAmtT.substring(14, 16);
-			// R70574 ¶×´Úª÷ÃB¥[Á`
+			// R70574 åŒ¯æ¬¾é‡‘é¡åŠ ç¸½
 			// R70455 saveAmt += Float.parseFloat(remitAmtT);
 			saveAmtT = disbBean.DoubleRound(remitAmtNum, 2);// R70455
 			saveAmt = disbBean.DoubleAdd(saveAmt, saveAmtT);// R70455
 
-			// 7.¨ÑÀ³°Ó¥N¸¹ x(20)
+			// 7.ä¾›æ‡‰å•†ä»£è™Ÿ x(20)
 			String rmtVendor = "";
 			for (int count = rmtVendor.length(); count < 20; count++) {
 				rmtVendor = rmtVendor + " ";
 			}
-			// 8.¨ÑÀ³°Óemail x(30)
+			// 8.ä¾›æ‡‰å•†email x(30)
 			String fillerD = "";
 			for (int count = fillerD.length(); count < 30; count++) {
 				fillerD = fillerD + " ";
 			}
-			// 9.¨ÑÀ³°Óemail x(20)
+			// 9.ä¾›æ‡‰å•†email x(20)
 			String rmtEmail1 = "";
 			for (int count = rmtEmail1.length(); count < 20; count++) {
 				rmtEmail1 = rmtEmail1 + " ";
 			}
-			// 10.«O¯dÄæ¦ì x(32)
+			// 10.ä¿ç•™æ¬„ä½ x(32)
 			String rmtEmail2 = "";
 			for (int count = rmtEmail2.length(); count < 32; count++) {
 				rmtEmail2 = rmtEmail2 + " ";
 			}
 
-			downloadInfo[index + 1][0] = "D"; // ªí©ú²Ó¸ê®Æ
-			downloadInfo[index + 1][1] = seqNo; // SEQNO ÂàÀÉ§Ç¸¹,
-			downloadInfo[index + 1][2] = custRemitId; // ¨ü´Ú¤Hid,
-			downloadInfo[index + 1][3] = entAccountNo; // ¤J±b±b¸¹,
-			downloadInfo[index + 1][4] = payCURR; // ¤J±b¹ô§O
-			downloadInfo[index + 1][5] = remitAmt; // ¤J±bª÷ÃB
-			downloadInfo[index + 1][6] = rmtVendor; // ¨ÑÀ³°Ó¥N¸¹,
-			downloadInfo[index + 1][7] = rmtEmail1; // ¨ÑÀ³°Óemail,
-			downloadInfo[index + 1][8] = rmtEmail2; // ¨ÑÀ³°Óemail,
-			downloadInfo[index + 1][9] = fillerD; // «O¯dÄæ¦ì
-			downloadInfo[index + 1][10] = ""; // «O¯dÄæ¦ì
+			downloadInfo[index + 1][0] = "D"; // è¡¨æ˜ç´°è³‡æ–™
+			downloadInfo[index + 1][1] = seqNo; // SEQNO è½‰æª”åºè™Ÿ,
+			downloadInfo[index + 1][2] = custRemitId; // å—æ¬¾äººid,
+			downloadInfo[index + 1][3] = entAccountNo; // å…¥å¸³å¸³è™Ÿ,
+			downloadInfo[index + 1][4] = payCURR; // å…¥å¸³å¹£åˆ¥
+			downloadInfo[index + 1][5] = remitAmt; // å…¥å¸³é‡‘é¡
+			downloadInfo[index + 1][6] = rmtVendor; // ä¾›æ‡‰å•†ä»£è™Ÿ,
+			downloadInfo[index + 1][7] = rmtEmail1; // ä¾›æ‡‰å•†email,
+			downloadInfo[index + 1][8] = rmtEmail2; // ä¾›æ‡‰å•†email,
+			downloadInfo[index + 1][9] = fillerD; // ä¿ç•™æ¬„ä½
+			downloadInfo[index + 1][10] = ""; // ä¿ç•™æ¬„ä½
 		}
 		// -----HEAD-----
-		// «È¤á²Î½s
+		// å®¢æˆ¶çµ±ç·¨
 		String custID = "70817744";
 		for (int count = custID.length(); count < 12; count++) {
 			custID += " ";
 		}
-		// ¶×´Ú¤é´Á
+		// åŒ¯æ¬¾æ—¥æœŸ
 		String strRMDTTemp = null;
 		// R00231 Leo Huang
 		if (saveRMDT.length() < 7)
@@ -1519,37 +1519,37 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		String strRMDTTemp1 = Integer.toString(1911 + Integer.parseInt(strRMDTTemp.substring(0, 3))) + strRMDTTemp.substring(3, 5) + strRMDTTemp.substring(5, 7);
 
 		// R00231 Leo Huang
-		// »P¥»¦æ¬ù©w¤§¦©´Ú±b¸¹
+		// èˆ‡æœ¬è¡Œç´„å®šä¹‹æ‰£æ¬¾å¸³è™Ÿ
 		String custACCT = savePACCT;
 		if (custACCT.length() > 12)
 			custACCT = custACCT.substring(0, 12);
 		for (int count = custACCT.length(); count < 12; count++) {
 			custACCT += " ";
 		}
-		// ¶×´ÚÁ`ÃB
+		// åŒ¯æ¬¾ç¸½é¡
 		String totAmtT = df.format(saveAmt);
 		String totAmt = totAmtT.substring(0, 13) + totAmtT.substring(14, 16);
-		// ©ú²Óµ§¼Æ
+		// æ˜ç´°ç­†æ•¸
 		String totCount = String.valueOf(saveCount);
 		for (int count = 0; count < (5 - String.valueOf(saveCount).length()); count++) {
 			totCount = "0" + totCount;
 		}
-		// «O¯dÄæ¦ì x(50)
+		// ä¿ç•™æ¬„ä½ x(50)
 		String fillerH = "";
 		for (int count = fillerH.length(); count < 50; count++) {
 			fillerH = fillerH + " ";
 		}
-		downloadInfo[0][0] = "H"; // ªí¶×Á`¸ê®Æ
-		downloadInfo[0][1] = "BT"; // ¥æ©öÁ`Ãş,
+		downloadInfo[0][0] = "H"; // è¡¨åŒ¯ç¸½è³‡æ–™
+		downloadInfo[0][1] = "BT"; // äº¤æ˜“ç¸½é¡,
 		downloadInfo[0][2] = "DBU"; // DBU/OBU
-		downloadInfo[0][3] = custID; // «È¤á²Î½s
-		downloadInfo[0][4] = strRMDTTemp1;// ¶×´Ú¤é´Á
-		downloadInfo[0][5] = "D"; // »P¥»¦æ¬ù©w¤§¦©´Ú±b¸¹
-		downloadInfo[0][6] = custACCT; // »P¥»¦æ¬ù©w¤§¦©´Ú±b¸¹
-		downloadInfo[0][7] = payCURR; // ¶×´Ú¹ô§O
-		downloadInfo[0][8] = totAmt; // ¶×´ÚÁ`ÃB
-		downloadInfo[0][9] = totCount; // ©ú²Óµ§¼Æ
-		downloadInfo[0][10] = fillerH; // «O¯dÄæ¦ì
+		downloadInfo[0][3] = custID; // å®¢æˆ¶çµ±ç·¨
+		downloadInfo[0][4] = strRMDTTemp1;// åŒ¯æ¬¾æ—¥æœŸ
+		downloadInfo[0][5] = "D"; // èˆ‡æœ¬è¡Œç´„å®šä¹‹æ‰£æ¬¾å¸³è™Ÿ
+		downloadInfo[0][6] = custACCT; // èˆ‡æœ¬è¡Œç´„å®šä¹‹æ‰£æ¬¾å¸³è™Ÿ
+		downloadInfo[0][7] = payCURR; // åŒ¯æ¬¾å¹£åˆ¥
+		downloadInfo[0][8] = totAmt; // åŒ¯æ¬¾ç¸½é¡
+		downloadInfo[0][9] = totCount; // æ˜ç´°ç­†æ•¸
+		downloadInfo[0][10] = fillerH; // ä¿ç•™æ¬„ä½
 
 		fileLOC = disbBean.writeTOfile(downloadInfo, BATNO, selCURR, remitKind, strLogonUser);
 		return fileLOC;
@@ -1558,16 +1558,16 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 	// R00386
 	private String convertDownloadData007(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
-		// layout À³¬° 15 Äæ¦ì, ¦ı \r\n «á­±µ{¦¡·|¦Û°Ê°µ, ¥i¥H¬Ù²¤
+		// layout æ‡‰ç‚º 15 æ¬„ä½, ä½† \r\n å¾Œé¢ç¨‹å¼æœƒè‡ªå‹•åš, å¯ä»¥çœç•¥
 		String[][] downloadInfo = new String[payments.size()][14];
 		DecimalFormat df = new DecimalFormat("0000000000000.00");
 		CaprmtfVO rmtVO;
 		DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);
-		// R80132 String payCURR= disbBean.getCurr(selCURR,3);//¹ô§O 2½XÂà¬°¼Æ¦r½X
+		// R80132 String payCURR= disbBean.getCurr(selCURR,3);//å¹£åˆ¥ 2ç¢¼è½‰ç‚ºæ•¸å­—ç¢¼
 		String payCURR = disbBean.getETableDesc("CURR3", selCURR);// R80132
 
 		String strSql = "SELECT FLD0029 FROM ORDUNA WHERE FLD0001='  ' AND FLD0002=? ";
@@ -1584,19 +1584,19 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		for (int index = 0; index < payments.size(); index++) {
 			rmtVO = (CaprmtfVO) payments.get(index);
 
-			// 2.Â_½u«á°e§Ç¸¹X(10)
+			// 2.æ–·ç·šå¾Œé€åºè™ŸX(10)
 			String seqNo = "";
 			for (int count = seqNo.length(); count < 10; count++) {
 				seqNo = seqNo + " ";
 			}
-			// 3.±b¸¹x(11)
+			// 3.å¸³è™Ÿx(11)
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			if (entAccountNo.length() > 11)
 				entAccountNo = entAccountNo.substring(0, 11);
 			for (int count = entAccountNo.length(); count < 11; count++) {
 				entAccountNo = entAccountNo + " ";
 			}
-			// 4.²Î¤@½s¸¹X(10)
+			// 4.çµ±ä¸€ç·¨è™ŸX(10)
 			String custID = CommonUtil.AllTrim(rmtVO.getRID());
 			if(custID.length() == 8) {
 				custID = "00" + custID;
@@ -1604,7 +1604,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			for (int count = custID.length(); count < 10; count++) {
 				custID = custID + " ";
 			}
-			// 5.§PÂ_²Î¤@½s¸¹Äæ¦ì ºØÃş
+			// 5.åˆ¤æ–·çµ±ä¸€ç·¨è™Ÿæ¬„ä½ ç¨®é¡
 			String customIdType = "0";
 			try {
 				pstmt.clearParameters();
@@ -1612,11 +1612,11 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
 					if(rs.getString("FLD0029").equalsIgnoreCase("C")) {
-						customIdType = "1"; // ¤½¥q¤á
+						customIdType = "1"; // å…¬å¸æˆ¶
 					} else if(rs.getString("FLD0029").equalsIgnoreCase("F") || rs.getString("FLD0029").equalsIgnoreCase("M")) {
-						customIdType = "2"; // ­Ó¤H¤á
+						customIdType = "2"; // å€‹äººæˆ¶
 					} else {
-						customIdType = "0";	// ¤£ÀË¬d
+						customIdType = "0";	// ä¸æª¢æŸ¥
 					}
 				}
 			} catch(SQLException ex) {
@@ -1625,51 +1625,51 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			/*
 			int customIdLen = custID.trim().length();
 			if (customIdLen == 10)
-				customIdType = "2"; // ¨­¥÷ÃÒ¦r¸¹ ==> ­Ó¤H¤á
+				customIdType = "2"; // èº«ä»½è­‰å­—è™Ÿ ==> å€‹äººæˆ¶
 			else if (customIdLen == 8)
-				customIdType = "1"; // ¤½¥q²Î¤@½s¸¹
+				customIdType = "1"; // å…¬å¸çµ±ä¸€ç·¨è™Ÿ
 			else
-				customIdType = "0"; // ¤£ÀË¬d
+				customIdType = "0"; // ä¸æª¢æŸ¥
 			*/
 
-			// 6.¶×´Úª÷ÃBx(15)
+			// 6.åŒ¯æ¬¾é‡‘é¡x(15)
 			// R70455 double remitAmtNum = rmtVO.getRPAYAMT() -
 			// rmtVO.getRBENFEE();
 			double remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());// R70455
 			String remitAmtT = df.format(remitAmtNum);
 			String remitAmt = remitAmtT.substring(0, 13) + remitAmtT.substring(14, 16);
-			// 7.¥D¿ì¦æ
+			// 7.ä¸»è¾¦è¡Œ
 			String pBank = rmtVO.getPBK();
 			String pBranck;
 			if (pBank == null)
 				pBranck = "   ";
 			else {
-				// ­Y¤£¨¬ 6 ¦ì, ¥ı¸É¨¬¦A¨ú
+				// è‹¥ä¸è¶³ 6 ä½, å…ˆè£œè¶³å†å–
 				if (pBank.length() < 6)
 					pBank = pBank + "      ".substring(0, 6 - pBank.length());
 				pBranck = pBank.substring(3, 6);
 			}
 
-			// 11.¹w©w¤J±b¤éx(6)
+			// 11.é å®šå…¥å¸³æ—¥x(6)
 			String remitDate = rmtVO.getRMTDT();
 			for (int count = remitDate.length(); count < 6; count++) {
 				remitDate = "0" + remitDate;
 			}
 
-			downloadInfo[index][0] = "5797"; // ¥æ©ö¥N½X
-			downloadInfo[index][1] = seqNo; // Â_½u«á°e§Ç¸¹ªÅ¥Õ
-			downloadInfo[index][2] = entAccountNo; // ±b¸¹
-			downloadInfo[index][3] = custID; // ²Î¤@½s¸¹,
-			downloadInfo[index][4] = customIdType; // ¬O§_ÀË¬d
-			downloadInfo[index][5] = remitAmt; // ¥æ©öª÷ÃB
-			downloadInfo[index][6] = pBranck; // ¥D¿ì¦æ
-			downloadInfo[index][7] = payCURR; // ¹ô§O
-			downloadInfo[index][8] = " "; // ±b¤á§O(ªÅ¥Õ)
-			downloadInfo[index][9] = " "; // ¤J´Ú§O(ªÅ¥Õ)
-			downloadInfo[index][10] = "          "; // «O¯dÄæ¦ì
-			downloadInfo[index][11] = " "; // ¥N¦¬±M¤á¥N½X
-			downloadInfo[index][12] = "008"; // ©T©w­È, ªí¥Ü¥ş²y¤H¹Ø
-			downloadInfo[index][13] = " "; // «O¯d¶µ
+			downloadInfo[index][0] = "5797"; // äº¤æ˜“ä»£ç¢¼
+			downloadInfo[index][1] = seqNo; // æ–·ç·šå¾Œé€åºè™Ÿç©ºç™½
+			downloadInfo[index][2] = entAccountNo; // å¸³è™Ÿ
+			downloadInfo[index][3] = custID; // çµ±ä¸€ç·¨è™Ÿ,
+			downloadInfo[index][4] = customIdType; // æ˜¯å¦æª¢æŸ¥
+			downloadInfo[index][5] = remitAmt; // äº¤æ˜“é‡‘é¡
+			downloadInfo[index][6] = pBranck; // ä¸»è¾¦è¡Œ
+			downloadInfo[index][7] = payCURR; // å¹£åˆ¥
+			downloadInfo[index][8] = " "; // å¸³æˆ¶åˆ¥(ç©ºç™½)
+			downloadInfo[index][9] = " "; // å…¥æ¬¾åˆ¥(ç©ºç™½)
+			downloadInfo[index][10] = "          "; // ä¿ç•™æ¬„ä½
+			downloadInfo[index][11] = " "; // ä»£æ”¶å°ˆæˆ¶ä»£ç¢¼
+			downloadInfo[index][12] = "008"; // å›ºå®šå€¼, è¡¨ç¤ºå…¨çƒäººå£½
+			downloadInfo[index][13] = " "; // ä¿ç•™é …
 		}
 
 		try {
@@ -1685,10 +1685,10 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		return fileLOC;
 	}
     
-	// R70088 SUPL°t®§ ¥üÂ×»È¦æ,Âà±b(¦P¦æ¬Û¦s)
+	// R70088 SUPLé…æ¯ å…†è±éŠ€è¡Œ,è½‰å¸³(åŒè¡Œç›¸å­˜)
 	private String convertDownloadData017t(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
@@ -1702,14 +1702,14 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		int saveCount = 0;
 		int saveIndex = 0;
 		String saveRMDT = "";
-		// R80132 String payCURR= disbBean.getCurr(selCURR,4);//¹ô§O 2½XÂà¬°¼Æ¦r½X
+		// R80132 String payCURR= disbBean.getCurr(selCURR,4);//å¹£åˆ¥ 2ç¢¼è½‰ç‚ºæ•¸å­—ç¢¼
 		String payCURR = disbBean.getETableDesc("CURR4", selCURR);// R80132
-		// µo¥ó³æ¦ì RA0140---005¬°©¾§µ¤À¦æªº¥N¸¹¡A½Ğ§ï¬°«n¨ÊªF¸ô¤À¦æ¥N¸¹070
+		// ç™¼ä»¶å–®ä½ RA0140---005ç‚ºå¿ å­åˆ†è¡Œçš„ä»£è™Ÿï¼Œè«‹æ”¹ç‚ºå—äº¬æ±è·¯åˆ†è¡Œä»£è™Ÿ070
 		String save070 = "070";
 		for (int count = save070.length(); count < 8; count++) {
 			save070 = save070 + " ";
 		}
-		// ¦¬¥ó³æ¦ì
+		// æ”¶ä»¶å–®ä½
 		String save017 = "017";
 		for (int count = save017.length(); count < 8; count++) {
 			save017 = save017 + " ";
@@ -1724,117 +1724,117 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			saveAmt = disbBean.DoubleAdd(saveAmt, saveAmtT);// R70455
 			saveCount = index + 1;
 			saveRMDT = rmtVO.getRMTDT();
-			// ¦©±b¤é ¤»¦ì¼Æ¦r
+			// æ‰£å¸³æ—¥ å…­ä½æ•¸å­—
 			if (saveRMDT.length() > 6)
 				saveRMDT = saveRMDT.substring(1);
 
-			// 3.¶×´Ú¹ô§O,X(3)
+			// 3.åŒ¯æ¬¾å¹£åˆ¥,X(3)
 			String remitCURR = payCURR;
 			for (int count = remitCURR.length(); count < 3; count++) {
 				remitCURR = remitCURR + " ";
 			}
-			// 4.¶×´Úª÷ÃBx(15)
+			// 4.åŒ¯æ¬¾é‡‘é¡x(15)
 			String remitAmtT = df.format(remitAmtNum);
 			String remitAmt = remitAmtT.substring(0, 12) + remitAmtT.substring(13, 15);
 
-			// 5.¨ü¯q¤H±b¸¹x(14)
+			// 5.å—ç›Šäººå¸³è™Ÿx(14)
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			if (entAccountNo.length() > 14)
 				entAccountNo = entAccountNo.substring(0, 14);
 			for (int count = entAccountNo.length(); count < 14; count++) {
 				entAccountNo = "0" + entAccountNo;
 			}
-			// 11.«O¯dÄæ¦ì x(15)
+			// 11.ä¿ç•™æ¬„ä½ x(15)
 			String fillerD1 = "";
 			for (int count = 0; count < 15; count++) {
 				fillerD1 = fillerD1 + " ";
 			}
-			// ¨ü´Ú¤HID, x(10)ªÅ¥Õ
+			// å—æ¬¾äººID, x(10)ç©ºç™½
 			String custRemitId = rmtVO.getRID();
 			for (int count = custRemitId.length(); count < 10; count++) {
 				custRemitId += " ";
 			}
-			// 14.«O¯dÄæ¦ì x(12)
+			// 14.ä¿ç•™æ¬„ä½ x(12)
 			String fillerD2 = "";
 			for (int count = 0; count < 12; count++) {
 				fillerD2 = fillerD2 + " ";
 			}
-			// 15.«O¯dÄæ¦ì x(12)
+			// 15.ä¿ç•™æ¬„ä½ x(12)
 			String fillerD = "";
 			for (int count = 0; count < 12; count++) {
 				fillerD = fillerD + " ";
 			}
 
-			downloadInfo[index + 1][0] = "2"; // ªí©ú²Ó¸ê®Æ
-			downloadInfo[index + 1][1] = save070; // µo¥ó³æ¦ì
-			downloadInfo[index + 1][2] = save017; // ¦¬¥ó³æ¦ì
-			downloadInfo[index + 1][3] = "200"; // Âà±bÃş§O
-			downloadInfo[index + 1][4] = saveRMDT; // ¤J/¦©±b¤é
-			downloadInfo[index + 1][5] = entAccountNo;// ±b¸¹
-			downloadInfo[index + 1][6] = remitAmt; // ¥æ©öª÷ÃB
-			downloadInfo[index + 1][7] = "70817744"; // Àç§Q¨Æ·~²Î¤@½s¸¹
-			downloadInfo[index + 1][8] = "99"; // ª¬ªp¥N¸¹
-			// 32±M¥Î¸ê®Æ°Ï
-			downloadInfo[index + 1][9] = "*C917"; // ºK­n¥N¸¹
-			downloadInfo[index + 1][10] = fillerD1; // ªÅ¥Õ15
-			downloadInfo[index + 1][11] = custRemitId; // ¦s´Ú¤H¨­¥÷ÃÒ¦r¸¹
-			downloadInfo[index + 1][12] = payCURR; // ¹ô§O¥N¸¹
-			downloadInfo[index + 1][13] = fillerD2; // ªÅ¥Õ12
-			downloadInfo[index + 1][14] = fillerD; // ªÅ¥ÕÄæ
+			downloadInfo[index + 1][0] = "2"; // è¡¨æ˜ç´°è³‡æ–™
+			downloadInfo[index + 1][1] = save070; // ç™¼ä»¶å–®ä½
+			downloadInfo[index + 1][2] = save017; // æ”¶ä»¶å–®ä½
+			downloadInfo[index + 1][3] = "200"; // è½‰å¸³é¡åˆ¥
+			downloadInfo[index + 1][4] = saveRMDT; // å…¥/æ‰£å¸³æ—¥
+			downloadInfo[index + 1][5] = entAccountNo;// å¸³è™Ÿ
+			downloadInfo[index + 1][6] = remitAmt; // äº¤æ˜“é‡‘é¡
+			downloadInfo[index + 1][7] = "70817744"; // ç‡Ÿåˆ©äº‹æ¥­çµ±ä¸€ç·¨è™Ÿ
+			downloadInfo[index + 1][8] = "99"; // ç‹€æ³ä»£è™Ÿ
+			// 32å°ˆç”¨è³‡æ–™å€
+			downloadInfo[index + 1][9] = "*C917"; // æ‘˜è¦ä»£è™Ÿ
+			downloadInfo[index + 1][10] = fillerD1; // ç©ºç™½15
+			downloadInfo[index + 1][11] = custRemitId; // å­˜æ¬¾äººèº«ä»½è­‰å­—è™Ÿ
+			downloadInfo[index + 1][12] = payCURR; // å¹£åˆ¥ä»£è™Ÿ
+			downloadInfo[index + 1][13] = fillerD2; // ç©ºç™½12
+			downloadInfo[index + 1][14] = fillerD; // ç©ºç™½æ¬„
 			saveIndex = index + 2;
 		}
 		// -----HEAD-----
-		// ªÅ¥ÕÄæ x(91)
+		// ç©ºç™½æ¬„ x(91)
 		String fillerH = "";
 		for (int count = 0; count < 91; count++) {
 			fillerH = fillerH + " ";
 		}
-		downloadInfo[0][0] = "1"; // ªí§Àµ§
-		downloadInfo[0][1] = save070; // µo¥ó³æ¦ì
-		downloadInfo[0][2] = save017; // ¦¬¥ó³æ¥ó
-		downloadInfo[0][3] = "200"; // Âà±bÃş§O
-		downloadInfo[0][4] = saveRMDT; // ¤J¦©±b¤é
-		downloadInfo[0][5] = "1"; // ©Ê½è§O
-		downloadInfo[0][6] = "32"; // ¸ê®ÆÃş§O
-		downloadInfo[0][7] = fillerH; // ªÅ¥ÕÄæ
+		downloadInfo[0][0] = "1"; // è¡¨å°¾ç­†
+		downloadInfo[0][1] = save070; // ç™¼ä»¶å–®ä½
+		downloadInfo[0][2] = save017; // æ”¶ä»¶å–®ä»¶
+		downloadInfo[0][3] = "200"; // è½‰å¸³é¡åˆ¥
+		downloadInfo[0][4] = saveRMDT; // å…¥æ‰£å¸³æ—¥
+		downloadInfo[0][5] = "1"; // æ€§è³ªåˆ¥
+		downloadInfo[0][6] = "32"; // è³‡æ–™é¡åˆ¥
+		downloadInfo[0][7] = fillerH; // ç©ºç™½æ¬„
 		for (int i = 8; i < 15; i++) {
 			downloadInfo[0][i] = "";
 		}
 		// -----FOOT-----
-		// ¦¨¥æÁ`ª÷ÃBX(16)
+		// æˆäº¤ç¸½é‡‘é¡X(16)
 		String totAmtT = df2.format(saveAmt);
 		String totAmt = totAmtT.substring(0, 14) + totAmtT.substring(15, 17);
-		// ¦¨¥æÁ`µ§¼ÆX(10)
+		// æˆäº¤ç¸½ç­†æ•¸X(10)
 		String totCount = String.valueOf(saveCount);
 		for (int count = 0; count < (10 - String.valueOf(saveCount).length()); count++) {
 			totCount = "0" + totCount;
 		}
-		// ¥¼¦¨¥æÁ`µ§¼ÆX(16)©ñ¹s
+		// æœªæˆäº¤ç¸½ç­†æ•¸X(16)æ”¾é›¶
 		String totAmtF = "";
 		for (int count = 0; count < 16; count++) {
 			totAmtF = "0" + totAmtF;
 		}
-		// ¥¼¦¨¥æÁ`µ§¼ÆX(10)©ñ¹s
+		// æœªæˆäº¤ç¸½ç­†æ•¸X(10)æ”¾é›¶
 		String totCountF = "";
 		for (int count = 0; count < 10; count++) {
 			totCountF = "0" + totCountF;
 		}
-		// ªÅ¥ÕÄæ x(42)
+		// ç©ºç™½æ¬„ x(42)
 		String fillerF = "";
 		for (int count = 0; count < 42; count++) {
 			fillerF = fillerF + " ";
 		}
 
-		downloadInfo[saveIndex][0] = "3"; // ªí§Àµ§
-		downloadInfo[saveIndex][1] = save070; // µo¥ó³æ¦ì
-		downloadInfo[saveIndex][2] = save017; // ¦¬¥ó³æ¥ó
-		downloadInfo[saveIndex][3] = "200"; // Âà±bÃş§O
-		downloadInfo[saveIndex][4] = saveRMDT; // ¤J¦©±b¤é
-		downloadInfo[saveIndex][5] = totAmt; // ¦¨¥æÁ`ª÷ÃB
-		downloadInfo[saveIndex][6] = totCount; // ¦¨¥æÁ`µ§¼Æ
-		downloadInfo[saveIndex][7] = totAmtF; // ¥¼¦¨¥æÁ`ª÷ÃB
-		downloadInfo[saveIndex][8] = totCountF; // ¥¼¦¨¥æÁ`µ§¼Æ
-		downloadInfo[saveIndex][9] = fillerF; // ªÅ¥ÕÄæ
+		downloadInfo[saveIndex][0] = "3"; // è¡¨å°¾ç­†
+		downloadInfo[saveIndex][1] = save070; // ç™¼ä»¶å–®ä½
+		downloadInfo[saveIndex][2] = save017; // æ”¶ä»¶å–®ä»¶
+		downloadInfo[saveIndex][3] = "200"; // è½‰å¸³é¡åˆ¥
+		downloadInfo[saveIndex][4] = saveRMDT; // å…¥æ‰£å¸³æ—¥
+		downloadInfo[saveIndex][5] = totAmt; // æˆäº¤ç¸½é‡‘é¡
+		downloadInfo[saveIndex][6] = totCount; // æˆäº¤ç¸½ç­†æ•¸
+		downloadInfo[saveIndex][7] = totAmtF; // æœªæˆäº¤ç¸½é‡‘é¡
+		downloadInfo[saveIndex][8] = totCountF; // æœªæˆäº¤ç¸½ç­†æ•¸
+		downloadInfo[saveIndex][9] = fillerF; // ç©ºç™½æ¬„
 		for (int i = 10; i < 15; i++) {
 			downloadInfo[saveIndex][i] = "";
 		}
@@ -1843,16 +1843,16 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		return fileLOC;
 	}
 	
-	//RD0382:OIU,¥üÂ×¶×´ÚÀÉ(¸ó¦æ),SWIFT CODE²Ä5¤Î6½X¤£¥i¬°TW
+	//RD0382:OIU,å…†è±åŒ¯æ¬¾æª”(è·¨è¡Œ),SWIFT CODEç¬¬5åŠ6ç¢¼ä¸å¯ç‚ºTW
 	private String convertDownloadData017r(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		
 		String fileLOC = "";
 		
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
-		// layout À³¬° 21 Äæ¦ì, ¦ı \r\n «á­±µ{¦¡·|¦Û°Ê°µ, ¥i¥H¬Ù²¤
+		// layout æ‡‰ç‚º 21 æ¬„ä½, ä½† \r\n å¾Œé¢ç¨‹å¼æœƒè‡ªå‹•åš, å¯ä»¥çœç•¥
 		String[][] downloadInfo = new String[payments.size()][22];
 		DecimalFormat df = new DecimalFormat("000000000000.00");
 		CaprmtfVO rmtVO;
@@ -1860,14 +1860,14 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		
 		String remitDateTmp = "";
 		boolean remitDataChange = false;
-		//©ú²Ó¸ê®Æ
+		//æ˜ç´°è³‡æ–™
 		for (int index = 0; index < payments.size(); index++) {			
 			rmtVO = (CaprmtfVO) payments.get(index);
 			
-			//¨ü´Ú±b¸¹
+			//å—æ¬¾å¸³è™Ÿ
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			
-			//RE0189-§PÂ_¨ü´Ú±b¸¹¬O§_¬°¥üÂ×OBU
+			//RE0189-åˆ¤æ–·å—æ¬¾å¸³è™Ÿæ˜¯å¦ç‚ºå…†è±OBU
 			/*String remitAcct = entAccountNo.trim();
 			String remitBank = rmtVO.getRBK() == null ? "" : rmtVO.getRBK();
 			Boolean isOBU4Remit017 = false;
@@ -1875,7 +1875,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			if(remitBank.length()>=3 && "017".equals(remitBank.subSequence(0, 3))) codeOBU4Remit = remitAcct.substring(3,5);
 			if("17".equals(codeOBU4Remit) || "57".equals(codeOBU4Remit) || "58".equals(codeOBU4Remit)) isOBU4Remit017 = true;*/
 			
-			//¨ü´Ú±b¸¹
+			//å—æ¬¾å¸³è™Ÿ
 			if (entAccountNo.length() > 14)
 				entAccountNo = entAccountNo.substring(0, 14);
 			for (int count = entAccountNo.length(); count < 14; count++) {
@@ -1883,17 +1883,17 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			}
 				
 			
-			//²Î½s/¨­¤À¦r¸¹
+			//çµ±ç·¨/èº«åˆ†å­—è™Ÿ
 			String custID = CommonUtil.AllTrim(rmtVO.getRID());			
 			
-			//¶×´Úª÷ÃB		
-			//log.info("rmtVO.getRPAYAMT()¬O" + rmtVO.getRPAYAMT() + ",rmtVO.getRBENFEE()¬O" + rmtVO.getRBENFEE());
+			//åŒ¯æ¬¾é‡‘é¡		
+			//log.info("rmtVO.getRPAYAMT()æ˜¯" + rmtVO.getRPAYAMT() + ",rmtVO.getRBENFEE()æ˜¯" + rmtVO.getRBENFEE());
 			double remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());// R70455
-			//log.info("remitAmtNum¬O" + remitAmtNum);
+			//log.info("remitAmtNumæ˜¯" + remitAmtNum);
 			String remitAmt = "";
 			remitAmt = df.format(remitAmtNum);			
 			
-			//¥I´Ú±b¸¹
+			//ä»˜æ¬¾å¸³è™Ÿ
 			String payAccount = "";
 			payAccount = CommonUtil.AllTrim(rmtVO.getPACCT());
 			
@@ -1901,7 +1901,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			String swiftCode = "";
 			swiftCode = CommonUtil.AllTrim(rmtVO.getSWIFTCODE());
 			
-			//¨ü´Ú¦æ°ê§O
+			//å—æ¬¾è¡Œåœ‹åˆ¥
 			/*String remitContryString = "";
 			if(swiftCode.length()>=8) remitContryString = swiftCode.substring(4, 6);*/
 			
@@ -1909,15 +1909,15 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			if(!"".equals(swiftCode) && swiftCode.length()>=8) country = swiftCode.substring(4, 6);
 			
 			
-			//¶×´Ú¹ô§O
+			//åŒ¯æ¬¾å¹£åˆ¥
 			String remitCurrency = "";
 			remitCurrency = CommonUtil.AllTrim(rmtVO.getRPAYCURR());
 			remitCurrency = disbBean.getETableDesc("CURRA", remitCurrency.trim());
 			
-			//­^¤å©m¦W
+			//è‹±æ–‡å§“å
 			String entNameT = (rmtVO.getPENGNAME() == null) ? "" : CommonUtil.AllTrim(rmtVO.getPENGNAME()).toUpperCase();
 			
-			//¨ü´Ú¤H­^¤å¦a§}
+			//å—æ¬¾äººè‹±æ–‡åœ°å€
 			String engAddr = "";
 			engAddr = CommonUtil.AllTrim(rmtVO.getPayAddr());
 			String engAddr1 = "";
@@ -1929,12 +1929,12 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			if(engAddr.length()>35 && engAddr.length()<=70) engAddr2 = engAddr.substring(35,engAddr.length());
 			if(engAddr.length()>70) engAddr3 = engAddr.substring(70);*/
 			
-			//¤ä¥I­ì¦]¥N½X
+			//æ”¯ä»˜åŸå› ä»£ç¢¼
 			String paySourceCode = "";
 			paySourceCode = CommonUtil.AllTrim(rmtVO.getPaySourceCode());
 			
 			
-			//CNAPS(CN)/ABA ROUTING(US)/TRANSIT(CA)/BSB(AU)/IBAN(¼Ú)
+			//CNAPS(CN)/ABA ROUTING(US)/TRANSIT(CA)/BSB(AU)/IBAN(æ­)
 			String payBkVerifyNumber = "";
 			payBkVerifyNumber = CommonUtil.AllTrim(rmtVO.getPayBkVerifyNumber());
 			String IBAN = "";
@@ -1944,35 +1944,35 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			String payBkSortCode = "";
 			payBkSortCode = CommonUtil.AllTrim(rmtVO.getPayBkSortCode());
 			
-			//¹w©w¤Î¹ê»Ú¤J±b¤é
+			//é å®šåŠå¯¦éš›å…¥å¸³æ—¥
 			String remitDate = rmtVO.getRMTDT();
 			if(index >0  && !remitDataChange){
 				if(!remitDateTmp.equals(remitDate)) remitDataChange = true;
 			}
 			
-			//¤âÄò¶O¤ä¥I¤è¦¡
+			//æ‰‹çºŒè²»æ”¯ä»˜æ–¹å¼
 			String rPAYFEEWAY = "";
 			rPAYFEEWAY = CommonUtil.AllTrim(rmtVO.getRPAYFEEWAY());		
 			
 			remitDateTmp = remitDate;
 			remitDateTmp = (Integer.parseInt(remitDateTmp.substring(0,3))+1911) + remitDateTmp.substring(3);
-			downloadInfo[index][0] = remitDateTmp; //¶×´Ú¤é´Á,1
-			downloadInfo[index][1] = payAccount + genSpace(11-payAccount.length()); //¥I´Ú±b¸¹,2
-			downloadInfo[index][2] = country + genSpace(2-country.length()); //¨ü´Ú»È¦æ°ê§O(¨úSWIFT CODE²Ä5¤Î6½X),3
-			//log.info("paySourceCode¬O" + paySourceCode + ",RACCT¬O" + rmtVO.getRACCT());
+			downloadInfo[index][0] = remitDateTmp; //åŒ¯æ¬¾æ—¥æœŸ,1
+			downloadInfo[index][1] = payAccount + genSpace(11-payAccount.length()); //ä»˜æ¬¾å¸³è™Ÿ,2
+			downloadInfo[index][2] = country + genSpace(2-country.length()); //å—æ¬¾éŠ€è¡Œåœ‹åˆ¥(å–SWIFT CODEç¬¬5åŠ6ç¢¼),3
+			//log.info("paySourceCodeæ˜¯" + paySourceCode + ",RACCTæ˜¯" + rmtVO.getRACCT());
 			if("D1".equals(paySourceCode)){
-				downloadInfo[index][3] = "                              129"; //129 «O¶O¤ä¥X,4
+				downloadInfo[index][3] = "                              129"; //129 ä¿è²»æ”¯å‡º,4
 			}else{
-				downloadInfo[index][3] = "                              399"; //129 «O¶O¤ä¥X,4
+				downloadInfo[index][3] = "                              399"; //129 ä¿è²»æ”¯å‡º,4
 			}			
 			downloadInfo[index][4] = genSpace(2); //na,5
-			downloadInfo[index][5] = remitDateTmp + remitCurrency; //¶×´Ú¹ô§O(¤ä¥I¥DÀÉªº¬ÛÃö¶×´Ú§å¸¹¹ô§O),7
-			downloadInfo[index][6] = remitAmt; //¶×´Úª÷ÃB (¤p¼Æ2¦ì),8
+			downloadInfo[index][5] = remitDateTmp + remitCurrency; //åŒ¯æ¬¾å¹£åˆ¥(æ”¯ä»˜ä¸»æª”çš„ç›¸é—œåŒ¯æ¬¾æ‰¹è™Ÿå¹£åˆ¥),7
+			downloadInfo[index][6] = remitAmt; //åŒ¯æ¬¾é‡‘é¡ (å°æ•¸2ä½),8
 			downloadInfo[index][7] = "TWZ0066516"; //TWZ0066516,9			
 			String company1 = "TRANSGLOBE LIFE INSURANCE INC. OFFSHORE INSURANCE BRANCH ";
 			String payBkAddr1 = "16F, No.288, Sec. 6, Civic Blvd.,  Taipei City 110, Taiwan, R.O.C.";
-			downloadInfo[index][8] = company1; //¥I´Ú»È¦æ¦WºÙ1,10
-			downloadInfo[index][9] = payBkAddr1.toUpperCase(); //¥I´Ú»È¦æ¦a§}1,12
+			downloadInfo[index][8] = company1; //ä»˜æ¬¾éŠ€è¡Œåç¨±1,10
+			downloadInfo[index][9] = payBkAddr1.toUpperCase(); //ä»˜æ¬¾éŠ€è¡Œåœ°å€1,12
 			downloadInfo[index][10] = genSpace(193); //na,14
 			swiftCode = "A" + swiftCode;
 			downloadInfo[index][11] = swiftCode.trim() + genSpace(41-swiftCode.trim().length()); //SWIFT CODE,21
@@ -1980,17 +1980,17 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			downloadInfo[index][13] = payBkSortCode + genSpace(104-payBkSortCode.length()); //SORT CODE(GB),23
 			if(IBAN.length()>0){
 				IBAN = "/" + IBAN;
-				downloadInfo[index][14] = IBAN + genSpace(35-IBAN.length()); //IBAN(¼Ú),26
+				downloadInfo[index][14] = IBAN + genSpace(35-IBAN.length()); //IBAN(æ­),26
 			}else{
 				entAccountNo = "/" + entAccountNo;
-				downloadInfo[index][14] = entAccountNo + genSpace(35-entAccountNo.length()); //¨ü´Ú¤H±b¸¹(¶×´Ú±b¸¹),26
+				downloadInfo[index][14] = entAccountNo + genSpace(35-entAccountNo.length()); //å—æ¬¾äººå¸³è™Ÿ(åŒ¯æ¬¾å¸³è™Ÿ),26
 			}			
-			downloadInfo[index][15] = entNameT.trim() + genSpace(35-entNameT.trim().length()); //¨ü´Ú¤H¤á¦W,27
-			downloadInfo[index][16] = engAddr1.trim() + genSpace(105-engAddr1.trim().length()); //¨ü´Ú¤H­^¤å¦a§}1,28
-			downloadInfo[index][17] = genSpace(0); //¨ü´Ú¤H­^¤å¦a§}2,29
-			downloadInfo[index][18] = genSpace(0); //¨ü´Ú¤H­^¤å¦a§}3,30
+			downloadInfo[index][15] = entNameT.trim() + genSpace(35-entNameT.trim().length()); //å—æ¬¾äººæˆ¶å,27
+			downloadInfo[index][16] = engAddr1.trim() + genSpace(105-engAddr1.trim().length()); //å—æ¬¾äººè‹±æ–‡åœ°å€1,28
+			downloadInfo[index][17] = genSpace(0); //å—æ¬¾äººè‹±æ–‡åœ°å€2,29
+			downloadInfo[index][18] = genSpace(0); //å—æ¬¾äººè‹±æ–‡åœ°å€3,30
 			String memo = "PAY FULL AMOUNT";
-			downloadInfo[index][19] = memo + genSpace(16-memo.trim().length()); //ªş¨¥,31
+			downloadInfo[index][19] = memo + genSpace(16-memo.trim().length()); //é™„è¨€,31
 			downloadInfo[index][20] = genSpace(135); //na,32
 			downloadInfo[index][21] = rPAYFEEWAY; //na,33,CAPRMTF.RPAYFEEWAY
 		}//end for		
@@ -1999,16 +1999,16 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		return fileLOC;
 	}
 	
-	//RE0189:³Í°ò-¶×´ÚÀÉ
+	//RE0189:å‡±åŸº-åŒ¯æ¬¾æª”
 private String convertDownloadData809r(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		
 		String fileLOC = "";
 		
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
-		// layout À³¬° 21 Äæ¦ì, ¦ı \r\n «á­±µ{¦¡·|¦Û°Ê°µ, ¥i¥H¬Ù²¤
+		// layout æ‡‰ç‚º 21 æ¬„ä½, ä½† \r\n å¾Œé¢ç¨‹å¼æœƒè‡ªå‹•åš, å¯ä»¥çœç•¥
 		String[][] downloadInfo = new String[payments.size()][22];
 		DecimalFormat df = new DecimalFormat("000000000000.00");
 		CaprmtfVO rmtVO;
@@ -2016,14 +2016,14 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		
 		String remitDateTmp = "";
 		boolean remitDataChange = false;
-		//©ú²Ó¸ê®Æ
+		//æ˜ç´°è³‡æ–™
 		for (int index = 0; index < payments.size(); index++) {			
 			rmtVO = (CaprmtfVO) payments.get(index);
 			
-			//¨ü´Ú±b¸¹
+			//å—æ¬¾å¸³è™Ÿ
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			
-			//¨ü´Ú±b¸¹
+			//å—æ¬¾å¸³è™Ÿ
 			if (entAccountNo.length() > 14)
 				entAccountNo = entAccountNo.substring(0, 14);
 			for (int count = entAccountNo.length(); count < 14; count++) {
@@ -2031,15 +2031,15 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			}
 				
 			
-			//²Î½s/¨­¤À¦r¸¹
+			//çµ±ç·¨/èº«åˆ†å­—è™Ÿ
 			String custID = CommonUtil.AllTrim(rmtVO.getRID());			
 			
-			//¶×´Úª÷ÃB		
+			//åŒ¯æ¬¾é‡‘é¡		
 			double remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());// R70455
 			String remitAmt = "";
 			remitAmt = df.format(remitAmtNum);			
 			
-			//¥I´Ú±b¸¹
+			//ä»˜æ¬¾å¸³è™Ÿ
 			String payAccount = "";
 			payAccount = CommonUtil.AllTrim(rmtVO.getPACCT());
 			
@@ -2047,7 +2047,7 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			String swiftCode = "";
 			swiftCode = CommonUtil.AllTrim(rmtVO.getSWIFTCODE());
 			
-			//¨ü´Ú¦æ°ê§O
+			//å—æ¬¾è¡Œåœ‹åˆ¥
 			String remitContryString = "";
 			if(swiftCode.length()>=8) remitContryString = swiftCode.substring(4, 6);
 			
@@ -2055,15 +2055,15 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			if(!"".equals(swiftCode) && swiftCode.length()>=8) country = swiftCode.substring(4, 6);
 			
 			
-			//¶×´Ú¹ô§O
+			//åŒ¯æ¬¾å¹£åˆ¥
 			String remitCurrency = "";
 			remitCurrency = CommonUtil.AllTrim(rmtVO.getRPAYCURR());
 			remitCurrency = disbBean.getETableDesc("CURRA", remitCurrency.trim());
 			
-			//­^¤å©m¦W
+			//è‹±æ–‡å§“å
 			String entNameT = (rmtVO.getPENGNAME() == null) ? "" : CommonUtil.AllTrim(rmtVO.getPENGNAME()).toUpperCase();
 			
-			//¨ü´Ú¤H­^¤å¦a§}
+			//å—æ¬¾äººè‹±æ–‡åœ°å€
 			String engAddr = "";
 			engAddr = CommonUtil.AllTrim(rmtVO.getPayAddr());
 			String engAddr1 = "";
@@ -2072,12 +2072,12 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			engAddr1 = engAddr;
 			if(engAddr1.length() > 105) engAddr1 = engAddr.substring(1,105);
 			
-			//¤ä¥I­ì¦]¥N½X
+			//æ”¯ä»˜åŸå› ä»£ç¢¼
 			String paySourceCode = "";
 			paySourceCode = CommonUtil.AllTrim(rmtVO.getPaySourceCode());
 			
 			
-			//CNAPS(CN)/ABA ROUTING(US)/TRANSIT(CA)/BSB(AU)/IBAN(¼Ú)
+			//CNAPS(CN)/ABA ROUTING(US)/TRANSIT(CA)/BSB(AU)/IBAN(æ­)
 			String payBkVerifyNumber = "";
 			payBkVerifyNumber = CommonUtil.AllTrim(rmtVO.getPayBkVerifyNumber());
 			String IBAN = "";
@@ -2087,30 +2087,30 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			String payBkSortCode = "";
 			payBkSortCode = CommonUtil.AllTrim(rmtVO.getPayBkSortCode());
 			
-			//¹w©w¤Î¹ê»Ú¤J±b¤é
+			//é å®šåŠå¯¦éš›å…¥å¸³æ—¥
 			String remitDate = rmtVO.getRMTDT();
 			if(index >0  && !remitDataChange){
 				if(!remitDateTmp.equals(remitDate)) remitDataChange = true;
 			}
 			
-			//¤âÄò¶O¤ä¥I¤è¦¡
+			//æ‰‹çºŒè²»æ”¯ä»˜æ–¹å¼
 			String rPAYFEEWAY = "";
 			rPAYFEEWAY = CommonUtil.AllTrim(rmtVO.getRPAYFEEWAY());		
 			
 			remitDateTmp = remitDate;
 			remitDateTmp = (Integer.parseInt(remitDateTmp.substring(0,3))+1911) + remitDateTmp.substring(3);
-			downloadInfo[index][0] = remitDateTmp; //¶×´Ú¤é´Á,1
-			downloadInfo[index][1] = payAccount + genSpace(11-payAccount.length()); //¥I´Ú±b¸¹,2
-			downloadInfo[index][2] = country + genSpace(2-country.length()); //¨ü´Ú»È¦æ°ê§O(¨úSWIFT CODE²Ä5¤Î6½X),3
-			downloadInfo[index][3] = "                              129"; //129 «O¶O¤ä¥X,4			
+			downloadInfo[index][0] = remitDateTmp; //åŒ¯æ¬¾æ—¥æœŸ,1
+			downloadInfo[index][1] = payAccount + genSpace(11-payAccount.length()); //ä»˜æ¬¾å¸³è™Ÿ,2
+			downloadInfo[index][2] = country + genSpace(2-country.length()); //å—æ¬¾éŠ€è¡Œåœ‹åˆ¥(å–SWIFT CODEç¬¬5åŠ6ç¢¼),3
+			downloadInfo[index][3] = "                              129"; //129 ä¿è²»æ”¯å‡º,4			
 			downloadInfo[index][4] = genSpace(2); //na,5
-			downloadInfo[index][5] = remitDateTmp + remitCurrency; //¶×´Ú¹ô§O(¤ä¥I¥DÀÉªº¬ÛÃö¶×´Ú§å¸¹¹ô§O),7
-			downloadInfo[index][6] = remitAmt; //¶×´Úª÷ÃB (¤p¼Æ2¦ì),8
+			downloadInfo[index][5] = remitDateTmp + remitCurrency; //åŒ¯æ¬¾å¹£åˆ¥(æ”¯ä»˜ä¸»æª”çš„ç›¸é—œåŒ¯æ¬¾æ‰¹è™Ÿå¹£åˆ¥),7
+			downloadInfo[index][6] = remitAmt; //åŒ¯æ¬¾é‡‘é¡ (å°æ•¸2ä½),8
 			downloadInfo[index][7] = "TWZ0066516"; //TWZ0066516,9			
 			String company1 = "TRANSGLOBE LIFE INSURANCE INC. OFFSHORE INSURANCE BRANCH ";
 			String payBkAddr1 = "16F, No.288, Sec. 6, Civic Blvd.,  Taipei City 110, Taiwan, R.O.C.";
-			downloadInfo[index][8] = company1; //¥I´Ú»È¦æ¦WºÙ1,10
-			downloadInfo[index][9] = payBkAddr1.toUpperCase(); //¥I´Ú»È¦æ¦a§}1,12
+			downloadInfo[index][8] = company1; //ä»˜æ¬¾éŠ€è¡Œåç¨±1,10
+			downloadInfo[index][9] = payBkAddr1.toUpperCase(); //ä»˜æ¬¾éŠ€è¡Œåœ°å€1,12
 			downloadInfo[index][10] = genSpace(193); //na,14
 			swiftCode = "A" + swiftCode;
 			downloadInfo[index][11] = swiftCode.trim() + genSpace(41-swiftCode.trim().length()); //SWIFT CODE,21
@@ -2118,17 +2118,17 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			downloadInfo[index][13] = payBkSortCode + genSpace(104-payBkSortCode.length()); //SORT CODE(GB),23
 			if(IBAN.length()>0){
 				IBAN = "/" + IBAN;
-				downloadInfo[index][14] = IBAN + genSpace(35-IBAN.length()); //IBAN(¼Ú),26
+				downloadInfo[index][14] = IBAN + genSpace(35-IBAN.length()); //IBAN(æ­),26
 			}else{
 				entAccountNo = "/" + entAccountNo;
-				downloadInfo[index][14] = entAccountNo + genSpace(35-entAccountNo.length()); //¨ü´Ú¤H±b¸¹(¶×´Ú±b¸¹),26
+				downloadInfo[index][14] = entAccountNo + genSpace(35-entAccountNo.length()); //å—æ¬¾äººå¸³è™Ÿ(åŒ¯æ¬¾å¸³è™Ÿ),26
 			}			
-			downloadInfo[index][15] = entNameT.trim() + genSpace(35-entNameT.trim().length()); //¨ü´Ú¤H¤á¦W,27
-			downloadInfo[index][16] = engAddr1.trim() + genSpace(105-engAddr1.trim().length()); //¨ü´Ú¤H­^¤å¦a§}1,28
-			downloadInfo[index][17] = genSpace(0); //¨ü´Ú¤H­^¤å¦a§}2,29
-			downloadInfo[index][18] = genSpace(0); //¨ü´Ú¤H­^¤å¦a§}3,30
+			downloadInfo[index][15] = entNameT.trim() + genSpace(35-entNameT.trim().length()); //å—æ¬¾äººæˆ¶å,27
+			downloadInfo[index][16] = engAddr1.trim() + genSpace(105-engAddr1.trim().length()); //å—æ¬¾äººè‹±æ–‡åœ°å€1,28
+			downloadInfo[index][17] = genSpace(0); //å—æ¬¾äººè‹±æ–‡åœ°å€2,29
+			downloadInfo[index][18] = genSpace(0); //å—æ¬¾äººè‹±æ–‡åœ°å€3,30
 			String memo = "PAY FULL AMOUNT";
-			downloadInfo[index][19] = memo + genSpace(16-memo.trim().length()); //ªş¨¥,31
+			downloadInfo[index][19] = memo + genSpace(16-memo.trim().length()); //é™„è¨€,31
 			downloadInfo[index][20] = genSpace(135); //na,32
 			downloadInfo[index][21] = rPAYFEEWAY; //na,33,CAPRMTF.RPAYFEEWAY
 		}//end for		
@@ -2137,10 +2137,10 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		return fileLOC;
 	}
 
-	// R70088 SUPL°t®§ ·s¦Ë°Ó»È 
+	// R70088 SUPLé…æ¯ æ–°ç«¹å•†éŠ€ 
 	private String convertDownloadData052(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
@@ -2149,106 +2149,106 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);
 		CaprmtfVO rmtVO;
 
-		// 3.¹ô§Ox(3)
-		// R80132 String payCURR =disbBean.getCurr(selCURR,1);//2½XÂà¤T¶Ü
+		// 3.å¹£åˆ¥x(3)
+		// R80132 String payCURR =disbBean.getCurr(selCURR,1);//2ç¢¼è½‰ä¸‰å—
 		String payCURR = disbBean.getETableDesc("CURRA", selCURR);// R80132 R80480 CURR1->CURRA
 
 		for (int index = 0; index < payments.size(); index++) {
 			rmtVO = (CaprmtfVO) payments.get(index);
 
-			// 1.¨ü´Ú¤H©m¦Wx(70)
+			// 1.å—æ¬¾äººå§“åx(70)
 			//QC0274String entNameT = rmtVO.getPENGNAME() == null ? "" : rmtVO.getPENGNAME();
 			String entNameT = (rmtVO.getPENGNAME() == null) ? "" : CommonUtil.AllTrim(rmtVO.getPENGNAME()).toUpperCase();
 			for (int count = entNameT.length(); count < 70; count++) {
 				entNameT = entNameT + " ";
 			}
-			// 2.¨ü´Ú¤H±b¸¹x(35)
+			// 2.å—æ¬¾äººå¸³è™Ÿx(35)
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			if (entAccountNo.length() > 17)
 				entAccountNo = entAccountNo.substring(0, 17);
 			for (int count = entAccountNo.length(); count < 17; count++) {
 				entAccountNo = entAccountNo + " ";
 			}
-			// 4.¶×´Úª÷ÃBx(15)
+			// 4.åŒ¯æ¬¾é‡‘é¡x(15)
 			// R70455 double remitAmtNum = rmtVO.getRPAYAMT() -
 			// rmtVO.getRBENFEE();
 			double remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());// R70455
 			String remitAmt = df.format(remitAmtNum);
-			// ¨ü´Ú¤HID, x(10)ªÅ¥Õ
+			// å—æ¬¾äººID, x(10)ç©ºç™½
 			String custRemitId = rmtVO.getRID();
 
 			for (int count = custRemitId.length(); count < 10; count++) {
 				custRemitId += " ";
 			}
 
-			downloadInfo[index][0] = entNameT; // ©m¦W,
-			downloadInfo[index][1] = entAccountNo;// ±b¸¹
-			downloadInfo[index][2] = payCURR; // ¹ô§O
-			downloadInfo[index][3] = remitAmt; // ª÷ÃB9(15)
-			downloadInfo[index][4] = custRemitId; // «È¤áID
+			downloadInfo[index][0] = entNameT; // å§“å,
+			downloadInfo[index][1] = entAccountNo;// å¸³è™Ÿ
+			downloadInfo[index][2] = payCURR; // å¹£åˆ¥
+			downloadInfo[index][3] = remitAmt; // é‡‘é¡9(15)
+			downloadInfo[index][4] = custRemitId; // å®¢æˆ¶ID
 		}
 
 		fileLOC = disbBean.writeTOfileXLS(downloadInfo, BATNO, selCURR, remitKind, strLogonUser);
 		return fileLOC;
 	}
 
-	//	R70088 SUPL°t®§ ¥ÃÂ×»È¦æ
+	//	R70088 SUPLé…æ¯ æ°¸è±éŠ€è¡Œ
 	private String convertDownloadData807(Vector payments,String selCURR,String BATNO,String remitKind,String strLogonUser) {
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 		DecimalFormat df = new DecimalFormat("00000000000.00");
 		String[][] downloadInfo = new String[payments.size()][17];
 		DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);
 		CaprmtfVO rmtVO;
-		// R80132 String payCURR= disbBean.getCurr(selCURR,5);//¹ô§O 2½XÂà¬°¼Æ¦r½X
+		// R80132 String payCURR= disbBean.getCurr(selCURR,5);//å¹£åˆ¥ 2ç¢¼è½‰ç‚ºæ•¸å­—ç¢¼
 		String payCURR = disbBean.getETableDesc("CURR5", selCURR);// R80132
 
 		for (int index = 0; index < payments.size(); index++) {
 			rmtVO = (CaprmtfVO) payments.get(index);
 
-			// 1.³B²z§å¦¸X(04)
+			// 1.è™•ç†æ‰¹æ¬¡X(04)
 			String filler1 = "";
 			for (int count = 0; count < 4; count++) {
 				filler1 = filler1 + " ";
 			}
-			// 2.SEQNO §Ç¸¹X(7)
+			// 2.SEQNO åºè™ŸX(7)
 			String seqNo = String.valueOf(index + 1);
 			for (int count = 0; count < (7 - String.valueOf(index + 1).length()); count++) {
 				seqNo = "0" + seqNo;
 			}
-			// 3.«È¤á±b¸¹x(14)¶×´Ú±b¸¹
+			// 3.å®¢æˆ¶å¸³è™Ÿx(14)åŒ¯æ¬¾å¸³è™Ÿ
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			if (entAccountNo.length() > 14)
 				entAccountNo = entAccountNo.substring(0, 14);
 			for (int count = entAccountNo.length(); count < 14; count++) {
 				entAccountNo = "0" + entAccountNo;
 			}
-			// 4.¥æ©ö¤é´Áx(6) --> RA0241 x(07)
+			// 4.äº¤æ˜“æ—¥æœŸx(6) --> RA0241 x(07)
 			String remitDate = rmtVO.getRMTDT();
 			for (int count = remitDate.length(); count < 7; count++) {
 				remitDate = "0" + remitDate;
 			}
-			// 5.¶×´Úª÷ÃBx(15)
+			// 5.åŒ¯æ¬¾é‡‘é¡x(15)
 			// R70455 double remitAmtNum = rmtVO.getRPAYAMT() -
 			// rmtVO.getRBENFEE();
 			double remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());// R70455
 			String remitAmtT = df.format(remitAmtNum);
 			String remitAmt = remitAmtT.substring(0, 11) + remitAmtT.substring(12, 14);
-			// 7¨ü´Ú¤HID, x(10)ªÅ¥Õ
+			// 7å—æ¬¾äººID, x(10)ç©ºç™½
 			String custRemitId = rmtVO.getRID();
 			for (int count = custRemitId.length(); count < 10; count++) {
 				custRemitId += " ";
 			}
-			// 8.ªÑ²¼¸¹½XX(6)¥N²z½s¸¹ --> 8.«O¯dx(6)  RA0241 
+			// 8.è‚¡ç¥¨è™Ÿç¢¼X(6)ä»£ç†ç·¨è™Ÿ --> 8.ä¿ç•™x(6)  RA0241 
 			//String filler2 = "100267";
 			String filler2 = "";
 			for (int count = 0; count < 6; count++) {
 				filler2 = filler2 + " ";
 			}
 			
-			// 10.¹ï¤è±b¸¹x(14)¤ä¥I±b¸¹
+			// 10.å°æ–¹å¸³è™Ÿx(14)æ”¯ä»˜å¸³è™Ÿ
 			String entPAcctNo = rmtVO.getRACCT() == null ? "" : rmtVO.getPACCT();
 			if (entPAcctNo.length() > 14)
 				entPAcctNo = entPAcctNo.substring(0, 14);
@@ -2256,99 +2256,99 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			for (int count = entPAcctNo.length(); count < 14; count++) {
 				entPAcctNo = entPAcctNo + " ";
 			}
-			// 11.«O¯dX(14)
+			// 11.ä¿ç•™X(14)
 			String filler3 = "";
 			for (int count = 0; count < 14; count++) {
 				filler3 = filler3 + " ";
 			}
-			// 13.«O¯dX(70) --> RA0241 x(34)
+			// 13.ä¿ç•™X(70) --> RA0241 x(34)
 			String filler4 = "";
 			for (int count = 0; count < 34; count++) {
 				filler4 = filler4 + " ";
 			}
-			// 14.¥N²z½s¸¹x(6)  RA0241
+			// 14.ä»£ç†ç·¨è™Ÿx(6)  RA0241
 			String filler5 = "100267";
-			// 15.«O¯dx(31)  RA0241
+			// 15.ä¿ç•™x(31)  RA0241
 			String filler6 = "";
 			for (int count = 0; count < 31; count++) {
 				filler6 = filler6 + " ";
 			}
-			// 16.¦w¥ş¥N½Xx(14)
+			// 16.å®‰å…¨ä»£ç¢¼x(14)
 			String safeCode = disbBean.getSafeCode807(entAccountNo, remitAmt);
-			// 17.³B²z°O¸¹x(1)
+			// 17.è™•ç†è¨˜è™Ÿx(1)
 			String filler7 = "0";
 
-			downloadInfo[index][0] = filler1; // ³B²z§å¦¸
-			downloadInfo[index][1] = seqNo; // §Ç¸¹¸¹
-			downloadInfo[index][2] = entAccountNo; // «È¤á±b¸¹
-			downloadInfo[index][3] = remitDate; // ¥æ©ö¤é´Á
-			downloadInfo[index][4] = remitAmt; // ¥æ©öª÷ÃB
-			downloadInfo[index][5] = "228"; // ºK­n
-			downloadInfo[index][6] = custRemitId; // ¨­¥÷ÃÒ¦r¸¹
-			downloadInfo[index][7] = filler2; // ªÑ²¼¸¹½X-->«O¯d
-			downloadInfo[index][8] = "99"; // ª¬ºA½X
-			downloadInfo[index][9] = entPAcctNo;// ¹ï¤è±b¸¹
-			downloadInfo[index][10] = filler3; // «O¯d
-			downloadInfo[index][11] = payCURR; // ¹ô§O
-			downloadInfo[index][12] = filler4; // «O¯d
-			downloadInfo[index][13] = filler5; // ¥N²z½s¸¹
-			downloadInfo[index][14] = filler6; // «O¯d
-			downloadInfo[index][15] = safeCode; // ¦w¥ş¥N½X
-			downloadInfo[index][16] = filler7; // ³B²z°O¸¹
+			downloadInfo[index][0] = filler1; // è™•ç†æ‰¹æ¬¡
+			downloadInfo[index][1] = seqNo; // åºè™Ÿè™Ÿ
+			downloadInfo[index][2] = entAccountNo; // å®¢æˆ¶å¸³è™Ÿ
+			downloadInfo[index][3] = remitDate; // äº¤æ˜“æ—¥æœŸ
+			downloadInfo[index][4] = remitAmt; // äº¤æ˜“é‡‘é¡
+			downloadInfo[index][5] = "228"; // æ‘˜è¦
+			downloadInfo[index][6] = custRemitId; // èº«ä»½è­‰å­—è™Ÿ
+			downloadInfo[index][7] = filler2; // è‚¡ç¥¨è™Ÿç¢¼-->ä¿ç•™
+			downloadInfo[index][8] = "99"; // ç‹€æ…‹ç¢¼
+			downloadInfo[index][9] = entPAcctNo;// å°æ–¹å¸³è™Ÿ
+			downloadInfo[index][10] = filler3; // ä¿ç•™
+			downloadInfo[index][11] = payCURR; // å¹£åˆ¥
+			downloadInfo[index][12] = filler4; // ä¿ç•™
+			downloadInfo[index][13] = filler5; // ä»£ç†ç·¨è™Ÿ
+			downloadInfo[index][14] = filler6; // ä¿ç•™
+			downloadInfo[index][15] = safeCode; // å®‰å…¨ä»£ç¢¼
+			downloadInfo[index][16] = filler7; // è™•ç†è¨˜è™Ÿ
 		}//end for
 		fileLOC = disbBean.writeTOfile(downloadInfo, BATNO, selCURR, remitKind, strLogonUser);
 		return fileLOC;
 	}// R70088 END
 
-	// R00386 ¥x·s»È¦æ / ¥~¹ô®É¥Î¥t¤@ºØ®æ¦¡
+	// R00386 å°æ–°éŠ€è¡Œ / å¤–å¹£æ™‚ç”¨å¦ä¸€ç¨®æ ¼å¼
 	private String convertDownloadData812(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC = "";
 		if (payments == null || payments.size() <= 0)
 			return fileLOC;
 
-		//String[][] downloadInfo = new String[payments.size() + 1][7]; // ¦h¯d¤@¦æµ¹ªíÀY
-		String[][] downloadInfo = new String[payments.size() + 1][8]; // ¦h¯d¤@¦æµ¹ªíÀY
+		//String[][] downloadInfo = new String[payments.size() + 1][7]; // å¤šç•™ä¸€è¡Œçµ¦è¡¨é ­
+		String[][] downloadInfo = new String[payments.size() + 1][8]; // å¤šç•™ä¸€è¡Œçµ¦è¡¨é ­
 		NumberFormat df = new DecimalFormat("##############0.##");
 
 		CaprmtfVO rmtVO;
 		DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);
 		String payCURR = disbBean.getETableDesc("CURRA", selCURR);
 
-		// ¼g¤JªíÀY
-		downloadInfo[0][0] = "¥æ©ö¤é´Á";
-		downloadInfo[0][1] = "¤J´Ú±b¸¹";
-		downloadInfo[0][2] = "¦©´Ú±b¸¹";
-		downloadInfo[0][3] = "¹ô§O";
-		downloadInfo[0][4] = "¤J¦©±bª÷ÃB";
-		downloadInfo[0][5] = "¦©´ÚID";
-		downloadInfo[0][6] = "¤J±bID"; // RA0081
-		downloadInfo[0][7] = "©Ê½è";
+		// å¯«å…¥è¡¨é ­
+		downloadInfo[0][0] = "äº¤æ˜“æ—¥æœŸ";
+		downloadInfo[0][1] = "å…¥æ¬¾å¸³è™Ÿ";
+		downloadInfo[0][2] = "æ‰£æ¬¾å¸³è™Ÿ";
+		downloadInfo[0][3] = "å¹£åˆ¥";
+		downloadInfo[0][4] = "å…¥æ‰£å¸³é‡‘é¡";
+		downloadInfo[0][5] = "æ‰£æ¬¾ID";
+		downloadInfo[0][6] = "å…¥å¸³ID"; // RA0081
+		downloadInfo[0][7] = "æ€§è³ª";
 
-		// ¼g¤J¸ê®Æ
+		// å¯«å…¥è³‡æ–™
 		for (int index = 0; index < payments.size(); index++) {
 			rmtVO = (CaprmtfVO) payments.get(index);
 
-			// ¥æ©ö¤é - Âà¦è¤¸¦~
+			// äº¤æ˜“æ—¥ - è½‰è¥¿å…ƒå¹´
 			String trDateString = rmtVO.getRMTDT();
-			int trDateNum = Integer.parseInt(trDateString); // ¤£ handle exception, ¨Ó·½¤£¬O¦³®Ä¦~¤ë¤é°®¯Ü¤£­n¥XÀÉ®×
+			int trDateNum = Integer.parseInt(trDateString); // ä¸ handle exception, ä¾†æºä¸æ˜¯æœ‰æ•ˆå¹´æœˆæ—¥ä¹¾è„†ä¸è¦å‡ºæª”æ¡ˆ
 			trDateNum += 19110000;
 			trDateString = String.valueOf(trDateNum);
 
-			// ¶×´Úª÷ÃB
+			// åŒ¯æ¬¾é‡‘é¡
 			double remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());
-			// ¶×(¦©)´Ú±b¸¹
+			// åŒ¯(æ‰£)æ¬¾å¸³è™Ÿ
 			String entPAcctNo = rmtVO.getRACCT() == null ? "" : rmtVO.getPACCT();
-			// ¨ü´Ú¤H±b¸¹
+			// å—æ¬¾äººå¸³è™Ÿ
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			//
 			int pos = index + 1;
-			downloadInfo[pos][0] = trDateString; // ¥æ©ö¤é
-			downloadInfo[pos][1] = entAccountNo; // ¤J´Ú±b¸¹
-			downloadInfo[pos][2] = entPAcctNo; // ¦©´Ú±b¸¹
-			downloadInfo[pos][3] = payCURR; // ¹ô§O
-			downloadInfo[pos][4] = df.format(remitAmtNum); // ¤J¦©±bª÷ÃB
-			downloadInfo[pos][5] = "70817744"; // ¦©´Ú ID - ¤½¥q½s¸¹,¥Ø«e¨S¦³±`¼Æ,¥ı·ÓÂÂ...
-			downloadInfo[pos][6] = rmtVO.getRID(); // ¦¬´Ú¤HID
+			downloadInfo[pos][0] = trDateString; // äº¤æ˜“æ—¥
+			downloadInfo[pos][1] = entAccountNo; // å…¥æ¬¾å¸³è™Ÿ
+			downloadInfo[pos][2] = entPAcctNo; // æ‰£æ¬¾å¸³è™Ÿ
+			downloadInfo[pos][3] = payCURR; // å¹£åˆ¥
+			downloadInfo[pos][4] = df.format(remitAmtNum); // å…¥æ‰£å¸³é‡‘é¡
+			downloadInfo[pos][5] = "70817744"; // æ‰£æ¬¾ ID - å…¬å¸ç·¨è™Ÿ,ç›®å‰æ²’æœ‰å¸¸æ•¸,å…ˆç…§èˆŠ...
+			downloadInfo[pos][6] = rmtVO.getRID(); // æ”¶æ¬¾äººID
 			downloadInfo[pos][7] = "129";
 		}
 
@@ -2356,72 +2356,72 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		return fileLOC;
 	}
 
-	// R70574 µØ«n»È¦æ
+	// R70574 è¯å—éŠ€è¡Œ
 	private String convertDownloadData008(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 		DecimalFormat df = new DecimalFormat("00000000000.00");
 		String[][] downloadInfo = new String[payments.size()][9];
 		DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);
 		CaprmtfVO rmtVO;
-		// R80132 String payCURR= disbBean.getCurr(selCURR,6);//¹ô§O 2½XÂà¬°¼Æ¦r½X
+		// R80132 String payCURR= disbBean.getCurr(selCURR,6);//å¹£åˆ¥ 2ç¢¼è½‰ç‚ºæ•¸å­—ç¢¼
 		String payCURR = disbBean.getETableDesc("CURR6", selCURR);// R80132
 
 		for (int index = 0; index < payments.size(); index++) {
 			rmtVO = (CaprmtfVO) payments.get(index);
 
-			// 1.Âà±b¤é´Áx(6)
+			// 1.è½‰å¸³æ—¥æœŸx(6)
 			String remitDate = rmtVO.getRMTDT();
 			for (int count = remitDate.length(); count < 6; count++) {
 				remitDate = "0" + remitDate;
 			}
-			// 4.¨ü´Ú¤H±b¸¹x(12)¶×´Ú±b¸¹
+			// 4.å—æ¬¾äººå¸³è™Ÿx(12)åŒ¯æ¬¾å¸³è™Ÿ
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			for (int count = entAccountNo.length(); count < 12; count++) {
 				entAccountNo = "0" + entAccountNo;
 			}
-			// 5.¨­¥÷ÃÒ, x(10)ªÅ¥Õ
+			// 5.èº«ä»½è­‰, x(10)ç©ºç™½
 			String custRemitId = rmtVO.getRID();
 			for (int count = custRemitId.length(); count < 10; count++) {
 				custRemitId += " ";
 			}
-			// 7.¶×´Úª÷ÃBx(15)
+			// 7.åŒ¯æ¬¾é‡‘é¡x(15)
 			// R70455 double remitAmtNum = rmtVO.getRPAYAMT() -
 			// rmtVO.getRBENFEE();
 			double remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());// R70455
 			String remitAmtT = df.format(remitAmtNum);
 			String remitAmt = remitAmtT.substring(0, 11) + remitAmtT.substring(12, 14);
-			// 8.¸ê®Æ½s¸¹X(10)
+			// 8.è³‡æ–™ç·¨è™ŸX(10)
 			String seqNo = String.valueOf(index + 1);
 			for (int count = 0; count < (10 - String.valueOf(index + 1).length()); count++) {
 				seqNo = "0" + seqNo;
 			}
-			// 9.«O¯dÄæX(12) ¹ô§O 2+Âà±b¤ÀÃş 2+ªÅ¥Õ
+			// 9.ä¿ç•™æ¬„X(12) å¹£åˆ¥ 2+è½‰å¸³åˆ†é¡ 2+ç©ºç™½
 			String note = payCURR;
 			for (int count = note.length(); count < 12; count++) {
 				note += " ";
 			}
 
-			downloadInfo[index][0] = remitDate; // Âà±b¤é´Á
-			downloadInfo[index][1] = "1000"; // ¥D¿ì¦æ
-			downloadInfo[index][2] = "70817744  ";// Àç§Q½s¸¹
-			downloadInfo[index][3] = entAccountNo;// ±b¸¹
-			downloadInfo[index][4] = custRemitId; // ¨­¥÷ÃÒ
-			downloadInfo[index][5] = "110"; // Âà±b§O
-			downloadInfo[index][6] = remitAmt; // Âà±bª÷ÃB
-			downloadInfo[index][7] = seqNo; // ¸ê®Æ½s¸¹
-			downloadInfo[index][8] = note; // «O¯dÄæ
+			downloadInfo[index][0] = remitDate; // è½‰å¸³æ—¥æœŸ
+			downloadInfo[index][1] = "1000"; // ä¸»è¾¦è¡Œ
+			downloadInfo[index][2] = "70817744  ";// ç‡Ÿåˆ©ç·¨è™Ÿ
+			downloadInfo[index][3] = entAccountNo;// å¸³è™Ÿ
+			downloadInfo[index][4] = custRemitId; // èº«ä»½è­‰
+			downloadInfo[index][5] = "110"; // è½‰å¸³åˆ¥
+			downloadInfo[index][6] = remitAmt; // è½‰å¸³é‡‘é¡
+			downloadInfo[index][7] = seqNo; // è³‡æ–™ç·¨è™Ÿ
+			downloadInfo[index][8] = note; // ä¿ç•™æ¬„
 		}
 		fileLOC = disbBean.writeTOfile(downloadInfo, BATNO, selCURR, remitKind, strLogonUser);
 		return fileLOC;
 	}// R70574 END
 
-	// R80480 ¤W®ü»È¦æ
+	// R80480 ä¸Šæµ·éŠ€è¡Œ
 	private String convertDownloadData011(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
@@ -2433,7 +2433,7 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		double saveAmtT = 0;
 		int saveCount = 0;
 		String savePACCT = "";
-		String payCURR = disbBean.getETableDesc("CURRA", selCURR);// ¹ô§O 2½XÂà¬°3½X
+		String payCURR = disbBean.getETableDesc("CURRA", selCURR);// å¹£åˆ¥ 2ç¢¼è½‰ç‚º3ç¢¼
 		String strRMDTTemp = "";
 
 		// -----DETAIL-----
@@ -2447,91 +2447,91 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			saveCount = index + 1;
 			savePACCT = rmtVO.getPACCT() == null ? "" : rmtVO.getPACCT();
 
-			// 1.¬y¤ô§Ç¸¹X(6)
+			// 1.æµæ°´åºè™ŸX(6)
 			String seqNo = String.valueOf(index + 1);
 			for (int count = 0; count < (6 - String.valueOf(index + 1).length()); count++) {
 				seqNo = "0" + seqNo;
 			}
-			// 4.«È¤á½s¸¹, x(10)ªÅ¥Õ
+			// 4.å®¢æˆ¶ç·¨è™Ÿ, x(10)ç©ºç™½
 			String custRemitId = rmtVO.getRID();
 			for (int count = custRemitId.length(); count < 10; count++) {
 				custRemitId += " ";
 			}
-			// 5.¤J±b±b¸¹x(14)
+			// 5.å…¥å¸³å¸³è™Ÿx(14)
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			if (entAccountNo.length() > 14)
 				entAccountNo = entAccountNo.substring(0, 14);
 			for (int count = entAccountNo.length(); count < 14; count++) {
 				entAccountNo = "0" + entAccountNo;
 			}
-			// 6.¤J±b¹ô§O,X(3)
+			// 6.å…¥å¸³å¹£åˆ¥,X(3)
 			String remitCURR = payCURR;
 			for (int count = remitCURR.length(); count < 3; count++) {
 				remitCURR += " ";
 			}
-			// 7.¤J±bª÷ÃBx(15)
+			// 7.å…¥å¸³é‡‘é¡x(15)
 			String remitAmtT = df.format(remitAmtNum);
 			String remitAmt = remitAmtT.substring(0, 13)
 					+ remitAmtT.substring(14, 16);
-			// 8.¥æ©ö¤é´Áx(8)
+			// 8.äº¤æ˜“æ—¥æœŸx(8)
 			String remitDate = rmtVO.getRMTDT();
 			for (int count = remitDate.length(); count < 8; count++) {
 				remitDate = "0" + remitDate;
 			}
 			strRMDTTemp = Integer.toString(1911 + Integer.parseInt(remitDate.substring(0, 4))) + remitDate.substring(4, 6) + remitDate.substring(6, 8);
-			// 10.©T©w¸ê®Æ x(18)
+			// 10.å›ºå®šè³‡æ–™ x(18)
 			String filler = "";
 			for (int count = 0; count < 18; count++) {
 				filler += " ";
 			}
-			// 11.³Æµù x(14)
-			String strNOTE = "¥ş²y¤H¹Ø";
+			// 11.å‚™è¨» x(14)
+			String strNOTE = "å…¨çƒäººå£½";
 			for (int count = strNOTE.length() * 2; count < 14; count++) {
 				strNOTE += " ";
 			}
 
-			downloadInfo[index + 1][0] = seqNo; // ¬y¤ô§Ç¸¹
-			downloadInfo[index + 1][1] = "020"; // ¤À¦æ§O
-			downloadInfo[index + 1][2] = " "; // ¥«³õ§O
-			downloadInfo[index + 1][3] = custRemitId; // «È¤á½s¸¹
-			downloadInfo[index + 1][4] = entAccountNo; // ¤J±b±b¸¹
-			downloadInfo[index + 1][5] = remitCURR; // ¤J±b¹ô§O
-			downloadInfo[index + 1][6] = remitAmt; // ¤J±bª÷ÃB
-			downloadInfo[index + 1][7] = "1"; // ¤J¦©±b§O
-			downloadInfo[index + 1][8] = strRMDTTemp; // ¥æ©ö¤é´Á
-			downloadInfo[index + 1][9] = filler; // ©T©w¸ê®Æ
-			downloadInfo[index + 1][10] = strNOTE; // ³Æµù
-			downloadInfo[index + 1][11] = "0"; // ©T©w¸ê®Æ
+			downloadInfo[index + 1][0] = seqNo; // æµæ°´åºè™Ÿ
+			downloadInfo[index + 1][1] = "020"; // åˆ†è¡Œåˆ¥
+			downloadInfo[index + 1][2] = " "; // å¸‚å ´åˆ¥
+			downloadInfo[index + 1][3] = custRemitId; // å®¢æˆ¶ç·¨è™Ÿ
+			downloadInfo[index + 1][4] = entAccountNo; // å…¥å¸³å¸³è™Ÿ
+			downloadInfo[index + 1][5] = remitCURR; // å…¥å¸³å¹£åˆ¥
+			downloadInfo[index + 1][6] = remitAmt; // å…¥å¸³é‡‘é¡
+			downloadInfo[index + 1][7] = "1"; // å…¥æ‰£å¸³åˆ¥
+			downloadInfo[index + 1][8] = strRMDTTemp; // äº¤æ˜“æ—¥æœŸ
+			downloadInfo[index + 1][9] = filler; // å›ºå®šè³‡æ–™
+			downloadInfo[index + 1][10] = strNOTE; // å‚™è¨»
+			downloadInfo[index + 1][11] = "0"; // å›ºå®šè³‡æ–™
 		}
 		// -----HEAD----
-		// 3.Âà¥Xµ§¼ÆX(10)
+		// 3.è½‰å‡ºç­†æ•¸X(10)
 		String totCount = String.valueOf(saveCount);
 		for (int count = 0; count < (6 - String.valueOf(saveCount).length()); count++) {
 			totCount = "0" + totCount;
 		}
-		// 4.Âà¥XÁ`ª÷ÃBX(16)
+		// 4.è½‰å‡ºç¸½é‡‘é¡X(16)
 		String totAmtT = df.format(saveAmt);
 		String totAmt = totAmtT.substring(0, 13) + totAmtT.substring(14, 16);
 
-		// 5.ªÅ¥Õ x(21)
+		// 5.ç©ºç™½ x(21)
 		String fillerD = "";
 		for (int count = 0; count < 21; count++) {
 			fillerD += "0";
 		}
-		// 6.¤J±b±b¸¹x(14)
+		// 6.å…¥å¸³å¸³è™Ÿx(14)
 		if (savePACCT.length() > 14)
 			savePACCT = savePACCT.substring(0, 14);
 		for (int count = savePACCT.length(); count < 14; count++) {
 			savePACCT = "0" + savePACCT;
 		}
 
-		downloadInfo[0][0] = "HD    "; // ªí­ºµ§
-		downloadInfo[0][1] = strRMDTTemp; // Âà±b¤é´Á
-		downloadInfo[0][2] = fillerD; // ªÅ¥Õ©ñ¹s
-		downloadInfo[0][3] = totCount; // Âà¥Xµ§¼Æ
-		downloadInfo[0][4] = totAmt; // Âà¥XÁ`ª÷ÃB
-		downloadInfo[0][5] = savePACCT; // Âà¥X±b¸¹
-		downloadInfo[0][6] = fillerD; // ªÅ¥Õ©ñ¹s
+		downloadInfo[0][0] = "HD    "; // è¡¨é¦–ç­†
+		downloadInfo[0][1] = strRMDTTemp; // è½‰å¸³æ—¥æœŸ
+		downloadInfo[0][2] = fillerD; // ç©ºç™½æ”¾é›¶
+		downloadInfo[0][3] = totCount; // è½‰å‡ºç­†æ•¸
+		downloadInfo[0][4] = totAmt; // è½‰å‡ºç¸½é‡‘é¡
+		downloadInfo[0][5] = savePACCT; // è½‰å‡ºå¸³è™Ÿ
+		downloadInfo[0][6] = fillerD; // ç©ºç™½æ”¾é›¶
 		for (int i = 7; i < 12; i++) {
 			downloadInfo[0][i] = "";
 		}
@@ -2540,12 +2540,12 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		return fileLOC;
 	}// R80480 END
 
-	//R00566 ¤¸¤j»È¦æ¥~¹ô¶×´ÚÀÉ
+	//R00566 å…ƒå¤§éŠ€è¡Œå¤–å¹£åŒ¯æ¬¾æª”
 	private String convertDownloadData806(Vector payments,String selCURR,String BATNO,String remitKind,String strLogonUser) {
 		String fileLOC = "";
 		Statement stmt = null;
 		ResultSet rs = null;
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 		String[][] downloadInfo = new String[(payments.size() + 2)][15];
@@ -2563,12 +2563,12 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		//
 		String save005 = "70817744";
 
-		// ¦¬¥ó³æ¦ì
+		// æ”¶ä»¶å–®ä½
 		String save806 = "806";
 		for (int count = save806.length(); count < 8; count++) {
 			save806 = save806 + " ";
 		}
-		// «O¯d
+		// ä¿ç•™
 		String space1 = "";
 		for (int count = space1.length(); count < 89; count++) {
 			space1 = space1 + " ";
@@ -2584,15 +2584,15 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			saveCount = index + 1;
 
 			trDateString = rmtVO.getRMTDT();
-			int trDateNum = Integer.parseInt(trDateString); // ¤£ handle exception, ¨Ó·½¤£¬O¦³®Ä¦~¤ë¤é°®¯Ü¤£­n¥XÀÉ®×
+			int trDateNum = Integer.parseInt(trDateString); // ä¸ handle exception, ä¾†æºä¸æ˜¯æœ‰æ•ˆå¹´æœˆæ—¥ä¹¾è„†ä¸è¦å‡ºæª”æ¡ˆ
 			trDateNum += 19110000;
 			trDateString = String.valueOf(trDateNum);
 
-			// 4.¶×´Úª÷ÃBx(15)
+			// 4.åŒ¯æ¬¾é‡‘é¡x(15)
 			String remitAmtT = df.format(remitAmtNum);
 			String remitAmt = remitAmtT.substring(0, 12) + remitAmtT.substring(13, 15);
 
-			// 5.¨ü¯q¤H±b¸¹x(14)
+			// 5.å—ç›Šäººå¸³è™Ÿx(14)
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			if (entAccountNo.length() > 14) {
 				entAccountNo = entAccountNo.substring(0, 14);
@@ -2600,7 +2600,7 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			for (int count = entAccountNo.length(); count < 14; count++) {
 				entAccountNo = "0" + entAccountNo;
 			}
-			// 10 «O³æ¸¹½X+¨ü´Ú¤H¨­¥÷¥¿¸¹ &&14 ¤¤¤å³Æµù
+			// 10 ä¿å–®è™Ÿç¢¼+å—æ¬¾äººèº«ä»½æ­£è™Ÿ &&14 ä¸­æ–‡å‚™è¨»
 			Connection con = dbFactory.getAS400Connection("DISBRemitExportServlet.convertDownloadData806()");
 			String entBatNo = rmtVO.getBATNO() == null ? "" : rmtVO.getBATNO();
 			String entSeqNo = rmtVO.getSEQNO() == null ? "" : rmtVO.getSEQNO();
@@ -2617,14 +2617,14 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 				rs = stmt.executeQuery(strSql);
 				System.out.println(strSql);
 				if (rs.next()) {
-					// «O³æ¸¹½X
+					// ä¿å–®è™Ÿç¢¼
 					POLICY_NO1 = rs.getString("POLICY_NO").trim();
 					for (int count2 = POLICY_NO1.length(); count2 < 10; count2++) {
 						POLICY_NO1 += " ";
 					}
-					// ¤¤¤å³Æµù
+					// ä¸­æ–‡å‚™è¨»
 					System.out.println("PAY_DESCRIPTION0" + PAY_DESCRIPTION1);
-					PAY_DESCRIPTION1 = rs.getString("PAY_DESCRIPTION1").replace('¡@', ' ').trim();
+					PAY_DESCRIPTION1 = rs.getString("PAY_DESCRIPTION1").replace('ã€€', ' ').trim();
 					System.out.println("PAY_DESCRIPTION1" + PAY_DESCRIPTION1);
 					// PAY_DESCRIPTION1=PAY_DESCRIPTION1.substring(8);
 
@@ -2636,7 +2636,7 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 						}
 					} else {
 						for (int count1 = PAY_DESCRIPTION1.getBytes().length; count1 < 10; count1 = count1 + 2) {
-							PAY_DESCRIPTION1 = PAY_DESCRIPTION1 + "¡@";
+							PAY_DESCRIPTION1 = PAY_DESCRIPTION1 + "ã€€";
 
 						}
 					}
@@ -2663,103 +2663,103 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 				}
 			}
 
-			// ¨ü´Ú¤HID, x(10)ªÅ¥Õ
+			// å—æ¬¾äººID, x(10)ç©ºç™½
 			String custRemitId = rmtVO.getRID();
 			for (int count2 = custRemitId.length(); count2 < 10; count2++) {
 				custRemitId += " ";
 			}
 
-			// 11.«O¯dÄæ¦ì x(15)
+			// 11.ä¿ç•™æ¬„ä½ x(15)
 			String fillerD1 = "";
 			for (int count = 0; count < 3; count++) {
 				fillerD1 = fillerD1 + " ";
 			}
 
-			// 12.¶×´Ú¹ô§O,X(3)
+			// 12.åŒ¯æ¬¾å¹£åˆ¥,X(3)
 			String remitCURR = payCURR;
 			for (int count = remitCURR.length(); count < 3; count++) {
 				remitCURR = remitCURR + " ";
 			}
 			System.out.println(remitCURR);
-			// 15.«O¯dÄæ¦ì x(10)
+			// 15.ä¿ç•™æ¬„ä½ x(10)
 			String fillerD = "";
 			for (int count = 0; count < 10; count++) {
 				fillerD = fillerD + " ";
 			}
 
-			downloadInfo[index + 1][0] = "2"; // ªí©ú²Ó¸ê®Æ-¿ı§O
-			downloadInfo[index + 1][1] = save005; // µo¥ó³æ¦ì
-			downloadInfo[index + 1][2] = save806; // ¦¬¥ó³æ¦ì
-			downloadInfo[index + 1][3] = "257"; // Âà±bÃş§O
-			downloadInfo[index + 1][4] = trDateString; // ¤J/¦©±b¤é
-			downloadInfo[index + 1][5] = entAccountNo;// ±b¸¹
-			downloadInfo[index + 1][6] = remitAmt; // ¥æ©öª÷ÃB
-			downloadInfo[index + 1][7] = "70817744"; // Àç§Q¨Æ·~²Î¤@½s¸¹
-			downloadInfo[index + 1][8] = "9999"; // ª¬ªp¥N¸¹
-			// 32±M¥Î¸ê®Æ°Ï
-			downloadInfo[index + 1][9] = POLICY_NO1 + custRemitId; // ºK­n¥N¸¹
-			downloadInfo[index + 1][10] = fillerD1; // ªÅ¥Õ3
-			downloadInfo[index + 1][11] = remitCURR; // ¶×´Ú¹ô§O
-			downloadInfo[index + 1][12] = "¥ş²y¤H¹Ø"; // ¹ô§O¥N¸¹
-			downloadInfo[index + 1][13] = PAY_DESCRIPTION1; // ¤¤¤å³Æµù
-			downloadInfo[index + 1][14] = fillerD; // ªÅ¥ÕÄæ
+			downloadInfo[index + 1][0] = "2"; // è¡¨æ˜ç´°è³‡æ–™-éŒ„åˆ¥
+			downloadInfo[index + 1][1] = save005; // ç™¼ä»¶å–®ä½
+			downloadInfo[index + 1][2] = save806; // æ”¶ä»¶å–®ä½
+			downloadInfo[index + 1][3] = "257"; // è½‰å¸³é¡åˆ¥
+			downloadInfo[index + 1][4] = trDateString; // å…¥/æ‰£å¸³æ—¥
+			downloadInfo[index + 1][5] = entAccountNo;// å¸³è™Ÿ
+			downloadInfo[index + 1][6] = remitAmt; // äº¤æ˜“é‡‘é¡
+			downloadInfo[index + 1][7] = "70817744"; // ç‡Ÿåˆ©äº‹æ¥­çµ±ä¸€ç·¨è™Ÿ
+			downloadInfo[index + 1][8] = "9999"; // ç‹€æ³ä»£è™Ÿ
+			// 32å°ˆç”¨è³‡æ–™å€
+			downloadInfo[index + 1][9] = POLICY_NO1 + custRemitId; // æ‘˜è¦ä»£è™Ÿ
+			downloadInfo[index + 1][10] = fillerD1; // ç©ºç™½3
+			downloadInfo[index + 1][11] = remitCURR; // åŒ¯æ¬¾å¹£åˆ¥
+			downloadInfo[index + 1][12] = "å…¨çƒäººå£½"; // å¹£åˆ¥ä»£è™Ÿ
+			downloadInfo[index + 1][13] = PAY_DESCRIPTION1; // ä¸­æ–‡å‚™è¨»
+			downloadInfo[index + 1][14] = fillerD; // ç©ºç™½æ¬„
 			saveIndex = index + 2;
 		}
 		// -----HEAD-----
-		// ªÅ¥ÕÄæ x(91)
+		// ç©ºç™½æ¬„ x(91)
 		String fillerH = "";
 		for (int count = 0; count < 91; count++) {
 			fillerH = fillerH + " ";
 		}
-		downloadInfo[0][0] = "1"; // ¿ı§O
-		downloadInfo[0][1] = save005; // µo¥ó³æ¦ì
-		downloadInfo[0][2] = save806; // ¦¬¥ó³æ¥ó
-		downloadInfo[0][3] = "257"; // Âà±bÃş§O
-		downloadInfo[0][4] = trDateString; // Âà±b¤é
-		downloadInfo[0][5] = "1"; // ¸ê®Æ©Ê½è§O
-		downloadInfo[0][6] = "   "; // ¿ù»~¥N½X
-		downloadInfo[0][7] = space1; // «O¯d
-		downloadInfo[0][8] = "R"; // °O±b§O
+		downloadInfo[0][0] = "1"; // éŒ„åˆ¥
+		downloadInfo[0][1] = save005; // ç™¼ä»¶å–®ä½
+		downloadInfo[0][2] = save806; // æ”¶ä»¶å–®ä»¶
+		downloadInfo[0][3] = "257"; // è½‰å¸³é¡åˆ¥
+		downloadInfo[0][4] = trDateString; // è½‰å¸³æ—¥
+		downloadInfo[0][5] = "1"; // è³‡æ–™æ€§è³ªåˆ¥
+		downloadInfo[0][6] = "   "; // éŒ¯èª¤ä»£ç¢¼
+		downloadInfo[0][7] = space1; // ä¿ç•™
+		downloadInfo[0][8] = "R"; // è¨˜å¸³åˆ¥
 		for (int i = 9; i < 15; i++) {
 			downloadInfo[0][i] = "";
 		}
 
 		// -----FOOT-----
-		// ¦¨¥æÁ`ª÷ÃBX(16)
+		// æˆäº¤ç¸½é‡‘é¡X(16)
 		String totAmtT = df2.format(saveAmt);
 		String totAmt = totAmtT.substring(0, 14) + totAmtT.substring(15, 17);
-		// ¦¨¥æÁ`µ§¼ÆX(10)
+		// æˆäº¤ç¸½ç­†æ•¸X(10)
 		String totCount = String.valueOf(saveCount);
 		for (int count = 0; count < (10 - String.valueOf(saveCount).length()); count++) {
 			totCount = "0" + totCount;
 		}
-		// ¥¼¦¨¥æÁ`µ§¼ÆX(16)©ñ¹s
+		// æœªæˆäº¤ç¸½ç­†æ•¸X(16)æ”¾é›¶
 		String totAmtF = "";
 		for (int count = 0; count < 16; count++) {
 			totAmtF = "0" + totAmtF;
 		}
-		// ¥¼¦¨¥æÁ`µ§¼ÆX(10)©ñ¹s
+		// æœªæˆäº¤ç¸½ç­†æ•¸X(10)æ”¾é›¶
 		String totCountF = "";
 		for (int count = 0; count < 10; count++) {
 			totCountF = "0" + totCountF;
 		}
-		// ªÅ¥ÕÄæ x(41)
+		// ç©ºç™½æ¬„ x(41)
 		String fillerF = "";
 		for (int count = 0; count < 41; count++) {
 			fillerF = fillerF + " ";
 		}
 
-		downloadInfo[saveIndex][0] = "3"; // ªí§Àµ§
-		downloadInfo[saveIndex][1] = save005; // µo¥ó³æ¦ì
-		downloadInfo[saveIndex][2] = save806; // ¦¬¥ó³æ¥ó
-		downloadInfo[saveIndex][3] = "257"; // Âà±bÃş§O
-		downloadInfo[saveIndex][4] = trDateString; // ¤J¦©±b¤é
-		downloadInfo[saveIndex][5] = totAmt; // ¦¨¥æÁ`ª÷ÃB
-		downloadInfo[saveIndex][6] = totCount; // ¦¨¥æÁ`µ§¼Æ
-		downloadInfo[saveIndex][7] = totAmtF; // ¥¼¦¨¥æÁ`ª÷ÃB
-		downloadInfo[saveIndex][8] = totCountF; // ¥¼¦¨¥æÁ`µ§¼Æ
-		downloadInfo[saveIndex][9] = fillerF; // ªÅ¥ÕÄæ
-		downloadInfo[saveIndex][10] = "R"; // °O±b§O
+		downloadInfo[saveIndex][0] = "3"; // è¡¨å°¾ç­†
+		downloadInfo[saveIndex][1] = save005; // ç™¼ä»¶å–®ä½
+		downloadInfo[saveIndex][2] = save806; // æ”¶ä»¶å–®ä»¶
+		downloadInfo[saveIndex][3] = "257"; // è½‰å¸³é¡åˆ¥
+		downloadInfo[saveIndex][4] = trDateString; // å…¥æ‰£å¸³æ—¥
+		downloadInfo[saveIndex][5] = totAmt; // æˆäº¤ç¸½é‡‘é¡
+		downloadInfo[saveIndex][6] = totCount; // æˆäº¤ç¸½ç­†æ•¸
+		downloadInfo[saveIndex][7] = totAmtF; // æœªæˆäº¤ç¸½é‡‘é¡
+		downloadInfo[saveIndex][8] = totCountF; // æœªæˆäº¤ç¸½ç­†æ•¸
+		downloadInfo[saveIndex][9] = fillerF; // ç©ºç™½æ¬„
+		downloadInfo[saveIndex][10] = "R"; // è¨˜å¸³åˆ¥
 
 		for (int i = 11; i < 15; i++) {
 			downloadInfo[saveIndex][i] = "";
@@ -2770,11 +2770,11 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		return fileLOC;
 	}
 	  	
-	// R10059 ¦w®õ»È¦æ
+	// R10059 å®‰æ³°éŠ€è¡Œ
 	private String convertDownloadData816(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC = "";
 
-		//µL¸ê®Æ¤£³B²z
+		//ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
@@ -2784,7 +2784,7 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 
 		CaprmtfVO rmtVO;
 		DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);
-		String payCURR = disbBean.getETableDesc("CURRA", selCURR);	//¹ô§O 2½XÂà¬°3½X
+		String payCURR = disbBean.getETableDesc("CURRA", selCURR);	//å¹£åˆ¥ 2ç¢¼è½‰ç‚º3ç¢¼
 		String remitDate = "";
 		double remitAmtNum = 0;
 		double saveAmtT = 0;
@@ -2795,10 +2795,10 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		for (int index = 0; index < payments.size(); index++) {
 			rmtVO = (CaprmtfVO) payments.get(index);
 
-			//3.Âà±b¤é´Á x(7) ¥X¯Ç½T»{¤é YYYMMDD(1000215)
+			//3.è½‰å¸³æ—¥æœŸ x(7) å‡ºç´ç¢ºèªæ—¥ YYYMMDD(1000215)
 			remitDate = CommonUtil.padLeadingZero(rmtVO.getRMTDT(), 7);
 
-			//4.Âà±b±b¸¹ x(14) ¶×´Ú»È¦æ±b¸¹
+			//4.è½‰å¸³å¸³è™Ÿ x(14) åŒ¯æ¬¾éŠ€è¡Œå¸³è™Ÿ
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			if (entAccountNo.length() > 14)
 				entAccountNo = entAccountNo.substring(0, 14);
@@ -2809,7 +2809,7 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			}
 			entAccountNo = sbAccNo.toString();
 
-			//5.Âà±bª÷ÃB x(12.2)
+			//5.è½‰å¸³é‡‘é¡ x(12.2)
 			remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());
 			String remitAmtT = df.format(disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE()));
 			String remitAmt = remitAmtT.substring(0, 12) + remitAmtT.substring(13, 15);
@@ -2818,30 +2818,30 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			saveAmt = disbBean.DoubleAdd(saveAmt, saveAmtT);
 			saveCount = index + 1;
 
-			//8.³Æµù x(14)
+			//8.å‚™è¨» x(14)
 			StringBuffer sbNote = new StringBuffer();
 			for(int counter=0; counter<14; counter++) {
 				sbNote.append(" ");
 			}
 			
-			//10.¨­¥÷ÃÒ, x(10)ªÅ¥Õ
+			//10.èº«ä»½è­‰, x(10)ç©ºç™½
 			String custRemitId = rmtVO.getRID();
 			for (int count = custRemitId.length(); count < 10; count++) {
 				custRemitId += " ";
 			}
 
-			downloadInfo[index + 1][0] = "2"; 			//°Ï§O½X
-			downloadInfo[index + 1][1] = "FX027601009"; //Âà±b²Õ§O
-			downloadInfo[index + 1][2] = remitDate; 	//Âà±b¤é´Á
-			downloadInfo[index + 1][3] = entAccountNo; 	//Âà±b±b¸¹
-			downloadInfo[index + 1][4] = remitAmt; 		//Âà±bª÷ÃB
-			downloadInfo[index + 1][5] = "2"; 			//¤J¦©±b½X
-			downloadInfo[index + 1][6] = "99"; 			//Âà±bª¬ªp
-			//downloadInfo[index + 1][7] = sbNote.toString(); //³Æµù
-			downloadInfo[index + 1][7] = payCURR; //¹ô§O,//RE0273
-			downloadInfo[index + 1][8] = genSpace(32); //¥Î¤áµù°O¸ê®Æ,//RE0273
-			downloadInfo[index + 1][9] = custRemitId; //¨­¤ÀÃÒ¦r¸¹,//RE0273
-			downloadInfo[index + 1][10] = genSpace(15); //¸É¨¬ªÅ¥Õ,//RE0273
+			downloadInfo[index + 1][0] = "2"; 			//å€åˆ¥ç¢¼
+			downloadInfo[index + 1][1] = "FX027601009"; //è½‰å¸³çµ„åˆ¥
+			downloadInfo[index + 1][2] = remitDate; 	//è½‰å¸³æ—¥æœŸ
+			downloadInfo[index + 1][3] = entAccountNo; 	//è½‰å¸³å¸³è™Ÿ
+			downloadInfo[index + 1][4] = remitAmt; 		//è½‰å¸³é‡‘é¡
+			downloadInfo[index + 1][5] = "2"; 			//å…¥æ‰£å¸³ç¢¼
+			downloadInfo[index + 1][6] = "99"; 			//è½‰å¸³ç‹€æ³
+			//downloadInfo[index + 1][7] = sbNote.toString(); //å‚™è¨»
+			downloadInfo[index + 1][7] = payCURR; //å¹£åˆ¥,//RE0273
+			downloadInfo[index + 1][8] = genSpace(32); //ç”¨æˆ¶è¨»è¨˜è³‡æ–™,//RE0273
+			downloadInfo[index + 1][9] = custRemitId; //èº«åˆ†è­‰å­—è™Ÿ,//RE0273
+			downloadInfo[index + 1][10] = genSpace(15); //è£œè¶³ç©ºç™½,//RE0273
 			
 		}
 
@@ -2857,58 +2857,58 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		}
 
 		//HEAD
-		downloadInfo[0][0] = "1";			//°Ï§O½X
-		downloadInfo[0][1] = "FX027601009"; //Âà±b²Õ§O
-		downloadInfo[0][2] = remitDate; 	//Âà±b¤é´Á
-		//downloadInfo[0][3] = "2"; 			//¤J¦©±b½X
-		downloadInfo[0][3] = "3"; 			//¤J¦©±b½X,RE0273
-		downloadInfo[0][4] = sbCusNo.toString(); //¥Î¤á±b¸¹/¬ù©w¥N¸¹
-		//downloadInfo[0][5] = " "; 			//³Æµù
-		//downloadInfo[0][6] = payCURR; 			//³Æµù
-		//downloadInfo[0][7] = sbNote.toString(); //³Æµù
-		downloadInfo[0][5] = sbNote.toString(); //³Æµù,//RE0273
-		downloadInfo[0][6] = ""; //³Æµù,//RE0273
-		downloadInfo[0][7] = ""; //³Æµù,//RE0273
-		downloadInfo[0][8] = ""; //³Æµù,//RE0273
-		downloadInfo[0][9] = ""; //³Æµù,//RE0273
-		downloadInfo[0][10] = ""; //³Æµù,//RE0273
+		downloadInfo[0][0] = "1";			//å€åˆ¥ç¢¼
+		downloadInfo[0][1] = "FX027601009"; //è½‰å¸³çµ„åˆ¥
+		downloadInfo[0][2] = remitDate; 	//è½‰å¸³æ—¥æœŸ
+		//downloadInfo[0][3] = "2"; 			//å…¥æ‰£å¸³ç¢¼
+		downloadInfo[0][3] = "3"; 			//å…¥æ‰£å¸³ç¢¼,RE0273
+		downloadInfo[0][4] = sbCusNo.toString(); //ç”¨æˆ¶å¸³è™Ÿ/ç´„å®šä»£è™Ÿ
+		//downloadInfo[0][5] = " "; 			//å‚™è¨»
+		//downloadInfo[0][6] = payCURR; 			//å‚™è¨»
+		//downloadInfo[0][7] = sbNote.toString(); //å‚™è¨»
+		downloadInfo[0][5] = sbNote.toString(); //å‚™è¨»,//RE0273
+		downloadInfo[0][6] = ""; //å‚™è¨»,//RE0273
+		downloadInfo[0][7] = ""; //å‚™è¨»,//RE0273
+		downloadInfo[0][8] = ""; //å‚™è¨»,//RE0273
+		downloadInfo[0][9] = ""; //å‚™è¨»,//RE0273
+		downloadInfo[0][10] = ""; //å‚™è¨»,//RE0273
 
 		//LAST
-		//6.¤J±bÁ`µ§¼Æ x(5)
+		//6.å…¥å¸³ç¸½ç­†æ•¸ x(5)
 		String totCount = CommonUtil.padLeadingZero(saveCount, 5);
 
-		//7.¤J±bÁ`ª÷ÃB x(12.2)
+		//7.å…¥å¸³ç¸½é‡‘é¡ x(12.2)
 		String totAmtT = df.format(saveAmt);
 		String totAmt = totAmtT.substring(0, 12) + totAmtT.substring(13, 15);
 
-		//8.³Æµù x(7)
+		//8.å‚™è¨» x(7)
 		sbNote = new StringBuffer();
 		//for(int counter=0; counter<7; counter++) {
 		for(int counter=0; counter<53; counter++) {
 			sbNote.append(" ");
 		}
 
-		downloadInfo[payments.size() + 1][0] = "3";				//°Ï§O½X
-		downloadInfo[payments.size() + 1][1] = "FX027601009";	//Âà±b²Õ§O
-		downloadInfo[payments.size() + 1][2] = remitDate;		//Âà±b¤é´Á
-		downloadInfo[payments.size() + 1][3] = "00000";			//¦©±bÁ`µ§¼Æ
-		downloadInfo[payments.size() + 1][4] = "00000000000000";//¦©±bÁ`ª÷ÃB
-		downloadInfo[payments.size() + 1][5] = totCount;		//¤J±bÁ`µ§¼Æ
-		downloadInfo[payments.size() + 1][6] = totAmt;			//¤J±bÁ`ª÷ÃB
-		downloadInfo[payments.size() + 1][7] = sbNote.toString();//³Æµù
-		downloadInfo[payments.size() + 1][8] = "";//³Æµù,//RE0273
-		downloadInfo[payments.size() + 1][9] = "";//³Æµù,//RE0273
-		downloadInfo[payments.size() + 1][10] = "";//³Æµù,//RE0273
+		downloadInfo[payments.size() + 1][0] = "3";				//å€åˆ¥ç¢¼
+		downloadInfo[payments.size() + 1][1] = "FX027601009";	//è½‰å¸³çµ„åˆ¥
+		downloadInfo[payments.size() + 1][2] = remitDate;		//è½‰å¸³æ—¥æœŸ
+		downloadInfo[payments.size() + 1][3] = "00000";			//æ‰£å¸³ç¸½ç­†æ•¸
+		downloadInfo[payments.size() + 1][4] = "00000000000000";//æ‰£å¸³ç¸½é‡‘é¡
+		downloadInfo[payments.size() + 1][5] = totCount;		//å…¥å¸³ç¸½ç­†æ•¸
+		downloadInfo[payments.size() + 1][6] = totAmt;			//å…¥å¸³ç¸½é‡‘é¡
+		downloadInfo[payments.size() + 1][7] = sbNote.toString();//å‚™è¨»
+		downloadInfo[payments.size() + 1][8] = "";//å‚™è¨»,//RE0273
+		downloadInfo[payments.size() + 1][9] = "";//å‚™è¨»,//RE0273
+		downloadInfo[payments.size() + 1][10] = "";//å‚™è¨»,//RE0273
 		
 
 		fileLOC = disbBean.writeTOfile(downloadInfo, BATNO, selCURR, remitKind, strLogonUser);
 		return fileLOC;
 	}
 
-	// RB0062 ¹ü¤Æ»È¦æ¥~¹ô¶×´ÚÀÉ(¸ó¦æ)
+	// RB0062 å½°åŒ–éŠ€è¡Œå¤–å¹£åŒ¯æ¬¾æª”(è·¨è¡Œ)
 	private String convertDownloadData009r(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
@@ -2917,7 +2917,7 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);
 		CommonUtil commonutil = new CommonUtil(globalEnviron);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd", Constant.CURRENT_LOCALE);
-		String payCURR = disbBean.getETableDesc("CURRA", selCURR);	//¨â½XÂà¤T½X¹ô§O
+		String payCURR = disbBean.getETableDesc("CURRA", selCURR);	//å…©ç¢¼è½‰ä¸‰ç¢¼å¹£åˆ¥
 		CaprmtfVO rmtVO;
 		String strRMD = "";
 		String strTXDATE = "";
@@ -2929,8 +2929,8 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		for (int index = 0; index < payments.size(); index++) {
 			rmtVO = (CaprmtfVO) payments.get(index);
 
-			// 1. °Ï§O½X X(01)
-			// 2. ¶×´Úª÷ÃB 9(12)V9(02)
+			// 1. å€åˆ¥ç¢¼ X(01)
+			// 2. åŒ¯æ¬¾é‡‘é¡ 9(12)V9(02)
 			double remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());
 			String remitAmtT = df.format(remitAmtNum);
 			String remitAmt = remitAmtT.substring(2, 14) + remitAmtT.substring(15, 17);
@@ -2938,20 +2938,20 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			saveAmtT = disbBean.DoubleRound(remitAmtNum, 2);
 			saveAmt = disbBean.DoubleAdd(saveAmt, saveAmtT);
 
-			// 8. VALUE DATE X(08) ¦è¤¸¦~YYYYMMDD
-			String strRemitDate = rmtVO.getRMTDT();	//¥Á°ê¦~YYYMMDD
+			// 8. VALUE DATE X(08) è¥¿å…ƒå¹´YYYYMMDD
+			String strRemitDate = rmtVO.getRMTDT();	//æ°‘åœ‹å¹´YYYMMDD
 			String strVALDAY = sdf.format(commonutil.convertROC2WestenDate1(strRemitDate));
 
 			strTXDATE = strVALDAY;
 			strRMD = strRemitDate;
 
-			// 9. ¨ü´Ú¤H±b¸¹ X(34)
+			// 9. å—æ¬¾äººå¸³è™Ÿ X(34)
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : CommonUtil.AllTrim(rmtVO.getRACCT());
 			for (int count = entAccountNo.length(); count < 34; count++) {
 				entAccountNo += " ";
 			}
 
-			// 10. ¨ü´Ú¤H¦WºÙ¦a§}¤@ ~ ¥| X(35)
+			// 10. å—æ¬¾äººåç¨±åœ°å€ä¸€ ~ å›› X(35)
 			String strRECNM1 = (rmtVO.getPENGNAME() == null) ? "" : CommonUtil.AllTrim(rmtVO.getPENGNAME()).toUpperCase();
 			String strRECNM2 = "";
 			String strRECNM3 = "";
@@ -2969,25 +2969,25 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 				strRECNM4 += " ";
 			}
 
-			// 14.¨ü´Ú°ê§O¥N½X X(02)
+			// 14.å—æ¬¾åœ‹åˆ¥ä»£ç¢¼ X(02)
 			String rmtCountry = (rmtVO.getRBKCOUNTRY() == null) ? "" : CommonUtil.AllTrim(rmtVO.getRBKCOUNTRY()).toUpperCase();
 			for (int count = rmtCountry.length(); count < 2; count++) {
 				rmtCountry += " ";
 			}
 
-			// 16. ¨ü´Ú»È¦æABA(RECABA) X(11)
+			// 16. å—æ¬¾éŠ€è¡ŒABA(RECABA) X(11)
 			String strRECABA = "";
 			for (int count = strRECABA.length(); count < 11; count++) {
 				strRECABA += " ";
 			}
 
-			// 17. ¨ü´Ú»È¦æBIC(RECBIC) X(11)
+			// 17. å—æ¬¾éŠ€è¡ŒBIC(RECBIC) X(11)
 			String remitSWIFT = (rmtVO.getSWIFTCODE() == null) ? "" : CommonUtil.AllTrim(rmtVO.getSWIFTCODE());
 			for (int count = remitSWIFT.length(); count < 11; count++) {
 				remitSWIFT += " ";
 			}
 
-			// 18. ¨ü´Ú»È¦æ¦WºÙ¦a§}¤@ ~ ¥| X(35)
+			// 18. å—æ¬¾éŠ€è¡Œåç¨±åœ°å€ä¸€ ~ å›› X(35)
 			String strRECBN1 = "";
 			String strRECBN2 = "";
 			String strRECBN3 = "";
@@ -3005,7 +3005,7 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 				strRECBN4 += " ";
 			}
 
-			// 23. ªş¨¥¤@ ~ ¤» X(35)
+			// 23. é™„è¨€ä¸€ ~ å…­ X(35)
 			String strNOTE1 = "";
 			String strNOTE2 = "";
 			String strNOTE3 = "";
@@ -3031,19 +3031,19 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 				strNOTE6 += " ";
 			}
 
-			// 29. ¤¤¤¶»È¦æABA(INTRABA) X(11)
+			// 29. ä¸­ä»‹éŠ€è¡ŒABA(INTRABA) X(11)
 			String strINTRABA = "";
 			for (int count = strINTRABA.length(); count < 11; count++) {
 				strINTRABA += " ";
 			}
 
-			// 30. ¤¤¤¶»È¦æBIC(INTRBIC) X(11)
+			// 30. ä¸­ä»‹éŠ€è¡ŒBIC(INTRBIC) X(11)
 			String strINTRBIC = "";
 			for (int count = strINTRBIC.length(); count < 11; count++) {
 				strINTRBIC += " ";
 			}
 
-			// 31. ¤¤¤¶»È¦æ¦WºÙ¦a§}¤@ ~ ¥| X(35)
+			// 31. ä¸­ä»‹éŠ€è¡Œåç¨±åœ°å€ä¸€ ~ å›› X(35)
 			String strINTRBN1 = "";
 			String strINTRBN2 = "";
 			String strINTRBN3 = "";
@@ -3061,7 +3061,7 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 				strINTRBN4 += " ";
 			}
 
-			// 35. ³Æµù¤@ ~ ¤G X(35)
+			// 35. å‚™è¨»ä¸€ ~ äºŒ X(35)
 			String strMEMO1 = "";
 			String strMEMO2 = "";
 			for (int count = strMEMO1.length(); count < 35; count++) {
@@ -3071,84 +3071,84 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 				strMEMO2 += " ";
 			}
 
-			downloadInfo[index + 1][0] = "2";			// °Ï§O½X x(01)
-			downloadInfo[index + 1][1] = remitAmt;		// ¶×´Úª÷ÃB 9(12)V9(2)
-			downloadInfo[index + 1][2] = "00000000000000"; // ¥~¹ô§I´«ª÷ÃB 9(12)V9(2)
-			downloadInfo[index + 1][3] = "0000000";		// ¤âÄò¶O(°òÂ¦¹ô) 9(05)V9(02)
-			downloadInfo[index + 1][4] = "0000000";		// ¶l¹q¶O(°òÂ¦¹ô) 9(05)V9(02)
-			downloadInfo[index + 1][5] = "0000000";		// ¨ä¥LÀ³¥I´Ú-¤j³°(°òÂ¦¹ô) 9(05)V9(02)
-			downloadInfo[index + 1][6] = "0000000";		// °ê¥~¶O¥Î(­ì¹ô) 9(05)V9(02)
+			downloadInfo[index + 1][0] = "2";			// å€åˆ¥ç¢¼ x(01)
+			downloadInfo[index + 1][1] = remitAmt;		// åŒ¯æ¬¾é‡‘é¡ 9(12)V9(2)
+			downloadInfo[index + 1][2] = "00000000000000"; // å¤–å¹£å…Œæ›é‡‘é¡ 9(12)V9(2)
+			downloadInfo[index + 1][3] = "0000000";		// æ‰‹çºŒè²»(åŸºç¤å¹£) 9(05)V9(02)
+			downloadInfo[index + 1][4] = "0000000";		// éƒµé›»è²»(åŸºç¤å¹£) 9(05)V9(02)
+			downloadInfo[index + 1][5] = "0000000";		// å…¶ä»–æ‡‰ä»˜æ¬¾-å¤§é™¸(åŸºç¤å¹£) 9(05)V9(02)
+			downloadInfo[index + 1][6] = "0000000";		// åœ‹å¤–è²»ç”¨(åŸå¹£) 9(05)V9(02)
 			downloadInfo[index + 1][7] = strVALDAY;		// VALUE DATE X(08)
-			downloadInfo[index + 1][8] = entAccountNo;	// ¨ü´Ú¤H±b¸¹ X(34)
-			downloadInfo[index + 1][9] = strRECNM1;		// ¨ü´Ú¤H¦WºÙ¦a§}¤@  X(35)
-			downloadInfo[index + 1][10] = strRECNM2;	// ¨ü´Ú¤H¦WºÙ¦a§}¤G  X(35)
-			downloadInfo[index + 1][11] = strRECNM3;	// ¨ü´Ú¤H¦WºÙ¦a§}¤T  X(35)
-			downloadInfo[index + 1][12] = strRECNM4;	// ¨ü´Ú¤H¦WºÙ¦a§}¥|  X(35)
-			downloadInfo[index + 1][13] = rmtCountry;	// ¨ü´Ú°ê§O¥N½X  X(02)
-			downloadInfo[index + 1][14] = "1";			// ¨ü´Ú¤H¨­¤À§O  X(01)
-			downloadInfo[index + 1][15] = strRECABA;	// ¨ü´Ú»È¦æABA  X(11)
-			downloadInfo[index + 1][16] = remitSWIFT;	// ¨ü´Ú»È¦æBIC  X(11)
-			downloadInfo[index + 1][17] = strRECBN1;	// ¨ü´Ú»È¦æ¦WºÙ¦a§}¤@  X(35)
-			downloadInfo[index + 1][18] = strRECBN2;	// ¨ü´Ú»È¦æ¦WºÙ¦a§}¤G  X(35)
-			downloadInfo[index + 1][19] = strRECBN3;	// ¨ü´Ú»È¦æ¦WºÙ¦a§}¤T  X(35)
-			downloadInfo[index + 1][20] = strRECBN4;	// ¨ü´Ú»È¦æ¦WºÙ¦a§}¥|  X(35)
-			downloadInfo[index + 1][21] = "693";		// ¶×´Ú¤ÀÃş½s¸¹  X(03)
-			downloadInfo[index + 1][22] = strNOTE1;		// ªş¨¥¤@  X(35)
-			downloadInfo[index + 1][23] = strNOTE2;		// ªş¨¥¤G  X(35)
-			downloadInfo[index + 1][24] = strNOTE3;		// ªş¨¥¤T  X(35)
-			downloadInfo[index + 1][25] = strNOTE4;		// ªş¨¥¥|  X(35)
-			downloadInfo[index + 1][26] = strNOTE5;		// ªş¨¥¤­  X(35)
-			downloadInfo[index + 1][27] = strNOTE6;		// ªş¨¥¤»  X(35)
-			downloadInfo[index + 1][28] = strINTRABA;	// ¤¤¤¶»È¦æABA  X(11)
-			downloadInfo[index + 1][29] = strINTRBIC;	// ¤¤¤¶»È¦æBIC  X(11)
-			downloadInfo[index + 1][30] = strINTRBN1;	// ¤¤¤¶»È¦æ¦WºÙ¦a§}¤@  X(35)
-			downloadInfo[index + 1][31] = strINTRBN2;	// ¤¤¤¶»È¦æ¦WºÙ¦a§}¤G  X(35)
-			downloadInfo[index + 1][32] = strINTRBN3;	// ¤¤¤¶»È¦æ¦WºÙ¦a§}¤T  X(35)
-			downloadInfo[index + 1][33] = strINTRBN4;	// ¤¤¤¶»È¦æ¦WºÙ¦a§}¥|  X(35)
-			downloadInfo[index + 1][34] = strMEMO1;		// ³Æµù¤@  X(35)
-			downloadInfo[index + 1][35] = strMEMO2;		// ³Æµù¤G  X(35)
+			downloadInfo[index + 1][8] = entAccountNo;	// å—æ¬¾äººå¸³è™Ÿ X(34)
+			downloadInfo[index + 1][9] = strRECNM1;		// å—æ¬¾äººåç¨±åœ°å€ä¸€  X(35)
+			downloadInfo[index + 1][10] = strRECNM2;	// å—æ¬¾äººåç¨±åœ°å€äºŒ  X(35)
+			downloadInfo[index + 1][11] = strRECNM3;	// å—æ¬¾äººåç¨±åœ°å€ä¸‰  X(35)
+			downloadInfo[index + 1][12] = strRECNM4;	// å—æ¬¾äººåç¨±åœ°å€å››  X(35)
+			downloadInfo[index + 1][13] = rmtCountry;	// å—æ¬¾åœ‹åˆ¥ä»£ç¢¼  X(02)
+			downloadInfo[index + 1][14] = "1";			// å—æ¬¾äººèº«åˆ†åˆ¥  X(01)
+			downloadInfo[index + 1][15] = strRECABA;	// å—æ¬¾éŠ€è¡ŒABA  X(11)
+			downloadInfo[index + 1][16] = remitSWIFT;	// å—æ¬¾éŠ€è¡ŒBIC  X(11)
+			downloadInfo[index + 1][17] = strRECBN1;	// å—æ¬¾éŠ€è¡Œåç¨±åœ°å€ä¸€  X(35)
+			downloadInfo[index + 1][18] = strRECBN2;	// å—æ¬¾éŠ€è¡Œåç¨±åœ°å€äºŒ  X(35)
+			downloadInfo[index + 1][19] = strRECBN3;	// å—æ¬¾éŠ€è¡Œåç¨±åœ°å€ä¸‰  X(35)
+			downloadInfo[index + 1][20] = strRECBN4;	// å—æ¬¾éŠ€è¡Œåç¨±åœ°å€å››  X(35)
+			downloadInfo[index + 1][21] = "693";		// åŒ¯æ¬¾åˆ†é¡ç·¨è™Ÿ  X(03)
+			downloadInfo[index + 1][22] = strNOTE1;		// é™„è¨€ä¸€  X(35)
+			downloadInfo[index + 1][23] = strNOTE2;		// é™„è¨€äºŒ  X(35)
+			downloadInfo[index + 1][24] = strNOTE3;		// é™„è¨€ä¸‰  X(35)
+			downloadInfo[index + 1][25] = strNOTE4;		// é™„è¨€å››  X(35)
+			downloadInfo[index + 1][26] = strNOTE5;		// é™„è¨€äº”  X(35)
+			downloadInfo[index + 1][27] = strNOTE6;		// é™„è¨€å…­  X(35)
+			downloadInfo[index + 1][28] = strINTRABA;	// ä¸­ä»‹éŠ€è¡ŒABA  X(11)
+			downloadInfo[index + 1][29] = strINTRBIC;	// ä¸­ä»‹éŠ€è¡ŒBIC  X(11)
+			downloadInfo[index + 1][30] = strINTRBN1;	// ä¸­ä»‹éŠ€è¡Œåç¨±åœ°å€ä¸€  X(35)
+			downloadInfo[index + 1][31] = strINTRBN2;	// ä¸­ä»‹éŠ€è¡Œåç¨±åœ°å€äºŒ  X(35)
+			downloadInfo[index + 1][32] = strINTRBN3;	// ä¸­ä»‹éŠ€è¡Œåç¨±åœ°å€ä¸‰  X(35)
+			downloadInfo[index + 1][33] = strINTRBN4;	// ä¸­ä»‹éŠ€è¡Œåç¨±åœ°å€å››  X(35)
+			downloadInfo[index + 1][34] = strMEMO1;		// å‚™è¨»ä¸€  X(35)
+			downloadInfo[index + 1][35] = strMEMO2;		// å‚™è¨»äºŒ  X(35)
 
 			saveCount = index + 1;
 		}
 
 		// -----HEAD-----
 
-		// 7. ¶×´Ú¤H²Î¤@½s¸¹ X(11)
+		// 7. åŒ¯æ¬¾äººçµ±ä¸€ç·¨è™Ÿ X(11)
 		String strIDNO = "70817744";
 		for (int count = strIDNO.length(); count < 11; count++) {
 			strIDNO += " ";
 		}
 
-		// 9. °òÂ¦¹ô¬¡¦s±b¸¹ X(14)
+		// 9. åŸºç¤å¹£æ´»å­˜å¸³è™Ÿ X(14)
 		String strBPBACT = "";
 		for (int count = strBPBACT.length(); count < 14; count++) {
 			strBPBACT += " ";
 		}
 
-		// 10. Ä³»ù½s¸¹ X(13)
+		// 10. è­°åƒ¹ç·¨è™Ÿ X(13)
 		String strEXNO = "";
 		for (int count = strEXNO.length(); count < 13; count++) {
 			strEXNO += " ";
 		}
 
-		// 11. »·¶×«´¬ù½s¸¹ X(14)
+		// 11. é åŒ¯å¥‘ç´„ç·¨è™Ÿ X(14)
 		String strFXNO = "";
 		for (int count = strFXNO.length(); count < 14; count++) {
 			strFXNO += " ";
 		}
 
-		downloadInfo[0][0] = "1";				// °Ï§O½X X(01)
-		downloadInfo[0][1] = "666F5185";		// µo¥ó³æ¦ì X(08)
-		downloadInfo[0][2] = strTXDATE;			// ¶×´Ú¤é´Á X(08)
-		downloadInfo[0][3] = "01";				// ¥æ©ö§å¸¹ X(02)
-		downloadInfo[0][4] = "1";				// OBU°O¸¹ X(01)
-		downloadInfo[0][5] = payCURR;			// ¹ô§O X(03)
-		downloadInfo[0][6] = strIDNO;			// ¶×´Ú¤H²Î¤@½s¸¹ X(11)
-		downloadInfo[0][7] = "21132239980600";	// ­ì¹ô¬¡¦s±b¸¹ X(14)
-		downloadInfo[0][8] = strBPBACT;			// °òÂ¦¹ô¬¡¦s±b¸¹ X(14)
-		downloadInfo[0][9] = strEXNO;			// Ä³»ù½s¸¹ X(13)
-		downloadInfo[0][10] = strFXNO;			// »·¶×«´¬ù½s¸¹ X(14)
-		downloadInfo[0][11] = "73";				// ¶×´Ú¤è¦¡ X(02)
+		downloadInfo[0][0] = "1";				// å€åˆ¥ç¢¼ X(01)
+		downloadInfo[0][1] = "666F5185";		// ç™¼ä»¶å–®ä½ X(08)
+		downloadInfo[0][2] = strTXDATE;			// åŒ¯æ¬¾æ—¥æœŸ X(08)
+		downloadInfo[0][3] = "01";				// äº¤æ˜“æ‰¹è™Ÿ X(02)
+		downloadInfo[0][4] = "1";				// OBUè¨˜è™Ÿ X(01)
+		downloadInfo[0][5] = payCURR;			// å¹£åˆ¥ X(03)
+		downloadInfo[0][6] = strIDNO;			// åŒ¯æ¬¾äººçµ±ä¸€ç·¨è™Ÿ X(11)
+		downloadInfo[0][7] = "21132239980600";	// åŸå¹£æ´»å­˜å¸³è™Ÿ X(14)
+		downloadInfo[0][8] = strBPBACT;			// åŸºç¤å¹£æ´»å­˜å¸³è™Ÿ X(14)
+		downloadInfo[0][9] = strEXNO;			// è­°åƒ¹ç·¨è™Ÿ X(13)
+		downloadInfo[0][10] = strFXNO;			// é åŒ¯å¥‘ç´„ç·¨è™Ÿ X(14)
+		downloadInfo[0][11] = "73";				// åŒ¯æ¬¾æ–¹å¼ X(02)
 		
 		for (int i = 12; i < 36; i++) {
 			downloadInfo[0][i] = "";
@@ -3156,23 +3156,23 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 
 		// -----FOOT-----
 
-		// 2. ¶×¥XÁ`µ§¼Æ 9(04)
+		// 2. åŒ¯å‡ºç¸½ç­†æ•¸ 9(04)
 		String totCount = String.valueOf(saveCount);
 		for (int count = 0; count < (4 - String.valueOf(saveCount).length()); count++) {
 			totCount = "0" + totCount;
 		}
 
-		// 3. ¶×¥XÁ`ª÷ÃB 9(14)V9(02)
+		// 3. åŒ¯å‡ºç¸½é‡‘é¡ 9(14)V9(02)
 		String totAmtT = df.format(saveAmt);
 		String totAmt = totAmtT.substring(0, 14) + totAmtT.substring(15, 17);
 
-		downloadInfo[saveCount+1][0] = "3";					// °Ï§O½X X(01)
-		downloadInfo[saveCount+1][1] = totCount;			// ¶×¥XÁ`µ§¼Æ 9(04)
-		downloadInfo[saveCount+1][2] = totAmt;				// ¶×¥XÁ`ª÷ÃB 9(14)V9(02)
-		downloadInfo[saveCount+1][3] = totAmt;				// ¦Û³Æ¥~¶×Á`ª÷ÃB 9(14)V9(02)
-		downloadInfo[saveCount+1][4] = "0000000000000000";	// µ²ÁÊ¥~¶×Á`ª÷ÃB 9(14)V9(02)
-		downloadInfo[saveCount+1][5] = "00000000";			// ¤âÄò¶OÁ`ª÷ÃB 9(06)V9(02)
-		downloadInfo[saveCount+1][6] = "00000000";			// ¶l¹q¶OÁ`ª÷ÃB 9(06)V9(02)
+		downloadInfo[saveCount+1][0] = "3";					// å€åˆ¥ç¢¼ X(01)
+		downloadInfo[saveCount+1][1] = totCount;			// åŒ¯å‡ºç¸½ç­†æ•¸ 9(04)
+		downloadInfo[saveCount+1][2] = totAmt;				// åŒ¯å‡ºç¸½é‡‘é¡ 9(14)V9(02)
+		downloadInfo[saveCount+1][3] = totAmt;				// è‡ªå‚™å¤–åŒ¯ç¸½é‡‘é¡ 9(14)V9(02)
+		downloadInfo[saveCount+1][4] = "0000000000000000";	// çµè³¼å¤–åŒ¯ç¸½é‡‘é¡ 9(14)V9(02)
+		downloadInfo[saveCount+1][5] = "00000000";			// æ‰‹çºŒè²»ç¸½é‡‘é¡ 9(06)V9(02)
+		downloadInfo[saveCount+1][6] = "00000000";			// éƒµé›»è²»ç¸½é‡‘é¡ 9(06)V9(02)
 		
 		for (int i = 7; i < 36; i++) {
 			downloadInfo[saveCount+1][i] = "";
@@ -3185,10 +3185,10 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		return fileLOC;
 	}
 
-	// RB0062 ¹ü¤Æ»È¦æ¥~¹ôÂà±bÀÉ(Áp¦æ)
+	// RB0062 å½°åŒ–éŠ€è¡Œå¤–å¹£è½‰å¸³æª”(è¯è¡Œ)
 	private String convertDownloadData009t(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
@@ -3218,19 +3218,19 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		for (int index = 0; index < payments.size(); index++) {
 			rmtVO = (CaprmtfVO) payments.get(index);
 
-			// 5. ¤é´Á 9(08)
+			// 5. æ—¥æœŸ 9(08)
 			String strRemitDate = rmtVO.getRMTDT();
 			String strRMDT = sdf.format(commonutil.convertROC2WestenDate1(strRemitDate));
 
 			saveRMDT = strRMDT;
 
-			// 8. ªÅ¥ÕÄæ X(05)
+			// 8. ç©ºç™½æ¬„ X(05)
 			String strEmpty = "";
 			for(int count = strEmpty.length(); count < 5; count++) {
 				strEmpty += " ";
 			}
 
-			// 9. »È¦æ±b¸¹ 9(14)
+			// 9. éŠ€è¡Œå¸³è™Ÿ 9(14)
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			if (entAccountNo.length() > 14)
 				entAccountNo = entAccountNo.substring(0, 14);
@@ -3238,7 +3238,7 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 				entAccountNo += " ";
 			}
 
-			// 10. ª÷ÃB 9(14)V9(02)
+			// 10. é‡‘é¡ 9(14)V9(02)
 			double remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());
 			String remitAmtT = df.format(remitAmtNum);
 			String remitAmt = remitAmtT.substring(2, 14) + remitAmtT.substring(15, 17);
@@ -3246,8 +3246,8 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			saveAmtT = disbBean.DoubleRound(remitAmtNum, 2);
 			saveAmt = disbBean.DoubleAdd(saveAmt, saveAmtT);
 
-			// 12. ¥æ©öµù°O(1) X(10)
-			String strRemark1 = "¥ş²y¤H¹Ø";
+			// 12. äº¤æ˜“è¨»è¨˜(1) X(10)
+			String strRemark1 = "å…¨çƒäººå£½";
 			byte[] bytRemark = strRemark1.getBytes();
 			String strFill = "";
 			for (int count = bytRemark.length; count < 10; count++) {
@@ -3255,25 +3255,25 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			}
 			strRemark1 += strFill;
 
-			// 13. ¥æ©öµù°O(2) X(10)
+			// 13. äº¤æ˜“è¨»è¨˜(2) X(10)
 			String strRemark2 = "";
 			for (int count = strRemark2.length(); count < 10; count++) {
 				strRemark2 += " ";
 			}
 
-			// 14. ¨­¥÷ÃÒ¦r¸¹ X(10)
+			// 14. èº«ä»½è­‰å­—è™Ÿ X(10)
 			String custRemitId = rmtVO.getRID();
 			for (int count = custRemitId.length(); count < 10; count++) {
 				custRemitId += " ";
 			}
 
-			// 15. ±M¥Î¸ê®Æ°Ï X(20)
+			// 15. å°ˆç”¨è³‡æ–™å€ X(20)
 			String strField15 = "";
 			for (int count = strField15.length(); count < 20; count++) {
 				strField15 += " ";
 			}
 
-			// 16. ¨­¥÷ÃÒÀË®Ö°O¸¹ X(01)
+			// 16. èº«ä»½è­‰æª¢æ ¸è¨˜è™Ÿ X(01)
 			String customIdType = "N";
 			try {
 				pstmt.clearParameters();
@@ -3281,62 +3281,62 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 				rs = pstmt.executeQuery();
 				if(rs.next()) {
 					if(rs.getString("FLD0029").equalsIgnoreCase("C") || rs.getString("FLD0029").equalsIgnoreCase("F") || rs.getString("FLD0029").equalsIgnoreCase("M")) {
-						customIdType = "Y"; // ¤½¥q¤á©Î­Ó¤H¤á
+						customIdType = "Y"; // å…¬å¸æˆ¶æˆ–å€‹äººæˆ¶
 					}
 				}
 			} catch(SQLException ex) {
 				System.err.println(ex.getMessage());
 			}
 
-			// 17. ¹ô§O X(02)
+			// 17. å¹£åˆ¥ X(02)
 			String payCurr = selCURR.equals("NT") ? "" : disbBean.getETableDesc("CURR7", selCURR);
 			for(int count=payCurr.length(); count < 2 ; count++) {
 				payCurr += " ";
 			}
 
-			// 18. ªÅ¥ÕÄæ X(21)
+			// 18. ç©ºç™½æ¬„ X(21)
 			String strField18 = "";
 			for (int count = strField18.length(); count < 21; count++) {
 				strField18 += " ";
 			}
 			
-			downloadInfo[index + 1][0] = "2";			// °Ï§O½X 9(01)
-			downloadInfo[index + 1][1] = "666";			// ¥ø·~½s¸¹(1) 9(03)
-			downloadInfo[index + 1][2] = "F";			// ¥ø·~½s¸¹(2) X(01)
-			downloadInfo[index + 1][3] = "5185";		//¤À¦æ¥N¸¹ 9(04)
-			downloadInfo[index + 1][4] = strRMDT;		// ¤é´Á 9(08)
-			downloadInfo[index + 1][5] = "2";			// ¦s´£¥N¸¹ 9(01)
-			downloadInfo[index + 1][6] = "097";			// ºK­n 9(03)
-			downloadInfo[index + 1][7] = strEmpty;		// ªÅ¥ÕÄæ X(05)
-			downloadInfo[index + 1][8] = entAccountNo;	// »È¦æ±b¸¹ 9(14)
-			downloadInfo[index + 1][9] = remitAmt;		// ª÷ÃB 9(14)V9(02)
-			downloadInfo[index + 1][10] = "99";			// ª¬ªp¥N¸¹ 9(02)
-			downloadInfo[index + 1][11] = strRemark1;	// ¥æ©öµù°O(1) X(10)
-			downloadInfo[index + 1][12] = strRemark2;	// ¥æ©öµù°O(2) X(10)
-			downloadInfo[index + 1][13] = custRemitId;	// ¨­¥÷ÃÒ¦r¸¹ X(10)
-			downloadInfo[index + 1][14] = strField15;	// ±M¥Î¸ê®Æ°Ï X(20)
-			downloadInfo[index + 1][15] = customIdType;	// ¨­¥÷ÃÒÀË®Ö°O¸¹ X(01)
-			downloadInfo[index + 1][16] = payCurr;		// ¹ô§O X(02)
-			downloadInfo[index + 1][17] = strField18;	// ªÅ¥ÕÄæ X(21)
+			downloadInfo[index + 1][0] = "2";			// å€åˆ¥ç¢¼ 9(01)
+			downloadInfo[index + 1][1] = "666";			// ä¼æ¥­ç·¨è™Ÿ(1) 9(03)
+			downloadInfo[index + 1][2] = "F";			// ä¼æ¥­ç·¨è™Ÿ(2) X(01)
+			downloadInfo[index + 1][3] = "5185";		//åˆ†è¡Œä»£è™Ÿ 9(04)
+			downloadInfo[index + 1][4] = strRMDT;		// æ—¥æœŸ 9(08)
+			downloadInfo[index + 1][5] = "2";			// å­˜æä»£è™Ÿ 9(01)
+			downloadInfo[index + 1][6] = "097";			// æ‘˜è¦ 9(03)
+			downloadInfo[index + 1][7] = strEmpty;		// ç©ºç™½æ¬„ X(05)
+			downloadInfo[index + 1][8] = entAccountNo;	// éŠ€è¡Œå¸³è™Ÿ 9(14)
+			downloadInfo[index + 1][9] = remitAmt;		// é‡‘é¡ 9(14)V9(02)
+			downloadInfo[index + 1][10] = "99";			// ç‹€æ³ä»£è™Ÿ 9(02)
+			downloadInfo[index + 1][11] = strRemark1;	// äº¤æ˜“è¨»è¨˜(1) X(10)
+			downloadInfo[index + 1][12] = strRemark2;	// äº¤æ˜“è¨»è¨˜(2) X(10)
+			downloadInfo[index + 1][13] = custRemitId;	// èº«ä»½è­‰å­—è™Ÿ X(10)
+			downloadInfo[index + 1][14] = strField15;	// å°ˆç”¨è³‡æ–™å€ X(20)
+			downloadInfo[index + 1][15] = customIdType;	// èº«ä»½è­‰æª¢æ ¸è¨˜è™Ÿ X(01)
+			downloadInfo[index + 1][16] = payCurr;		// å¹£åˆ¥ X(02)
+			downloadInfo[index + 1][17] = strField18;	// ç©ºç™½æ¬„ X(21)
 
 			saveCount = index + 1;
 		}
 
 		// -----HEAD-----
 
-		// 8. ºÏ¤ù¨Ó·½ X(05)
+		// 8. ç£ç‰‡ä¾†æº X(05)
 		String strDiskSource = "CHB";
 		for (int count = strDiskSource.length(); count < 5; count++) {
 			strDiskSource += " ";
 		}
 
-		// 10. ¤½¥q²Î¤@½s¸¹ X(10)
+		// 10. å…¬å¸çµ±ä¸€ç·¨è™Ÿ X(10)
 		String strCompany = "70817744";
 		for (int count = strCompany.length(); count < 10; count++) {
 			strCompany += " ";
 		}
 		
-		// 11. ¤½¥q±b¸¹  
+		// 11. å…¬å¸å¸³è™Ÿ  
 		// QC0272
 		String payCurr = selCURR.equals("NT") ? "" : disbBean.getETableDesc("CURR7", selCURR);
 		for(int count=payCurr.length(); count < 2 ; count++) {
@@ -3350,25 +3350,25 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		   strPacct = "21132239980605" ;
 		}
 
-		// 12. «O¯dÄæ X(79)
+		// 12. ä¿ç•™æ¬„ X(79)
 		String strField12 = "";
 		for (int count = strField12.length(); count < 79; count++) {
 			strField12 += " ";
 		}
 
-		downloadInfo[0][0] = "1";			// °Ï§O½X 9(01)
-		downloadInfo[0][1] = "666";			// ¥ø·~½s¸¹(1) 9(03)
-		downloadInfo[0][2] = "F";			// ¥ø·~½s¸¹(2) X(01)
-		downloadInfo[0][3] = "5185";		//¤À¦æ¥N¸¹ 9(04)
-		downloadInfo[0][4] = saveRMDT;		// ¤é´Á 9(08)
-		downloadInfo[0][5] = "2";			// ¦s´£¥N¸¹ 9(01)
-		downloadInfo[0][6] = "097";			// ºK­n 9(03)
-		downloadInfo[0][7] = strDiskSource; // ºÏ¤ù¨Ó·½ X(05)
-		downloadInfo[0][8] = "1"; 			// ©Ê½è§O 9(01)
-		downloadInfo[0][9] = strCompany; 	// ¤½¥q²Î¤@½s¸¹ X(10)
-		//downloadInfo[0][10] = "21132239980600";// ¤½¥q±b¸¹ X(14)
-		downloadInfo[0][10] = strPacct;// ¤½¥q±b¸¹ X(14) QC0272
-		downloadInfo[0][11] = strField12; 	// «O¯dÄæ X(79)
+		downloadInfo[0][0] = "1";			// å€åˆ¥ç¢¼ 9(01)
+		downloadInfo[0][1] = "666";			// ä¼æ¥­ç·¨è™Ÿ(1) 9(03)
+		downloadInfo[0][2] = "F";			// ä¼æ¥­ç·¨è™Ÿ(2) X(01)
+		downloadInfo[0][3] = "5185";		//åˆ†è¡Œä»£è™Ÿ 9(04)
+		downloadInfo[0][4] = saveRMDT;		// æ—¥æœŸ 9(08)
+		downloadInfo[0][5] = "2";			// å­˜æä»£è™Ÿ 9(01)
+		downloadInfo[0][6] = "097";			// æ‘˜è¦ 9(03)
+		downloadInfo[0][7] = strDiskSource; // ç£ç‰‡ä¾†æº X(05)
+		downloadInfo[0][8] = "1"; 			// æ€§è³ªåˆ¥ 9(01)
+		downloadInfo[0][9] = strCompany; 	// å…¬å¸çµ±ä¸€ç·¨è™Ÿ X(10)
+		//downloadInfo[0][10] = "21132239980600";// å…¬å¸å¸³è™Ÿ X(14)
+		downloadInfo[0][10] = strPacct;// å…¬å¸å¸³è™Ÿ X(14) QC0272
+		downloadInfo[0][11] = strField12; 	// ä¿ç•™æ¬„ X(79)
 
 		for (int i = 12; i < 18; i++) {
 			downloadInfo[0][i] = "";
@@ -3376,41 +3376,41 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 
 		// -----FOOT-----
 
-		// 8. ªÅ¥ÕÄæ X(05)
+		// 8. ç©ºç™½æ¬„ X(05)
 		String strEmpty = "";
 		for(int count = strEmpty.length(); count < 5; count++) {
 			strEmpty += " ";
 		}
 
-		// 9. Á`ª÷ÃB 9(14)V9(02)
+		// 9. ç¸½é‡‘é¡ 9(14)V9(02)
 		String totAmtT = df.format(saveAmt);
 		String totAmt = totAmtT.substring(0, 14) + totAmtT.substring(15, 17);
 
-		// 2. ¶×¥XÁ`µ§¼Æ 9(10)
+		// 2. åŒ¯å‡ºç¸½ç­†æ•¸ 9(10)
 		String totCount = String.valueOf(saveCount);
 		for (int count = 0; count < (10 - String.valueOf(saveCount).length()); count++) {
 			totCount = "0" + totCount;
 		}
 
-		// 13. ªÅ¥ÕÄæ X(52)
+		// 13. ç©ºç™½æ¬„ X(52)
 		String strField = "";
 		for(int count = strField.length(); count < 52; count++) {
 			strField += " ";
 		}
 
-		downloadInfo[saveCount+1][0] = "3";			// °Ï§O½X 9(01)
-		downloadInfo[saveCount+1][1] = "666";		// ¥ø·~½s¸¹(1) 9(03)
-		downloadInfo[saveCount+1][2] = "F";			// ¥ø·~½s¸¹(2) X(01)
-		downloadInfo[saveCount+1][3] = "5185";		//¤À¦æ¥N¸¹ 9(04)
-		downloadInfo[saveCount+1][4] = saveRMDT;	// ¤é´Á 9(08)
-		downloadInfo[saveCount+1][5] = "2";			// ¦s´£¥N¸¹ 9(01)
-		downloadInfo[saveCount+1][6] = "097";		// ºK­n 9(03)
-		downloadInfo[saveCount+1][7] = strEmpty;	// ªÅ¥ÕÄæ X(05)
-		downloadInfo[saveCount+1][8] = totAmt;		// Á`ª÷ÃB 9(14)V9(02)
-		downloadInfo[saveCount+1][9] = totCount;	// Á`µ§¼Æ 9(10)
-		downloadInfo[saveCount+1][10] = "0000000000000000";	// ¥¼¦¨¥æÁ`ª÷ÃB 9(14)V9(02)
-		downloadInfo[saveCount+1][11] = "0000000000";// ¥¼¦¨¥æÁ`µ§¼Æ 9(8)V9(02)
-		downloadInfo[saveCount+1][12] = strField;	// ªÅ¥ÕÄæ X(52)
+		downloadInfo[saveCount+1][0] = "3";			// å€åˆ¥ç¢¼ 9(01)
+		downloadInfo[saveCount+1][1] = "666";		// ä¼æ¥­ç·¨è™Ÿ(1) 9(03)
+		downloadInfo[saveCount+1][2] = "F";			// ä¼æ¥­ç·¨è™Ÿ(2) X(01)
+		downloadInfo[saveCount+1][3] = "5185";		//åˆ†è¡Œä»£è™Ÿ 9(04)
+		downloadInfo[saveCount+1][4] = saveRMDT;	// æ—¥æœŸ 9(08)
+		downloadInfo[saveCount+1][5] = "2";			// å­˜æä»£è™Ÿ 9(01)
+		downloadInfo[saveCount+1][6] = "097";		// æ‘˜è¦ 9(03)
+		downloadInfo[saveCount+1][7] = strEmpty;	// ç©ºç™½æ¬„ X(05)
+		downloadInfo[saveCount+1][8] = totAmt;		// ç¸½é‡‘é¡ 9(14)V9(02)
+		downloadInfo[saveCount+1][9] = totCount;	// ç¸½ç­†æ•¸ 9(10)
+		downloadInfo[saveCount+1][10] = "0000000000000000";	// æœªæˆäº¤ç¸½é‡‘é¡ 9(14)V9(02)
+		downloadInfo[saveCount+1][11] = "0000000000";// æœªæˆäº¤ç¸½ç­†æ•¸ 9(8)V9(02)
+		downloadInfo[saveCount+1][12] = strField;	// ç©ºç™½æ¬„ X(52)
 
 		for (int i = 13; i < 18; i++) {
 			downloadInfo[saveCount+1][i] = "";
@@ -3429,18 +3429,18 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		return fileLOC;
 	}
 
-	//EB0537 ¸U®õ»È¦æ (¸ó¦æ¶×¶×´Ú¤£»İ²£¥ÍÀÉ®×)
+	//EB0537 è¬æ³°éŠ€è¡Œ (è·¨è¡ŒåŒ¯åŒ¯æ¬¾ä¸éœ€ç”¢ç”Ÿæª”æ¡ˆ)
 	private String convertDownloadData809t(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC = "";
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
 		String[][] downloadInfo = new String[payments.size()][16];
 		DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);
-		String payCURR = disbBean.getETableDesc("CURRA", selCURR);	//¨â½XÂà¤T½X¹ô§O
+		String payCURR = disbBean.getETableDesc("CURRA", selCURR);	//å…©ç¢¼è½‰ä¸‰ç¢¼å¹£åˆ¥
 		
-		//RD0144,­×§ï¸U®õ¤H¥Á¹ôCNY¬°CNH
+		//RD0144,ä¿®æ”¹è¬æ³°äººæ°‘å¹£CNYç‚ºCNH
 		if("CN".equals(payCURR.substring(0,2))){
 			payCURR = payCURR.substring(0,2) + "H";
 		}		 
@@ -3457,11 +3457,11 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 				break;
 			}
 			
-			// ¥æ©ö¤é´Áx(8) ¦è¤¸¦~
+			// äº¤æ˜“æ—¥æœŸx(8) è¥¿å…ƒå¹´
 			String remitDate = rmtVO.getRMTDT();
 			remitDate = String.valueOf(Integer.parseInt(remitDate) + 19110000);
 
-			//«OÀI¤½¥q±b¸¹x(12)
+			//ä¿éšªå…¬å¸å¸³è™Ÿx(12)
 			String strAccount = CommonUtil.AllTrim(rmtVO.getPACCT());
 			if(strAccount.length() > 12) {
 				strAccount = strAccount.substring(0, 12);
@@ -3470,14 +3470,14 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 				strAccount += " ";
 			}
 
-			//§Ç¸¹9(6)
+			//åºè™Ÿ9(6)
 			String strDataSeq = String.valueOf(iDataSeq);
 			for(int counter=strDataSeq.length(); counter<5; counter++) {
 				strDataSeq = "0" + strDataSeq;
 			}
 			strDataSeq = "2" + strDataSeq;
 
-			//¨ü´Ú¤H¥~¹ô±b¸¹x(12)
+			//å—æ¬¾äººå¤–å¹£å¸³è™Ÿx(12)
 			String entAccountNo = CommonUtil.AllTrim(rmtVO.getRACCT());
 			if(entAccountNo.length() > 12) {
 				entAccountNo = entAccountNo.substring(0, 12);
@@ -3486,15 +3486,15 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 				entAccountNo += " ";
 			}
 			
-			// ¨ü´Ú¤H²Î¤@½s¸¹x(11)
+			// å—æ¬¾äººçµ±ä¸€ç·¨è™Ÿx(11)
 			String custRemitId = CommonUtil.AllTrim(rmtVO.getRID());
 			for (int counter = custRemitId.length(); counter < 11; counter++) {
 				custRemitId += " ";
 			}
 			
-			// ¥æ©öª÷ÃB9(13)v99
+			// äº¤æ˜“é‡‘é¡9(13)v99
 			String remitAmt = String.valueOf(rmtVO.getRAMT());
-			// ³B²z¤p¼ÆÂI"." §Y 999.00-->99900
+			// è™•ç†å°æ•¸é»"." å³ 999.00-->99900
 			if (remitAmt.indexOf(".") > 0) {
 				remitAmt = remitAmt.substring(0, remitAmt.indexOf("."));
 			}
@@ -3503,22 +3503,22 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 				remitAmt = "0" + remitAmt;
 			}
 
-			//ªÅ¥Õx(20)
+			//ç©ºç™½x(20)
 			String strField13 = "";
 			for (int counter = strField13.length(); counter < 20; counter++) {
 				strField13 += " ";
 			}
-			//¦^ÂĞ°T®§¥N¸¹x(6)
+			//å›è¦†è¨Šæ¯ä»£è™Ÿx(6)
 			String strField14 = "";
 			for (int counter = strField14.length(); counter < 6; counter++) {
 				strField14 += " ";
 			}
-			//¦^ÂĞ°T®§Äæ¦ìx(120)
+			//å›è¦†è¨Šæ¯æ¬„ä½x(120)
 			String strField15 = "";
 			for (int counter = strField15.length(); counter < 120; counter++) {
 				strField15 += " ";
 			}
-			//«O¯dÄæ¦ìx(63)
+			//ä¿ç•™æ¬„ä½x(63)
 			String strField16 = "";
 			for (int counter = strField16.length(); counter < 63; counter++) {
 				strField16 += " ";
@@ -3526,22 +3526,22 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 
 			iDataSeq++;
 			
-			downloadInfo[index][0] = "IN";	// ·~°ÈÃş§O, «O¶O±b°È§@·~
-			downloadInfo[index][1] = "TG";	// «OÀI¤½¥q¥N¸¹
-			downloadInfo[index][2] = strSeq;// §å¸¹
-			downloadInfo[index][3] = remitDate;	// ¥æ©ö¤é´Á
-			downloadInfo[index][4] = strAccount;// «OÀI¤½¥q±b¸¹
-			downloadInfo[index][5] = "70817744   ";// «OÀI¤½¥q²Î¤@½s¸¹
-			downloadInfo[index][6] = payCURR;	// ¹ô§O
-			downloadInfo[index][7] = strDataSeq;// §Ç¸¹
-			downloadInfo[index][8] = "+";		// ­É¶U§O, ¦s¤J
-			downloadInfo[index][9] = entAccountNo;	// ¨ü´Ú¤H¥~¹ô±b¸¹
-			downloadInfo[index][10] = custRemitId;	// ¨ü´Ú¤H²Î¤@½s¸¹
-			downloadInfo[index][11] = remitAmt;		// ¥æ©öª÷ÃB
-			downloadInfo[index][12] = strField13;	//«O³æ¸¹½X, ¥æ©ö½s¸¹
-			downloadInfo[index][13] = strField14;	// ¦^ÂĞ°T®§¥N¸¹
-			downloadInfo[index][14] = strField15;	// ¦^ÂĞ°T®§Äæ¦ì
-			downloadInfo[index][15] = strField16;	// «O¯dÄæ¦ì
+			downloadInfo[index][0] = "IN";	// æ¥­å‹™é¡åˆ¥, ä¿è²»å¸³å‹™ä½œæ¥­
+			downloadInfo[index][1] = "TG";	// ä¿éšªå…¬å¸ä»£è™Ÿ
+			downloadInfo[index][2] = strSeq;// æ‰¹è™Ÿ
+			downloadInfo[index][3] = remitDate;	// äº¤æ˜“æ—¥æœŸ
+			downloadInfo[index][4] = strAccount;// ä¿éšªå…¬å¸å¸³è™Ÿ
+			downloadInfo[index][5] = "70817744   ";// ä¿éšªå…¬å¸çµ±ä¸€ç·¨è™Ÿ
+			downloadInfo[index][6] = payCURR;	// å¹£åˆ¥
+			downloadInfo[index][7] = strDataSeq;// åºè™Ÿ
+			downloadInfo[index][8] = "+";		// å€Ÿè²¸åˆ¥, å­˜å…¥
+			downloadInfo[index][9] = entAccountNo;	// å—æ¬¾äººå¤–å¹£å¸³è™Ÿ
+			downloadInfo[index][10] = custRemitId;	// å—æ¬¾äººçµ±ä¸€ç·¨è™Ÿ
+			downloadInfo[index][11] = remitAmt;		// äº¤æ˜“é‡‘é¡
+			downloadInfo[index][12] = strField13;	//ä¿å–®è™Ÿç¢¼, äº¤æ˜“ç·¨è™Ÿ
+			downloadInfo[index][13] = strField14;	// å›è¦†è¨Šæ¯ä»£è™Ÿ
+			downloadInfo[index][14] = strField15;	// å›è¦†è¨Šæ¯æ¬„ä½
+			downloadInfo[index][15] = strField16;	// ä¿ç•™æ¬„ä½
 		}
 		if(downloadInfo != null)
 			fileLOC = disbBean.writeTOfile(downloadInfo, BATNO, selCURR, remitKind, strLogonUser);
@@ -3549,16 +3549,16 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		return fileLOC;
 	}
 
-	//RD0440»OÆW»È¦æ,°Ñ¦ÒconvertDownloadData007(),¥i°Ñ¦ÒconvertDownloadData009t()¹ü»È¦³header & detail
+	//RD0440è‡ºç£éŠ€è¡Œ,åƒè€ƒconvertDownloadData007(),å¯åƒè€ƒconvertDownloadData009t()å½°éŠ€æœ‰header & detail
 	private String convertDownloadData004t(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
-		//²£¥Í¥x»ÈÂà±bÀÉ
+		//ç”¢ç”Ÿå°éŠ€è½‰å¸³æª”
 		String fileLOC = "";
 		
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
-		// layout À³¬° 21 Äæ¦ì, ¦ı \r\n «á­±µ{¦¡·|¦Û°Ê°µ, ¥i¥H¬Ù²¤
+		// layout æ‡‰ç‚º 21 æ¬„ä½, ä½† \r\n å¾Œé¢ç¨‹å¼æœƒè‡ªå‹•åš, å¯ä»¥çœç•¥
 		String[][] downloadInfo = new String[payments.size()+1][21];
 		DecimalFormat df = new DecimalFormat("0000000000.00");
 		DecimalFormat df1 = new DecimalFormat("0000000000000");
@@ -3569,11 +3569,11 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		int remitCount = 0;
 		String remitDateTmp = "";
 		boolean remitDataChange = false;
-		//©ú²Ó¸ê®Æ
+		//æ˜ç´°è³‡æ–™
 		for (int index = 0; index < payments.size(); index++) {			
 			rmtVO = (CaprmtfVO) payments.get(index);
 			
-			//±b¸¹
+			//å¸³è™Ÿ
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			if (entAccountNo.length() > 16){
 				entAccountNo = entAccountNo.substring(0, 16);
@@ -3582,106 +3582,106 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			}
 				
 			
-			//²Î½s/¨­¤À¦r¸¹
+			//çµ±ç·¨/èº«åˆ†å­—è™Ÿ
 			String custID = CommonUtil.AllTrim(rmtVO.getRID());			
 			
-			//¶×´Úª÷ÃB		
-			//log.info("rmtVO.getRPAYAMT()¬O" + rmtVO.getRPAYAMT() + ",rmtVO.getRBENFEE()¬O" + rmtVO.getRBENFEE());
+			//åŒ¯æ¬¾é‡‘é¡		
+			//log.info("rmtVO.getRPAYAMT()æ˜¯" + rmtVO.getRPAYAMT() + ",rmtVO.getRBENFEE()æ˜¯" + rmtVO.getRBENFEE());
 			double remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());// R70455
-			//log.info("remitAmtNum¬O" + remitAmtNum);
+			//log.info("remitAmtNumæ˜¯" + remitAmtNum);
 			String remitAmt = df.format(remitAmtNum);
 			remitAmt = remitAmt.replace(".", "");
 			remitAmt = df1.format(Double.valueOf(remitAmt));
 			
-			//¥D¿ì¦æ
+			//ä¸»è¾¦è¡Œ
 			String pBank = rmtVO.getPBK();
 			String pBranck;
 			if (pBank == null)
 				pBranck = "   ";
 			else {
-				// ­Y¤£¨¬ 6 ¦ì, ¥ı¸É¨¬¦A¨ú
+				// è‹¥ä¸è¶³ 6 ä½, å…ˆè£œè¶³å†å–
 				if (pBank.length() < 6)
 					pBank = pBank + "      ".substring(0, 6 - pBank.length());
 				pBranck = pBank.substring(3, 6);
 			}
 
-			//¹w©w¤Î¹ê»Ú¤J±b¤é
+			//é å®šåŠå¯¦éš›å…¥å¸³æ—¥
 			String remitDate = rmtVO.getRMTDT();
 			if(index >0  && !remitDataChange){
 				if(!remitDateTmp.equals(remitDate)) remitDataChange = true;
 			}
 			remitDateTmp = remitDate;
-			downloadInfo[index+1][0] = "2"; //¸ê®Æ®æ¦¡,1
-			downloadInfo[index+1][1] = String.format("%06d", new Integer(index+1)); //¬y¤ô½s¸¹,2
-			downloadInfo[index+1][2] = genSpace(4); //«O¯d,3
-			downloadInfo[index+1][3] = entAccountNo; //±b¸¹,4
-			downloadInfo[index+1][4] = "1"; //¤J¦©±b°O¸¹,5
-			downloadInfo[index+1][5] = remitAmt; //ª÷ÃB,6
-			downloadInfo[index+1][6] = remitDate; //¤J¦©±b¤é,7
-			downloadInfo[index+1][7] = String.format("%07d", new Integer(0)); //¹ê»Ú¤J¦©±b¤é,8
-			downloadInfo[index+1][8] = "¥ş²y¤H¹Ø" + genSpace(8); //³Æµù,9
-			downloadInfo[index+1][9] = genSpace(10); //«O¯d,10
-			downloadInfo[index+1][10] = custID; //²Î½s/¨­¤À¦r¸¹,11
-			downloadInfo[index+1][11] = genSpace(2); //³B²zµ²ªG,12
-			downloadInfo[index+1][12] = genSpace(20); //±b³æ¾P±b¸ê®Æ1,13
-			downloadInfo[index+1][13] = genSpace(20); //±b³æ¾P±b¸ê®Æ2,14
-			downloadInfo[index+1][14] = genSpace(60); //©e°U³æ¦ì¦Û¥Î¸ê®Æ,15
-			downloadInfo[index+1][15] = genSpace(7); //«O¯d,16
-			downloadInfo[index+1][16] = ""; //¸É»ôdownloadInfo
-			downloadInfo[index+1][17] = ""; //¸É»ôdownloadInfo
-			downloadInfo[index+1][18] = ""; //¸É»ôdownloadInfo
-			downloadInfo[index+1][19] = ""; //¸É»ôdownloadInfo
-			downloadInfo[index+1][20] = ""; //¸É»ôdownloadInfo
+			downloadInfo[index+1][0] = "2"; //è³‡æ–™æ ¼å¼,1
+			downloadInfo[index+1][1] = String.format("%06d", new Integer(index+1)); //æµæ°´ç·¨è™Ÿ,2
+			downloadInfo[index+1][2] = genSpace(4); //ä¿ç•™,3
+			downloadInfo[index+1][3] = entAccountNo; //å¸³è™Ÿ,4
+			downloadInfo[index+1][4] = "1"; //å…¥æ‰£å¸³è¨˜è™Ÿ,5
+			downloadInfo[index+1][5] = remitAmt; //é‡‘é¡,6
+			downloadInfo[index+1][6] = remitDate; //å…¥æ‰£å¸³æ—¥,7
+			downloadInfo[index+1][7] = String.format("%07d", new Integer(0)); //å¯¦éš›å…¥æ‰£å¸³æ—¥,8
+			downloadInfo[index+1][8] = "å…¨çƒäººå£½" + genSpace(8); //å‚™è¨»,9
+			downloadInfo[index+1][9] = genSpace(10); //ä¿ç•™,10
+			downloadInfo[index+1][10] = custID; //çµ±ç·¨/èº«åˆ†å­—è™Ÿ,11
+			downloadInfo[index+1][11] = genSpace(2); //è™•ç†çµæœ,12
+			downloadInfo[index+1][12] = genSpace(20); //å¸³å–®éŠ·å¸³è³‡æ–™1,13
+			downloadInfo[index+1][13] = genSpace(20); //å¸³å–®éŠ·å¸³è³‡æ–™2,14
+			downloadInfo[index+1][14] = genSpace(60); //å§”è¨—å–®ä½è‡ªç”¨è³‡æ–™,15
+			downloadInfo[index+1][15] = genSpace(7); //ä¿ç•™,16
+			downloadInfo[index+1][16] = ""; //è£œé½ŠdownloadInfo
+			downloadInfo[index+1][17] = ""; //è£œé½ŠdownloadInfo
+			downloadInfo[index+1][18] = ""; //è£œé½ŠdownloadInfo
+			downloadInfo[index+1][19] = ""; //è£œé½ŠdownloadInfo
+			downloadInfo[index+1][20] = ""; //è£œé½ŠdownloadInfo
 			
 			remitAmtNumSum += remitAmtNum;
 			remitCount++;
 		}//end for
 
-		//­ºµ§¸ê®Æ
-		downloadInfo[0][0] = "1"; //¸ê®Æ®æ¦¡,1
-		downloadInfo[0][1] = String.format("%07d", new Integer(2360015)); //«È¤á¥N¸¹,2
-		downloadInfo[0][2] = "Z15"; //Âà±bÃş§O,3
-		downloadInfo[0][3] = "70817744" + genSpace(2); //²Î¤@½s¸¹,4
+		//é¦–ç­†è³‡æ–™
+		downloadInfo[0][0] = "1"; //è³‡æ–™æ ¼å¼,1
+		downloadInfo[0][1] = String.format("%07d", new Integer(2360015)); //å®¢æˆ¶ä»£è™Ÿ,2
+		downloadInfo[0][2] = "Z15"; //è½‰å¸³é¡åˆ¥,3
+		downloadInfo[0][3] = "70817744" + genSpace(2); //çµ±ä¸€ç·¨è™Ÿ,4
 		if(remitDataChange){
-			downloadInfo[0][4] = String.format("%07d", new Integer(0)); //¤J¦©±b¤é,5
+			downloadInfo[0][4] = String.format("%07d", new Integer(0)); //å…¥æ‰£å¸³æ—¥,5
 		}else{
-			downloadInfo[0][4] = String.format("%07d", Integer.valueOf(remitDateTmp)); //¤J¦©±b¤é,5
+			downloadInfo[0][4] = String.format("%07d", Integer.valueOf(remitDateTmp)); //å…¥æ‰£å¸³æ—¥,5
 		}		
 		
 		String remitAmtNumSumStr = df.format(remitAmtNumSum);
 		remitAmtNumSumStr = remitAmtNumSumStr.replace(".", "");
 		remitAmtNumSumStr = df1.format(Double.valueOf(remitAmtNumSumStr));
 		
-		downloadInfo[0][5] = "1"; //¤J¦©±b°O¸¹,6
-		downloadInfo[0][6] = "¥ş²y¤H¹Ø" + genSpace(16-"¥ş²y¤H¹Ø".getBytes().length); //²Î¤@³Æµù,7
-		downloadInfo[0][7] = genSpace(10); //«O¯d,8
-		downloadInfo[0][8] = getCurrencyCode(selCURR); //¹ô§O,9
-		downloadInfo[0][9] = String.format("%06d", new Integer(0)); //¦©±bÁ`µ§¼Æ,10
-		downloadInfo[0][10] = df1.format(0); //¦©±bÁ`ª÷ÃB,11
-		downloadInfo[0][11] = String.format("%06d", new Integer(remitCount)); //¤J±bÁ`µ§¼Æ,12
-		downloadInfo[0][12] = remitAmtNumSumStr; //¤J±bÁ`ª÷ÃB,13
-		downloadInfo[0][13] = String.format("%06d", new Integer(0)); //¦©±b¥¢±ÑÁ`µ§¼Æ,14
-		downloadInfo[0][14] = df1.format(0); //¦©±b¥¢±ÑÁ`ª÷ÃB,15
-		downloadInfo[0][15] = String.format("%06d", new Integer(0)); //¤J±b¥¢±ÑÁ`µ§¼Æ,16
-		downloadInfo[0][16] = df1.format(0); //¤J±b¥¢±ÑÁ`ª÷ÃB,17
-		downloadInfo[0][17] = "9"; //ª¬ºA,18
-		downloadInfo[0][18] = "                    695TW A" + genSpace(48-"                    695TW A".length()); //©e°U³æ¦ì¦Û¥Î¸ê®Æ,19
-		downloadInfo[0][19] = genSpace(13); //¤W¶Ç§å¸¹,20
-		downloadInfo[0][20] = genSpace(5); //«O¯d,21
+		downloadInfo[0][5] = "1"; //å…¥æ‰£å¸³è¨˜è™Ÿ,6
+		downloadInfo[0][6] = "å…¨çƒäººå£½" + genSpace(16-"å…¨çƒäººå£½".getBytes().length); //çµ±ä¸€å‚™è¨»,7
+		downloadInfo[0][7] = genSpace(10); //ä¿ç•™,8
+		downloadInfo[0][8] = getCurrencyCode(selCURR); //å¹£åˆ¥,9
+		downloadInfo[0][9] = String.format("%06d", new Integer(0)); //æ‰£å¸³ç¸½ç­†æ•¸,10
+		downloadInfo[0][10] = df1.format(0); //æ‰£å¸³ç¸½é‡‘é¡,11
+		downloadInfo[0][11] = String.format("%06d", new Integer(remitCount)); //å…¥å¸³ç¸½ç­†æ•¸,12
+		downloadInfo[0][12] = remitAmtNumSumStr; //å…¥å¸³ç¸½é‡‘é¡,13
+		downloadInfo[0][13] = String.format("%06d", new Integer(0)); //æ‰£å¸³å¤±æ•—ç¸½ç­†æ•¸,14
+		downloadInfo[0][14] = df1.format(0); //æ‰£å¸³å¤±æ•—ç¸½é‡‘é¡,15
+		downloadInfo[0][15] = String.format("%06d", new Integer(0)); //å…¥å¸³å¤±æ•—ç¸½ç­†æ•¸,16
+		downloadInfo[0][16] = df1.format(0); //å…¥å¸³å¤±æ•—ç¸½é‡‘é¡,17
+		downloadInfo[0][17] = "9"; //ç‹€æ…‹,18
+		downloadInfo[0][18] = "                    695TW A" + genSpace(48-"                    695TW A".length()); //å§”è¨—å–®ä½è‡ªç”¨è³‡æ–™,19
+		downloadInfo[0][19] = genSpace(13); //ä¸Šå‚³æ‰¹è™Ÿ,20
+		downloadInfo[0][20] = genSpace(5); //ä¿ç•™,21
 		
 		fileLOC = disbBean.writeTOfile(downloadInfo, BATNO, selCURR, remitKind, strLogonUser);
 		return fileLOC;
 	}
 	
 	private String convertDownloadData004r(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
-		//²£¥Í¥x»È¶×´ÚÀÉ
+		//ç”¢ç”Ÿå°éŠ€åŒ¯æ¬¾æª”
 		String fileLOC = "";
 		
-		// µL¸ê®Æ¤£³B²z
+		// ç„¡è³‡æ–™ä¸è™•ç†
 		if (payments.size() <= 0)
 			return fileLOC;
 
-		// layout À³¬° 21 Äæ¦ì, ¦ı \r\n «á­±µ{¦¡·|¦Û°Ê°µ, ¥i¥H¬Ù²¤
+		// layout æ‡‰ç‚º 21 æ¬„ä½, ä½† \r\n å¾Œé¢ç¨‹å¼æœƒè‡ªå‹•åš, å¯ä»¥çœç•¥
 		String[][] downloadInfo = new String[payments.size()+1][21];
 		DecimalFormat dfFirst = new DecimalFormat("0000000000.00");
 		DecimalFormat dfFirst1 = new DecimalFormat("0000000000.00");
@@ -3693,12 +3693,12 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		int remitCount = 0;
 		String remitDateTmp = "";
 		boolean remitDataChange = false;
-		//©ú²Ó¸ê®Æ
+		//æ˜ç´°è³‡æ–™
 		for (int index = 0; index < payments.size(); index++) {
 			
 			rmtVO = (CaprmtfVO) payments.get(index);
 			
-			//±b¸¹
+			//å¸³è™Ÿ
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
 			if (entAccountNo.length() > 34){
 				entAccountNo = entAccountNo.substring(0, 34);
@@ -3707,85 +3707,85 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 			}
 				
 			
-			//²Î½s/¨­¤À¦r¸¹
+			//çµ±ç·¨/èº«åˆ†å­—è™Ÿ
 			String custID = CommonUtil.AllTrim(rmtVO.getRID());	
 			
-			//¤¤¤å©m¦W
+			//ä¸­æ–‡å§“å
 			String custName = CommonUtil.AllTrim(rmtVO.getRNAME());
 			
-			//­^¤å©m¦W
+			//è‹±æ–‡å§“å
 			String entNameT = (rmtVO.getPENGNAME() == null) ? "" : CommonUtil.AllTrim(rmtVO.getPENGNAME()).toUpperCase();
 			
-			//¶×´Úª÷ÃB			
+			//åŒ¯æ¬¾é‡‘é¡			
 			double remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());// R70455
 			String remitAmt = df.format(remitAmtNum);
 			
 			//SWIFT CODE
 			String swiftCode = rmtVO.getSWIFTCODE() == null ? "" : rmtVO.getSWIFTCODE();
 			
-			//¶×´Ú¦æ
+			//åŒ¯æ¬¾è¡Œ
 			String rbk = rmtVO.getRBK() == null ? "" : rmtVO.getRBK().substring(0, 3);
 			
-			//¥D¿ì¦æ
+			//ä¸»è¾¦è¡Œ
 			String pBank = rmtVO.getPBK();
 			String pBranck;
 			if (pBank == null)
 				pBranck = "   ";
 			else {
-				// ­Y¤£¨¬ 6 ¦ì, ¥ı¸É¨¬¦A¨ú
+				// è‹¥ä¸è¶³ 6 ä½, å…ˆè£œè¶³å†å–
 				if (pBank.length() < 6)
 					pBank = pBank + "      ".substring(0, 6 - pBank.length());
 				pBranck = pBank.substring(3, 6);
 			}
 
-			//¹w©w¤Î¹ê»Ú¤J±b¤é
+			//é å®šåŠå¯¦éš›å…¥å¸³æ—¥
 			String remitDate = rmtVO.getRMTDT();
 			if(index >0 && !remitDataChange){
 				if(!remitDateTmp.equals(remitDate)) remitDataChange = true;
 			}
 			remitDateTmp = remitDate;
-			downloadInfo[index+1][0] = String.format("%4d", new Integer(index+1)); //½s¸¹,1
-			downloadInfo[index+1][1] = genSpace(1); //¥¼¨Ï¥Î,2
-			downloadInfo[index+1][2] = "TransGlobe Life Insurance Inc." + genSpace(40); //¶×´Ú¥Ó½Ğ¤H¦WºÙ,3
-			downloadInfo[index+1][3] = "16F, No.288, Sec. 6, Civic Blvd., Taipei City 110, Taiwan, R.O.C." + genSpace(5); //¶×´Ú¥Ó½Ğ¤H¦a§},4
-			downloadInfo[index+1][4] = "70817744" + genSpace(2); //¶×´Ú¤HÃÒ¸¹,5
-			downloadInfo[index+1][5] = "TW"; //¨ü´Ú¤H°ê§O,6
-			downloadInfo[index+1][6] = "693"; //¶×´Ú¤ÀÃş½s¸¹,7
-			downloadInfo[index+1][7] = "A"; //¦¬´Ú¦æSWIFT®æ¦¡,8
-			downloadInfo[index+1][8] = swiftCode + genSpace(105-swiftCode.length()); //¦¬´Ú¦æ¦WºÙ¤Î¦a§}/SWIFT CODE,9
-			downloadInfo[index+1][9] = genSpace(30); //¦¬´Ú¦æ»È¦æ½s¸¹,10
-			downloadInfo[index+1][10] = entNameT + genSpace(70 - entNameT.getBytes().length); //¦¬´Ú¤H¦WºÙ,11
-			downloadInfo[index+1][11] = genSpace(70); //¦¬´Ú¤H¦a§},12
-			downloadInfo[index+1][12] = entAccountNo + genSpace(34-entAccountNo.length()); //¦¬´Ú¤H±b¸¹,13
-			downloadInfo[index+1][13] = genSpace(12-remitAmt.length()) + remitAmt; //¶×´Úª÷ÃB,14
-			downloadInfo[index+1][14] = genSpace(140); //³Æµù,15
-			downloadInfo[index+1][15] = ""; //¸É»ôdownloadInfo
-			downloadInfo[index+1][16] = ""; //¸É»ôdownloadInfo
-			downloadInfo[index+1][17] = ""; //¸É»ôdownloadInfo
-			downloadInfo[index+1][18] = ""; //¸É»ôdownloadInfo
-			downloadInfo[index+1][19] = ""; //¸É»ôdownloadInfo
-			downloadInfo[index+1][20] = ""; //¸É»ôdownloadInfo
+			downloadInfo[index+1][0] = String.format("%4d", new Integer(index+1)); //ç·¨è™Ÿ,1
+			downloadInfo[index+1][1] = genSpace(1); //æœªä½¿ç”¨,2
+			downloadInfo[index+1][2] = "TransGlobe Life Insurance Inc." + genSpace(40); //åŒ¯æ¬¾ç”³è«‹äººåç¨±,3
+			downloadInfo[index+1][3] = "16F, No.288, Sec. 6, Civic Blvd., Taipei City 110, Taiwan, R.O.C." + genSpace(5); //åŒ¯æ¬¾ç”³è«‹äººåœ°å€,4
+			downloadInfo[index+1][4] = "70817744" + genSpace(2); //åŒ¯æ¬¾äººè­‰è™Ÿ,5
+			downloadInfo[index+1][5] = "TW"; //å—æ¬¾äººåœ‹åˆ¥,6
+			downloadInfo[index+1][6] = "693"; //åŒ¯æ¬¾åˆ†é¡ç·¨è™Ÿ,7
+			downloadInfo[index+1][7] = "A"; //æ”¶æ¬¾è¡ŒSWIFTæ ¼å¼,8
+			downloadInfo[index+1][8] = swiftCode + genSpace(105-swiftCode.length()); //æ”¶æ¬¾è¡Œåç¨±åŠåœ°å€/SWIFT CODE,9
+			downloadInfo[index+1][9] = genSpace(30); //æ”¶æ¬¾è¡ŒéŠ€è¡Œç·¨è™Ÿ,10
+			downloadInfo[index+1][10] = entNameT + genSpace(70 - entNameT.getBytes().length); //æ”¶æ¬¾äººåç¨±,11
+			downloadInfo[index+1][11] = genSpace(70); //æ”¶æ¬¾äººåœ°å€,12
+			downloadInfo[index+1][12] = entAccountNo + genSpace(34-entAccountNo.length()); //æ”¶æ¬¾äººå¸³è™Ÿ,13
+			downloadInfo[index+1][13] = genSpace(12-remitAmt.length()) + remitAmt; //åŒ¯æ¬¾é‡‘é¡,14
+			downloadInfo[index+1][14] = genSpace(140); //å‚™è¨»,15
+			downloadInfo[index+1][15] = ""; //è£œé½ŠdownloadInfo
+			downloadInfo[index+1][16] = ""; //è£œé½ŠdownloadInfo
+			downloadInfo[index+1][17] = ""; //è£œé½ŠdownloadInfo
+			downloadInfo[index+1][18] = ""; //è£œé½ŠdownloadInfo
+			downloadInfo[index+1][19] = ""; //è£œé½ŠdownloadInfo
+			downloadInfo[index+1][20] = ""; //è£œé½ŠdownloadInfo
 			
 			remitAmtNumSum += remitAmtNum;
 			remitCount++;
 		}//end for
 
-		//­ºµ§¸ê®Æ
-		String Field00 = "½s¸¹";
+		//é¦–ç­†è³‡æ–™
+		String Field00 = "ç·¨è™Ÿ";
 		String Field01 = " ";
-		String Field02 = "¶×´Ú¥Ó½Ğ¤H¦WºÙ                                                        ";
-		String Field03 = "¶×´Ú¥Ó½Ğ¤H¦a§}                                                        ";
-		String Field04 = "¶×´Ú¤HÃÒ¸¹";
-		String Field05 = "°ê";
-		String Field06 = "¶×  ";
+		String Field02 = "åŒ¯æ¬¾ç”³è«‹äººåç¨±                                                        ";
+		String Field03 = "åŒ¯æ¬¾ç”³è«‹äººåœ°å€                                                        ";
+		String Field04 = "åŒ¯æ¬¾äººè­‰è™Ÿ";
+		String Field05 = "åœ‹";
+		String Field06 = "åŒ¯  ";
 		String Field07 = "SWIFT_CODE                                                                                               ";
 		String Field08 = "";
-		String Field09 = "¦¬´Ú¦æ»È¦æ½s¸¹                ";
-		String Field10 = "¦¬´Ú¤H¦WºÙ                                                            ";
-		String Field11 = "¦¬´Ú¤H¦a§}                                                            ";
-		String Field12 = "¦¬´Ú¤H±b¸¹                        ";
-		String Field13 = "¶×´Úª÷ÃB    ";
-		String Field14 = "³Æµù                                                                                                                                        ";
+		String Field09 = "æ”¶æ¬¾è¡ŒéŠ€è¡Œç·¨è™Ÿ                ";
+		String Field10 = "æ”¶æ¬¾äººåç¨±                                                            ";
+		String Field11 = "æ”¶æ¬¾äººåœ°å€                                                            ";
+		String Field12 = "æ”¶æ¬¾äººå¸³è™Ÿ                        ";
+		String Field13 = "åŒ¯æ¬¾é‡‘é¡    ";
+		String Field14 = "å‚™è¨»                                                                                                                                        ";
 		
 		downloadInfo[0][0] = Field00;
 		downloadInfo[0][1] = Field01;
@@ -3802,12 +3802,12 @@ private String convertDownloadData809r(Vector payments, String selCURR, String B
 		downloadInfo[0][12] = Field12;
 		downloadInfo[0][13] = Field13;
 		downloadInfo[0][14] = Field14;
-		downloadInfo[0][15] = ""; //¸É»ôdownloadInfo
-		downloadInfo[0][16] = ""; //¸É»ôdownloadInfo
-		downloadInfo[0][17] = ""; //¸É»ôdownloadInfo
-		downloadInfo[0][18] = ""; //¸É»ôdownloadInfo
-		downloadInfo[0][19] = ""; //¸É»ôdownloadInfo
-		downloadInfo[0][20] = ""; //¸É»ôdownloadInfo
+		downloadInfo[0][15] = ""; //è£œé½ŠdownloadInfo
+		downloadInfo[0][16] = ""; //è£œé½ŠdownloadInfo
+		downloadInfo[0][17] = ""; //è£œé½ŠdownloadInfo
+		downloadInfo[0][18] = ""; //è£œé½ŠdownloadInfo
+		downloadInfo[0][19] = ""; //è£œé½ŠdownloadInfo
+		downloadInfo[0][20] = ""; //è£œé½ŠdownloadInfo
 		
 		fileLOC = disbBean.writeTOfile(downloadInfo, BATNO, selCURR, remitKind, strLogonUser);
 		return fileLOC;

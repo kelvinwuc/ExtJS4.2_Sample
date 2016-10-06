@@ -47,84 +47,84 @@ import org.apache.log4j.Logger;
  * 
  * $$Log: DISBRemitFailedServlet.java,v $
  * $Revision 1.16  2013/11/08 05:52:33  MISSALLY
- * $EB0194-PB0016-BC255§Q²vÅÜ°Ê«¬§Y´Á¦~ª÷«OÀI±M®×
+ * $EB0194-PB0016-BC255åˆ©ç‡è®Šå‹•å‹å³æœŸå¹´é‡‘ä¿éšªå°ˆæ¡ˆ
  * $
  * $Revision 1.15.1.2  2013/08/09 09:21:32  MISSALLY
- * $QB0216 ¬ü¤¸«O³æ°h¶×¦©°£°h¶×¤âÄò¶O°İÃD
+ * $QB0216 ç¾å…ƒä¿å–®é€€åŒ¯æ‰£é™¤é€€åŒ¯æ‰‹çºŒè²»å•é¡Œ
  * $
  * $Revision 1.15.1.1  2013/07/19 08:22:43  MISSALLY
- * $EB0070 - ¤H¥Á¹ô§ë¸ê«¬¦~ª÷°Ó«~
+ * $EB0070 - äººæ°‘å¹£æŠ•è³‡å‹å¹´é‡‘å•†å“
  * $
  * $Revision 1.15  2013/05/02 11:07:05  MISSALLY
- * $R10190 ¬ü¤¸¥¢®Ä«O³æ§@·~
+ * $R10190 ç¾å…ƒå¤±æ•ˆä¿å–®ä½œæ¥­
  * $
  * $Revision 1.14  2013/02/27 05:35:33  ODCZheJun
- * $R10190 ¬ü¤¸¶Ç²Î«¬«O³æ¥¢®Ä§@·~
+ * $R10190 ç¾å…ƒå‚³çµ±å‹ä¿å–®å¤±æ•ˆä½œæ¥­
  * $
  * $Revision 1.13  2013/01/08 04:24:03  MISSALLY
- * $±N¤À¤äªºµ{¦¡Merge¦ÜHEAD
+ * $å°‡åˆ†æ”¯çš„ç¨‹å¼Mergeè‡³HEAD
  * $
  * $Revision 1.12.4.1  2012/12/06 06:28:27  MISSALLY
- * $RA0102¡@PA0041
- * $°t¦Xªk¥O­×§ï¹S¦ş¤ä¥I§@·~
+ * $RA0102ã€€PA0041
+ * $é…åˆæ³•ä»¤ä¿®æ”¹é…¬ä½£æ”¯ä»˜ä½œæ¥­
  * $
  * $Revision 1.12  2012/06/22 04:09:57  MISSALLY
- * $QA0215---°õ¦æ°h¶×§@·~¥¼±N²z½ß½s¸¹±a¤J·s¤ä¥I¸ê®Æ
+ * $QA0215---åŸ·è¡Œé€€åŒ¯ä½œæ¥­æœªå°‡ç†è³ ç·¨è™Ÿå¸¶å…¥æ–°æ”¯ä»˜è³‡æ–™
  * $
  * $Revision 1.11  2012/05/23 01:21:44  MISSALLY
- * $R10314 CASH¨t²Î·|­p§@·~­×§ï-­×¥¿²z½ß¥I´Úª÷ÃBªº§PÂ_
+ * $R10314 CASHç³»çµ±æœƒè¨ˆä½œæ¥­ä¿®æ”¹-ä¿®æ­£ç†è³ ä»˜æ¬¾é‡‘é¡çš„åˆ¤æ–·
  * $
  * $Revision 1.10  2012/05/18 09:47:37  MISSALLY
- * $R10314 CASH¨t²Î·|­p§@·~­×§ï
+ * $R10314 CASHç³»çµ±æœƒè¨ˆä½œæ¥­ä¿®æ”¹
  * $
  * $Revision 1.9  2011/06/02 10:28:09  MISSALLY
  * $Q90585 / R90884 / R90989
- * $CASH¨t²Î¶×°h³B²z§@·~·s¼W¶×°h­ì¦]Äæ¦ì¨Ã­×¥¿°h¶×©ú²Óªí
+ * $CASHç³»çµ±åŒ¯é€€è™•ç†ä½œæ¥­æ–°å¢åŒ¯é€€åŸå› æ¬„ä½ä¸¦ä¿®æ­£é€€åŒ¯æ˜ç´°è¡¨
  * $
  * $Revision 1.8  2010/11/23 06:50:41  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.7  2008/11/18 02:24:01  MISODIN
  * $R80824
  * $
  * $Revision 1.6  2008/08/06 05:58:09  MISODIN
- * $R80132 ½Õ¾ãCASH¨t²Îfor 6ºØ¹ô§O
+ * $R80132 èª¿æ•´CASHç³»çµ±for 6ç¨®å¹£åˆ¥
  * $
  * $Revision 1.5  2008/06/06 03:33:39  misvanessa
- * $R80391_½Ğ·s¼WCASH¨t²Î«H¥Î¥d°h¦^
+ * $R80391_è«‹æ–°å¢CASHç³»çµ±ä¿¡ç”¨å¡é€€å›
  * $
  * $Revision 1.4  2007/10/04 01:39:20  MISODIN
- * $R70477 ¥~¹ô«O³æ¶×´Ú¤âÄò¶O
+ * $R70477 å¤–å¹£ä¿å–®åŒ¯æ¬¾æ‰‹çºŒè²»
  * $
  * $Revision 1.3  2007/01/04 03:16:32  MISVANESSA
- * $R60550_¶×°h³W«h­×§ï
+ * $R60550_åŒ¯é€€è¦å‰‡ä¿®æ”¹
  * $
  * $Revision 1.2  2006/11/30 09:15:52  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $Revision 1.1  2006/06/29 09:40:20  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.17  2006/04/27 09:25:45  misangel
- * $R50891:VA¬ü¤¸«O³æ-Åã¥Ü¹ô§O
+ * $R50891:VAç¾å…ƒä¿å–®-é¡¯ç¤ºå¹£åˆ¥
  * $
  * $Revision 1.1.2.16  2005/12/08 02:00:16  misangel
- * $R50727:¹ÎÀI¸ê®Æ¤J¤ä¥I¨t²Î(·s¼W³¡ªù:¹ÎÀI¦æ¬F/¹ÎÀI²z½ß)
+ * $R50727:åœ˜éšªè³‡æ–™å…¥æ”¯ä»˜ç³»çµ±(æ–°å¢éƒ¨é–€:åœ˜éšªè¡Œæ”¿/åœ˜éšªç†è³ )
  * $
  * $Revision 1.1.2.15  2005/11/25 06:46:11  misangel
- * $R50727:¹ÎÀI¸ê®Æ¤J¤ä¥I¨t²Î
+ * $R50727:åœ˜éšªè³‡æ–™å…¥æ”¯ä»˜ç³»çµ±
  * $
  * $Revision 1.1.2.14  2005/09/05 07:14:49  misangel
- * $R50736:¶×°h³B²z§t«H¥Î¥d¥ó
+ * $R50736:åŒ¯é€€è™•ç†å«ä¿¡ç”¨å¡ä»¶
  * $
  * $Revision 1.1.2.13  2005/08/19 06:56:18  misangel
- * $R50427 : ¶×´Ú¥ó¨Ì³¡ªù+©m¦W+±b¸¹¦X¨Ö
+ * $R50427 : åŒ¯æ¬¾ä»¶ä¾éƒ¨é–€+å§“å+å¸³è™Ÿåˆä½µ
  * $
  * $Revision 1.1.2.12  2005/06/15 04:19:17  MISANGEL
- * $R30530:¶×°h¦P®É·s¼WCAPPAYRF
+ * $R30530:åŒ¯é€€åŒæ™‚æ–°å¢CAPPAYRF
  * $
  * $Revision 1.1.2.11  2005/04/28 08:56:26  miselsa
- * $R30530¥­¦æ´ú¸Õªº­×§ï
+ * $R30530å¹³è¡Œæ¸¬è©¦çš„ä¿®æ”¹
  * $
  * $Revision 1.1.2.10  2005/04/25 07:23:52  miselsa
  * $R30530
@@ -136,7 +136,7 @@ import org.apache.log4j.Logger;
  * $R30530
  * $
  * $Revision 1.1.2.7  2005/04/04 07:02:27  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -211,18 +211,18 @@ public class DISBRemitFailedServlet extends HttpServlet {
 		DISBPaymentDetailVO objPDetailVO = null;
 		List alPDetail = new ArrayList();
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
 		int iPDate = 0;
-		String strPDate = "";	//¥I´Ú¤é´Á
-		String strPBBank = "";	//¥I´Ú»È¦æ
-		String strPBAccount = ""; //¥I´Ú±b¸¹
-		String strAMT = "";		//ª÷ÃB
-		String strName = "";	//©m¦W	
-		String strCurrency = "";//¹ô§O
-		String strRemitway = "";//R60550¶×°h¤è¦¡
-		String strPCSHCM = "";	//R80391¥X¯Ç½T»{¤é
-		int iPCSHCM = 0;		//R80391¥X¯Ç½T»{¤é
-		String strBRDate = "" ;//R10134 »È¦æ°h¶×¦^¦s¤é´Á
+		String strPDate = "";	//ä»˜æ¬¾æ—¥æœŸ
+		String strPBBank = "";	//ä»˜æ¬¾éŠ€è¡Œ
+		String strPBAccount = ""; //ä»˜æ¬¾å¸³è™Ÿ
+		String strAMT = "";		//é‡‘é¡
+		String strName = "";	//å§“å	
+		String strCurrency = "";//å¹£åˆ¥
+		String strRemitway = "";//R60550åŒ¯é€€æ–¹å¼
+		String strPCSHCM = "";	//R80391å‡ºç´ç¢ºèªæ—¥
+		int iPCSHCM = 0;		//R80391å‡ºç´ç¢ºèªæ—¥
+		String strBRDate = "" ;//R10134 éŠ€è¡Œé€€åŒ¯å›å­˜æ—¥æœŸ
 		String company = ""; //RD0382:OIU
 
 		//R60550
@@ -241,7 +241,7 @@ public class DISBRemitFailedServlet extends HttpServlet {
 		if (!strPDate.equals(""))
 			iPDate = Integer.parseInt(strPDate);
 
-		//R80391¥X¯Ç½T»{¤é
+		//R80391å‡ºç´ç¢ºèªæ—¥
 		strPCSHCM = request.getParameter("txtPCSHCM");
 		if (strPCSHCM != null)
 			strPCSHCM = strPCSHCM.trim();
@@ -384,61 +384,61 @@ public class DISBRemitFailedServlet extends HttpServlet {
 			rs = stmt.executeQuery(strSql);
 			while (rs.next()) {
 				objPDetailVO = new DISBPaymentDetailVO();
-				objPDetailVO.setStrPNO(rs.getString("PNO"));	//¤ä¥I§Ç¸¹
-				if (rs.getString("PNOH").trim().equals("")) {	//­n°O¿ı²Ä¤@¦¸ªº¤ä¥I§Ç¸¹
-					objPDetailVO.setStrPNoH(rs.getString("PNO")); //­ì¤ä¥I§Ç¸¹
+				objPDetailVO.setStrPNO(rs.getString("PNO"));	//æ”¯ä»˜åºè™Ÿ
+				if (rs.getString("PNOH").trim().equals("")) {	//è¦è¨˜éŒ„ç¬¬ä¸€æ¬¡çš„æ”¯ä»˜åºè™Ÿ
+					objPDetailVO.setStrPNoH(rs.getString("PNO")); //åŸæ”¯ä»˜åºè™Ÿ
 				} else {
-					objPDetailVO.setStrPNoH(rs.getString("PNOH"));//­ì¤ä¥I§Ç¸¹
+					objPDetailVO.setStrPNoH(rs.getString("PNOH"));//åŸæ”¯ä»˜åºè™Ÿ
 				}
-				objPDetailVO.setIPAMT(rs.getDouble("PAMT"));	//¤ä¥Iª÷ÃB	
-				objPDetailVO.setIPDate(rs.getInt("PDATE"));		//¥I´Ú¤é´Á
-				objPDetailVO.setStrPName(rs.getString("PNAME"));//¥I´Ú¤H©m¦W
-				objPDetailVO.setStrPSName(rs.getString("PSNAME")); //¥I´Ú¤H­ì©l©m¦W
-				objPDetailVO.setStrPId(rs.getString("PID"));	//¥I´Ú¤HID
-				objPDetailVO.setStrPCurr(rs.getString("PCURR"));//¹ô§O
-				objPDetailVO.setStrPMethod(rs.getString("PMETHOD")); //¥I´Ú¤è¦¡
-				objPDetailVO.setStrPDesc(rs.getString("PDESC"));	 //¤ä¥I´y­z
-				objPDetailVO.setStrPSrcGp(rs.getString("PSRCGP"));	 //¨Ó·½²Õ¸s
-				objPDetailVO.setStrPSrcCode(rs.getString("PSRCCODE")); //¤ä¥I­ì¦]¥N½X					
-				objPDetailVO.setStrPStatus(rs.getString("PSTATUS")); //¥I´Úª¬ºA
-				objPDetailVO.setStrPVoidable(rs.getString("PVOIDABLE"));//§@¼o§_
-				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));//«æ¥ó§_
-				objPDetailVO.setStrPBAccount(rs.getString("PBACCOUNT"));//¥I´Ú»È¦æ
-				objPDetailVO.setStrPBBank(rs.getString("PBBANK"));		//¥I´Ú±b¸¹
-				objPDetailVO.setStrPRAccount(rs.getString("PRACCOUNT"));//¶×´Ú±b¸¹
-				objPDetailVO.setStrPRBank(rs.getString("PRBANK"));		//¶×´Ú»È¦æ
-				objPDetailVO.setStrAppNo(rs.getString("APPNO"));		//­n«O®Ñ¸¹½X
-				objPDetailVO.setStrPolicyNo(rs.getString("POLICYNO"));	//«O³æ¸¹½X
-				objPDetailVO.setStrBranch(rs.getString("BRANCH"));		//«O³æ©ÒÄİ³æ¦ì
-				objPDetailVO.setIRmtFee(rs.getInt("RMTFEE"));			//¶×¶O(¤âÄò¶O)
-				objPDetailVO.setStrMemo(rs.getString("MEMO"));			//³Æµù
-				objPDetailVO.setStrEntryPgm(rs.getString("ENTRYPGM"));	//¿é¤Jµ{¦¡
-				objPDetailVO.setStrPPlant(rs.getString("PPLANT"));		//ÀIºØÃş§O
-				objPDetailVO.setStrEntryUsr(rs.getString("ENTRYUSR"));	//¿é¤JªÌ
-				objPDetailVO.setStrBATSEQ(rs.getString("BATSEQ"));		//¶×´Ú§Ç¸¹
-				objPDetailVO.setStrPPAYCURR(rs.getString("PPAYCURR"));	//R60550¶×¥X¹ô§O
-				objPDetailVO.setIPPAYAMT(rs.getDouble("PPAYAMT"));		//R60550¶×¥Xª÷ÃB
-				objPDetailVO.setIPPAYRATE(rs.getDouble("PPAYRATE"));	//R60550¶×¥X¶×²v
-				objPDetailVO.setIPINVDT(rs.getInt("PINVDT"));			//R60550§ë¸ê°_©l¤é
-				objPDetailVO.setStrPSYMBOL(rs.getString("PSYMBOL"));	//R60550SPULµù°O
+				objPDetailVO.setIPAMT(rs.getDouble("PAMT"));	//æ”¯ä»˜é‡‘é¡	
+				objPDetailVO.setIPDate(rs.getInt("PDATE"));		//ä»˜æ¬¾æ—¥æœŸ
+				objPDetailVO.setStrPName(rs.getString("PNAME"));//ä»˜æ¬¾äººå§“å
+				objPDetailVO.setStrPSName(rs.getString("PSNAME")); //ä»˜æ¬¾äººåŸå§‹å§“å
+				objPDetailVO.setStrPId(rs.getString("PID"));	//ä»˜æ¬¾äººID
+				objPDetailVO.setStrPCurr(rs.getString("PCURR"));//å¹£åˆ¥
+				objPDetailVO.setStrPMethod(rs.getString("PMETHOD")); //ä»˜æ¬¾æ–¹å¼
+				objPDetailVO.setStrPDesc(rs.getString("PDESC"));	 //æ”¯ä»˜æè¿°
+				objPDetailVO.setStrPSrcGp(rs.getString("PSRCGP"));	 //ä¾†æºçµ„ç¾¤
+				objPDetailVO.setStrPSrcCode(rs.getString("PSRCCODE")); //æ”¯ä»˜åŸå› ä»£ç¢¼					
+				objPDetailVO.setStrPStatus(rs.getString("PSTATUS")); //ä»˜æ¬¾ç‹€æ…‹
+				objPDetailVO.setStrPVoidable(rs.getString("PVOIDABLE"));//ä½œå»¢å¦
+				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));//æ€¥ä»¶å¦
+				objPDetailVO.setStrPBAccount(rs.getString("PBACCOUNT"));//ä»˜æ¬¾éŠ€è¡Œ
+				objPDetailVO.setStrPBBank(rs.getString("PBBANK"));		//ä»˜æ¬¾å¸³è™Ÿ
+				objPDetailVO.setStrPRAccount(rs.getString("PRACCOUNT"));//åŒ¯æ¬¾å¸³è™Ÿ
+				objPDetailVO.setStrPRBank(rs.getString("PRBANK"));		//åŒ¯æ¬¾éŠ€è¡Œ
+				objPDetailVO.setStrAppNo(rs.getString("APPNO"));		//è¦ä¿æ›¸è™Ÿç¢¼
+				objPDetailVO.setStrPolicyNo(rs.getString("POLICYNO"));	//ä¿å–®è™Ÿç¢¼
+				objPDetailVO.setStrBranch(rs.getString("BRANCH"));		//ä¿å–®æ‰€å±¬å–®ä½
+				objPDetailVO.setIRmtFee(rs.getInt("RMTFEE"));			//åŒ¯è²»(æ‰‹çºŒè²»)
+				objPDetailVO.setStrMemo(rs.getString("MEMO"));			//å‚™è¨»
+				objPDetailVO.setStrEntryPgm(rs.getString("ENTRYPGM"));	//è¼¸å…¥ç¨‹å¼
+				objPDetailVO.setStrPPlant(rs.getString("PPLANT"));		//éšªç¨®é¡åˆ¥
+				objPDetailVO.setStrEntryUsr(rs.getString("ENTRYUSR"));	//è¼¸å…¥è€…
+				objPDetailVO.setStrBATSEQ(rs.getString("BATSEQ"));		//åŒ¯æ¬¾åºè™Ÿ
+				objPDetailVO.setStrPPAYCURR(rs.getString("PPAYCURR"));	//R60550åŒ¯å‡ºå¹£åˆ¥
+				objPDetailVO.setIPPAYAMT(rs.getDouble("PPAYAMT"));		//R60550åŒ¯å‡ºé‡‘é¡
+				objPDetailVO.setIPPAYRATE(rs.getDouble("PPAYRATE"));	//R60550åŒ¯å‡ºåŒ¯ç‡
+				objPDetailVO.setIPINVDT(rs.getInt("PINVDT"));			//R60550æŠ•è³‡èµ·å§‹æ—¥
+				objPDetailVO.setStrPSYMBOL(rs.getString("PSYMBOL"));	//R60550SPULè¨»è¨˜
 				objPDetailVO.setStrPSWIFT(rs.getString("PSWIFT"));		//R60550SWIFT
-				objPDetailVO.setStrPBKCOTRY(rs.getString("PBKCOTRY"));	//R60550¨ü´Ú°ê§O
-				objPDetailVO.setStrPBKCITY(rs.getString("PBKCITY"));	//R60550¨ü´Ú»È¦æ«°¥«
-				objPDetailVO.setStrPBKBRCH(rs.getString("PBKBRCH"));	//R60550¨ü´Ú»È¦æ¤À¦æ
-				objPDetailVO.setStrPENGNAME(rs.getString("PENGNAME"));	//R60550­^¤å©m¦W
-				objPDetailVO.setStrPFEEWAY(rs.getString("PFEEWAY"));	//R60550¥I´Ú¤è¦¡
-				objPDetailVO.setStrPCrdNo(rs.getString("PCRDNO"));		//R80391 «H¥Î¥d¸¹
-				objPDetailVO.setIRAMT(rs.getDouble("RAMT"));			//R80391¶×´Úª÷ÃBCAPRMTF
-				objPDetailVO.setStrPMETHODO(rs.getString("PMETHODO"));	//R70600 ­ì©l¤ä¥I¤è¦¡
-				objPDetailVO.setIPAMTNT(rs.getDouble("PAMTNT"));		//R70600 ¤ä¥Iª÷ÃB¥x¹ô°Ñ¦Ò
-				objPDetailVO.setIPOrgAMT(rs.getDouble("PORGAMT"));		//R80824 ­ì¨êª÷ÃB
-				objPDetailVO.setStrPOrgCrdNo(rs.getString("PORGCRDNO"));//R80824 ­ì©l¥d¸¹
-				objPDetailVO.setStrProjectCode(rs.getString("PROJECTCD"));//R80824 ±M®×½X
-				objPDetailVO.setRemitFailDate(rs.getInt("REMITFAILD"));		//R90884 °h¶×¤é´Á
-				objPDetailVO.setRemitFailTime(rs.getInt("REMITFAILT"));		//R90884 °h¶×®É¶¡
-				objPDetailVO.setRemitFailCode(rs.getString("REMITFCODE"));	//R90884 °h¶×¥N½X
-				objPDetailVO.setRemitFailDesc(rs.getString("REMITFDESC"));	//R90884 °h¶×­ì¦]
-				objPDetailVO.setClaimNumber(rs.getString("PCLMNUM"));		//²z½ß½s¸¹
+				objPDetailVO.setStrPBKCOTRY(rs.getString("PBKCOTRY"));	//R60550å—æ¬¾åœ‹åˆ¥
+				objPDetailVO.setStrPBKCITY(rs.getString("PBKCITY"));	//R60550å—æ¬¾éŠ€è¡ŒåŸå¸‚
+				objPDetailVO.setStrPBKBRCH(rs.getString("PBKBRCH"));	//R60550å—æ¬¾éŠ€è¡Œåˆ†è¡Œ
+				objPDetailVO.setStrPENGNAME(rs.getString("PENGNAME"));	//R60550è‹±æ–‡å§“å
+				objPDetailVO.setStrPFEEWAY(rs.getString("PFEEWAY"));	//R60550ä»˜æ¬¾æ–¹å¼
+				objPDetailVO.setStrPCrdNo(rs.getString("PCRDNO"));		//R80391 ä¿¡ç”¨å¡è™Ÿ
+				objPDetailVO.setIRAMT(rs.getDouble("RAMT"));			//R80391åŒ¯æ¬¾é‡‘é¡CAPRMTF
+				objPDetailVO.setStrPMETHODO(rs.getString("PMETHODO"));	//R70600 åŸå§‹æ”¯ä»˜æ–¹å¼
+				objPDetailVO.setIPAMTNT(rs.getDouble("PAMTNT"));		//R70600 æ”¯ä»˜é‡‘é¡å°å¹£åƒè€ƒ
+				objPDetailVO.setIPOrgAMT(rs.getDouble("PORGAMT"));		//R80824 åŸåˆ·é‡‘é¡
+				objPDetailVO.setStrPOrgCrdNo(rs.getString("PORGCRDNO"));//R80824 åŸå§‹å¡è™Ÿ
+				objPDetailVO.setStrProjectCode(rs.getString("PROJECTCD"));//R80824 å°ˆæ¡ˆç¢¼
+				objPDetailVO.setRemitFailDate(rs.getInt("REMITFAILD"));		//R90884 é€€åŒ¯æ—¥æœŸ
+				objPDetailVO.setRemitFailTime(rs.getInt("REMITFAILT"));		//R90884 é€€åŒ¯æ™‚é–“
+				objPDetailVO.setRemitFailCode(rs.getString("REMITFCODE"));	//R90884 é€€åŒ¯ä»£ç¢¼
+				objPDetailVO.setRemitFailDesc(rs.getString("REMITFDESC"));	//R90884 é€€åŒ¯åŸå› 
+				objPDetailVO.setClaimNumber(rs.getString("PCLMNUM"));		//ç†è³ ç·¨è™Ÿ
 				objPDetailVO.setServicingBranch(rs.getString("SRVBH"));
 				objPDetailVO.setAnnuityPayDate(rs.getInt("ANNPDATE"));
 
@@ -449,10 +449,10 @@ public class DISBRemitFailedServlet extends HttpServlet {
 				session.setAttribute("PDetailListTemp", alPDetail);
 				session.setAttribute("PDetailList", alPDetail);
 			} else {
-				request.setAttribute("txtMsg", "¬dµL¬ÛÃö¸ê®Æ");
+				request.setAttribute("txtMsg", "æŸ¥ç„¡ç›¸é—œè³‡æ–™");
 			}
 		} catch (SQLException ex) {
-			request.setAttribute("txtMsg", "¬d¸ß¥¢±Ñ" + ex);
+			request.setAttribute("txtMsg", "æŸ¥è©¢å¤±æ•—" + ex);
 			alPDetail = null;
 		} finally {
 			try { if (rs != null) rs.close(); } catch (Exception ex1) {}
@@ -480,17 +480,17 @@ public class DISBRemitFailedServlet extends HttpServlet {
 		DISBPaymentDetailVO objPDetailVO = null;
 		List alPDetail = new ArrayList();
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
 		int iPDate = 0;
-		String strPDate = "";	//¥I´Ú¤é´Á
-		String strPBBank = "";	//¥I´Ú»È¦æ
-		String strPBAccount = ""; //¥I´Ú±b¸¹
-		String strAMT = "";		//ª÷ÃB
-		String strName = "";	//©m¦W	
-		String strCurrency = "";//¹ô§O
-		String strRemitway = "";//¶×°h¤è¦¡
-		int iRemitFailDate = 0;		//°h¶×¤é´Á
-		String strRemitFailDate = "";	//°h¶×¤é´Á
+		String strPDate = "";	//ä»˜æ¬¾æ—¥æœŸ
+		String strPBBank = "";	//ä»˜æ¬¾éŠ€è¡Œ
+		String strPBAccount = ""; //ä»˜æ¬¾å¸³è™Ÿ
+		String strAMT = "";		//é‡‘é¡
+		String strName = "";	//å§“å	
+		String strCurrency = "";//å¹£åˆ¥
+		String strRemitway = "";//åŒ¯é€€æ–¹å¼
+		int iRemitFailDate = 0;		//é€€åŒ¯æ—¥æœŸ
+		String strRemitFailDate = "";	//é€€åŒ¯æ—¥æœŸ
 
 		strPDate = request.getParameter("txtPDate");
 		if (strPDate != null)
@@ -566,7 +566,7 @@ public class DISBRemitFailedServlet extends HttpServlet {
 			}
 		}
 
-		//°h¶×¤é´Á R10314
+		//é€€åŒ¯æ—¥æœŸ R10314
 		strRemitFailDate = request.getParameter("txtRDate");
 		if (strRemitFailDate != null)
 			strRemitFailDate = strRemitFailDate.trim();
@@ -629,61 +629,61 @@ public class DISBRemitFailedServlet extends HttpServlet {
 			rs = stmt.executeQuery(strSql);
 			while (rs.next()) {
 				objPDetailVO = new DISBPaymentDetailVO();
-				objPDetailVO.setStrPNO(rs.getString("PNO"));	//¤ä¥I§Ç¸¹
-				if (rs.getString("PNOH").trim().equals("")) {	//­n°O¿ı²Ä¤@¦¸ªº¤ä¥I§Ç¸¹
-					objPDetailVO.setStrPNoH(rs.getString("PNO")); //­ì¤ä¥I§Ç¸¹
+				objPDetailVO.setStrPNO(rs.getString("PNO"));	//æ”¯ä»˜åºè™Ÿ
+				if (rs.getString("PNOH").trim().equals("")) {	//è¦è¨˜éŒ„ç¬¬ä¸€æ¬¡çš„æ”¯ä»˜åºè™Ÿ
+					objPDetailVO.setStrPNoH(rs.getString("PNO")); //åŸæ”¯ä»˜åºè™Ÿ
 				} else {
-					objPDetailVO.setStrPNoH(rs.getString("PNOH"));//­ì¤ä¥I§Ç¸¹
+					objPDetailVO.setStrPNoH(rs.getString("PNOH"));//åŸæ”¯ä»˜åºè™Ÿ
 				}
-				objPDetailVO.setIPAMT(rs.getDouble("PAMT"));	//¤ä¥Iª÷ÃB	
-				objPDetailVO.setIPDate(rs.getInt("PDATE"));		//¥I´Ú¤é´Á
-				objPDetailVO.setStrPName(rs.getString("PNAME"));//¥I´Ú¤H©m¦W
-				objPDetailVO.setStrPSName(rs.getString("PSNAME")); //¥I´Ú¤H­ì©l©m¦W
-				objPDetailVO.setStrPId(rs.getString("PID"));	//¥I´Ú¤HID
-				objPDetailVO.setStrPCurr(rs.getString("PCURR"));//¹ô§O
-				objPDetailVO.setStrPMethod(rs.getString("PMETHOD")); //¥I´Ú¤è¦¡
-				objPDetailVO.setStrPDesc(rs.getString("PDESC"));	 //¤ä¥I´y­z
-				objPDetailVO.setStrPSrcGp(rs.getString("PSRCGP"));	 //¨Ó·½²Õ¸s
-				objPDetailVO.setStrPSrcCode(rs.getString("PSRCCODE")); //¤ä¥I­ì¦]¥N½X					
-				objPDetailVO.setStrPStatus(rs.getString("PSTATUS")); //¥I´Úª¬ºA
-				objPDetailVO.setStrPVoidable(rs.getString("PVOIDABLE"));//§@¼o§_
-				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));//«æ¥ó§_
-				objPDetailVO.setStrPBAccount(rs.getString("PBACCOUNT"));//¥I´Ú»È¦æ
-				objPDetailVO.setStrPBBank(rs.getString("PBBANK"));		//¥I´Ú±b¸¹
-				objPDetailVO.setStrPRAccount(rs.getString("PRACCOUNT"));//¶×´Ú±b¸¹
-				objPDetailVO.setStrPRBank(rs.getString("PRBANK"));		//¶×´Ú»È¦æ
-				objPDetailVO.setStrAppNo(rs.getString("APPNO"));		//­n«O®Ñ¸¹½X
-				objPDetailVO.setStrPolicyNo(rs.getString("POLICYNO"));	//«O³æ¸¹½X
-				objPDetailVO.setStrBranch(rs.getString("BRANCH"));		//«O³æ©ÒÄİ³æ¦ì
-				objPDetailVO.setIRmtFee(rs.getInt("RMTFEE"));			//¶×¶O(¤âÄò¶O)
-				objPDetailVO.setStrMemo(rs.getString("MEMO"));			//³Æµù
-				objPDetailVO.setStrEntryPgm(rs.getString("ENTRYPGM"));	//¿é¤Jµ{¦¡
-				objPDetailVO.setStrPPlant(rs.getString("PPLANT"));		//ÀIºØÃş§O
-				objPDetailVO.setStrEntryUsr(rs.getString("ENTRYUSR"));	//¿é¤JªÌ
-				objPDetailVO.setStrBATSEQ(rs.getString("BATSEQ"));		//¶×´Ú§Ç¸¹
-				objPDetailVO.setStrPPAYCURR(rs.getString("PPAYCURR"));	//¶×¥X¹ô§O
-				objPDetailVO.setIPPAYAMT(rs.getDouble("PPAYAMT"));		//¶×¥Xª÷ÃB
-				objPDetailVO.setIPPAYRATE(rs.getDouble("PPAYRATE"));	//¶×¥X¶×²v
-				objPDetailVO.setIPINVDT(rs.getInt("PINVDT"));			//§ë¸ê°_©l¤é
-				objPDetailVO.setStrPSYMBOL(rs.getString("PSYMBOL"));	//SPULµù°O
+				objPDetailVO.setIPAMT(rs.getDouble("PAMT"));	//æ”¯ä»˜é‡‘é¡	
+				objPDetailVO.setIPDate(rs.getInt("PDATE"));		//ä»˜æ¬¾æ—¥æœŸ
+				objPDetailVO.setStrPName(rs.getString("PNAME"));//ä»˜æ¬¾äººå§“å
+				objPDetailVO.setStrPSName(rs.getString("PSNAME")); //ä»˜æ¬¾äººåŸå§‹å§“å
+				objPDetailVO.setStrPId(rs.getString("PID"));	//ä»˜æ¬¾äººID
+				objPDetailVO.setStrPCurr(rs.getString("PCURR"));//å¹£åˆ¥
+				objPDetailVO.setStrPMethod(rs.getString("PMETHOD")); //ä»˜æ¬¾æ–¹å¼
+				objPDetailVO.setStrPDesc(rs.getString("PDESC"));	 //æ”¯ä»˜æè¿°
+				objPDetailVO.setStrPSrcGp(rs.getString("PSRCGP"));	 //ä¾†æºçµ„ç¾¤
+				objPDetailVO.setStrPSrcCode(rs.getString("PSRCCODE")); //æ”¯ä»˜åŸå› ä»£ç¢¼					
+				objPDetailVO.setStrPStatus(rs.getString("PSTATUS")); //ä»˜æ¬¾ç‹€æ…‹
+				objPDetailVO.setStrPVoidable(rs.getString("PVOIDABLE"));//ä½œå»¢å¦
+				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));//æ€¥ä»¶å¦
+				objPDetailVO.setStrPBAccount(rs.getString("PBACCOUNT"));//ä»˜æ¬¾éŠ€è¡Œ
+				objPDetailVO.setStrPBBank(rs.getString("PBBANK"));		//ä»˜æ¬¾å¸³è™Ÿ
+				objPDetailVO.setStrPRAccount(rs.getString("PRACCOUNT"));//åŒ¯æ¬¾å¸³è™Ÿ
+				objPDetailVO.setStrPRBank(rs.getString("PRBANK"));		//åŒ¯æ¬¾éŠ€è¡Œ
+				objPDetailVO.setStrAppNo(rs.getString("APPNO"));		//è¦ä¿æ›¸è™Ÿç¢¼
+				objPDetailVO.setStrPolicyNo(rs.getString("POLICYNO"));	//ä¿å–®è™Ÿç¢¼
+				objPDetailVO.setStrBranch(rs.getString("BRANCH"));		//ä¿å–®æ‰€å±¬å–®ä½
+				objPDetailVO.setIRmtFee(rs.getInt("RMTFEE"));			//åŒ¯è²»(æ‰‹çºŒè²»)
+				objPDetailVO.setStrMemo(rs.getString("MEMO"));			//å‚™è¨»
+				objPDetailVO.setStrEntryPgm(rs.getString("ENTRYPGM"));	//è¼¸å…¥ç¨‹å¼
+				objPDetailVO.setStrPPlant(rs.getString("PPLANT"));		//éšªç¨®é¡åˆ¥
+				objPDetailVO.setStrEntryUsr(rs.getString("ENTRYUSR"));	//è¼¸å…¥è€…
+				objPDetailVO.setStrBATSEQ(rs.getString("BATSEQ"));		//åŒ¯æ¬¾åºè™Ÿ
+				objPDetailVO.setStrPPAYCURR(rs.getString("PPAYCURR"));	//åŒ¯å‡ºå¹£åˆ¥
+				objPDetailVO.setIPPAYAMT(rs.getDouble("PPAYAMT"));		//åŒ¯å‡ºé‡‘é¡
+				objPDetailVO.setIPPAYRATE(rs.getDouble("PPAYRATE"));	//åŒ¯å‡ºåŒ¯ç‡
+				objPDetailVO.setIPINVDT(rs.getInt("PINVDT"));			//æŠ•è³‡èµ·å§‹æ—¥
+				objPDetailVO.setStrPSYMBOL(rs.getString("PSYMBOL"));	//SPULè¨»è¨˜
 				objPDetailVO.setStrPSWIFT(rs.getString("PSWIFT"));		//SWIFT
-				objPDetailVO.setStrPBKCOTRY(rs.getString("PBKCOTRY"));	//¨ü´Ú°ê§O
-				objPDetailVO.setStrPBKCITY(rs.getString("PBKCITY"));	//¨ü´Ú»È¦æ«°¥«
-				objPDetailVO.setStrPBKBRCH(rs.getString("PBKBRCH"));	//¨ü´Ú»È¦æ¤À¦æ
-				objPDetailVO.setStrPENGNAME(rs.getString("PENGNAME"));	//­^¤å©m¦W
-				objPDetailVO.setStrPFEEWAY(rs.getString("PFEEWAY"));	//¥I´Ú¤è¦¡
-				objPDetailVO.setStrPCrdNo(rs.getString("PCRDNO"));		//«H¥Î¥d¸¹
-				objPDetailVO.setIRAMT(rs.getDouble("RAMT"));			//¶×´Úª÷ÃBCAPRMTF
-				objPDetailVO.setStrPMETHODO(rs.getString("PMETHODO"));	//­ì©l¤ä¥I¤è¦¡
-				objPDetailVO.setIPAMTNT(rs.getDouble("PAMTNT"));		//¤ä¥Iª÷ÃB¥x¹ô°Ñ¦Ò
-				objPDetailVO.setIPOrgAMT(rs.getDouble("PORGAMT"));		//­ì¨êª÷ÃB
-				objPDetailVO.setStrPOrgCrdNo(rs.getString("PORGCRDNO"));//­ì©l¥d¸¹
-				objPDetailVO.setStrProjectCode(rs.getString("PROJECTCD"));//±M®×½X
-				objPDetailVO.setRemitFailDate(rs.getInt("REMITFAILD"));		//R90884 °h¶×¤é´Á
-				objPDetailVO.setRemitFailTime(rs.getInt("REMITFAILT"));		//R90884 °h¶×®É¶¡
-				objPDetailVO.setRemitFailCode(rs.getString("REMITFCODE"));	//R90884 °h¶×¥N½X
-				objPDetailVO.setRemitFailDesc(rs.getString("REMITFDESC"));	//R90884 °h¶×­ì¦]
-				objPDetailVO.setClaimNumber(rs.getString("PCLMNUM"));		//²z½ß½s¸¹
+				objPDetailVO.setStrPBKCOTRY(rs.getString("PBKCOTRY"));	//å—æ¬¾åœ‹åˆ¥
+				objPDetailVO.setStrPBKCITY(rs.getString("PBKCITY"));	//å—æ¬¾éŠ€è¡ŒåŸå¸‚
+				objPDetailVO.setStrPBKBRCH(rs.getString("PBKBRCH"));	//å—æ¬¾éŠ€è¡Œåˆ†è¡Œ
+				objPDetailVO.setStrPENGNAME(rs.getString("PENGNAME"));	//è‹±æ–‡å§“å
+				objPDetailVO.setStrPFEEWAY(rs.getString("PFEEWAY"));	//ä»˜æ¬¾æ–¹å¼
+				objPDetailVO.setStrPCrdNo(rs.getString("PCRDNO"));		//ä¿¡ç”¨å¡è™Ÿ
+				objPDetailVO.setIRAMT(rs.getDouble("RAMT"));			//åŒ¯æ¬¾é‡‘é¡CAPRMTF
+				objPDetailVO.setStrPMETHODO(rs.getString("PMETHODO"));	//åŸå§‹æ”¯ä»˜æ–¹å¼
+				objPDetailVO.setIPAMTNT(rs.getDouble("PAMTNT"));		//æ”¯ä»˜é‡‘é¡å°å¹£åƒè€ƒ
+				objPDetailVO.setIPOrgAMT(rs.getDouble("PORGAMT"));		//åŸåˆ·é‡‘é¡
+				objPDetailVO.setStrPOrgCrdNo(rs.getString("PORGCRDNO"));//åŸå§‹å¡è™Ÿ
+				objPDetailVO.setStrProjectCode(rs.getString("PROJECTCD"));//å°ˆæ¡ˆç¢¼
+				objPDetailVO.setRemitFailDate(rs.getInt("REMITFAILD"));		//R90884 é€€åŒ¯æ—¥æœŸ
+				objPDetailVO.setRemitFailTime(rs.getInt("REMITFAILT"));		//R90884 é€€åŒ¯æ™‚é–“
+				objPDetailVO.setRemitFailCode(rs.getString("REMITFCODE"));	//R90884 é€€åŒ¯ä»£ç¢¼
+				objPDetailVO.setRemitFailDesc(rs.getString("REMITFDESC"));	//R90884 é€€åŒ¯åŸå› 
+				objPDetailVO.setClaimNumber(rs.getString("PCLMNUM"));		//ç†è³ ç·¨è™Ÿ
 				objPDetailVO.setServicingBranch(rs.getString("SRVBH"));
 				objPDetailVO.setAnnuityPayDate(rs.getInt("ANNPDATE"));
 
@@ -694,10 +694,10 @@ public class DISBRemitFailedServlet extends HttpServlet {
 				session.setAttribute("PDetailListTemp", alPDetail);
 				session.setAttribute("PDetailList", alPDetail);
 			} else {
-				request.setAttribute("txtMsg", "¸ê®Æ¤£¦s¦b¡A½Ğ­«·s¿é¤J¥¿½T¸ê®Æ¡C¦pªG¬O·s¼Wªº°h¶×¡A½Ğ¦b¡y¤ä¥I¥\¯à¢w°h¶×³B²z¡z·s¼W¦¹µ§°h¶×¸ê®Æ¡C");
+				request.setAttribute("txtMsg", "è³‡æ–™ä¸å­˜åœ¨ï¼Œè«‹é‡æ–°è¼¸å…¥æ­£ç¢ºè³‡æ–™ã€‚å¦‚æœæ˜¯æ–°å¢çš„é€€åŒ¯ï¼Œè«‹åœ¨ã€æ”¯ä»˜åŠŸèƒ½â”€é€€åŒ¯è™•ç†ã€æ–°å¢æ­¤ç­†é€€åŒ¯è³‡æ–™ã€‚");
 			}
 		} catch (SQLException ex) {
-			request.setAttribute("txtMsg", "¬d¸ß¥¢±Ñ" + ex);
+			request.setAttribute("txtMsg", "æŸ¥è©¢å¤±æ•—" + ex);
 			alPDetail = null;
 		} finally {
 			try { if (rs != null) rs.close(); } catch (Exception ex1) {}
@@ -724,17 +724,17 @@ public class DISBRemitFailedServlet extends HttpServlet {
 		DISBPaymentDetailVO objPDetailVO = null;
 		List alPDetail = new ArrayList();
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
 		int iPDate = 0;
-		String strPDate = "";	//¥I´Ú¤é´Á
-		String strPBBank = "";	//¥I´Ú»È¦æ
-		String strPBAccount = ""; //¥I´Ú±b¸¹
-		String strAMT = "";		//ª÷ÃB
-		String strName = "";	//©m¦W	
-		String strCurrency = "";//¹ô§O
-		String strRemitway = "";//¶×°h¤è¦¡
-		int iRemitFailDate = 0;		//°h¶×¤é´Á
-		String strRemitFailDate = "";	//°h¶×¤é´Á
+		String strPDate = "";	//ä»˜æ¬¾æ—¥æœŸ
+		String strPBBank = "";	//ä»˜æ¬¾éŠ€è¡Œ
+		String strPBAccount = ""; //ä»˜æ¬¾å¸³è™Ÿ
+		String strAMT = "";		//é‡‘é¡
+		String strName = "";	//å§“å	
+		String strCurrency = "";//å¹£åˆ¥
+		String strRemitway = "";//åŒ¯é€€æ–¹å¼
+		int iRemitFailDate = 0;		//é€€åŒ¯æ—¥æœŸ
+		String strRemitFailDate = "";	//é€€åŒ¯æ—¥æœŸ
 
 		strPDate = request.getParameter("txtPDate");
 		if (strPDate != null)
@@ -874,61 +874,61 @@ public class DISBRemitFailedServlet extends HttpServlet {
 			rs = stmt.executeQuery(strSql);
 			while (rs.next()) {
 				objPDetailVO = new DISBPaymentDetailVO();
-				objPDetailVO.setStrPNO(rs.getString("PNO"));	//¤ä¥I§Ç¸¹
-				if (rs.getString("PNOH").trim().equals("")) {	//­n°O¿ı²Ä¤@¦¸ªº¤ä¥I§Ç¸¹
-					objPDetailVO.setStrPNoH(rs.getString("PNO")); //­ì¤ä¥I§Ç¸¹
+				objPDetailVO.setStrPNO(rs.getString("PNO"));	//æ”¯ä»˜åºè™Ÿ
+				if (rs.getString("PNOH").trim().equals("")) {	//è¦è¨˜éŒ„ç¬¬ä¸€æ¬¡çš„æ”¯ä»˜åºè™Ÿ
+					objPDetailVO.setStrPNoH(rs.getString("PNO")); //åŸæ”¯ä»˜åºè™Ÿ
 				} else {
-					objPDetailVO.setStrPNoH(rs.getString("PNOH"));//­ì¤ä¥I§Ç¸¹
+					objPDetailVO.setStrPNoH(rs.getString("PNOH"));//åŸæ”¯ä»˜åºè™Ÿ
 				}
-				objPDetailVO.setIPAMT(rs.getDouble("PAMT"));	//¤ä¥Iª÷ÃB	
-				objPDetailVO.setIPDate(rs.getInt("PDATE"));		//¥I´Ú¤é´Á
-				objPDetailVO.setStrPName(rs.getString("PNAME"));//¥I´Ú¤H©m¦W
-				objPDetailVO.setStrPSName(rs.getString("PSNAME")); //¥I´Ú¤H­ì©l©m¦W
-				objPDetailVO.setStrPId(rs.getString("PID"));	//¥I´Ú¤HID
-				objPDetailVO.setStrPCurr(rs.getString("PCURR"));//¹ô§O
-				objPDetailVO.setStrPMethod(rs.getString("PMETHOD")); //¥I´Ú¤è¦¡
-				objPDetailVO.setStrPDesc(rs.getString("PDESC"));	 //¤ä¥I´y­z
-				objPDetailVO.setStrPSrcGp(rs.getString("PSRCGP"));	 //¨Ó·½²Õ¸s
-				objPDetailVO.setStrPSrcCode(rs.getString("PSRCCODE")); //¤ä¥I­ì¦]¥N½X					
-				objPDetailVO.setStrPStatus(rs.getString("PSTATUS")); //¥I´Úª¬ºA
-				objPDetailVO.setStrPVoidable(rs.getString("PVOIDABLE"));//§@¼o§_
-				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));//«æ¥ó§_
-				objPDetailVO.setStrPBAccount(rs.getString("PBACCOUNT"));//¥I´Ú»È¦æ
-				objPDetailVO.setStrPBBank(rs.getString("PBBANK"));		//¥I´Ú±b¸¹
-				objPDetailVO.setStrPRAccount(rs.getString("PRACCOUNT"));//¶×´Ú±b¸¹
-				objPDetailVO.setStrPRBank(rs.getString("PRBANK"));		//¶×´Ú»È¦æ
-				objPDetailVO.setStrAppNo(rs.getString("APPNO"));		//­n«O®Ñ¸¹½X
-				objPDetailVO.setStrPolicyNo(rs.getString("POLICYNO"));	//«O³æ¸¹½X
-				objPDetailVO.setStrBranch(rs.getString("BRANCH"));		//«O³æ©ÒÄİ³æ¦ì
-				objPDetailVO.setIRmtFee(rs.getInt("RMTFEE"));			//¶×¶O(¤âÄò¶O)
-				objPDetailVO.setStrMemo(rs.getString("MEMO"));			//³Æµù
-				objPDetailVO.setStrEntryPgm(rs.getString("ENTRYPGM"));	//¿é¤Jµ{¦¡
-				objPDetailVO.setStrPPlant(rs.getString("PPLANT"));		//ÀIºØÃş§O
-				objPDetailVO.setStrEntryUsr(rs.getString("ENTRYUSR"));	//¿é¤JªÌ
-				objPDetailVO.setStrBATSEQ(rs.getString("BATSEQ"));		//¶×´Ú§Ç¸¹
-				objPDetailVO.setStrPPAYCURR(rs.getString("PPAYCURR"));	//¶×¥X¹ô§O
-				objPDetailVO.setIPPAYAMT(rs.getDouble("PPAYAMT"));		//¶×¥Xª÷ÃB
-				objPDetailVO.setIPPAYRATE(rs.getDouble("PPAYRATE"));	//¶×¥X¶×²v
-				objPDetailVO.setIPINVDT(rs.getInt("PINVDT"));			//§ë¸ê°_©l¤é
-				objPDetailVO.setStrPSYMBOL(rs.getString("PSYMBOL"));	//SPULµù°O
+				objPDetailVO.setIPAMT(rs.getDouble("PAMT"));	//æ”¯ä»˜é‡‘é¡	
+				objPDetailVO.setIPDate(rs.getInt("PDATE"));		//ä»˜æ¬¾æ—¥æœŸ
+				objPDetailVO.setStrPName(rs.getString("PNAME"));//ä»˜æ¬¾äººå§“å
+				objPDetailVO.setStrPSName(rs.getString("PSNAME")); //ä»˜æ¬¾äººåŸå§‹å§“å
+				objPDetailVO.setStrPId(rs.getString("PID"));	//ä»˜æ¬¾äººID
+				objPDetailVO.setStrPCurr(rs.getString("PCURR"));//å¹£åˆ¥
+				objPDetailVO.setStrPMethod(rs.getString("PMETHOD")); //ä»˜æ¬¾æ–¹å¼
+				objPDetailVO.setStrPDesc(rs.getString("PDESC"));	 //æ”¯ä»˜æè¿°
+				objPDetailVO.setStrPSrcGp(rs.getString("PSRCGP"));	 //ä¾†æºçµ„ç¾¤
+				objPDetailVO.setStrPSrcCode(rs.getString("PSRCCODE")); //æ”¯ä»˜åŸå› ä»£ç¢¼					
+				objPDetailVO.setStrPStatus(rs.getString("PSTATUS")); //ä»˜æ¬¾ç‹€æ…‹
+				objPDetailVO.setStrPVoidable(rs.getString("PVOIDABLE"));//ä½œå»¢å¦
+				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));//æ€¥ä»¶å¦
+				objPDetailVO.setStrPBAccount(rs.getString("PBACCOUNT"));//ä»˜æ¬¾éŠ€è¡Œ
+				objPDetailVO.setStrPBBank(rs.getString("PBBANK"));		//ä»˜æ¬¾å¸³è™Ÿ
+				objPDetailVO.setStrPRAccount(rs.getString("PRACCOUNT"));//åŒ¯æ¬¾å¸³è™Ÿ
+				objPDetailVO.setStrPRBank(rs.getString("PRBANK"));		//åŒ¯æ¬¾éŠ€è¡Œ
+				objPDetailVO.setStrAppNo(rs.getString("APPNO"));		//è¦ä¿æ›¸è™Ÿç¢¼
+				objPDetailVO.setStrPolicyNo(rs.getString("POLICYNO"));	//ä¿å–®è™Ÿç¢¼
+				objPDetailVO.setStrBranch(rs.getString("BRANCH"));		//ä¿å–®æ‰€å±¬å–®ä½
+				objPDetailVO.setIRmtFee(rs.getInt("RMTFEE"));			//åŒ¯è²»(æ‰‹çºŒè²»)
+				objPDetailVO.setStrMemo(rs.getString("MEMO"));			//å‚™è¨»
+				objPDetailVO.setStrEntryPgm(rs.getString("ENTRYPGM"));	//è¼¸å…¥ç¨‹å¼
+				objPDetailVO.setStrPPlant(rs.getString("PPLANT"));		//éšªç¨®é¡åˆ¥
+				objPDetailVO.setStrEntryUsr(rs.getString("ENTRYUSR"));	//è¼¸å…¥è€…
+				objPDetailVO.setStrBATSEQ(rs.getString("BATSEQ"));		//åŒ¯æ¬¾åºè™Ÿ
+				objPDetailVO.setStrPPAYCURR(rs.getString("PPAYCURR"));	//åŒ¯å‡ºå¹£åˆ¥
+				objPDetailVO.setIPPAYAMT(rs.getDouble("PPAYAMT"));		//åŒ¯å‡ºé‡‘é¡
+				objPDetailVO.setIPPAYRATE(rs.getDouble("PPAYRATE"));	//åŒ¯å‡ºåŒ¯ç‡
+				objPDetailVO.setIPINVDT(rs.getInt("PINVDT"));			//æŠ•è³‡èµ·å§‹æ—¥
+				objPDetailVO.setStrPSYMBOL(rs.getString("PSYMBOL"));	//SPULè¨»è¨˜
 				objPDetailVO.setStrPSWIFT(rs.getString("PSWIFT"));		//SWIFT
-				objPDetailVO.setStrPBKCOTRY(rs.getString("PBKCOTRY"));	//¨ü´Ú°ê§O
-				objPDetailVO.setStrPBKCITY(rs.getString("PBKCITY"));	//¨ü´Ú»È¦æ«°¥«
-				objPDetailVO.setStrPBKBRCH(rs.getString("PBKBRCH"));	//¨ü´Ú»È¦æ¤À¦æ
-				objPDetailVO.setStrPENGNAME(rs.getString("PENGNAME"));	//­^¤å©m¦W
-				objPDetailVO.setStrPFEEWAY(rs.getString("PFEEWAY"));	//¥I´Ú¤è¦¡
-				objPDetailVO.setStrPCrdNo(rs.getString("PCRDNO"));		//«H¥Î¥d¸¹
-				objPDetailVO.setIRAMT(rs.getDouble("RAMT"));			//¶×´Úª÷ÃBCAPRMTF
-				objPDetailVO.setStrPMETHODO(rs.getString("PMETHODO"));	//­ì©l¤ä¥I¤è¦¡
-				objPDetailVO.setIPAMTNT(rs.getDouble("PAMTNT"));		//¤ä¥Iª÷ÃB¥x¹ô°Ñ¦Ò
-				objPDetailVO.setIPOrgAMT(rs.getDouble("PORGAMT"));		//­ì¨êª÷ÃB
-				objPDetailVO.setStrPOrgCrdNo(rs.getString("PORGCRDNO"));//­ì©l¥d¸¹
-				objPDetailVO.setStrProjectCode(rs.getString("PROJECTCD"));//±M®×½X
-				objPDetailVO.setRemitFailDate(rs.getInt("REMITFAILD"));		//R90884 °h¶×¤é´Á
-				objPDetailVO.setRemitFailTime(rs.getInt("REMITFAILT"));		//R90884 °h¶×®É¶¡
-				objPDetailVO.setRemitFailCode(rs.getString("REMITFCODE"));	//R90884 °h¶×¥N½X
-				objPDetailVO.setRemitFailDesc(rs.getString("REMITFDESC"));	//R90884 °h¶×­ì¦]
-				objPDetailVO.setClaimNumber(rs.getString("PCLMNUM"));		//²z½ß½s¸¹
+				objPDetailVO.setStrPBKCOTRY(rs.getString("PBKCOTRY"));	//å—æ¬¾åœ‹åˆ¥
+				objPDetailVO.setStrPBKCITY(rs.getString("PBKCITY"));	//å—æ¬¾éŠ€è¡ŒåŸå¸‚
+				objPDetailVO.setStrPBKBRCH(rs.getString("PBKBRCH"));	//å—æ¬¾éŠ€è¡Œåˆ†è¡Œ
+				objPDetailVO.setStrPENGNAME(rs.getString("PENGNAME"));	//è‹±æ–‡å§“å
+				objPDetailVO.setStrPFEEWAY(rs.getString("PFEEWAY"));	//ä»˜æ¬¾æ–¹å¼
+				objPDetailVO.setStrPCrdNo(rs.getString("PCRDNO"));		//ä¿¡ç”¨å¡è™Ÿ
+				objPDetailVO.setIRAMT(rs.getDouble("RAMT"));			//åŒ¯æ¬¾é‡‘é¡CAPRMTF
+				objPDetailVO.setStrPMETHODO(rs.getString("PMETHODO"));	//åŸå§‹æ”¯ä»˜æ–¹å¼
+				objPDetailVO.setIPAMTNT(rs.getDouble("PAMTNT"));		//æ”¯ä»˜é‡‘é¡å°å¹£åƒè€ƒ
+				objPDetailVO.setIPOrgAMT(rs.getDouble("PORGAMT"));		//åŸåˆ·é‡‘é¡
+				objPDetailVO.setStrPOrgCrdNo(rs.getString("PORGCRDNO"));//åŸå§‹å¡è™Ÿ
+				objPDetailVO.setStrProjectCode(rs.getString("PROJECTCD"));//å°ˆæ¡ˆç¢¼
+				objPDetailVO.setRemitFailDate(rs.getInt("REMITFAILD"));		//R90884 é€€åŒ¯æ—¥æœŸ
+				objPDetailVO.setRemitFailTime(rs.getInt("REMITFAILT"));		//R90884 é€€åŒ¯æ™‚é–“
+				objPDetailVO.setRemitFailCode(rs.getString("REMITFCODE"));	//R90884 é€€åŒ¯ä»£ç¢¼
+				objPDetailVO.setRemitFailDesc(rs.getString("REMITFDESC"));	//R90884 é€€åŒ¯åŸå› 
+				objPDetailVO.setClaimNumber(rs.getString("PCLMNUM"));		//ç†è³ ç·¨è™Ÿ
 				objPDetailVO.setServicingBranch(rs.getString("SRVBH"));
 				objPDetailVO.setAnnuityPayDate(rs.getInt("ANNPDATE"));
 
@@ -938,10 +938,10 @@ public class DISBRemitFailedServlet extends HttpServlet {
 				request.setAttribute("txtMsg", "");
 				session.setAttribute("PDetailList", alPDetail);
 			} else {
-				request.setAttribute("txtMsg", "¬dµL¬ÛÃö¸ê®Æ");
+				request.setAttribute("txtMsg", "æŸ¥ç„¡ç›¸é—œè³‡æ–™");
 			}
 		} catch (SQLException ex) {
-			request.setAttribute("txtMsg", "¬d¸ß¥¢±Ñ" + ex);
+			request.setAttribute("txtMsg", "æŸ¥è©¢å¤±æ•—" + ex);
 			alPDetail = null;
 		} finally {
 			try { if (rs != null) rs.close(); } catch (Exception ex1) {}
@@ -976,20 +976,20 @@ public class DISBRemitFailedServlet extends HttpServlet {
 		int iUpdTime = Integer.parseInt((String) sdfFormatter.format(cldToday.getTime()));
 
 		int iRemitFailDate = 0;
-		String strRemitFailDate = request.getParameter("txtRDate");	//°h¶×¤é´Á
+		String strRemitFailDate = request.getParameter("txtRDate");	//é€€åŒ¯æ—¥æœŸ
 		if(strRemitFailDate == null)
 			strRemitFailDate = "";
 		if(!strRemitFailDate.equals(""))
 			iRemitFailDate = Integer.parseInt(strRemitFailDate);
-		String strRemitFailCode = request.getParameter("selRFCode");	//°h¶×¥N½X
+		String strRemitFailCode = request.getParameter("selRFCode");	//é€€åŒ¯ä»£ç¢¼
 		if(strRemitFailCode == null)
 			strRemitFailCode = "";
-		String strRemitFailDesc = request.getParameter("txtRFDesc");	//°h¶×­ì¦]
+		String strRemitFailDesc = request.getParameter("txtRFDesc");	//é€€åŒ¯åŸå› 
 		if(strRemitFailDesc == null)
 			strRemitFailDesc = "";
 		//R10314
 		int iBRemitFailDate = 0;
-		String strBRemitFailDate = request.getParameter("txtBRFDate");	//»È¦æ°h¶×¦^¦s¤é´Á
+		String strBRemitFailDate = request.getParameter("txtBRFDate");	//éŠ€è¡Œé€€åŒ¯å›å­˜æ—¥æœŸ
 		if(strBRemitFailDate == null)
 			strBRemitFailDate = "";
 		if(!strBRemitFailDate.equals(""))
@@ -997,14 +997,14 @@ public class DISBRemitFailedServlet extends HttpServlet {
 
 		try {
 			if(strRemitFailCode.equals("") || strRemitFailDesc.equals("")) {
-				request.setAttribute("txtMsg", "°h¶×³B²z¥¢±Ñ-->°h¶×¥N½X/­ì¦]¤£±o¬°ªÅ­È!!");
+				request.setAttribute("txtMsg", "é€€åŒ¯è™•ç†å¤±æ•—-->é€€åŒ¯ä»£ç¢¼/åŸå› ä¸å¾—ç‚ºç©ºå€¼!!");
 			} else if(strRemitFailCode.equals("99") && strRemitFailDesc.equals("")) {
-				request.setAttribute("txtMsg", "°h¶×³B²z¥¢±Ñ-->°h¶×¥N½X99¡A½Ğ¿é¤J°h¶×­ì¦]!!");
+				request.setAttribute("txtMsg", "é€€åŒ¯è™•ç†å¤±æ•—-->é€€åŒ¯ä»£ç¢¼99ï¼Œè«‹è¼¸å…¥é€€åŒ¯åŸå› !!");
 			} else {
 				if (alCheckList != null) {
 					if (alCheckList.size() > 0) {
 
-						String strPNO = "";		//¤ä¥I§Ç¸¹
+						String strPNO = "";		//æ”¯ä»˜åºè™Ÿ
 						DISBPaymentDetailVO payment = null;
 						LapsePaymentVO lapsePayVO = null;
 
@@ -1020,14 +1020,14 @@ public class DISBRemitFailedServlet extends HttpServlet {
 							strSql += " , UPDDT=?, UPDTM=?, UPDUSR=?, MEMO=?, REMITFAILD=?, REMITFAILT=?, REMITFCODE=?, REMITFDESC=?, PBNKRFDT=? where PNO=? ";
 
 							con = dbFactory.getAS400Connection("DISBRemitFailedServlet.updateRemitFailed()");
-							//¤Ulog
+							//ä¸‹log
 							strReturnMsg = disbBean.insertCAPPAYFLOG(strPNO, strLogonUser, iUpdDate, iUpdTime, con);
 							if (strReturnMsg.equals("")) {
 								pstmtTmp = con.prepareStatement(strSql);
 								pstmtTmp.setInt(1, iUpdDate);
 								pstmtTmp.setInt(2, iUpdTime);
 								pstmtTmp.setString(3, strLogonUser);
-								pstmtTmp.setString(4, "¶×´Ú¥¢±Ñ--"+strRemitFailDesc);
+								pstmtTmp.setString(4, "åŒ¯æ¬¾å¤±æ•—--"+strRemitFailDesc);
 								pstmtTmp.setInt(5, iRemitFailDate);
 								pstmtTmp.setInt(6, iUpdTime);
 								pstmtTmp.setString(7, strRemitFailCode);
@@ -1036,24 +1036,24 @@ public class DISBRemitFailedServlet extends HttpServlet {
 								pstmtTmp.setString(10, strPNO);
 								log.info("strSql:" + strSql + ";UPDDT=" + iUpdDate + ",UPDTM=" + iUpdTime + ",UPDUSR=" + strLogonUser);
 								if (pstmtTmp.executeUpdate() != 1) {
-									strReturnMsg = "°h¶×³B²z¥¢±Ñ";
-									request.setAttribute("txtMsg", "°h¶×³B²z¥¢±Ñ");
+									strReturnMsg = "é€€åŒ¯è™•ç†å¤±æ•—";
+									request.setAttribute("txtMsg", "é€€åŒ¯è™•ç†å¤±æ•—");
 								} else {
-									/* ±NÂÂªº¤ä¥I¸ê®Æ·s¼W¤@µ§¨ì¤ä¥I¥DÀÉ¤¤, ¦pstrReturnMsg¬°ªÅ¥Õªí¦¨¥\*/
+									/* å°‡èˆŠçš„æ”¯ä»˜è³‡æ–™æ–°å¢ä¸€ç­†åˆ°æ”¯ä»˜ä¸»æª”ä¸­, å¦‚strReturnMsgç‚ºç©ºç™½è¡¨æˆåŠŸ*/
 									strReturnMsg = createNewPayment(payment, strLogonUser, iUpdDate, iUpdTime, con);
 								}
 								pstmtTmp.close();
 							}
-							if (!strReturnMsg.equals("")) //¦p¦³¿ù»~®É«h roll back
+							if (!strReturnMsg.equals("")) //å¦‚æœ‰éŒ¯èª¤æ™‚å‰‡ roll back
 							{
 								request.setAttribute("txtMsg", strReturnMsg);
 								if (isAEGON400) {
 									con.rollback();
 								}
 							} else {
-								request.setAttribute("txtMsg", "°h¶×³B²z¦¨¥\");
+								request.setAttribute("txtMsg", "é€€åŒ¯è™•ç†æˆåŠŸ");
 
-								//R10190 ±N¥~¹ô¥¢®Ä«O³æªº¶×´Ú¸ê°T¼g¤J¥¢®Äµ¹¥I³qª¾®Ñ¤u§@ÀÉ
+								//R10190 å°‡å¤–å¹£å¤±æ•ˆä¿å–®çš„åŒ¯æ¬¾è³‡è¨Šå¯«å…¥å¤±æ•ˆçµ¦ä»˜é€šçŸ¥æ›¸å·¥ä½œæª”
 								if(payment.getStrPMethod() != null && CommonUtil.AllTrim(payment.getStrPMethod()).equals("D") && payment.getStrPSrcCode() != null && CommonUtil.AllTrim(payment.getStrPSrcCode()).equals("CE"))
 								{
 									boolean isSend = false;
@@ -1065,17 +1065,17 @@ public class DISBRemitFailedServlet extends HttpServlet {
 										isSend = rs.getInt("FLD0090") > 0;
 
 										lapsePayVO = new LapsePaymentVO();
-										lapsePayVO.setPNO(rs.getString("FLD0010"));			//¤ä¥I§Ç¸¹
-										lapsePayVO.setPolicyNo(rs.getString("FLD0020"));	//«O³æ¸¹½X
-										lapsePayVO.setReceiverId(rs.getString("FLD0030"));	//¨ü´Ú¤HID
-										lapsePayVO.setReceiverName(rs.getString("FLD0040"));//¨ü´Ú¤H©m¦W
-										lapsePayVO.setPaymentAmt(rs.getDouble("FLD0050"));	//µ¹¥Iª÷ÃB
-										lapsePayVO.setRemitDate(rs.getInt("FLD0060"));		//¥X¯Ç½T»{¤é
-										lapsePayVO.setSendSwitch("N");						//¬O§_±H°e
-										lapsePayVO.setRemitFailed(isSend?"Y":rs.getString("FLD0080"));//¤w±H°e¡A¦ı°h¶×
-										lapsePayVO.setSendDate(rs.getInt("FLD0090"));		//±H°e¤é´Á
-										lapsePayVO.setUpdatedUser(strLogonUser);			//²§°ÊªÌ
-										lapsePayVO.setUpdatedDate(iUpdDate);				//²§°Ê¤é´Á
+										lapsePayVO.setPNO(rs.getString("FLD0010"));			//æ”¯ä»˜åºè™Ÿ
+										lapsePayVO.setPolicyNo(rs.getString("FLD0020"));	//ä¿å–®è™Ÿç¢¼
+										lapsePayVO.setReceiverId(rs.getString("FLD0030"));	//å—æ¬¾äººID
+										lapsePayVO.setReceiverName(rs.getString("FLD0040"));//å—æ¬¾äººå§“å
+										lapsePayVO.setPaymentAmt(rs.getDouble("FLD0050"));	//çµ¦ä»˜é‡‘é¡
+										lapsePayVO.setRemitDate(rs.getInt("FLD0060"));		//å‡ºç´ç¢ºèªæ—¥
+										lapsePayVO.setSendSwitch("N");						//æ˜¯å¦å¯„é€
+										lapsePayVO.setRemitFailed(isSend?"Y":rs.getString("FLD0080"));//å·²å¯„é€ï¼Œä½†é€€åŒ¯
+										lapsePayVO.setSendDate(rs.getInt("FLD0090"));		//å¯„é€æ—¥æœŸ
+										lapsePayVO.setUpdatedUser(strLogonUser);			//ç•°å‹•è€…
+										lapsePayVO.setUpdatedDate(iUpdDate);				//ç•°å‹•æ—¥æœŸ
 
 										disbBean.callCAP0314O(con, lapsePayVO);
 									}
@@ -1086,7 +1086,7 @@ public class DISBRemitFailedServlet extends HttpServlet {
 				}
 			}
 		} catch (SQLException e) {
-			request.setAttribute("txtMsg", "°h¶×³B²z¥¢±Ñ-->" + e);
+			request.setAttribute("txtMsg", "é€€åŒ¯è™•ç†å¤±æ•—-->" + e);
 			if (con != null)
 				dbFactory.releaseAS400Connection(con);
 		} finally {
@@ -1118,15 +1118,15 @@ public class DISBRemitFailedServlet extends HttpServlet {
 		int iUpdDate = Integer.parseInt((String) commonUtil.convertWesten2ROCDate1(cldToday.getTime()));
 		int iUpdTime = Integer.parseInt((String) sdfFormatter.format(cldToday.getTime()));
 
-		String strRemitFailCode = request.getParameter("selRFCode");	//°h¶×¥N½X
+		String strRemitFailCode = request.getParameter("selRFCode");	//é€€åŒ¯ä»£ç¢¼
 		if(strRemitFailCode == null)
 			strRemitFailCode = "";
-		String strRemitFailDesc = request.getParameter("txtRFDesc");	//°h¶×­ì¦]
+		String strRemitFailDesc = request.getParameter("txtRFDesc");	//é€€åŒ¯åŸå› 
 		if(strRemitFailDesc == null)
 			strRemitFailDesc = "";
 		//R10314
 		int iBRemitFailDate = 0;
-		String strBRemitFailDate = request.getParameter("txtBRFDate");	//»È¦æ°h¶×¦^¦s¤é´Á
+		String strBRemitFailDate = request.getParameter("txtBRFDate");	//éŠ€è¡Œé€€åŒ¯å›å­˜æ—¥æœŸ
 		if(strBRemitFailDate == null)
 			strBRemitFailDate = "";
 		if(!strBRemitFailDate.equals(""))
@@ -1134,14 +1134,14 @@ public class DISBRemitFailedServlet extends HttpServlet {
 
 		try {
 			if(strRemitFailCode.equals("") || strRemitFailDesc.equals("")) {
-				request.setAttribute("txtMsg", "°h¶×ºûÅ@¥¢±Ñ-->°h¶×¥N½X/­ì¦]¤£±o¬°ªÅ­È!!");
+				request.setAttribute("txtMsg", "é€€åŒ¯ç¶­è­·å¤±æ•—-->é€€åŒ¯ä»£ç¢¼/åŸå› ä¸å¾—ç‚ºç©ºå€¼!!");
 			} else if(strRemitFailCode.equals("99") && strRemitFailDesc.equals("")) {
-				request.setAttribute("txtMsg", "°h¶×ºûÅ@¥¢±Ñ-->°h¶×¥N½X99¡A½Ğ¿é¤J°h¶×­ì¦]!!");
+				request.setAttribute("txtMsg", "é€€åŒ¯ç¶­è­·å¤±æ•—-->é€€åŒ¯ä»£ç¢¼99ï¼Œè«‹è¼¸å…¥é€€åŒ¯åŸå› !!");
 			} else {
 				if (alCheckList != null) {
 					if (alCheckList.size() > 0) {
 
-						String strPNO = "";		//¤ä¥I§Ç¸¹
+						String strPNO = "";		//æ”¯ä»˜åºè™Ÿ
 						for (int i = 0; i < alCheckList.size(); i++) {
 							strPNO = (String) ((DISBPaymentDetailVO) alCheckList.get(i)).getStrPNO();
 							if (strPNO != null)
@@ -1152,40 +1152,40 @@ public class DISBRemitFailedServlet extends HttpServlet {
 							strSql = " update CAPPAYF set UPDDT= ?, UPDTM = ?, UPDUSR =?, MEMO =?, REMITFCODE=?, REMITFDESC=?,PBNKRFDT=? where PNO =?";
 
 							con = dbFactory.getAS400Connection("DISBPMaintainServlet.inqueryDB()");
-							//¤Ulog
+							//ä¸‹log
 							strReturnMsg = disbBean.insertCAPPAYFLOG(strPNO, strLogonUser, iUpdDate, iUpdTime, con);
 							if (strReturnMsg.equals("")) {
 								pstmtTmp = con.prepareStatement(strSql);
 								pstmtTmp.setInt(1, iUpdDate);
 								pstmtTmp.setInt(2, iUpdTime);
 								pstmtTmp.setString(3, strLogonUser);
-								pstmtTmp.setString(4, "¶×´Ú¥¢±Ñ--"+strRemitFailDesc);
+								pstmtTmp.setString(4, "åŒ¯æ¬¾å¤±æ•—--"+strRemitFailDesc);
 								pstmtTmp.setString(5, strRemitFailCode);
 								pstmtTmp.setString(6, strRemitFailDesc);
 								pstmtTmp.setInt(7, iBRemitFailDate);//R10314
 								pstmtTmp.setString(8, strPNO);
 
 								if (pstmtTmp.executeUpdate() != 1) {
-									strReturnMsg = "°h¶×ºûÅ@¥¢±Ñ";
-									request.setAttribute("txtMsg", "°h¶×ºûÅ@¥¢±Ñ");
+									strReturnMsg = "é€€åŒ¯ç¶­è­·å¤±æ•—";
+									request.setAttribute("txtMsg", "é€€åŒ¯ç¶­è­·å¤±æ•—");
 								}
 								pstmtTmp.close();
 							}
-							if (!strReturnMsg.equals("")) //¦p¦³¿ù»~®É«h roll back
+							if (!strReturnMsg.equals("")) //å¦‚æœ‰éŒ¯èª¤æ™‚å‰‡ roll back
 							{
 								request.setAttribute("txtMsg", strReturnMsg);
 								if (isAEGON400) {
 									con.rollback();
 								}
 							} else {
-								request.setAttribute("txtMsg", "°h¶×ºûÅ@¦¨¥\");
+								request.setAttribute("txtMsg", "é€€åŒ¯ç¶­è­·æˆåŠŸ");
 							}
 						}
 					}
 				}
 			}
 		} catch (SQLException e) {
-			request.setAttribute("txtMsg", "°h¶×ºûÅ@¥¢±Ñ-->" + e);
+			request.setAttribute("txtMsg", "é€€åŒ¯ç¶­è­·å¤±æ•—-->" + e);
 			if (con != null)
 				dbFactory.releaseAS400Connection(con);
 		} finally {
@@ -1243,7 +1243,7 @@ public class DISBRemitFailedServlet extends HttpServlet {
 		int iFPAYAMT = 0; //R60550
 		double dFPAYAMT = 0;
 
-		/* ¨ú±o·sªº¤ä¥I§Ç¸¹*/
+		/* å–å¾—æ–°çš„æ”¯ä»˜åºè™Ÿ*/
 		disbBean = new DISBBean(dbFactory);
 
 		try {
@@ -1262,7 +1262,7 @@ public class DISBRemitFailedServlet extends HttpServlet {
 				PreparedStatement pstmtTmp = con.prepareStatement(strSql_F);
 				pstmtTmp.setString(1, strNewPNo);
 				System.out.println("NewPNO=" + strNewPNo);
-				pstmtTmp.setString(2, objPDetailVO.getStrPNoH().trim()); //²Ä¤@µ§ªº¤ä¥I§Ç¸¹
+				pstmtTmp.setString(2, objPDetailVO.getStrPNoH().trim()); //ç¬¬ä¸€ç­†çš„æ”¯ä»˜åºè™Ÿ
 
 				if (objPDetailVO.getFPAYAMT() != 0 && objPDetailVO.getFFEEWAY().trim().equals("BEN")) {
 //					iFPAYAMT = (int) ((objPDetailVO.getIPAMT() - (objPDetailVO.getFPAYAMT() * objPDetailVO.getIPPAYRATE()) + 0.5));
@@ -1315,31 +1315,31 @@ public class DISBRemitFailedServlet extends HttpServlet {
 				pstmtTmp.setString(34, objPDetailVO.getStrPBKBRCH());
 				pstmtTmp.setString(35, objPDetailVO.getStrPENGNAME());
 				pstmtTmp.setString(36, objPDetailVO.getStrPFEEWAY());
-				pstmtTmp.setDouble(37, objPDetailVO.getIPOrgAMT());		//R70600 ­ì¨êª÷ÃB
-				pstmtTmp.setString(38, objPDetailVO.getStrPOrgCrdNo());	//R70600 ­ì¨ê¥d¸¹
-				pstmtTmp.setString(39, objPDetailVO.getStrProjectCode());	//R70600 ±M®×½X
-				pstmtTmp.setString(40, objPDetailVO.getStrPMETHODO());	//R70600 ­ì©l¤ä¥I¤è¦¡
-				pstmtTmp.setDouble(41, objPDetailVO.getIPAMTNT());		//R70600 ¤ä¥Iª÷ÃB¥x¹ô°Ñ¦Ò
+				pstmtTmp.setDouble(37, objPDetailVO.getIPOrgAMT());		//R70600 åŸåˆ·é‡‘é¡
+				pstmtTmp.setString(38, objPDetailVO.getStrPOrgCrdNo());	//R70600 åŸåˆ·å¡è™Ÿ
+				pstmtTmp.setString(39, objPDetailVO.getStrProjectCode());	//R70600 å°ˆæ¡ˆç¢¼
+				pstmtTmp.setString(40, objPDetailVO.getStrPMETHODO());	//R70600 åŸå§‹æ”¯ä»˜æ–¹å¼
+				pstmtTmp.setDouble(41, objPDetailVO.getIPAMTNT());		//R70600 æ”¯ä»˜é‡‘é¡å°å¹£åƒè€ƒ
 				pstmtTmp.setString(42, objPDetailVO.getClaimNumber());
 				pstmtTmp.setString(43, objPDetailVO.getServicingBranch());
 				pstmtTmp.setInt(44, objPDetailVO.getAnnuityPayDate());
 
 				if (pstmtTmp.executeUpdate() != 1) {
-					strReturnMsg = "·s¼W­ì¤ä¥I¸ê®Æ¨ì¤ä¥I¥DÀÉ¥¢±Ñ";
+					strReturnMsg = "æ–°å¢åŸæ”¯ä»˜è³‡æ–™åˆ°æ”¯ä»˜ä¸»æª”å¤±æ•—";
 					System.out.println("strReturnMsg=UPDATE FAIL");
 				}
 				pstmtTmp.close();
 				htReturnInfo = null;
 			}
 		} catch (SQLException e) {
-			strReturnMsg = "·s¼W­ì¤ä¥I¸ê®Æ¨ì¤ä¥I¥DÀÉ¥¢±Ñ:" + e;
+			strReturnMsg = "æ–°å¢åŸæ”¯ä»˜è³‡æ–™åˆ°æ”¯ä»˜ä¸»æª”å¤±æ•—:" + e;
 			System.out.println("strReturnMsg=SQL EXCEPTION");
 		} catch (Exception ex) {
-			strReturnMsg = "·s¼W­ì¤ä¥I¸ê®Æ¨ì¤ä¥I¥DÀÉ¥¢±Ñ:" + ex;
+			strReturnMsg = "æ–°å¢åŸæ”¯ä»˜è³‡æ–™åˆ°æ”¯ä»˜ä¸»æª”å¤±æ•—:" + ex;
 			System.out.println("strReturnMsg=EXCEPTION");
 		}
 		System.out.println("strReturnMsg=" + strReturnMsg);
-		/*R60550·s¼W¶×°h³B²z*/
+		/*R60550æ–°å¢åŒ¯é€€è™•ç†*/
 		if (strReturnMsg.equals("") && objPDetailVO.getFPAYAMT() != 0) {
 			String strSql_1 =
 				" insert into  CAPRFEF "
@@ -1357,16 +1357,16 @@ public class DISBRemitFailedServlet extends HttpServlet {
 				pstmtTmp.setInt(7, iEntryTime);
 				pstmtTmp.setString(8, objPDetailVO.getStrEntryUsr());
 				if (pstmtTmp.executeUpdate() < 1) {
-					strReturnMsg = "·s¼WCAPRFEF¥¢±Ñ";
+					strReturnMsg = "æ–°å¢CAPRFEFå¤±æ•—";
 				}
 				pstmtTmp.close();
 			} catch (SQLException e) {
-				strReturnMsg = "·s¼WCAPRFEF¥¢±Ñ:" + e;
+				strReturnMsg = "æ–°å¢CAPRFEFå¤±æ•—:" + e;
 			} catch (Exception ex) {
-				strReturnMsg = "·s¼WCAPRFEF¥¢±Ñ:" + ex;
+				strReturnMsg = "æ–°å¢CAPRFEFå¤±æ•—:" + ex;
 			}
 		}
-		/*·s¼W¤ä¥I³qª¾®ÑÀÉCAPPAYRF**¶È­­¨Ó·½=CAPSIL¥ó*/
+		/*æ–°å¢æ”¯ä»˜é€šçŸ¥æ›¸æª”CAPPAYRF**åƒ…é™ä¾†æº=CAPSILä»¶*/
 		if (objPDetailVO.getStrPSrcGp().trim().equals("CP")) {
 			String strSql_2 =
 				"insert into CAPPAYRF "
@@ -1383,12 +1383,12 @@ public class DISBRemitFailedServlet extends HttpServlet {
 			try {
 				PreparedStatement pstmtTmp = con.prepareStatement(strSql_2);
 				if (pstmtTmp.executeUpdate() < 1) {
-					strReturnMsg = "·s¼WCAPPAYRF¥¢±Ñ";
+					strReturnMsg = "æ–°å¢CAPPAYRFå¤±æ•—";
 				} else {
 					strReturnMsg = "";
 				}
 			} catch (SQLException e) {
-				strReturnMsg = "·s¼WCAPPAYRF¥¢±Ñ" + e;
+				strReturnMsg = "æ–°å¢CAPPAYRFå¤±æ•—" + e;
 			}
 		}
 		return strReturnMsg;

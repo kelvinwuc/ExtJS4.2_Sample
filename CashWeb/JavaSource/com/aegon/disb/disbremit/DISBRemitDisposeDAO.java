@@ -3,7 +3,7 @@ package com.aegon.disb.disbremit;
 /**
  * System   :
  * 
- * Function : ¥X¯Ç¥\¯à-¾ã§å¶×´Ú
+ * Function : å‡ºç´åŠŸèƒ½-æ•´æ‰¹åŒ¯æ¬¾
  * 
  * Remark   : DAO
  * 
@@ -25,100 +25,100 @@ package com.aegon.disb.disbremit;
  * $RC0036
  * $
  * $Revision 1.24  2014/01/07 04:09:41  MISSALLY
- * $BugFix---remove connection¾É­P¸ê®Æ¿ù»~!!
+ * $BugFix---remove connectionå°è‡´è³‡æ–™éŒ¯èª¤!!
  * $
  * $Revision 1.23  2014/01/03 02:49:52  MISSALLY
- * $R00135---PA0024---CASH¦~«×±M®×-02
+ * $R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ-02
  * $
  * $Revision 1.22  2013/05/02 11:07:05  MISSALLY
- * $R10190 ¬ü¤¸¥¢®Ä«O³æ§@·~
+ * $R10190 ç¾å…ƒå¤±æ•ˆä¿å–®ä½œæ¥­
  * $
  * $Revision 1.21  2013/01/08 04:24:03  MISSALLY
- * $±N¤À¤äªºµ{¦¡Merge¦ÜHEAD
+ * $å°‡åˆ†æ”¯çš„ç¨‹å¼Mergeè‡³HEAD
  * $
  * $Revision 1.20.4.1  2012/08/31 01:21:30  MISSALLY
- * $RA0140---·s¼W¥üÂ×¬°¥~¹ô«ü©w¦æ
+ * $RA0140---æ–°å¢å…†è±ç‚ºå¤–å¹£æŒ‡å®šè¡Œ
  * $
  * $Revision 1.20  2011/11/08 09:16:38  MISSALLY
  * $Q10312
- * $¶×´Ú¥\¯à-¾ã§å¶×´Ú§@·~
- * $1.­×¥¿»È¦æ±b¸¹¤£¤@­P
- * $2.½Õ¾ã¥üÂ×¶×´ÚÀÉ
+ * $åŒ¯æ¬¾åŠŸèƒ½-æ•´æ‰¹åŒ¯æ¬¾ä½œæ¥­
+ * $1.ä¿®æ­£éŠ€è¡Œå¸³è™Ÿä¸ä¸€è‡´
+ * $2.èª¿æ•´å…†è±åŒ¯æ¬¾æª”
  * $
  * $Revision 1.19  2011/06/07 07:22:24  MISJIMMY
- * $Q10107-½Ğ´_­ì¤¤«H¶×´ÚÀÉ³ÆµùÄæ¦ì®æ¦¡
+ * $Q10107-è«‹å¾©åŸä¸­ä¿¡åŒ¯æ¬¾æª”å‚™è¨»æ¬„ä½æ ¼å¼
  * $
  * $Revision 1.18  2011/05/12 06:08:39  MISJIMMY
- * $R00440 SNº¡´Áª÷
+ * $R00440 SNæ»¿æœŸé‡‘
  * $
  * $Revision 1.17  2010/11/23 06:59:53  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.16  2010/11/18 12:23:23  MISJIMMY
- * $R00386 ¬ü¤¸«O³æ
+ * $R00386 ç¾å…ƒä¿å–®
  * $
  * $Revision 1.15  2010/05/04 07:10:39  missteven
  * $R90735
  * $
  * $Revision 1.14  2008/08/06 06:52:37  MISODIN
- * $R80338 ½Õ¾ãCASH¨t²Î for ¥X¯Ç¥~¹ô¤@¹ï¤@»İ¨D
+ * $R80338 èª¿æ•´CASHç³»çµ± for å‡ºç´å¤–å¹£ä¸€å°ä¸€éœ€æ±‚
  * $
  * $Revision 1.13  2007/09/07 10:24:17  MISVANESSA
  * $R70455_TARGET OUT
  * $
  * $Revision 1.12  2007/08/03 09:56:22  MISODIN
- * $R70477 ¥~¹ô«O³æ¶×´Ú¤âÄò¶O
+ * $R70477 å¤–å¹£ä¿å–®åŒ¯æ¬¾æ‰‹çºŒè²»
  * $
  * $Revision 1.11  2007/03/16 01:53:27  MISVANESSA
- * $R70088_SPUL°t®§­×§ï¤âÄò¶Orule
+ * $R70088_SPULé…æ¯ä¿®æ”¹æ‰‹çºŒè²»rule
  * $
  * $Revision 1.10  2007/03/06 01:38:54  MISVANESSA
- * $R70088_SPUL°t®§·s¼W«È¤á­t¾á¤âÄò¶O
+ * $R70088_SPULé…æ¯æ–°å¢å®¢æˆ¶è² æ“”æ‰‹çºŒè²»
  * $
  * $Revision 1.9  2007/01/31 04:02:19  MISVANESSA
- * $R70088_SPUL°t®§
+ * $R70088_SPULé…æ¯
  * $
  * $Revision 1.8  2007/01/05 01:46:03  miselsa
- * $R60550_¥~¹ô¶×´Ú¥ó©l¶·¯S§O¿z¿ï¬O§_¬°SPUL
+ * $R60550_å¤–å¹£åŒ¯æ¬¾ä»¶å§‹é ˆç‰¹åˆ¥ç¯©é¸æ˜¯å¦ç‚ºSPUL
  * $
  * $Revision 1.7  2007/01/03 08:32:51  miselsa
- * $R60550_SPUL §ë¸ê°_©l¤é¤§«e ¼W¥[ «È¤á¶×¥X»È¦æ±ø¥ó
+ * $R60550_SPUL æŠ•è³‡èµ·å§‹æ—¥ä¹‹å‰ å¢åŠ  å®¢æˆ¶åŒ¯å‡ºéŠ€è¡Œæ¢ä»¶
  * $
  * $Revision 1.6  2006/12/27 09:51:17  miselsa
- * $R60463¤ÎR60550_SPUL«O³æ§ë¸ê°_©l¤é«eªº¶×¶O
+ * $R60463åŠR60550_SPULä¿å–®æŠ•è³‡èµ·å§‹æ—¥å‰çš„åŒ¯è²»
  * $
  * $Revision 1.5  2006/12/07 22:00:34  miselsa
- * $R60463¤ÎR60550¥~¹ô¤ÎSPUL«O³æ
+ * $R60463åŠR60550å¤–å¹£åŠSPULä¿å–®
  * $
  * $Revision 1.4  2006/11/30 09:16:45  miselsa
- * $R60463¤ÎR60550¥~¹ô¤ÎSPUL«O³æ
+ * $R60463åŠR60550å¤–å¹£åŠSPULä¿å–®
  * $
  * $Revision 1.3  2006/10/31 09:45:00  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $Revision 1.2  2006/09/04 09:43:35  miselsa
- * $R60747_1.¾ã§å¶×´Ú¼W¥[¥X¯Ç½T»{¤é 2.¶×¥X³øªí¶×´Ú¤é´Á§ï¬°¥X¯Ç½T»{¤é 3.¤ä¥I¬d¸ß¥I´Ú¤é´Á¬°¥X¯Ç½T»{¤é
+ * $R60747_1.æ•´æ‰¹åŒ¯æ¬¾å¢åŠ å‡ºç´ç¢ºèªæ—¥ 2.åŒ¯å‡ºå ±è¡¨åŒ¯æ¬¾æ—¥æœŸæ”¹ç‚ºå‡ºç´ç¢ºèªæ—¥ 3.æ”¯ä»˜æŸ¥è©¢ä»˜æ¬¾æ—¥æœŸç‚ºå‡ºç´ç¢ºèªæ—¥
  * $
  * $Revision 1.1  2006/06/29 09:40:20  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.11  2006/04/27 09:25:45  misangel
- * $R50891:VA¬ü¤¸«O³æ-Åã¥Ü¹ô§O
+ * $R50891:VAç¾å…ƒä¿å–®-é¡¯ç¤ºå¹£åˆ¥
  * $
  * $Revision 1.1.2.10  2005/08/19 06:56:04  misangel
- * $R50427 : ¶×´Ú¥ó¨Ì³¡ªù+©m¦W+±b¸¹¦X¨Ö
+ * $R50427 : åŒ¯æ¬¾ä»¶ä¾éƒ¨é–€+å§“å+å¸³è™Ÿåˆä½µ
  * $
  * $Revision 1.1.2.9  2005/04/28 08:56:26  miselsa
- * $R30530¥­¦æ´ú¸Õªº­×§ï
+ * $R30530å¹³è¡Œæ¸¬è©¦çš„ä¿®æ”¹
  * $
  * $Revision 1.1.2.8  2005/04/18 08:51:14  MISANGEL
- * $R30530:¤ä¥I¨t²Î-­×§ï¬d¸ß±ø¥ó¬°¤ä¥I½T»{¤é
+ * $R30530:æ”¯ä»˜ç³»çµ±-ä¿®æ”¹æŸ¥è©¢æ¢ä»¶ç‚ºæ”¯ä»˜ç¢ºèªæ—¥
  * $
  * $Revision 1.1.2.7  2005/04/08 02:56:54  MISANGEL
- * $R30530:¤ä¥I¨t²Î
+ * $R30530:æ”¯ä»˜ç³»çµ±
  * $
  * $Revision 1.1.2.6  2005/04/04 07:02:27  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -145,7 +145,7 @@ public class DISBRemitDisposeDAO {
 	Connection conn2 = null;
 	// R70477
 	// private final String QUERY =
-	// "SELECT PNAME,PID,PAMT,PRBANK,PRACCOUNT,PCSHDT,ENTRYUSR,PFEEWAY,PSWIFT,PPAYCURR,PENGNAME,PBKBRCH,PBKCITY,PBKCOTRY,PPAYAMT,ENTRYDT,PINVDT,PSYMBOL,PPAYRATE,PSRCCODE FROM CAPPAYF "//¥~¹ô¶×´Ú¥[¤J¤âÄò¶O¥I´Ú¤è¦¡//R70088SPUL°t®§PID,PPAYRATE,PSRCCODE
+	// "SELECT PNAME,PID,PAMT,PRBANK,PRACCOUNT,PCSHDT,ENTRYUSR,PFEEWAY,PSWIFT,PPAYCURR,PENGNAME,PBKBRCH,PBKCITY,PBKCOTRY,PPAYAMT,ENTRYDT,PINVDT,PSYMBOL,PPAYRATE,PSRCCODE FROM CAPPAYF "//å¤–å¹£åŒ¯æ¬¾åŠ å…¥æ‰‹çºŒè²»ä»˜æ¬¾æ–¹å¼//R70088SPULé…æ¯PID,PPAYRATE,PSRCCODE
 	private final String QUERY = "SELECT PNAME,PID,PAMT,PRBANK,PRACCOUNT,PCSHDT,ENTRYUSR,PFEEWAY,PSWIFT,PPAYCURR,"
 			+ "PENGNAME,PBKBRCH,PBKCITY,PBKCOTRY,PPAYAMT,ENTRYDT,PINVDT,PSYMBOL,PPAYRATE,PSRCCODE,PCURR,SUBSTRING(FLD0004,17,8) AS PDESC,PPLANT,POLICYNO "// R90735
 /*RC0036*/	+ ", DEPT"
@@ -156,18 +156,18 @@ public class DISBRemitDisposeDAO {
 			+ " WHERE PNO=?";
 
 	private final String QUERY_LOT = "SELECT PNO,PID,APPNO,POLICYNO,PMETHOD,PDATE,PNAME,PRBANK,PRACCOUNT,PDESC,PCFMDT1,PCFMDT2,PAMT,PDISPATCH,DEPT ,PCURR "
-			+ ",PPAYCURR,PPAYAMT,PPLANT,PINVDT,ENTRYDT,PSRCCODE,PRBANK" // ¼W¥[¥~¹ô¹ô§O¤Îª÷ÃB
+			+ ",PPAYCURR,PPAYAMT,PPLANT,PINVDT,ENTRYDT,PSRCCODE,PRBANK" // å¢åŠ å¤–å¹£å¹£åˆ¥åŠé‡‘é¡
 			+ " FROM CAPPAYF A "
 			+ " LEFT OUTER JOIN USER B ON A.ENTRYUSR = B.USRID"
 			+ " WHERE PSTATUS ='' AND PCFMDT1 >0 AND PCFMDT2 >0 AND PVOIDABLE<>'Y' "
 			+ " AND PMETHOD =? AND PCFMDT2 >=? AND PCFMDT2 <=? AND PDISPATCH=? AND PCURR=? ";
 /*RC0036*/	//+ " ORDER BY PCFMDT2,PCFMTM2,DEPT,PNAME,PRBANK,PRACCOUNT ";
-			// + " AND PSYMBOL='N' " //¨ú¤@¯ë«O³æ¸ê®Æ,¤£§tSPUL«O³æ
+			// + " AND PSYMBOL='N' " //å–ä¸€èˆ¬ä¿å–®è³‡æ–™,ä¸å«SPULä¿å–®
 			//RC0036+ "ORDER BY DEPT,PNAME,PRBANK,PRACCOUNT ";
 
 	private final String QUERY_LOT_D = "SELECT PNO,PID,APPNO,POLICYNO,PMETHOD,PDATE,PNAME,PRBANK,PRACCOUNT,PDESC,PCFMDT1,PCFMDT2,PAMT,PDISPATCH,DEPT ,PCURR"
-			+ ",PPAYCURR,PPAYAMT,PSWIFT,PFEEWAY,PENGNAME,PBKBRCH,PBKCITY,PBKCOTRY,PPLANT,PINVDT,ENTRYDT,PSRCCODE,PRBANK" // ¼W¥[¥~¹ô¹ô§O¤Îª÷ÃB
-			// R00440 SNº¡´Áª÷ +
+			+ ",PPAYCURR,PPAYAMT,PSWIFT,PFEEWAY,PENGNAME,PBKBRCH,PBKCITY,PBKCOTRY,PPLANT,PINVDT,ENTRYDT,PSRCCODE,PRBANK" // å¢åŠ å¤–å¹£å¹£åˆ¥åŠé‡‘é¡
+			// R00440 SNæ»¿æœŸé‡‘ +
 			// ",CASE WHEN A.PPLANT = ' ' THEN '3' WHEN A.PSRCCODE IN ('B8','B9') OR A.ENTRYDT <= A.PINVDT THEN '1' WHEN A.PSRCCODE NOT IN ('B8','B9') AND A.ENTRYDT > A.PINVDT THEN '2' END PAYRULECODE"
 			// // R00386
 			+ ",CASE WHEN A.PPLANT = ' ' THEN '3' WHEN A.PSRCCODE IN ('B8','B9','BB') OR A.ENTRYDT <= A.PINVDT THEN '1' WHEN A.PSRCCODE NOT IN ('B8','B9','BB') AND A.ENTRYDT > A.PINVDT THEN '2' END PAYRULECODE" // R00440
@@ -175,18 +175,18 @@ public class DISBRemitDisposeDAO {
 			+ " LEFT OUTER JOIN USER B ON A.ENTRYUSR = B.USRID"
 			+ " WHERE PSTATUS ='' AND PCFMDT1 >0 AND PCFMDT2 >0 AND PVOIDABLE<>'Y' "
 			+ " AND PMETHOD =? AND PCFMDT2 >=? AND PCFMDT2 <=? AND PDISPATCH=? AND PCURR=? ";
-			// + " AND PSYMBOL='S' " ;//¨úSPUL«O³æ
+			// + " AND PSYMBOL='S' " ;//å–SPULä¿å–®
 			// + "ORDER BY DEPT,PNAME,PRBANK,PRACCOUNT ";
 
 	private final String UPDATE = "UPDATE CAPPAYF "
-			+ " SET PSTATUS =? , PBBANK =? , PBACCOUNT=? , RMTFEE=? , PBATNO=?, PCSHDT=?, UPDDT=?, UPDTM =?, UPDUSR=?,BATSEQ=?,PCSHCM=?,PCHECKNO=? " // R60747¼W¥[¥X¯Ç½T»{¤é RC0036
+			+ " SET PSTATUS =? , PBBANK =? , PBACCOUNT=? , RMTFEE=? , PBATNO=?, PCSHDT=?, UPDDT=?, UPDTM =?, UPDUSR=?,BATSEQ=?,PCSHCM=?,PCHECKNO=? " // R60747å¢åŠ å‡ºç´ç¢ºèªæ—¥ RC0036
 			+ " WHERE PNO=?";
 
 	private final String UPDATE_FEEWAY = "UPDATE CAPPAYF SET PFEEWAY =? WHERE PNO=?";
 
 	private final String INSERT_RMTF = "INSERT INTO CAPRMTF "
 			+ "(BATNO,SEQNO,PBK,PACCT,RID,RTYPE,RBK,RACCT,RAMT,RNAME,RMEMO,RMTDT,RTRNCDE,RTRNTM,CSTNO,RMTCDE"
-			+ ",RMTFEE,ENTRYDT,ENTRYTM,ENTRYUSR,MEMO,RPAYAMT,RPAYCURR,RPAYFEEWAY,RBKSWIFT,RENGNAME,RBKBRCH,RBKCITY,RBKCOUNTRY,RBENFEE,RPAYRATE,RPCURR) "// R70088·s¼WRBENFEE,PAYRATEÄæ¦ì
+			+ ",RMTFEE,ENTRYDT,ENTRYTM,ENTRYUSR,MEMO,RPAYAMT,RPAYCURR,RPAYFEEWAY,RBKSWIFT,RENGNAME,RBKBRCH,RBKCITY,RBKCOUNTRY,RBENFEE,RPAYRATE,RPCURR) "// R70088æ–°å¢RBENFEE,PAYRATEæ¬„ä½
 			+ "VALUES  "
 			+ " (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
 
@@ -262,23 +262,23 @@ public class DISBRemitDisposeDAO {
 
 	/**
 	 * 
-	 * @param payMethod  ¥I´Ú¤è¦¡
-	 * @param pDate1 	  ¥I´Ú¤é°_
-	 * @param pDate2 	  ¥I´Ú¤é¨´
-	 * @param pDispatch  «æ¥ó§_
+	 * @param payMethod  ä»˜æ¬¾æ–¹å¼
+	 * @param pDate1 	  ä»˜æ¬¾æ—¥èµ·
+	 * @param pDate2 	  ä»˜æ¬¾æ—¥è¿„
+	 * @param pDispatch  æ€¥ä»¶å¦
 	 * @return
 	 */
 	
 	/**
-	 * R00386 ·s¼W, ¨Ï¥Î¥I´Ú³W«h¨Ó¬d¸ß
+	 * R00386 æ–°å¢, ä½¿ç”¨ä»˜æ¬¾è¦å‰‡ä¾†æŸ¥è©¢
 	 * 
-	 * @param payMethod  ¥I´Ú¤è¦¡
-	 * @param pDate1    ¥I´Ú¤é°_
-	 * @param pDate2    ¥I´Ú¤é¨´
-	 * @param pDispatch  «æ¥ó§_
-	 * @param strCurrency «O³æ¹ô§O
-	 * @param PRBank  ¶×´Ú»È¦æ
-	 * @param payRule  ¥I´Ú³W«h
+	 * @param payMethod  ä»˜æ¬¾æ–¹å¼
+	 * @param pDate1    ä»˜æ¬¾æ—¥èµ·
+	 * @param pDate2    ä»˜æ¬¾æ—¥è¿„
+	 * @param pDispatch  æ€¥ä»¶å¦
+	 * @param strCurrency ä¿å–®å¹£åˆ¥
+	 * @param PRBank  åŒ¯æ¬¾éŠ€è¡Œ
+	 * @param payRule  ä»˜æ¬¾è¦å‰‡
 	 * @return
 	 */
 	public Vector<DISBPaymentDetailVO> query(String payMethod, int pDate1, int pDate2, String pDispatch, String strCurrency, String SYMBOL, String PRBank, String payRule, String company) throws Exception {
@@ -286,7 +286,7 @@ public class DISBRemitDisposeDAO {
 		Vector<DISBPaymentDetailVO> retList = new Vector<DISBPaymentDetailVO>();
 		Connection conn = null;
 		String strSql = null;
-		//log.info("company¬O" + company);
+		//log.info("companyæ˜¯" + company);
 		try {
 
 			conn = this.getConnection();
@@ -297,38 +297,38 @@ public class DISBRemitDisposeDAO {
 				strSql = QUERY_LOT;
 			}
 			//System.out.println("strSql@@=" + strSql);
-			// ¥~¹ô¶×´Ú®É, §ï¨Ì¥I´Ú³W«h¬d¸ß
+			// å¤–å¹£åŒ¯æ¬¾æ™‚, æ”¹ä¾ä»˜æ¬¾è¦å‰‡æŸ¥è©¢
 			if (payMethod.equals("D") && payRule != null && payRule.length() > 0) {
 
 				boolean appendBank = true;
 
 				if (payRule.equals(RemittancePayRule.PLANV_DIV.getCode())) {
-					// R00440 SNº¡´Áª÷ strSql += " and (entrydt <= PINVDT or PSRCCODE IN ('B8','B9')) AND PPLANT = 'V' ";
-					//§ë¸ê«¬-°t®§B01T01F
-					strSql += " and (entrydt <= PINVDT or PSRCCODE IN ('B8','B9','BB')) AND PPLANT = 'V' ";// R00440 SNº¡´Áª÷
+					// R00440 SNæ»¿æœŸé‡‘ strSql += " and (entrydt <= PINVDT or PSRCCODE IN ('B8','B9')) AND PPLANT = 'V' ";
+					//æŠ•è³‡å‹-é…æ¯B01T01F
+					strSql += " and (entrydt <= PINVDT or PSRCCODE IN ('B8','B9','BB')) AND PPLANT = 'V' ";// R00440 SNæ»¿æœŸé‡‘
 				} else if (payRule.equals(RemittancePayRule.PLANV_NODIV.getCode())) {
-					//§ë¸ê«¬-«D°t®§B01T01B
+					//æŠ•è³‡å‹-éé…æ¯B01T01B
 					strSql += " and entrydt > PINVDT";
-					// R00440 SNº¡´Áª÷ strSql += " and PSRCCODE NOT IN ('B8','B9') AND PPLANT = 'V'  ";
-					strSql += " and PSRCCODE NOT IN ('B8','B9','BB') AND PPLANT = 'V'  ";// R00440 SNº¡´Áª÷
-					appendBank = false; // ¥u¦³¤@®a»È¦æ, ¤£¥Î¥[±ø¥ó¤F, ¤Ö°µ¤Ö¿ù
+					// R00440 SNæ»¿æœŸé‡‘ strSql += " and PSRCCODE NOT IN ('B8','B9') AND PPLANT = 'V'  ";
+					strSql += " and PSRCCODE NOT IN ('B8','B9','BB') AND PPLANT = 'V'  ";// R00440 SNæ»¿æœŸé‡‘
+					appendBank = false; // åªæœ‰ä¸€å®¶éŠ€è¡Œ, ä¸ç”¨åŠ æ¢ä»¶äº†, å°‘åšå°‘éŒ¯
 				} else if (payRule.equals(RemittancePayRule.PLANT.getCode())) {
-					// ¶Ç²Î«¬¥~¹ô
-					//¶Ç²Î«¬B03T01M
+					// å‚³çµ±å‹å¤–å¹£
+					//å‚³çµ±å‹B03T01M
 					strSql += " AND PPLANT = ' ' AND PCURR <> 'NT' ";
 				}
 
 /*RC0036          if (appendBank && PRBank != null && PRBank.length() > 0) {
-					strSql += " and PRBank like '" + PRBank.substring(0, 3) + "%'";// «È¤á¦¬´Úªº»È¦æ
+					strSql += " and PRBank like '" + PRBank.substring(0, 3) + "%'";// å®¢æˆ¶æ”¶æ¬¾çš„éŠ€è¡Œ
 				}
 */
 			}
-			// RC0036 ­Y¥I´Ú¤è¦¡¬°¥~¹ô¶×´Ú¥B¶È¿é¤J·|¥X»È¦æ¦Ó¤£­­©w¥I´Ú³W«h
+			// RC0036 è‹¥ä»˜æ¬¾æ–¹å¼ç‚ºå¤–å¹£åŒ¯æ¬¾ä¸”åƒ…è¼¸å…¥æœƒå‡ºéŠ€è¡Œè€Œä¸é™å®šä»˜æ¬¾è¦å‰‡
  			if (payMethod.equals("D") && PRBank != null && PRBank.length() > 0 && !PRBank.substring(0, 3).equals("822") ) {
- 				strSql += " and PRBank like '" + PRBank.substring(0, 3) + "%' AND SUBSTRING(PAY_SWIFT,5,2)='TW' ";// «È¤á¦¬´Úªº»È¦æ
+ 				strSql += " and PRBank like '" + PRBank.substring(0, 3) + "%' AND SUBSTRING(PAY_SWIFT,5,2)='TW' ";// å®¢æˆ¶æ”¶æ¬¾çš„éŠ€è¡Œ
  			}
 			
-			// ¥I´Ú¤è¦¡¬°¥~¹ô¶×´Ú¥B«O³æ¹ô§O¬°NT
+			// ä»˜æ¬¾æ–¹å¼ç‚ºå¤–å¹£åŒ¯æ¬¾ä¸”ä¿å–®å¹£åˆ¥ç‚ºNT
 			if (SYMBOL.equals("S")
 					&& (payRule.equals(RemittancePayRule.PLANV_DIV.getCode()) 
 							|| payRule.equals(RemittancePayRule.PLANV_NODIV.getCode()))) 
@@ -390,26 +390,26 @@ public class DISBRemitDisposeDAO {
 				vo.setIPAMT(rs.getDouble("PAMT"));
 				vo.setStrPRBank(rs.getString("PRBANK").trim());
 				vo.setStrPName(rs.getString("PNAME").trim());
-				vo.setStrPId(rs.getString("PID").trim());// ¨ü´Ú¤HID R70088 SPUL°t®§
+				vo.setStrPId(rs.getString("PID").trim());// å—æ¬¾äººID R70088 SPULé…æ¯
 				vo.setStrPRAccount(rs.getString("PRACCOUNT").trim());
 				vo.setIPCshDt(rs.getInt("PCSHDT"));
 				vo.setStrEntryUsr(rs.getString("ENTRYUSR"));
 				vo.setStrPSWIFT(rs.getString("PSWIFT"));// SWIFT CODE
-				vo.setStrPFEEWAY(rs.getString("PFEEWAY"));// ¥~¹ô¥[¤J¦¬Äò¶O¤ä¥I¤è¦¡
-				vo.setStrPPAYCURR(rs.getString("PPAYCURR")); // ¶×¥X¹ô§O
-				vo.setStrPENGNAME(rs.getString("PENGNAME"));// ­^¤å©m¦W
-				vo.setStrPBKBRCH(rs.getString("PBKBRCH"));// ¤À¦æ
-				vo.setStrPBKCITY(rs.getString("PBKCITY")); // «°¥«
-				vo.setStrPBKCOTRY(rs.getString("PBKCOTRY"));// °ê§O
-				vo.setIPPAYAMT(rs.getDouble("PPAYAMT"));// ¥~¹ôª÷ÃB
-				vo.setIPPAYRATE(rs.getDouble("PPAYRATE"));// ¥~¹ô¶×²vR70088
-				vo.setStrPSrcCode(rs.getString("PSRCCODE"));// ¤ä¥I­ì¦]½XR70088
-				vo.setIEntryDt(rs.getInt("ENTRYDT"));// ¿é¤J¤é´ÁR70088
-				vo.setIPINVDT(rs.getInt("PINVDT"));// §ë¸ê°_©l¤é
-				vo.setStrPSYMBOL(rs.getString("PSYMBOL"));// ¬O§_¬°SPUL
-				vo.setStrPCurr(rs.getString("PCURR"));// R70477 «O³æ¹ô§O
-				vo.setStrPDesc(rs.getString("PDESC"));// R90735 ¤ä¥I´y­z
-				vo.setStrPPlant(rs.getString("PPLANT"));// R00386ÀIºØÃş§O
+				vo.setStrPFEEWAY(rs.getString("PFEEWAY"));// å¤–å¹£åŠ å…¥æ”¶çºŒè²»æ”¯ä»˜æ–¹å¼
+				vo.setStrPPAYCURR(rs.getString("PPAYCURR")); // åŒ¯å‡ºå¹£åˆ¥
+				vo.setStrPENGNAME(rs.getString("PENGNAME"));// è‹±æ–‡å§“å
+				vo.setStrPBKBRCH(rs.getString("PBKBRCH"));// åˆ†è¡Œ
+				vo.setStrPBKCITY(rs.getString("PBKCITY")); // åŸå¸‚
+				vo.setStrPBKCOTRY(rs.getString("PBKCOTRY"));// åœ‹åˆ¥
+				vo.setIPPAYAMT(rs.getDouble("PPAYAMT"));// å¤–å¹£é‡‘é¡
+				vo.setIPPAYRATE(rs.getDouble("PPAYRATE"));// å¤–å¹£åŒ¯ç‡R70088
+				vo.setStrPSrcCode(rs.getString("PSRCCODE"));// æ”¯ä»˜åŸå› ç¢¼R70088
+				vo.setIEntryDt(rs.getInt("ENTRYDT"));// è¼¸å…¥æ—¥æœŸR70088
+				vo.setIPINVDT(rs.getInt("PINVDT"));// æŠ•è³‡èµ·å§‹æ—¥
+				vo.setStrPSYMBOL(rs.getString("PSYMBOL"));// æ˜¯å¦ç‚ºSPUL
+				vo.setStrPCurr(rs.getString("PCURR"));// R70477 ä¿å–®å¹£åˆ¥
+				vo.setStrPDesc(rs.getString("PDESC"));// R90735 æ”¯ä»˜æè¿°
+				vo.setStrPPlant(rs.getString("PPLANT"));// R00386éšªç¨®é¡åˆ¥
 				vo.setStrPolicyNo(rs.getString("POLICYNO"));//R10190
 				vo.setStrUsrDept(rs.getString("DEPT"));//RC0036
 				vo.setCompany(rs.getString("PAY_COMPANY"));//RD0382:OIU
@@ -432,7 +432,7 @@ public class DISBRemitDisposeDAO {
 
 	/**
 	 * @param pcshdt
-	 *            ¶×´Ú§å¸¹
+	 *            åŒ¯æ¬¾æ‰¹è™Ÿ
 	 * @return
 	 * @throws Exception
 	 */
@@ -490,7 +490,7 @@ public class DISBRemitDisposeDAO {
 		Connection conn = this.getConnection();
 		try {
 			preStmt = conn.prepareStatement(INSERT_RMTF);
-			log.info("insertRMTF:" + INSERT_RMTF + ",rmtfVo.getRPAYCURR()¬O" + rmtfVo.getRPAYCURR());
+			log.info("insertRMTF:" + INSERT_RMTF + ",rmtfVo.getRPAYCURR()æ˜¯" + rmtfVo.getRPAYCURR());
 			preStmt.setString(1, rmtfVo.getBATNO());
 			preStmt.setString(2, rmtfVo.getSEQNO());
 			preStmt.setString(3, rmtfVo.getPBK());
@@ -512,16 +512,16 @@ public class DISBRemitDisposeDAO {
 			preStmt.setInt(19, rmtfVo.getENTRYTM());
 			preStmt.setString(20, rmtfVo.getENTRYUSR().trim());
 			preStmt.setString(21, rmtfVo.getMEMO());
-			/* R60550 ·s¼W2­ÓÄæ¦ì */
+			/* R60550 æ–°å¢2å€‹æ¬„ä½ */
 			preStmt.setDouble(22, rmtfVo.getRPAYAMT());
-			preStmt.setString(23, rmtfVo.getRPAYCURR());// ¶×¥X¹ô§O
-			/* ¤âÄò¶O¤ä¥I¤è¦¡ */
+			preStmt.setString(23, rmtfVo.getRPAYCURR());// åŒ¯å‡ºå¹£åˆ¥
+			/* æ‰‹çºŒè²»æ”¯ä»˜æ–¹å¼ */
 			preStmt.setString(24, rmtfVo.getRPAYFEEWAY().trim());
 			preStmt.setString(25, rmtfVo.getSWIFTCODE().trim());
-			preStmt.setString(26, rmtfVo.getPENGNAME().trim());// ­^¤å©m¦W
-			preStmt.setString(27, rmtfVo.getRBKBRCH().trim());// ¤À¦æ
-			preStmt.setString(28, rmtfVo.getRBKCITY().trim()); // «°¥«
-			preStmt.setString(29, rmtfVo.getRBKCOUNTRY().trim()); // °ê§O
+			preStmt.setString(26, rmtfVo.getPENGNAME().trim());// è‹±æ–‡å§“å
+			preStmt.setString(27, rmtfVo.getRBKBRCH().trim());// åˆ†è¡Œ
+			preStmt.setString(28, rmtfVo.getRBKCITY().trim()); // åŸå¸‚
+			preStmt.setString(29, rmtfVo.getRBKCOUNTRY().trim()); // åœ‹åˆ¥
 			preStmt.setDouble(30, rmtfVo.getRBENFEE());// R70088
 			preStmt.setDouble(31, rmtfVo.getRPAYRATE());// R70088]
 			preStmt.setString(32, rmtfVo.getRPCURR());// R70477
@@ -550,9 +550,9 @@ public class DISBRemitDisposeDAO {
 		return ret;
 	}
 
-	// ¦Û DbFactory ¤¤¨ú±o¤@­Ó Connection
+	// è‡ª DbFactory ä¸­å–å¾—ä¸€å€‹ Connection
 	public Connection getConnection() throws SQLException {
-		// ¥ı¨ú±o¸ê®Æ®w³sµ²¤Î·Ç³ÆSQL
+		// å…ˆå–å¾—è³‡æ–™åº«é€£çµåŠæº–å‚™SQL
 		if (conn2 == null) {
 			conn2 = dbFactory.getConnection(DISBRemitDisposeDAO.class + ".DataClass.getConnection()");
 		}
@@ -567,9 +567,9 @@ public class DISBRemitDisposeDAO {
 
 		while (rs.next()) {
 			if (PMethod.equals("D")){
-				if (rs.getString("PAYRULECODE").equals("1")){//³W«h1
+				if (rs.getString("PAYRULECODE").equals("1")){//è¦å‰‡1
 					if (!PRBank.equals("") && !PRBank.substring(0,3).equals(rs.getString("PRBANK").substring(0,3))) continue ;
-				}else if (rs.getString("PAYRULECODE").equals("3")){//³W«h3
+				}else if (rs.getString("PAYRULECODE").equals("3")){//è¦å‰‡3
 					if (!PRBank.equals("") && !PRBank.substring(0,3).equals(rs.getString("PRBANK").substring(0,3))) continue ;
 				}
 			}
@@ -589,14 +589,14 @@ public class DISBRemitDisposeDAO {
 			vo.setStrPCurr(rs.getString("PCURR"));
 			if (PMethod.equals("D")) {
 				vo.setStrPPAYCURR(rs.getString("PPAYCURR"));
-				vo.setIPPAYAMT(rs.getDouble("PPAYAMT"));// ¥~¹ôª÷ÃB
+				vo.setIPPAYAMT(rs.getDouble("PPAYAMT"));// å¤–å¹£é‡‘é¡
 				vo.setStrPSWIFT(rs.getString("PSWIFT"));
-				vo.setStrPFEEWAY(rs.getString("PFEEWAY"));// ¥~¹ô¥[¤J¦¬Äò¶O¤ä¥I¤è¦¡
-				vo.setStrPPAYCURR(rs.getString("PPAYCURR")); // ¶×¥X¹ô§O
-				vo.setStrPENGNAME(rs.getString("PENGNAME"));// ­^¤å©m¦W
-				vo.setStrPBKBRCH(rs.getString("PBKBRCH"));// ¤À¦æ
-				vo.setStrPBKCITY(rs.getString("PBKCITY")); // «°¥«
-				vo.setStrPBKCOTRY(rs.getString("PBKCOTRY"));// °ê§O
+				vo.setStrPFEEWAY(rs.getString("PFEEWAY"));// å¤–å¹£åŠ å…¥æ”¶çºŒè²»æ”¯ä»˜æ–¹å¼
+				vo.setStrPPAYCURR(rs.getString("PPAYCURR")); // åŒ¯å‡ºå¹£åˆ¥
+				vo.setStrPENGNAME(rs.getString("PENGNAME"));// è‹±æ–‡å§“å
+				vo.setStrPBKBRCH(rs.getString("PBKBRCH"));// åˆ†è¡Œ
+				vo.setStrPBKCITY(rs.getString("PBKCITY")); // åŸå¸‚
+				vo.setStrPBKCOTRY(rs.getString("PBKCOTRY"));// åœ‹åˆ¥
 
 				// R00386
 				// if( rs.getString("PPLANT").equals( " " ) &&

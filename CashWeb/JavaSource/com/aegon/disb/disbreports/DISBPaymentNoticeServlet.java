@@ -23,7 +23,7 @@ import javax.servlet.http.HttpSession;
 /**
  * System   : CashWeb
  * 
- * Function : µ¹¥I³qª¾®Ñ
+ * Function : çµ¦ä»˜é€šçŸ¥æ›¸
  * 
  * Remark   :
  * 
@@ -39,46 +39,46 @@ import javax.servlet.http.HttpSession;
  * 
  * $$Log: DISBPaymentNoticeServlet.java,v $
  * $Revision 1.12  2013/12/27 03:42:50  MISSALLY
- * $EB0194-PB0016---·s¼W¥i­×§ïµ¹¥I³qª¾®Ñªº¦¬¥ó¤H
+ * $EB0194-PB0016---æ–°å¢å¯ä¿®æ”¹çµ¦ä»˜é€šçŸ¥æ›¸çš„æ”¶ä»¶äºº
  * $
  * $Revision 1.11  2013/11/08 05:52:33  MISSALLY
- * $EB0194-PB0016-BC255§Q²vÅÜ°Ê«¬§Y´Á¦~ª÷«OÀI±M®×
+ * $EB0194-PB0016-BC255åˆ©ç‡è®Šå‹•å‹å³æœŸå¹´é‡‘ä¿éšªå°ˆæ¡ˆ
  * $
  * $Revision 1.10  2013/04/12 06:10:25  MISSALLY
- * $RA0074 FNEº¡´Á¥Í¦sª÷¨ü¯q¤H±b¤á¤Îµ¹¥I
+ * $RA0074 FNEæ»¿æœŸç”Ÿå­˜é‡‘å—ç›Šäººå¸³æˆ¶åŠçµ¦ä»˜
  * $
  * $Revision 1.8  2010/11/23 07:01:22  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.7  2009/11/11 06:21:07  missteven
- * $R90474 ­×§ïCASH¥\¯à
+ * $R90474 ä¿®æ”¹CASHåŠŸèƒ½
  * $
  * $Revision 1.6  2009/04/23 06:39:51  missteven
- * $§ó·sFF Àô¹ÒAegon119 to Aegon117
+ * $æ›´æ–°FF ç’°å¢ƒAegon119 to Aegon117
  * $
  * $Revision 1.5  2009/04/15 08:01:39  missteven
  * $R90172 Add FF service message return details
  * $
  * $Revision 1.4  2009/04/15 06:21:27  missteven
- * $R90172 FF¨t²Î¤ä¥I¿ï¾Ücontract suspense¡AFF¨t²Î»İ¦P²{¦æCAPSIL¦p¹ê¥I¬°0¡ACASH¥ç¥iÅıUSER°õ¦æ·s¼W¤Î¦C¦Lµ¹¥I³qª¾®Ñ
+ * $R90172 FFç³»çµ±æ”¯ä»˜é¸æ“‡contract suspenseï¼ŒFFç³»çµ±éœ€åŒç¾è¡ŒCAPSILå¦‚å¯¦ä»˜ç‚º0ï¼ŒCASHäº¦å¯è®“USERåŸ·è¡Œæ–°å¢åŠåˆ—å°çµ¦ä»˜é€šçŸ¥æ›¸
  * $
  * $Revision 1.3  2007/04/20 03:16:45  MISODIN
  * $R60713 FOR AWD
  * $
  * $Revision 1.2  2006/12/05 10:20:24  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $Revision 1.1  2006/06/29 09:40:39  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.8  2005/10/14 07:48:56  misangel
- * $R50835:¤ä¥I¥\¯à´£¤É
+ * $R50835:æ”¯ä»˜åŠŸèƒ½æå‡
  * $
  * $Revision 1.1.2.6  2005/04/12 10:08:05  miselsa
- * $R30530_¤ä¥I³qª¾®Ñ
+ * $R30530_æ”¯ä»˜é€šçŸ¥æ›¸
  * $
  * $Revision 1.1.2.5  2005/04/04 07:02:19  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -141,7 +141,7 @@ public class DISBPaymentNoticeServlet extends InitDBServlet {
 		DISBPaymentNoticeDAO dao = new DISBPaymentNoticeDAO(dbFactory);
 		Vector payments = dao.query(POLICYNO,LogonUser,UserDept,UserRight);
 		if(payments.size()==0) {
-			request.setAttribute("txtMsg","¬d¨ì 0 µ§¸ê®Æ");	
+			request.setAttribute("txtMsg","æŸ¥åˆ° 0 ç­†è³‡æ–™");	
 		}
 		request.setAttribute("payments",payments);
 	}
@@ -159,7 +159,7 @@ public class DISBPaymentNoticeServlet extends InitDBServlet {
 		DISBPaymentNoticeDAO dao = new DISBPaymentNoticeDAO(dbFactory);		
 		Vector payments = dao.queryZ(POLICYNO,LogonUser,UserDept,UserRight);
 		if(payments.size()==0) {
-			request.setAttribute("txtMsg","¬d¨ì 0 µ§¸ê®Æ");	
+			request.setAttribute("txtMsg","æŸ¥åˆ° 0 ç­†è³‡æ–™");	
 		}
 		request.setAttribute("payments",payments);
 	}
@@ -176,7 +176,7 @@ public class DISBPaymentNoticeServlet extends InitDBServlet {
 		CAPPAYReportVO notice = dao.queryNotice(PNO);
 
 		if(notice==null) {
-			request.setAttribute("txtMsg","§ä¤£¨ì¸Óµ§¸ê®Æ [ PNO = "+PNO+" ]");	
+			request.setAttribute("txtMsg","æ‰¾ä¸åˆ°è©²ç­†è³‡æ–™ [ PNO = "+PNO+" ]");	
 		}
 		request.setAttribute("notice",notice);
 	}
@@ -194,7 +194,7 @@ public class DISBPaymentNoticeServlet extends InitDBServlet {
 		CAPPAYReportVO notice = dao.queryNoticeZ(PNO);
 
 		if(notice==null) {
-			request.setAttribute("txtMsg","§ä¤£¨ì¸Óµ§¸ê®Æ [ PNO = "+PNO+" ]");	
+			request.setAttribute("txtMsg","æ‰¾ä¸åˆ°è©²ç­†è³‡æ–™ [ PNO = "+PNO+" ]");	
 		}
 		request.setAttribute("notice",notice);
 	}
@@ -281,7 +281,7 @@ public class DISBPaymentNoticeServlet extends InitDBServlet {
 		DISBPaymentNoticeDAO dao = new DISBPaymentNoticeDAO(dbFactory);
 		int n  = dao.update(vo);
 
-		request.setAttribute("txtMsg",n+"µ§¸ê®Æ¤w­×§ï");	
+		request.setAttribute("txtMsg",n+"ç­†è³‡æ–™å·²ä¿®æ”¹");	
 	}
 
 	// R60713
@@ -298,12 +298,12 @@ public class DISBPaymentNoticeServlet extends InitDBServlet {
 
 		Connection con = dbFactory.getAS400Connection("DISBPMaintainServlet.insertDB()");
 
-		int iEntryDate = 0; //¿é¤J¤é´Á
-		int iEntryTime = 0; //¿é¤J®É¶¡
+		int iEntryDate = 0; //è¼¸å…¥æ—¥æœŸ
+		int iEntryTime = 0; //è¼¸å…¥æ™‚é–“
 		String strPNO = "";
 		String strSql = ""; 
 		String strReturnMsg = "";
-		String strBranch = "";//³æ¦ì
+		String strBranch = "";//å–®ä½
 		String strMailzip = "";	
 		String strMailad= "";
 		String strHMzip = "";	
@@ -326,7 +326,7 @@ public class DISBPaymentNoticeServlet extends InitDBServlet {
 		disbBean = new DISBBean(dbFactory);
 
 		try {
-			/* ¨ú±o¤ä¥I§Ç¸¹*/
+			/* å–å¾—æ”¯ä»˜åºè™Ÿ*/
 			//
 			htReturnInfo = (Hashtable) disbBean.getDISBSeqNo("DISB", LogonUser, con);
 			strReturnMsg = (String)htReturnInfo.get("ReturnMsg");
@@ -334,7 +334,7 @@ public class DISBPaymentNoticeServlet extends InitDBServlet {
 			{
 				strPNO = (String)htReturnInfo.get("ReturnValue");
 				request.setAttribute("txtPNo", strPNO);
-				/*¨ú±o«O³æ³æ¦ì*/
+				/*å–å¾—ä¿å–®å–®ä½*/
 				htReturnInfo = null;
 				if(!strPOLICYNO.equals(""))
 				{
@@ -381,9 +381,9 @@ public class DISBPaymentNoticeServlet extends InitDBServlet {
 					pstmtTmp.setString(14, LogonUser);
 
 					if (pstmtTmp.executeUpdate() != 1) {
-						strReturnMsg="·s¼W¥¢±Ñ";
+						strReturnMsg="æ–°å¢å¤±æ•—";
 					} else {
-						request.setAttribute("txtMsg", "·s¼W¦¨¥\, ¤ä¥I§Ç¸¹¬°:"+ strPNO);
+						request.setAttribute("txtMsg", "æ–°å¢æˆåŠŸ, æ”¯ä»˜åºè™Ÿç‚º:"+ strPNO);
 						request.setAttribute("isErr", "");
 					}
 					pstmtTmp.close();
@@ -399,7 +399,7 @@ public class DISBPaymentNoticeServlet extends InitDBServlet {
 			}
 
 		} 	catch (SQLException e) {
-			request.setAttribute("txtMsg", "·s¼W¥¢±Ñ:"+e);
+			request.setAttribute("txtMsg", "æ–°å¢å¤±æ•—:"+e);
 			request.setAttribute("isErr", "Y");
 			if (con != null)
 				dbFactory.releaseAS400Connection(con);

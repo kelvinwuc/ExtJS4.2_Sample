@@ -32,62 +32,62 @@ import org.apache.log4j.Logger;
  * 
  * $$Log: DISBPMaintainServlet.java,v $
  * $Revision 1.14  2013/12/24 03:03:31  MISSALLY
- * $R00135---PA0024---CASH¦~«×±M®×
+ * $R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ
  * $
  * $Revision 1.13  2013/05/30 02:03:54  MISSALLY
- * $RA0064-CMP±M®×CASH°t¦X­×§ï
+ * $RA0064-CMPå°ˆæ¡ˆCASHé…åˆä¿®æ”¹
  * $
  * $Revision 1.12  2013/02/26 10:22:58  ODCWilliam
  * $william wu
  * $RA0074
  * $
  * $Revision 1.11  2012/05/18 09:47:37  MISSALLY
- * $R10314 CASH¨t²Î·|­p§@·~­×§ï
+ * $R10314 CASHç³»çµ±æœƒè¨ˆä½œæ¥­ä¿®æ”¹
  * $
  * $Revision 1.10  2010/11/23 06:45:21  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.9  2008/08/21 09:17:32  misvanessa
- * $R80631_·s¼W­ì©l¥I´Ú¤è¦¡ (FOR FF)
+ * $R80631_æ–°å¢åŸå§‹ä»˜æ¬¾æ–¹å¼ (FOR FF)
  * $
  * $Revision 1.8  2008/05/02 10:17:41  misvanessa
- * $R80300_¦¬³æ¦æÂà¥x·s,·s¼W¤U¸üÀÉ®×¤Î³øªí ¥~¹ô¦sÀÉfix
+ * $R80300_æ”¶å–®è¡Œè½‰å°æ–°,æ–°å¢ä¸‹è¼‰æª”æ¡ˆåŠå ±è¡¨ å¤–å¹£å­˜æª”fix
  * $
  * $Revision 1.7  2008/04/30 07:47:50  misvanessa
- * $R80300_¦¬³æ¦æÂà¥x·s,·s¼W¤U¸üÀÉ®×¤Î³øªí
+ * $R80300_æ”¶å–®è¡Œè½‰å°æ–°,æ–°å¢ä¸‹è¼‰æª”æ¡ˆåŠå ±è¡¨
  * $
  * $Revision 1.6  2007/11/13 06:43:57  MISVANESSA
- * $Q70581_½u¤W·s¼W¥~¹ô¶×´Ú¤ä¥I©ú²Ó(BUGFIX)
+ * $Q70581_ç·šä¸Šæ–°å¢å¤–å¹£åŒ¯æ¬¾æ”¯ä»˜æ˜ç´°(BUGFIX)
  * $
  * $Revision 1.5  2007/01/31 03:55:50  MISVANESSA
- * $R70088_SPUL°t®§_·s¼WMETHOD
+ * $R70088_SPULé…æ¯_æ–°å¢METHOD
  * $
  * $Revision 1.4  2007/01/05 10:09:33  MISVANESSA
- * $R60550_¶×°h¤ä¥I¤è¦¡
+ * $R60550_åŒ¯é€€æ”¯ä»˜æ–¹å¼
  * $
  * $Revision 1.3  2007/01/04 03:13:54  MISVANESSA
- * $R60550_·s¼WSHOW¶×°h¤âÄò¶O
+ * $R60550_æ–°å¢SHOWåŒ¯é€€æ‰‹çºŒè²»
  * $
  * $Revision 1.2  2006/11/30 09:11:51  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $Revision 1.1  2006/06/29 09:40:15  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.14  2006/05/19 07:21:10  misangel
- * $R50891:VA¬ü¤¸«O³æ-Åã¥Ü¹ô§O
+ * $R50891:VAç¾å…ƒä¿å–®-é¡¯ç¤ºå¹£åˆ¥
  * $
  * $Revision 1.1.2.13  2006/04/27 09:16:11  misangel
- * $R50891:VA¬ü¤¸«O³æ-Åã¥Ü¹ô§O
+ * $R50891:VAç¾å…ƒä¿å–®-é¡¯ç¤ºå¹£åˆ¥
  * $
  * $Revision 1.1.2.12  2005/07/19 04:12:03  MISANGEL
- * $Q50274 : ÀË®Ö¶×´Ú»È¦æ-Àx¦s®ÉÀË®Ö¶×´Ú»È¦æ¬O§_¦s¦b,­Y¤£¦s¦b,«hµLªkÀx¦s
+ * $Q50274 : æª¢æ ¸åŒ¯æ¬¾éŠ€è¡Œ-å„²å­˜æ™‚æª¢æ ¸åŒ¯æ¬¾éŠ€è¡Œæ˜¯å¦å­˜åœ¨,è‹¥ä¸å­˜åœ¨,å‰‡ç„¡æ³•å„²å­˜
  * $
  * $Revision 1.1.2.11  2005/04/28 08:56:25  miselsa
- * $R30530¥­¦æ´ú¸Õªº­×§ï
+ * $R30530å¹³è¡Œæ¸¬è©¦çš„ä¿®æ”¹
  * $
  * $Revision 1.1.2.10  2005/04/04 07:02:24  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -167,34 +167,34 @@ public class DISBPMaintainServlet extends HttpServlet {
 			alBankCode = (List) session.getAttribute("BankCodeList");
 		}
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-		String strPolNo = ""; // «O³æ¸¹½X
-		String strAPPNo = ""; // ­n«O®Ñ¸¹½X
-		String strPName = ""; // ¨ü´Ú¤H©m¦W
-		String strPId = ""; // ¨ü´Ú¤HID
-		String strPAMT = ""; // ¤ä¥Iª÷ÃB
-		String strPDate = ""; // ¥I´Ú¤é´Á
-		String strPMethod = ""; // ¥I´Ú¤è¦¡
-		String strPDesc = ""; // ¤ä¥I´y­z
-		String strPSrcCode = ""; // ¤ä¥I­ì¦]¥N½X
-		String strPRBank = ""; // ¶×´Ú»È¦æ
-		String strPRAccount = ""; // ¶×´Ú±b¸¹
-		String strPCrdNo = ""; // «H¥Î¥d¥d¸¹
-		String strPCrdType = ""; // ¥d§O
-		String strPCrdEffMY = ""; // ¦³®Ä¦~¤ë
-		String strPCHKM1 = ""; // ¤ä²¼¸T­I
-		String strPCHKM2 = ""; // ¤ä²¼¹º½u
-		String strBranch = "";// ³æ¦ì
-		String strServiceBranch = "";	//¤À¤½¥q
-		int iEntryDate = 0; // ¿é¤J¤é´Á
-		int iEntryTime = 0; // ¿é¤J®É¶¡
-		double iPAMT = 0; // ¤ä¥Iª÷ÃB
-		int iPDate = 0;// ¥I´Ú¤é´Á
-		int iPAuthDt = 0;// ±ÂÅv¥æ©ö¤é
-		String strPAuthDt = "";// ±ÂÅv¥æ©ö¤é
-		String strUDispatch = ""; // «æ¥ó§_
-		String strCurrency = ""; // ¹ô§O
-		// R60550·s¼W¥~¹ô¶×´ÚÄæ¦ì
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strPolNo = ""; // ä¿å–®è™Ÿç¢¼
+		String strAPPNo = ""; // è¦ä¿æ›¸è™Ÿç¢¼
+		String strPName = ""; // å—æ¬¾äººå§“å
+		String strPId = ""; // å—æ¬¾äººID
+		String strPAMT = ""; // æ”¯ä»˜é‡‘é¡
+		String strPDate = ""; // ä»˜æ¬¾æ—¥æœŸ
+		String strPMethod = ""; // ä»˜æ¬¾æ–¹å¼
+		String strPDesc = ""; // æ”¯ä»˜æè¿°
+		String strPSrcCode = ""; // æ”¯ä»˜åŸå› ä»£ç¢¼
+		String strPRBank = ""; // åŒ¯æ¬¾éŠ€è¡Œ
+		String strPRAccount = ""; // åŒ¯æ¬¾å¸³è™Ÿ
+		String strPCrdNo = ""; // ä¿¡ç”¨å¡å¡è™Ÿ
+		String strPCrdType = ""; // å¡åˆ¥
+		String strPCrdEffMY = ""; // æœ‰æ•ˆå¹´æœˆ
+		String strPCHKM1 = ""; // æ”¯ç¥¨ç¦èƒŒ
+		String strPCHKM2 = ""; // æ”¯ç¥¨åŠƒç·š
+		String strBranch = "";// å–®ä½
+		String strServiceBranch = "";	//åˆ†å…¬å¸
+		int iEntryDate = 0; // è¼¸å…¥æ—¥æœŸ
+		int iEntryTime = 0; // è¼¸å…¥æ™‚é–“
+		double iPAMT = 0; // æ”¯ä»˜é‡‘é¡
+		int iPDate = 0;// ä»˜æ¬¾æ—¥æœŸ
+		int iPAuthDt = 0;// æˆæ¬Šäº¤æ˜“æ—¥
+		String strPAuthDt = "";// æˆæ¬Šäº¤æ˜“æ—¥
+		String strUDispatch = ""; // æ€¥ä»¶å¦
+		String strCurrency = ""; // å¹£åˆ¥
+		// R60550æ–°å¢å¤–å¹£åŒ¯æ¬¾æ¬„ä½
 		String strINVDTC = "";
 		int iINVDT = 0;
 		String strPAYCURR = "";
@@ -213,17 +213,17 @@ public class DISBPMaintainServlet extends HttpServlet {
 		String strPBKCOTRY = "";
 		String strPENGNAME = "";
 		String strSYMBOL = "";
-		double iPOrgAMT = 0; // R80300 ­ì¨êª÷ÃB
-		String strPOrgCrdNo = "";// R80300 ­ì¨ê¥d¸¹
-		String strPOrgAMT = ""; // R80300 ­ì¨êª÷ÃB
+		double iPOrgAMT = 0; // R80300 åŸåˆ·é‡‘é¡
+		String strPOrgCrdNo = "";// R80300 åŸåˆ·å¡è™Ÿ
+		String strPOrgAMT = ""; // R80300 åŸåˆ·é‡‘é¡
 
 		iEntryDate = Integer.parseInt((String) commonUtil
 				.convertWesten2ROCDate1(cldToday.getTime()));
 		iEntryTime = Integer.parseInt((String) sdfFormatter.format(cldToday
 				.getTime()));
-		String strPNO = ""; // ¤ä¥I§Ç¸¹
+		String strPNO = ""; // æ”¯ä»˜åºè™Ÿ
 
-		/* ¨ú±o«eºİÄæ¦ì¸ê®Æ */
+		/* å–å¾—å‰ç«¯æ¬„ä½è³‡æ–™ */
 		strPolNo = request.getParameter("txtUPolNo");
 		if (strPolNo != null)
 			strPolNo = strPolNo.trim();
@@ -434,13 +434,13 @@ public class DISBPMaintainServlet extends HttpServlet {
 		if (strSYMBOL != null) {
 			strSYMBOL = strSYMBOL.trim().toUpperCase();
 		}
-		// R80300 «H¥Î¥d­ì¨ê¥d¸¹
+		// R80300 ä¿¡ç”¨å¡åŸåˆ·å¡è™Ÿ
 		strPOrgCrdNo = request.getParameter("txtUPOrgCrdNo");
 		if (strPOrgCrdNo != null) {
 			strPOrgCrdNo = strPOrgCrdNo.trim();
 		}
 		strPOrgAMT = request.getParameter("txtUPOrgAMT");
-		// R80300 «H¥Î¥d­ì¨êª÷ÃB
+		// R80300 ä¿¡ç”¨å¡åŸåˆ·é‡‘é¡
 		if (strPOrgAMT != null)
 			strPOrgAMT = strPOrgAMT.trim();
 		else
@@ -463,12 +463,12 @@ public class DISBPMaintainServlet extends HttpServlet {
 				}
 			}
 			if (bBankExist == false) {
-				request.setAttribute("txtMsg", "¶×´Ú»È¦æ¿ù»~,½Ğ½T»{");
+				request.setAttribute("txtMsg", "åŒ¯æ¬¾éŠ€è¡ŒéŒ¯èª¤,è«‹ç¢ºèª");
 				strReturnMsg = inquiryDB(request, response);
 			}
 		}
 
-		/* ·s¼W¨ì¤ä¥I¥DÀÉ */
+		/* æ–°å¢åˆ°æ”¯ä»˜ä¸»æª” */
 		if (bBankExist == true) {
 			strSql = " insert into  CAPPAYF "
 					+ " (PNO,POLICYNO,APPNO,PDATE,PNAME,PSNAME,PID,PAMT,PMETHOD,PCFMDT1,PCFMTM1,PCFMUSR1,PDESC"
@@ -490,14 +490,14 @@ public class DISBPMaintainServlet extends HttpServlet {
 			disbBean = new DISBBean(dbFactory);
 
 			try {
-				/* ¨ú±o¤ä¥I§Ç¸¹ */
+				/* å–å¾—æ”¯ä»˜åºè™Ÿ */
 				//
 				htReturnInfo = (Hashtable) disbBean.getDISBSeqNo("DISB", strLogonUser, con);
 				strReturnMsg = (String) htReturnInfo.get("ReturnMsg");
 				if (strReturnMsg.equals("")) {
 					strPNO = (String) htReturnInfo.get("ReturnValue");
 					request.setAttribute("txtPNo", strPNO);
-					/* ¨ú±o«O³æ³æ¦ì */
+					/* å–å¾—ä¿å–®å–®ä½ */
 					htReturnInfo = null;
 					if (!strPolNo.equals("")) {
 						htReturnInfo = (Hashtable) disbBean.getPolDiv(strPolNo, con);
@@ -564,9 +564,9 @@ public class DISBPMaintainServlet extends HttpServlet {
 							pstmtTmp.setString(46, strServiceBranch);
 						}
 						if (pstmtTmp.executeUpdate() != 1) {
-							strReturnMsg = "·s¼W¥¢±Ñ";
+							strReturnMsg = "æ–°å¢å¤±æ•—";
 						} else {
-							request.setAttribute("txtMsg", "·s¼W¦¨¥\, ¤ä¥I§Ç¸¹¬°:" + strPNO);
+							request.setAttribute("txtMsg", "æ–°å¢æˆåŠŸ, æ”¯ä»˜åºè™Ÿç‚º:" + strPNO);
 							request.setAttribute("isErr", "");
 						}
 						pstmtTmp.close();
@@ -586,7 +586,7 @@ public class DISBPMaintainServlet extends HttpServlet {
 					}
 				}
 			} catch (SQLException e) {
-				request.setAttribute("txtMsg", "·s¼W¥¢±Ñ:" + e);
+				request.setAttribute("txtMsg", "æ–°å¢å¤±æ•—:" + e);
 				request.setAttribute("isErr", "Y");
 				if (con != null)
 					dbFactory.releaseAS400Connection(con);
@@ -620,8 +620,8 @@ public class DISBPMaintainServlet extends HttpServlet {
 				.convertWesten2ROCDate1(cldToday.getTime()));
 		int iUpdTime = Integer.parseInt((String) sdfFormatter.format(cldToday
 				.getTime()));
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-		String strPNO = ""; // ¤ä¥I§Ç¸¹
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strPNO = ""; // æ”¯ä»˜åºè™Ÿ
 		strPNO = request.getParameter("txtUPNO");
 		if (strPNO != null)
 			strPNO = strPNO.trim();
@@ -635,16 +635,16 @@ public class DISBPMaintainServlet extends HttpServlet {
 		strSql += " where PNO ='" + strPNO + "'";
 
 		try {
-			// ¤Ulog
+			// ä¸‹log
 			disbBean = new DISBBean(dbFactory);
 			strReturnMsg = disbBean.insertCAPPAYFLOG(strPNO, strLogonUser,
 					iUpdDate, iUpdTime, con);
 			if (strReturnMsg.equals("")) {
 				pstmtTmp = con.prepareStatement(strSql);
 				if (pstmtTmp.executeUpdate() != 1) {
-					strReturnMsg = "¨ú®ø½T»{¥¢±Ñ";
+					strReturnMsg = "å–æ¶ˆç¢ºèªå¤±æ•—";
 				} else {
-					request.setAttribute("txtMsg", "¨ú®ø½T»{¦¨¥\");
+					request.setAttribute("txtMsg", "å–æ¶ˆç¢ºèªæˆåŠŸ");
 					request.setAttribute("isErr", "");
 				}
 			}
@@ -662,7 +662,7 @@ public class DISBPMaintainServlet extends HttpServlet {
 				}
 			}
 		} catch (SQLException e) {
-			request.setAttribute("txtMsg", "¨ú®ø½T»{¥¢±Ñ:" + e);
+			request.setAttribute("txtMsg", "å–æ¶ˆç¢ºèªå¤±æ•—:" + e);
 			request.setAttribute("isErr", "Y");
 			if (con != null)
 				dbFactory.releaseAS400Connection(con);
@@ -729,8 +729,8 @@ public class DISBPMaintainServlet extends HttpServlet {
 				.convertWesten2ROCDate1(cldToday.getTime()));
 		int iUpdTime = Integer.parseInt((String) sdfFormatter.format(cldToday
 				.getTime()));
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-		String strPNO = ""; // ¤ä¥I§Ç¸¹
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strPNO = ""; // æ”¯ä»˜åºè™Ÿ
 		strPNO = request.getParameter("txtUPNO");
 		if (strPNO != null)
 			strPNO = strPNO.trim();
@@ -750,9 +750,9 @@ public class DISBPMaintainServlet extends HttpServlet {
 			if (strReturnMsg.equals("")) {
 				pstmtTmp = con.prepareStatement(strSql);
 				if (pstmtTmp.executeUpdate() != 1) {
-					strReturnMsg = "°õ¦æ§@¼o¥¢±Ñ";
+					strReturnMsg = "åŸ·è¡Œä½œå»¢å¤±æ•—";
 				} else {
-					request.setAttribute("txtMsg", "°õ¦æ§@¼o¦¨¥\");
+					request.setAttribute("txtMsg", "åŸ·è¡Œä½œå»¢æˆåŠŸ");
 					request.setAttribute("isErr", "");
 				}
 				pstmtTmp.close();
@@ -772,7 +772,7 @@ public class DISBPMaintainServlet extends HttpServlet {
 			}
 		} catch (SQLException e) {
 			request.setAttribute("isErr", "Y");
-			request.setAttribute("txtMsg", "°õ¦æ§@¼o¥¢±Ñ:" + e);
+			request.setAttribute("txtMsg", "åŸ·è¡Œä½œå»¢å¤±æ•—:" + e);
 			if (con != null)
 				dbFactory.releaseAS400Connection(con);
 		} finally {
@@ -823,28 +823,28 @@ public class DISBPMaintainServlet extends HttpServlet {
 		int iUpdDate = Integer.parseInt((String) commonUtil.convertWesten2ROCDate1(cldToday.getTime()));
 		int iUpdTime = Integer.parseInt((String) sdfFormatter.format(cldToday.getTime()));
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-		String strPNO = ""; // ¤ä¥I§Ç¸¹
-		String strPName = ""; // ¨ü´Ú¤H©m¦W
-		String strPId = "";// ¨ü´Ú¤HId
-		String strPMethod = ""; // ¥I´Ú¤è¦¡
-		String strPDesc = ""; // ¤ä¥I´y­z
-		String strPRBank = ""; // ¶×´Ú»È¦æ
-		String strPRAccount = ""; // ¶×´Ú±b¸¹
-		String strPCrdNo = ""; // «H¥Î¥d¥d¸¹
-		String strPCrdType = ""; // ¥d§O
-		String strPCrdEffMY = ""; // ¦³®Ä¦~¤ë
-		String strUPAuthCode = ""; // ±ÂÅv½X
-		String strUDispatch = ""; // «æ¥ó§_
-		String strUPCHKM1 = ""; // ¤ä²¼¸T­I
-		String strUPCHKM2 = ""; // ¤ä²¼¹º½u
-		String strPDate = ""; // ¥I´Ú¤é´Á
-		int iPDate = 0;// ¥I´Ú¤é´Á
-		int iPAuthDt = 0;// ±ÂÅv¥æ©ö¤é
-		String strPAuthDt = "";// ±ÂÅv¥æ©ö¤é
-		String strPSrcCode = "";// ¤ä¥I¨Ó·½
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strPNO = ""; // æ”¯ä»˜åºè™Ÿ
+		String strPName = ""; // å—æ¬¾äººå§“å
+		String strPId = "";// å—æ¬¾äººId
+		String strPMethod = ""; // ä»˜æ¬¾æ–¹å¼
+		String strPDesc = ""; // æ”¯ä»˜æè¿°
+		String strPRBank = ""; // åŒ¯æ¬¾éŠ€è¡Œ
+		String strPRAccount = ""; // åŒ¯æ¬¾å¸³è™Ÿ
+		String strPCrdNo = ""; // ä¿¡ç”¨å¡å¡è™Ÿ
+		String strPCrdType = ""; // å¡åˆ¥
+		String strPCrdEffMY = ""; // æœ‰æ•ˆå¹´æœˆ
+		String strUPAuthCode = ""; // æˆæ¬Šç¢¼
+		String strUDispatch = ""; // æ€¥ä»¶å¦
+		String strUPCHKM1 = ""; // æ”¯ç¥¨ç¦èƒŒ
+		String strUPCHKM2 = ""; // æ”¯ç¥¨åŠƒç·š
+		String strPDate = ""; // ä»˜æ¬¾æ—¥æœŸ
+		int iPDate = 0;// ä»˜æ¬¾æ—¥æœŸ
+		int iPAuthDt = 0;// æˆæ¬Šäº¤æ˜“æ—¥
+		String strPAuthDt = "";// æˆæ¬Šäº¤æ˜“æ—¥
+		String strPSrcCode = "";// æ”¯ä»˜ä¾†æº
 		String strCurrency = "";
-		// R60550·s¼W¥~¹ô¶×´ÚÄæ¦ì
+		// R60550æ–°å¢å¤–å¹£åŒ¯æ¬¾æ¬„ä½
 		String strPFEEWAY = "";
 		String strPSWIFT = "";
 		String strPBKBRCH = "";
@@ -852,13 +852,13 @@ public class DISBPMaintainServlet extends HttpServlet {
 		String strPBKCOTRY = "";
 		String strPENGNAME = "";
 		String strSYMBOL = "";
-		double iPOrgAMT = 0; // R80300 ­ì¨êª÷ÃB
-		String strPOrgCrdNo = "";// R80300 ­ì¨ê¥d¸¹
-		String strPOrgAMT = ""; // R80300 ­ì¨êª÷ÃB
+		double iPOrgAMT = 0; // R80300 åŸåˆ·é‡‘é¡
+		String strPOrgCrdNo = "";// R80300 åŸåˆ·å¡è™Ÿ
+		String strPOrgAMT = ""; // R80300 åŸåˆ·é‡‘é¡
 		double iPAYAMTNT = 0;	//R10314
 		String strPAYAMTNT = "";//R10314
 
-		/* ¨ú±o«eºİÄæ¦ì¸ê®Æ */
+		/* å–å¾—å‰ç«¯æ¬„ä½è³‡æ–™ */
 		strPNO = request.getParameter("txtUPNO");
 		if (strPNO != null)
 			strPNO = strPNO.trim();
@@ -999,13 +999,13 @@ public class DISBPMaintainServlet extends HttpServlet {
 		if (strPENGNAME != null) {
 			strPENGNAME = strPENGNAME.trim().toUpperCase();
 		}
-		// R80300 «H¥Î¥d­ì¨ê¥d¸¹
+		// R80300 ä¿¡ç”¨å¡åŸåˆ·å¡è™Ÿ
 		strPOrgCrdNo = request.getParameter("txtUPOrgCrdNo");
 		if (strPOrgCrdNo != null) {
 			strPOrgCrdNo = strPOrgCrdNo.trim();
 		}
 		strPOrgAMT = request.getParameter("txtUPOrgAMT");
-		// R80300 «H¥Î¥d­ì¨êª÷ÃB
+		// R80300 ä¿¡ç”¨å¡åŸåˆ·é‡‘é¡
 		if (strPOrgAMT != null)
 			strPOrgAMT = strPOrgAMT.trim();
 		else
@@ -1037,12 +1037,12 @@ public class DISBPMaintainServlet extends HttpServlet {
 				}
 			}
 			if (bBankExist == false) {
-				request.setAttribute("txtMsg", "¶×´Ú»È¦æ¿ù»~");
+				request.setAttribute("txtMsg", "åŒ¯æ¬¾éŠ€è¡ŒéŒ¯èª¤");
 				request.setAttribute("isErr", "Y");
 			}
 		}
 
-		/* §ó·s¨ì¤ä¥I¥DÀÉ */
+		/* æ›´æ–°åˆ°æ”¯ä»˜ä¸»æª” */
 		if (bBankExist == true) {
 			strSql = " update CAPPAYF ";
 			strSql += " set  PNAME=?,PID=?,PDATE=?,PMETHOD=?,PDESC=? ,PRBANK=?,PRACCOUNT=?,PCRDNO=?,PCRDTYPE=?,PCRDEFFMY=? "
@@ -1102,12 +1102,12 @@ public class DISBPMaintainServlet extends HttpServlet {
 						if (isAEGON400) {
 							con.rollback();
 						}
-						strReturnMsg = "­×§ï¥¢±Ñ";
+						strReturnMsg = "ä¿®æ”¹å¤±æ•—";
 					} else {
-						request.setAttribute("txtMsg", "­×§ï¦¨¥\");
+						request.setAttribute("txtMsg", "ä¿®æ”¹æˆåŠŸ");
 						request.setAttribute("isErr", "");
 
-						//RA0064 §ó·s ORGNPCNF(½T©wµ¹¥I¼È¦sÀÉ)
+						//RA0064 æ›´æ–° ORGNPCNF(ç¢ºå®šçµ¦ä»˜æš«å­˜æª”)
 						disbBean.callCAPDISB09(con, strPNO, String.valueOf(iUpdDate));
 					}
 					pstmtTmp.close();
@@ -1127,7 +1127,7 @@ public class DISBPMaintainServlet extends HttpServlet {
 				}
 			} catch (SQLException e) {
 				request.setAttribute("isErr", "Y");
-				request.setAttribute("txtMsg", "­×§ï¥¢±Ñ" + e);
+				request.setAttribute("txtMsg", "ä¿®æ”¹å¤±æ•—" + e);
 				if (con != null)
 					dbFactory.releaseAS400Connection(con);
 			} finally {
@@ -1185,8 +1185,8 @@ public class DISBPMaintainServlet extends HttpServlet {
 		DISBPaymentDetailVO objPDetailVO = null;
 		List alPDetail = new ArrayList();
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-		String strPNo = ""; // ¥I´Ú¤é´Á
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strPNo = ""; // ä»˜æ¬¾æ—¥æœŸ
 
 		strPNo = (String) request.getAttribute("txtPNo");
 		if (strPNo != null)
@@ -1219,49 +1219,49 @@ public class DISBPMaintainServlet extends HttpServlet {
 
 			if (rs.next()) {
 				objPDetailVO = new DISBPaymentDetailVO();
-				objPDetailVO.setStrMemo("MEMO");// ³Æµù
-				objPDetailVO.setIEntryDt(rs.getInt("ENTRYDT")); // ¿é¤J¤é´Á
-				objPDetailVO.setIPAMT(rs.getDouble("PAMT")); // ¤ä¥Iª÷ÃB
-				objPDetailVO.setIPCfmDt1(rs.getInt("PCFMDT1"));// ¤ä¥I½T»{¤é¤@
-				objPDetailVO.setIPCfmTm1(rs.getInt("PCFMTM1"));// ¤ä¥I½T»{®É¤@
-				objPDetailVO.setIPCfmDt2(rs.getInt("PCFMDT2"));// ¤ä¥I½T»{¤é¤G
-				objPDetailVO.setIPCfmTm2(rs.getInt("PCFMTM2"));// ¤ä¥I½T»{®É¤G
-				objPDetailVO.setIPDate(rs.getInt("PDATE")); // ¥I´Ú¤é´Á
-				objPDetailVO.setIUpdDt(rs.getInt("UPDDT")); // ²§°Ê¤é´Á
-				objPDetailVO.setIUpdTm(rs.getInt("UPDTM")); // ²§°Ê®É¶¡
-				objPDetailVO.setStrAppNo(rs.getString("APPNO"));// ­n«O®Ñ¸¹½X
-				objPDetailVO.setStrPolicyNo(rs.getString("POLICYNO"));// «O³æ¸¹½X
-				objPDetailVO.setStrEntryUsr(rs.getString("ENTRYUSR"));// ¿é¤J¤H­û
-				objPDetailVO.setStrPAuthCode(rs.getString("PAUTHCODE"));// ±ÂÅv½X
-				objPDetailVO.setStrPBAccount(rs.getString("PBACCOUNT"));// ¥I´Ú»È¦æ
-				objPDetailVO.setStrPBBank(rs.getString("PBBANK"));// ¥I´Ú±b¸¹
-				objPDetailVO.setStrPCfmUsr1(rs.getString("PCFMUSR1"));// ¤ä¥I½T»{ªÌ¤@
-				objPDetailVO.setStrPCfmUsr2(rs.getString("PCFMUSR2"));// ¤ä¥I½T»{ªÌ¤G
-				objPDetailVO.setStrPCheckNO(rs.getString("PCHECKNO"));// ¤ä²¼¸¹½X
-				objPDetailVO.setStrPCrdEffMY(rs.getString("PCRDEFFMY"));// ¦³®Ä¦~¤ë
-				objPDetailVO.setStrPCrdNo(rs.getString("PCRDNO"));// «H¥Î¥d¥d¸¹
-				objPDetailVO.setStrPCrdType(rs.getString("PCRDTYPE"));// ¥d§O
-				objPDetailVO.setStrPAuthCode(rs.getString("PAUTHCODE"));// ±ÂÅv½X
-				objPDetailVO.setStrPDesc(rs.getString("PDESC")); // ¤ä¥I´y­z
-				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));// «æ¥ó§_
-				objPDetailVO.setStrPId(rs.getString("PID")); // ¨ü´Ú¤HID
-				objPDetailVO.setStrPMethod(rs.getString("PMETHOD"));// ¥I´Ú¤è¦¡
-				objPDetailVO.setStrPName(rs.getString("PNAME"));// ¨ü´Ú¤H©m¦W
-				objPDetailVO.setStrPNO(rs.getString("PNO")); // ¤ä¥I§Ç¸¹
-				objPDetailVO.setStrPNoH(rs.getString("PNOH")); // ­ì¤ä¥I§Ç¸¹
-				objPDetailVO.setStrPRAccount(rs.getString("PRACCOUNT"));// ¶×´Ú±b¸¹
-				objPDetailVO.setStrPRBank(rs.getString("PRBANK"));// ¶×´Ú»È¦æ
-				objPDetailVO.setStrPSrcGp(rs.getString("PSRCGP") + "--" + rs.getString("PSRCGPDESC"));// ¨Ó·½²Õ¸s
-				objPDetailVO.setStrPSrcCode(rs.getString("PSRCCODE"));// ¤ä¥I­ì¦]¥N½X
+				objPDetailVO.setStrMemo("MEMO");// å‚™è¨»
+				objPDetailVO.setIEntryDt(rs.getInt("ENTRYDT")); // è¼¸å…¥æ—¥æœŸ
+				objPDetailVO.setIPAMT(rs.getDouble("PAMT")); // æ”¯ä»˜é‡‘é¡
+				objPDetailVO.setIPCfmDt1(rs.getInt("PCFMDT1"));// æ”¯ä»˜ç¢ºèªæ—¥ä¸€
+				objPDetailVO.setIPCfmTm1(rs.getInt("PCFMTM1"));// æ”¯ä»˜ç¢ºèªæ™‚ä¸€
+				objPDetailVO.setIPCfmDt2(rs.getInt("PCFMDT2"));// æ”¯ä»˜ç¢ºèªæ—¥äºŒ
+				objPDetailVO.setIPCfmTm2(rs.getInt("PCFMTM2"));// æ”¯ä»˜ç¢ºèªæ™‚äºŒ
+				objPDetailVO.setIPDate(rs.getInt("PDATE")); // ä»˜æ¬¾æ—¥æœŸ
+				objPDetailVO.setIUpdDt(rs.getInt("UPDDT")); // ç•°å‹•æ—¥æœŸ
+				objPDetailVO.setIUpdTm(rs.getInt("UPDTM")); // ç•°å‹•æ™‚é–“
+				objPDetailVO.setStrAppNo(rs.getString("APPNO"));// è¦ä¿æ›¸è™Ÿç¢¼
+				objPDetailVO.setStrPolicyNo(rs.getString("POLICYNO"));// ä¿å–®è™Ÿç¢¼
+				objPDetailVO.setStrEntryUsr(rs.getString("ENTRYUSR"));// è¼¸å…¥äººå“¡
+				objPDetailVO.setStrPAuthCode(rs.getString("PAUTHCODE"));// æˆæ¬Šç¢¼
+				objPDetailVO.setStrPBAccount(rs.getString("PBACCOUNT"));// ä»˜æ¬¾éŠ€è¡Œ
+				objPDetailVO.setStrPBBank(rs.getString("PBBANK"));// ä»˜æ¬¾å¸³è™Ÿ
+				objPDetailVO.setStrPCfmUsr1(rs.getString("PCFMUSR1"));// æ”¯ä»˜ç¢ºèªè€…ä¸€
+				objPDetailVO.setStrPCfmUsr2(rs.getString("PCFMUSR2"));// æ”¯ä»˜ç¢ºèªè€…äºŒ
+				objPDetailVO.setStrPCheckNO(rs.getString("PCHECKNO"));// æ”¯ç¥¨è™Ÿç¢¼
+				objPDetailVO.setStrPCrdEffMY(rs.getString("PCRDEFFMY"));// æœ‰æ•ˆå¹´æœˆ
+				objPDetailVO.setStrPCrdNo(rs.getString("PCRDNO"));// ä¿¡ç”¨å¡å¡è™Ÿ
+				objPDetailVO.setStrPCrdType(rs.getString("PCRDTYPE"));// å¡åˆ¥
+				objPDetailVO.setStrPAuthCode(rs.getString("PAUTHCODE"));// æˆæ¬Šç¢¼
+				objPDetailVO.setStrPDesc(rs.getString("PDESC")); // æ”¯ä»˜æè¿°
+				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));// æ€¥ä»¶å¦
+				objPDetailVO.setStrPId(rs.getString("PID")); // å—æ¬¾äººID
+				objPDetailVO.setStrPMethod(rs.getString("PMETHOD"));// ä»˜æ¬¾æ–¹å¼
+				objPDetailVO.setStrPName(rs.getString("PNAME"));// å—æ¬¾äººå§“å
+				objPDetailVO.setStrPNO(rs.getString("PNO")); // æ”¯ä»˜åºè™Ÿ
+				objPDetailVO.setStrPNoH(rs.getString("PNOH")); // åŸæ”¯ä»˜åºè™Ÿ
+				objPDetailVO.setStrPRAccount(rs.getString("PRACCOUNT"));// åŒ¯æ¬¾å¸³è™Ÿ
+				objPDetailVO.setStrPRBank(rs.getString("PRBANK"));// åŒ¯æ¬¾éŠ€è¡Œ
+				objPDetailVO.setStrPSrcGp(rs.getString("PSRCGP") + "--" + rs.getString("PSRCGPDESC"));// ä¾†æºçµ„ç¾¤
+				objPDetailVO.setStrPSrcCode(rs.getString("PSRCCODE"));// æ”¯ä»˜åŸå› ä»£ç¢¼
 
-				objPDetailVO.setStrPStatus(rs.getString("PSTATUS"));// ¥I´Úª¬ºA
-				objPDetailVO.setStrPChkm1(rs.getString("PCHKM1")); // ¤ä²¼¸T­I
-				objPDetailVO.setStrPChkm2(rs.getString("PCHKM2")); // ¤ä²¼¹º½u
-				objPDetailVO.setStrBranch(rs.getString("BRANCH"));// «O³æ©ÒÄİ³æ¦ì
-				objPDetailVO.setIPAuthDt(rs.getInt("PAUTHDT"));// ±ÂÅv¥æ©ö¤é
+				objPDetailVO.setStrPStatus(rs.getString("PSTATUS"));// ä»˜æ¬¾ç‹€æ…‹
+				objPDetailVO.setStrPChkm1(rs.getString("PCHKM1")); // æ”¯ç¥¨ç¦èƒŒ
+				objPDetailVO.setStrPChkm2(rs.getString("PCHKM2")); // æ”¯ç¥¨åŠƒç·š
+				objPDetailVO.setStrBranch(rs.getString("BRANCH"));// ä¿å–®æ‰€å±¬å–®ä½
+				objPDetailVO.setIPAuthDt(rs.getInt("PAUTHDT"));// æˆæ¬Šäº¤æ˜“æ—¥
 
-				objPDetailVO.setStrPVoidable(rs.getString("PVOIDABLE"));// §@¼o§_
-				if (rs.getString("PVOIDABLE") != null || !rs.getString("PVOIDABLE").equals("")) // ¨M©wÄæ¦ì¬O§_¤Ä¿ï
+				objPDetailVO.setStrPVoidable(rs.getString("PVOIDABLE"));// ä½œå»¢å¦
+				if (rs.getString("PVOIDABLE") != null || !rs.getString("PVOIDABLE").equals("")) // æ±ºå®šæ¬„ä½æ˜¯å¦å‹¾é¸
 				{
 					if (rs.getString("PVOIDABLE").equals("Y")) {
 						objPDetailVO.setChecked(false);
@@ -1269,46 +1269,46 @@ public class DISBPMaintainServlet extends HttpServlet {
 					}
 				}
 
-				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));// «æ¥ó§_
-				if (rs.getString("PDISPATCH") != null || !rs.getString("PDISPATCH").equals("")) // ¨M©wÄæ¦ì¬O§_Disable
+				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));// æ€¥ä»¶å¦
+				if (rs.getString("PDISPATCH") != null || !rs.getString("PDISPATCH").equals("")) // æ±ºå®šæ¬„ä½æ˜¯å¦Disable
 				{
 					if (rs.getString("PDISPATCH").equals("Y")) {
 						objPDetailVO.setChecked(false);
 					}
 				}
-				objPDetailVO.setStrPCurr(rs.getString("PCurr"));// «æ¥ó§_
-				// R60550 12­ÓÄæ¦ì
-				objPDetailVO.setStrPPAYCURR(rs.getString("PPAYCURR"));// ¥~¹ô¶×¥X¹ô§O
-				objPDetailVO.setIPPAYAMT(rs.getDouble("PPAYAMT"));// ¥~¹ô¶×¥Xª÷ÃB
-				objPDetailVO.setIPPAYRATE(rs.getDouble("PPAYRATE"));// ¥~¹ô¶×¥X¶×²v
-				objPDetailVO.setStrPFEEWAY(rs.getString("PFEEWAY"));// ¤âÄò¶O¤ä¥I¤è¦¡
-				objPDetailVO.setStrPSYMBOL(rs.getString("PSYMBOL"));// µù°O
-				objPDetailVO.setIPINVDT(rs.getInt("PINVDT"));// §ë¸ê°_©l¤é
+				objPDetailVO.setStrPCurr(rs.getString("PCurr"));// æ€¥ä»¶å¦
+				// R60550 12å€‹æ¬„ä½
+				objPDetailVO.setStrPPAYCURR(rs.getString("PPAYCURR"));// å¤–å¹£åŒ¯å‡ºå¹£åˆ¥
+				objPDetailVO.setIPPAYAMT(rs.getDouble("PPAYAMT"));// å¤–å¹£åŒ¯å‡ºé‡‘é¡
+				objPDetailVO.setIPPAYRATE(rs.getDouble("PPAYRATE"));// å¤–å¹£åŒ¯å‡ºåŒ¯ç‡
+				objPDetailVO.setStrPFEEWAY(rs.getString("PFEEWAY"));// æ‰‹çºŒè²»æ”¯ä»˜æ–¹å¼
+				objPDetailVO.setStrPSYMBOL(rs.getString("PSYMBOL"));// è¨»è¨˜
+				objPDetailVO.setIPINVDT(rs.getInt("PINVDT"));// æŠ•è³‡èµ·å§‹æ—¥
 				objPDetailVO.setStrPSWIFT(rs.getString("PSWIFT"));// SWIFT CODE
-				objPDetailVO.setStrPBKCOTRY(rs.getString("PBKCOTRY"));// »È¦æ°ê§O
-				objPDetailVO.setStrPBKCITY(rs.getString("PBKCITY"));// »È¦æ«°¥«
-				objPDetailVO.setStrPBKBRCH(rs.getString("PBKBRCH"));// »È¦æ¤À¦æ
-				objPDetailVO.setStrPENGNAME(rs.getString("PENGNAME"));// ¨ü´Ú¤H­^¤å©m¦W
-				objPDetailVO.setSWBKNAME(rs.getString("SWBKNAME"));// »È¦æ¦WºÙ
-				objPDetailVO.setFPAYAMT(rs.getDouble("FPAYAMT"));// ¶×°h¤âÄò¶O
-				objPDetailVO.setFFEEWAY(rs.getString("FFEEWAY"));// ¶×°h¤âÄò¶O
-				// R80300 2­ÓÄæ¦ì
-				objPDetailVO.setStrPOrgCrdNo(rs.getString("PORGCRDNO"));// ­ì¨ê¥d¸¹
-				objPDetailVO.setIPOrgAMT(rs.getDouble("PORGAMT"));// ­ì¨ê¥d¸¹
-				objPDetailVO.setStrPMETHODO(rs.getString("PMETHODO"));// R80631­ì©l¥I´Ú¤è¦¡
-				objPDetailVO.setIPAMTNT(rs.getDouble("PAMTNT"));	//R10314¤ä¥Iª÷ÃB¥x¹ô°Ñ¦Ò­È
+				objPDetailVO.setStrPBKCOTRY(rs.getString("PBKCOTRY"));// éŠ€è¡Œåœ‹åˆ¥
+				objPDetailVO.setStrPBKCITY(rs.getString("PBKCITY"));// éŠ€è¡ŒåŸå¸‚
+				objPDetailVO.setStrPBKBRCH(rs.getString("PBKBRCH"));// éŠ€è¡Œåˆ†è¡Œ
+				objPDetailVO.setStrPENGNAME(rs.getString("PENGNAME"));// å—æ¬¾äººè‹±æ–‡å§“å
+				objPDetailVO.setSWBKNAME(rs.getString("SWBKNAME"));// éŠ€è¡Œåç¨±
+				objPDetailVO.setFPAYAMT(rs.getDouble("FPAYAMT"));// åŒ¯é€€æ‰‹çºŒè²»
+				objPDetailVO.setFFEEWAY(rs.getString("FFEEWAY"));// åŒ¯é€€æ‰‹çºŒè²»
+				// R80300 2å€‹æ¬„ä½
+				objPDetailVO.setStrPOrgCrdNo(rs.getString("PORGCRDNO"));// åŸåˆ·å¡è™Ÿ
+				objPDetailVO.setIPOrgAMT(rs.getDouble("PORGAMT"));// åŸåˆ·å¡è™Ÿ
+				objPDetailVO.setStrPMETHODO(rs.getString("PMETHODO"));// R80631åŸå§‹ä»˜æ¬¾æ–¹å¼
+				objPDetailVO.setIPAMTNT(rs.getDouble("PAMTNT"));	//R10314æ”¯ä»˜é‡‘é¡å°å¹£åƒè€ƒå€¼
 
 				alPDetail.add(objPDetailVO);
 				strReturnMsg = "";
 			} else {
-				strReturnMsg = "¬dµL¤ä¥I§Ç¸¹[" + strPNo + "]¤§¬ÛÃö¸ê®Æ";
+				strReturnMsg = "æŸ¥ç„¡æ”¯ä»˜åºè™Ÿ[" + strPNo + "]ä¹‹ç›¸é—œè³‡æ–™";
 			}
 			session.removeAttribute("PDetailListTemp");
 			session.removeAttribute("PDetailList");
 			session.setAttribute("PDetailListTemp", alPDetail);
 			session.setAttribute("PDetailList", alPDetail);
 		} catch (SQLException ex) {
-			strReturnMsg = "¬d¸ß¥¢±Ñ" + ex;
+			strReturnMsg = "æŸ¥è©¢å¤±æ•—" + ex;
 			alPDetail = null;
 		} finally {
 			try {

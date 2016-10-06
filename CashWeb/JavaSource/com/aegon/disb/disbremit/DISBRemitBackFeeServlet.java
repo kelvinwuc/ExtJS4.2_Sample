@@ -1,8 +1,8 @@
 /** =============================================================================
  *  ------------------------------------------------------------------------------------------------------------------
- *   »İ¨D³æ¸¹       ­×§ïªÌ                ­×§ï¤é    			  ­×§ï¤º®e
+ *   éœ€æ±‚å–®è™Ÿ       ä¿®æ”¹è€…                ä¿®æ”¹æ—¥    			  ä¿®æ”¹å…§å®¹
  *  ------------------------------------------------------------------------------------------------------------------
- *   R00393             Leo Huang    			2010/09/17           ²{¦b®É¶¡¨úCapsilÀç¹B®É¶¡
+ *   R00393             Leo Huang    			2010/09/17           ç¾åœ¨æ™‚é–“å–Capsilç‡Ÿé‹æ™‚é–“
  *  =============================================================================
  */
 package com.aegon.disb.disbremit;
@@ -38,10 +38,10 @@ import javax.servlet.ServletContext;
  * 
  * $$Log: DISBRemitBackFeeServlet.java,v $
  * $Revision 1.2  2010/11/23 06:50:41  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.1  2006/11/30 09:14:08  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $$
  *  
@@ -146,7 +146,7 @@ public class DISBRemitBackFeeServlet extends HttpServlet {
 		int iUpdTime =
 			Integer.parseInt((String) sdfFormatter.format(cldToday.getTime()));
 			
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
 		String strCMFEEDT = ""; //
 		String strCMFEEAMT = "";
 		double iCMFEEAMT = 0; //
@@ -188,7 +188,7 @@ public class DISBRemitBackFeeServlet extends HttpServlet {
 			strCSEQNO = "";		
 	   
 			
-	/*§ó·s¸ê®Æ®w*/		
+	/*æ›´æ–°è³‡æ–™åº«*/		
 	try {	
 		strSql =   " update CAPRMTF ";
 		strSql += " set RPAYMIDDT =? , RPAYMIDFEE=? , RPAYMIDCUR=?";
@@ -202,15 +202,15 @@ public class DISBRemitBackFeeServlet extends HttpServlet {
 		pstmtTmp.setString(5, strCSEQNO);
 
 		if (pstmtTmp.executeUpdate() < 1) {//3
-			request.setAttribute("txtMsg", "§ó·s«á¦¬¤âÄò¶O¥¢±Ñ");
+			request.setAttribute("txtMsg", "æ›´æ–°å¾Œæ”¶æ‰‹çºŒè²»å¤±æ•—");
 		}
 		else
 		{
-			request.setAttribute("txtMsg", "§ó·s«á¦¬¤âÄò¶O¦¨¥\");
+			request.setAttribute("txtMsg", "æ›´æ–°å¾Œæ”¶æ‰‹çºŒè²»æˆåŠŸ");
 		}
 		pstmtTmp.close();		
   	} catch (SQLException e) {
-		request.setAttribute("txtMsg", "§ó·s«á¦¬¤âÄò¶O¥¢±Ñ-->"+e);
+		request.setAttribute("txtMsg", "æ›´æ–°å¾Œæ”¶æ‰‹çºŒè²»å¤±æ•—-->"+e);
 		if (con != null)
 			dbFactory.releaseAS400Connection(con);
 	} finally {

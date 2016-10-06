@@ -37,7 +37,7 @@ import org.apache.log4j.Logger;
 /**
  * System   : CashWeb
  * 
- * Function : ¾ã§åµn±b³B²z
+ * Function : æ•´æ‰¹ç™»å¸³è™•ç†
  * 
  * Remark   : 
  * 
@@ -53,15 +53,15 @@ import org.apache.log4j.Logger;
  * 
  * $Log: EntActBatServlet.java,v $
  * Revision 1.6  2014/01/14 06:00:29  MISSALLY
- * R00135---PA0024---CASH¦~«×±M®×-02
- * BugFix---¼W¥[LOG
+ * R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ-02
+ * BugFix---å¢åŠ LOG
  *
  * Revision 1.5  2014/01/13 03:52:30  MISSALLY
- * R00135---PA0024---CASH¦~«×±M®×-02
- * BugFix---¼W¥[LOG
+ * R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ-02
+ * BugFix---å¢åŠ LOG
  *
  * Revision 1.4  2014/01/03 02:49:52  MISSALLY
- * R00135---PA0024---CASH¦~«×±M®×-02
+ * R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ-02
  *
  *  
  */
@@ -129,7 +129,7 @@ public class EntActBatServlet extends InitDBServlet {
 
 					InputStream is = fi.getInputStream();
 					if (!"".equals(oriFileName)) {
-						log.info("processUploadFile°õ¦æ");
+						log.info("processUploadFileåŸ·è¡Œ");
 						this.processUploadFile(oriFileName, is, iSeq);
 						iSeq++;
 					}
@@ -144,20 +144,20 @@ public class EntActBatServlet extends InitDBServlet {
 				req.setAttribute("txtError", pageError);
 				req.setAttribute("error", "Y");
 			} else {
-				req.setAttribute("txtError", "µn±b¦¨¥\!!\r\n" + strSuccessMsg);
+				req.setAttribute("txtError", "ç™»å¸³æˆåŠŸ!!\r\n" + strSuccessMsg);
 			}
 		} catch (IOException ex) {
 			System.err.println("Error: " + ex.getMessage());
-			req.setAttribute("txtError", "Åª¨ú³]©w»È¦æ®æ¦¡¤å¥ó¥X²{²§±`¿ù»~!!");
+			req.setAttribute("txtError", "è®€å–è¨­å®šéŠ€è¡Œæ ¼å¼æ–‡ä»¶å‡ºç¾ç•°å¸¸éŒ¯èª¤!!");
 		} catch (SQLException ex) {
 			System.err.println("Error: " + ex.getMessage());
-			req.setAttribute("txtError", "³sµ²¸ê®Æ®w¥X²{²§±`¿ù»~!!");
+			req.setAttribute("txtError", "é€£çµè³‡æ–™åº«å‡ºç¾ç•°å¸¸éŒ¯èª¤!!");
 		} catch (FileUploadException ex) {
 			System.err.println("Error: " + ex.getMessage());
-			req.setAttribute("txtError", "¤W¶Ç¤å¥ó¥X²{²§±`¿ù»~!!");
+			req.setAttribute("txtError", "ä¸Šå‚³æ–‡ä»¶å‡ºç¾ç•°å¸¸éŒ¯èª¤!!");
 		} catch (Exception ex) {
 			System.err.println("Error: " + ex.getMessage());
-			req.setAttribute("txtError", "²§±`¿ù»~!!");
+			req.setAttribute("txtError", "ç•°å¸¸éŒ¯èª¤!!");
 		} finally {
 			if(con != null) dbFactory.releaseAS400Connection(con);
 		}
@@ -187,46 +187,46 @@ public class EntActBatServlet extends InitDBServlet {
 		}
 	}
 
-	// ³B²z¤W¶Ç¬y¤å¥ó¡A±o¨ì¤º®e¡A¤Jµn±bÀÉ
+	// è™•ç†ä¸Šå‚³æµæ–‡ä»¶ï¼Œå¾—åˆ°å…§å®¹ï¼Œå…¥ç™»å¸³æª”
 	private void processUploadFile(String fileName, InputStream in, int iSeq) throws IOException, SQLException {
 		HashMap<String, BankTemplateDTO> map = this.getAllBankTempalte();
 		List<CapcshfDTO> list = this.readOneFileChangeCapcshfDTO(in, map, fileName);
 		if (list.size() > 0) {
 			iCounter = 0;
-			log.info("processUploadFile°õ¦æ");
+			log.info("processUploadFileåŸ·è¡Œ");
 			for (int i = 0; i < list.size(); i++) {
-				log.info("processUploadFile°õ¦æ" + i);
+				log.info("processUploadFileåŸ·è¡Œ" + i);
 				try {
 					this.saveCapbnkf(list.get(i), iSeq);
 					iSeq++;
 					iCounter++;
 				} catch (SQLException e) {
-					PageMessage.append(fileName + " :ÂàÀÉ¥¢±Ñ" + "&nbsp;");
-					System.err.println("ÂàÀÉ¥¢±Ñ: " + fileName + " §Ç¸¹=" + iSeq);
+					PageMessage.append(fileName + " :è½‰æª”å¤±æ•—" + "&nbsp;");
+					System.err.println("è½‰æª”å¤±æ•—: " + fileName + " åºè™Ÿ=" + iSeq);
 					throw e;
 				}
 			}
-			strSuccessMsg += getFileName(fileName) + " :¦¨¥\¤W¶Ç " + iCounter + " µ§;\r\n";
+			strSuccessMsg += getFileName(fileName) + " :æˆåŠŸä¸Šå‚³ " + iCounter + " ç­†;\r\n";
 		}
 	}
 
-	// ³B²z¤W¶Ç¤å¥ó¡AÂà´«¼Æ¾Ú¨ì¹ï¶H¡A¨Ã°µ¼Æ¾ÚÀËÅç
+	// è™•ç†ä¸Šå‚³æ–‡ä»¶ï¼Œè½‰æ›æ•¸æ“šåˆ°å°è±¡ï¼Œä¸¦åšæ•¸æ“šæª¢é©—
 	private List<CapcshfDTO> readOneFileChangeCapcshfDTO(InputStream in, HashMap<String, BankTemplateDTO> map, String fileName) throws SQLException, IOException {
-		log.info("readOneFileChangeCapcshfDTO°õ¦æ");
+		log.info("readOneFileChangeCapcshfDTOåŸ·è¡Œ");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		List<CapcshfDTO> list = new ArrayList<CapcshfDTO>();
 		boolean juage = true;
 		String oneRow = null;
 		int index = 0;
 		if (fileName.indexOf('.') < 0) {
-			this.createErrorMessage(fileName, "", "¤W¶Ç¤å¥ó¦W¦³¿ù");
+			this.createErrorMessage(fileName, "", "ä¸Šå‚³æ–‡ä»¶åæœ‰éŒ¯");
 		} else {
 			String bkalat = getFileName(fileName);
-			log.info("bkalat¬O" + bkalat);
+			log.info("bkalatæ˜¯" + bkalat);
 			if (bkalat.toUpperCase().equals("BANK")) {
 				while (true) {
 					oneRow = reader.readLine();
-					log.info("oneRow¬O" + oneRow);
+					log.info("oneRowæ˜¯" + oneRow);
 					if (oneRow == null) {
 						break;
 					}
@@ -242,28 +242,28 @@ public class EntActBatServlet extends InitDBServlet {
 					}
 				}
 				if (index == 0) {
-					this.createErrorMessage(fileName, "", "¤å¥ó¬°ªÅ¡A¨S¦³¤º®e");
+					this.createErrorMessage(fileName, "", "æ–‡ä»¶ç‚ºç©ºï¼Œæ²’æœ‰å…§å®¹");
 				}
-				// ·í¦³¤@±ø¼Æ¾Ú¿ù»~¡A²MªÅLIST¡A¤£«O¯d¥ô¦ó¼Æ¾Ú
+				// ç•¶æœ‰ä¸€æ¢æ•¸æ“šéŒ¯èª¤ï¼Œæ¸…ç©ºLISTï¼Œä¸ä¿ç•™ä»»ä½•æ•¸æ“š
 				if (!juage) {
 					list.clear();
 				}
 			} else {
 				CapbnkfVO cDTO = this.getBKALATForDTO(bkalat);
-				// ÀË¬dª÷¿ÄÂ²½X
+				// æª¢æŸ¥é‡‘èç°¡ç¢¼
 				if (null == cDTO) {
-					this.createErrorMessage(fileName, "", "¬dµLª÷¿ÄÂ²½X³]©w");
+					this.createErrorMessage(fileName, "", "æŸ¥ç„¡é‡‘èç°¡ç¢¼è¨­å®š");
 				} else {
-					// ÀËÅç»È¦æ¥N½X°±¥Î
+					// æª¢é©—éŠ€è¡Œä»£ç¢¼åœç”¨
 					if ("N".equals(cDTO.getBankStatus())) {
-						this.createErrorMessage(fileName, "", "ª÷¿Ä³æ¦ìª¬ºA¬°°±¥Î");
+						this.createErrorMessage(fileName, "", "é‡‘èå–®ä½ç‹€æ…‹ç‚ºåœç”¨");
 					} else if("N".equals(cDTO.getBankSpec())) {
-						this.createErrorMessage(fileName, "", "¾ã§åµn±b®æ¦¡³]©w¬°«D»È¦æ®æ¦¡¡A½Ğ¥Î³q¥Î®æ¦¡¤W¶Ç");
+						this.createErrorMessage(fileName, "", "æ•´æ‰¹ç™»å¸³æ ¼å¼è¨­å®šç‚ºééŠ€è¡Œæ ¼å¼ï¼Œè«‹ç”¨é€šç”¨æ ¼å¼ä¸Šå‚³");
 					} else {
-						// ÀË¬d¦³µL®æ¦¡
+						// æª¢æŸ¥æœ‰ç„¡æ ¼å¼
 						BankTemplateDTO btDTO = map.get(bkalat);
 						if (null == btDTO) {
-							this.createErrorMessage(fileName, "", "¤W¶Çµn±b¤å¥ó¨S¦³¹ïÀ³ªº»È¦æµn±b®æ¦¡³B²z¡A½Ğ¥ı©w¸q»È¦æ®æ¦¡");
+							this.createErrorMessage(fileName, "", "ä¸Šå‚³ç™»å¸³æ–‡ä»¶æ²’æœ‰å°æ‡‰çš„éŠ€è¡Œç™»å¸³æ ¼å¼è™•ç†ï¼Œè«‹å…ˆå®šç¾©éŠ€è¡Œæ ¼å¼");
 						} else {
 							log.info(bkalat + ",btDTO.getBankCode():" + btDTO.getBankCode());
 							log.info(bkalat + ",btDTO.getFileType():" + btDTO.getFileType());
@@ -290,7 +290,7 @@ public class EntActBatServlet extends InitDBServlet {
 							
 							while (true) {
 								oneRow = reader.readLine();
-								log.info("oneRow¬O" + oneRow);
+								log.info("oneRowæ˜¯" + oneRow);
 								if (oneRow == null) {
 									break;
 								}
@@ -305,9 +305,9 @@ public class EntActBatServlet extends InitDBServlet {
 								}
 							}
 							if (index == 0) {
-								this.createErrorMessage(fileName, "", "¤å¥ó¬°ªÅ¡A¨S¦³¤º®e");
+								this.createErrorMessage(fileName, "", "æ–‡ä»¶ç‚ºç©ºï¼Œæ²’æœ‰å…§å®¹");
 							}
-							// ·í¦³¤@±ø¼Æ¾Ú¿ù»~¡A²MªÅLIST¡A¤£«O¯d¥ô¦ó¼Æ¾Ú
+							// ç•¶æœ‰ä¸€æ¢æ•¸æ“šéŒ¯èª¤ï¼Œæ¸…ç©ºLISTï¼Œä¸ä¿ç•™ä»»ä½•æ•¸æ“š
 							if (!juage) {
 								list.clear();
 							}
@@ -319,9 +319,9 @@ public class EntActBatServlet extends InitDBServlet {
 		return list;
 	}
 
-	// ³B²z³q¥Î®æ¦¡¤å¥ó
+	// è™•ç†é€šç”¨æ ¼å¼æ–‡ä»¶
 	private CapcshfDTO createCapcshfDTOForGeneral(String oneRow) throws SQLException {
-		//System.out.println("oneRow¬O" + oneRow);
+		//System.out.println("oneRowæ˜¯" + oneRow);
 		CapcshfDTO dto = new CapcshfDTO();
 		String[] arr = oneRow.split(",");
 		/*System.out.println("arr[0]" + arr[0]);
@@ -358,7 +358,7 @@ public class EntActBatServlet extends InitDBServlet {
 		return dto;
 	}
 
-	// ³B²z¯S®í®æ¦¡¤å¥ó
+	// è™•ç†ç‰¹æ®Šæ ¼å¼æ–‡ä»¶
 	private CapcshfDTO createCapcshfDTO(BankTemplateDTO btDTO, String oneRow, CapbnkfVO cDTO) {
 		CapcshfDTO dto = new CapcshfDTO();
 		dto.setEBKCD(cDTO.getBankCode());
@@ -384,54 +384,54 @@ public class EntActBatServlet extends InitDBServlet {
 		return dto;
 	}
 
-	// ÀËÅç³q¥Î®æ¦¡¤å¥ó
+	// æª¢é©—é€šç”¨æ ¼å¼æ–‡ä»¶
 	private boolean checkCapcshfDTOForGeneral(CapcshfDTO cfDTO, String index, String fileName) {
 		boolean res = true;
 		if (cfDTO.getEBKCD().equals("0")) {
 			res = false;
-			this.createErrorMessage(fileName, index, "¬dµLª÷¿ÄÂ²½X³]©w");
+			this.createErrorMessage(fileName, index, "æŸ¥ç„¡é‡‘èç°¡ç¢¼è¨­å®š");
 		} else if (cfDTO.getEBKCD().equals("1")) {
 			res = false;
-			this.createErrorMessage(fileName, index, "ª÷¿Ä³æ¦ìª¬ºA¬°°±¥Î");
+			this.createErrorMessage(fileName, index, "é‡‘èå–®ä½ç‹€æ…‹ç‚ºåœç”¨");
 		}
 		if (cfDTO.getEBKRMD() <= 0) {
 			res = false;
-			this.createErrorMessage(fileName, index, "¥æ©ö¤é´Á®æ¦¡¦³»~");
+			this.createErrorMessage(fileName, index, "äº¤æ˜“æ—¥æœŸæ ¼å¼æœ‰èª¤");
 		}
 		if (cfDTO.getENTAMT() <= 0) {
 			res = false;
-			this.createErrorMessage(fileName, index, "¥æ©öª÷ÃB«D¼Æ¦r®æ¦¡©Î¤p©óµ¥©ó¢¯");
+			this.createErrorMessage(fileName, index, "äº¤æ˜“é‡‘é¡éæ•¸å­—æ ¼å¼æˆ–å°æ–¼ç­‰æ–¼ï¼");
 		}
 		return res;
 	}
 
-	// ÀËÅç¯S®í®æ¦¡¤å¥ó
+	// æª¢é©—ç‰¹æ®Šæ ¼å¼æ–‡ä»¶
 	private boolean checkCapcshfDTO(CapcshfDTO cfDTO, String index, String fileName) {
 		boolean res = true;
 		if (cfDTO.getEBKRMD() <= 0) {
 			res = false;
-			this.createErrorMessage(fileName, index, "¥æ©ö¤é´Á®æ¦¡¦³»~");
+			this.createErrorMessage(fileName, index, "äº¤æ˜“æ—¥æœŸæ ¼å¼æœ‰èª¤");
 		}
 		if (cfDTO.getENTAMT() <= 0) {
 			res = false;
-			this.createErrorMessage(fileName, index, "¥æ©öª÷ÃB«D¼Æ¦r®æ¦¡©Î¤p©óµ¥©ó¢¯");
+			this.createErrorMessage(fileName, index, "äº¤æ˜“é‡‘é¡éæ•¸å­—æ ¼å¼æˆ–å°æ–¼ç­‰æ–¼ï¼");
 		}
 		return res;
 	}
 
-	// ºc«Ø©Ò¦³¿ù»~°O¿ı
+	// æ§‹å»ºæ‰€æœ‰éŒ¯èª¤è¨˜éŒ„
 	private void createErrorMessage(String fileName, String count, String message) {
 		if ("".equals(count)) {
 			ErrorMessage = ErrorMessage.append(fileName + " :" + message + System.getProperty("line.separator"));
-			PageMessage = PageMessage.append(fileName + " :¤W¶Ç¿ù»~," + message + "\r\n");
+			PageMessage = PageMessage.append(fileName + " :ä¸Šå‚³éŒ¯èª¤," + message + "\r\n");
 		} else {
-			ErrorMessage = ErrorMessage.append(fileName + "²Ä" + count + "µ§: " + message + System.getProperty("line.separator"));
-			PageMessage = PageMessage.append(fileName + " :¤W¶Ç¿ù»~," + message + "\r\n");
+			ErrorMessage = ErrorMessage.append(fileName + "ç¬¬" + count + "ç­†: " + message + System.getProperty("line.separator"));
+			PageMessage = PageMessage.append(fileName + " :ä¸Šå‚³éŒ¯èª¤," + message + "\r\n");
 		}
 
 	}
 
-	// ©Ò¦³¿ù»~«H®§¼g¤J¿ù»~¤U¸ü¤åÀÉ
+	// æ‰€æœ‰éŒ¯èª¤ä¿¡æ¯å¯«å…¥éŒ¯èª¤ä¸‹è¼‰æ–‡æª”
 	private void writeErrorMessageToErrorFile() throws IOException {
 		FileWriter fw = new FileWriter(FilePath + FileError);
 		fw.write(ErrorMessage.toString());
@@ -450,7 +450,7 @@ public class EntActBatServlet extends InitDBServlet {
 		return su.toString();
 	}
 
-	// ¨ú±o©Ò¦³»È¦æ®æ¦¡©ñ¤JMap
+	// å–å¾—æ‰€æœ‰éŠ€è¡Œæ ¼å¼æ”¾å…¥Map
 	private HashMap<String, BankTemplateDTO> getAllBankTempalte() throws IOException {
 		HashMap<String, BankTemplateDTO> hm = new HashMap<String, BankTemplateDTO>();
 		BufferedReader br = new BufferedReader(new FileReader(new File(FilePath + File)));
@@ -463,10 +463,10 @@ public class EntActBatServlet extends InitDBServlet {
 		return hm;
 	}
 
-	// »È¦æ®æ¦¡¼Æ²ÕÂà¤Æ»È¦æ®æ¦¡¹ï¶H
+	// éŠ€è¡Œæ ¼å¼æ•¸çµ„è½‰åŒ–éŠ€è¡Œæ ¼å¼å°è±¡
 	private BankTemplateDTO arrayChangeBankTemplateDTO(String[] arr) {
 		/*for(int i=0; i<arr.length; i++){
-			System.out.println("arr[" + i + "]¬O" + arr[i]);
+			System.out.println("arr[" + i + "]æ˜¯" + arr[i]);
 		}*/
 		
 		BankTemplateDTO dto = new BankTemplateDTO();
@@ -495,7 +495,7 @@ public class EntActBatServlet extends InitDBServlet {
 		return dto;
 	}
 
-	// ¨Ï¥Îª÷¿ÄÂ²½X±a¥X¬ÛÃö»È¦æ¥N½X±b¸¹ÀÉ
+	// ä½¿ç”¨é‡‘èç°¡ç¢¼å¸¶å‡ºç›¸é—œéŠ€è¡Œä»£ç¢¼å¸³è™Ÿæª”
 	private CapbnkfVO getBKALATForDTO(String bkALAT) throws SQLException {
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -520,7 +520,7 @@ public class EntActBatServlet extends InitDBServlet {
 		return dto;
 	}
 
-	// «O¦s»È¦æ¤åÀÉ¼Æ¾Ú¨ìµn±b®Ö¾PÀÉ
+	// ä¿å­˜éŠ€è¡Œæ–‡æª”æ•¸æ“šåˆ°ç™»å¸³æ ¸éŠ·æª”
 	private void saveCapbnkf(CapcshfDTO dto, int i) throws SQLException {
 
 		String strTime = String.valueOf(commonUtil.getBizDateByRCalendar().getTimeInMillis());
@@ -546,27 +546,27 @@ public class EntActBatServlet extends InitDBServlet {
 		pstmt.setString(8, dto.getEUSREM());
 		pstmt.setString(9, dto.getCSHFAU());
 		pstmt.setInt(10, dto.getCSHFAD());
-		pstmt.setInt(11, iTime);	////¬°¤F¨ÏKey unique
+		pstmt.setInt(11, iTime);	////ç‚ºäº†ä½¿Key unique
 		pstmt.setString(12, dto.getCSHFCURR());
 		//pstmt.executeUpdate();
-		//´ú¸Õ
-		System.out.println("EBKCD¬O" + dto.getEBKCD());
-		System.out.println("EATNO¬O" + dto.getEATNO());
-		System.out.println("EBKRMD¬O" + dto.getEBKRMD());
-		System.out.println("EAEGDT¬O" + dto.getEAEGDT());
-		System.out.println("ENTAMT¬O" + dto.getENTAMT());
-		System.out.println("ECRSRC¬O" + dto.getECRSRC());
-		System.out.println("ECRDAY¬O" + dto.getECRDAY());
-		System.out.println("EUSREM¬O" + dto.getEUSREM());
-		System.out.println("CSHFAU¬O" + dto.getCSHFAU());
-		System.out.println("CSHFAD¬O" + dto.getCSHFAD());
-		System.out.println("CSHFAT¬O" + iTime);
-		System.out.println("CSHFCURR¬O" + dto.getCSHFCURR());
+		//æ¸¬è©¦
+		System.out.println("EBKCDæ˜¯" + dto.getEBKCD());
+		System.out.println("EATNOæ˜¯" + dto.getEATNO());
+		System.out.println("EBKRMDæ˜¯" + dto.getEBKRMD());
+		System.out.println("EAEGDTæ˜¯" + dto.getEAEGDT());
+		System.out.println("ENTAMTæ˜¯" + dto.getENTAMT());
+		System.out.println("ECRSRCæ˜¯" + dto.getECRSRC());
+		System.out.println("ECRDAYæ˜¯" + dto.getECRDAY());
+		System.out.println("EUSREMæ˜¯" + dto.getEUSREM());
+		System.out.println("CSHFAUæ˜¯" + dto.getCSHFAU());
+		System.out.println("CSHFADæ˜¯" + dto.getCSHFAD());
+		System.out.println("CSHFATæ˜¯" + iTime);
+		System.out.println("CSHFCURRæ˜¯" + dto.getCSHFCURR());
 
 		if(pstmt != null) pstmt.close();
 	}
 
-	// ±o¨ì¥æ©ö¤é´Á
+	// å¾—åˆ°äº¤æ˜“æ—¥æœŸ
 	private int getBankDate(BankTemplateDTO btDTO, String oneRow) throws Exception {
 		String sDate = "";
 		String[] arr = null;
@@ -594,10 +594,10 @@ public class EntActBatServlet extends InitDBServlet {
 		if ("Y".equals(btDTO.getIsSlant())) {
 			sDate = sDate.replace("/", "");
 		}
-		// §PÂ_¦è¤¸©ÎªÌ¥Á°ê
-		if ("X".equals(btDTO.getDateTpye())) {	//¦è¤¸
+		// åˆ¤æ–·è¥¿å…ƒæˆ–è€…æ°‘åœ‹
+		if ("X".equals(btDTO.getDateTpye())) {	//è¥¿å…ƒ
 			date = Integer.parseInt(sDate) - 19110000;
-		} else if("B".equals(btDTO.getDateTpye())) {	//¥Á°ê¦~«á¨â½X
+		} else if("B".equals(btDTO.getDateTpye())) {	//æ°‘åœ‹å¹´å¾Œå…©ç¢¼
 			date = Integer.parseInt("1"+sDate);
 		} else {
 			date = Integer.parseInt(sDate);
@@ -605,7 +605,7 @@ public class EntActBatServlet extends InitDBServlet {
 		return date;
 	}
 
-	// ±o¨ì¥æ©öª÷ÃB
+	// å¾—åˆ°äº¤æ˜“é‡‘é¡
 	private double getTransferAmount(BankTemplateDTO btDTO, String oneRow) throws Exception {
 		double amount = 0;
 		String sAmount = "";
@@ -628,23 +628,23 @@ public class EntActBatServlet extends InitDBServlet {
 				sAmount = sAmount.trim();
 			}
 		}
-		// ¥ª¸É¹s
+		// å·¦è£œé›¶
 		if ("Y".equals(btDTO.getIsLeftZero())) {
 			sAmount = sAmount.replaceAll("^(0+)", "");
 		}
-		// ²Ä¤@¦ì¦³¯S®í²Å¸¹
+		// ç¬¬ä¸€ä½æœ‰ç‰¹æ®Šç¬¦è™Ÿ
 		if ("Y".equals(btDTO.getIsFristNum())) {
 			sAmount = sAmount.substring(1, sAmount.length());
 		}
-		// ³Ì«á¤@¦ì¦³¯S®í²Å¸¹
+		// æœ€å¾Œä¸€ä½æœ‰ç‰¹æ®Šç¬¦è™Ÿ
 		if ("Y".equals(btDTO.getIslastNum())) {
 			sAmount = sAmount.substring(0, sAmount.length() - 1);
 		}
-		// ¦r²Å¤¤¦³¤d¤À²Å
+		// å­—ç¬¦ä¸­æœ‰åƒåˆ†ç¬¦
 		if ("Y".equals(btDTO.getIsPermille())) {
 			sAmount = sAmount.replace(",", "");
 		}
-		// ¦³¨â¦ì¤p¼Æ
+		// æœ‰å…©ä½å°æ•¸
 		if ("Y".equals(btDTO.getIsTwoNum())) {
 			if ("Y".equals(btDTO.getIsPoint())) {
 				amount = Double.parseDouble(sAmount);
@@ -664,7 +664,7 @@ public class EntActBatServlet extends InitDBServlet {
 		return amount;
 	}
 
-	// ±o¨ì³Æµù¼Æ¾Ú
+	// å¾—åˆ°å‚™è¨»æ•¸æ“š
 	private String getRemark(BankTemplateDTO btDTO, String oneRow) throws Exception {
 		String remark = "";
 		String[] arr = null;
@@ -692,7 +692,7 @@ public class EntActBatServlet extends InitDBServlet {
 				remark = CommonUtil.AllTrim(new String(tmp));
 			}
 		}
-		remark = remark.replace(",", "¡A");
+		remark = remark.replace(",", "ï¼Œ");
 
 		return remark;
 	}

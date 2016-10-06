@@ -7,135 +7,135 @@ import com.aegon.comlib.CommonUtil;
 public class CaprmtfVO implements java.io.Serializable {
 
 	
-	/*§å¸¹ BATNO*/
+	/*æ‰¹è™Ÿ BATNO*/
 	private String BATNO = "";
 
-	/*§Ç¸¹ SEQNO*/
+	/*åºè™Ÿ SEQNO*/
 	private String SEQNO = "";
 
-	/*¥I´Ú»È¦æ RBK*/
+	/*ä»˜æ¬¾éŠ€è¡Œ RBK*/
 	private String PBK = "";
 		
-	/*¥I´Ú±b¸¹ RACCT*/
+	/*ä»˜æ¬¾å¸³è™Ÿ RACCT*/
 	private String PACCT = "";
 
-	/*¦¬´Ú¤HID RID*/
+	/*æ”¶æ¬¾äººID RID*/
 	private String RID = "";
 	
-	/*¶×´ÚÃş§O RTYPE*/
+	/*åŒ¯æ¬¾é¡åˆ¥ RTYPE*/
 	private String RTYPE = "";
 	
-	/*¶×´Ú¦æ RBK*/
+	/*åŒ¯æ¬¾è¡Œ RBK*/
 	private String RBK = "";
 		
-	/*¶×´Ú±b¸¹ RACCT*/
+	/*åŒ¯æ¬¾å¸³è™Ÿ RACCT*/
 	private String RACCT = "";
 	
-	/*¤ä¥Iª÷ÃB RAMT*/
+	/*æ”¯ä»˜é‡‘é¡ RAMT*/
     private double RAMT = 0;
 
 	/*RC0036-3 RAMTS*/
     private String RAMTS = "";
     
-	/*¤á¦W RNAME*/
+	/*æˆ¶å RNAME*/
 	private String RNAME = "";
 	
-	/*ªş¨¥ RMEMO*/
+	/*é™„è¨€ RMEMO*/
 	private String RMEMO = "";
 	
-	/*¶×´Ú¤é´Á RMTDT */
+	/*åŒ¯æ¬¾æ—¥æœŸ RMTDT */
 	private String RMTDT = "";
 	
-	/*¥æ©öÀË®Ö½X RTRNCDE*/
+	/*äº¤æ˜“æª¢æ ¸ç¢¼ RTRNCDE*/
 	private String RTRNCDE ="";
 	
-	/*¶Ç°e¦¸¼Æ RTRNTM*/
+	/*å‚³é€æ¬¡æ•¸ RTRNTM*/
 	private String RTRNTM = "";
 	
-	/*«È¤á¶Ç²¼¸¹½X CSTNO*/
+	/*å®¢æˆ¶å‚³ç¥¨è™Ÿç¢¼ CSTNO*/
 	private String CSTNO = "";
 	
-	/*¶×¶O­t¾á½X RMTCDE*/
+	/*åŒ¯è²»è² æ“”ç¢¼ RMTCDE*/
 	private String RMTCDE = "";
 	
-	/*¶×¶O RMTFEE*/
+	/*åŒ¯è²» RMTFEE*/
 	private int RMTFEE = 0;
 
-	/*¿é¤J¤é´Á ENTRYDT*/
+	/*è¼¸å…¥æ—¥æœŸ ENTRYDT*/
 	private int ENTRYDT = 0;
 	
-	/*¿é¤J®É¶¡*/
+	/*è¼¸å…¥æ™‚é–“*/
 	private int ENTRYTM = 0;
 	
-	/*¿é¤J¤H­û ENTRYUSR*/
+	/*è¼¸å…¥äººå“¡ ENTRYUSR*/
 	private String ENTRYUSR = "";
 	
-	/*³Æµù MEMO*/
+	/*å‚™è¨» MEMO*/
 	private String MEMO = "";
 	
-	/* R60550	CAPRMTF ÂXÀÉ6­ÓÄæ¦ì*/
-	/*¥~¹ô¶×¥Xª÷ÃB RPAYAMT*/
+	/* R60550	CAPRMTF æ“´æª”6å€‹æ¬„ä½*/
+	/*å¤–å¹£åŒ¯å‡ºé‡‘é¡ RPAYAMT*/
 	private double RPAYAMT = 0;
 	
-	/*¥~¹ô¶×¥X¹ô§O RPAYCURR*/
+	/*å¤–å¹£åŒ¯å‡ºå¹£åˆ¥ RPAYCURR*/
 	private String RPAYCURR = "";
 	
-	/*«á¦¬¤âÄò¶O¹ô§O RPAYMIDCUR*/
+	/*å¾Œæ”¶æ‰‹çºŒè²»å¹£åˆ¥ RPAYMIDCUR*/
 	private String RPAYMIDCUR = "";
 	
-	/*«á¦¬¤âÄò¶O RPAYMIDFEE*/
+	/*å¾Œæ”¶æ‰‹çºŒè²» RPAYMIDFEE*/
 	private double RPAYMIDFEE = 0;
 	
-	/*«á¦¬¤âÄò¶O¤é´Á RPAYMIDDT*/
+	/*å¾Œæ”¶æ‰‹çºŒè²»æ—¥æœŸ RPAYMIDDT*/
 	private int RPAYMIDDT = 0;
 	
-	/*¤âÄò¶O¤ä¥I¤è¦¡ RPAYFEEWAY*/
+	/*æ‰‹çºŒè²»æ”¯ä»˜æ–¹å¼ RPAYFEEWAY*/
 	private String RPAYFEEWAY = "";
 	
-	/*R60550 FOR CAPSWIFT¥~°ê»È¦æ¥N½X SWIFTCODE*/
+	/*R60550 FOR CAPSWIFTå¤–åœ‹éŠ€è¡Œä»£ç¢¼ SWIFTCODE*/
 	private String SWIFTCODE = "";
 
-	/*FOR CAPSWIFT¥~°ê»È¦æ¦WºÙ SWBKNAME*/
+	/*FOR CAPSWIFTå¤–åœ‹éŠ€è¡Œåç¨± SWBKNAME*/
 	private String SWBKNAME = "";
 
-	/*FOR CAPSWIFT¥~°ê»È¦æ¦í§} SWBKADDR*/
-	/* RA0074 ´À´«ORCHSWFTÀÉ ¤£¦s¦b»È¦æ¦a§}Äæ¦ì
+	/*FOR CAPSWIFTå¤–åœ‹éŠ€è¡Œä½å€ SWBKADDR*/
+	/* RA0074 æ›¿æ›ORCHSWFTæª” ä¸å­˜åœ¨éŠ€è¡Œåœ°å€æ¬„ä½
 	private String SWBKADDR = "";*/
 
-	/*FOR CAPPAYF¥~°ê©m¦W PENGNAME*/
+	/*FOR CAPPAYFå¤–åœ‹å§“å PENGNAME*/
 	private String PENGNAME = "";
 	
-	/*«°¥«(­^¤å) RBKCITY*/
+	/*åŸå¸‚(è‹±æ–‡) RBKCITY*/
 	private String RBKCITY = "";
 	
-	/*¤À¦æ(­^¤å) RBKBRCH*/
+	/*åˆ†è¡Œ(è‹±æ–‡) RBKBRCH*/
 	private String RBKBRCH = "";
 	
-	/*°ê§O RBKCOUNTRY*/
+	/*åœ‹åˆ¥ RBKCOUNTRY*/
 	private String RBKCOUNTRY = "";
 	
-	/*«È¤á­t¾á¤âÄò¶O RBENFEE R70088*/
+	/*å®¢æˆ¶è² æ“”æ‰‹çºŒè²» RBENFEE R70088*/
 	private double RBENFEE = 0;
 
-	/*¥~¹ô¶×²v RPAYRATE R70088*/
+	/*å¤–å¹£åŒ¯ç‡ RPAYRATE R70088*/
 	private double RPAYRATE = 0;	
 
-	/*«O³æ¹ô§O RPCURR*/
+	/*ä¿å–®å¹£åˆ¥ RPCURR*/
 	private String RPCURR = "";
 	
-	/*RC0036 ©Ó¿ì³æ¦ì Dept*/
+	/*RC0036 æ‰¿è¾¦å–®ä½ Dept*/
 	private String DEPT;
 	
-	//RD0382:OIU,¨ü´Ú¤H¦a§}
+	//RD0382:OIU,å—æ¬¾äººåœ°å€
 	private String payAddr = "";
 	
-	//RD0382:OIU,¨ü´Ú»È¦æÀË®Ö½X
+	//RD0382:OIU,å—æ¬¾éŠ€è¡Œæª¢æ ¸ç¢¼
 	private String payBkVerifyNumber = "";	
 	
-	//RD0382:OIU,¨ü´Ú»È¦æSORTCODE
+	//RD0382:OIU,å—æ¬¾éŠ€è¡ŒSORTCODE
 	private String payBkSortCode = "";
 	
-	//RD0382:OIU,CAPPAYFªºPAY_SOURCE_CODE
+	//RD0382:OIU,CAPPAYFçš„PAY_SOURCE_CODE
 	private String paySourceCode = "";
 
 	public String getPaySourceCode() {
@@ -146,32 +146,32 @@ public class CaprmtfVO implements java.io.Serializable {
 		this.paySourceCode = paySourceCode;
 	}
 
-	//RD0382:OIU,¨ü´Ú¤H¦a§}
+	//RD0382:OIU,å—æ¬¾äººåœ°å€
 	public String getPayAddr() {
 		return payAddr;
 	}
 
-	//RD0382:OIU,¨ü´Ú¤H¦a§}
+	//RD0382:OIU,å—æ¬¾äººåœ°å€
 	public void setPayAddr(String payAddr) {
 		this.payAddr = payAddr;
 	}
 	
-	//RD0382:OIU,¨ü´Ú»È¦æÀË®Ö½X
+	//RD0382:OIU,å—æ¬¾éŠ€è¡Œæª¢æ ¸ç¢¼
 	public String getPayBkVerifyNumber() {
 		return payBkVerifyNumber;
 	}
 
-	//RD0382:OIU,¨ü´Ú»È¦æÀË®Ö½X
+	//RD0382:OIU,å—æ¬¾éŠ€è¡Œæª¢æ ¸ç¢¼
 	public void setPayBkVerifyNumber(String payBkVerifyNumber) {
 		this.payBkVerifyNumber = payBkVerifyNumber;
 	}
 	
-	//RD0382:OIU,¨ü´Ú»È¦æSORTCODE
+	//RD0382:OIU,å—æ¬¾éŠ€è¡ŒSORTCODE
 	public String getPayBkSortCode() {
 		return payBkSortCode;
 	}
 
-	//RD0382:OIU,¨ü´Ú»È¦æSORTCODE
+	//RD0382:OIU,å—æ¬¾éŠ€è¡ŒSORTCODE
 	public void setPayBkSortCode(String payBkSortCode) {
 		this.payBkSortCode = payBkSortCode;
 	}
@@ -303,7 +303,7 @@ public class CaprmtfVO implements java.io.Serializable {
 		return SWBKNAME;
 	}
 
-	/* RA0074 ´À´«ORCHSWFTÀÉ ¤£¦s¦b»È¦æ¦a§}Äæ¦ì
+	/* RA0074 æ›¿æ›ORCHSWFTæª” ä¸å­˜åœ¨éŠ€è¡Œåœ°å€æ¬„ä½
 	public String getSWBKADDR() {
 		return SWBKADDR;
 	}
@@ -449,7 +449,7 @@ public class CaprmtfVO implements java.io.Serializable {
 		SWBKNAME = string;
 	}
 
-	/* RA0074 ´À´«ORCHSWFTÀÉ ¤£¦s¦b»È¦æ¦a§}Äæ¦ì
+	/* RA0074 æ›¿æ›ORCHSWFTæª” ä¸å­˜åœ¨éŠ€è¡Œåœ°å€æ¬„ä½
 	public void setSWBKADDR(String string) {
 		SWBKADDR = string;
 	}*/
@@ -498,24 +498,24 @@ public class CaprmtfVO implements java.io.Serializable {
 		try{ this.ENTRYTM = rs.getInt("ENTRYTM"); }catch(Exception e){}
 		try{ this.ENTRYUSR = rs.getString("ENTRYUSR"); }catch(Exception e){}
 		try{ this.MEMO = rs.getString("MEMO"); }catch(Exception e){}
-		/*R60550 CAPRMTF ÂXÀÉ6­ÓÄæ¦ì*/
+		/*R60550 CAPRMTF æ“´æª”6å€‹æ¬„ä½*/
 		try{ this.RPAYAMT = rs.getDouble("RPAYAMT"); }catch(Exception e){}
 		try{ this.RPAYCURR = rs.getString("RPAYCURR"); }catch(Exception e){}
 		try{ this.RPAYMIDCUR = rs.getString("RPAYMIDCUR"); }catch(Exception e){}
 		try{ this.RPAYMIDFEE = rs.getDouble("RPAYMIDFEE"); }catch(Exception e){}
 		try{ this.RPAYMIDDT = rs.getInt("RPAYMIDDT"); }catch(Exception e){}
 		try{ this.RPAYFEEWAY = rs.getString("RPAYFEEWAY"); }catch(Exception e){}
-		/*R60550 CAPSWIFT ¥~°ê±b¸¹¸ê®Æ*/
+		/*R60550 CAPSWIFT å¤–åœ‹å¸³è™Ÿè³‡æ–™*/
 		try{ this.SWIFTCODE = rs.getString("SWIFTCODE"); }catch(Exception e){}
 		try{ this.SWBKNAME = rs.getString("SWBKNAME"); }catch(Exception e){}
-		/* RA0074 ´À´«ORCHSWFTÀÉ ¤£¦s¦b»È¦æ¦a§}Äæ¦ì
+		/* RA0074 æ›¿æ›ORCHSWFTæª” ä¸å­˜åœ¨éŠ€è¡Œåœ°å€æ¬„ä½
 		try{ this.SWBKADDR = rs.getString("SWBKADDR"); }catch(Exception e){} */
 		try{ this.PENGNAME = CommonUtil.AllTrim(rs.getString("PENGNAME")); }catch(Exception e){}
 		try{ this.RBENFEE = rs.getDouble("RBENFEE"); }catch(Exception e){}
 		try{ this.RPAYRATE = rs.getDouble("RPAYRATE"); }catch(Exception e){}
-		// R70477 «O³æ¹ô§O
+		// R70477 ä¿å–®å¹£åˆ¥
 		try{ this.RPCURR = rs.getString("RPCURR"); }catch(Exception e){}
-		// RC0036 ©Ó¿ì³æ¦ì
+		// RC0036 æ‰¿è¾¦å–®ä½
 		try{ this.DEPT = rs.getString("DEPT"); }catch(Exception e){}
 	}
 

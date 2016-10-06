@@ -1,8 +1,8 @@
 /** =============================================================================
  *  ------------------------------------------------------------------------------------------------------------------
- *   »İ¨D³æ¸¹       ­×§ïªÌ                ­×§ï¤é    			  ­×§ï¤º®e
+ *   éœ€æ±‚å–®è™Ÿ       ä¿®æ”¹è€…                ä¿®æ”¹æ—¥    			  ä¿®æ”¹å…§å®¹
  *  ------------------------------------------------------------------------------------------------------------------
- *      R00393           Leo Huang    			2010/09/20           ²{¦b®É¶¡¨úCapsilÀç¹B®É¶¡
+ *      R00393           Leo Huang    			2010/09/20           ç¾åœ¨æ™‚é–“å–Capsilç‡Ÿé‹æ™‚é–“
  *  =============================================================================
  */
 package com.aegon.disb.disbpayment;
@@ -37,16 +37,16 @@ import com.aegon.disb.util.DISBPaymentDetailVO;
  * 
  * $$Log: DISBPMemoServlet.java,v $
  * $Revision 1.3  2013/12/24 03:03:31  MISSALLY
- * $R00135---PA0024---CASH¦~«×±M®×
+ * $R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ
  * $
  * $Revision 1.2  2010/11/23 06:45:20  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.1  2006/06/29 09:40:15  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.3  2005/04/04 07:02:24  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -132,11 +132,11 @@ public class DISBPMemoServlet extends HttpServlet {
 		int iUpdTime =
 			Integer.parseInt((String) sdfFormatter.format(cldToday.getTime()));
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-		String strPNO = "";  //¤ä¥I§Ç¸¹
-		String strMEMO = ""; //¤ä¥I³Æµù
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strPNO = "";  //æ”¯ä»˜åºè™Ÿ
+		String strMEMO = ""; //æ”¯ä»˜å‚™è¨»
 
-		/*¨ú±o«eºİÄæ¦ì¸ê®Æ*/
+		/*å–å¾—å‰ç«¯æ¬„ä½è³‡æ–™*/
 		strPNO = request.getParameter("txtUPNO");
 		if (strPNO != null)
 			strPNO = strPNO.trim();
@@ -149,7 +149,7 @@ public class DISBPMemoServlet extends HttpServlet {
 		else
 		    strMEMO = "";
 			
-		/*§ó·s¨ì¤ä¥I¥DÀÉ*/
+		/*æ›´æ–°åˆ°æ”¯ä»˜ä¸»æª”*/
 		strSql = " update CAPPAYF ";
 		strSql
 			+= " set MEMO='" +strMEMO + "'";
@@ -173,11 +173,11 @@ public class DISBPMemoServlet extends HttpServlet {
 				pstmtTmp = con.prepareStatement(strSql);
 				if (pstmtTmp.executeUpdate() != 1) {
 					bContinue = false;
-					request.setAttribute("txtMsg", "Àx¦s¥¢±Ñ");
+					request.setAttribute("txtMsg", "å„²å­˜å¤±æ•—");
 					System.out.println("DISB: Save failed. ");
 				} else {
 					bContinue = true;
-					request.setAttribute("txtMsg", "Àx¦s¦¨¥\");
+					request.setAttribute("txtMsg", "å„²å­˜æˆåŠŸ");
 					System.out.println("DISB: Save successfully.");
 				}
 				pstmtTmp.close();

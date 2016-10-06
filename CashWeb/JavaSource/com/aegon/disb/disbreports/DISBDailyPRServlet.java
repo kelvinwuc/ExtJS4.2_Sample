@@ -41,13 +41,13 @@ import org.apache.log4j.Logger;
  * 
  * $$Log: DISBDailyPRServlet.java,v $
  * $Revision 1.3  2014/10/30 06:37:17  misariel
- * $QC0343-¤ä²¼±i¼Æ§ï¬°¤£­«½Æ­pºâ(½Õ¾ãSQL)
+ * $QC0343-æ”¯ç¥¨å¼µæ•¸æ”¹ç‚ºä¸é‡è¤‡è¨ˆç®—(èª¿æ•´SQL)
  * $
  * $Revision 1.2  2014/08/05 03:13:52  missteven
  * $RC0036
  * $
  * $Revision 1.1  2008/08/21 09:17:20  misvanessa
- * $Q80432_XFILEÀË®Ö
+ * $Q80432_XFILEæª¢æ ¸
  * $
  * $$
  *  
@@ -162,15 +162,15 @@ public class DISBDailyPRServlet  extends com.aegon.comlib.InitDBServlet {
 			}
 		}
 		
-		//«æ¥ó¥I´Ú¡A²£¥ÍExcel¤U¸üÀÉ 
+		//æ€¥ä»¶ä»˜æ¬¾ï¼Œç”¢ç”ŸExcelä¸‹è¼‰æª” 
 		if ("Y".equals(disPatch)){
 			WriteExcel wx = new WriteExcel() ;
-			wx.setOutputFile(globalEnviron.getAppPath()+"\\download\\"+sdf.format(current)+"«æ¥óµ¹¥I²M³æ.xls");
+			wx.setOutputFile(globalEnviron.getAppPath()+"\\download\\"+sdf.format(current)+"æ€¥ä»¶çµ¦ä»˜æ¸…å–®.xls");
 			wx.write(request,response);
 		}
 		
-		/*QC0343 SQL½Õ¾ã*/
-		//uid="20140807104557";//´ú¸Õ
+		/*QC0343 SQLèª¿æ•´*/
+		//uid="20140807104557";//æ¸¬è©¦
 		String ReportSQL = "SELECT A.*,";
 		/*String ReportSQL = "SELECT ";
 		ReportSQL += "A.PAY_NO,";//OK
@@ -265,7 +265,7 @@ public class DISBDailyPRServlet  extends com.aegon.comlib.InitDBServlet {
 						   "WHERE A.PNO = D.PNO "+
 						   "AND D.SID = '"+uid+"' "+
 						   "ORDER BY B.DEPT,B.USRBRCH,A.ENTRY_USER ASC ";
-		log.info("ReportSQL¬O" + ReportSQL);
+		log.info("ReportSQLæ˜¯" + ReportSQL);
 		request.setAttribute("ReportSQL", ReportSQL);
 		dispatcher = request.getRequestDispatcher("/servlet/com.aegon.crystalreport.CreateReportRS");
 		try{

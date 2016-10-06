@@ -29,9 +29,9 @@ import org.apache.log4j.Logger;
 /**
  * System   : CashWeb
  * 
- * Function : ¤À¤½¥q¥I²{
+ * Function : åˆ†å…¬å¸ä»˜ç¾
  * 
- * Remark   : ¥X¯Ç¥\¯à
+ * Remark   : å‡ºç´åŠŸèƒ½
  * 
  * Revision : $$Revision: 1.5 $$
  * 
@@ -57,7 +57,7 @@ import org.apache.log4j.Logger;
  * $RC0036-3
  * $
  * $Revision 1.1  2014/07/18 07:17:59  misariel
- * $EC0342-RC0036·s¼W¤À¤½¥q¦æ¬F¤H­û¨Ï¥ÎCAPSIL
+ * $EC0342-RC0036æ–°å¢åˆ†å…¬å¸è¡Œæ”¿äººå“¡ä½¿ç”¨CAPSIL
  * $
  *  
  */
@@ -105,9 +105,9 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 		strSql += "WHERE a.PMETHOD='E' and a.PCFMDT1>0 and a.PCFMUSR1<>'' and a.PCFMDT2>0 and a.PCFMUSR2<>'' ";
 		strSql += " and a.PSTATUS='' and a.PVOIDABLE<>'Y' and a.PAMT>0 ";
 		strSql += " and a.PCFMDT2 between " + strDateS + " and " + strDateE + " ";
-		//strSql += " and USR.USRAREA <> '' "; //2RD046:0151007,Kelvin Wu,RD046:¾ã¦X²{ª÷¤ä¥I¤Î¤À¤½¥q¥I²{ªº¬d¸ß±ø¥ó
-		strSql += " and ((USR.USRAREA <> '') OR (a.PDISPATCH='Y'  and a.PCURR='NT'  and USR.DEPT='CSC')) "; //RD046:20151007,Kelvin Wu,RD046:¾ã¦X²{ª÷¤ä¥I¤Î¤À¤½¥q¥I²{ªº¬d¸ß±ø¥ó
-		strSql += " ORDER BY USR.DEPT,a.POLICYNO "; //RD046:20151007,Kelvin Wu,RD046:¾ã¦X²{ª÷¤ä¥I¤Î¤À¤½¥q¥I²{ªº¬d¸ß±ø¥ó
+		//strSql += " and USR.USRAREA <> '' "; //2RD046:0151007,Kelvin Wu,RD046:æ•´åˆç¾é‡‘æ”¯ä»˜åŠåˆ†å…¬å¸ä»˜ç¾çš„æŸ¥è©¢æ¢ä»¶
+		strSql += " and ((USR.USRAREA <> '') OR (a.PDISPATCH='Y'  and a.PCURR='NT'  and USR.DEPT='CSC')) "; //RD046:20151007,Kelvin Wu,RD046:æ•´åˆç¾é‡‘æ”¯ä»˜åŠåˆ†å…¬å¸ä»˜ç¾çš„æŸ¥è©¢æ¢ä»¶
+		strSql += " ORDER BY USR.DEPT,a.POLICYNO "; //RD046:20151007,Kelvin Wu,RD046:æ•´åˆç¾é‡‘æ”¯ä»˜åŠåˆ†å…¬å¸ä»˜ç¾çš„æŸ¥è©¢æ¢ä»¶
 		System.out.println("DISBDeptCashConfirmServlet.querySql=" + strSql);
 
 		Connection con = null;
@@ -123,21 +123,21 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 
 			while(rst.next()) {
 				objPDetailVO = new DISBPaymentDetailVO();
-				objPDetailVO.setStrPNO(rst.getString("PNO")); // ¤ä¥I§Ç¸¹
-				objPDetailVO.setStrPMethod(rst.getString("PMETHOD"));// ¥I´Ú¤è¦¡
-				objPDetailVO.setIPDate(rst.getInt("PDATE")); // ¥I´Ú¤é´Á
-				objPDetailVO.setStrPName(rst.getString("PNAME"));// ¨ü´Ú¤H©m¦W
-				objPDetailVO.setStrPId(rst.getString("PID")); // ¨ü´Ú¤HID
+				objPDetailVO.setStrPNO(rst.getString("PNO")); // æ”¯ä»˜åºè™Ÿ
+				objPDetailVO.setStrPMethod(rst.getString("PMETHOD"));// ä»˜æ¬¾æ–¹å¼
+				objPDetailVO.setIPDate(rst.getInt("PDATE")); // ä»˜æ¬¾æ—¥æœŸ
+				objPDetailVO.setStrPName(rst.getString("PNAME"));// å—æ¬¾äººå§“å
+				objPDetailVO.setStrPId(rst.getString("PID")); // å—æ¬¾äººID
 				objPDetailVO.setStrPCurr(rst.getString("PCURR"));
-				objPDetailVO.setIPAMT(rst.getDouble("PAMT")); // ¤ä¥Iª÷ÃB
-				objPDetailVO.setStrPSrcCode(rst.getString("PSRCCODE"));// ¤ä¥I­ì¦]¥N½X
-				objPDetailVO.setStrPolicyNo(rst.getString("POLICYNO"));// «O³æ¸¹½X
-				objPDetailVO.setStrAppNo(rst.getString("APPNO"));// ­n«O®Ñ¸¹½X
-				objPDetailVO.setStrPDispatch(rst.getString("PDISPATCH"));// «æ¥ó§_
-				objPDetailVO.setStrPVoidable(rst.getString("PVOIDABLE"));// §@¼o§_
-				objPDetailVO.setStrPDesc(rst.getString("PDESC")); // ¤ä¥I´y­z
-				objPDetailVO.setStrUsrDept(rst.getString("USRDEPT")); // ©Ó¿ì³æ¦ì
-				//log.info("USRDEPT¬O" + rst.getString("USRDEPT"));
+				objPDetailVO.setIPAMT(rst.getDouble("PAMT")); // æ”¯ä»˜é‡‘é¡
+				objPDetailVO.setStrPSrcCode(rst.getString("PSRCCODE"));// æ”¯ä»˜åŸå› ä»£ç¢¼
+				objPDetailVO.setStrPolicyNo(rst.getString("POLICYNO"));// ä¿å–®è™Ÿç¢¼
+				objPDetailVO.setStrAppNo(rst.getString("APPNO"));// è¦ä¿æ›¸è™Ÿç¢¼
+				objPDetailVO.setStrPDispatch(rst.getString("PDISPATCH"));// æ€¥ä»¶å¦
+				objPDetailVO.setStrPVoidable(rst.getString("PVOIDABLE"));// ä½œå»¢å¦
+				objPDetailVO.setStrPDesc(rst.getString("PDESC")); // æ”¯ä»˜æè¿°
+				objPDetailVO.setStrUsrDept(rst.getString("USRDEPT")); // æ‰¿è¾¦å–®ä½
+				//log.info("USRDEPTæ˜¯" + rst.getString("USRDEPT"));
 				alPDetail.add(objPDetailVO);
 			}
 
@@ -146,12 +146,12 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 				request.setAttribute("PDetailListTemp", alPDetail);
 				path = "/DISB/DISBReports/DISBDeptCashConfirmList.jsp";
 			} else {
-				request.setAttribute("txtMsg", "¬dµL¬ÛÃö¸ê®Æ");
+				request.setAttribute("txtMsg", "æŸ¥ç„¡ç›¸é—œè³‡æ–™");
 				path = "/DISB/DISBReports/DISBDeptCashConfirmInq.jsp";
 			}
 
 		} catch (Exception ex) {
-			request.setAttribute("txtMsg", "¬d¸ß¥¢±Ñ" + ex);
+			request.setAttribute("txtMsg", "æŸ¥è©¢å¤±æ•—" + ex);
 			alPDetail = null;
 		} finally {
 			try {
@@ -178,7 +178,7 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 		String strAccount = request.getParameter("txtPBAccount");
 
 		String[] strPNO = request.getParameterValues("PNO");
-		String strPMETHOD = request.getParameter("PMETHOD").trim();// ¥I´Ú¤è¦¡
+		String strPMETHOD = request.getParameter("PMETHOD").trim();// ä»˜æ¬¾æ–¹å¼
 		
 		String strPCSHCM = request.getParameter("txtPCSHCM");
 		int iPCSHCM = 0;
@@ -191,9 +191,9 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 		
 		String strCNo = request.getParameter("txtCHKNO")!=null?request.getParameter("txtCHKNO"):"";
 		String strCBNO = "" ;
-		String wsPNO = ""; // ¤ä¥I§Ç¸¹
+		String wsPNO = ""; // æ”¯ä»˜åºè™Ÿ
 		
-		//step 1:§ó·sCAPPAYFªº¥I´Úª¬ºAPSTATUS='B'
+		//step 1:æ›´æ–°CAPPAYFçš„ä»˜æ¬¾ç‹€æ…‹PSTATUS='B'
 		String strSql = "UPDATE CAPPAYF SET PSTATUS='B',PBBANK=?,PBACCOUNT=?,PCSHDT=?,PCSHCM=?,UPDDT=?,UPDTM=?,UPDUSR=?,PBATNO=?,PCHECKNO=? WHERE PNO=? ";
 		System.out.println("DISBDeptCashConfirmServlet.updateSql=" + strSql);
 		
@@ -211,10 +211,10 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 		double totalAmt = 0;
 		double totalFee = 0;
 		int ISeqNo = 0;
-		String wsBANK = "";  //¦¬´Ú»È¦æ
-		String wsBANKTemp = "";//¦¬´Ú»È¦æ,QD0219
-		String wsACCOUNT = ""; //¦¬´Ú±b¸¹
-		String wsPNAME = "¥ş²y¤H¹Ø«OÀIªÑ¥÷¦³­­¤½¥q"; //¦¬´Ú¤H
+		String wsBANK = "";  //æ”¶æ¬¾éŠ€è¡Œ
+		String wsBANKTemp = "";//æ”¶æ¬¾éŠ€è¡Œ,QD0219
+		String wsACCOUNT = ""; //æ”¶æ¬¾å¸³è™Ÿ
+		String wsPNAME = "å…¨çƒäººå£½ä¿éšªè‚¡ä»½æœ‰é™å…¬å¸"; //æ”¶æ¬¾äºº
 		String wsENTRYUSR = "";
 		String wsRMEMO = "";
 		String wsUsrDept = "";
@@ -230,7 +230,7 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 		//KHB
 		String wsKHBBANK = "0060590"; 
 		String wsKHBACCOUNT = "0590717120258"; 
-		//CSC,20151007,Kelvin Wu,RD046:¾ã¦X²{ª÷¤ä¥I¤Î¤À¤½¥q¥I²{ªº¬d¸ß±ø¥ó
+		//CSC,20151007,Kelvin Wu,RD046:æ•´åˆç¾é‡‘æ”¯ä»˜åŠåˆ†å…¬å¸ä»˜ç¾çš„æŸ¥è©¢æ¢ä»¶
 		String wsCSCBANK = "0071510"; 
 		String wsCSCACCOUNT = "15110066986"; 
 		
@@ -238,7 +238,7 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 		
 		double wsAMT = 0;
 		
-		//ÀË®Ö²¼¸¹
+		//æª¢æ ¸ç¥¨è™Ÿ
 		con = dbFactory.getAS400Connection("DISBRemitDisposeServlet.updateB()");
 		PreparedStatement pstmtTmp = null;
 		ResultSet rs = null;
@@ -255,7 +255,7 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 				if (rs.next()) {
 					strCBNO = rs.getString("CBNO");
 				}else{
-					request.setAttribute("msg","¤ä²¼¸¹½X[" + strCNo + "]¤£¦s¦b!");
+					request.setAttribute("msg","æ”¯ç¥¨è™Ÿç¢¼[" + strCNo + "]ä¸å­˜åœ¨!");
 					return;
 				}
 			}
@@ -264,28 +264,28 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 			int iUpdTime = Integer.parseInt(sdf.format(cldToday.getTime()));
 			String strLogonUser = (String) session.getAttribute(Constant.LOGON_USER_ID);
 
-			//step1:§ó·sCAPPAYFªº¥I´Úª¬ºAPSTATUS='B'
+			//step1:æ›´æ–°CAPPAYFçš„ä»˜æ¬¾ç‹€æ…‹PSTATUS='B'
 			con = dbFactory.getAS400Connection("DISBDeptCashConfirmServlet.update");
 			pstmt = con.prepareStatement(strSql);
 			
 			String batNo = "";
 			String strMsg = "";
-			//log.info("strPNO.length¬O" + strPNO.length);
+			//log.info("strPNO.lengthæ˜¯" + strPNO.length);
 			for(int index=0; index<strPNO.length; index++) {
 				DISBPaymentDetailVO payment = new DISBPaymentDetailVO();
 				payment.setStrPNO(strPNO[index].trim());
-				//step2:±qCAPPAYF¡BORDUET¤ÎUSER¬d¸ßPNO¦³Ãö°O¿ı
-				//log.info("strPNO[index].trim()¬O" + strPNO[index].trim());
+				//step2:å¾CAPPAYFã€ORDUETåŠUSERæŸ¥è©¢PNOæœ‰é—œè¨˜éŒ„
+				//log.info("strPNO[index].trim()æ˜¯" + strPNO[index].trim());
 				dao.query(payment);
 				payment.setStrPBBank(strBank);
 				payment.setStrPBAccount(strAccount);
 				payment.setStrPMethod(strPMETHOD);
-				payment.setStrBatNo(batNo);// ¶×´Ú§å¸¹
-				payment.setIPCshDt(iUpdDate);// ¥X¯Ç¤é´Á
-				payment.setIUpdDt(iUpdDate);// ²§°Ê¤é´Á
-				payment.setIUpdTm(iUpdTime);// ²§°Ê®É¶¡
-				payment.setStrUpdUsr(strLogonUser);// ²§°ÊªÌ
-				payment.setIPCSHCM(iPCSHCM);/*¥X¯Ç½T»{¤éÄæ¦ì */
+				payment.setStrBatNo(batNo);// åŒ¯æ¬¾æ‰¹è™Ÿ
+				payment.setIPCshDt(iUpdDate);// å‡ºç´æ—¥æœŸ
+				payment.setIUpdDt(iUpdDate);// ç•°å‹•æ—¥æœŸ
+				payment.setIUpdTm(iUpdTime);// ç•°å‹•æ™‚é–“
+				payment.setStrUpdUsr(strLogonUser);// ç•°å‹•è€…
+				payment.setIPCSHCM(iPCSHCM);/*å‡ºç´ç¢ºèªæ—¥æ¬„ä½ */
 				batNo = disbBean.getPBatNo(strPMETHOD, iUpdDate, iUpdTime, strBank);
 				
 				if (payment.getStrUsrDept().trim().equals("TYB")){
@@ -300,22 +300,22 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 				}else if(payment.getStrUsrDept().trim().equals("KHB")){
 					wsBANK = wsKHBBANK;
 					wsACCOUNT = wsKHBACCOUNT;								
-				}else if(payment.getStrUsrDept().trim().equals("CSC")){ //20151007,Kelvin Wu,EDxxx:¾ã¦X²{ª÷¤ä¥I¤Î¤À¤½¥q¥I²{ªº¬d¸ß±ø¥ó					
+				}else if(payment.getStrUsrDept().trim().equals("CSC")){ //20151007,Kelvin Wu,EDxxx:æ•´åˆç¾é‡‘æ”¯ä»˜åŠåˆ†å…¬å¸ä»˜ç¾çš„æŸ¥è©¢æ¢ä»¶					
 					wsBANK = wsCSCBANK;
 					wsACCOUNT = wsCSCACCOUNT;	
 					//log.info("CSC:" + wsBANK + "-" + wsACCOUNT);
 				}
-				//log.info("index¬O" + index + ",payment.getStrUsrDept().trim()¬O" + payment.getStrUsrDept().trim() + ",wsBANK:" + wsBANK);
+				//log.info("indexæ˜¯" + index + ",payment.getStrUsrDept().trim()æ˜¯" + payment.getStrUsrDept().trim() + ",wsBANK:" + wsBANK);
 				
 				/*StringBuffer sbTmp = new StringBuffer();
-				sbTmp.append("¶×´Ú§å¸¹batNo:" + batNo + ",");
-				sbTmp.append("¥X¯Ç¤é´ÁiUpdDate:" + iUpdDate + ",");
-				sbTmp.append("²§°Ê¤é´ÁiUpdDate:" + iUpdDate + ",");
-				sbTmp.append("²§°Ê®É¶¡iUpdTime:" + iUpdTime + ",");
-				sbTmp.append("²§°ÊªÌstrLogonUser:" + strLogonUser + ",");
-				sbTmp.append("¥X¯Ç½T»{¤éÄæ¦ìiPCSHCM:" + iPCSHCM + ",");
-				sbTmp.append("wsBANK¬O:" + wsBANK + ",");
-				sbTmp.append("wsACCOUNT¬O:" + wsACCOUNT + ",");
+				sbTmp.append("åŒ¯æ¬¾æ‰¹è™ŸbatNo:" + batNo + ",");
+				sbTmp.append("å‡ºç´æ—¥æœŸiUpdDate:" + iUpdDate + ",");
+				sbTmp.append("ç•°å‹•æ—¥æœŸiUpdDate:" + iUpdDate + ",");
+				sbTmp.append("ç•°å‹•æ™‚é–“iUpdTime:" + iUpdTime + ",");
+				sbTmp.append("ç•°å‹•è€…strLogonUser:" + strLogonUser + ",");
+				sbTmp.append("å‡ºç´ç¢ºèªæ—¥æ¬„ä½iPCSHCM:" + iPCSHCM + ",");
+				sbTmp.append("wsBANKæ˜¯:" + wsBANK + ",");
+				sbTmp.append("wsACCOUNTæ˜¯:" + wsACCOUNT + ",");
 				log.info(sbTmp.toString());*/
 				if (index == 0) {
 					ISeqNo += 1;
@@ -327,24 +327,24 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 					rmtVO.setRACCT(wsACCOUNT);
 					rmtVO.setRNAME(wsPNAME);
 				}
-				//¥u­n¨ä¤@±ø¥ó¦¨¥ß¡A´N¶i¤J
+				//åªè¦å…¶ä¸€æ¢ä»¶æˆç«‹ï¼Œå°±é€²å…¥
 				if (!wsUsrDept.equals(payment.getStrUsrDept().trim()))
 								//|| !wsENTRYUSR.equals(payment.getStrEntryUsr().trim())) 
 				{
-					//log.info("strPNO[" + index + "]¬O" + strPNO[index] + ":wsUsrDept.equals(payment.getStrUsrDept().trim())¬O¤£¤@¼Ëªº,wsUsrDept¬O" + wsUsrDept + ",payment.getStrUsrDept()¬O" + payment.getStrUsrDept() + ",wsBANK:" + wsBANK);
+					//log.info("strPNO[" + index + "]æ˜¯" + strPNO[index] + ":wsUsrDept.equals(payment.getStrUsrDept().trim())æ˜¯ä¸ä¸€æ¨£çš„,wsUsrDeptæ˜¯" + wsUsrDept + ",payment.getStrUsrDept()æ˜¯" + payment.getStrUsrDept() + ",wsBANK:" + wsBANK);
 					rmtVO.setBATNO(batNo);
 					rmtVO.setSEQNO(String.valueOf(ISeqNo));
 					rmtVO.setPBK(strBank);
 					rmtVO.setPACCT(strAccount);
 					rmtVO.setRAMT(wsAMT);
-					//step3:°Oºâ¶×¶O
-					//log.info("batNo­pºâ¶×¶O.....disbBean.getPFee(),rmtVO.getRBK():" + rmtVO.getRBK());
-					wsBANKTemp = rmtVO.getRBK(); //RD046:¾ã¦X²{ª÷¤ä¥I¤Î¤À¤½¥q¥I²{:­×¥¿¶×¶O­pºâ¿ù»~
+					//step3:è¨˜ç®—åŒ¯è²»
+					//log.info("batNoè¨ˆç®—åŒ¯è²».....disbBean.getPFee(),rmtVO.getRBK():" + rmtVO.getRBK());
+					wsBANKTemp = rmtVO.getRBK(); //RD046:æ•´åˆç¾é‡‘æ”¯ä»˜åŠåˆ†å…¬å¸ä»˜ç¾:ä¿®æ­£åŒ¯è²»è¨ˆç®—éŒ¯èª¤
 					//rmtVO.setRMTFEE((int) disbBean.getPFee(payment.getStrPBBank().trim(), wsBANK, wsAMT, payment.getStrPMethod().trim(), "", ""));
-					//RD046:¾ã¦X²{ª÷¤ä¥I¤Î¤À¤½¥q¥I²{:­×¥¿¶×¶O­pºâ¿ù»~
+					//RD046:æ•´åˆç¾é‡‘æ”¯ä»˜åŠåˆ†å…¬å¸ä»˜ç¾:ä¿®æ­£åŒ¯è²»è¨ˆç®—éŒ¯èª¤
 					rmtVO.setRMTFEE((int) disbBean.getPFee(payment.getStrPBBank().trim(), wsBANKTemp, wsAMT, payment.getStrPMethod().trim(), "", ""));
-					rmtVO.setENTRYDT(iUpdDate);// ¿é¤J¤é´Á
-					rmtVO.setENTRYTM(iUpdTime);// ¿é¤J®É¶¡
+					rmtVO.setENTRYDT(iUpdDate);// è¼¸å…¥æ—¥æœŸ
+					rmtVO.setENTRYTM(iUpdTime);// è¼¸å…¥æ™‚é–“
 
 					if (ls.size() > 0) {
 						List rm = removeDuplicate(ls);
@@ -354,9 +354,9 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 					}
 
 					rmtVO.setRMEMO(wsRMEMO);
-					//step4:·s¼WCAPRMTF°O¿ı
+					//step4:æ–°å¢CAPRMTFè¨˜éŒ„
 					dao.insertRMTF(rmtVO);
-					//log.info("·s¼WCAPRMTF°O¿ı:"+ rmtVO.getRBK());
+					//log.info("æ–°å¢CAPRMTFè¨˜éŒ„:"+ rmtVO.getRBK());
 					totalFee += rmtVO.getRMTFEE(); 
 
 					rmtVO = new CaprmtfVO();
@@ -374,15 +374,15 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
                     ls.add((payment.getStrPDesc() != null ? payment.getStrPDesc().trim() : ""));
                     
 				} else {
-					//log.info("strPNO[" + index + "]¬O" + strPNO[index] + ":wsUsrDept.equals(payment.getStrUsrDept().trim())¬O¬Û¦Pªº,wsUsrDept¬O" + wsUsrDept + ",payment.getStrUsrDept()¬O" + payment.getStrUsrDept() + ",wsBANK:" + wsBANK);
-					//¦X¨Ö¬Û¦P¨ü´Ú±b¸¹ªºª÷ÃB
+					//log.info("strPNO[" + index + "]æ˜¯" + strPNO[index] + ":wsUsrDept.equals(payment.getStrUsrDept().trim())æ˜¯ç›¸åŒçš„,wsUsrDeptæ˜¯" + wsUsrDept + ",payment.getStrUsrDept()æ˜¯" + payment.getStrUsrDept() + ",wsBANK:" + wsBANK);
+					//åˆä½µç›¸åŒå—æ¬¾å¸³è™Ÿçš„é‡‘é¡
 					wsAMT += payment.getIPAMT();
 					if (ls == null){
 						ls = new ArrayList();
 					}
 					
 					ls.add((payment.getStrPDesc() != null ? payment.getStrPDesc().trim() : ""));
-					//QD0219:­×¥¿wsBANK¦bFOR°j°é¤¤¥¼°õ¦ædao.insertRMTF(rmtVO)®É,À³¸Ó±NwsBANK¦s©ó¥t¥~¤@­ÓÅÜ¼ÆwsBANKTemp
+					//QD0219:ä¿®æ­£wsBANKåœ¨FORè¿´åœˆä¸­æœªåŸ·è¡Œdao.insertRMTF(rmtVO)æ™‚,æ‡‰è©²å°‡wsBANKå­˜æ–¼å¦å¤–ä¸€å€‹è®Šæ•¸wsBANKTemp
 					//wsBANKTemp = wsBANK;
 			    }
 
@@ -397,14 +397,14 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 				    pstmt.setInt(5, iUpdDate);
 				    pstmt.setInt(6, iUpdTime);
 				    pstmt.setString(7, strLogonUser);
-				    pstmt.setString(8, batNo);// §å¸¹
+				    pstmt.setString(8, batNo);// æ‰¹è™Ÿ
 				    pstmt.setString(9, strCNo);
                     pstmt.setString(10, strPNO[index]);
 				    pstmt.executeUpdate();	
 				
 					rowCount++;
 					totalAmt += payment.getIRmtFee() + payment.getIPAMT();
-					strMsg = "¸ê®Æ§ó·s¦¨¥\!!";
+					strMsg = "è³‡æ–™æ›´æ–°æˆåŠŸ!!";
 			} //end for
 
 			rmtVO.setBATNO(batNo);
@@ -412,11 +412,11 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 			rmtVO.setPBK(strBank);
 			rmtVO.setPACCT(strAccount);
 			rmtVO.setRAMT(wsAMT);
-			//log.info("batNo­pºâ¶×¶O.....disbBean.getPFee()");
-			wsBANKTemp = rmtVO.getRBK(); //RD046:¾ã¦X²{ª÷¤ä¥I¤Î¤À¤½¥q¥I²{:­×¥¿¶×¶O­pºâ¿ù»~
-			rmtVO.setRMTFEE((int) disbBean.getPFee(strBank.substring(0, 7), wsBANKTemp, wsAMT, strPMETHOD, "", ""));// ¶×¶O,QD0219
-			rmtVO.setENTRYDT(iUpdDate);// ¿é¤J¤é´Á
-			rmtVO.setENTRYTM(iUpdTime);// ¿é¤J®É¶¡
+			//log.info("batNoè¨ˆç®—åŒ¯è²».....disbBean.getPFee()");
+			wsBANKTemp = rmtVO.getRBK(); //RD046:æ•´åˆç¾é‡‘æ”¯ä»˜åŠåˆ†å…¬å¸ä»˜ç¾:ä¿®æ­£åŒ¯è²»è¨ˆç®—éŒ¯èª¤
+			rmtVO.setRMTFEE((int) disbBean.getPFee(strBank.substring(0, 7), wsBANKTemp, wsAMT, strPMETHOD, "", ""));// åŒ¯è²»,QD0219
+			rmtVO.setENTRYDT(iUpdDate);// è¼¸å…¥æ—¥æœŸ
+			rmtVO.setENTRYTM(iUpdTime);// è¼¸å…¥æ™‚é–“
 			if (ls.size() > 0) {
 				List rm = removeDuplicate(ls);
 				for (int i = 0; i < rm.size(); i++) {
@@ -425,7 +425,7 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 			}
 			rmtVO.setRMEMO(wsRMEMO);
 			dao.insertRMTF(rmtVO);
-			//log.info("·s¼WCAPRMTF°O¿ı:"+ rmtVO.getRBK());
+			//log.info("æ–°å¢CAPRMTFè¨˜éŒ„:"+ rmtVO.getRBK());
 			totalFee += rmtVO.getRMTFEE(); 
 			
 			//RC0036
@@ -446,10 +446,10 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 			request.setAttribute("txtMsg", strMsg);
 			request.setAttribute("rowCount", String.valueOf(rowCount));
 			request.setAttribute("totalAmt", String.valueOf(totalAmt));
-			request.setAttribute("batNo", String.valueOf(batNo));// §å¸¹
+			request.setAttribute("batNo", String.valueOf(batNo));// æ‰¹è™Ÿ
 
 		} catch (Exception ex) {
-			request.setAttribute("txtMsg", "¬d¸ß¥¢±Ñ" + ex);
+			request.setAttribute("txtMsg", "æŸ¥è©¢å¤±æ•—" + ex);
 		} finally {
 			try {
 				if (pstmt != null) {
@@ -464,7 +464,7 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 		}
 
 	}
-	//¶×´Ú	   
+	//åŒ¯æ¬¾	   
 	private CaprmtfVO prepareData(DISBPaymentDetailVO payment) throws Exception {
 		
 		CaprmtfVO rmtVO = new CaprmtfVO();
@@ -485,7 +485,7 @@ public class DISBDeptCashConfirmServlet extends InitDBServlet {
 		rmtVO.setENTRYUSR(payment.getStrEntryUsr());
 		return rmtVO;
 	}
-//¶×´Ú	
+//åŒ¯æ¬¾	
 	private List removeDuplicate(List list) {
 		HashSet hs = new HashSet(list);
 		list.clear();

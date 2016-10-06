@@ -37,7 +37,7 @@ public class WriteExcel {
     wbSettings.setLocale(new Locale("zh", "TW"));
 	WritableWorkbook workbook = Workbook.createWorkbook(file, wbSettings);
 	try{
-		workbook.createSheet("«æ¥óµ¹¥I²M³æ", 0);
+		workbook.createSheet("æ€¥ä»¶çµ¦ä»˜æ¸…å–®", 0);
 		WritableSheet excelSheet = workbook.getSheet(0);
 		createLabel(excelSheet);
 		createContent(excelSheet,request,response);
@@ -62,12 +62,12 @@ public class WriteExcel {
     cv.setFormat(timesBoldUnderline);
     cv.setAutosize(true);
     
-    addCaption(sheet, 0, 0, "¤ä²¼¸¹½X");
-    addCaption(sheet, 1, 0, "«O³æ¸¹½X");
-    addCaption(sheet, 2, 0, "¤ä¥Iª÷ÃB");
-    addCaption(sheet, 3, 0, "¶×¶O");
-    addCaption(sheet, 4, 0, "¤é´Á");
-    addCaption(sheet, 5, 0, "¥I´Ú¤è¦¡");
+    addCaption(sheet, 0, 0, "æ”¯ç¥¨è™Ÿç¢¼");
+    addCaption(sheet, 1, 0, "ä¿å–®è™Ÿç¢¼");
+    addCaption(sheet, 2, 0, "æ”¯ä»˜é‡‘é¡");
+    addCaption(sheet, 3, 0, "åŒ¯è²»");
+    addCaption(sheet, 4, 0, "æ—¥æœŸ");
+    addCaption(sheet, 5, 0, "ä»˜æ¬¾æ–¹å¼");
   }
 
   private void createContent(WritableSheet sheet,HttpServletRequest request, HttpServletResponse response) throws WriteException,
@@ -90,15 +90,15 @@ public class WriteExcel {
 		addLabel(sheet, 3, k, request.getParameter("RMTFEE"+pno[i]));
 		addLabel(sheet, 4, k, request.getParameter("PDATE"+pno[i]));
 		if ("A".equals(request.getParameter("PMETHOD"+pno[i])))
-			addLabel(sheet, 5, k, "¤ä²¼");
+			addLabel(sheet, 5, k, "æ”¯ç¥¨");
 		else if ("B".equals(request.getParameter("PMETHOD"+pno[i])))
-			addLabel(sheet, 5, k, "»È¦æ¶×´Ú");
+			addLabel(sheet, 5, k, "éŠ€è¡ŒåŒ¯æ¬¾");
 		else if ("C".equals(request.getParameter("PMETHOD"+pno[i])))
-			addLabel(sheet, 5, k, "«H¥Î¥d");
+			addLabel(sheet, 5, k, "ä¿¡ç”¨å¡");
 		else if ("D".equals(request.getParameter("PMETHOD"+pno[i])))
-			addLabel(sheet, 5, k, "¥~¹ô¶×´Ú");
+			addLabel(sheet, 5, k, "å¤–å¹£åŒ¯æ¬¾");
 		else if ("E".equals(request.getParameter("PMETHOD"+pno[i])))
-			addLabel(sheet, 5, k, "²{ª÷");
+			addLabel(sheet, 5, k, "ç¾é‡‘");
 		else
 			addLabel(sheet, 5, k, request.getParameter("PMETHOD"+pno[i]));
 		k++ ;

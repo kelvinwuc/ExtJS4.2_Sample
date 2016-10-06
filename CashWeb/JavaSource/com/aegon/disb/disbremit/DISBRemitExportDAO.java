@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 /**
  * System   : CashWeb
  * 
- * Function : ¾ã§å¶×´ÚDAO
+ * Function : æ•´æ‰¹åŒ¯æ¬¾DAO
  * 
  * Remark   :
  * 
@@ -37,67 +37,67 @@ import org.apache.log4j.Logger;
  * $*** empty log message ***
  * $
  * $Revision 1.18  2014/10/07 06:24:21  misariel
- * $RC0036-­×¥¿¬ì¾Ç²Å¸¹ªº°İÃD
+ * $RC0036-ä¿®æ­£ç§‘å­¸ç¬¦è™Ÿçš„å•é¡Œ
  * $
  * $Revision 1.17  2014/08/05 03:08:39  missteven
  * $RC0036
  * $
  * $Revision 1.15  2013/04/12 06:10:25  MISSALLY
- * $RA0074 FNEº¡´Á¥Í¦sª÷¨ü¯q¤H±b¤á¤Îµ¹¥I
+ * $RA0074 FNEæ»¿æœŸç”Ÿå­˜é‡‘å—ç›Šäººå¸³æˆ¶åŠçµ¦ä»˜
  * $
  * $Revision 1.14  2013/03/29 09:55:05  MISSALLY
- * $RB0062 PA0047 - ·s¼W«ü©w»È¦æ ¹ü¤Æ»È¦æ
+ * $RB0062 PA0047 - æ–°å¢æŒ‡å®šéŠ€è¡Œ å½°åŒ–éŠ€è¡Œ
  * $
  * $Revision 1.12  2008/10/23 02:28:34  MISODIN
- * $Q80628 ¸ê®Æ­«ÂĞ°İÃD¤§­×¥¿
+ * $Q80628 è³‡æ–™é‡è¦†å•é¡Œä¹‹ä¿®æ­£
  * $
  * $Revision 1.11  2008/07/02 02:38:40  misvanessa
- * $Q80408_¤¤«H»È¥~¹ô¶×´Ú¦P¦æ¬ÛÂà±ø¥ó­×¥¿
+ * $Q80408_ä¸­ä¿¡éŠ€å¤–å¹£åŒ¯æ¬¾åŒè¡Œç›¸è½‰æ¢ä»¶ä¿®æ­£
  * $
  * $Revision 1.10  2008/04/30 07:48:37  misvanessa
- * $R80300_¦¬³æ¦æÂà¥x·s,·s¼W¤U¸üÀÉ®×¤Î³øªí
+ * $R80300_æ”¶å–®è¡Œè½‰å°æ–°,æ–°å¢ä¸‹è¼‰æª”æ¡ˆåŠå ±è¡¨
  * $
  * $Revision 1.9  2007/09/07 10:25:03  MISVANESSA
  * $R70455_TARGET OUT
  * $
  * $Revision 1.8  2007/08/28 01:44:09  MISVANESSA
- * $R70574_SPUL°t®§·s¼W¶×¥XÀÉ®×
+ * $R70574_SPULé…æ¯æ–°å¢åŒ¯å‡ºæª”æ¡ˆ
  * $
  * $Revision 1.7  2007/03/06 01:34:23  MISVANESSA
- * $R70088_SPUL°t®§·s¼W«È¤á­t¾á¤âÄò¶O
+ * $R70088_SPULé…æ¯æ–°å¢å®¢æˆ¶è² æ“”æ‰‹çºŒè²»
  * $
  * $Revision 1.6  2007/01/31 08:00:34  MISVANESSA
- * $R70088_SPUL°t®§
+ * $R70088_SPULé…æ¯
  * $
  * $Revision 1.5  2007/01/05 07:23:17  MISVANESSA
- * $R60550_¶×¥XÀÉ®×.³øªí­×§ï
+ * $R60550_åŒ¯å‡ºæª”æ¡ˆ.å ±è¡¨ä¿®æ”¹
  * $
  * $Revision 1.4  2006/11/30 09:15:00  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $Revision 1.3  2006/10/31 09:43:17  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $Revision 1.2  2006/09/04 09:43:35  miselsa
- * $R60747_1.¾ã§å¶×´Ú¼W¥[¥X¯Ç½T»{¤é 2.¶×¥X³øªí¶×´Ú¤é´Á§ï¬°¥X¯Ç½T»{¤é 3.¤ä¥I¬d¸ß¥I´Ú¤é´Á¬°¥X¯Ç½T»{¤é
+ * $R60747_1.æ•´æ‰¹åŒ¯æ¬¾å¢åŠ å‡ºç´ç¢ºèªæ—¥ 2.åŒ¯å‡ºå ±è¡¨åŒ¯æ¬¾æ—¥æœŸæ”¹ç‚ºå‡ºç´ç¢ºèªæ—¥ 3.æ”¯ä»˜æŸ¥è©¢ä»˜æ¬¾æ—¥æœŸç‚ºå‡ºç´ç¢ºèªæ—¥
  * $
  * $Revision 1.1  2006/06/29 09:40:20  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.8  2006/04/27 09:25:45  misangel
- * $R50891:VA¬ü¤¸«O³æ-Åã¥Ü¹ô§O
+ * $R50891:VAç¾å…ƒä¿å–®-é¡¯ç¤ºå¹£åˆ¥
  * $
  * $Revision 1.1.2.7  2005/08/26 08:35:33  misangel
- * $R50427 : ¶×´Ú¥ó¨Ì³¡ªù+©m¦W+±b¸¹¦X¨Ö
+ * $R50427 : åŒ¯æ¬¾ä»¶ä¾éƒ¨é–€+å§“å+å¸³è™Ÿåˆä½µ
  * $
  * $Revision 1.1.2.6  2005/08/19 06:56:18  misangel
- * $R50427 : ¶×´Ú¥ó¨Ì³¡ªù+©m¦W+±b¸¹¦X¨Ö
+ * $R50427 : åŒ¯æ¬¾ä»¶ä¾éƒ¨é–€+å§“å+å¸³è™Ÿåˆä½µ
  * $
  * $Revision 1.1.2.5  2005/04/28 08:56:26  miselsa
- * $R30530¥­¦æ´ú¸Õªº­×§ï
+ * $R30530å¹³è¡Œæ¸¬è©¦çš„ä¿®æ”¹
  * $
  * $Revision 1.1.2.4  2005/04/04 07:02:26  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -113,7 +113,7 @@ public class DISBRemitExportDAO {
 	private DbFactory dbFactory = null ;
 
 	private final String QUERY_BATNO = "SELECT  DISTINCT PBATNO,PCURR FROM CAPPAYF " 
-							+" WHERE PCFMDT1 >0 AND PCFMDT2 >0  AND PCSHCM=?"; //R60747±NPCSHDT §ï¬° PCSHCM  
+							+" WHERE PCFMDT1 >0 AND PCFMDT2 >0  AND PCSHCM=?"; //R60747å°‡PCSHDT æ”¹ç‚º PCSHCM  
 
 	private final String QUERY_BY_BATNO = "SELECT BATNO,SEQNO,RID,RTYPE,RBK,RACCT,RAMT,RNAME,RMEMO "
 			                +",USR.DEPT,PBK,USR.DEPT"//RC0036
@@ -139,7 +139,7 @@ public class DISBRemitExportDAO {
 							+ " WHERE A.PAUTHDT >= 970501 AND A.PSTATUS <> 'C' AND A.PBATNO=? "
 							+ " ORDER BY A.BATSEQ ";
 
-	//¶×´ÚÀÉ
+	//åŒ¯æ¬¾æª”
 	private final String QUERY_BY_BATNO_Remit = "SELECT A.BATNO,A.SEQNO,A.RID,A.RTYPE,A.RBK,A.RACCT,A.RAMT,A.RNAME,A.RMEMO" +
 								",A.RMTDT,A.RTRNCDE,A.RTRNTM,A.CSTNO,A.RMTCDE,A.RMTFEE,A.PACCT,A.RPAYAMT,A.RPAYCURR,A.RPAYFEEWAY" +
 								",A.RBKSWIFT as SWIFTCODE,A.RENGNAME AS PENGNAME,S.BANK_NAME AS SWBKNAME" +
@@ -154,9 +154,9 @@ public class DISBRemitExportDAO {
 								"A.RPAYCURR=? " +
 								" RDER BY A.RACCT,A.RNAME,A.SEQNO";
 	
-	//RD0382-°t¦XOIU·~°È¨t²Î¥\¯à½Õ¾ã,·s¼W¥üÂ×017¶×´ÚÀÉ(¸ó¦æ)ªº²£¥Í,§PÂ_SWIFT CODEªº²Ä5¤Î6½X¤£¥i¬°TW
-	//RE0189:¸Ó¶×´Ú§å¸¹¥u­n¤£¬O¥üÂ×-Âà±bÀÉªº¸ê®Æ§Y¬O¸Ó©ñ¶i¥üÂ×-¶×´ÚÀÉ,¬Gºû«ù­ìRD0382ªº°µªk, 20160825-done
-	//¥üÂ×-¶×´ÚÀÉ:(1)¨ü´Ú±b¸¹¬O¥üÂ×¤Î¥L¦æ(¤£§t³Í°ò¤Î¥x·s)DBU±b¸¹; (2)¨ü´Ú±b¸¹¬O¥üÂ×¤Î¥L¦æ¹Ò¥~OBU±b¸¹
+	//RD0382-é…åˆOIUæ¥­å‹™ç³»çµ±åŠŸèƒ½èª¿æ•´,æ–°å¢å…†è±017åŒ¯æ¬¾æª”(è·¨è¡Œ)çš„ç”¢ç”Ÿ,åˆ¤æ–·SWIFT CODEçš„ç¬¬5åŠ6ç¢¼ä¸å¯ç‚ºTW
+	//RE0189:è©²åŒ¯æ¬¾æ‰¹è™Ÿåªè¦ä¸æ˜¯å…†è±-è½‰å¸³æª”çš„è³‡æ–™å³æ˜¯è©²æ”¾é€²å…†è±-åŒ¯æ¬¾æª”,æ•…ç¶­æŒåŸRD0382çš„åšæ³•, 20160825-done
+	//å…†è±-åŒ¯æ¬¾æª”:(1)å—æ¬¾å¸³è™Ÿæ˜¯å…†è±åŠä»–è¡Œ(ä¸å«å‡±åŸºåŠå°æ–°)DBUå¸³è™Ÿ; (2)å—æ¬¾å¸³è™Ÿæ˜¯å…†è±åŠä»–è¡Œå¢ƒå¤–OBUå¸³è™Ÿ
 	private final String QUERY_BY_BATNO_Remit017 = "SELECT A.BATNO,A.SEQNO,A.RID,A.RTYPE,A.RBK,A.RACCT,A.RAMT,A.RNAME,A.RMEMO" + 
 			",A.RMTDT,A.RTRNCDE,A.RTRNTM,A.CSTNO,A.RMTCDE,A.RMTFEE,A.PACCT,A.RPAYAMT,A.RPAYCURR,A.RPAYFEEWAY" +
 			",A.RBKSWIFT as SWIFTCODE,A.RENGNAME AS PENGNAME,S.BANK_NAME AS SWBKNAME" +
@@ -167,14 +167,14 @@ public class DISBRemitExportDAO {
 			" LEFT OUTER JOIN USER USR on USR.USRID = A.ENTRYUSR"   +         
 			" WHERE " +
 			"SUBSTR(A.PBK,1,3)=? AND " +
-			"CONCAT(SUBSTRING(RBK,1,3),SUBSTRING(RBKSWIFT,5,2))<>'017TW' AND " + //RE0189:¥u­n¤£¬O¥üÂ×OBU¹Ò¤º¨ü´Ú±b¸¹
+			"CONCAT(SUBSTRING(RBK,1,3),SUBSTRING(RBKSWIFT,5,2))<>'017TW' AND " + //RE0189:åªè¦ä¸æ˜¯å…†è±OBUå¢ƒå…§å—æ¬¾å¸³è™Ÿ
 			"A.BATNO=? AND " +
 			"A.RPAYCURR=? " +
 			"ORDER BY A.RACCT,A.RNAME,A.SEQNO";
 	
 	//RE0189:
-	//³Í°ò-¶×´ÚÀÉ:¨ü´Ú±b¸¹³Í°òDBU±b¸¹¶·²£¥Í¥»ÀÉ®×,20160824-done
-	//20161004,¥X¯ÇSophia»P³Í°ò½T»{µL¦¹­^¤å±b¸¹,¦ıCash¨t²Î­n«O¯d¦¹§PÂ_
+	//å‡±åŸº-åŒ¯æ¬¾æª”:å—æ¬¾å¸³è™Ÿå‡±åŸºDBUå¸³è™Ÿé ˆç”¢ç”Ÿæœ¬æª”æ¡ˆ,20160824-done
+	//20161004,å‡ºç´Sophiaèˆ‡å‡±åŸºç¢ºèªç„¡æ­¤è‹±æ–‡å¸³è™Ÿ,ä½†Cashç³»çµ±è¦ä¿ç•™æ­¤åˆ¤æ–·
 	private final String QUERY_BY_BATNO_Remit809 = "SELECT A.BATNO,A.SEQNO,A.RID,A.RTYPE,A.RBK,A.RACCT,A.RAMT,A.RNAME,A.RMEMO" + 
 			",A.RMTDT,A.RTRNCDE,A.RTRNTM,A.CSTNO,A.RMTCDE,A.RMTFEE,A.PACCT,A.RPAYAMT,A.RPAYCURR,A.RPAYFEEWAY" +
 			",A.RBKSWIFT as SWIFTCODE,A.RENGNAME AS PENGNAME,S.BANK_NAME AS SWBKNAME" +
@@ -197,7 +197,7 @@ public class DISBRemitExportDAO {
 			"A.RPAYCURR=? " +
 			"ORDER BY A.RACCT,A.RNAME,A.SEQNO";
 
-	//Âà±bÀÉ
+	//è½‰å¸³æª”
 	private final String QUERY_BY_BATNO_Trans = "SELECT A.BATNO,A.SEQNO,A.RID,A.RTYPE,A.RBK,A.RACCT,A.RAMT,A.RNAME,A.RMEMO" + 
 								",A.RMTDT,A.RTRNCDE,A.RTRNTM,A.CSTNO,A.RMTCDE,A.RMTFEE,A.PACCT,A.RPAYAMT,A.RPAYCURR,A.RPAYFEEWAY" +
 								",A.RBKSWIFT as SWIFTCODE,A.RENGNAME AS PENGNAME,S.BANK_NAME AS SWBKNAME" +
@@ -206,15 +206,15 @@ public class DISBRemitExportDAO {
 								" LEFT OUTER JOIN ORCHSWFT S ON A.RBKSWIFT = S.SWIFT_CODE" +
 								" LEFT OUTER JOIN USER USR on USR.USRID = A.ENTRYUSR" +           //RC0036
 								" WHERE " +
-								"SUBSTRING(A.RBKSWIFT,5,2)='TW' AND " + //RD0382:OIU,·s¼W§PÂ_RBKªºSWIFT CODEªº²Ä5¤Î6½X¶·¬°TW
+								"SUBSTRING(A.RBKSWIFT,5,2)='TW' AND " + //RD0382:OIU,æ–°å¢åˆ¤æ–·RBKçš„SWIFT CODEçš„ç¬¬5åŠ6ç¢¼é ˆç‚ºTW
 								"SUBSTR(A.RBK,1,3)=? AND " +
 								"A.BATNO=? AND " +
 								"A.RPAYCURR=? " + 
 								"ORDER BY A.RACCT,A.RNAME,A.SEQNO";
 	
-	//RE0189:¥u¦³809-OBU --> 809-OBU (¥u­n§PÂ_¨ü´Ú±b¤á¬O§_¬°OBU)¤~²£¥Í¸ÓÀÉ®×
-	//³Í°ò-Âà±bÀÉ:¥u¦³¨ü´Ú±b¸¹¬O³Í°ò¹Ò¤ºOBU±b¸¹,20160824-done
-	//20161004,¥X¯ÇSophia»P³Í°ò½T»{µL¦¹­^¤å±b¸¹,¦ıCash¨t²Î­n«O¯d¦¹§PÂ_
+	//RE0189:åªæœ‰809-OBU --> 809-OBU (åªè¦åˆ¤æ–·å—æ¬¾å¸³æˆ¶æ˜¯å¦ç‚ºOBU)æ‰ç”¢ç”Ÿè©²æª”æ¡ˆ
+	//å‡±åŸº-è½‰å¸³æª”:åªæœ‰å—æ¬¾å¸³è™Ÿæ˜¯å‡±åŸºå¢ƒå…§OBUå¸³è™Ÿ,20160824-done
+	//20161004,å‡ºç´Sophiaèˆ‡å‡±åŸºç¢ºèªç„¡æ­¤è‹±æ–‡å¸³è™Ÿ,ä½†Cashç³»çµ±è¦ä¿ç•™æ­¤åˆ¤æ–·
 	private final String QUERY_BY_BATNO_Trans809 = "SELECT A.BATNO,A.SEQNO,A.RID,A.RTYPE,A.RBK,A.RACCT,A.RAMT,A.RNAME,A.RMEMO" + 
 			",A.RMTDT,A.RTRNCDE,A.RTRNTM,A.CSTNO,A.RMTCDE,A.RMTFEE,A.PACCT,A.RPAYAMT,A.RPAYCURR,A.RPAYFEEWAY" +
 			",A.RBKSWIFT as SWIFTCODE,A.RENGNAME AS PENGNAME,S.BANK_NAME AS SWBKNAME" +
@@ -223,22 +223,22 @@ public class DISBRemitExportDAO {
 			" LEFT OUTER JOIN ORCHSWFT S ON A.RBKSWIFT = S.SWIFT_CODE" +
 			" LEFT OUTER JOIN USER USR on USR.USRID = A.ENTRYUSR" +           //RC0036
 			" WHERE " +
-			"SUBSTRING(A.RBKSWIFT,5,2)='TW' AND " + //RD0382:OIU,·s¼W§PÂ_RBKªºSWIFT CODEªº²Ä5¤Î6½X¶·¬°TW
+			"SUBSTRING(A.RBKSWIFT,5,2)='TW' AND " + //RD0382:OIU,æ–°å¢åˆ¤æ–·RBKçš„SWIFT CODEçš„ç¬¬5åŠ6ç¢¼é ˆç‚ºTW
 			"SUBSTR(A.RBK,1,3)=? AND " +
 			"A.BATNO=? AND " +
 			"A.RPAYCURR=? AND " + 
 			"SUBSTRING(RBK,1,3)='809' AND " +
 			"(" +
-			"SUBSTRING(RACCT,1,3)='018' OR " + //³Í°òOBU§PÂ_
-			"( (UPPER(SUBSTRING(RACCT,1,1))>='A' AND UPPER(SUBSTRING(RACCT,1,1))<='Z') AND " +//³Í°òOBU§PÂ_
-			"(UPPER(SUBSTRING(RACCT,2,1))>='A' AND UPPER(SUBSTRING(RACCT,2,1))<='Z') AND " +//³Í°òOBU§PÂ_
-			"(UPPER(SUBSTRING(RACCT,3,1))>='A' AND UPPER(SUBSTRING(RACCT,3,1) )<='Z') AND " +//³Í°òOBU§PÂ_
-			"(UPPER(SUBSTRING(RACCT,4,1))>='A' AND UPPER(SUBSTRING(RACCT,4,1))<='Z') ) " +//³Í°òOBU§PÂ_
+			"SUBSTRING(RACCT,1,3)='018' OR " + //å‡±åŸºOBUåˆ¤æ–·
+			"( (UPPER(SUBSTRING(RACCT,1,1))>='A' AND UPPER(SUBSTRING(RACCT,1,1))<='Z') AND " +//å‡±åŸºOBUåˆ¤æ–·
+			"(UPPER(SUBSTRING(RACCT,2,1))>='A' AND UPPER(SUBSTRING(RACCT,2,1))<='Z') AND " +//å‡±åŸºOBUåˆ¤æ–·
+			"(UPPER(SUBSTRING(RACCT,3,1))>='A' AND UPPER(SUBSTRING(RACCT,3,1) )<='Z') AND " +//å‡±åŸºOBUåˆ¤æ–·
+			"(UPPER(SUBSTRING(RACCT,4,1))>='A' AND UPPER(SUBSTRING(RACCT,4,1))<='Z') ) " +//å‡±åŸºOBUåˆ¤æ–·
 			") " +
 			"ORDER BY A.RACCT,A.RNAME,A.SEQNO";
 	
-	//RE0189:¥üÂ×Âà±bÀÉ·s¼W"¤£¥i¬°"¥üÂ×OBUÂà¦Ü¥üÂ×DBUªº­­ÁY±ø¥ó
-	//¥üÂ×-Âà±bÀÉ:¥u¦³¨ü´Ú±b¸¹¬O¥üÂ×¹Ò¤ºOBU±b¸¹, 20160825-done
+	//RE0189:å…†è±è½‰å¸³æª”æ–°å¢"ä¸å¯ç‚º"å…†è±OBUè½‰è‡³å…†è±DBUçš„é™ç¸®æ¢ä»¶
+	//å…†è±-è½‰å¸³æª”:åªæœ‰å—æ¬¾å¸³è™Ÿæ˜¯å…†è±å¢ƒå…§OBUå¸³è™Ÿ, 20160825-done
 	private final String QUERY_BY_BATNO_Trans017 = "SELECT A.BATNO,A.SEQNO,A.RID,A.RTYPE,A.RBK,A.RACCT,A.RAMT,A.RNAME,A.RMEMO" + 
 			",A.RMTDT,A.RTRNCDE,A.RTRNTM,A.CSTNO,A.RMTCDE,A.RMTFEE,A.PACCT,A.RPAYAMT,A.RPAYCURR,A.RPAYFEEWAY" +
 			",A.RBKSWIFT as SWIFTCODE,A.RENGNAME AS PENGNAME,S.BANK_NAME AS SWBKNAME" +
@@ -247,8 +247,8 @@ public class DISBRemitExportDAO {
 			" LEFT OUTER JOIN ORCHSWFT S ON A.RBKSWIFT = S.SWIFT_CODE" +
 			" LEFT OUTER JOIN USER USR on USR.USRID = A.ENTRYUSR" +           //RC0036
 			" WHERE " +
-			"SUBSTRING(A.RBKSWIFT,5,2)='TW' AND " + //RD0382:OIU,·s¼W§PÂ_RBKªºSWIFT CODEªº²Ä5¤Î6½X¶·¬°TW
-			"(SUBSTRING(RBK,1,3)='017' AND SUBSTRING(RACCT,4,2) IN('17','57','58')) AND " + //RE0189:¥u¦³¨ü´Ú±b¸¹¬O¥üÂ×¹Ò¤ºOBU±b¸¹
+			"SUBSTRING(A.RBKSWIFT,5,2)='TW' AND " + //RD0382:OIU,æ–°å¢åˆ¤æ–·RBKçš„SWIFT CODEçš„ç¬¬5åŠ6ç¢¼é ˆç‚ºTW
+			"(SUBSTRING(RBK,1,3)='017' AND SUBSTRING(RACCT,4,2) IN('17','57','58')) AND " + //RE0189:åªæœ‰å—æ¬¾å¸³è™Ÿæ˜¯å…†è±å¢ƒå…§OBUå¸³è™Ÿ
 			"SUBSTR(A.RBK,1,3)=? AND " +
 			"A.BATNO=? AND " +
 			"A.RPAYCURR=? " + 
@@ -259,8 +259,8 @@ public class DISBRemitExportDAO {
 	}
 
 	/**
-	 * @param pcshcm ¥X¯Ç½T»{¤é´Á
-	 * @return ¶×´Ú§å¸¹
+	 * @param pcshcm å‡ºç´ç¢ºèªæ—¥æœŸ
+	 * @return åŒ¯æ¬¾æ‰¹è™Ÿ
 	 * @throws Exception
 	 */	
 	public Vector query(int pcshcm) throws Exception {
@@ -302,7 +302,7 @@ public class DISBRemitExportDAO {
 	public Vector query(int pcshcm, String company) throws Exception {
 		Vector ret = new Vector();	
 		Connection conn = this.getConnection();
-		String QUERY_BATNO = "SELECT  DISTINCT PBATNO,PCURR,CASE WHEN PAY_COMPANY ='OIU' THEN 'OIU' ELSE 'Á`¤½¥q' END AS PAY_COMPANY FROM CAPPAYF " 
+		String QUERY_BATNO = "SELECT  DISTINCT PBATNO,PCURR,CASE WHEN PAY_COMPANY ='OIU' THEN 'OIU' ELSE 'ç¸½å…¬å¸' END AS PAY_COMPANY FROM CAPPAYF " 
 				+" WHERE PCFMDT1 >0 AND PCFMDT2 >0  AND PCSHCM=" + pcshcm;
 		
 		if(!"".equals(company)){
@@ -352,22 +352,22 @@ public class DISBRemitExportDAO {
 		Connection conn2 = this.getConnection();
 		String sql = "SELECT IFNULL(PAY_BK_SORTCODE,'') AS PAY_BK_SORTCODE,IFNULL(PAY_BK_VERIFYNUMBER,'') AS PAY_BK_VERIFYNUMBER,IFNULL(PAY_ADDR1,'') AS PAY_ADDR1,IFNULL(PAY_SOURCE_CODE,'') AS PAY_SOURCE_CODE,B.SWIFT_CODE AS SWIFTCODE ";
 		sql += "FROM CAPPAYF A ";
-		sql += "LEFT OUTER JOIN ORCHSWFT B ON B.BANK_NO = SUBSTRING(A.PAY_REMIT_BANK,1,3) ";//RE0189:¶¶«K¸Ñ¨MSWIFT CODE¦Ñ¬O¦³»~ªº°İÃD
+		sql += "LEFT OUTER JOIN ORCHSWFT B ON B.BANK_NO = SUBSTRING(A.PAY_REMIT_BANK,1,3) ";//RE0189:é †ä¾¿è§£æ±ºSWIFT CODEè€æ˜¯æœ‰èª¤çš„å•é¡Œ
 		sql += "WHERE PBATNO=? AND PAY_REMIT_ACCOUNT LIKE ?";
 		try{
 			if(batNo.substring(0,1).equals("D"))
 			{
-				//RD0440-·s¼W¥~¹ô«ü©w»È¦æ-¥xÆW»È¦æ
-				//RE0189-OIU·s¼W¥~¹ô«ü©w»È¦æ-³Í°ò¡C¥x·sOIUªº¶×´Ú¤ÎÂà±b¬°¦P¤@ÀÉ®×,¥B¥u¦³¦b¥x·s¹Ò¤ºDBU/OBU±b¸¹¤~»İ²£¥Í,¬G¥u¦³¨Ï¥ÎqueryByBatNoªºt¨Ó¬d¸ß¸ê®Æ
+				//RD0440-æ–°å¢å¤–å¹£æŒ‡å®šéŠ€è¡Œ-å°ç£éŠ€è¡Œ
+				//RE0189-OIUæ–°å¢å¤–å¹£æŒ‡å®šéŠ€è¡Œ-å‡±åŸºã€‚å°æ–°OIUçš„åŒ¯æ¬¾åŠè½‰å¸³ç‚ºåŒä¸€æª”æ¡ˆ,ä¸”åªæœ‰åœ¨å°æ–°å¢ƒå…§DBU/OBUå¸³è™Ÿæ‰éœ€ç”¢ç”Ÿ,æ•…åªæœ‰ä½¿ç”¨queryByBatNoçš„tä¾†æŸ¥è©¢è³‡æ–™
 				if(batNo.substring(8,11).equals("822") || batNo.substring(8,11).equals("009") || batNo.substring(8,11).equals("004") || batNo.substring(8,11).equals("017") || batNo.substring(8,11).equals("809"))
 				{
 					if(remitKind.equals("r")) {
-						//D:¥~¹ô¶×´Ú,¸ó¦æ¶×´Ú						
-						if(batNo.substring(8,11).equals("017")) {//RD0382-°t¦XOIU·~°È¨t²Î¥\¯à½Õ¾ã,·s¼W¥üÂ×017¶×´ÚÀÉ(¸ó¦æ)ªº²£¥Í
+						//D:å¤–å¹£åŒ¯æ¬¾,è·¨è¡ŒåŒ¯æ¬¾						
+						if(batNo.substring(8,11).equals("017")) {//RD0382-é…åˆOIUæ¥­å‹™ç³»çµ±åŠŸèƒ½èª¿æ•´,æ–°å¢å…†è±017åŒ¯æ¬¾æª”(è·¨è¡Œ)çš„ç”¢ç”Ÿ
 							System.out.println("QUERY_BY_BATNO_Remit017:" + QUERY_BY_BATNO_Remit017);
 							log.info("QUERY_BY_BATNO_Remit017:" + QUERY_BY_BATNO_Remit017);
 							preStmt = conn.prepareStatement(QUERY_BY_BATNO_Remit017);
-						} else if(batNo.substring(8,11).equals("809")) { //RE0189:·s¼W³Í°ò
+						} else if(batNo.substring(8,11).equals("809")) { //RE0189:æ–°å¢å‡±åŸº
 							System.out.println("QUERY_BY_BATNO_Remit809:" + QUERY_BY_BATNO_Remit809);
 							log.info("QUERY_BY_BATNO_Remit017:" + QUERY_BY_BATNO_Remit809);
 							preStmt = conn.prepareStatement(QUERY_BY_BATNO_Remit809);
@@ -377,12 +377,12 @@ public class DISBRemitExportDAO {
 							preStmt = conn.prepareStatement(QUERY_BY_BATNO_Remit);
 						}						
 					} else {
-						//D:¥~¹ô¶×´Ú,Âà±b(¦P¦æ¬Û¦s,­­RBKªºSWIFT CODE²Ä5¤Î6½X¬°TW)						
+						//D:å¤–å¹£åŒ¯æ¬¾,è½‰å¸³(åŒè¡Œç›¸å­˜,é™RBKçš„SWIFT CODEç¬¬5åŠ6ç¢¼ç‚ºTW)						
 						if(batNo.substring(8,11).equals("017")){
 							System.out.println("QUERY_BY_BATNO_Trans017:" + QUERY_BY_BATNO_Trans017);
 							log.info("QUERY_BY_BATNO_Trans017:" + QUERY_BY_BATNO_Trans017);
 							preStmt = conn.prepareStatement(QUERY_BY_BATNO_Trans017);
-						} else if(batNo.substring(8,11).equals("809")) { //RE0189:·s¼W³Í°ò
+						} else if(batNo.substring(8,11).equals("809")) { //RE0189:æ–°å¢å‡±åŸº
 							System.out.println("QUERY_BY_BATNO_Trans809:" + QUERY_BY_BATNO_Trans809);
 							log.info("QUERY_BY_BATNO_Trans809:" + QUERY_BY_BATNO_Trans809);
 							preStmt = conn.prepareStatement(QUERY_BY_BATNO_Trans809);
@@ -442,7 +442,7 @@ public class DISBRemitExportDAO {
 					vo.setRPAYFEEWAY(CommonUtil.AllTrim(rs.getString("RPAYFEEWAY")));
 					vo.setRPAYAMT(rs.getDouble("RPAYAMT"));
 					vo.setPENGNAME(CommonUtil.AllTrim(rs.getString("PENGNAME")));
-					//vo.setSWIFTCODE(CommonUtil.AllTrim(rs.getString("SWIFTCODE")));//RE0189:¶¶«K¸Ñ¨MSWIFT CODE¦Ñ¬O¦³»~ªº°İÃD
+					//vo.setSWIFTCODE(CommonUtil.AllTrim(rs.getString("SWIFTCODE")));//RE0189:é †ä¾¿è§£æ±ºSWIFT CODEè€æ˜¯æœ‰èª¤çš„å•é¡Œ
 					vo.setSWBKNAME(CommonUtil.AllTrim(rs.getString("SWBKNAME")));
 					vo.setRBENFEE(rs.getDouble("RBENFEE"));
 					vo.setPBK(CommonUtil.AllTrim(rs.getString("PBK")));//R70574
@@ -458,7 +458,7 @@ public class DISBRemitExportDAO {
 							vo.setPayAddr(CommonUtil.AllTrim(rs2.getString("PAY_ADDR1")));
 							vo.setPayBkVerifyNumber(CommonUtil.AllTrim(rs2.getString("PAY_BK_VERIFYNUMBER")));
 							vo.setPaySourceCode(CommonUtil.AllTrim(rs2.getString("PAY_SOURCE_CODE")));
-							vo.setSWIFTCODE(CommonUtil.AllTrim(rs2.getString("SWIFTCODE")));//RE0189:¶¶«K¸Ñ¨MSWIFT CODE¦Ñ¬O¦³»~ªº°İÃD
+							vo.setSWIFTCODE(CommonUtil.AllTrim(rs2.getString("SWIFTCODE")));//RE0189:é †ä¾¿è§£æ±ºSWIFT CODEè€æ˜¯æœ‰èª¤çš„å•é¡Œ
 						}
 					} catch(Exception e){
 						System.err.println(e.getMessage());
@@ -500,7 +500,7 @@ public class DISBRemitExportDAO {
 		return ret;
 	}	
 
-	//R80300 «H¥Î¥d·s¼W¤U¸üÀÉ®×
+	//R80300 ä¿¡ç”¨å¡æ–°å¢ä¸‹è¼‰æª”æ¡ˆ
 	public Vector queryByBatNoC(String batNo,String selCURR,String remitKind) throws Exception {
 		Vector ret = new Vector();	
 		Connection conn = this.getConnection();
@@ -546,9 +546,9 @@ public class DISBRemitExportDAO {
 		return ret;
 	}
 
-	//¦Û DbFactory ¤¤¨ú±o¤@­Ó Connection
+	//è‡ª DbFactory ä¸­å–å¾—ä¸€å€‹ Connection
 	private Connection getConnection() throws SQLException {
-		//¥ı¨ú±o¸ê®Æ®w³sµ²¤Î·Ç³ÆSQL
+		//å…ˆå–å¾—è³‡æ–™åº«é€£çµåŠæº–å‚™SQL
     	return dbFactory.getConnection(DISBRemitDisposeDAO.class+".getConnection()");
 	}
 

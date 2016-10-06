@@ -19,39 +19,39 @@ package com.aegon.disb.disbremit;
  * 
  * $$Log: CAPPaymentVO.java,v $
  * $Revision 1.9  2012/05/18 09:47:37  MISSALLY
- * $R10314 CASH¨t²Î·|­p§@·~­×§ï
+ * $R10314 CASHç³»çµ±æœƒè¨ˆä½œæ¥­ä¿®æ”¹
  * $
  * $Revision 1.8  2012/03/23 02:48:23  MISSALLY
  * $R10285-P10025
- * $¦]À³¥Ç¨¾±M®×©ó¤ä¥I¥DÀÉ·s¼W²z½ß¨ü²z½s¸¹
+ * $å› æ‡‰çŠ¯é˜²å°ˆæ¡ˆæ–¼æ”¯ä»˜ä¸»æª”æ–°å¢ç†è³ å—ç†ç·¨è™Ÿ
  * $
  * $Revision 1.7  2011/06/02 10:28:09  MISSALLY
  * $Q90585 / R90884 / R90989
- * $CASH¨t²Î¶×°h³B²z§@·~·s¼W¶×°h­ì¦]Äæ¦ì¨Ã­×¥¿°h¶×©ú²Óªí
+ * $CASHç³»çµ±åŒ¯é€€è™•ç†ä½œæ¥­æ–°å¢åŒ¯é€€åŸå› æ¬„ä½ä¸¦ä¿®æ­£é€€åŒ¯æ˜ç´°è¡¨
  * $
  * $Revision 1.6  2007/01/05 07:29:08  MISVANESSA
- * $R60550_§ì¨ú¤è¦¡­×§ï
+ * $R60550_æŠ“å–æ–¹å¼ä¿®æ”¹
  * $
  * $Revision 1.5  2006/12/07 11:20:56  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $Revision 1.4  2006/11/30 09:16:45  miselsa
- * $R60463¤ÎR60550¥~¹ô¤ÎSPUL«O³æ
+ * $R60463åŠR60550å¤–å¹£åŠSPULä¿å–®
  * $
  * $Revision 1.3  2006/11/24 07:37:17  miselsa
- * $R60550_·s¼W°ê¥~¶×´Ú¬ÛÃöÄæ¦ì
+ * $R60550_æ–°å¢åœ‹å¤–åŒ¯æ¬¾ç›¸é—œæ¬„ä½
  * $
  * $Revision 1.2  2006/11/24 05:40:57  miselsa
- * $R60550_·s¼W°ê¥~¶×´Ú¬ÛÃöÄæ¦ì
+ * $R60550_æ–°å¢åœ‹å¤–åŒ¯æ¬¾ç›¸é—œæ¬„ä½
  * $
  * $Revision 1.1  2006/06/29 09:40:20  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.3  2005/08/19 06:53:51  misangel
- * $R50427 : ¶×´Ú¥ó¨Ì³¡ªù+©m¦W+±b¸¹¦X¨Ö
+ * $R50427 : åŒ¯æ¬¾ä»¶ä¾éƒ¨é–€+å§“å+å¸³è™Ÿåˆä½µ
  * $
  * $Revision 1.1.2.2  2005/04/04 07:02:26  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -65,205 +65,205 @@ public class CAPPaymentVO implements Serializable {
 
 	private static final long serialVersionUID = 4034487021933127531L;
 
-	/*¤ä¥I§Ç¸¹ PNO*/
+	/*æ”¯ä»˜åºè™Ÿ PNO*/
 	private String PNO = "";
 
-	/*¥I´Ú¤è¦¡ PMethod*/
+	/*ä»˜æ¬¾æ–¹å¼ PMethod*/
 	private String PMethod = "";
 
-	/*¥I´Ú¤é´Á PDate*/
+	/*ä»˜æ¬¾æ—¥æœŸ PDate*/
 	private int PDate = 0;
 
-	/*¨ü´Ú¤H©m¦W PName*/
+	/*å—æ¬¾äººå§“å PName*/
 	private String PName = "";
 
-	/*­ì©l¨ü´Ú¤H©m¦W PSNAME*/
+	/*åŸå§‹å—æ¬¾äººå§“å PSNAME*/
 	private String PSName = "";
 
-	/*¨ü´Ú¤HID PId*/
+	/*å—æ¬¾äººID PId*/
 	private String PId = "";
 
-	/*¹ô§O PCurr*/
+	/*å¹£åˆ¥ PCurr*/
 	private String PCurr = "";
 
-	/*¤ä¥Iª÷ÃB PAMT*/
+	/*æ”¯ä»˜é‡‘é¡ PAMT*/
 	private int PAMT = 0;
 
-	/*¥I´Úª¬ºA PStatus*/
+	/*ä»˜æ¬¾ç‹€æ…‹ PStatus*/
 	private String PStatus = "";
 
-	/*¤ä¥I½T»{¤é¤@ PCfmDt1*/
+	/*æ”¯ä»˜ç¢ºèªæ—¥ä¸€ PCfmDt1*/
 	private int PCfmDt1 = 0;
 
-	/*¤ä¥I½T»{®É¤@ PCfmTm1*/
+	/*æ”¯ä»˜ç¢ºèªæ™‚ä¸€ PCfmTm1*/
 	private int PCfmTm1 = 0;
 
-	/*¤ä¥I½T»{ªÌ¤@ PCfmUsr1*/
+	/*æ”¯ä»˜ç¢ºèªè€…ä¸€ PCfmUsr1*/
 	private String PCfmUsr1;
 
-	/*¤ä¥I½T»{¤é¤G PCfmDt2*/
+	/*æ”¯ä»˜ç¢ºèªæ—¥äºŒ PCfmDt2*/
 	private int PCfmDt2 = 0;
 
-	/*¤ä¥I½T»{®É¤G PCfmTm2*/
+	/*æ”¯ä»˜ç¢ºèªæ™‚äºŒ PCfmTm2*/
 	private int PCfmTm2 = 0;
 
-	/*¤ä¥I½T»{ªÌ¤G PCfmUsr2*/
+	/*æ”¯ä»˜ç¢ºèªè€…äºŒ PCfmUsr2*/
 	private String PCfmUsr2;
 
-	/*¤ä¥I´y­z PDesc*/
+	/*æ”¯ä»˜æè¿° PDesc*/
 	private String PDesc = "";
 
-	/*¨Ó·½²Õ¸s PSrcGp*/
+	/*ä¾†æºçµ„ç¾¤ PSrcGp*/
 	private String PSrcGp = "";
 
-	/*¤ä¥I­ì¦]¥N½X*/
+	/*æ”¯ä»˜åŸå› ä»£ç¢¼*/
 	private String PSrcCode = "";
 
-	/*ÀIºØÃş§O PPLANT*/
+	/*éšªç¨®é¡åˆ¥ PPLANT*/
 	private String PPLANT = "";
 
-	/*µ{¦¡¥N½X PSrcPgm*/
+	/*ç¨‹å¼ä»£ç¢¼ PSrcPgm*/
 	private String PSrcPgm = "";
 
-	/*§@¼o§_ PVoidable*/
+	/*ä½œå»¢å¦ PVoidable*/
 	private String PVoidable = "";
 
-	/*«æ¥ó§_ PDispatch*/
+	/*æ€¥ä»¶å¦ PDispatch*/
 	private String PDispatch = "";
 
-	/*¤ä¥I»È¦æ PBBank*/
+	/*æ”¯ä»˜éŠ€è¡Œ PBBank*/
 	private String PBBank = "";
 
-	/*¤ä¥I±b¸¹ PBAccount*/
+	/*æ”¯ä»˜å¸³è™Ÿ PBAccount*/
 	private String PBAccount = "";
 
-	/*¤ä²¼¸¹½X PCheckNo*/
+	/*æ”¯ç¥¨è™Ÿç¢¼ PCheckNo*/
 	private String PCheckNO = "";
 
-	/*¤ä²¼¸T­I PChkm1*/
+	/*æ”¯ç¥¨ç¦èƒŒ PChkm1*/
 	private String PChkm1 = "";
 
-	/*¤ä²¼¹º½u PChkm2*/
+	/*æ”¯ç¥¨åŠƒç·š PChkm2*/
 	private String PChkm2 = "";
 
-	/*¶×´Ú»È¦æ PRBank*/
+	/*åŒ¯æ¬¾éŠ€è¡Œ PRBank*/
 	private String PRBank = "";
 
-	/*¶×´Ú±b¸¹ PRAccount*/
+	/*åŒ¯æ¬¾å¸³è™Ÿ PRAccount*/
 	private String PRAccount = "";
 
-	/*«H¥Î¥d¥d¸¹ PCrdNo*/
+	/*ä¿¡ç”¨å¡å¡è™Ÿ PCrdNo*/
 	private String PCrdNo = "";
 
-	/*¥d§O PCrdType*/
+	/*å¡åˆ¥ PCrdType*/
 	private String PCrdType = "";
 
-	/*±ÂÅv½X PAuthCode*/
+	/*æˆæ¬Šç¢¼ PAuthCode*/
 	private String PAuthCode = "";
 
-	/*¦³®Ä¦~¤ë PCrdEffMY*/
+	/*æœ‰æ•ˆå¹´æœˆ PCrdEffMY*/
 	private String PCrdEffMY = "";
 
-	/*«O³æ¸¹½X PolicyNo*/
+	/*ä¿å–®è™Ÿç¢¼ PolicyNo*/
 	private String PolicyNo = "";
 
-	/*­n«O®Ñ¸¹½X AppNo*/
+	/*è¦ä¿æ›¸è™Ÿç¢¼ AppNo*/
 	private String AppNo = "";
 
-	/*³æ¦ì Branch*/
+	/*å–®ä½ Branch*/
 	private String Branch = "";
 
-	/*¶×¶O RmtFee*/
+	/*åŒ¯è²» RmtFee*/
 	private int RmtFee = 0;
 
-	/*­ì©l¤ä¥I§Ç¸¹ PNoH*/
+	/*åŸå§‹æ”¯ä»˜åºè™Ÿ PNoH*/
 	private String PNoH = "";
 
-	/*¶×´Ú§å¸¹BatNo*/
+	/*åŒ¯æ¬¾æ‰¹è™ŸBatNo*/
 	private String BatNo = "";
 
-	/*¥X¯Ç¤é´ÁPCSHDT*/
+	/*å‡ºç´æ—¥æœŸPCSHDT*/
 	private int PCshDt = 0;
 
-	/*¿é¤J¤é´Á EntryDate*/
+	/*è¼¸å…¥æ—¥æœŸ EntryDate*/
 	private int EntryDt = 0;
 
-	/*¿é¤J®É¶¡ EntruTime*/
+	/*è¼¸å…¥æ™‚é–“ EntruTime*/
 	private int EntryTm = 0;
 
-	/*¿é¤J¤H­û EntruUsr*/
+	/*è¼¸å…¥äººå“¡ EntruUsr*/
 	private String EntryUsr = "";
 
-	/*¿é¤Jµ{¦¡ EntruPgm*/
+	/*è¼¸å…¥ç¨‹å¼ EntruPgm*/
 	private String EntryPgm = "";
 
-	/*²§°Ê¤é´Á UpdDt*/
+	/*ç•°å‹•æ—¥æœŸ UpdDt*/
 	private int UpdDt = 0;
 
-	/*²§°Ê®É¶¡ UpdTm*/
+	/*ç•°å‹•æ™‚é–“ UpdTm*/
 	private int UpdTm = 0;
 
-	/*²§°ÊªÌ UpdUsr*/
+	/*ç•°å‹•è€… UpdUsr*/
 	private String UpdUsr = "";
 
-	/* ³Æµù*/
+	/* å‚™è¨»*/
 	private String Memo = "";
 
-	/*¶×´Ú§Ç¸¹*/
+	/*åŒ¯æ¬¾åºè™Ÿ*/
 	private String BatSeq = "";
 
-	/*¥X¯Ç½T»{¤é PCSHCM*/
+	/*å‡ºç´ç¢ºèªæ—¥ PCSHCM*/
 	private String PCSHCM = "";
 
-	/*¥~¹ô¶×¥X¹ô§O PPAYCURR*/
+	/*å¤–å¹£åŒ¯å‡ºå¹£åˆ¥ PPAYCURR*/
 	private String PPAYCURR = "";
 
-	/*¥~¹ô¶×¥Xª÷ÃB PPAYAMT*/
+	/*å¤–å¹£åŒ¯å‡ºé‡‘é¡ PPAYAMT*/
 	private double PPAYAMT = 0;
 
-	/*¥~¹ô¶×²v PPAYRATE*/
+	/*å¤–å¹£åŒ¯ç‡ PPAYRATE*/
 	private String PPAYRATE = "";
 
-	/*¤âÄò¶O¤ä¥I¤è¦¡ PFEEWAY*/
+	/*æ‰‹çºŒè²»æ”¯ä»˜æ–¹å¼ PFEEWAY*/
 	private String PFEEWAY = "";
 
-	/*§ë¸ê°_©l¤é PINVDT*/
+	/*æŠ•è³‡èµ·å§‹æ—¥ PINVDT*/
 	private int PINVDT = 0;
 
 	/*SWIFTCODE  PSWIFT*/
 	private String PSWIFT = "";
 
-	/*¨ü´Ú»È¦æ°ê§O PBKCOTRY*/
+	/*å—æ¬¾éŠ€è¡Œåœ‹åˆ¥ PBKCOTRY*/
 	private String PBKCOTRY = "";
 
-	/*¨ü´Ú»È¦æ«°¥« PBKCITY*/
+	/*å—æ¬¾éŠ€è¡ŒåŸå¸‚ PBKCITY*/
 	private String PBKCITY = "";
 
-	/*¨ü´Ú»È¦æ¤À¦æ PBKBRCH*/
+	/*å—æ¬¾éŠ€è¡Œåˆ†è¡Œ PBKBRCH*/
 	private String PBKBRCH = "";
 
-	/*¨ü´Ú¤H¡Ğ­^¤å PENGNAME*/
+	/*å—æ¬¾äººï¼è‹±æ–‡ PENGNAME*/
 	private String PENGNAME = "";
 
-	/*»È¦æ¦WºÙPBKNAME*/
+	/*éŠ€è¡Œåç¨±PBKNAME*/
 	private String PBKNAME = "";
 
-	/* °h¶×¤é´Á REMITFAILD */
+	/* é€€åŒ¯æ—¥æœŸ REMITFAILD */
 	private int RemitFailDate = 0;
 
-	/* °h¶×®É¶¡ REMITFAILT */
+	/* é€€åŒ¯æ™‚é–“ REMITFAILT */
 	private int RemitFailTime = 0;
 
-	/* °h¶×¥N½X REMITFCODE */
+	/* é€€åŒ¯ä»£ç¢¼ REMITFCODE */
 	private String RemitFailCode = "";
 
-	/* °h¶×­ì¦] REMITFDESC */
+	/* é€€åŒ¯åŸå›  REMITFDESC */
 	private String RemitFailDesc = "";
 
-	/* ²z½ß¨ü²z½s¸¹ PCLMNUM */
+	/* ç†è³ å—ç†ç·¨è™Ÿ PCLMNUM */
 	private String ClaimNumber = "";
 	
-	/* »È¦æ°h¶×¦^¦s¤é´Á PBNKRFDT */
+	/* éŠ€è¡Œé€€åŒ¯å›å­˜æ—¥æœŸ PBNKRFDT */
 	private int BankRemitBackDate = 0;
 
 	private CAPCheckVO paymentCheck = null;
@@ -275,378 +275,378 @@ public class CAPPaymentVO implements Serializable {
 	}
 
 	/**
-	 * @return ­n«O®Ñ¸¹½X
+	 * @return è¦ä¿æ›¸è™Ÿç¢¼
 	 */
 	public String getAppNo() {
 		return AppNo;
 	}
 
 	/**
-	 * @return ¶×´Ú§å¸¹
+	 * @return åŒ¯æ¬¾æ‰¹è™Ÿ
 	 */
 	public String getBatNo() {
 		return BatNo;
 	}
 
 	/**
-	 * @return ³æ¦ì
+	 * @return å–®ä½
 	 */
 	public String getBranch() {
 		return Branch;
 	}
 
 	/**
-	 * @return ¿é¤J¤é´Á
+	 * @return è¼¸å…¥æ—¥æœŸ
 	 */
 	public int getEntryDt() {
 		return EntryDt;
 	}
 
 	/**
-	 * @return ¿é¤Jµ{¦¡
+	 * @return è¼¸å…¥ç¨‹å¼
 	 */
 	public String getEntryPgm() {
 		return EntryPgm;
 	}
 
 	/**
-	 * @return ¿é¤J®É¶¡
+	 * @return è¼¸å…¥æ™‚é–“
 	 */
 	public int getEntryTm() {
 		return EntryTm;
 	}
 
 	/**
-	 * @return ¿é¤J¤H­û
+	 * @return è¼¸å…¥äººå“¡
 	 */
 	public String getEntryUsr() {
 		return EntryUsr;
 	}
 
 	/**
-	 * @return ³Æµù
+	 * @return å‚™è¨»
 	 */
 	public String getMemo() {
 		return Memo;
 	}
 
 	/**
-	 * @return ¶×´Ú§Ç¸¹
+	 * @return åŒ¯æ¬¾åºè™Ÿ
 	 */
 	public String getBatSeq() {
 		return BatSeq;
 	}
 
 	/**
-	 * @return ¤ä¥Iª÷ÃB
+	 * @return æ”¯ä»˜é‡‘é¡
 	 */
 	public int getPAMT() {
 		return PAMT;
 	}
 
 	/**
-	 * @return ±ÂÅv½X
+	 * @return æˆæ¬Šç¢¼
 	 */
 	public String getPAuthCode() {
 		return PAuthCode;
 	}
 
 	/**
-	 * @return ¤ä¥I½T»{¤é¤@
+	 * @return æ”¯ä»˜ç¢ºèªæ—¥ä¸€
 	 */
 	public int getPCfmDt1() {
 		return PCfmDt1;
 	}
 
 	/**
-	 * @return ¤ä¥I½T»{¤é¤G
+	 * @return æ”¯ä»˜ç¢ºèªæ—¥äºŒ
 	 */
 	public int getPCfmDt2() {
 		return PCfmDt2;
 	}
 
 	/**
-	 * @return ¤ä¥I½T»{®É¤@
+	 * @return æ”¯ä»˜ç¢ºèªæ™‚ä¸€
 	 */
 	public int getPCfmTm1() {
 		return PCfmTm1;
 	}
 
 	/**
-	 * @return ¤ä¥I½T»{®É¤G
+	 * @return æ”¯ä»˜ç¢ºèªæ™‚äºŒ
 	 */
 	public int getPCfmTm2() {
 		return PCfmTm2;
 	}
 
 	/**
-	 * @return ¤ä¥I½T»{ªÌ¤@
+	 * @return æ”¯ä»˜ç¢ºèªè€…ä¸€
 	 */
 	public String getPCfmUsr1() {
 		return PCfmUsr1;
 	}
 
 	/**
-	 * @return ¤ä¥I½T»{ªÌ¤G
+	 * @return æ”¯ä»˜ç¢ºèªè€…äºŒ
 	 */
 	public String getPCfmUsr2() {
 		return PCfmUsr2;
 	}
 
 	/**
-	 * @return ¤ä²¼¸¹½X
+	 * @return æ”¯ç¥¨è™Ÿç¢¼
 	 */
 	public String getPCheckNO() {
 		return PCheckNO;
 	}
 
 	/**
-	 * @return ¤ä²¼¸T­I
+	 * @return æ”¯ç¥¨ç¦èƒŒ
 	 */
 	public String getPChkm1() {
 		return PChkm1;
 	}
 
 	/**
-	 * @return ¤ä²¼¹º½u
+	 * @return æ”¯ç¥¨åŠƒç·š
 	 */
 	public String getPChkm2() {
 		return PChkm2;
 	}
 
 	/**
-	 * @return ¦³®Ä¦~¤ë
+	 * @return æœ‰æ•ˆå¹´æœˆ
 	 */
 	public String getPCrdEffMY() {
 		return PCrdEffMY;
 	}
 
 	/**
-	 * @return «H¥Î¥d¥d¸¹
+	 * @return ä¿¡ç”¨å¡å¡è™Ÿ
 	 */
 	public String getPCrdNo() {
 		return PCrdNo;
 	}
 
 	/**
-	 * @return ¥d§O
+	 * @return å¡åˆ¥
 	 */
 	public String getPCrdType() {
 		return PCrdType;
 	}
 
 	/**
-	 * @return ¥X¯Ç¤é´Á
+	 * @return å‡ºç´æ—¥æœŸ
 	 */
 	public int getPCshDt() {
 		return PCshDt;
 	}
 
 	/**
-	 * @return ¹ô§O
+	 * @return å¹£åˆ¥
 	 */
 	public String getPCurr() {
 		return PCurr;
 	}
 
 	/**
-	 * @return ¥I´Ú¤é´Á
+	 * @return ä»˜æ¬¾æ—¥æœŸ
 	 */
 	public int getPDate() {
 		return PDate;
 	}
 
 	/**
-	 * @return ¤ä¥I´y­z
+	 * @return æ”¯ä»˜æè¿°
 	 */
 	public String getPDesc() {
 		return PDesc;
 	}
 
 	/**
-	 * @return «æ¥ó§_
+	 * @return æ€¥ä»¶å¦
 	 */
 	public String getPDispatch() {
 		return PDispatch;
 	}
 
 	/**
-	 * @return ¨ü´Ú¤HID
+	 * @return å—æ¬¾äººID
 	 */
 	public String getPId() {
 		return PId;
 	}
 
 	/**
-	 * @return ¥I´Ú¤è¦¡
+	 * @return ä»˜æ¬¾æ–¹å¼
 	 */
 	public String getPMethod() {
 		return PMethod;
 	}
 
 	/**
-	 * @return ¨ü´Ú¤H©m¦W
+	 * @return å—æ¬¾äººå§“å
 	 */
 	public String getPName() {
 		return PName;
 	}
 
 	/**
-	 * @return ¤ä¥I§Ç¸¹
+	 * @return æ”¯ä»˜åºè™Ÿ
 	 */
 	public String getPNO() {
 		return PNO;
 	}
 
 	/**
-	 * @return ­ì©l¤ä¥I§Ç¸¹
+	 * @return åŸå§‹æ”¯ä»˜åºè™Ÿ
 	 */
 	public String getPNoH() {
 		return PNoH;
 	}
 
 	/**
-	 * @return «O³æ¸¹½X
+	 * @return ä¿å–®è™Ÿç¢¼
 	 */
 	public String getPolicyNo() {
 		return PolicyNo;
 	}
 
 	/**
-	 * @return ÀIºØÃş§O
+	 * @return éšªç¨®é¡åˆ¥
 	 */
 	public String getPPLANT() {
 		return PPLANT;
 	}
 
 	/**
-	 * @return ¶×´Ú±b¸¹
+	 * @return åŒ¯æ¬¾å¸³è™Ÿ
 	 */
 	public String getPRAccount() {
 		return PRAccount;
 	}
 
 	/**
-	 * @return ¶×´Ú»È¦æ
+	 * @return åŒ¯æ¬¾éŠ€è¡Œ
 	 */
 	public String getPRBank() {
 		return PRBank;
 	}
 
 	/**
-	 * @return ­ì©l¨ü´Ú¤H©m¦W
+	 * @return åŸå§‹å—æ¬¾äººå§“å
 	 */
 	public String getPSName() {
 		return PSName;
 	}
 
 	/**
-	 * @return ¤ä¥I­ì¦]¥N½X
+	 * @return æ”¯ä»˜åŸå› ä»£ç¢¼
 	 */
 	public String getPSrcCode() {
 		return PSrcCode;
 	}
 
 	/**
-	 * @return ¨Ó·½²Õ¸s
+	 * @return ä¾†æºçµ„ç¾¤
 	 */
 	public String getPSrcGp() {
 		return PSrcGp;
 	}
 
 	/**
-	 * @return µ{¦¡¥N½X
+	 * @return ç¨‹å¼ä»£ç¢¼
 	 */
 	public String getPSrcPgm() {
 		return PSrcPgm;
 	}
 
 	/**
-	 * @return ¥I´Úª¬ºA
+	 * @return ä»˜æ¬¾ç‹€æ…‹
 	 */
 	public String getPStatus() {
 		return PStatus;
 	}
 
 	/**
-	 * @return §@¼o§_
+	 * @return ä½œå»¢å¦
 	 */
 	public String getPVoidable() {
 		return PVoidable;
 	}
 
 	/**
-	 * @return ¶×¶O
+	 * @return åŒ¯è²»
 	 */
 	public int getRmtFee() {
 		return RmtFee;
 	}
 
 	/**
-	 * @return ¤ä¥I±b¸¹
+	 * @return æ”¯ä»˜å¸³è™Ÿ
 	 */
 	public String getPBAccount() {
 		return PBAccount;
 	}
 
 	/**
-	 * @return ¤ä¥I»È¦æ
+	 * @return æ”¯ä»˜éŠ€è¡Œ
 	 */
 	public String getPBBank() {
 		return PBBank;
 	}
 
 	/**
-	 * @return ²§°Ê¤é´Á
+	 * @return ç•°å‹•æ—¥æœŸ
 	 */
 	public int getUpdDt() {
 		return UpdDt;
 	}
 
 	/**
-	 * @return ²§°Ê®É¶¡
+	 * @return ç•°å‹•æ™‚é–“
 	 */
 	public int getUpdTm() {
 		return UpdTm;
 	}
 
 	/**
-	 * @return ²§°ÊªÌ
+	 * @return ç•°å‹•è€…
 	 */
 	public String getUpdUsr() {
 		return UpdUsr;
 	}
 
 	/**
-	 * @return ¤âÄò¶O¤ä¥I¤è¦¡
+	 * @return æ‰‹çºŒè²»æ”¯ä»˜æ–¹å¼
 	 */
 	public String getPFEEWAY() {
 		return PFEEWAY;
 	}
 
 	/**
-	 * @return §ë¸ê°_©l¤é
+	 * @return æŠ•è³‡èµ·å§‹æ—¥
 	 */
 	public int getPINVDT() {
 		return PINVDT;
 	}
 
 	/**
-	 * @return ¥~¹ô¶×¥Xª÷ÃB
+	 * @return å¤–å¹£åŒ¯å‡ºé‡‘é¡
 	 */
 	public double getPPAYAMT() {
 		return PPAYAMT;
 	}
 
 	/**
-	 * @return ¥~¹ô¶×¥X¹ô§O
+	 * @return å¤–å¹£åŒ¯å‡ºå¹£åˆ¥
 	 */
 	public String getPPAYCURR() {
 		return PPAYCURR;
 	}
 
 	/**
-	 * @return ¥~¹ô¶×²v
+	 * @return å¤–å¹£åŒ¯ç‡
 	 */
 	public String getPPAYRATE() {
 		return PPAYRATE;
@@ -660,83 +660,83 @@ public class CAPPaymentVO implements Serializable {
 	}
 
 	/**
-	 * @return ¨ü´Ú»È¦æ¤À¦æ
+	 * @return å—æ¬¾éŠ€è¡Œåˆ†è¡Œ
 	 */
 	public String getPBKBRCH() {
 		return PBKBRCH;
 	}
 
 	/**
-	 * @return ¨ü´Ú»È¦æ«°¥«
+	 * @return å—æ¬¾éŠ€è¡ŒåŸå¸‚
 	 */
 	public String getPBKCITY() {
 		return PBKCITY;
 	}
 
 	/**
-	 * @return ¨ü´Ú»È¦æ°ê§O
+	 * @return å—æ¬¾éŠ€è¡Œåœ‹åˆ¥
 	 */
 	public String getPBKCOTRY() {
 		return PBKCOTRY;
 	}
 
 	/**
-	 * @return ¨ü´Ú¤H¡Ğ­^¤å
+	 * @return å—æ¬¾äººï¼è‹±æ–‡
 	 */
 	public String getPENGNAME() {
 		return PENGNAME;
 	}
 	/**
-	 * @return »È¦æ¦WºÙ
+	 * @return éŠ€è¡Œåç¨±
 	 */
 	public String getPBKNAME() {
 		return PBKNAME;
 	}
 
 	/**
-	 * @return ¥X¯Ç½T»{¤é
+	 * @return å‡ºç´ç¢ºèªæ—¥
 	 */
 	public String getPCSHCM() {
 		return PCSHCM;
 	}
 
 	/**
-	 * @return °h¶×¤é´Á
+	 * @return é€€åŒ¯æ—¥æœŸ
 	 */
 	public int getRemitFailDate() {
 		return RemitFailDate;
 	}
 
 	/**
-	 * @return °h¶×®É¶¡
+	 * @return é€€åŒ¯æ™‚é–“
 	 */
 	public int getRemitFailTime() {
 		return RemitFailTime;
 	}
 
 	/**
-	 * @return °h¶×¥N½X
+	 * @return é€€åŒ¯ä»£ç¢¼
 	 */
 	public String getRemitFailCode() {
 		return RemitFailCode;
 	}
 
 	/**
-	 * @return °h¶×­ì¦]
+	 * @return é€€åŒ¯åŸå› 
 	 */
 	public String getRemitFailDesc() {
 		return RemitFailDesc;
 	}
 
 	/**
-	 * @return ²z½ß¨ü²z½s¸¹
+	 * @return ç†è³ å—ç†ç·¨è™Ÿ
 	 */
 	public String getClaimNumber() {
 		return ClaimNumber;
 	}
 	
 	/**
-	 * @return »È¦æ°h¶×¦^¦s¤é´Á
+	 * @return éŠ€è¡Œé€€åŒ¯å›å­˜æ—¥æœŸ
 	 */
 	public int getBankRemitFailDate() {
 		return BankRemitBackDate;

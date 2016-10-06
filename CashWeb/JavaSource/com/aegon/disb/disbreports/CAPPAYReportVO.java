@@ -7,7 +7,7 @@ import com.aegon.disb.disbremit.CAPPaymentVO;
 /**
  * System   : CasdhWeb
  * 
- * Function : µ¹¥I³qª¾®ÑValue Object
+ * Function : çµ¦ä»˜é€šçŸ¥æ›¸Value Object
  * 
  * Remark   :
  * 
@@ -23,85 +23,85 @@ import com.aegon.disb.disbremit.CAPPaymentVO;
  * 
  * $$Log: CAPPAYReportVO.java,v $
  * $Revision 1.6  2014/02/26 07:16:11  misariel
- * $EB0536-BC264 ¨K§Q¦h§Q²vÅÜ°Ê«¬¾i¦Ñ«OÀISIE
+ * $EB0536-BC264 æ²›åˆ©å¤šåˆ©ç‡è®Šå‹•å‹é¤Šè€ä¿éšªSIE
  * $
  * $Revision 1.5  2013/11/08 05:52:33  MISSALLY
- * $EB0194-PB0016-BC255§Q²vÅÜ°Ê«¬§Y´Á¦~ª÷«OÀI±M®×
+ * $EB0194-PB0016-BC255åˆ©ç‡è®Šå‹•å‹å³æœŸå¹´é‡‘ä¿éšªå°ˆæ¡ˆ
  * $
  * $Revision 1.4  2013/04/12 06:10:25  MISSALLY
- * $RA0074 FNEº¡´Á¥Í¦sª÷¨ü¯q¤H±b¤á¤Îµ¹¥I
+ * $RA0074 FNEæ»¿æœŸç”Ÿå­˜é‡‘å—ç›Šäººå¸³æˆ¶åŠçµ¦ä»˜
  * $
  * $Revision 1.3  2009/11/11 06:19:08  missteven
- * $R90474 ­×§ïCASH¥\¯à
+ * $R90474 ä¿®æ”¹CASHåŠŸèƒ½
  * $
  * $Revision 1.2  2006/12/05 10:22:27  MISVANESSA
- * $R60550_°t¦XSPUL&¥~¹ô¥I´Ú­×§ï
+ * $R60550_é…åˆSPUL&å¤–å¹£ä»˜æ¬¾ä¿®æ”¹
  * $
  * $Revision 1.1  2006/06/29 09:40:39  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.3  2005/04/04 07:02:19  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
 
 public class CAPPAYReportVO {
 
-	private String PNO = ""; // COLHDG('¤ä¥I§Ç¸¹')
+	private String PNO = ""; // COLHDG('æ”¯ä»˜åºè™Ÿ')
 
-	private String POLICYNO = ""; // COLHDG('«O³æ¸¹½X')
+	private String POLICYNO = ""; // COLHDG('ä¿å–®è™Ÿç¢¼')
 
-	private String APPNM = ""; // COLHDG('­n«O¤H©m¦W')
+	private String APPNM = ""; // COLHDG('è¦ä¿äººå§“å')
 
-	private String INSNM = ""; // COLHDG('³Q«O¤H©m¦W')
+	private String INSNM = ""; // COLHDG('è¢«ä¿äººå§“å')
 
-	private String RECEIVER = ""; // COLHDG('¦¬¥ó¤H')
+	private String RECEIVER = ""; // COLHDG('æ”¶ä»¶äºº')
 
-	private String MAILZIP = ""; // COLHDG('¶l»¼°Ï¸¹')
+	private String MAILZIP = ""; // COLHDG('éƒµéå€è™Ÿ')
 
-	private String MAILAD = ""; // COLHDG('¶l»¼¦a§}')
+	private String MAILAD = ""; // COLHDG('éƒµéåœ°å€')
 
-	private String HMZIP = ""; // COLHDG('¦í©Ò°Ï¸¹')
+	private String HMZIP = ""; // COLHDG('ä½æ‰€å€è™Ÿ')
 
-	private String HMAD = ""; // COLHDG('¦í©Ò¦a§}')
+	private String HMAD = ""; // COLHDG('ä½æ‰€åœ°å€')
 
-	private String SRVNM = ""; // COLHDG('ªA°È¤H­û')
+	private String SRVNM = ""; // COLHDG('æœå‹™äººå“¡')
 
-	private String SRVBH = ""; // COLHDG('ªA°È³æ¦ì')
+	private String SRVBH = ""; // COLHDG('æœå‹™å–®ä½')
 
 	/**
-	 * µ¹¥I¶µ¥Ø A: ­É´Ú B: ²×¤î¡şºM¾P C: ÅÜ§ó°h¶O D:°hÁÙ·í´Á«O¶O E:·¸Ãº°h¶O
+	 * çµ¦ä»˜é …ç›® A: å€Ÿæ¬¾ B: çµ‚æ­¢ï¼æ’¤éŠ· C: è®Šæ›´é€€è²» D:é€€é‚„ç•¶æœŸä¿è²» E:æº¢ç¹³é€€è²»
 	 **/
-	private String ITEM = ""; // COLHDG('µ¹¥I¶µ¥Ø')
+	private String ITEM = ""; // COLHDG('çµ¦ä»˜é …ç›®')
 
-	private double DEFAMT = 0; // 2 COLHDG('¸Ñ¬ùª÷')
+	private double DEFAMT = 0; // 2 COLHDG('è§£ç´„é‡‘')
 
-	private double DIVAMT = 0; // 2 COLHDG('«O³æ¬õ§Q')
+	private double DIVAMT = 0; // 2 COLHDG('ä¿å–®ç´…åˆ©')
 
-	private double LOAN = 0; // 2 COLHDG('«O³æ¶U´Ú')
+	private double LOAN = 0; // 2 COLHDG('ä¿å–®è²¸æ¬¾')
 
-	private double UNPRDPRM = 0; // 2 COLHDG('¥¼¨ì´Á«O¶O')
+	private double UNPRDPRM = 0; // 2 COLHDG('æœªåˆ°æœŸä¿è²»')
 
-	private double REVPRM = 0; // 2 COLHDG('ºM¾P«O¶O')
+	private double REVPRM = 0; // 2 COLHDG('æ’¤éŠ·ä¿è²»')
 
-	private double CURPRM = 0; // 2 COLHDG('·í´Á«O¶O')
+	private double CURPRM = 0; // 2 COLHDG('ç•¶æœŸä¿è²»')
 
-	private String PEWD = ""; // COLHDG('µ¹¥I¨ä¥L»¡©ú')
+	private String PEWD = ""; // COLHDG('çµ¦ä»˜å…¶ä»–èªªæ˜')
 
-	private double PEAMT = 0; // 2 COLHDG('µ¹¥I¨ä¥Lª÷ÃB')
+	private double PEAMT = 0; // 2 COLHDG('çµ¦ä»˜å…¶ä»–é‡‘é¡')
 
-	private double LANCAP = 0; // 2 COLHDG('­É´Ú¥»ª÷')
+	private double LANCAP = 0; // 2 COLHDG('å€Ÿæ¬¾æœ¬é‡‘')
 
-	private double LANINT = 0; // 2 COLHDG('­É´Ú§Q®§')
+	private double LANINT = 0; // 2 COLHDG('å€Ÿæ¬¾åˆ©æ¯')
 
-	private double APL = 0; // 2 COLHDG('¦Û°Ê¹ÔÃº')
+	private double APL = 0; // 2 COLHDG('è‡ªå‹•å¢Šç¹³')
 
-	private double APLINT = 0; // 2 COLHDG('¹ÔÃº§Q®§')
+	private double APLINT = 0; // 2 COLHDG('å¢Šç¹³åˆ©æ¯')
 
-	private String OFFWD = ""; // COLHDG('¦©´Ú¨ä¥L»¡©ú')
+	private String OFFWD = ""; // COLHDG('æ‰£æ¬¾å…¶ä»–èªªæ˜')
 
-	private double OFFAMT = 0; // 2 COLHDG('¦©´Ú¨ä¥Lª÷ÃB')
+	private double OFFAMT = 0; // 2 COLHDG('æ‰£æ¬¾å…¶ä»–é‡‘é¡')
 
 	private String OFFWD1 = ""; // R90474
 
@@ -115,17 +115,17 @@ public class CAPPAYReportVO {
 
 	private double OFFAMT3 = 0; // R90474
 
-	private String SNDNM = ""; // COLHDG('±H¥æ')
+	private String SNDNM = ""; // COLHDG('å¯„äº¤')
 
-	private int UPDDT = 0; // 0 COLHDG('°õ¦æ¤é´Á')
+	private int UPDDT = 0; // 0 COLHDG('åŸ·è¡Œæ—¥æœŸ')
 
-	private int UPDTM = 0; // 0 COLHDG('°õ¦æ®É¶¡')
+	private int UPDTM = 0; // 0 COLHDG('åŸ·è¡Œæ™‚é–“')
 
-	private String UPDUSR = ""; // COLHDG('°õ¦æ¤H­û')
+	private String UPDUSR = ""; // COLHDG('åŸ·è¡Œäººå“¡')
 
-	private double OVRRTN = 0; // 2 OVRRTN('·¸Ãº°h¶O') -¥[¶µ
+	private double OVRRTN = 0; // 2 OVRRTN('æº¢ç¹³é€€è²»') -åŠ é …
 
-	private double ANNAMT = 0; // ANNAMT('¦~ª÷´£«eµ¹¥Iª÷ÃB') -¥[¶µ
+	private double ANNAMT = 0; // ANNAMT('å¹´é‡‘æå‰çµ¦ä»˜é‡‘é¡') -åŠ é …
 	/* EB0536 */
 	private String DIVDesc = ""; // DIVDesc    
 	private String DIVTYPE = ""; // DIVTYPE
@@ -186,23 +186,23 @@ public class CAPPAYReportVO {
 	}
 
 	/**
-	 * µ¹¥I¶µ¥Ø
+	 * çµ¦ä»˜é …ç›®
 	 * 
-	 * @return A: ­É´Ú B: ²×¤î¡şºM¾P C: ÅÜ§ó°h¶O D: °hÁÙ·í´Á«O¶O
+	 * @return A: å€Ÿæ¬¾ B: çµ‚æ­¢ï¼æ’¤éŠ· C: è®Šæ›´é€€è²» D: é€€é‚„ç•¶æœŸä¿è²»
 	 */
 	public String getItemDesc() {
 		if ("A".equals(this.ITEM)) {
-			return "­É´Ú";
+			return "å€Ÿæ¬¾";
 		} else if ("B".equals(this.ITEM)) {
-			return "²×¤î¡şºM¾P";
+			return "çµ‚æ­¢ï¼æ’¤éŠ·";
 		} else if ("C".equals(this.ITEM)) {
-			return "ÅÜ§ó°h¶O";
+			return "è®Šæ›´é€€è²»";
 		} else if ("D".equals(this.ITEM)) {
-			return "°hÁÙ·í´Á«O¶O";
+			return "é€€é‚„ç•¶æœŸä¿è²»";
 		} else if ("E".equals(this.ITEM)) {
-			return "·¸Ãº°h¶O";
+			return "æº¢ç¹³é€€è²»";
 		} else if ("G".equals(this.ITEM)) {
-			return "¦~ª÷´£«eµ¹¥I";
+			return "å¹´é‡‘æå‰çµ¦ä»˜";
 		} else {
 			return "";
 		}
@@ -211,9 +211,9 @@ public class CAPPAYReportVO {
 	/* EB0536 */
 	public String getDIVDesc() {
 		if ("4".equals(this.DIVTYPE)) {
-			return "¦^õXª÷";
+			return "å›é¥‹é‡‘";
 		} else {
-			return "«O³æ¬õ§Q";
+			return "ä¿å–®ç´…åˆ©";
 		}
 	}
 

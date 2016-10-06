@@ -28,7 +28,7 @@ import com.aegon.comlib.SessionInfo;
 import com.aegon.comlib.UserInfo;
 
 import org.apache.log4j.Logger;
-import org.apache.openjpa.lib.log.Log;
+//import org.apache.openjpa.lib.log.Log;
 
 public class LogonBean extends HttpServlet {
 	
@@ -75,17 +75,17 @@ public class LogonBean extends HttpServlet {
 		public String callerUrl = "";
 		public String errorUrl = ""; // error page for invalid user
 		public String secretAnswer = "";
-		public boolean isRemoveAll = false; // ¬O§_²¾°£¦P¤@ User id ªº session
+		public boolean isRemoveAll = false; // æ˜¯å¦ç§»é™¤åŒä¸€ User id çš„ session
 
 		// result
-		public boolean passCheck = false; // ÀË®Öµ²ªG
-		public int checkResultCode = 0; // ÀË®Öµ²ªG¥N½X
+		public boolean passCheck = false; // æª¢æ ¸çµæœ
+		public int checkResultCode = 0; // æª¢æ ¸çµæœä»£ç¢¼
 		public String checkResultMessage = null; // message to caller
 
 		//
 		public HttpSession session = null;
 		public SessionInfo sessionInfo = null;
-		public boolean checkConcurrentUser = true; // ¬O§_»İÀË¬d concurrent user
+		public boolean checkConcurrentUser = true; // æ˜¯å¦éœ€æª¢æŸ¥ concurrent user
 
 		// constructor
 		public DataClass(HttpSession thisSession, HttpServletRequest req) {
@@ -109,7 +109,7 @@ public class LogonBean extends HttpServlet {
 
 		// get input parameter
 		if (getInputParameter(req, thisData)) {
-			// process logon, Åª¨úUSER¡BUSERGRP¡BGRPFUN¡BFUNC¡BFUNCTREE¸ê®Æªí
+			// process logon, è®€å–USERã€USERGRPã€GRPFUNã€FUNCã€FUNCTREEè³‡æ–™è¡¨
 			checkLogon(thisData);
 			// setting session attribute
 			session.setAttribute("PasswordAging", new Integer(0));
@@ -125,7 +125,7 @@ public class LogonBean extends HttpServlet {
 			session.setAttribute(Constant.ACTIVE_USER_NAME, thisData.sessionInfo.getUserInfo().getUserName());
 			session.setAttribute(Constant.ACTIVE_USER_TYPE, thisData.sessionInfo.getUserInfo().getUserType());
 			session.setAttribute(Constant.COMPANY_CODE, "  ");
-			session.setAttribute(Constant.SESSION_INFO, thisData.sessionInfo);//sessionInfoªºUserInfo¤w±Nmenu·Ç³Æ¦n¤F
+			session.setAttribute(Constant.SESSION_INFO, thisData.sessionInfo);//sessionInfoçš„UserInfoå·²å°‡menuæº–å‚™å¥½äº†
 
 			AuditLogBean auditLogBean = new AuditLogBean(globalEnviron, dbFactory);
 
@@ -144,9 +144,9 @@ public class LogonBean extends HttpServlet {
 					if (currentUserList.isExist(thisData.userId)) {
 						thisData.nextUrl = thisData.callerUrl;
 						// thisData.callerUrl = "/Test/Hello.jsp";
-						req.setAttribute("txtConfirmMessage", "±b¸¹ " + thisData.userId + " ¤wµn¤J¥»¨t²Î¡A¬O§_Ä~Äò§@·~ ? ");
+						req.setAttribute("txtConfirmMessage", "å¸³è™Ÿ " + thisData.userId + " å·²ç™»å…¥æœ¬ç³»çµ±ï¼Œæ˜¯å¦ç¹¼çºŒä½œæ¥­ ? ");
 						// System.out.println("thisData.callerUrl='" + thisData.callerUrl + "' ");
-						thisData.sessionInfo.getAuditLogBean().writeAuditLog("Logon", thisData.userId, "L", "­«ÂĞµn¤J !");
+						thisData.sessionInfo.getAuditLogBean().writeAuditLog("Logon", thisData.userId, "L", "é‡è¦†ç™»å…¥ !");
 						thisData.callerUrl = addParameter(thisData.callerUrl);
 						dispatcher = req.getRequestDispatcher(thisData.callerUrl);
 						dispatcher.forward(req, resp);
@@ -160,7 +160,7 @@ public class LogonBean extends HttpServlet {
 					session.setAttribute("PasswordAging", new Integer(thisData.checkResultCode));
 					session.setAttribute("PasswordAgingMsg", thisData.checkResultMessage);
 					switch (thisData.checkResultCode) {
-					case 1: // 1:±K½X¹L´Á,2:¶i¤JÄµ§i´Á,9:²Ä¤@¦¸µn¿ı¨t²Î
+					case 1: // 1:å¯†ç¢¼éæœŸ,2:é€²å…¥è­¦å‘ŠæœŸ,9:ç¬¬ä¸€æ¬¡ç™»éŒ„ç³»çµ±
 					case 2:
 					case 9:
 						thisData.nextUrl = strPasswordChangeUrl.trim();
@@ -172,7 +172,7 @@ public class LogonBean extends HttpServlet {
 				thisData.sessionInfo.getAuditLogBean().writeAuditLog("Logon", thisData.userId, "L", "Logon successful!");
 				System.out.println("thisData.nextUrl='" + thisData.nextUrl + "'");
 				
-				//­Yµn¤JÅçÃÒ¦¨¥\,­¶­±±N¸õÂà¦Ü/NewMenu/index.html
+				//è‹¥ç™»å…¥é©—è­‰æˆåŠŸ,é é¢å°‡è·³è½‰è‡³/NewMenu/index.html
 				dispatcher = req.getRequestDispatcher(thisData.nextUrl);
 				dispatcher.forward(req, resp);
 				return;
@@ -208,8 +208,8 @@ public class LogonBean extends HttpServlet {
 		}
 		thisUserInfo.setSessionId(thisData.session.getId());
 		thisUserInfo.setDebug(thisData.sessionInfo.getDebug());
-		log.info("thisData.userId¬O" + thisData.userId);
-		//­Y¬°­º¦¸µn¤J,thisUserInfo.setUserId(thisData.userId)§Y·|°õ¦æUserInfo.refresh()¨ÃÅª¨úUSER¡BUSERGRP¡BGRPFUN¡BFUNC¡BFUNCTREE
+		log.info("thisData.userIdæ˜¯" + thisData.userId);
+		//è‹¥ç‚ºé¦–æ¬¡ç™»å…¥,thisUserInfo.setUserId(thisData.userId)å³æœƒåŸ·è¡ŒUserInfo.refresh()ä¸¦è®€å–USERã€USERGRPã€GRPFUNã€FUNCã€FUNCTREE
 		if (thisUserInfo.setUserId(thisData.userId)) {
 			if (thisUserInfo.checkUserStatus()) {
 
@@ -220,13 +220,13 @@ public class LogonBean extends HttpServlet {
 					case (AUTH_TYPE_PASSWORD):
 						thisUserInfo.setCheckPasswordAging(true);
 						int iPasswordAging = thisUserInfo.checkPassword(thisData.userPassword);
-						// iPasswordAging == 0 ±K½X¥¿½T
-						// iPasswordAging == 1 ±K½X¤w¶W¹L36¤Ñ´Á­­, 36¤Ñ¦b
-						// AppStartUpServlet.servlet ¤¤³]©w
-						// iPasswordAging == 2 ±K½X§ó§ï´Á­­¤w¤Ö©ó7¤ÑÄµ§i´Á , 7¤Ñ¦b
-						// AppStartUpServlet.servlet ¤¤³]©w
-						// iPasswordAging == 9 ±K½X¥¿½T,²Ä¤@¦¸µn¿ı¨t²Î
-						// ¨ä¾l§¡¦³¿ù»~
+						// iPasswordAging == 0 å¯†ç¢¼æ­£ç¢º
+						// iPasswordAging == 1 å¯†ç¢¼å·²è¶…é36å¤©æœŸé™, 36å¤©åœ¨
+						// AppStartUpServlet.servlet ä¸­è¨­å®š
+						// iPasswordAging == 2 å¯†ç¢¼æ›´æ”¹æœŸé™å·²å°‘æ–¼7å¤©è­¦å‘ŠæœŸ , 7å¤©åœ¨
+						// AppStartUpServlet.servlet ä¸­è¨­å®š
+						// iPasswordAging == 9 å¯†ç¢¼æ­£ç¢º,ç¬¬ä¸€æ¬¡ç™»éŒ„ç³»çµ±
+						// å…¶é¤˜å‡æœ‰éŒ¯èª¤
 
 						if (iPasswordAging == 0 || iPasswordAging == 1
 								|| iPasswordAging == 2 || iPasswordAging == 9) {
@@ -248,12 +248,12 @@ public class LogonBean extends HttpServlet {
 							if (!resetPassword(thisData)) {
 								thisData.passCheck = false;
 								thisData.checkResultCode = -1;
-								thisData.checkResultMessage = "­«³]±K½X¥¢±Ñ !";
+								thisData.checkResultMessage = "é‡è¨­å¯†ç¢¼å¤±æ•— !";
 							}
 						} else {
 							thisData.passCheck = false;
 							thisData.checkResultCode = -1;
-							thisData.checkResultMessage = "±K½X´£¥Ü»yµª®×¤£¥¿½T !";
+							thisData.checkResultMessage = "å¯†ç¢¼æç¤ºèªç­”æ¡ˆä¸æ­£ç¢º !";
 						}
 						break;
 					case (AUTH_TYPE_USER_DEFINE):
@@ -286,7 +286,7 @@ public class LogonBean extends HttpServlet {
 	 * @param thisData
 	 * @return boolean
 	 * 
-	 *         ÀË¬d±K½X´£¥Ü»yµª®×¬O§_¥¿½T
+	 *         æª¢æŸ¥å¯†ç¢¼æç¤ºèªç­”æ¡ˆæ˜¯å¦æ­£ç¢º
 	 */
 	private boolean checkAnswer(DataClass thisData) {
 		boolean returnStatus = true;
@@ -333,7 +333,7 @@ public class LogonBean extends HttpServlet {
 	 * @param thisData
 	 * @return boolean
 	 * 
-	 *         ±N·s³]©wªº±K½X¦s¤J tUser
+	 *         å°‡æ–°è¨­å®šçš„å¯†ç¢¼å­˜å…¥ tUser
 	 */
 	private boolean resetPassword(DataClass thisData) {
 		boolean returnStatus = true;
@@ -422,7 +422,7 @@ public class LogonBean extends HttpServlet {
 					dataObject.authType = Integer.parseInt(request.getParameter("txtAuthType").trim(), 10);
 				} catch (NumberFormatException ex) {
 					returnStatus = false;
-					dataObject.checkResultMessage = "»{ÃÒ¤è¦¡¥N½X¿ù»~ !";
+					dataObject.checkResultMessage = "èªè­‰æ–¹å¼ä»£ç¢¼éŒ¯èª¤ !";
 				}
 			}
 			if (request.getParameter("txtNextUrl") != null) {
@@ -456,7 +456,7 @@ public class LogonBean extends HttpServlet {
 			}
 
 		} else {
-			dataObject.checkResultMessage = "±b¸¹ªÅ¥Õ !";
+			dataObject.checkResultMessage = "å¸³è™Ÿç©ºç™½ !";
 			returnStatus = false;
 		}
 

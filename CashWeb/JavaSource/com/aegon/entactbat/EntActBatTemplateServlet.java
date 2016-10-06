@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * System   : CashWeb
  * 
- * Function : ³Ğ«Ø»È¦æ¼ÒªO±±¨î¾¹
+ * Function : å‰µå»ºéŠ€è¡Œæ¨¡æ¿æ§åˆ¶å™¨
  * 
  * Remark   : 
  * 
@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * $Log: EntActBatTemplateServlet.java,v $
  * Revision 1.3  2013/12/24 06:16:27  MISSALLY
- * R00135---PA0024---CASH¦~«×±M®×
+ * R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ
  *
  *  
  */
@@ -57,14 +57,14 @@ public class EntActBatTemplateServlet extends HttpServlet {
 				map = this.getAllBankTempalte();
 				BankTemplateDTO dto = map.get(bkalat);
 				if (null == dto) {
-					req.setAttribute("txtMsg", "¨S¦³§ä¨ì¬ÛÃö»È¦æ¼ÒªO");
+					req.setAttribute("txtMsg", "æ²’æœ‰æ‰¾åˆ°ç›¸é—œéŠ€è¡Œæ¨¡æ¿");
 					URL = SEARCHURL;
 				} else {
 					req.setAttribute("DTO", dto);
 					URL = VIEWURL;
 				}
 			} catch (IOException e) {
-				req.setAttribute("txtMsg", "Åª¨ú»È¦æ¼ÒªO¥¢±Ñ");
+				req.setAttribute("txtMsg", "è®€å–éŠ€è¡Œæ¨¡æ¿å¤±æ•—");
 				URL = SEARCHURL;
 			}
 		} else if ("IN".equals(pageType)) {
@@ -73,31 +73,31 @@ public class EntActBatTemplateServlet extends HttpServlet {
 			try {
 				String content = this.readBankTemplateForFile();
 				writeBankTemplateToFile(tempalte, content);
-				req.setAttribute("txtMsg", "¼ÒªO³Ğ«Ø¦¨¥\");
+				req.setAttribute("txtMsg", "æ¨¡æ¿å‰µå»ºæˆåŠŸ");
 				req.setAttribute("DTO", dto);
 				URL = VIEWURL;
 			} catch (Exception e) {
-				req.setAttribute("txtMsg", "Åª¨ú°t¸m¤å¥ó¦³»~.");
+				req.setAttribute("txtMsg", "è®€å–é…ç½®æ–‡ä»¶æœ‰èª¤.");
 				URL = INSERTURL;
 			}
 		} else if ("UP".equals(pageType)) {
 			BankTemplateDTO dto = this.setUpParameters(req);
 			try {
 				this.updateBankTemplate(dto);
-				req.setAttribute("txtMsg", "¼ÒªO­×§ï¦¨¥\");
+				req.setAttribute("txtMsg", "æ¨¡æ¿ä¿®æ”¹æˆåŠŸ");
 				req.setAttribute("DTO", dto);
 				URL = VIEWURL;
 			} catch (IOException e) {
-				req.setAttribute("txtMsg", "Åª¨ú°t¸m¤å¥ó¦³»~.");
+				req.setAttribute("txtMsg", "è®€å–é…ç½®æ–‡ä»¶æœ‰èª¤.");
 				URL = UPDATEURL;
 			}
 		} else if ("DE".equals(pageType)) {
 			String bkalat = req.getParameter("BKALAT");
 			try {
 				this.deleteBankTemplate(bkalat);
-				req.setAttribute("txtMsg", "§R°£¼ÒªO¦¨¥\");
+				req.setAttribute("txtMsg", "åˆªé™¤æ¨¡æ¿æˆåŠŸ");
 			} catch (Exception e) {
-				req.setAttribute("txtMsg", "§R°£°t¸m¤å¥ó¦³»~.");
+				req.setAttribute("txtMsg", "åˆªé™¤é…ç½®æ–‡ä»¶æœ‰èª¤.");
 			}
 			URL = SEARCHURL;
 		} else if ("UV".equals(pageType)) {
@@ -107,21 +107,21 @@ public class EntActBatTemplateServlet extends HttpServlet {
 				map = this.getAllBankTempalte();
 				BankTemplateDTO dto = map.get(bkalat);
 				if (null == dto) {
-					req.setAttribute("txtMsg", "¨S¦³§ä¨ì¬ÛÃö»È¦æ¼ÒªO");
+					req.setAttribute("txtMsg", "æ²’æœ‰æ‰¾åˆ°ç›¸é—œéŠ€è¡Œæ¨¡æ¿");
 					URL = SEARCHURL;
 				} else {
 					req.setAttribute("DTO", dto);
 					URL = UPDATEURL;
 				}
 			} catch (IOException e) {
-				req.setAttribute("txtMsg", "Åª¨ú»È¦æ¼ÒªO¥¢±Ñ");
+				req.setAttribute("txtMsg", "è®€å–éŠ€è¡Œæ¨¡æ¿å¤±æ•—");
 			}
 		}
 
 		req.getRequestDispatcher(URL).forward(req, resp);
 	}
 
-	// ­¶­±°Ñ¼Æ³]¸m¨ìBankTemplateDTO¹ï¶H
+	// é é¢åƒæ•¸è¨­ç½®åˆ°BankTemplateDTOå°è±¡
 	private BankTemplateDTO setUpParameters(HttpServletRequest req) {
 		BankTemplateDTO dto = new BankTemplateDTO();
 		dto.setBankCode(req.getParameter("bkCode").toUpperCase());
@@ -190,7 +190,7 @@ public class EntActBatTemplateServlet extends HttpServlet {
 		return dto;
 	}
 
-	// ¼ÒªO¼g¤J°t¸m¤å¥ó¤¤
+	// æ¨¡æ¿å¯«å…¥é…ç½®æ–‡ä»¶ä¸­
 	private void writeBankTemplateToFile(String tempalte, String content) throws IOException {
 		FileWriter fw = new FileWriter(Path + File);
 		fw.write(content);
@@ -199,7 +199,7 @@ public class EntActBatTemplateServlet extends HttpServlet {
 		fw.close();
 	}
 
-	// Åª¨ú°t¸m¤å¥ó
+	// è®€å–é…ç½®æ–‡ä»¶
 	private String readBankTemplateForFile() throws IOException {
 
 		StringBuffer su = new StringBuffer();
@@ -212,7 +212,7 @@ public class EntActBatTemplateServlet extends HttpServlet {
 		return su.toString();
 	}
 
-	// ºc«Ø»È¦æµn±b¼ÒªO
+	// æ§‹å»ºéŠ€è¡Œç™»å¸³æ¨¡æ¿
 	private String createBankTemplate(BankTemplateDTO dto) {
 		String template = "";
 		template += dto.getBankCode() + "|";
@@ -241,7 +241,7 @@ public class EntActBatTemplateServlet extends HttpServlet {
 
 	}
 
-	// ¨ú±o©Ò¦³»È¦æ¼ÒªO©ñ¤JMap
+	// å–å¾—æ‰€æœ‰éŠ€è¡Œæ¨¡æ¿æ”¾å…¥Map
 	private HashMap<String, BankTemplateDTO> getAllBankTempalte() throws IOException {
 		HashMap<String, BankTemplateDTO> hm = new HashMap<String, BankTemplateDTO>();
 		BufferedReader br = new BufferedReader(new FileReader(new File(Path + File)));
@@ -254,7 +254,7 @@ public class EntActBatTemplateServlet extends HttpServlet {
 		return hm;
 	}
 
-	// »È¦æ¼ÒªO¼Æ²ÕÂà¤Æ»È¦æ¼ÒªO¹ï¶H
+	// éŠ€è¡Œæ¨¡æ¿æ•¸çµ„è½‰åŒ–éŠ€è¡Œæ¨¡æ¿å°è±¡
 	private BankTemplateDTO arrayChangeBankTemplateDTO(String[] arr) {
 		BankTemplateDTO dto = new BankTemplateDTO();
 		dto.setBankCode(arr[0]);
@@ -282,7 +282,7 @@ public class EntActBatTemplateServlet extends HttpServlet {
 		return dto;
 	}
 
-	// §R°£°t¸mªº»È¦æ¼ÒªO
+	// åˆªé™¤é…ç½®çš„éŠ€è¡Œæ¨¡æ¿
 	private void deleteBankTemplate(String bkalat) throws IOException {
 		BufferedReader br = new BufferedReader(new FileReader(new File(Path + File)));
 		String templine = "";

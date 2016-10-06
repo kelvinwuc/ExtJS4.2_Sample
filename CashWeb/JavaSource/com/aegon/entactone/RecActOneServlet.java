@@ -82,7 +82,7 @@ public class RecActOneServlet extends InitDBServlet {
 			pstmt.setInt(13, Integer.parseInt(strCSFBAT));
 			pstmt.executeUpdate();
 
-			strMsg = "­×§ï¦¨¥\!!";
+			strMsg = "ä¿®æ”¹æˆåŠŸ!!";
 
 			String strNextAction = CommonUtil.AllTrim(request.getParameter("nextAction"));
 			if(strNextAction.equals("Writeoffs")) {
@@ -90,7 +90,7 @@ public class RecActOneServlet extends InitDBServlet {
 			}
 
 		} catch(Exception ex) {
-			strMsg = "­×§ï¥¢±Ñ!!";
+			strMsg = "ä¿®æ”¹å¤±æ•—!!";
 			System.err.println(ex.getMessage());
 		} finally {
 			try {if(pstmt != null) pstmt.close();} catch(Exception ex) {}
@@ -177,7 +177,7 @@ public class RecActOneServlet extends InitDBServlet {
 				{
 					dAmtFB = rstFBQ.getDouble("CROAMT");
 
-					//¤@¹ï¤@
+					//ä¸€å°ä¸€
 					if(dAmtF == dAmtFB) 
 					{
 						strUpdTime = String.valueOf(commonUtil.getBizDateByRCalendar().getTimeInMillis());
@@ -256,7 +256,7 @@ public class RecActOneServlet extends InitDBServlet {
 					}
 				}
 
-				//¤@¹ï¦h
+				//ä¸€å°å¤š
 				if(dSumAmt == dAmtF) 
 				{
 					strUpdTime = String.valueOf(commonUtil.getBizDateByRCalendar().getTimeInMillis());
@@ -319,11 +319,11 @@ public class RecActOneServlet extends InitDBServlet {
 				}
 			}
 
-			strReturn = "\n\r¾P±b§@·~³B²z§¹²¦!!";
+			strReturn = "\n\réŠ·å¸³ä½œæ¥­è™•ç†å®Œç•¢!!";
 
 		} catch(Exception ex) {
-			strReturn = "¾P±b§@·~³B²z¥¢±Ñ!!";
-			System.err.println("³æµ§¤J±b«á¾P±b¥¢±Ñ =" + ex.getMessage());
+			strReturn = "éŠ·å¸³ä½œæ¥­è™•ç†å¤±æ•—!!";
+			System.err.println("å–®ç­†å…¥å¸³å¾ŒéŠ·å¸³å¤±æ•— =" + ex.getMessage());
 		} finally {
 			try {if(rst != null) rst.close();} catch(Exception ex) {}
 			try {if(rstFBQ != null) rstFBQ.close();} catch(Exception ex) {}
