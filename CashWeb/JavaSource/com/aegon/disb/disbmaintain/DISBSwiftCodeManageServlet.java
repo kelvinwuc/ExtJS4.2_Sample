@@ -32,7 +32,7 @@ import com.aegon.comlib.InitDBServlet;
 /**
  * System   : CashWeb
  * 
- * Function : °ê¥~SWIFT CODE
+ * Function : åœ‹å¤–SWIFT CODE
  * 
  * Remark   : 
  * 
@@ -48,10 +48,10 @@ import com.aegon.comlib.InitDBServlet;
  * 
  * $$Log: DISBSwiftCodeManageServlet.java,v $
  * $Revision 1.4  2013/12/24 03:02:35  MISSALLY
- * $R00135---PA0024---CASH¦~«×±M®×
+ * $R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ
  * $
  * $Revision 1.3  2013/04/12 06:10:25  MISSALLY
- * $RA0074 FNEº¡´Á¥Í¦sª÷¨ü¯q¤H±b¤á¤Îµ¹¥I
+ * $RA0074 FNEæ»¿æœŸç”Ÿå­˜é‡‘å—ç›Šäººå¸³æˆ¶åŠçµ¦ä»˜
  * $$
  *  
  */
@@ -93,12 +93,12 @@ public class DISBSwiftCodeManageServlet extends InitDBServlet {
 				String strUpdDate = commonUtil.convertWesten2ROCDate1(cldToday.getTime());
 				String strLogonUser = (String) session.getAttribute(Constant.LOGON_USER_ID);
 
-				/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-				String strBKNO = "";	// ª÷¿Ä¾÷ºc¥N½X
-				String strBKNM = "";	// »È¦æ¦WºÙ
+				/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+				String strBKNO = "";	// é‡‘èæ©Ÿæ§‹ä»£ç¢¼
+				String strBKNM = "";	// éŠ€è¡Œåç¨±
 				String strSWFT = "";	// SWIFT CODE
 
-				/* ¨ú±o«eºİÄæ¦ì¸ê®Æ */
+				/* å–å¾—å‰ç«¯æ¬„ä½è³‡æ–™ */
 				strBKNO = (request.getParameter("txtBKNO") == null) ? "" : CommonUtil.AllTrim(request.getParameter("txtBKNO"));
 				strBKNM = (request.getParameter("txtBKNM") == null) ? "" : CommonUtil.AllTrim(request.getParameter("txtBKNM"));
 				strSWFT = (request.getParameter("txtSWFT") == null) ? "" : CommonUtil.AllTrim(request.getParameter("txtSWFT"));
@@ -142,16 +142,16 @@ public class DISBSwiftCodeManageServlet extends InitDBServlet {
 		boolean bStatus = vo.getBankNo().equals("") || vo.getSwiftCode().equals("") || vo.getBankName().equals("");
 
 		if(bStatus) {
-			errorMessage = "¤£±o¦³ªÅ­È.";
+			errorMessage = "ä¸å¾—æœ‰ç©ºå€¼.";
 		} else {
 			Connection conn = dbFactory.getAS400Connection("DISBSwiftCodeManageServlet");
 			DISBSwiftCodeDAO dao = new DISBSwiftCodeDAO();
 			dao.setConnection(conn);
 
 			if (dao.insert(vo) != 1) {
-				errorMessage = "·s¼W¥¢±Ñ.";
+				errorMessage = "æ–°å¢å¤±æ•—.";
 			} else {
-				errorMessage = "·s¼W¦¨¥\.";
+				errorMessage = "æ–°å¢æˆåŠŸ.";
 			}
 
 			dbFactory.releaseAS400Connection(conn);
@@ -167,16 +167,16 @@ public class DISBSwiftCodeManageServlet extends InitDBServlet {
 		boolean bStatus = vo.getBankNo().equals("") || vo.getSwiftCode().equals("") || vo.getBankName().equals("");
 
 		if(bStatus) {
-			errorMessage = "¤£±o¦³ªÅ­È.";
+			errorMessage = "ä¸å¾—æœ‰ç©ºå€¼.";
 		} else {
 			Connection conn = dbFactory.getAS400Connection("DISBSwiftCodeManageServlet");
 			DISBSwiftCodeDAO dao = new DISBSwiftCodeDAO();
 			dao.setConnection(conn);
 
 			if (dao.update(vo) != 1) {
-				errorMessage = "­×§ï¥¢±Ñ.";
+				errorMessage = "ä¿®æ”¹å¤±æ•—.";
 			} else {
-				errorMessage = "­×§ï¦¨¥\.";
+				errorMessage = "ä¿®æ”¹æˆåŠŸ.";
 			}
 
 			dbFactory.releaseAS400Connection(conn);
@@ -192,16 +192,16 @@ public class DISBSwiftCodeManageServlet extends InitDBServlet {
 		boolean bStatus = vo.getBankNo().equals("") || vo.getSwiftCode().equals("") || vo.getBankName().equals("");
 
 		if(bStatus) {
-			errorMessage = "¤£±o¦³ªÅ­È.";
+			errorMessage = "ä¸å¾—æœ‰ç©ºå€¼.";
 		} else {
 			Connection conn = dbFactory.getAS400Connection("DISBSwiftCodeManageServlet");
 			DISBSwiftCodeDAO dao = new DISBSwiftCodeDAO();
 			dao.setConnection(conn);
 
 			if (dao.delete(vo) != 1) {
-				errorMessage = "§R°£¥¢±Ñ.";
+				errorMessage = "åˆªé™¤å¤±æ•—.";
 			} else {
-				errorMessage = "§R°£¦¨¥\.";
+				errorMessage = "åˆªé™¤æˆåŠŸ.";
 			}
 
 			dbFactory.releaseAS400Connection(conn);
@@ -217,10 +217,10 @@ public class DISBSwiftCodeManageServlet extends InitDBServlet {
 		// Create a new file upload handler
 		DiskFileUpload upload = new DiskFileUpload();
 
-		int totalCount = 0;		// Á`µ§¼Æ
-		int successCount = 0;	// §ó·sµ§¼Æ
-		int failCount = 0;		// ¥¢±Ñµ§¼Æ
-		int insertCount = 0;	// ·s¼Wµ§¼Æ
+		int totalCount = 0;		// ç¸½ç­†æ•¸
+		int successCount = 0;	// æ›´æ–°ç­†æ•¸
+		int failCount = 0;		// å¤±æ•—ç­†æ•¸
+		int insertCount = 0;	// æ–°å¢ç­†æ•¸
 		String failRec = "";
 		
 		try {
@@ -248,10 +248,10 @@ public class DISBSwiftCodeManageServlet extends InitDBServlet {
 				break;
 		}
 
-//		int totalCount = 0;		// Á`µ§¼Æ
-//		int successCount = 0;	// §ó·sµ§¼Æ
-//		int failCount = 0;		// ¥¢±Ñµ§¼Æ
-//		int insertCount = 0;	// ·s¼Wµ§¼Æ
+//		int totalCount = 0;		// ç¸½ç­†æ•¸
+//		int successCount = 0;	// æ›´æ–°ç­†æ•¸
+//		int failCount = 0;		// å¤±æ•—ç­†æ•¸
+//		int insertCount = 0;	// æ–°å¢ç­†æ•¸
 //		String failRec = "";
 		
 //		try {
@@ -268,9 +268,9 @@ public class DISBSwiftCodeManageServlet extends InitDBServlet {
 					String strLogonUser = (String) session.getAttribute(Constant.LOGON_USER_ID);
 
 					CAPswiftVO vo = new CAPswiftVO();
-					System.out.println("@@@§R°£ORCHSWFT.");
+					System.out.println("@@@åˆªé™¤ORCHSWFT.");
 					if (dao.deleteAll() >= 0) {
-						System.out.println("@@@³vµ§·s¼WORCHSWFT.");
+						System.out.println("@@@é€ç­†æ–°å¢ORCHSWFT.");
 						for (int index = 0; index < banklist.size(); index++) {
 							totalCount++;
 							String[] data = (String[]) banklist.get(index);
@@ -281,7 +281,7 @@ public class DISBSwiftCodeManageServlet extends InitDBServlet {
 							vo.setEntryID(strLogonUser);
 
 							if (checkBankCodeExist(data[2])) {
-								errorMessage += errorMessage + "²Ä" + index + "¦æ¡Gª÷¿Ä¾÷ºc¥N½X¤w¸g¦s¦b<BR/>";
+								errorMessage += errorMessage + "ç¬¬" + index + "è¡Œï¼šé‡‘èæ©Ÿæ§‹ä»£ç¢¼å·²ç¶“å­˜åœ¨<BR/>";
 								failCount++;
 								continue;
 							}
@@ -301,17 +301,17 @@ public class DISBSwiftCodeManageServlet extends InitDBServlet {
 					if(conn != null)
 						dbFactory.releaseAS400Connection(conn);
 
-					errorMessage = "¤W¶Ç¦¨¥\."; 
+					errorMessage = "ä¸Šå‚³æˆåŠŸ."; 
 				}
             }
 			else
 			{
-				errorMessage = "Åª¨ú¤W¶Ç¤å¥ó¬°ªÅ.";
+				errorMessage = "è®€å–ä¸Šå‚³æ–‡ä»¶ç‚ºç©º.";
 			}
 		} catch (SQLException e) {
-			errorMessage = "¾Ş§@¼Æ¾Ú®w¥¢±Ñ.";
+			errorMessage = "æ“ä½œæ•¸æ“šåº«å¤±æ•—.";
 		} catch (ArrayIndexOutOfBoundsException e){
-			errorMessage = "¤W¶Ç¤å¥ó®æ¦¡¦³»~.";
+			errorMessage = "ä¸Šå‚³æ–‡ä»¶æ ¼å¼æœ‰èª¤.";
 		} catch (Exception e) {
 			errorMessage = e.toString();
 			e.printStackTrace();
@@ -327,7 +327,7 @@ public class DISBSwiftCodeManageServlet extends InitDBServlet {
 	private List processUploadFile(InputStream in) throws IOException, ArrayIndexOutOfBoundsException {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		List list = new ArrayList();
-		String oneRow = reader.readLine();	//¥h±¼ªíÀY
+		String oneRow = reader.readLine();	//å»æ‰è¡¨é ­
 		String[] arr = null;
 		while (true) {
 			oneRow = reader.readLine();
@@ -362,24 +362,24 @@ public class DISBSwiftCodeManageServlet extends InitDBServlet {
 			index = i + 2;
 			data = (String[]) list.get(i);
 			if (data[2].equals("")) {
-				errorMessage = errorMessage + "²Ä" + index + "¦æ¡Gª÷¿Ä¾÷ºc¥N½X¤£¯à¬°ªÅ­È<BR/>";
+				errorMessage = errorMessage + "ç¬¬" + index + "è¡Œï¼šé‡‘èæ©Ÿæ§‹ä»£ç¢¼ä¸èƒ½ç‚ºç©ºå€¼<BR/>";
 				res = false;
 			} else {
 				if (data[2].length() != 3) {
-					errorMessage = errorMessage + "²Ä" + index + "¦æ¡Gª÷¿Ä¾÷ºc¥N½X¥u¯à¬°3¦ì<BR/>";
+					errorMessage = errorMessage + "ç¬¬" + index + "è¡Œï¼šé‡‘èæ©Ÿæ§‹ä»£ç¢¼åªèƒ½ç‚º3ä½<BR/>";
 					res = false;
 				} 
 				if(!re.match(data[2])) {
-					errorMessage += errorMessage + "²Ä" + index + "¦æ¡Gª÷¿Ä¾÷ºc¥N½X¥u¯à¬°¼Æ¦r<BR/>";
+					errorMessage += errorMessage + "ç¬¬" + index + "è¡Œï¼šé‡‘èæ©Ÿæ§‹ä»£ç¢¼åªèƒ½ç‚ºæ•¸å­—<BR/>";
 					res = false;
 				}
 			}
 			if (data[0].equals("")) {
-				errorMessage += errorMessage + "²Ä" + index + "¦æ¡G»È¦æ¦WºÙ¤£¯à¬°ªÅ<BR/>";
+				errorMessage += errorMessage + "ç¬¬" + index + "è¡Œï¼šéŠ€è¡Œåç¨±ä¸èƒ½ç‚ºç©º<BR/>";
 				res = false;
 			}
 			if (data[1].equals("")) {
-				errorMessage += errorMessage + "²Ä" + index + "¦æ¡GSWIFT CODE¤£¯à¬°ªÅ<BR/>";
+				errorMessage += errorMessage + "ç¬¬" + index + "è¡Œï¼šSWIFT CODEä¸èƒ½ç‚ºç©º<BR/>";
 				res = false;
 			}
 		}

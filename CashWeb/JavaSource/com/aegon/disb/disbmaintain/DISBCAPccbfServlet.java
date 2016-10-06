@@ -29,7 +29,7 @@ import org.apache.log4j.Logger;
 /**
  * System   : CashWeb
  * 
- * Function : °ê¤ºª÷¸êÀÉ
+ * Function : åœ‹å…§é‡‘è³‡æª”
  * 
  * Remark   : 
  * 
@@ -45,15 +45,15 @@ import org.apache.log4j.Logger;
  * 
  * $$Log: DISBCAPccbfServlet.java,v $
  * $Revision 1.8  2013/04/12 06:10:25  MISSALLY
- * $RA0074 FNEº¡´Á¥Í¦sª÷¨ü¯q¤H±b¤á¤Îµ¹¥I
+ * $RA0074 FNEæ»¿æœŸç”Ÿå­˜é‡‘å—ç›Šäººå¸³æˆ¶åŠçµ¦ä»˜
  * $
  * $Revision 1.6  2012/06/18 09:35:41  MISSALLY
- * $QA0132-ª÷¸êÀÉ®×¤Î SWIFT CODEÀÉ®×ºûÅ@
- * $1.¥\¯à¡u·s¼Wª÷¸ê½X¡v¼W¥[ÀË®Ö¤£±o¬°ªÅ­È¡C
- * $2.¥\¯à¡uª÷¸ê»È¦æÀÉ¡v
- * $   2.1°ê¥~SWIFT CODEµe­±ÁôÂÃ¡C
- * $   2.2¼W¥[ÀË®Ö¤£±o¤W¶ÇªÅÀÉ¡C
- * $   2.3¼W¥[ÀË®Öª÷¸ê¥N½Xªø«×¥²¶·¬°7¦ì¼Æ¦r¡A§_«hÅã¥Ü¥¢±Ñªº°O¿ı¡F­Y°õ¦æ®É¦³¿ù»~°T®§«h¥ş³¡¤£§ó·s¡A¥BÅã¥Ü¥¢±Ñªº°O¿ı¡C
+ * $QA0132-é‡‘è³‡æª”æ¡ˆåŠ SWIFT CODEæª”æ¡ˆç¶­è­·
+ * $1.åŠŸèƒ½ã€Œæ–°å¢é‡‘è³‡ç¢¼ã€å¢åŠ æª¢æ ¸ä¸å¾—ç‚ºç©ºå€¼ã€‚
+ * $2.åŠŸèƒ½ã€Œé‡‘è³‡éŠ€è¡Œæª”ã€
+ * $   2.1åœ‹å¤–SWIFT CODEç•«é¢éš±è—ã€‚
+ * $   2.2å¢åŠ æª¢æ ¸ä¸å¾—ä¸Šå‚³ç©ºæª”ã€‚
+ * $   2.3å¢åŠ æª¢æ ¸é‡‘è³‡ä»£ç¢¼é•·åº¦å¿…é ˆç‚º7ä½æ•¸å­—ï¼Œå¦å‰‡é¡¯ç¤ºå¤±æ•—çš„è¨˜éŒ„ï¼›è‹¥åŸ·è¡Œæ™‚æœ‰éŒ¯èª¤è¨Šæ¯å‰‡å…¨éƒ¨ä¸æ›´æ–°ï¼Œä¸”é¡¯ç¤ºå¤±æ•—çš„è¨˜éŒ„ã€‚
  * $$
  *  
  */
@@ -98,15 +98,15 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 				int iUpdDate = Integer.parseInt(commonUtil.convertWesten2ROCDate1(cldToday.getTime()));
 				int iUpdTime = Integer.parseInt(commonUtil.convertWesten2ROCDateTime1(cldToday.getTime()).substring(7));
 
-				/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-				String strBKNO = (request.getParameter("txtBKNO") == null) ? "" : CommonUtil.AllTrim(request.getParameter("txtBKNO"));	// ª÷¸ê¥N½X
-				String strFNM = (request.getParameter("txtBKFNM") == null) ? "" : CommonUtil.AllTrim(request.getParameter("txtBKFNM"));	// »È¦æ¥ş¦W
-				String strNM = (request.getParameter("txtBKNM") == null) ? "" : CommonUtil.AllTrim(request.getParameter("txtBKNM"));	// »È¦æÂ²ºÙ
+				/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+				String strBKNO = (request.getParameter("txtBKNO") == null) ? "" : CommonUtil.AllTrim(request.getParameter("txtBKNO"));	// é‡‘è³‡ä»£ç¢¼
+				String strFNM = (request.getParameter("txtBKFNM") == null) ? "" : CommonUtil.AllTrim(request.getParameter("txtBKFNM"));	// éŠ€è¡Œå…¨å
+				String strNM = (request.getParameter("txtBKNM") == null) ? "" : CommonUtil.AllTrim(request.getParameter("txtBKNM"));	// éŠ€è¡Œç°¡ç¨±
 
 				CAPccbfVO vo = new CAPccbfVO();
-				vo.setBKNO(strBKNO);	// »È¦æ¥N½X
-				vo.setBKFNM(strFNM);	// »È¦æ¥ş¦W
-				vo.setBKNM(strNM);		// »È¦æÂ²ºÙ
+				vo.setBKNO(strBKNO);	// éŠ€è¡Œä»£ç¢¼
+				vo.setBKFNM(strFNM);	// éŠ€è¡Œå…¨å
+				vo.setBKNM(strNM);		// éŠ€è¡Œç°¡ç¨±
 				vo.setENTRYDT(iUpdDate);
 				vo.setENTRYTM(iUpdTime);
 				vo.setENTRYUSR(strLogonUser);
@@ -142,16 +142,16 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 		boolean bStatus = vo.getBKNO().equals("") || vo.getBKFNM().equals("") || vo.getBKNM().equals("");
 
 		if(bStatus) {
-			strMsg = "¤£±o¦³ªÅ­È";
+			strMsg = "ä¸å¾—æœ‰ç©ºå€¼";
 		} else {
 			Connection conn = dbFactory.getAS400Connection("DISBCAPccbfServlet");
 			DISBCAPccbfDAO dao = new DISBCAPccbfDAO();
 			dao.setConnection(conn);
 
 			if (dao.insert(vo) != 1) {
-				strMsg = "·s¼W¥¢±Ñ";
+				strMsg = "æ–°å¢å¤±æ•—";
 			} else {
-				strMsg = "·s¼W¦¨¥\";
+				strMsg = "æ–°å¢æˆåŠŸ";
 			}
 
 			dbFactory.releaseAS400Connection(conn);
@@ -167,16 +167,16 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 		boolean bStatus = vo.getBKNO().equals("") || vo.getBKFNM().equals("") || vo.getBKNM().equals("");
 
 		if(bStatus) {
-			strMsg = "¤£±o¦³ªÅ­È";
+			strMsg = "ä¸å¾—æœ‰ç©ºå€¼";
 		} else {
 			Connection conn = dbFactory.getAS400Connection("DISBCAPccbfServlet");
 			DISBCAPccbfDAO dao = new DISBCAPccbfDAO();
 			dao.setConnection(conn);
 
 			if (dao.update(vo) != 1) {
-				strMsg = "­×§ï¥¢±Ñ";
+				strMsg = "ä¿®æ”¹å¤±æ•—";
 			} else {
-				strMsg = "­×§ï¦¨¥\";
+				strMsg = "ä¿®æ”¹æˆåŠŸ";
 			}
 
 			dbFactory.releaseAS400Connection(conn);
@@ -192,16 +192,16 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 		boolean bStatus = vo.getBKNO().equals("");
 
 		if(bStatus) {
-			strMsg = "ª÷¸ê¥N½X¤£±o¬°ªÅ­È";
+			strMsg = "é‡‘è³‡ä»£ç¢¼ä¸å¾—ç‚ºç©ºå€¼";
 		} else {
 			Connection conn = dbFactory.getAS400Connection("DISBCAPccbfServlet");
 			DISBCAPccbfDAO dao = new DISBCAPccbfDAO();
 			dao.setConnection(conn);
 
 			if (dao.delete(vo) != 1) {
-				strMsg = "§R°£¥¢±Ñ";
+				strMsg = "åˆªé™¤å¤±æ•—";
 			} else {
-				strMsg = "§R°£¦¨¥\";
+				strMsg = "åˆªé™¤æˆåŠŸ";
 			}
 
 			dbFactory.releaseAS400Connection(conn);
@@ -240,10 +240,10 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 				break;
 		}
 
-		int totalCount = 0;		// Á`µ§¼Æ
-		int successCount = 0;	// §ó·sµ§¼Æ
-		int failCount = 0;		// ¥¢±Ñµ§¼Æ
-		int insertCount = 0;	// ·s¼Wµ§¼Æ
+		int totalCount = 0;		// ç¸½ç­†æ•¸
+		int successCount = 0;	// æ›´æ–°ç­†æ•¸
+		int failCount = 0;		// å¤±æ•—ç­†æ•¸
+		int insertCount = 0;	// æ–°å¢ç­†æ•¸
 		String failRec = "";
 
 		if(banklist.size() > 0)
@@ -263,19 +263,19 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 			RE re = new RE("^[0-9]*$");
 
 			CAPccbfVO vo = new CAPccbfVO();
-			System.out.println("@@@§R°£CAPCCBF.");
+			System.out.println("@@@åˆªé™¤CAPCCBF.");
 			if (dao.deleteAll() >= 0) {
-				System.out.println("@@@³vµ§·s¼WCAPCCBF.");
+				System.out.println("@@@é€ç­†æ–°å¢CAPCCBF.");
 				for (int index = 0; index < banklist.size(); index++) {
 					totalCount++;
 					String[] data = (String[]) banklist.get(index);
 					if (data[0].length() > 3) {
-						//QA0132 ª÷¸ê½X¥²¶·¬°7½Xªº¼Æ¦r
+						//QA0132 é‡‘è³‡ç¢¼å¿…é ˆç‚º7ç¢¼çš„æ•¸å­—
 						if(data[0].length() == 7 && re.match(data[0])) {
 							log.info("data[0]:" + data[0] + ",data[1]:" + data[1] + ",data[2]:" + data[2]);
-							vo.setBKNO(data[0]); // »È¦æ¥N½X
-							vo.setBKFNM(data[1]);// »È¦æ¥ş¦W
-							vo.setBKNM(data[2]); // »È¦æÂ²ºÙ
+							vo.setBKNO(data[0]); // éŠ€è¡Œä»£ç¢¼
+							vo.setBKFNM(data[1]);// éŠ€è¡Œå…¨å
+							vo.setBKNM(data[2]); // éŠ€è¡Œç°¡ç¨±
 							vo.setENTRYDT(iUpdDate);
 							vo.setENTRYTM(iUpdTime);
 							vo.setENTRYUSR(strLogonUser);
@@ -285,12 +285,12 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 							} else {
 								failCount++;
 								failRec += "\"" + data[0] + "\",";
-								System.out.println("·s¼W¥¢±Ñªº»È¦æ¥N½X=" + data[0]);
+								System.out.println("æ–°å¢å¤±æ•—çš„éŠ€è¡Œä»£ç¢¼=" + data[0]);
 							}
 						} else {
 							failCount++;
 							failRec += "\"" + data[0] + "\",";
-							System.out.println("·s¼W¥¢±Ñªº»È¦æ¥N½X=" + data[0]);
+							System.out.println("æ–°å¢å¤±æ•—çš„éŠ€è¡Œä»£ç¢¼=" + data[0]);
 						}
 					}
 				}
@@ -319,14 +319,14 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 			String line = "";
 			StringTokenizer st = null;
 			if (content != null) {
-				//log.info("content¬O" + content);
+				//log.info("contentæ˜¯" + content);
 				st = new StringTokenizer(content, "\r\n");
 				while (st.hasMoreTokens()) {
 					line = st.nextToken();
-					line = line.replace((char) 39, ' '); // Âà " ' " ¬°ªÅ¥Õ
+					line = line.replace((char) 39, ' '); // è½‰ " ' " ç‚ºç©ºç™½
 					String[] data = new String[3];
 					//data = split(line, ",");
-					data = splitV2(line); //»È¦æ¤U¸üÀÉ®×¥Ñ¤¤«H»È§ó§ï¬°¹ü»È
+					data = splitV2(line); //éŠ€è¡Œä¸‹è¼‰æª”æ¡ˆç”±ä¸­ä¿¡éŠ€æ›´æ”¹ç‚ºå½°éŠ€
 					String[] data1 = new String[3];
 					for (int index = 0; index < data.length; index++) {
 						data1[index] = "";
@@ -345,7 +345,7 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 	}
 
 	/**
-	 * str = "123","456","789A"; reg = , ¥Î¨Ó¤Á³Î¦r¦êªº¿ëÃÑ¦r¤¸
+	 * str = "123","456","789A"; reg = , ç”¨ä¾†åˆ‡å‰²å­—ä¸²çš„è¾¨è­˜å­—å…ƒ
 	 */
 	public String[] split(String str, String reg) {
 		int e = 0;
@@ -366,15 +366,15 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 	/***
 	 * 
 	 * @date:2016/4/6
-	 * @description:»È¦æ¤U¸üÀÉ®×¥Ñ¤¤«H»È§ó§ï¬°¹ü»È
+	 * @description:éŠ€è¡Œä¸‹è¼‰æª”æ¡ˆç”±ä¸­ä¿¡éŠ€æ›´æ”¹ç‚ºå½°éŠ€
 	 */
 	public String[] splitV2(String str) {
 		Vector v = new Vector();
 		
-		v.add(str.substring(1, 9).replace("¡@", "").trim()); //»È¦æ¥N½X
-		//v.add(str.substring(9, 29).replace("¡@", "").trim()); //»È¦æ¥ş¦W
-		v.add(((str.substring(9, 29).replace("¡@", "").trim()).replace("¡]", "(")).replace("¡^", ")")); //»È¦æ¥ş¦W
-		v.add(str.substring(29, 34).replace("¡@", "").trim()); //»È¦æÂ²ºÙ			
+		v.add(str.substring(1, 9).replace("ã€€", "").trim()); //éŠ€è¡Œä»£ç¢¼
+		//v.add(str.substring(9, 29).replace("ã€€", "").trim()); //éŠ€è¡Œå…¨å
+		v.add(((str.substring(9, 29).replace("ã€€", "").trim()).replace("ï¼ˆ", "(")).replace("ï¼‰", ")")); //éŠ€è¡Œå…¨å
+		v.add(str.substring(29, 34).replace("ã€€", "").trim()); //éŠ€è¡Œç°¡ç¨±			
 		
 		return (String[]) v.toArray(new String[v.size()]);
 	}

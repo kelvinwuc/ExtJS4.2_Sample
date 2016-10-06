@@ -30,9 +30,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * System   : CASHWEB
  * 
- * Function : À³¦¬±b´Ú¹O¤G¦~Âà¨ä¥L¦¬¤J
+ * Function : æ‡‰æ”¶å¸³æ¬¾é€¾äºŒå¹´è½‰å…¶ä»–æ”¶å…¥
  * 
- * Remark   : ¥X¯Ç¥\¯à
+ * Remark   : å‡ºç´åŠŸèƒ½
  * 
  * Revision : $$Revision: 1.4 $$
  * 
@@ -46,17 +46,17 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * $$Log: DISBFinTransToOther.java,v $
  * $Revision 1.4  2014/03/05 08:05:39  MISSALLY
- * $R00135---PA0024---CASH¦~«×±M®×-04
- * $­×¥¿»È¦æ±b¸¹¤w°±¥Î¾É­P¤À¿ı¸ê®Æ²£¥Í¤£§¹¾ã
+ * $R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ-04
+ * $ä¿®æ­£éŠ€è¡Œå¸³è™Ÿå·²åœç”¨å°è‡´åˆ†éŒ„è³‡æ–™ç”¢ç”Ÿä¸å®Œæ•´
  * $
  * $Revision 1.3  2010/11/23 06:31:02  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.2  2009/11/19 03:13:19  missteven
- * $Q90528 À³¦¬±b´Ú­×§ï¬°¥¼¹F±b
+ * $Q90528 æ‡‰æ”¶å¸³æ¬¾ä¿®æ”¹ç‚ºæœªé”å¸³
  * $
  * $Revision 1.1  2008/10/31 09:47:36  MISODIN
- * $R80413_À³¦¬±b´Ú¹O´ÁÂà¨ä¥L¦¬¤J
+ * $R80413_æ‡‰æ”¶å¸³æ¬¾é€¾æœŸè½‰å…¶ä»–æ”¶å…¥
  * $
  * $$
  *  
@@ -69,7 +69,7 @@ public class DISBFinTransToOther extends InitDBServlet {
 	private static final String CONTENT_TYPE = "text/html; charset=Big5";
 
 	private DecimalFormat df2 = new DecimalFormat("0.00");
-	private DecimalFormat df3 = new DecimalFormat("0.0000"); //R80338 ¶×²v	
+	private DecimalFormat df3 = new DecimalFormat("0.0000"); //R80338 åŒ¯ç‡	
 	
 	private SimpleDateFormat sdfDate = new SimpleDateFormat("yyyyMMdd",java.util.Locale.TAIWAN) ;
 	private SimpleDateFormat sdfTime = new SimpleDateFormat("HHmmss",java.util.Locale.TAIWAN) ;
@@ -105,15 +105,15 @@ public class DISBFinTransToOther extends InitDBServlet {
 		PreparedStatement pstmtTmp = null;
 
 		DISBBean disbBean = new DISBBean(dbFactory);
-		String strUpdateSql = null; // Update tUser ¤§SQL
+		String strUpdateSql = null; // Update tUser ä¹‹SQL
 		String strPStartDate = null;
 		String strPStartDateTemp = null;
 		int iPStartDate = 0;
 		int iPStartDate2 = 0;
 		int iPStartDate3 = 0;
-		int currentDate = 0; 	// ¨t²Î¤é´Áyyyymmdd
-		int currentTime = 0; 	// ¨t²Î®É¶¡hhmmss
-		double iConverRate = 0;// ¶×²v
+		int currentDate = 0; 	// ç³»çµ±æ—¥æœŸyyyymmdd
+		int currentTime = 0; 	// ç³»çµ±æ™‚é–“hhmmss
+		double iConverRate = 0;// åŒ¯ç‡
 		String DateTemp1 = "";
 
 		String strTransDate = null;
@@ -134,8 +134,8 @@ public class DISBFinTransToOther extends InitDBServlet {
 		} else {
 			strPStartDateTemp = strPStartDate;
 		}
-		iPStartDate = Integer.parseInt(strPStartDateTemp.substring(0, 7)); // ¤å¦rÂà¼Æ¦r
-		iPStartDate2 = iPStartDate - 20000; // ´î 2¦~
+		iPStartDate = Integer.parseInt(strPStartDateTemp.substring(0, 7)); // æ–‡å­—è½‰æ•¸å­—
+		iPStartDate2 = iPStartDate - 20000; // æ¸› 2å¹´
 		iPStartDate3 = iPStartDate + 1110000; // 970930 --> 2080930
 
 		strTransDate = request.getParameter("txtTransDate");
@@ -144,7 +144,7 @@ public class DISBFinTransToOther extends InitDBServlet {
 		else
 			strTransDate = "";
 
-		// ¥»¦¸Âà¨ä¥L¦¬¤J
+		// æœ¬æ¬¡è½‰å…¶ä»–æ”¶å…¥
 		strUpdateSql = "update CAPCSHF set EAEGDT = ?,ECRDAY=?,CSHFUD=?,CSHFUT=?,CROTYPE=?,CSHFPOCURR=? ";
 		strUpdateSql += "where EAEGDT = 0 and EBKRMD < ? ";
 
@@ -161,7 +161,7 @@ public class DISBFinTransToOther extends InitDBServlet {
 
 		pstmtTmp.close();
 		// ---------------------------------------------------------------------------------------------
-		// ³Ì·s¶×²v§ó·s
+		// æœ€æ–°åŒ¯ç‡æ›´æ–°
 		List alCurrCash = new ArrayList();
 		alCurrCash = (List) disbBean.getETable("CURR", "CASH");
 
@@ -189,10 +189,10 @@ public class DISBFinTransToOther extends InitDBServlet {
 			}
 		} // alCurrCash.size() > 0
 		// -------------------------------------------------------------------------------------------------------
-		// ´«ºâ¥x¹ô
-		// ¦]¬°¥H CENTAMTNT= ENTAMT * ? ªº¤è¦¡·|³y¦¨ ENTAMT ( ¤p¼Æ 2 ) X ? ( ¤p¼Æ 4 ) = ( ¤p¼Æ
+		// æ›ç®—å°å¹£
+		// å› ç‚ºä»¥ CENTAMTNT= ENTAMT * ? çš„æ–¹å¼æœƒé€ æˆ ENTAMT ( å°æ•¸ 2 ) X ? ( å°æ•¸ 4 ) = ( å°æ•¸
 		// 2 )
-		// ©Ò¥H¥x¹ô´«ºâ¿W¥ß¥X¨Ó°µ
+		// æ‰€ä»¥å°å¹£æ›ç®—ç¨ç«‹å‡ºä¾†åš
 		strUpdateSql = null;
 		strUpdateSql = "update CAPCSHF set CENTAMTNT= ENTAMT * CERRATE ";
 		strUpdateSql += "where CROTYPE= 'T' ";
@@ -276,7 +276,7 @@ public class DISBFinTransToOther extends InitDBServlet {
 						strCAmt = " " + strCAmt;
 					}
 
-					// DESCRIPTION,x(30) ¦]¬°¤¤¤åªº°İÃD, ©Ò¥Hªø«×»İ¥ÎstrDesc.getBytes().length¨ú±o
+					// DESCRIPTION,x(30) å› ç‚ºä¸­æ–‡çš„å•é¡Œ, æ‰€ä»¥é•·åº¦éœ€ç”¨strDesc.getBytes().lengthå–å¾—
 					strDesc = objAccCodeDetail.getStrDesc() == null ? "" : objAccCodeDetail.getStrDesc();
 					strDesc = CommonUtil.AllTrim(strDesc);
 					for (int count = strDesc.getBytes().length; count < 30; count++) {
@@ -295,28 +295,28 @@ public class DISBFinTransToOther extends InitDBServlet {
 
 					export += "Manual";// Category, x(06)
 					export += "Spreadsheet";// Source,x(11)
-					export += strPAYCurrency;// Currency,x(03), ¹ô§O
+					export += strPAYCurrency;// Currency,x(03), å¹£åˆ¥
 					export += "0";// ACTCD1,x(1)
-					export += strActCd2;// ACTCD2,x(06) , ¹ô§O
+					export += strActCd2;// ACTCD2,x(06) , å¹£åˆ¥
 					export += strActCd1;// ACTCD2,x(05) 00ZZZ,90ZZZ
-					export += strActCd3;// ACTCD3,x(04) , »È¦æ§O
+					export += strActCd3;// ACTCD3,x(04) , éŠ€è¡Œåˆ¥
 					export += strActCd4;// ACTCD4,x(04)
 					export += "000000000000000";
 					export += "000";
 					export += "0";
 					export += "00";
-					export += strActCd5; // ACTCD5,x(03), ¹ô§O
-					export += strPCfmDt;// °õ¦æ¤é,YYYY/MM/DD,x(10)
-					export += strCAmt;// ­É¤èª÷ÃB,x(12),¹w³]¬°0,¤£¨¬«e¸ÉªÅ¥Õ, 000,000.00
-					export += strDAmt;// ¶U¤èª÷ÃB,x(12),¹w³]¬°0,¤£¨¬«e¸ÉªÅ¥Õ, 000,000.00
-					export += strSlipNo;// SlipNo,x(15), °õ¦æ¤é¤§¦è¤¸¦~«á¤G½X+MMDD + 3­Ó¯S©w½X + «O³æ¹ô§O + 3 ½XªÅ¥Õ
-					export += strDesc;// Description ,x(30),¤£¨¬«á¸ÉªÅ¥Õ
+					export += strActCd5; // ACTCD5,x(03), å¹£åˆ¥
+					export += strPCfmDt;// åŸ·è¡Œæ—¥,YYYY/MM/DD,x(10)
+					export += strCAmt;// å€Ÿæ–¹é‡‘é¡,x(12),é è¨­ç‚º0,ä¸è¶³å‰è£œç©ºç™½, 000,000.00
+					export += strDAmt;// è²¸æ–¹é‡‘é¡,x(12),é è¨­ç‚º0,ä¸è¶³å‰è£œç©ºç™½, 000,000.00
+					export += strSlipNo;// SlipNo,x(15), åŸ·è¡Œæ—¥ä¹‹è¥¿å…ƒå¹´å¾ŒäºŒç¢¼+MMDD + 3å€‹ç‰¹å®šç¢¼ + ä¿å–®å¹£åˆ¥ + 3 ç¢¼ç©ºç™½
+					export += strDesc;// Description ,x(30),ä¸è¶³å¾Œè£œç©ºç™½
 					export += "User";
-					export += strConverRate;// 1/ ¶×²v = 00.1234
+					export += strConverRate;// 1/ åŒ¯ç‡ = 00.1234
 					export += strSlipNo;
 
 					if (i < alDwnDetails.size() - 1)
-						export += ((char) 13);// ´«¦æ
+						export += ((char) 13);// æ›è¡Œ
 				}
 				ByteArrayInputStream is = new ByteArrayInputStream(export.getBytes());
 				int reader = 0;
@@ -332,8 +332,8 @@ public class DISBFinTransToOther extends InitDBServlet {
 				os.close();
 			}
 		} else {
-			// ¬dµL¸ê®Æ¦^¶Ç¿ù»~°T®§
-			request.setAttribute("txtMsg", "¬dµL¥i¤U¸ü¸ê®Æ,½Ğ­«·s¬d©ú!");
+			// æŸ¥ç„¡è³‡æ–™å›å‚³éŒ¯èª¤è¨Šæ¯
+			request.setAttribute("txtMsg", "æŸ¥ç„¡å¯ä¸‹è¼‰è³‡æ–™,è«‹é‡æ–°æŸ¥æ˜!");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/DISB/DISBMaintain/DISBFinTransToOther.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -347,14 +347,14 @@ public class DISBFinTransToOther extends InitDBServlet {
 		ResultSet rs = null;
 		String strSql = ""; // SQL String
 		List alReturn = new ArrayList();
-		List alReturnTemp = new ArrayList(); // ¤ÏÂà¤À¿ı¼È¦s°Ï
+		List alReturnTemp = new ArrayList(); // åè½‰åˆ†éŒ„æš«å­˜å€
 		String strPStartDate = "";
 		String strPStartDateTemp = "";
 		String strTransDate = "";
 		String strTransDateTemp = "";
 		String strSlipCode = "";
-		String DateTemp = ""; // °õ¦æ¤é--¦è¤¸¦~
-		String DateTemp1 = ""; // °õ¦æ¤é--¥Á°ê¦~
+		String DateTemp = ""; // åŸ·è¡Œæ—¥--è¥¿å…ƒå¹´
+		String DateTemp1 = ""; // åŸ·è¡Œæ—¥--æ°‘åœ‹å¹´
 
 		String strPPAYCURR_Keep_1 = "";
 		String strPBK_Keep_1 = "";
@@ -367,11 +367,11 @@ public class DISBFinTransToOther extends InitDBServlet {
 		int iPStartDate3 = 0;
 		int iTransDate = 0;
 
-		double iConverRate = 0; // ¶×²v
+		double iConverRate = 0; // åŒ¯ç‡
 
 		double iPayAmt_NT = 0;
-		double iPayAmt_TOT_1 = 0; // ª÷ÃB
-		double iPayAmt_TOT_2 = 0; // ª÷ÃB
+		double iPayAmt_TOT_1 = 0; // é‡‘é¡
+		double iPayAmt_TOT_2 = 0; // é‡‘é¡
 
 		strTransDate = request.getParameter("txtTransDate");
 		if (strTransDate != null)
@@ -384,7 +384,7 @@ public class DISBFinTransToOther extends InitDBServlet {
 		} else {
 			strTransDateTemp = strTransDate;
 		}
-		iTransDate = Integer.parseInt(strTransDateTemp.substring(0, 7)); // ¤å¦rÂà¼Æ¦r
+		iTransDate = Integer.parseInt(strTransDateTemp.substring(0, 7)); // æ–‡å­—è½‰æ•¸å­—
 
 		strPStartDate = request.getParameter("para_PStartDate");
 		if (strPStartDate != null)
@@ -397,9 +397,9 @@ public class DISBFinTransToOther extends InitDBServlet {
 		} else {
 			strPStartDateTemp = strPStartDate;
 		}
-		iPStartDate = Integer.parseInt(strPStartDateTemp.substring(0, 7)); // ¤å¦rÂà¼Æ¦r
+		iPStartDate = Integer.parseInt(strPStartDateTemp.substring(0, 7)); // æ–‡å­—è½‰æ•¸å­—
 		iPStartDate3 = iPStartDate + 1110000; // 970930 --> 2080930
-		iPStartDate = iPStartDate - 20000; // ´î 2¦~
+		iPStartDate = iPStartDate - 20000; // æ¸› 2å¹´
 
 		try {
 			alReturn = alDwnDetails;
@@ -417,7 +417,7 @@ public class DISBFinTransToOther extends InitDBServlet {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 
-			// ¬Û¦P¹ô§O±b¸¹·JÁ`¦¨¤@µ§, ¥~¹ôª÷ÃB»İ´«ºâ¦¨¥x¹ô
+			// ç›¸åŒå¹£åˆ¥å¸³è™Ÿå½™ç¸½æˆä¸€ç­†, å¤–å¹£é‡‘é¡éœ€æ›ç®—æˆå°å¹£
 
 			while (rs.next()) {
 
@@ -429,22 +429,22 @@ public class DISBFinTransToOther extends InitDBServlet {
 						|| !strPBK_Keep_2.trim().equals(strPBK_Keep_1.trim())
 						|| !strPACCT_Keep_2.trim().equals(strPACCT_Keep_1.trim())) 
 				{
-					// ª÷ÃB·JÁ`¦¨¤@µ§
+					// é‡‘é¡å½™ç¸½æˆä¸€ç­†
 					if (iPayAmt_TOT_1 > 0) {
 
 						List alDwnDetails2 = new ArrayList();
-						List alDwnDetails3 = new ArrayList(); // ¤ÏÂà¤À¿ı
-						iPayAmt_TOT_1 = Math.round(iPayAmt_TOT_1); // ¥|±Ë¤­¤J
+						List alDwnDetails3 = new ArrayList(); // åè½‰åˆ†éŒ„
+						iPayAmt_TOT_1 = Math.round(iPayAmt_TOT_1); // å››æ¨äº”å…¥
 
 						alDwnDetails2 = (List) getRAMTSumforD(strPPAYCURR_Keep_2, strPBK_Keep_2, strPACCT_Keep_2, iPStartDate, iPayAmt_TOT_1, alDwnDetails2);
-						alDwnDetails3 = (List) getRAMTSumforD2(strPPAYCURR_Keep_2, strPBK_Keep_2, strPACCT_Keep_2, iTransDate, iPayAmt_TOT_1, alDwnDetails2); // ¤ÏÂà¤À¿ı
+						alDwnDetails3 = (List) getRAMTSumforD2(strPPAYCURR_Keep_2, strPBK_Keep_2, strPACCT_Keep_2, iTransDate, iPayAmt_TOT_1, alDwnDetails2); // åè½‰åˆ†éŒ„
 
 						iPayAmt_TOT_2 = iPayAmt_TOT_2 + iPayAmt_TOT_1;
 						iPayAmt_TOT_1 = 0;
 
 						alReturn.addAll(alDwnDetails2);
-						alReturnTemp.addAll(alDwnDetails3); // ¤ÏÂà¤À¿ı
-					} // ª÷ÃB·JÁ`¦¨¤@µ§
+						alReturnTemp.addAll(alDwnDetails3); // åè½‰åˆ†éŒ„
+					} // é‡‘é¡å½™ç¸½æˆä¸€ç­†
 
 					strPPAYCURR_Keep_2 = strPPAYCURR_Keep_1;
 					strPBK_Keep_2 = strPBK_Keep_1;
@@ -460,8 +460,8 @@ public class DISBFinTransToOther extends InitDBServlet {
 					iConverRate = disbBean.getERRate(strPPAYCURR_Keep_1.trim(), DateTemp1, "B");
 				}
 
-				iPayAmt_NT = rs.getDouble("ENTAMT") * iConverRate; // ª÷ÃB´«ºâ¦¨¥x¹ô
-				// iPayAmt_NT= Math.round(iPayAmt_NT); // ¥|±Ë¤­¤J
+				iPayAmt_NT = rs.getDouble("ENTAMT") * iConverRate; // é‡‘é¡æ›ç®—æˆå°å¹£
+				// iPayAmt_NT= Math.round(iPayAmt_NT); // å››æ¨äº”å…¥
 				iPayAmt_TOT_1 = iPayAmt_TOT_1 + iPayAmt_NT;
 				// iPayAmt_TOT_2= iPayAmt_TOT_2 + iPayAmt_NT;
 			} // rs.next
@@ -469,22 +469,22 @@ public class DISBFinTransToOther extends InitDBServlet {
 			if (iPayAmt_TOT_1 > 0) {
 
 				List alDwnDetails2 = new ArrayList();
-				List alDwnDetails3 = new ArrayList(); // ¤ÏÂà¤À¿ı
-				iPayAmt_TOT_1 = Math.round(iPayAmt_TOT_1); // ¥|±Ë¤­¤J
+				List alDwnDetails3 = new ArrayList(); // åè½‰åˆ†éŒ„
+				iPayAmt_TOT_1 = Math.round(iPayAmt_TOT_1); // å››æ¨äº”å…¥
 
 				alDwnDetails2 = (List) getRAMTSumforD(strPPAYCURR_Keep_1, strPBK_Keep_1, strPACCT_Keep_1, iPStartDate, iPayAmt_TOT_1, alDwnDetails2);
-				alDwnDetails3 = (List) getRAMTSumforD2(strPPAYCURR_Keep_1, strPBK_Keep_1, strPACCT_Keep_1, iTransDate, iPayAmt_TOT_1, alDwnDetails2); // ¤ÏÂà¤À¿ı
+				alDwnDetails3 = (List) getRAMTSumforD2(strPPAYCURR_Keep_1, strPBK_Keep_1, strPACCT_Keep_1, iTransDate, iPayAmt_TOT_1, alDwnDetails2); // åè½‰åˆ†éŒ„
 
 				iPayAmt_TOT_2 = iPayAmt_TOT_2 + iPayAmt_TOT_1;
 
 				alReturn.addAll(alDwnDetails2);
-				alReturnTemp.addAll(alDwnDetails3); // ¤ÏÂà¤À¿ı
+				alReturnTemp.addAll(alDwnDetails3); // åè½‰åˆ†éŒ„
 			} // iPayAmt_TOT_1>0
 
-			// 794410 ·JÁ`¦¨¤@µ§
+			// 794410 å½™ç¸½æˆä¸€ç­†
 			if (iPayAmt_TOT_2 > 0) {
 
-				// ­É¤è
+				// å€Ÿæ–¹
 				DISBAccCodeDetailVO objAccCodeDetailM = new DISBAccCodeDetailVO();
 
 				objAccCodeDetailM.setStrCurr(disbBean.getETableDesc("CURRA", "NT"));
@@ -503,12 +503,12 @@ public class DISBFinTransToOther extends InitDBServlet {
 				strSlipCode = "230";
 				objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + "      ");
 
-				objAccCodeDetailM.setStrDesc("°jÂà¥¼¹F±b¹O¤G¦~Âà¨ä¥L¦¬¤J");// Q90574
+				objAccCodeDetailM.setStrDesc("è¿´è½‰æœªé”å¸³é€¾äºŒå¹´è½‰å…¶ä»–æ”¶å…¥");// Q90574
 				objAccCodeDetailM.setStrConverRate(df3.format(1));
 
 				alReturnTemp.add(objAccCodeDetailM);
 				// -----------------------------------------------------------------------------------------
-				// ¶U¤è
+				// è²¸æ–¹
 
 				DISBAccCodeDetailVO objAccCodeDetailM2 = new DISBAccCodeDetailVO();
 
@@ -521,14 +521,14 @@ public class DISBFinTransToOther extends InitDBServlet {
 				objAccCodeDetailM2.setStrActCd4("0000");
 				objAccCodeDetailM2.setStrActCd5("000");
 
-				DateTemp = Integer.toString(19110000 + 20000 + iPStartDate); // ¥[¦^ 2¦~ = °õ¦æ¤é
+				DateTemp = Integer.toString(19110000 + 20000 + iPStartDate); // åŠ å› 2å¹´ = åŸ·è¡Œæ—¥
 				objAccCodeDetailM2.setStrDate1(DateTemp.substring(0, 4) + "/" + DateTemp.substring(4, 6) + "/" + DateTemp.substring(6, 8));
 				objAccCodeDetailM2.setStrCAmt("0");
 				objAccCodeDetailM2.setStrDAmt(df2.format(iPayAmt_TOT_2));
 				strSlipCode = "230";
 				objAccCodeDetailM2.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + "      ");
 
-				objAccCodeDetailM2.setStrDesc("¥¼¹F±b¹O¤G¦~Âà¨ä¥L¦¬¤J");// Q90574
+				objAccCodeDetailM2.setStrDesc("æœªé”å¸³é€¾äºŒå¹´è½‰å…¶ä»–æ”¶å…¥");// Q90574
 				objAccCodeDetailM2.setStrConverRate(df3.format(1));
 
 				alReturn.add(objAccCodeDetailM2);
@@ -541,7 +541,7 @@ public class DISBFinTransToOther extends InitDBServlet {
 
 		} catch (SQLException ex) {
 			System.err.println("ex" + ex);
-			request.setAttribute("txtMsg", "¬d¸ß¥¢±Ñ" + ex);
+			request.setAttribute("txtMsg", "æŸ¥è©¢å¤±æ•—" + ex);
 			alReturn = null;
 		} catch (Exception ex) {
 			System.err.println("FinTransToOther.getNormalPayments() ex=" + ex);
@@ -572,7 +572,7 @@ public class DISBFinTransToOther extends InitDBServlet {
 		String strSlipCode = "";
 		String DateTemp = "";
 
-		// ­É¤è
+		// å€Ÿæ–¹
 		DISBAccCodeDetailVO objAccCodeDetailM = new DISBAccCodeDetailVO();
 
 		objAccCodeDetailM.setStrCurr(disbBean.getETableDesc("CURRA", "NT"));
@@ -596,14 +596,14 @@ public class DISBFinTransToOther extends InitDBServlet {
 		objAccCodeDetailM.setStrActCd4("0000");
 		objAccCodeDetailM.setStrActCd5("000");
 
-		DateTemp = Integer.toString(19110000 + 20000 + PSTARTDATE); // ¥[¦^ 2¦~ = °õ¦æ¤é
+		DateTemp = Integer.toString(19110000 + 20000 + PSTARTDATE); // åŠ å› 2å¹´ = åŸ·è¡Œæ—¥
 		objAccCodeDetailM.setStrDate1(DateTemp.substring(0, 4) + "/" + DateTemp.substring(4, 6) + "/" + DateTemp.substring(6, 8));
 		objAccCodeDetailM.setStrCAmt(df2.format(PAYAMT1));
 		objAccCodeDetailM.setStrDAmt("0");
 		strSlipCode = "230";
 		objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + "      ");
 
-		objAccCodeDetailM.setStrDesc("¥¼¹F±b¹O¤G¦~Âà¨ä¥L¦¬¤J");// Q90574
+		objAccCodeDetailM.setStrDesc("æœªé”å¸³é€¾äºŒå¹´è½‰å…¶ä»–æ”¶å…¥");// Q90574
 		objAccCodeDetailM.setStrConverRate(df3.format(1));
 
 		alReturn2.add(objAccCodeDetailM);
@@ -619,7 +619,7 @@ public class DISBFinTransToOther extends InitDBServlet {
 		String strSlipCode = "";
 		String DateTemp = "";
 
-		// ¶U¤è
+		// è²¸æ–¹
 		DISBAccCodeDetailVO objAccCodeDetailM2 = new DISBAccCodeDetailVO();
 
 		objAccCodeDetailM2.setStrCurr(disbBean.getETableDesc("CURRA", "NT"));
@@ -649,7 +649,7 @@ public class DISBFinTransToOther extends InitDBServlet {
 		strSlipCode = "230";
 		objAccCodeDetailM2.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + "      ");
 
-		objAccCodeDetailM2.setStrDesc("°jÂà¥¼¹F±b¹O¤G¦~Âà¨ä¥L¦¬¤J");// Q90574
+		objAccCodeDetailM2.setStrDesc("è¿´è½‰æœªé”å¸³é€¾äºŒå¹´è½‰å…¶ä»–æ”¶å…¥");// Q90574
 		objAccCodeDetailM2.setStrConverRate(df3.format(1));
 
 		alReturn2.add(objAccCodeDetailM2);
@@ -677,7 +677,7 @@ public class DISBFinTransToOther extends InitDBServlet {
 				stmtStatement = conDb.createStatement();
 				rstResultSet = stmtStatement.executeQuery(strSql);
 				if (rstResultSet.next()) {
-					strACTCDFinRmt = (String) rstResultSet.getString("GLACT").replace('¡@', ' ').trim();
+					strACTCDFinRmt = (String) rstResultSet.getString("GLACT").replace('ã€€', ' ').trim();
 				}
 				rstResultSet.close();
 				stmtStatement.close();
