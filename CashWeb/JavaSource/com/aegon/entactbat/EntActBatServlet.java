@@ -32,6 +32,7 @@ import org.apache.commons.fileupload.FileUploadException;
 import com.aegon.bankinfo.CapbnkfVO;
 import com.aegon.comlib.CommonUtil;
 import com.aegon.comlib.InitDBServlet;
+import org.apache.log4j.Logger;
 
 /**
  * System   : CashWeb
@@ -66,6 +67,8 @@ import com.aegon.comlib.InitDBServlet;
  */
 
 public class EntActBatServlet extends InitDBServlet {
+	
+	private Logger log = Logger.getLogger(getClass());
 
 	private static final long serialVersionUID = 2424017625773179173L;
 
@@ -126,6 +129,7 @@ public class EntActBatServlet extends InitDBServlet {
 
 					InputStream is = fi.getInputStream();
 					if (!"".equals(oriFileName)) {
+						log.info("processUploadFile執行");
 						this.processUploadFile(oriFileName, is, iSeq);
 						iSeq++;
 					}
@@ -189,7 +193,9 @@ public class EntActBatServlet extends InitDBServlet {
 		List<CapcshfDTO> list = this.readOneFileChangeCapcshfDTO(in, map, fileName);
 		if (list.size() > 0) {
 			iCounter = 0;
+			log.info("processUploadFile執行");
 			for (int i = 0; i < list.size(); i++) {
+				log.info("processUploadFile執行" + i);
 				try {
 					this.saveCapbnkf(list.get(i), iSeq);
 					iSeq++;
@@ -206,7 +212,7 @@ public class EntActBatServlet extends InitDBServlet {
 
 	// 處理上傳文件，轉換數據到對象，並做數據檢驗
 	private List<CapcshfDTO> readOneFileChangeCapcshfDTO(InputStream in, HashMap<String, BankTemplateDTO> map, String fileName) throws SQLException, IOException {
-
+		log.info("readOneFileChangeCapcshfDTO執行");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 		List<CapcshfDTO> list = new ArrayList<CapcshfDTO>();
 		boolean juage = true;
@@ -216,9 +222,11 @@ public class EntActBatServlet extends InitDBServlet {
 			this.createErrorMessage(fileName, "", "上傳文件名有錯");
 		} else {
 			String bkalat = getFileName(fileName);
+			log.info("bkalat是" + bkalat);
 			if (bkalat.toUpperCase().equals("BANK")) {
 				while (true) {
 					oneRow = reader.readLine();
+					log.info("oneRow是" + oneRow);
 					if (oneRow == null) {
 						break;
 					}
@@ -257,8 +265,32 @@ public class EntActBatServlet extends InitDBServlet {
 						if (null == btDTO) {
 							this.createErrorMessage(fileName, "", "上傳登帳文件沒有對應的銀行登帳格式處理，請先定義銀行格式");
 						} else {
+							log.info(bkalat + ",btDTO.getBankCode():" + btDTO.getBankCode());
+							log.info(bkalat + ",btDTO.getFileType():" + btDTO.getFileType());
+							log.info(bkalat + ",btDTO.getSplitFileType():" + btDTO.getSplitFileType());
+							log.info(bkalat + ",btDTO.getSplitNum():" + btDTO.getSplitNum());
+							log.info(bkalat + ",btDTO.getDateStart():" + btDTO.getDateStart());
+							log.info(bkalat + ",btDTO.getDateEnd():" + btDTO.getDateEnd());
+							log.info(bkalat + ",btDTO.getDateIndex():" + btDTO.getDateIndex());
+							log.info(bkalat + ",btDTO.getDateTpye():" + btDTO.getDateTpye());
+							log.info(bkalat + ",btDTO.getIsSlant():" + btDTO.getIsSlant());
+							log.info(bkalat + ",btDTO.getFeeStart():" + btDTO.getFeeStart());
+							log.info(bkalat + ",btDTO.getFeeEnd():" + btDTO.getFeeEnd());
+							log.info(bkalat + ",btDTO.getFeeIndex():" + btDTO.getFeeIndex());
+							log.info(bkalat + ",btDTO.getIsLeftZero():" + btDTO.getIsLeftZero());
+							log.info(bkalat + ",btDTO.getIsLeftSpace():" + btDTO.getIsLeftSpace());
+							log.info(bkalat + ",btDTO.getIsFristNum():" + btDTO.getIsFristNum());
+							log.info(bkalat + ",btDTO.getIslastNum():" + btDTO.getIslastNum());
+							log.info(bkalat + ",btDTO.getIsPoint():" + btDTO.getIsPoint());
+							log.info(bkalat + ",btDTO.getIsTwoNum():" + btDTO.getIsTwoNum());
+							log.info(bkalat + ",btDTO.getIsPermille():" + btDTO.getIsPermille());
+							log.info(bkalat + ",btDTO.getConStart():" + btDTO.getConStart());
+							log.info(bkalat + ",btDTO.getConEnd():" + btDTO.getConEnd());
+							log.info(bkalat + ",btDTO.getConIndex():" + btDTO.getConIndex());
+							
 							while (true) {
 								oneRow = reader.readLine();
+								log.info("oneRow是" + oneRow);
 								if (oneRow == null) {
 									break;
 								}
@@ -289,8 +321,13 @@ public class EntActBatServlet extends InitDBServlet {
 
 	// 處理通用格式文件
 	private CapcshfDTO createCapcshfDTOForGeneral(String oneRow) throws SQLException {
+		//System.out.println("oneRow是" + oneRow);
 		CapcshfDTO dto = new CapcshfDTO();
 		String[] arr = oneRow.split(",");
+		/*System.out.println("arr[0]" + arr[0]);
+		System.out.println("arr[1]" + arr[1]);
+		System.out.println("arr[2]" + arr[2]);
+		System.out.println("arr[3]" + arr[3]);*/
 		CapbnkfVO cDTO = this.getBKALATForDTO(arr[0]);
 		if (cDTO == null) {
 			dto.setEBKCD("0");
@@ -428,6 +465,10 @@ public class EntActBatServlet extends InitDBServlet {
 
 	// 銀行格式數組轉化銀行格式對象
 	private BankTemplateDTO arrayChangeBankTemplateDTO(String[] arr) {
+		/*for(int i=0; i<arr.length; i++){
+			System.out.println("arr[" + i + "]是" + arr[i]);
+		}*/
+		
 		BankTemplateDTO dto = new BankTemplateDTO();
 		dto.setBankCode(arr[0]);
 		dto.setFileType(arr[1]);
@@ -460,6 +501,7 @@ public class EntActBatServlet extends InitDBServlet {
 		ResultSet rs = null;
 		CapbnkfVO dto = null;
 		String sql = "select BKCODE,BKATNO,BKALAT,BKSTAT,BKCURR,BKSPEC from CAPBNKF where BKALAT = '" + bkALAT + "'";
+		System.out.println(sql);
 
 		stmt = con.createStatement();
 		rs = stmt.executeQuery(sql);
@@ -506,7 +548,20 @@ public class EntActBatServlet extends InitDBServlet {
 		pstmt.setInt(10, dto.getCSHFAD());
 		pstmt.setInt(11, iTime);	////為了使Key unique
 		pstmt.setString(12, dto.getCSHFCURR());
-		pstmt.executeUpdate();
+		//pstmt.executeUpdate();
+		//測試
+		System.out.println("EBKCD是" + dto.getEBKCD());
+		System.out.println("EATNO是" + dto.getEATNO());
+		System.out.println("EBKRMD是" + dto.getEBKRMD());
+		System.out.println("EAEGDT是" + dto.getEAEGDT());
+		System.out.println("ENTAMT是" + dto.getENTAMT());
+		System.out.println("ECRSRC是" + dto.getECRSRC());
+		System.out.println("ECRDAY是" + dto.getECRDAY());
+		System.out.println("EUSREM是" + dto.getEUSREM());
+		System.out.println("CSHFAU是" + dto.getCSHFAU());
+		System.out.println("CSHFAD是" + dto.getCSHFAD());
+		System.out.println("CSHFAT是" + iTime);
+		System.out.println("CSHFCURR是" + dto.getCSHFCURR());
 
 		if(pstmt != null) pstmt.close();
 	}

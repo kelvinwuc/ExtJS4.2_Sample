@@ -169,6 +169,7 @@ public class DISBCashConfirmServlet extends InitDBServlet {
 		String[] strPNO = request.getParameterValues("PNO");
 		String strPAmt = request.getParameter("PAMT");
 
+		//step 1:§ó·sCAPPAYFªº¥I´Úª¬ºAPSTATUS='B'
 		String strSql = "UPDATE CAPPAYF SET PSTATUS='B',PBBANK=?,PBACCOUNT=?,PCSHDT=?,PCSHCM=?,UPDDT=?,UPDTM=?,UPDUSR=? WHERE PNO=? ";
 		System.out.println("DISBCashConfirmServlet.updateSql=" + strSql);
 

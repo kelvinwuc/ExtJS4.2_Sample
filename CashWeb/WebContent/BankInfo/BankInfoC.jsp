@@ -74,7 +74,8 @@ if(vo != null) {
 	strBankSpec = CommonUtil.AllTrim(vo.getBankSpec());
 	strBankStatus = CommonUtil.AllTrim(vo.getBankStatus());
 	strBankMemo = CommonUtil.AllTrim(vo.getBankMemo());
-	strCompanyType = CommonUtil.AllTrim(vo.getCompanyType());
+	//strCompanyType = CommonUtil.AllTrim(vo.getCompanyType());
+	strCompanyType = "";
 }
 %>
 <HTML>

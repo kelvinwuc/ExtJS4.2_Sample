@@ -25,6 +25,7 @@ import com.aegon.comlib.Constant;
 import com.aegon.comlib.DbFactory;
 import com.aegon.comlib.GlobalEnviron;
 import com.aegon.disb.util.DISBBean;
+import org.apache.log4j.Logger;
 
 /**
  * System   : 
@@ -68,6 +69,9 @@ import com.aegon.disb.util.DISBBean;
 
 
 public class DISBAccRevRmtFailServlet extends HttpServlet {
+	
+	private Logger log = Logger.getLogger(getClass());
+	
 	private GlobalEnviron globalEnviron = null;
 	private DbFactory dbFactory = null;
 
@@ -215,11 +219,35 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 				String strPCfmDt = null;
 				String strCurrency = null;
 				String strLedger = null;
+				//String company = "";//RD0382:OIU
+				
+				//RD0382:OIU
+				/*company = request.getParameter("selCompany");
+				if (company != null){
+					company = company.trim();
+				}else{
+					company = "";
+				}*/
+				
 				for (int i = 0; i < alDwnDetails.size(); i++) {
 					DISBAccCodeDetailVO objAccCodeDetail = (DISBAccCodeDetailVO) alDwnDetails.get(i);
+					
+					//RD0382:OIU
+					String company = "";
+					company = objAccCodeDetail.getPayCompany().trim();
 
 					strCurrency = objAccCodeDetail.getStrCurr();
 					strLedger = disbBean.getLedger(CommonUtil.AllTrim(disbBean.getETableDesc("CURRC", strCurrency)));
+					//RD0382:OIU
+					//if("6".equals(company)){
+					if("OIU".equals(company)){
+						if("TWD".equals(strCurrency)){
+							strLedger += " OIU";
+						}else{
+							strLedger = strLedger.substring(0, strLedger.length()-3) + " OIU " + strLedger.substring(strLedger.length()-3);
+						}
+					}
+					log.info("strLedger:" + strLedger + ",strCurrency:" + strCurrency);
 					strActCd2 = objAccCodeDetail.getStrActCd2();
 					for (int count = strActCd2.length(); count < 11; count++) {// 10->11
 						strActCd2 += " ";
@@ -287,7 +315,15 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 						export += "Manual" + ",";// Category, x(6)
 						export += "Spreadsheet" + ",";// Source,x(11)
 						export += strCurrency + ",";
-						export += "0" + ",";// ACTCD1,x(1)
+						
+						//RD0382:OIU
+						//if("6".equals(company)){
+						if("OIU".equals(company)){
+							export += "6" + ",";// ACTCD1,x(1)
+						}else {
+							export += "0" + ",";// ACTCD1,x(1)
+						}
+						
 						export += strActCd2.substring(0, 6) + ",";// ACTCD2,x(10)
 						export += strActCd2.substring(6, 7) + ",";
 						export += strActCd2.substring(7, 8) + ",";
@@ -306,6 +342,7 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 						export += strDAmt.trim() + ",";// 借方金額,x(12),預設為0,不足前補空白, 000,000
 						export += strCAmt.trim() + ",";// 貸方金額,x(12),預設為0,不足前補空白, 000,000
 						export += strSlipNo.trim() + ",";// SlipNo,x(11),支付確認日迄日之西元年後二碼+MMDD+3個特定碼 R80132 由9 -->12 + 幣別
+						log.info("strSlipNo.trim()是" + strSlipNo.trim());
 						export += strDesc.trim() + ",";// Description,x(30),不足後補空白
 						export += "User" + ","; // R80620 Conversion Type
 						export += "1" + ","; // R80620 Conversion Rate
@@ -351,9 +388,24 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 				}
 			});
 			try {
+				/*String company = "";//RD0382:OIU
+				
+				//RD0382:OIU
+				company = request.getParameter("selCompany");
+				if (company != null){
+					company = company.trim();
+				}else{
+					company = "";
+				}*/
+				
 				String export = "";
 				for (int i = 0; i < alDwnDetailsD.size(); i++) {
 					DISBAccCodeDetailVO objAccCodeDetail = (DISBAccCodeDetailVO) alDwnDetailsD.get(i);
+					
+					//RD0382:OIU
+					String company = "";
+					company = objAccCodeDetail.getPayCompany().trim();
+					
 					String strCheckDt = null;
 					String strActCd2 = null;
 					String strActCd3 = null;
@@ -368,7 +420,7 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 					// R10314
 					String strCDAmt = null;
 					String strCCAmt = null;
-					String strCRate = null;
+					String strCRate = null;					
 
 					strCurrency = objAccCodeDetail.getStrCurr();
 					strActCd2 = objAccCodeDetail.getStrActCd2();
@@ -453,11 +505,27 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 							export += "                              ,";
 						}
 						*/
-						export += "TransGlobe Life Insurance Inc.,";//R10314
+						
+						//RD0382:OIU
+						//if("6".equals(company)){
+						if("OIU".equals(company)){
+							export += "TransGlobe Life Insurance Inc. OIU,";
+						}else {
+							export += "TransGlobe Life Insurance Inc.,";//R10314
+						}
+						
 						export += "Manual" + ",";// Category, x(6)
 						export += "Spreadsheet" + ",";// Source,x(11)
 						export += strCurrency + ",";
-						export += "0" + ",";// ACTCD1,x(1)
+						
+						//RD0382:OIU
+						//if("6".equals(company)){
+						if("OIU".equals(company)){
+							export += "6" + ",";// ACTCD1,x(1)
+						}else {
+							export += "0" + ",";// ACTCD1,x(1)
+						}
+						
 						export += strActCd2.substring(0, 6) + ",";// ACTCD2,x(10)
 						export += strActCd2.substring(6, 7) + ",";
 						export += strActCd2.substring(7, 8) + ",";
@@ -476,6 +544,7 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 						export += strDAmt.trim() + ",";// 借方金額,x(12),預設為0,不足前補空白, 000,000
 						export += strCAmt.trim() + ",";// 貸方金額,x(12),預設為0,不足前補空白, 000,000
 						export += strSlipNo.trim() + ",";// SlipNo,x(11),支付確認日迄日之西元年後二碼+MMDD+ 3個特定碼 R80132 由9 -->12 + 幣別
+						log.info("strSlipNo.trim()是" + strSlipNo.trim());
 						export += strDesc.trim() + ",";// Description,x(30),不足後補空白
 						export += "User" + ","; // R80620 Conversion Type
 						export += strCRate + ",";
@@ -511,6 +580,7 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 		List alReturn = new ArrayList();
 		String strPStartDate = ""; // 匯退日期
 		String strCurrency = "";
+		String company = "";//RD0382:OIU
 		String strActCd3 = "";// R80656
 		DISBBean disbBean = new DISBBean(dbFactory);// R70088
 
@@ -525,6 +595,14 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 			strCurrency = strCurrency.trim();
 		else
 			strCurrency = "";
+		
+		//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}
 
 		// R10314
 		String strPStartDateTemp = null;
@@ -540,17 +618,32 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 		try {
 			// 借方傳票摘要同一執行退匯日且同一付款銀行帳號合併一筆分錄
 			strSql = "SELECT DENSE_RANK() OVER (ORDER BY a.PBBANK,a.PBACCOUNT,a.PMETHOD,a.PCURR,a.PPAYRATE,A.PPAYCURR,b.FFEEWAY,a.REMITFAILD) AS SORT," ;			strSql += "SUM(a.PAMT) AS PAMT,a.PBBANK,a.PBACCOUNT,a.PMETHOD,a.PCURR,a.PPAYRATE,SUM(a.PPAYAMT) AS PPAYAMT,A.PPAYCURR,b.FFEEWAY,SUM(b.FPAYAMT) AS FPAYAMT,a.REMITFAILD ";
-			strSql += " from CAPPAYF a left join caprfef b on a.pno=b.fpnoh ";
+			strSql += ",IFNULL(a.PAY_COMPANY,'') AS PAY_COMPANY ";//RD0382:OIU
+			strSql += " from CAPPAYF a ";
+			strSql += "left join caprfef b on a.pno=b.fpnoh ";
 			strSql += "WHERE PMETHOD ='D' and PSTATUS = 'A' ";
 			strSql += " and PBNKRFDT = " + strPStartDate;// R10314
 			strSql += " and PCURR='" + strCurrency + "' ";
+			
+			if("6".equals(company)){
+				strSql += " AND a.PAY_COMPANY='OIU' ";
+			}else if("0".equals(company)){
+				strSql += " AND a.PAY_COMPANY<>'OIU' ";
+			}
+			
 			strSql += " GROUP BY a.PBBANK,a.PBACCOUNT,a.PMETHOD,a.PCURR,a.PPAYRATE,A.PPAYCURR,b.FFEEWAY,a.REMITFAILD ";// R10314
+			strSql += ",A.PAY_COMPANY "; //RD0382:OIU
 			System.out.println("strSqlD_1" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 			alReturn = alDwnDetails;
 			while (rs.next()) {
+				
+				String payCompany = "";//RD0382:OIU
+				payCompany = rs.getString("PAY_COMPANY").trim();//RD0382:OIU
+				
 				DISBAccCodeDetailVO objAccCodeDetailC = new DISBAccCodeDetailVO();
+				objAccCodeDetailC.setPayCompany(payCompany);//RD0382:OIU
 				double PAMT = rs.getDouble("PAMT");// 台幣金額
 				double PPAYAMT = rs.getDouble("PPAYAMT");// 外幣金額
 
@@ -609,12 +702,29 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 						objAccCodeDetailC.setStrCurr(disbBean.getETableDesc("CURRA", PAYCURR.trim()));
 						objAccCodeDetailC.setStrCAmt(df1.format(PAMTTp));
 						objAccCodeDetailC.setStrDAmt("0");
-						objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+						
+						//RD0382:OIU
+						if("6".equals(company)){
+							objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailC.getStrSlipNo());
+						}else {
+							objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailC.getStrSlipNo());
+						}						
+						
 						objAccCodeDetailC.setStrConverRate(String.valueOf(PPAYRATE));
 						objAccCodeDetailC.setConversionCredit("0");
 						objAccCodeDetailC.setConversionDebit(df.format(PAYAMTTp));
 					} else {
-						objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+						//RD0382:OIU
+						if("6".equals(company)){
+							objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailC.getStrSlipNo());
+						}else {
+							objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailC.getStrSlipNo());
+						}						
+						
 						objAccCodeDetailC.setStrCAmt(df1.format(PAYAMTTp));
 						objAccCodeDetailC.setStrConverRate("1");
 						objAccCodeDetailC.setConversionCredit("0");
@@ -645,12 +755,29 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 						objAccCodeDetailC.setStrCurr(disbBean.getETableDesc("CURRA", PAYCURR.trim()));
 						objAccCodeDetailC.setStrCAmt(df1.format(PAMTTp));
 						objAccCodeDetailC.setStrDAmt("0");
-						objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+						
+						//RD0382:OIU
+						if("6".equals(company)){
+							objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailC.getStrSlipNo());
+						}else {
+							objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailC.getStrSlipNo());
+						}
+						
 						objAccCodeDetailC.setStrConverRate(String.valueOf(PPAYRATE));
 						objAccCodeDetailC.setConversionCredit("0");
 						objAccCodeDetailC.setConversionDebit(df.format(PAYAMTTp));
-					} else {
-						objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+					} else {						
+						//RD0382:OIU
+						if("6".equals(company)){
+							objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailC.getStrSlipNo());
+						}else {
+							objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailC.getStrSlipNo());
+						}
+						
 						objAccCodeDetailC.setStrConverRate("1");
 						objAccCodeDetailC.setConversionCredit("0");
 						objAccCodeDetailC.setConversionDebit("0");
@@ -665,6 +792,7 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 					// 產生一筆銀手續費
 					if (FPAYAMT > 0) {
 						DISBAccCodeDetailVO objAccCodeDetailC1 = new DISBAccCodeDetailVO();
+						objAccCodeDetailC1.setPayCompany(payCompany);//RD0382:OIU
 						objAccCodeDetailC1.setStrActCd2("82550090ZZZ");
 						objAccCodeDetailC1.setStrActCd3("0000");
 						objAccCodeDetailC1.setStrActCd4("43");
@@ -685,12 +813,29 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 							objAccCodeDetailC1.setStrCurr(disbBean.getETableDesc("CURRA", PAYCURR.trim()));
 							objAccCodeDetailC1.setStrCAmt(df1.format(FPAYAMT));
 							objAccCodeDetailC1.setStrDAmt("0");
-							objAccCodeDetailC1.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							
+							//RD0382:OIU
+							if("6".equals(company)){
+								objAccCodeDetailC1.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+								log.info(objAccCodeDetailC1.getStrSlipNo());
+							}else {
+								objAccCodeDetailC1.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+								log.info(objAccCodeDetailC1.getStrSlipNo());
+							}
+							
 							objAccCodeDetailC1.setStrConverRate(String.valueOf(PPAYRATE));
 							objAccCodeDetailC1.setConversionCredit("0");
 							objAccCodeDetailC1.setConversionDebit(df.format(FeeAmtTp));
 						} else {
-							objAccCodeDetailC1.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							//RD0382:OIU
+							if("6".equals(company)){
+								objAccCodeDetailC1.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+								log.info(objAccCodeDetailC1.getStrSlipNo());
+							}else {
+								objAccCodeDetailC1.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+								log.info(objAccCodeDetailC1.getStrSlipNo());
+							}
+							
 							objAccCodeDetailC1.setStrConverRate("1");
 							objAccCodeDetailC1.setConversionCredit("0");
 							objAccCodeDetailC1.setConversionDebit("0");
@@ -709,16 +854,30 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 
 			//貸方
 			strSql = "SELECT DENSE_RANK() OVER (ORDER BY a.PBBANK,a.PBACCOUNT,a.PMETHOD,a.PCURR,a.PPAYRATE,A.PNAME,A.PPAYCURR,b.FFEEWAY,a.REMITFAILD) AS SORT," ;			strSql += "SUM(a.PAMT) AS PAMT,a.PBBANK,a.PBACCOUNT,a.PMETHOD,a.PCURR,a.PPAYRATE,SUM(a.PPAYAMT) AS PPAYAMT,A.PNAME,A.POLICYNO,A.PPAYCURR,b.FFEEWAY,SUM(b.FPAYAMT) AS FPAYAMT,SUM(a.PAMTNT) AS PAYAMTNT,a.REMITFAILD ";
-			strSql += " from CAPPAYF a left join caprfef b on a.pno=b.fpnoh ";
+			strSql += ",IFNULL(a.PAY_COMPANY,'') AS PAY_COMPANY ";//RD0382:OIU
+			strSql += " from CAPPAYF a ";
+			strSql += "left join caprfef b on a.pno=b.fpnoh ";
 			strSql += "WHERE PMETHOD ='D' and PSTATUS = 'A' ";
 			strSql += " and PBNKRFDT = " + strPStartDate;
 			strSql += " and PCURR='" + strCurrency + "' ";
+			
+			if("6".equals(company)){
+				strSql += " AND a.PAY_COMPANY='OIU' ";
+			}else if("0".equals(company)){
+				strSql += " AND a.PAY_COMPANY<>'OIU' ";
+			}
+			
 			strSql += " GROUP BY a.PBBANK,a.PBACCOUNT,a.PMETHOD,a.PCURR,a.PPAYRATE,A.PNAME,A.POLICYNO,A.PPAYCURR,b.FFEEWAY,a.REMITFAILD ";
+			strSql += ",A.PAY_COMPANY "; //RD0382:OIU
 			System.out.println("strSqlD_2" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 			alReturn = alDwnDetails;
 			while (rs.next()) {
+				
+				String payCompany = "";//RD0382:OIU
+				payCompany = rs.getString("PAY_COMPANY").trim();//RD0382:OIU
+				
 				double PAMT = rs.getDouble("PAMT");// 台幣金額
 				double PPAYAMT = rs.getDouble("PPAYAMT");// 外幣金額
 				double PAYAMTNT = rs.getDouble("PAYAMTNT");// 支付金額台幣參考值
@@ -755,6 +914,7 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 
 				if (FFEEWAY.equals("BEN")) {
 					DISBAccCodeDetailVO objAccCodeDetailD = new DISBAccCodeDetailVO();
+					objAccCodeDetailD.setPayCompany(payCompany);//RD0382:OIU
 					objAccCodeDetailD.setStrActCd2("29004000ZZZ");
 					objAccCodeDetailD.setStrActCd3("0000");
 					objAccCodeDetailD.setStrActCd4("00");// R60550
@@ -771,12 +931,29 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 						objAccCodeDetailD.setStrCurr(disbBean.getETableDesc("CURRA", PAYCURR.trim()));
 						objAccCodeDetailD.setStrDAmt(df1.format(PAMTTp));
 						objAccCodeDetailD.setStrCAmt("0");
-						objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+						
+						//RD0382:OIU
+						if("6".equals(company)){
+							objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailD.getStrSlipNo());
+						}else {
+							objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailD.getStrSlipNo());
+						}
+						
 						objAccCodeDetailD.setStrConverRate(String.valueOf(PPAYRATE));
 						objAccCodeDetailD.setConversionCredit(df.format(PAYAMTTp));
 						objAccCodeDetailD.setConversionDebit("0");
 					} else {
-						objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+						//RD0382:OIU
+						if("6".equals(company)){
+							objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailD.getStrSlipNo());
+						}else {
+							objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailD.getStrSlipNo());
+						}
+						
 						objAccCodeDetailD.setStrDAmt(df1.format(PAYAMTTp));
 						objAccCodeDetailD.setStrConverRate("1");
 						objAccCodeDetailD.setConversionCredit("0");
@@ -790,6 +967,7 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 					alReturn.add(objAccCodeDetailD);
 				} else {
 					DISBAccCodeDetailVO objAccCodeDetailD = new DISBAccCodeDetailVO();
+					objAccCodeDetailD.setPayCompany(payCompany);//RD0382:OIU
 					objAccCodeDetailD.setStrActCd2("29004000ZZZ");
 					objAccCodeDetailD.setStrActCd3("0000");
 					objAccCodeDetailD.setStrActCd4("00");
@@ -807,12 +985,28 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 						objAccCodeDetailD.setStrCurr(disbBean.getETableDesc("CURRA", PAYCURR.trim()));
 						objAccCodeDetailD.setStrDAmt(df1.format(PPAYAMT));
 						objAccCodeDetailD.setStrCAmt("0");
-						objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+						//RD0382:OIU
+						if("6".equals(company)){
+							objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailD.getStrSlipNo());
+						}else {
+							objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001-1R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailD.getStrSlipNo());
+						}
+						
 						objAccCodeDetailD.setStrConverRate(String.valueOf(PPAYRATE));
 						objAccCodeDetailD.setConversionCredit(df.format(PAYAMTNT));// 貸方分錄，則為空白。
 						objAccCodeDetailD.setConversionDebit("0");
 					} else {
-						objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+						//RD0382:OIU
+						if("6".equals(company)){
+							objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailD.getStrSlipNo());
+						}else {
+							objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+							log.info(objAccCodeDetailD.getStrSlipNo());
+						}
+						
 						objAccCodeDetailD.setStrConverRate("1.0000");
 						objAccCodeDetailD.setConversionCredit("0");
 						objAccCodeDetailD.setConversionDebit("0");
@@ -862,6 +1056,7 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 		List alReturn = new ArrayList();
 		String strPStartDate = ""; // 匯退日期起日
 		String strCurrency = "";
+		String company = "";//RD0382:OIU
 		String strActCd3 = "";// R80656
 		DISBBean disbBean = new DISBBean(dbFactory);// R70088
 
@@ -876,6 +1071,14 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 			strCurrency = strCurrency.trim();
 		else
 			strCurrency = "";
+		
+		//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}
 
 		String strPStartDateTemp = null;
 		if (strPStartDate.length() < 7)
@@ -893,22 +1096,36 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 			// R70366 "select SUM(PAMT) AS SPAMT,PMETHOD,PCURR";
 			// 借方傳票摘要同一執行退匯日且同一付款銀行帳號合併一筆分錄
 			"select SUM(PAMT) AS SPAMT,PBBANK,PBACCOUNT,PMETHOD,PCURR,PBNKRFDT,REMITFAILD,DENSE_RANK() OVER (ORDER BY PBBANK,PBACCOUNT,PMETHOD,PCURR,PBNKRFDT,REMITFAILD) AS SORT   ";// R70366 R10314
-			strSql += " from CAPPAYF ";
+			strSql += ",IFNULL(a.PAY_COMPANY,'') AS PAY_COMPANY ";//RD0382:OIU
+			strSql += " from CAPPAYF A ";
 			strSql += "WHERE 1=1  and PMETHOD ='B' and PSTATUS = 'A' ";
 			// strSql += " and UPDDT between " + strPStartDate + "  and " +
 			// strPEndDate ;
 			strSql += " and PBNKRFDT = " + strPStartDate;// R10314
 			strSql += " and PCURR='" + strCurrency + "'";
 			// R70366strSql += " GROUP BY PMETHOD,PCURR ";
+			
+			if("6".equals(company)){
+				strSql += " AND PAY_COMPANY='OIU' ";
+			}else if("0".equals(company)){
+				strSql += " AND PAY_COMPANY<>'OIU' ";
+			}
+			
 			strSql += " GROUP BY PBBANK,PBACCOUNT,PMETHOD,PCURR,PBNKRFDT,REMITFAILD ";// R70366
+			strSql += ",A.PAY_COMPANY "; //RD0382:OIU
 
 			System.out.println("strSql_1" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 			alReturn = alDwnDetails;
 			while (rs.next()) {
+				
+				String payCompany = "";//RD0382:OIU
+				payCompany = rs.getString("PAY_COMPANY").trim();//RD0382:OIU
+				
 				// System.out.println("test");
 				DISBAccCodeDetailVO objAccCodeDetail = new DISBAccCodeDetailVO();
+				objAccCodeDetail.setPayCompany(payCompany);//RD0382:OIU
 				String PCURR = rs.getString("PCURR");// R70366
 				strActCd3 = disbBean.getACTCDFinRmt(rs.getString("PBBANK").substring(0, 3), rs.getString("PBACCOUNT"), "NT") == null ? " " : disbBean.getACTCDFinRmt(rs.getString("PBBANK").substring(0, 3), rs.getString("PBACCOUNT"), "NT").trim();
 				if (strActCd3.length() < 13)
@@ -937,7 +1154,16 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 				objAccCodeDetail.setStrCheckDate(DateTemp1);
 				objAccCodeDetail.setStrDate1(DateTemp);
 				objAccCodeDetail.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				//RD0382:OIU
+				if("6".equals(company)){
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+					log.info(objAccCodeDetail.getStrSlipNo());
+				}else {
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+					log.info(objAccCodeDetail.getStrSlipNo());
+				}
+				
 				
 				if (!rs.getString("PCURR").trim().equals("NT")) {
 					objAccCodeDetail.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
@@ -950,16 +1176,30 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 
 			/* 1. 取得符合執行日期符合前端匯退日期區間的支付失敗之匯款明細資料--借方 */
 			strSql = "select DENSE_RANK() OVER (ORDER BY PBBANK,PBACCOUNT,PMETHOD,PCURR,PBNKRFDT,REMITFAILD) AS SORT,PAMT ,PMETHOD,PNAME,PCURR ";
-			strSql += " from CAPPAYF ";
+			strSql += ",IFNULL(a.PAY_COMPANY,'') AS PAY_COMPANY ";//RD0382:OIU
+			strSql += " from CAPPAYF A ";
 			strSql += "WHERE 1=1 and PMETHOD ='B' and PSTATUS ='A' ";
 			// strSql += " and UPDDT between " + strPStartDate + "  and " + strPEndDate ;
 			strSql += " and PBNKRFDT = " + strPStartDate;// R10314
 			strSql += " and PCURR='" + strCurrency + "'";
-			System.out.println("strSql_4" + strSql);
+			
+			//RD0382:OIU
+			if("6".equals(company)){
+				strSql += " AND PAY_COMPANY='OIU' ";
+			}else if("0".equals(company)){
+				strSql += " AND PAY_COMPANY<>'OIU' ";
+			}
+			
+			System.out.println("strSql_4:" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 			while (rs.next()) {
+				
+				String payCompany = "";//RD0382:OIU
+				payCompany = rs.getString("PAY_COMPANY").trim();//RD0382:OIU
+				
 				DISBAccCodeDetailVO objAccCodeDetail = new DISBAccCodeDetailVO();
+				objAccCodeDetail.setPayCompany(payCompany);//RD0382:OIU
 				objAccCodeDetail.setStrActCd2("29004000ZZZ");
 				objAccCodeDetail.setStrActCd3("0000");
 				objAccCodeDetail.setStrActCd4("00");// R60550
@@ -970,7 +1210,16 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 				objAccCodeDetail.setStrCheckDate(DateTemp1);
 				objAccCodeDetail.setStrDate1(DateTemp);
 				objAccCodeDetail.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				//RD0382:OIU
+				if("6".equals(company)){
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+					log.info(objAccCodeDetail.getStrSlipNo());
+				}else {
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+					log.info(objAccCodeDetail.getStrSlipNo());
+				}
+				
 
 				if (!rs.getString("PCURR").trim().equals("NT")) {
 					objAccCodeDetail.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
@@ -984,17 +1233,31 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 			// 信用卡匯款失敗，借方傳票摘要同一執行退匯日且同一付款銀行帳號合併一筆分錄
 			strSql = "select SUM(PAMT) AS SPAMT,PBBANK,PBACCOUNT,PMETHOD,PCURR,REMITFAILD ";// R10314
 			strSql += ",DENSE_RANK() OVER (ORDER BY PBBANK,PBACCOUNT,PMETHOD,PCURR,REMITFAILD) AS SORT ";	//RA0102
-			strSql += " from CAPPAYF ";
+			strSql += ",IFNULL(a.PAY_COMPANY,'') AS PAY_COMPANY ";//RD0382:OIU
+			strSql += " from CAPPAYF A ";
 			strSql += "WHERE 1=1  and PMETHOD ='C' and PSTATUS = 'A' ";
 			// strSql += " and UPDDT between " + strPStartDate + "  and " + strPEndDate ;
 			strSql += " and PBNKRFDT = " + strPStartDate;// R10314
 			strSql += " and PCURR='" + strCurrency + "'";
+			
+			//RD0382:OIU
+			if("6".equals(company)){
+				strSql += " AND PAY_COMPANY='OIU' ";
+			}else if("0".equals(company)){
+				strSql += " AND PAY_COMPANY<>'OIU' ";
+			}
+			
 			strSql += " GROUP BY PBBANK,PBACCOUNT,PMETHOD,PCURR,REMITFAILD ";// R10314
+			strSql += ",A.PAY_COMPANY "; //RD0382:OIU
 			System.out.println("strSql_5" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 			alReturn = alDwnDetails;
 			while (rs.next()) {
+				
+				String payCompany = "";//RD0382:OIU
+				payCompany = rs.getString("PAY_COMPANY").trim();//RD0382:OIU
+				
 				// R10314
 				String strRFDate = "";
 				if (rs.getString("REMITFAILD").length() < 7)
@@ -1005,6 +1268,7 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 				String DateTemp2 = Integer.toString(1911 + Integer.parseInt(strRFDate.substring(0, 3))) + "/" + strRFDate.substring(3, 5) + "/" + strRFDate.substring(5, 7);
 
 				DISBAccCodeDetailVO objAccCodeDetail = new DISBAccCodeDetailVO();
+				objAccCodeDetail.setPayCompany(payCompany);//RD0382:OIU
 				if (rs.getString("PMETHOD").trim().equals("C")) {
 					objAccCodeDetail.setStrActCd2("11100000ZZZ");
 					objAccCodeDetail.setStrActCd3("0000");
@@ -1019,7 +1283,16 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 				objAccCodeDetail.setStrCheckDate(DateTemp1);
 				objAccCodeDetail.setStrDate1(DateTemp);
 				objAccCodeDetail.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim())); // R80132
-				objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				//RD0382:OIU
+				if("6".equals(company)){
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+					log.info(objAccCodeDetail.getStrSlipNo());
+				}else {
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+					log.info(objAccCodeDetail.getStrSlipNo());
+				}
+				
 
 				if (!rs.getString("PCURR").trim().equals("NT")) {
 					objAccCodeDetail.setStrActCd5("P1000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
@@ -1033,17 +1306,31 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 			/* 1. 取得符合執行日期符合前端匯退日期區間的支付失敗之信用卡明細資料--借方 */
 			strSql = "select PAMT ,PMETHOD,PNAME ,PCURR";
 			strSql += ",DENSE_RANK() OVER (ORDER BY PBBANK,PBACCOUNT,PMETHOD,PCURR,REMITFAILD) AS SORT ";	//RA0102
-			strSql += " from CAPPAYF ";
+			strSql += ",IFNULL(a.PAY_COMPANY,'') AS PAY_COMPANY ";//RD0382:OIU
+			strSql += " from CAPPAYF A ";
 			strSql += "WHERE 1=1 and PMETHOD ='C' and PSTATUS ='A' ";
 			// strSql += " and UPDDT between " + strPStartDate + "  and " +
 			// strPEndDate ;
 			strSql += " and PBNKRFDT = " + strPStartDate;// R10314
 			strSql += " and PCURR='" + strCurrency + "'";
+			
+			//RD0382:OIU
+			if("6".equals(company)){
+				strSql += " AND PAY_COMPANY='OIU' ";
+			}else if("0".equals(company)){
+				strSql += " AND PAY_COMPANY<>'OIU' ";
+			}
+			
 			System.out.println("strSql_6" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 			while (rs.next()) {
+				
+				String payCompany = "";//RD0382:OIU
+				payCompany = rs.getString("PAY_COMPANY").trim();//RD0382:OIU
+				
 				DISBAccCodeDetailVO objAccCodeDetail = new DISBAccCodeDetailVO();
+				objAccCodeDetail.setPayCompany(payCompany);//RD0382:OIU
 				objAccCodeDetail.setStrActCd2("29004000ZZZ");
 				objAccCodeDetail.setStrActCd3("0000");
 				objAccCodeDetail.setStrActCd4("00");// R60550
@@ -1054,7 +1341,16 @@ public class DISBAccRevRmtFailServlet extends HttpServlet {
 				objAccCodeDetail.setStrCheckDate(DateTemp1);
 				objAccCodeDetail.setStrDate1(DateTemp);
 				objAccCodeDetail.setStrCurr(disbBean.getETableDesc("CURRA",strCurrency.trim()));  // R80132		
-				objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				//RD0382:OIU
+				if("6".equals(company)){
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+					log.info(objAccCodeDetail.getStrSlipNo());
+				}else {
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "001R" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+					log.info(objAccCodeDetail.getStrSlipNo());
+				}
+				
 
 				if (!rs.getString("PCURR").trim().equals("NT")) {
 					objAccCodeDetail.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));

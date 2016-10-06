@@ -32,6 +32,8 @@ import com.aegon.comlib.InitDBServlet;
  * 
  * CVS History:
  * 
+ * RD0382-OIU專案:20150909,Kelvin Wu,新增【帳戶所屬公司別】
+ * 
  * $$Log: BankInfoServlet.java,v $
  * $Revision 1.1  2013/12/24 02:14:03  MISSALLY
  * $R00135---PA0024---CASH年度專案
@@ -75,6 +77,7 @@ public class BankInfoServlet extends InitDBServlet {
 			String BankSpec = CommonUtil.AllTrim(request.getParameter("txtBkSpEc"));
 			String BankStatus = CommonUtil.AllTrim(request.getParameter("txtBkStAt"));
 			String BankMemo = CommonUtil.AllTrim(request.getParameter("txtBkMeMo"));
+			String companyType = CommonUtil.AllTrim(request.getParameter("txtCompanyType"));
 
 			CapbnkfVO vo = new CapbnkfVO();
 			vo.setBankCode(BankCode);
@@ -114,6 +117,7 @@ public class BankInfoServlet extends InitDBServlet {
 					vo.setCreateDate(strUpdDate);
 					vo.setCreateTime(strUpdTime);
 					vo.setCreateUser(strLogonUser);
+					vo.setCompanyType(companyType);//RD0382
 
 					if(dao.insert(vo)) {
 						returnMsg = "'" + BankCode + "' '" + BankAccount + "' '" + BankCurr + "' '" + BankGlAct + "' '" + "新增完成";
@@ -142,6 +146,7 @@ public class BankInfoServlet extends InitDBServlet {
 					vo.setUpdatedDate(strUpdDate);
 					vo.setUpdatedTime(strUpdTime);
 					vo.setUpdatedUser(strLogonUser);
+					vo.setCompanyType(companyType);//RD0382
 
 					if(dao.update(vo)) {
 						returnMsg = "'" + BankCode + "' '" + BankAccount + "' '" + BankCurr + "' '" + BankGlAct + "' '" + "修改完成";

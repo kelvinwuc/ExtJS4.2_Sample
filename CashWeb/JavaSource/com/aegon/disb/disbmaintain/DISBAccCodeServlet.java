@@ -11,6 +11,7 @@ import com.aegon.comlib.*;
 import com.aegon.disb.util.DISBBean;
 
 import java.sql.*;
+import org.apache.log4j.Logger;
 
 /**
  * System   :
@@ -137,6 +138,9 @@ import java.sql.*;
  */
 
 public class DISBAccCodeServlet extends HttpServlet {
+	
+	private Logger log = Logger.getLogger(getClass());
+	
 	private DbFactory dbFactory = null;
 
 	private static final String CONTENT_TYPE = "text/html; charset=Big5";
@@ -211,6 +215,15 @@ public class DISBAccCodeServlet extends HttpServlet {
 				String strPCfmDt = null;
 				String strCurrency = null;
 				String strLedger = null;
+				String company = "";//RD0382:OIU
+				
+				//RD0382:OIU
+				company = request.getParameter("selCompany");
+				if (company != null){
+					company = company.trim();
+				}else{
+					company = "";
+				}
 
 				for (int i = 0; i < alDwnDetails.size(); i++) {
 					DISBAccCodeDetailVO objAccCodeDetail = (DISBAccCodeDetailVO) alDwnDetails.get(i);
@@ -218,6 +231,15 @@ public class DISBAccCodeServlet extends HttpServlet {
 					strCurrency = objAccCodeDetail.getStrCurr();
 
 					strLedger = disbBean.getLedger(CommonUtil.AllTrim(disbBean.getETableDesc("CURRC", strCurrency)));
+					
+					if("6".equals(company)){
+						if("TWD".equals(strCurrency)){
+							strLedger += " OIU";
+						}else{
+							strLedger = strLedger.substring(0, strLedger.length()-3) + " OIU " + strLedger.substring(strLedger.length()-3);
+						}
+					}					
+					log.info("strLedger:" + strLedger + ",strCurrency:" + strCurrency);
 
 					strActCd2 = objAccCodeDetail.getStrActCd2();
 					for (int count = strActCd2.length(); count < 11; count++) { // 10->11
@@ -267,6 +289,7 @@ public class DISBAccCodeServlet extends HttpServlet {
 					for (int count = strSlipNo.length(); count < 15; count++) {
 						strSlipNo += " ";
 					}
+					log.info("strSlipNo:" + strSlipNo);
 
 					// R00308 oracle 升級
 					String count1 = String.valueOf(i + 1);
@@ -280,7 +303,13 @@ public class DISBAccCodeServlet extends HttpServlet {
 						export += "Manual" + ",";// Category, x(6)
 						export += "Spreadsheet" + ",";// Source,x(11)
 						export += strCurrency + ",";// Currency,x(3),
-						export += "0" + ",";// ACTCD1,x(1)
+						
+						if("6".equals(company)){
+							export += "6" + ",";// ACTCD1,x(1)
+						}else {
+							export += "0" + ",";// ACTCD1,x(1)
+						}
+						
 						export += strActCd2.substring(0, 6) + ",";// ACTCD2,x(10)
 						export += strActCd2.substring(6, 7) + ",";
 						export += strActCd2.substring(7, 8) + ",";
@@ -347,6 +376,8 @@ public class DISBAccCodeServlet extends HttpServlet {
 		String strEntryStartDate = ""; // 輸入日期起日
 		String strPStartDate = ""; // 付款日期起日
 		String strCurrency = "";
+		String company = "";//RD0382:OIU
+		
 		double iAmtD2 = 0; // 醫調總計
 		double iAmtH1 = 0; // 債權扣押總計
 		double iAmtSum1 = 0; // R70600 前次暫不開票總計
@@ -376,6 +407,14 @@ public class DISBAccCodeServlet extends HttpServlet {
 			strCurrency = strCurrency.trim();
 		else
 			strCurrency = "";
+		
+		//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}		
 
 		// R10314
 		String DateTemp = Integer.toString(1911 + Integer
@@ -414,8 +453,15 @@ public class DISBAccCodeServlet extends HttpServlet {
 			// R50891 VA美元保單
 			strSql += " and PCURR ='" + strCurrency + "'";
 			strSql += " AND PSRCCODE NOT IN ('D2','H1','S1') "; // R80799加入S1
+			
+			if("6".equals(company)){
+				strSql += " AND PAY_COMPANY='OIU' ";
+			}else if("0".equals(company)){
+				strSql += " AND PAY_COMPANY<>'OIU' ";
+			}
+			
 			strSql += " ORDER BY PMETHOD ";
-			System.out.println("strSql_4" + strSql);
+			System.out.println("strSql_4:" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 
@@ -438,7 +484,13 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetail.setStrCheckDate(DateTemp1);
 				objAccCodeDetail.setStrDate1(DateTemp);
 				objAccCodeDetail.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));
-				objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetail.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -458,9 +510,16 @@ public class DISBAccCodeServlet extends HttpServlet {
 			// strSql += " and PCFMDT2 between " + strPStartDate + " and " + strPEndDate ;
 			strSql += " and PCFMDT2 = " + strPStartDate;// R10314
 			strSql += " and PCURR ='" + strCurrency + "'  ";
+			
+			if("6".equals(company)){
+				strSql += " AND PAY_COMPANY='OIU' ";
+			}else if("0".equals(company)){
+				strSql += " AND PAY_COMPANY<>'OIU' ";
+			}
+			
 			strSql += " GROUP BY PSRCGP,PSRCCODE,PCURR ORDER BY PSRCGP,PSRCCODE ";
 
-			System.out.println("strSql_5" + strSql);
+			System.out.println("strSql_5:" + strSql);
 			rs = stmt.executeQuery(strSql);
 
 			while (rs.next()) {
@@ -489,7 +548,13 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailD2.setStrDate1(DateTemp);
 				// R80132 objAccCodeDetailD2.setStrCurr(disbBean.getCurr(strCurrency.trim(),1));//R70088
 				objAccCodeDetailD2.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				objAccCodeDetailD2.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					objAccCodeDetailD2.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetailD2.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailD2.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -509,7 +574,13 @@ public class DISBAccCodeServlet extends HttpServlet {
 				// R80132
 				// objAccCodeDetailH1.setStrCurr(disbBean.getCurr(strCurrency.trim(),1));
 				objAccCodeDetailH1.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				objAccCodeDetailH1.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					objAccCodeDetailH1.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetailH1.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailH1.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				} 
@@ -527,7 +598,13 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailS1.setStrCheckDate(DateTemp1);
 				objAccCodeDetailS1.setStrDate1(DateTemp);
 				objAccCodeDetailS1.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));
-				objAccCodeDetailS1.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					objAccCodeDetailS1.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetailS1.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}				
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailS1.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -539,6 +616,9 @@ public class DISBAccCodeServlet extends HttpServlet {
 		} catch (SQLException ex) {
 			request.setAttribute("txtMsg", "查詢失敗" + ex);
 			alReturn = null;
+			log.error(ex.getMessage(), ex);
+		} catch(Exception e){
+			log.error(e.getMessage(), e);
 		} finally {
 			try {
 				if (rs != null) {
@@ -572,6 +652,7 @@ public class DISBAccCodeServlet extends HttpServlet {
 		String strEntryStartDate = ""; // 輸入日期起日
 		String strPStartDate = ""; // 付款日期起日
 		String strCurrency = "";// 幣別
+		String company = "";//RD0382:OIU
 
 		double iAmtC = 0;// 非VPS總計(不含人工件) 20050603 FOR Alice's request
 		double iAmtV = 0;// VPS總計(不含人工件、不含FF件) 20050603 FOR Alice's request
@@ -635,6 +716,14 @@ public class DISBAccCodeServlet extends HttpServlet {
 			strCurrency = strCurrency.trim();
 		else
 			strCurrency = "";
+		
+		//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}
 
 		// R10314
 		String strPStartDateTemp = null;
@@ -670,17 +759,25 @@ public class DISBAccCodeServlet extends HttpServlet {
 			strSql += " WHEN  (F.PPLANT <>'V' AND F.PSRCGP NOT IN('WB','GT'))then 'C' ";
 			strSql += " WHEN (F.PSRCGP = 'GT') THEN 'G'";
 			strSql += " ELSE 'W' END AMTTYPE,F.PSRCGP AS PSRCGP ";
-			strSql += " from CAPPAYF F LEFT OUTER JOIN CAPPAYF H ON F.PNOH = H.PNO";
+			strSql += " from CAPPAYF F ";
+			strSql += "LEFT OUTER JOIN CAPPAYF H ON F.PNOH = H.PNO";
 			strSql += " WHERE 1=1 and F.PCFMDT1<>0 AND F.PCFMTM1<>0 AND F.PCFMUSR1 <>''  and F.PCFMDT2<>0 AND F.PCFMTM2<>0 AND F.PCFMUSR2 <>''  and F.PDispatch <>'Y' ";
 			strSql += " AND F.PAMT<>0 ";
 			strSql += " AND F.PMETHOD IN ('A','C')";
 			// R10314 strSql += " and F.PCFMDT2 between "+ strPStartDate+ "  and " + strPEndDate;
 			strSql += " and F.PCFMDT2 = " + strPStartDate;
 			strSql += " and F.PCURR = '" + strCurrency + "' ";
+			
+			if("6".equals(company)){
+				strSql += " AND F.PAY_COMPANY='OIU' ";
+			}else if("0".equals(company)){
+				strSql += " AND F.PAY_COMPANY<>'OIU' ";
+			}
+			
 			strSql += " GROUP BY F.PMETHOD,F.PPLANT,F.PSRCGP,F.PSRCCODE,F.PNOH,F.PCURR,H.PMETHOD ORDER BY PMETHOD,PPLANT ";
 			// R60834END
 
-			System.out.println("strSql_1_AC" + strSql);
+			System.out.println("strSql_1_AC:" + strSql);
 			rs = stmt.executeQuery(strSql);
 
 			alReturn = alDwnDetails;
@@ -744,7 +841,8 @@ public class DISBAccCodeServlet extends HttpServlet {
 			strSql += " WHEN  (F.PPLANT <>'V' AND F.PSRCGP NOT IN('WB','GT'))then 'C' ";
 			strSql += " WHEN  (F.PSRCGP = 'GT')then 'G' ";
 			strSql += " ELSE 'W' END AMTTYPE,F.PSRCGP AS PSRCGP ";
-			strSql += " from CAPPAYF F LEFT OUTER JOIN CAPPAYF H ON F.PNOH = H.PNO";
+			strSql += " from CAPPAYF F ";
+			strSql += " LEFT OUTER JOIN CAPPAYF H ON F.PNOH = H.PNO ";
 			strSql += " WHERE 1=1 and F.PCFMDT1<>0 AND F.PCFMTM1<>0 AND F.PCFMUSR1 <>''  and F.PCFMDT2<>0 AND F.PCFMTM2<>0 AND F.PCFMUSR2 <>''  and F.PDispatch <>'Y' ";
 			strSql += " AND F.PAMT<>0 ";
 			strSql += " AND F.PMETHOD in ('B','D') ";// R60550 加入外幣匯款
@@ -752,10 +850,17 @@ public class DISBAccCodeServlet extends HttpServlet {
 			// R10314 strSql += " and F.PCFMDT2 between "+ strPStartDate+ "  and " + strPEndDate;
 			strSql += " and F.PCFMDT2 = " + strPStartDate;
 			strSql += " and F.PCURR = '" + strCurrency + "' ";
+			
+			if("6".equals(company)){
+				strSql += " AND F.PAY_COMPANY='OIU' ";
+			}else if("0".equals(company)){
+				strSql += " AND F.PAY_COMPANY<>'OIU' ";
+			}
+			
 			strSql += " GROUP BY F.PMETHOD,F.PPLANT,F.PSRCGP,F.PSRCCODE,F.PNOH,F.PCURR,H.PMETHOD ORDER BY PMETHOD,PPLANT ";
 			// R60834END
 
-			System.out.println("strSql_1_B" + strSql);
+			System.out.println("strSql_1_B:" + strSql);
 			rs = stmt.executeQuery(strSql);
 
 			while (rs.next()) {
@@ -814,8 +919,15 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailM.setStrCheckDate(DateTemp1);
 				objAccCodeDetailM.setStrDate1(DateTemp);
 				objAccCodeDetailM.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				// R80132
-				objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					//RD0382:OIU
+					objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					// R80132
+					objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailM.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				} 
@@ -835,8 +947,15 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailM.setStrDate1(DateTemp);
 				// R80132
 				objAccCodeDetailM.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				// R80132
-				objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					//RD0382:OIU
+					objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					// R80132
+					objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailM.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -859,8 +978,15 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailM.setStrDate1(DateTemp);
 				// R80132
 				objAccCodeDetailM.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				// R80132
-				objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					//RD0382:OIU
+					objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					// R80132
+					objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailM.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -880,8 +1006,16 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailM.setStrDate1(DateTemp);
 				// R80132
 				objAccCodeDetailM.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				// R80132
-				objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					//RD0382:OIU
+					objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					// R80132
+					objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailM.setStrActCd5("P1000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				} 
@@ -900,14 +1034,22 @@ public class DISBAccCodeServlet extends HttpServlet {
 			strSql += " WHEN  (F.PPLANT <>'V' AND F.PSRCGP NOT IN('WB','GT'))then 'C' ";
 			strSql += " WHEN  (F.PSRCGP='GT')then 'G' ";
 			strSql += " ELSE 'W' END AMTTYPE,F.PSRCGP AS PSRCGP, IFNULL(H.REMITFAILD,0) as REMITFAILD ";
-			strSql += " from CAPPAYF F LEFT OUTER JOIN CAPPAYF H ON F.PNOH = H.PNO";
+			strSql += " from CAPPAYF F ";
+			strSql += "LEFT OUTER JOIN CAPPAYF H ON F.PNOH = H.PNO ";
 			strSql += " WHERE F.PAMT<>0 ";
 			strSql += " and ((F.PCFMDT2=0 AND F.PCFMTM2=0 AND F.PCFMUSR2 ='' ) OR (F.PCFMDT1<>0 AND F.PCFMTM1<>0 AND F.PCFMUSR1 <>''  and F.PCFMDT2<>0 AND F.PCFMTM2<>0 AND F.PCFMUSR2 <>''  and F.PDispatch ='Y' )) ";
 			strSql += " and F.ENTRYDT = " + strEntryStartDate;
 			strSql += " and F.PCURR = '" + strCurrency + "' ";
+			
+			if("6".equals(company)){
+				strSql += " AND F.PAY_COMPANY='OIU' ";
+			}else if("0".equals(company)){
+				strSql += " AND F.PAY_COMPANY<>'OIU' ";
+			}
+			
 			strSql += " ORDER BY PCFMDT2,PDISPATCH,PMETHOD";
 			// R60834 END
-			System.out.println("strSql_2" + strSql);
+			System.out.println("strSql_2:" + strSql);
 
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
@@ -1023,7 +1165,13 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetail.setStrCheckDate(DateTemp1);
 				objAccCodeDetail.setStrDate1(DateTemp);
 				objAccCodeDetail.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));
-				objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}				
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetail.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -1040,7 +1188,13 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetail.setStrCheckDate(DateTemp1);
 				objAccCodeDetail.setStrDate1(DateTemp);
 				objAccCodeDetail.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));
-				objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetail.setStrActCd5("01000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -1058,7 +1212,13 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetail.setStrCheckDate(DateTemp1);
 				objAccCodeDetail.setStrDate1(DateTemp);
 				objAccCodeDetail.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));
-				objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetail.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -1075,7 +1235,13 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetail.setStrCheckDate(DateTemp1);
 				objAccCodeDetail.setStrDate1(DateTemp);
 				objAccCodeDetail.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));
-				objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetail.setStrActCd5("01000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -1093,7 +1259,13 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetail.setStrCheckDate(DateTemp1);
 				objAccCodeDetail.setStrDate1(DateTemp);
 				objAccCodeDetail.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));
-				objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetail.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -1110,7 +1282,13 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetail.setStrCheckDate(DateTemp1);
 				objAccCodeDetail.setStrDate1(DateTemp);
 				objAccCodeDetail.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));
-				objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetail.setStrActCd5("01000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -1131,7 +1309,13 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetail.setStrCheckDate(DateTemp1);
 				objAccCodeDetail.setStrDate1(DateTemp);
 				objAccCodeDetail.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));
-				objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetail.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -1147,7 +1331,13 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetail.setStrCheckDate(DateTemp1);
 				objAccCodeDetail.setStrDate1(DateTemp);
 				objAccCodeDetail.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));
-				objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetail.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetail.setStrActCd5("01000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -1168,16 +1358,24 @@ public class DISBAccCodeServlet extends HttpServlet {
 			strSql += " WHEN  (F.PPLANT <>'V' AND F.PSRCGP NOT IN('WB','GT'))then 'C' ";
 			strSql += " WHEN  (F.PSRCGP = 'GT' )then 'G' ";
 			strSql += " ELSE 'W' END AMTTYPE,F.PSRCGP AS PSRCGP ";
-			strSql += " from CAPPAYF F LEFT OUTER JOIN CAPPAYF H ON F.PNOH = H.PNO";
+			strSql += " from CAPPAYF F ";
+			strSql += " LEFT OUTER JOIN CAPPAYF H ON F.PNOH = H.PNO ";
 			strSql += " WHERE 1=1 and F.PCFMDT1<>0 AND F.PCFMTM1<>0 AND F.PCFMUSR1 <>''   AND F.PCFMTM2<>0 AND F.PCFMUSR2 <>''  and F.PDispatch <>'Y'  AND F.PSRCGP<>'WB' ";//R10314
 			strSql += " AND F.PAMT<>0 ";
 			strSql += " and F.PCFMDT2 = " + strPStartDate;// R10314
 			strSql += " and F.ENTRYDT <> " + strEntryStartDate;// R10314
 			strSql += " and F.PCURR = '" + strCurrency + "'";
 			strSql += " AND F.PSRCCODE NOT IN ('D2','H1','S1') ";// R80799加入S1
+			
+			if("6".equals(company)){
+				strSql += " AND F.PAY_COMPANY='OIU' ";
+			}else if("0".equals(company)){
+				strSql += " AND F.PAY_COMPANY<>'OIU' ";
+			}
+			
 			strSql += " GROUP BY F.PMETHOD,F.PPLANT,F.PSRCGP,F.PNOH,F.PCURR,H.PMETHOD ORDER BY PMETHOD ";
 			// R60834END
-			System.out.println("strSql_3_D" + strSql);
+			System.out.println("strSql_3_D:" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 
@@ -1234,8 +1432,15 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailR.setStrCheckDate(DateTemp1);
 				objAccCodeDetailR.setStrDate1(DateTemp);
 				objAccCodeDetailR.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				// R80132
-				objAccCodeDetailR.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					//RD0382:OIU
+					objAccCodeDetailR.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					// R80132
+					objAccCodeDetailR.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailR.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				} 
@@ -1254,8 +1459,15 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailRbyA.setStrCheckDate(DateTemp1);
 				objAccCodeDetailRbyA.setStrDate1(DateTemp);
 				objAccCodeDetailRbyA.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				// R80132
-				objAccCodeDetailRbyA.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					//RD0382:OIU
+					objAccCodeDetailRbyA.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					// R80132
+					objAccCodeDetailRbyA.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailRbyA.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				} 
@@ -1275,7 +1487,14 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailRbyC.setStrCheckDate(DateTemp1);
 				objAccCodeDetailRbyC.setStrDate1(DateTemp);
 				objAccCodeDetailRbyC.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				objAccCodeDetailRbyC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					//RD0382:OIU
+					objAccCodeDetailRbyC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetailRbyC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailRbyC.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -1297,7 +1516,14 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailRbyD.setStrCheckDate(DateTemp1);
 				objAccCodeDetailRbyD.setStrDate1(DateTemp);
 				objAccCodeDetailRbyD.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				objAccCodeDetailRbyD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					//RD0382:OIU
+					objAccCodeDetailRbyD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetailRbyD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailRbyD.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				} // R80132 END
@@ -1315,7 +1541,14 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailC.setStrCheckDate(DateTemp1);
 				objAccCodeDetailC.setStrDate1(DateTemp);
 				objAccCodeDetailC.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					//RD0382:OIU
+					objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailC.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -1333,7 +1566,14 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailV.setStrCheckDate(DateTemp1);
 				objAccCodeDetailV.setStrDate1(DateTemp);
 				objAccCodeDetailV.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				objAccCodeDetailV.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					//RD0382:OIU
+					objAccCodeDetailV.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetailV.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailV.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -1351,7 +1591,14 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailFV.setStrCheckDate(DateTemp1);
 				objAccCodeDetailFV.setStrDate1(DateTemp);
 				objAccCodeDetailFV.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				objAccCodeDetailFV.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					//RD0382:OIU
+					objAccCodeDetailFV.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetailFV.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailV.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -1372,7 +1619,14 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailW.setStrCheckDate(DateTemp1);
 				objAccCodeDetailW.setStrDate1(DateTemp);
 				objAccCodeDetailW.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				objAccCodeDetailW.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					//RD0382:OIU
+					objAccCodeDetailW.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetailW.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailW.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}
@@ -1390,7 +1644,14 @@ public class DISBAccCodeServlet extends HttpServlet {
 				objAccCodeDetailG.setStrCheckDate(DateTemp1);
 				objAccCodeDetailG.setStrDate1(DateTemp);
 				objAccCodeDetailG.setStrCurr(disbBean.getETableDesc("CURRA", strCurrency.trim()));// R80132
-				objAccCodeDetailG.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				
+				if("6".equals(company)){
+					//RD0382:OIU
+					objAccCodeDetailG.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}else {
+					objAccCodeDetailG.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "300" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
+				}
+				
 				if (!strCurrency.trim().equals("NT")) {
 					objAccCodeDetailG.setStrActCd5("00000000000000000000000" + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 				}

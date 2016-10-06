@@ -372,6 +372,7 @@ public class DISBBean extends RootClass {
 			}
 			System.out.println("inside DISBBean getETable-->strSql=" + strSql);
 			writeDebugLog(Constant.DEBUG_DEBUG, "getETable()", "get Data from ETable --> sql = '" + strSql + "'");
+			log.info("inside DISBBean getETable-->strSql=" + strSql);
 			Connection conDb = null;
 
 			PreparedStatement pstmt1 = null;
@@ -395,11 +396,19 @@ public class DISBBean extends RootClass {
 						String ETType = rstResultSet.getString("FLD0002");
 						String ETValue = rstResultSet.getString("FLD0003");
 						String ETVDesc = rstResultSet.getString("FLD0004");
+						//log.info("ETType:" + ETType + ",ETValue:" + ETValue + ",ETVDesc:" + ETVDesc);
 						
-						if("0170701/07058016878".equals(CommonUtil.AllTrim(ETValue)) ||
-								"8120687/068760020883".equals(CommonUtil.AllTrim(ETValue))){
-							ETVDesc += "-OIU";
-						}
+						//RD0382及RE0189:兆豐、台新、凱基OIU
+						if(!strActionType.equals("BANKDC") && !strActionType.equals("BANKFRC")) {
+							if ("0170701/07058016878".equals(CommonUtil
+									.AllTrim(ETValue))
+									|| "8120687/068760020883".equals(CommonUtil
+											.AllTrim(ETValue))
+									|| "8090094/018587169906".equals(CommonUtil
+											.AllTrim(ETValue))) {
+								ETVDesc += "-OIU";
+							}
+						}						
 
 						htETtable.put("ETType", trimValue ? ETType.trim() : ETType);
 						htETtable.put("ETValue", trimValue ? ETValue.trim() : ETValue);
@@ -421,6 +430,16 @@ public class DISBBean extends RootClass {
 									strBKCURR = rst2.getString("BKCURR");
 
 									ETVDesc = CommonUtil.AllTrim(ETVDesc) + "-" + strBKCURR;
+									
+									//RD0382及RE0189:兆豐、台新、凱基OIU
+									if ("0170701/07058016878".equals(CommonUtil
+											.AllTrim(ETValue))
+											|| "8120687/068760020883".equals(CommonUtil
+													.AllTrim(ETValue))
+											|| "8090094/018587169906".equals(CommonUtil
+													.AllTrim(ETValue))) {
+										ETVDesc += "-OIU";
+									}
 
 									htETtable.put("ETType", trimValue ? ETType.trim() : ETType);
 									htETtable.put("ETValue", trimValue ? ETValue.trim() : ETValue);
@@ -1227,13 +1246,18 @@ public class DISBBean extends RootClass {
 	 */
 	public String getPBatNo(String strPMethod, int iUpdDate, int iUpdTime, String PBANK) {
 		String strPBatNo = "";
-		String strUpdDateTemp = "";
-		strUpdDateTemp = Integer.toString(iUpdDate).trim();
-		if (strUpdDateTemp.length() < 7) {
-			strUpdDateTemp = "0" + strUpdDateTemp;
+		try{
+			String strUpdDateTemp = "";
+			strUpdDateTemp = Integer.toString(iUpdDate).trim();
+			if (strUpdDateTemp.length() < 7) {
+				strUpdDateTemp = "0" + strUpdDateTemp;
+			}
+			//R60550_R60463 匯款批號加入銀行代號
+			strPBatNo = strPMethod.trim() + strUpdDateTemp + PBANK.substring(0, 3) + Integer.toString(iUpdTime).trim();
+		} catch(Exception e){
+			log.error(e.getMessage(), e);
 		}
-		//R60550_R60463 匯款批號加入銀行代號
-		strPBatNo = strPMethod.trim() + strUpdDateTemp + PBANK.substring(0, 3) + Integer.toString(iUpdTime).trim();
+		
 
 		return strPBatNo;
 	}
@@ -1248,6 +1272,7 @@ public class DISBBean extends RootClass {
 	public double getPFee(String strBankCode, String strRemitBankCode, double iPAmt, String strPMethod, String strSWIFT, String strSWITCH) {
 		// 手續費的計算需依付款方式區分信用卡及銀行匯款的計算
 		//加入外幣匯款(D)的計算
+		log.info("getPFee:strPMethod是" + strPMethod);
 		if (strPMethod.equals("D")) {
 			return getPFeeForD(strBankCode, strRemitBankCode, iPAmt, strSWIFT, strSWITCH); //付款方式為外幣匯款時
 		} else {
@@ -1889,14 +1914,15 @@ public class DISBBean extends RootClass {
 					}
 				}
 			// EB0537 萬泰銀行
-			} else if(BATNO.substring(0, 1).equals("D") && BATNO.substring(8, 11).equals("809")) {
+			// RE0189:修改凱基轉檔的檔名維持原命名
+			} else if(BATNO.substring(0, 1).equals("D") && BATNO.substring(8, 11).equals("809") && remitKind.equals("t")) {
 				fileLOC = "WT_" + selCURR + ".txt";
 			} else if(BATNO.substring(0, 1).equals("D") && BATNO.substring(8, 11).equals("004")){
 				//RD0440臺灣銀行
 				if(remitKind.equals("t")){
-					fileLOC = "BS2360015t" + "_" + selCURR + ".TXT";
+					fileLOC = "BS2360015T" + "-" + selCURR + ".TXT";
 				}else if(remitKind.equals("r")){
-					fileLOC = "BS2360015r" + "_" + selCURR + ".TXT";
+					fileLOC = "BS2360015R" + "-" + selCURR + ".TXT";
 				}				
 			}else {
 				fileLOC = strLogonUser + "_" + BATNO + remitKind + "_" + selCURR + ".txt";
@@ -2303,6 +2329,7 @@ public class DISBBean extends RootClass {
 		String sql = "SELECT FLD0004 FROM ORDUET WHERE FLD0002 = 'BNKFE' AND FLD0003 = ?";
 		try {
 			conn = dbFactory.getConnection("DISBBean.getPayFees()");
+			log.info(sql);
 			stat = conn.prepareStatement(sql);
 			stat.setString(1, bankCode);
 			result = stat.executeQuery();
@@ -2487,6 +2514,79 @@ public class DISBBean extends RootClass {
 		if(perRemitFee>800) perRemitFee = 800;
 		
 		return perRemitFee + postalFee;
+	}
+	
+	/**
+	 * RD0382:OIU
+	 * 
+	 * 取得外幣匯款手續費. 參數應為七位銀行代碼與匯款帳號
+	 * 
+	 * @param payBankCode 付款行代碼
+	 * @param remitBankCode 匯款行代碼
+	 * @param DBU:同一銀行的境內(台灣)分行
+	 * @param OBU:同一銀行的境外(外國)分行
+	 */
+	public double getPayFeeOIU(String payBankCode, String remitBankCode, String remitAccount, double wsAMT, String swiftCode) throws SQLException {
+		String payBank = payBankCode.substring(0, 3);
+		String remitBank = remitBankCode.substring(0, 3);
+		String obuCheckCode = "";
+		double[] n = getPayFees(payBank + "6");
+
+		// 不同銀行取第三個回傳值
+		if (!payBank.equals(remitBank))
+			return n[2];//跨行手續費,BNKFE的第3組數字,兆豐9元、台新10元、凱基7元	
+		
+		//同銀行相存且SWIFT CODE第5、6碼不為TW時,須以跨行手續費計算
+		if(swiftCode.length()>=8){
+			if(!"TW".equals(swiftCode.substring(4, 6))){
+				return n[2];//跨行手續費,BNKFE的第3組數字,兆豐9元、台新10元、凱基7元	
+			}
+		}
+
+		//同銀行相存
+		String strSql = "SELECT * FROM ORDUET WHERE FLD0001='  ' AND FLD0002='BNKFF' AND FLD0003 LIKE '" + remitBank + "%' ";//查詢各銀行的OBU帳號檢核條件
+		Connection con = null;
+		PreparedStatement pstmt= null;
+		ResultSet rst = null;
+		double dReturnValue = 0;
+		int iPosStart = 0;
+		int iPosEnd = 0;
+		String strOBUCode = "";
+		try {
+			con = dbFactory.getAS400Connection("DISBBean.getPayFee");
+			log.info(strSql);
+			pstmt = con.prepareStatement(strSql);
+			rst = pstmt.executeQuery();
+			dReturnValue = n[0];//聯行DBU相存
+			
+			//判斷是否為OBU帳號
+			while(rst.next()) {
+				iPosStart = Integer.parseInt(rst.getString("FLD0003").substring(4, 5));//OBU帳號檢核碼的起始位置
+				iPosEnd = Integer.parseInt(rst.getString("FLD0003").substring(5, 6));//OBU帳號檢核碼的結束位置
+				strOBUCode = CommonUtil.AllTrim(rst.getString("FLD0003").substring(7));//OBU帳號檢核碼
+
+				obuCheckCode = CommonUtil.AllTrim(remitAccount.substring(iPosStart-1, iPosEnd));
+				System.out.println("remitBank=" + remitBank + " OBUCode=" + strOBUCode + " obuCheckCode=" + obuCheckCode);
+
+				if(obuCheckCode.equals(strOBUCode)) {
+					dReturnValue = n[1];//聯行DBU/OBU互存
+					break;
+				}
+			}
+			
+			//RE0189:判斷凱基OBU帳號,
+			//20161004,出納Sophia與凱基確認無此英文帳號,但Cash系統要保留此判斷
+			if("809".equals(remitBank) && remitAccount.substring(0, 4).matches("[a-zA-Z]{4}")) dReturnValue = n[1];
+			
+			return dReturnValue;
+		} catch(Exception ex) {
+			System.err.println(ex.getMessage());
+			return n[0];
+		} finally {
+			if(rst != null) rst.close();
+			if(pstmt != null) pstmt.close();
+			if(con != null) dbFactory.releaseAS400Connection(con);
+		}
 	}
 	
 	/**

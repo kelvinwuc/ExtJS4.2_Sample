@@ -22,6 +22,8 @@ import java.sql.SQLException;
  * 
  * CVS History:
  * 
+ * RD0382-OIU專案:20150909,Kelvin Wu,新增【帳戶所屬公司別】
+ * 
  * $Log: BankInfoDAO.java,v $
  * Revision 1.1  2013/12/24 02:14:03  MISSALLY
  * R00135---PA0024---CASH年度專案
@@ -36,9 +38,9 @@ public class BankInfoDAO {
 
 	private final String querySql = "SELECT * FROM CAPBNKF WHERE BKCODE=? and BKATNO=? and GLACT=? and BKCURR=? ";
 
-	private final String insertSql = "INSERT INTO CAPBNKF (BKCODE, BKNAME, BkAtNo, BKCURR, GlAct, BkAlat, BkCred, BkPacb, BkBatc, BkAdUs, BkAdDt, BkAdTm, BkGpCd, BKSpec, BKStat, BKMemo) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+	private final String insertSql = "INSERT INTO CAPBNKF (BKCODE, BKNAME, BkAtNo, BKCURR, GlAct, BkAlat, BkCred, BkPacb, BkBatc, BkAdUs, BkAdDt, BkAdTm, BkGpCd, BKSpec, BKStat, BKMemo, COMPANY) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";//RD0382
 
-	private final String updateSql = "UPDATE CAPBNKF SET BKNAME=?, BkAlat=?, BkCred=?, BkPacb=?, BkBatc=?, BkUpUs=?, BkUpDt=?, BkUpTm=?, BkGpCd=?, BKSpec=?, BKStat=?, BKMemo =? WHERE BKCODE=? and BKATNO=? and GLACT=? and BKCURR=? ";
+	private final String updateSql = "UPDATE CAPBNKF SET BKNAME=?, BkAlat=?, BkCred=?, BkPacb=?, BkBatc=?, BkUpUs=?, BkUpDt=?, BkUpTm=?, BkGpCd=?, BKSpec=?, BKStat=?, BKMemo =? ,COMPANY=? WHERE BKCODE=? and BKATNO=? and GLACT=? and BKCURR=? ";//RD0382
 
 	private final String deleteSql = "DELETE FROM CAPBNKF WHERE BKCODE=? and BKATNO=? and GLACT=? and BKCURR=? ";
 
@@ -98,6 +100,7 @@ public class BankInfoDAO {
 			preStmt.setString(14, vo.getBankSpec());
 			preStmt.setString(15, vo.getBankStatus());
 			preStmt.setString(16, vo.getBankMemo());
+			preStmt.setString(17, vo.getCompanyType());//RD0382
 			
 			int ret = preStmt.executeUpdate();
 
@@ -128,10 +131,12 @@ public class BankInfoDAO {
 			preStmt.setString(10, vo.getBankSpec());
 			preStmt.setString(11, vo.getBankStatus());
 			preStmt.setString(12, vo.getBankMemo());
-			preStmt.setString(13, vo.getBankCode());
-			preStmt.setString(14, vo.getBankAccount());
-			preStmt.setString(15, vo.getBankGlAct());
-			preStmt.setString(16, vo.getBankCurr());
+			preStmt.setString(13, vo.getCompanyType());//RD0382
+			preStmt.setString(14, vo.getBankCode());
+			preStmt.setString(15, vo.getBankAccount());
+			preStmt.setString(16, vo.getBankGlAct());
+			preStmt.setString(17, vo.getBankCurr());
+			
 
 			int ret = preStmt.executeUpdate();
 

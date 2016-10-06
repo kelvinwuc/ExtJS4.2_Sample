@@ -125,7 +125,56 @@ public class CaprmtfVO implements java.io.Serializable {
 	
 	/*RC0036 承辦單位 Dept*/
 	private String DEPT;
+	
+	//RD0382:OIU,受款人地址
+	private String payAddr = "";
+	
+	//RD0382:OIU,受款銀行檢核碼
+	private String payBkVerifyNumber = "";	
+	
+	//RD0382:OIU,受款銀行SORTCODE
+	private String payBkSortCode = "";
+	
+	//RD0382:OIU,CAPPAYF的PAY_SOURCE_CODE
+	private String paySourceCode = "";
 
+	public String getPaySourceCode() {
+		return paySourceCode;
+	}
+
+	public void setPaySourceCode(String paySourceCode) {
+		this.paySourceCode = paySourceCode;
+	}
+
+	//RD0382:OIU,受款人地址
+	public String getPayAddr() {
+		return payAddr;
+	}
+
+	//RD0382:OIU,受款人地址
+	public void setPayAddr(String payAddr) {
+		this.payAddr = payAddr;
+	}
+	
+	//RD0382:OIU,受款銀行檢核碼
+	public String getPayBkVerifyNumber() {
+		return payBkVerifyNumber;
+	}
+
+	//RD0382:OIU,受款銀行檢核碼
+	public void setPayBkVerifyNumber(String payBkVerifyNumber) {
+		this.payBkVerifyNumber = payBkVerifyNumber;
+	}
+	
+	//RD0382:OIU,受款銀行SORTCODE
+	public String getPayBkSortCode() {
+		return payBkSortCode;
+	}
+
+	//RD0382:OIU,受款銀行SORTCODE
+	public void setPayBkSortCode(String payBkSortCode) {
+		this.payBkSortCode = payBkSortCode;
+	}
 
 	public CaprmtfVO(ResultSet rs) {
 		setResultSet(rs);

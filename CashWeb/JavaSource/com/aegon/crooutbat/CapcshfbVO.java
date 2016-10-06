@@ -26,25 +26,26 @@ package com.aegon.crooutbat;
 
 public class CapcshfbVO {
 
-	private String strCBKCD = "";
-	private String strCATNO = "";
-	private String strCCURR = "";
-	private int iCBKRMD = 0;
-	private int iCAEGDT = 0;
-	private double iCROAMT = 0.00;
-	private String strCROSRC = "";
-	private String strCROTYPE = "";
-	private String strPOCURR = "";
-	private int iCRODAY = 0;
-	private String strCSFBAU = "";
-	private int iCSFBAD = 0;
-	private int iCSFBAT = 0;
-	private String strCSFBUU = "";
-	private int iCSFBUD = 0;
-	private int iCSFBUT = 0;
-	private String strCSFBRECTNO = "";
-	private int iCSFBRECSEQ = 0;
-	private String strCSFBPONO = "";
+	//CAPCSHFB,預備核銷檔資料
+	private String strCBKCD = "";//銀行代碼
+	private String strCATNO = "";//銀行帳號
+	private String strCCURR = "";//CAPCSHFB.CSFBCURR或CAPCSHFBK1.CSFBCURR
+	private int iCBKRMD = 0;//銀行匯款日
+	private int iCAEGDT = 0;//全球入帳日
+	private double iCROAMT = 0.00;//核銷金額
+	private String strCROSRC = "";//核銷來源
+	private String strCROTYPE = "";//CroOutOneV.jsp的核銷來源-->C:Capsil, G:GTMS, F:FF, T:逾二年, O:Others
+	private String strPOCURR = "";//未使用
+	private int iCRODAY = 0; //CRODAY,核銷帳作業日
+	private String strCSFBAU = "";//資料產生者
+	private int iCSFBAD = 0;//資料產生日期
+	private int iCSFBAT = 0;//資料產生時間
+	private String strCSFBUU = "";//資料更新者
+	private int iCSFBUD = 0;//資料更新日期
+	private int iCSFBUT = 0;//資料更新時間
+	private String strCSFBRECTNO = "";//送金單號碼
+	private int iCSFBRECSEQ = 0;//送金單序號
+	private String strCSFBPONO = "";//保單號碼
 
 	public String getCBKCD() {
 		return strCBKCD;

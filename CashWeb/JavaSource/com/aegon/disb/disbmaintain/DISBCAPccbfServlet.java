@@ -24,6 +24,8 @@ import com.aegon.comlib.CommonUtil;
 import com.aegon.comlib.Constant;
 import com.aegon.comlib.InitDBServlet;
 
+import org.apache.log4j.Logger;
+
 /**
  * System   : CashWeb
  * 
@@ -57,6 +59,8 @@ import com.aegon.comlib.InitDBServlet;
  */
 
 public class DISBCAPccbfServlet  extends InitDBServlet  {
+	
+	private Logger log = Logger.getLogger(getClass());
 
 	private static final String CONTENT_TYPE = "text/html; charset=Big5";
 	private String path = "";
@@ -82,7 +86,7 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 			if (FileUpload.isMultipartContent(request)) 
 			{
 				path = "/DISB/DISBMaintain/DISBCAPccbf.jsp";
-
+				log.info("test01");
 				this.upload(request, response, session);
 			}
 			else
@@ -228,6 +232,7 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 		Vector banklist = new Vector();
 
 		FileItem item = null;
+		//log.info(item.getSize());
 		while (iter.hasNext()) {
 			item = (FileItem) iter.next();
 			banklist = processUploadedFile(item);
@@ -249,8 +254,11 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 
 			Calendar cldToday = commonUtil.getBizDateByRCalendar();
 			int iUpdDate = Integer.parseInt(commonUtil.convertWesten2ROCDate1(cldToday.getTime()));
-			int iUpdTime = Integer.parseInt(commonUtil.convertWesten2ROCDateTime1(cldToday.getTime()).substring(7));
-			String strLogonUser = (String) session.getAttribute(Constant.LOGON_USER_ID);
+			int iUpdTime = Integer.parseInt(commonUtil
+					.convertWesten2ROCDateTime1(cldToday.getTime())
+					.substring(7));
+			String strLogonUser = (String) session
+					.getAttribute(Constant.LOGON_USER_ID);
 
 			RE re = new RE("^[0-9]*$");
 
@@ -264,6 +272,7 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 					if (data[0].length() > 3) {
 						//QA0132 金資碼必須為7碼的數字
 						if(data[0].length() == 7 && re.match(data[0])) {
+							log.info("data[0]:" + data[0] + ",data[1]:" + data[1] + ",data[2]:" + data[2]);
 							vo.setBKNO(data[0]); // 銀行代碼
 							vo.setBKFNM(data[1]);// 銀行全名
 							vo.setBKNM(data[2]); // 銀行簡稱
@@ -310,20 +319,24 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 			String line = "";
 			StringTokenizer st = null;
 			if (content != null) {
+				//log.info("content是" + content);
 				st = new StringTokenizer(content, "\r\n");
 				while (st.hasMoreTokens()) {
 					line = st.nextToken();
 					line = line.replace((char) 39, ' '); // 轉 " ' " 為空白
 					String[] data = new String[3];
-					data = split(line, ",");
+					//data = split(line, ",");
+					data = splitV2(line); //銀行下載檔案由中信銀更改為彰銀
 					String[] data1 = new String[3];
 					for (int index = 0; index < data.length; index++) {
 						data1[index] = "";
 						// System.out.println(data[index]);
 						data1[index] = data[index].substring(1, data[index].length() - 1);
 					}
-
-					banklist.add(data1);
+					//log.info("data[0]:" + data[0] + ",data[1]:" + data[1] + ",data[2]:" + data[2]);
+					//log.info("data1[0]:" + data1[0] + ",data1[1]:" + data1[1] + ",data1[2]:" + data1[2]);
+					//banklist.add(data1);
+					banklist.add(data);
 				}
 			}
 
@@ -347,6 +360,22 @@ public class DISBCAPccbfServlet  extends InitDBServlet  {
 				str = str.substring(e + 1);
 			}
 		}
+		return (String[]) v.toArray(new String[v.size()]);
+	}
+	
+	/***
+	 * 
+	 * @date:2016/4/6
+	 * @description:銀行下載檔案由中信銀更改為彰銀
+	 */
+	public String[] splitV2(String str) {
+		Vector v = new Vector();
+		
+		v.add(str.substring(1, 9).replace("　", "").trim()); //銀行代碼
+		//v.add(str.substring(9, 29).replace("　", "").trim()); //銀行全名
+		v.add(((str.substring(9, 29).replace("　", "").trim()).replace("（", "(")).replace("）", ")")); //銀行全名
+		v.add(str.substring(29, 34).replace("　", "").trim()); //銀行簡稱			
+		
 		return (String[]) v.toArray(new String[v.size()]);
 	}
 

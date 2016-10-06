@@ -38,10 +38,10 @@ import com.aegon.comlib.InitDBServlet;
  * 
  * $$Log: DISBCheckRejectedServlet.java,v $
  * $Revision 1.3  2013/12/24 02:17:18  MISSALLY
- * $R00135---PA0024---CASH¦~«×±M®×
+ * $R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ
  * $
  * $Revision 1.2  2010/11/23 06:27:42  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.1  2006/06/29 09:40:38  MISangel
  * $Init Project
@@ -50,7 +50,7 @@ import com.aegon.comlib.InitDBServlet;
  * $R30530
  * $
  * $Revision 1.1.2.3  2005/04/04 07:02:22  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -105,7 +105,7 @@ public class DISBCheckRejectedServlet extends InitDBServlet {
 		PreparedStatement pstmtTmp = null;
 		String strReturnMsg = "";
 		List alEmptyCheckBook = new ArrayList();
-		List alCheckInfo = new ArrayList(); // ¦s©ñ²¼¾Ú©ú¸ê®Æ
+		List alCheckInfo = new ArrayList(); // å­˜æ”¾ç¥¨æ“šæ˜è³‡æ–™
 		String strSql = ""; // SQL String
 
 		String strAction = new String("");
@@ -120,12 +120,12 @@ public class DISBCheckRejectedServlet extends InitDBServlet {
 		int iUpdTime = Integer.parseInt((String) sdfFormatter.format(cldToday
 				.getTime()));
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-		String strCNo = ""; // ²¼¾Ú¸¹½X
-		String strCBNo = ""; // ²¼¾Ú§å¸¹
-		String strCBkNo = ""; // »È¦æ¦æ®w
-		String strCAccount = ""; // »È¦æ±b¸¹
-		String strCStatus = ""; // ±ı§ó·s¤§ª¬ºA
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strCNo = ""; // ç¥¨æ“šè™Ÿç¢¼
+		String strCBNo = ""; // ç¥¨æ“šæ‰¹è™Ÿ
+		String strCBkNo = ""; // éŠ€è¡Œè¡Œåº«
+		String strCAccount = ""; // éŠ€è¡Œå¸³è™Ÿ
+		String strCStatus = ""; // æ¬²æ›´æ–°ä¹‹ç‹€æ…‹
 
 		strCNo = request.getParameter("txtCNO");
 		if (strCNo != null)
@@ -153,8 +153,8 @@ public class DISBCheckRejectedServlet extends InitDBServlet {
 
 		strCStatus = "R";
 
-		/* §ó·s¸ê®Æ®w */
-		/* §ó·s²¼¾Ú©ú²ÓÀÉ */
+		/* æ›´æ–°è³‡æ–™åº« */
+		/* æ›´æ–°ç¥¨æ“šæ˜ç´°æª” */
 		// strSql =
 		// " update CAPCHKF  set CSTATUS=?,CASHDT=?,ENTRYDT=?,ENTRYTM=?,ENTRYUSR=? ";
 		// strSql += " where CNO =?  AND CBKNO=? AND CACCOUNT=? AND CBNO=? ";
@@ -179,9 +179,9 @@ public class DISBCheckRejectedServlet extends InitDBServlet {
 				if (isAEGON400) {
 					con.rollback();
 				}
-				strReturnMsg = "­×§ï¥¢±Ñ";
+				strReturnMsg = "ä¿®æ”¹å¤±æ•—";
 			} else {
-				request.setAttribute("txtMsg", "­×§ï¦¨¥\");
+				request.setAttribute("txtMsg", "ä¿®æ”¹æˆåŠŸ");
 			}
 			pstmtTmp.close();
 			if (!strReturnMsg.equals("")) {
@@ -191,7 +191,7 @@ public class DISBCheckRejectedServlet extends InitDBServlet {
 				request.setAttribute("txtMsg", strReturnMsg);
 			}
 		} catch (SQLException e) {
-			request.setAttribute("txtMsg", "­×§ï¥¢±Ñ" + e);
+			request.setAttribute("txtMsg", "ä¿®æ”¹å¤±æ•—" + e);
 			if (con != null)
 				dbFactory.releaseAS400Connection(con);
 		} finally {

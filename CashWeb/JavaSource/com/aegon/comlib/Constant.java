@@ -125,7 +125,9 @@ public class Constant extends RootClass {
 	//public static final String Batch_PAY_SRCCODE = "'B1','B2','B3','B4','B5','B6','B7','B8','B9','BA','BB','BC','BD','BE','BI','BJ'";
     //EB0469 ADD BG/BH 
 	//PC0004 ADD BF 
-	public static final String Batch_PAY_SRCCODE = "'B1','B2','B3','B4','B5','B6','B7','B8','B9','BA','BB','BC','BD','BE','BI','BJ','BH','BG','BF'";
+	//public static final String Batch_PAY_SRCCODE = "'B1','B2','B3','B4','B5','B6','B7','B8','B9','BA','BB','BC','BD','BE','BI','BJ','BH','BG','BF'";
+	//PC0020-BC275活力一生終身醫療商品專案:新增BK,DISBSChangePDateServlet.class及DISBDailyPReports.jsp會使用到
+	public static final String Batch_PAY_SRCCODE = "'B1','B2','B3','B4','B5','B6','B7','B8','B9','BA','BB','BC','BD','BE','BI','BJ','BH','BG','BF','BK'";
 
 	/**
 	 * Constant 建構子註解。

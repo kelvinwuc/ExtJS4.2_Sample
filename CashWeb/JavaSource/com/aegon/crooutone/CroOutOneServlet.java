@@ -20,6 +20,8 @@ import com.aegon.comlib.InitDBServlet;
 import com.aegon.crooutbat.CapcshfbVO;
 import com.aegon.entactbat.CapcshfDTO;
 
+import org.apache.log4j.Logger;
+
 /**
  * System : CashWeb
  * 
@@ -95,6 +97,8 @@ import com.aegon.entactbat.CapcshfDTO;
 public class CroOutOneServlet extends InitDBServlet {
 
 	private static final long serialVersionUID = 4760546335855851723L;
+	
+	private Logger log = Logger.getLogger(getClass());
 
 	private Connection conDb = null;
 
@@ -136,12 +140,28 @@ public class CroOutOneServlet extends InitDBServlet {
 
 				if(strAction.equals("I"))
 				{
+					// 頁面參數存放入傳輸對象
+					//CroOutOneC.jsp,<確定>按鈕被點選時
 					coocDTO = this.setCroOutOneConditionDTO(req);
+					System.out.println("url:" + req.getContextPath());					
 				}
 				else if(strAction.equals("SAVE"))
 				{
+					//CroOutOneV.jsp,<確定>按鈕被點選時
+					
+					//若strAction.equals("I")的fList有找到資料,coocDTO則有值
 					coocDTO = (CroOutOneConditionDTO) session.getAttribute("condition");
 
+					if(session.getAttribute("fData") != null){
+						log.info("fData有值");
+					}else{
+						log.info("fData是null");
+					}
+					if(session.getAttribute("fbData") != null){
+						log.info("fbData有值");
+					}else{
+						log.info("fbData是null");
+					}
 					List<CapcshfDTO> orgData = (session.getAttribute("fData") != null)?((List<CapcshfDTO>) session.getAttribute("fData")):null;
 					List<CapcshfbVO> fbData = (session.getAttribute("fbData") != null)?((List<CapcshfbVO>) session.getAttribute("fbData")):null;
 
@@ -169,8 +189,9 @@ public class CroOutOneServlet extends InitDBServlet {
 					session.setAttribute("CurrentPage", req.getParameter("txtCurrentPage"));
 				}
 
-				List<CapcshfDTO> fList = this.getCapcshfData(qryCAPCSHF(coocDTO));
-				List<CapcshfbVO> fbList = this.getCapcshfbData(qryByCertificate(coocDTO), qryCAPCSHFB(coocDTO));
+				//查詢登帳資訊CAPCSHF
+				List<CapcshfDTO> fList = this.getCapcshfData(qryCAPCSHF(coocDTO));//qryCAPCSHF是將前端的查詢條件置入SQL(CAPCSHF)
+				List<CapcshfbVO> fbList = this.getCapcshfbData(qryByCertificate(coocDTO), qryCAPCSHFB(coocDTO));//qryByCertificate是將前端的查詢條件置入SQL(CAPBNKF,ORGNFBM,ORGNFBDK1,CAPCSHFBK1[phyisical file是CAPCSHFB]);qryCAPCSHFB是將前端的查詢條件置入SQL(CAPCSHFB)
 
 				session.removeAttribute("fData");
 				session.removeAttribute("fbData");
@@ -209,24 +230,37 @@ public class CroOutOneServlet extends InitDBServlet {
 			stm = con.createStatement();
 
 			//登帳資訊
+			log.info("登帳資訊:" + strSql);
 			rst = stm.executeQuery(strSql);
 			while (rst.next()) {
 				fDTO = new CapcshfDTO();
 
-				fDTO.setEBKCD(CommonUtil.AllTrim(rst.getString("EBKCD")));
-				fDTO.setEATNO(CommonUtil.AllTrim(rst.getString("EATNO")));
-				fDTO.setEBKRMD(rst.getInt("EBKRMD"));
-				fDTO.setEAEGDT(rst.getInt("EAEGDT"));
-				fDTO.setENTAMT(rst.getDouble("ENTAMT"));
-				fDTO.setCSHFCURR(rst.getString("CSHFCURR"));
-				fDTO.setEUSREM(CommonUtil.AllTrim(rst.getString("EUSREM")));
-				fDTO.setEUSREM2(CommonUtil.AllTrim(rst.getString("EUSREM2")));
-				fDTO.setECRDAY(CommonUtil.AllTrim(rst.getString("ECRDAY")));
-				fDTO.setCSHFAU(CommonUtil.AllTrim(rst.getString("CSHFAU")));
-				fDTO.setCSHFAD(rst.getInt("CSHFAD"));
-				fDTO.setCSHFAT(rst.getInt("CSHFAT"));
-				fDTO.setCSHFUT(rst.getInt("CSHFUT"));
-
+				fDTO.setEBKCD(CommonUtil.AllTrim(rst.getString("EBKCD")));//1
+				fDTO.setEATNO(CommonUtil.AllTrim(rst.getString("EATNO")));//2
+				fDTO.setEBKRMD(rst.getInt("EBKRMD"));//3
+				fDTO.setEAEGDT(rst.getInt("EAEGDT"));//4
+				fDTO.setENTAMT(rst.getDouble("ENTAMT"));//5
+				fDTO.setCSHFCURR(rst.getString("CSHFCURR"));//6
+				fDTO.setEUSREM(CommonUtil.AllTrim(rst.getString("EUSREM")));//7
+				fDTO.setEUSREM2(CommonUtil.AllTrim(rst.getString("EUSREM2")));//8
+				fDTO.setECRDAY(CommonUtil.AllTrim(rst.getString("ECRDAY")));//9
+				fDTO.setCSHFAU(CommonUtil.AllTrim(rst.getString("CSHFAU")));//10
+				fDTO.setCSHFAD(rst.getInt("CSHFAD"));//11
+				fDTO.setCSHFAT(rst.getInt("CSHFAT"));//12
+				fDTO.setCSHFUT(rst.getInt("CSHFUT"));//13
+				log.info("fDTO.setEBKCD:" + rst.getString("EBKCD")//1
+						+ ",fDTO.setEATNO:" + rst.getString("EATNO")//2
+						+ ",fDTO.setEBKRMD:" + rst.getInt("EBKRMD")//3
+						+ ",fDTO.setEAEGDT:" + rst.getInt("EAEGDT")//4
+						+ ",fDTO.setENTAMT:" + rst.getDouble("ENTAMT")//5
+						+ ",fDTO.setCSHFCURR:" + rst.getString("CSHFCURR")//6
+						+ ",fDTO.setEUSREM:" + CommonUtil.AllTrim(rst.getString("EUSREM"))//7
+						+ ",fDTO.setEUSREM2:" + CommonUtil.AllTrim(rst.getString("EUSREM2"))//8
+						+ ",fDTO.setECRDAY:" + CommonUtil.AllTrim(rst.getString("ECRDAY"))//9
+						+ ",fDTO.setCSHFAU:" + CommonUtil.AllTrim(rst.getString("CSHFAU"))//10
+						+ ",fDTO.setCSHFAD:" + rst.getInt("CSHFAD")//11
+						+ ",fDTO.setCSHFAT:" + rst.getInt("CSHFAT")//12
+						+ ",fDTO.setCSHFUT:" + rst.getInt("CSHFUT"));//13
 				list.add(fDTO);
 			}
 		} catch (SQLException e) {
@@ -254,49 +288,79 @@ public class CroOutOneServlet extends InitDBServlet {
 
 			//保費入帳資訊
 			//憑證
+			log.info("保費入帳資訊-憑證:" + strSql1);
 			rst = stm.executeQuery(strSql1);
 			while (rst.next()) {
 				fbDTO = new CapcshfbVO();
 
-				fbDTO.setCBKCD(CommonUtil.AllTrim(rst.getString("CBKCD")));
-				fbDTO.setCATNO(CommonUtil.AllTrim(rst.getString("CATNO")));
-				fbDTO.setCBKRMD(rst.getInt("CBKRMD"));
-				fbDTO.setCAEGDT(rst.getInt("CAEGDT"));
-				fbDTO.setCROAMT(rst.getDouble("CROAMT"));
-				fbDTO.setCRODAY(rst.getInt("CRODAY"));
-				fbDTO.setCCURR(CommonUtil.AllTrim(rst.getString("CSFBCURR")));
-				fbDTO.setCSFBRECTNO(CommonUtil.AllTrim(rst.getString("CSFBRECTNO")));
-				fbDTO.setCSFBRECSEQ(rst.getInt("CSFBRECSEQ"));
-				fbDTO.setCSFBPONO(CommonUtil.AllTrim(rst.getString("CSFBPONO")));
-				fbDTO.setCSFBAU(CommonUtil.AllTrim(rst.getString("CSFBAU")));
-				fbDTO.setCSFBAD(rst.getInt("CSFBAD"));
-				fbDTO.setCSFBAT(rst.getInt("CSFBAT"));
-				fbDTO.setCSFBUT(rst.getInt("CSFBUT"));
+				fbDTO.setCBKCD(CommonUtil.AllTrim(rst.getString("CBKCD")));//1
+				fbDTO.setCATNO(CommonUtil.AllTrim(rst.getString("CATNO")));//2
+				fbDTO.setCBKRMD(rst.getInt("CBKRMD"));//3
+				fbDTO.setCAEGDT(rst.getInt("CAEGDT"));//4
+				fbDTO.setCROAMT(rst.getDouble("CROAMT"));//5
+				fbDTO.setCRODAY(rst.getInt("CRODAY"));//6
+				fbDTO.setCCURR(CommonUtil.AllTrim(rst.getString("CSFBCURR")));//7
+				fbDTO.setCSFBRECTNO(CommonUtil.AllTrim(rst.getString("CSFBRECTNO")));//8
+				fbDTO.setCSFBRECSEQ(rst.getInt("CSFBRECSEQ"));//9
+				fbDTO.setCSFBPONO(CommonUtil.AllTrim(rst.getString("CSFBPONO")));//10
+				fbDTO.setCSFBAU(CommonUtil.AllTrim(rst.getString("CSFBAU")));//11
+				fbDTO.setCSFBAD(rst.getInt("CSFBAD"));//12
+				fbDTO.setCSFBAT(rst.getInt("CSFBAT"));//13
+				fbDTO.setCSFBUT(rst.getInt("CSFBUT"));//14
 
+				log.info("fbDTO.setCBKCD:" + CommonUtil.AllTrim(rst.getString("CBKCD"))//1
+						+ ",fbDTO.setCATNO:" + CommonUtil.AllTrim(rst.getString("CATNO"))//2
+						+ ",fbDTO.setCBKRMD:" + rst.getInt("CBKRMD")//3
+						+ ",fbDTO.setCAEGDT:" + rst.getInt("CAEGDT")//4
+						+ ",fbDTO.setCROAMT:" + rst.getDouble("CROAMT")//5
+						+ ",fbDTO.setCRODAY:" + rst.getInt("CRODAY")//6
+						+ ",fbDTO.setCCURR:" + CommonUtil.AllTrim(rst.getString("CSFBCURR"))//7
+						+ ",fbDTO.setCSFBRECTNO:" + CommonUtil.AllTrim(rst.getString("CSFBRECTNO"))//8
+						+ ",fbDTO.setCSFBRECSEQ:" + rst.getInt("CSFBRECSEQ")//9
+						+ ",fbDTO.setCSFBPONO:" + CommonUtil.AllTrim(rst.getString("CSFBPONO"))//10
+						+ ",fbDTO.setCSFBAU:" + CommonUtil.AllTrim(rst.getString("CSFBAU"))//11
+						+ ",fbDTO.setCSFBAD:" + rst.getInt("CSFBAD")//12
+						+ ",fbDTO.setCSFBAT:" + rst.getInt("CSFBAT")//13
+						+ ",fbDTO.setCSFBUT:" + rst.getInt("CSFBUT"));//14
 				list.add(fbDTO);
 			}
 
 			if(list.isEmpty()) {
 				//一對一
+				log.info("保費入帳資訊-一對一:" + strSql2);
 				rst = stm.executeQuery(strSql2);
 				while (rst.next()) {
 					fbDTO = new CapcshfbVO();
 
-					fbDTO.setCBKCD(CommonUtil.AllTrim(rst.getString("CBKCD")));
-					fbDTO.setCATNO(CommonUtil.AllTrim(rst.getString("CATNO")));
-					fbDTO.setCBKRMD(rst.getInt("CBKRMD"));
-					fbDTO.setCAEGDT(rst.getInt("CAEGDT"));
-					fbDTO.setCROAMT(rst.getDouble("CROAMT"));
-					fbDTO.setCRODAY(rst.getInt("CRODAY"));
-					fbDTO.setCCURR(CommonUtil.AllTrim(rst.getString("CSFBCURR")));
-					fbDTO.setCSFBPONO(CommonUtil.AllTrim(rst.getString("CSFBPOCURR")));
-					fbDTO.setCSFBRECTNO(CommonUtil.AllTrim(rst.getString("CSFBRECTNO")));
-					fbDTO.setCSFBRECSEQ(rst.getInt("CSFBRECSEQ"));
-					fbDTO.setCSFBAU(CommonUtil.AllTrim(rst.getString("CSFBAU")));
-					fbDTO.setCSFBAD(rst.getInt("CSFBAD"));
-					fbDTO.setCSFBAT(rst.getInt("CSFBAT"));
-					fbDTO.setCSFBUT(rst.getInt("CSFBUT"));
+					fbDTO.setCBKCD(CommonUtil.AllTrim(rst.getString("CBKCD")));//1
+					fbDTO.setCATNO(CommonUtil.AllTrim(rst.getString("CATNO")));//2
+					fbDTO.setCBKRMD(rst.getInt("CBKRMD"));//3
+					fbDTO.setCAEGDT(rst.getInt("CAEGDT"));//4
+					fbDTO.setCROAMT(rst.getDouble("CROAMT"));//5
+					fbDTO.setCRODAY(rst.getInt("CRODAY"));//6
+					fbDTO.setCCURR(CommonUtil.AllTrim(rst.getString("CSFBCURR")));//7
+					fbDTO.setCSFBPONO(CommonUtil.AllTrim(rst.getString("CSFBPOCURR")));//8
+					fbDTO.setCSFBRECTNO(CommonUtil.AllTrim(rst.getString("CSFBRECTNO")));//9
+					fbDTO.setCSFBRECSEQ(rst.getInt("CSFBRECSEQ"));//10
+					fbDTO.setCSFBAU(CommonUtil.AllTrim(rst.getString("CSFBAU")));//11
+					fbDTO.setCSFBAD(rst.getInt("CSFBAD"));//12
+					fbDTO.setCSFBAT(rst.getInt("CSFBAT"));//13
+					fbDTO.setCSFBUT(rst.getInt("CSFBUT"));//14
 
+					log.info("fbDTO.setCBKCD:" + CommonUtil.AllTrim(rst.getString("CBKCD"))//1
+							+ ",fbDTO.setCATNO:" + CommonUtil.AllTrim(rst.getString("CATNO"))//2
+							+ ",fbDTO.setCBKRMD:" + rst.getInt("CBKRMD")//3
+							+ ",fbDTO.setCAEGDT:" + rst.getInt("CAEGDT")//4
+							+ ",fbDTO.setCROAMT:" + rst.getDouble("CROAMT")//5
+							+ ",fbDTO.setCRODAY:" + rst.getInt("CRODAY")//6
+							+ ",fbDTO.setCCURR:" + CommonUtil.AllTrim(rst.getString("CSFBCURR"))//7
+							+ ",fbDTO.setCSFBPONO:" + CommonUtil.AllTrim(rst.getString("CSFBPOCURR"))//8
+							+ ",fbDTO.setCSFBRECTNO:" + CommonUtil.AllTrim(rst.getString("CSFBRECTNO"))//9
+							+ ",fbDTO.setCSFBRECSEQ:" + rst.getInt("CSFBRECSEQ")//10
+							+ ",fbDTO.setCSFBAU:" + CommonUtil.AllTrim(rst.getString("CSFBAU"))//11
+							+ ",fbDTO.setCSFBAD:" + rst.getInt("CSFBAD")//12
+							+ ",fbDTO.setCSFBAT:" + rst.getInt("CSFBAT")//13
+							+ ",fbDTO.setCSFBUT:" + rst.getInt("CSFBUT"));//14
 					list.add(fbDTO);
 				}
 			}
@@ -361,6 +425,7 @@ public class CroOutOneServlet extends InitDBServlet {
 		strSql += " ORDER BY a.EBKCD,a.EATNO,a.EBKRMD,a.CSHFCURR,a.ENTAMT,a.CSHFAT ";
 
 		System.out.println("CroOutOne Qry_CAPCSHF_SQL="+strSql);
+		log.info("CroOutOne Qry_CAPCSHF_SQL="+strSql);
 		return strSql;
 	}
 
@@ -394,24 +459,33 @@ public class CroOutOneServlet extends InitDBServlet {
 	private CroOutOneConditionDTO setCroOutOneConditionDTO(HttpServletRequest req) {
 		CroOutOneConditionDTO cooc = new CroOutOneConditionDTO();
 
+		String logMsgString = "";
 		cooc.setType(req.getParameter("radType"));
+		logMsgString+="cooc.setType:" + req.getParameter("radType");
 
 		cooc.setBkCode(req.getParameter("txtEBKCD"));
+		logMsgString+=",cooc.setBkCode:" + req.getParameter("txtEBKCD");
 		cooc.setAccount(req.getParameter("txtEATNO"));
+		logMsgString+=",cooc.setAccount:" + req.getParameter("txtEATNO");
 		cooc.setCurrency(req.getParameter("txtCURRENCY"));
+		logMsgString+=",cooc.setCurrency:" + req.getParameter("txtCURRENCY");
 
 		if (!"".equals(req.getParameter("txtEBKRMD"))) {
 			cooc.setRmtDate(Integer.parseInt(req.getParameter("txtEBKRMD")));
+			logMsgString+=",cooc.setRmtDate:" + req.getParameter("txtEBKRMD");
 		}
 
 		if (!"".equals(req.getParameter("txtENTAMT"))) {
 			cooc.setRmtAmt(Double.parseDouble(req.getParameter("txtENTAMT")));
+			logMsgString+=",cooc.setRmtAmt:" + req.getParameter("txtENTAMT");
 		}
 
 		if (!"".equals(req.getParameter("txtEAEGDT"))) {
 			cooc.setAegDate(Integer.parseInt(req.getParameter("txtEAEGDT")));
+			logMsgString+=",cooc.setAegDate:" + req.getParameter("txtEAEGDT");
 		}
-
+		
+		log.info("coocDTO(CroOutOneConditionDTO)設定--> " + logMsgString);
 		return cooc;
 	}
 
@@ -444,27 +518,90 @@ public class CroOutOneServlet extends InitDBServlet {
 					iTime = iTime - 100000;
 				}
 
-				//更新登帳檔CAPCSHF
+				//更新登帳檔CAPCSHF-登帳核銷檔資料
+				/**
+				 * UPDATE CAPCSHF SET 
+					EAEGDT=?, //1,全球入帳日
+					ECRDAY=?, //2,核銷帳作業日
+					CSHFUU=?, //3,資料更新者
+					CSHFUD=?, //4,資料更新日期
+					CSHFUT=?, //5,資料更新時間
+					CSHFPOCURR=?, //6,保單幣別
+					CROTYPE=?, //7,資料類別
+					EUSREM2=? //8,登帳備註２
+					WHERE 
+					ECRDAY=0 and //核銷帳作業日
+					EBKCD=? AND //9,銀行代碼
+					EATNO=? AND //10,銀行帳號
+					CSHFCURR=? AND //11,幣別
+					EBKRMD=? AND //12,銀行匯款日
+					ENTAMT=? AND //13,核銷金額
+					CSHFAU=? AND //14,資料產生者
+					CSHFAD=? AND //15,資料產生日期
+					CSHFAT=? //16,資料產生時間
+				 */
 				pstmt1.clearParameters();
-				pstmt1.setInt(1, dto1.getEAEGDT());
-				pstmt1.setInt(2, Integer.parseInt(strUpdDate));
-				pstmt1.setString(3, strLogonUser);
-				pstmt1.setInt(4, Integer.parseInt(strUpdDate));
-				pstmt1.setInt(5, iTime);
-				pstmt1.setString(6, dto1.getCSHFPOCURR());
-				pstmt1.setString(7, dto1.getCROTYPE());
-				pstmt1.setString(8, dto1.getEUSREM2());
-				pstmt1.setString(9, dto1.getEBKCD());
-				pstmt1.setString(10, dto1.getEATNO());
-				pstmt1.setString(11, dto1.getCSHFCURR());
-				pstmt1.setInt(12, dto1.getEBKRMD());
-				pstmt1.setDouble(13, dto1.getENTAMT());
-				pstmt1.setString(14, dto1.getCSHFAU());
-				pstmt1.setInt(15, dto1.getCSHFAD());
-				pstmt1.setInt(16, dto1.getCSHFAT());
+				String logMsg = "";
+				pstmt1.setInt(1, dto1.getEAEGDT());//EAEGDT(全球入帳日)
+				logMsg += dto1.getEAEGDT();
+				pstmt1.setInt(2, Integer.parseInt(strUpdDate));//ECRDAY(核銷帳作業日)=
+				logMsg += "," + Integer.parseInt(strUpdDate);
+				pstmt1.setString(3, strLogonUser);//CSHFUU(資料更新者)=
+				logMsg += "," + strLogonUser;
+				pstmt1.setInt(4, Integer.parseInt(strUpdDate));//CSHFUD(資料更新日期)=
+				logMsg += "," + Integer.parseInt(strUpdDate);
+				pstmt1.setInt(5, iTime);//CSHFUT(資料更新時間)=
+				logMsg += "," + iTime;
+				pstmt1.setString(6, dto1.getCSHFPOCURR());//CSHFPOCURR(保單幣別)
+				logMsg += "," + dto1.getCSHFPOCURR();
+				pstmt1.setString(7, dto1.getCROTYPE());//CROTYPE(資料類別)
+				logMsg += "," + dto1.getCROTYPE();
+				pstmt1.setString(8, dto1.getEUSREM2());//EUSREM2(登帳備註２)
+				logMsg += "," + dto1.getEUSREM2();
+				pstmt1.setString(9, dto1.getEBKCD());//EBKCD(銀行代碼)
+				logMsg += "," + dto1.getEBKCD();
+				pstmt1.setString(10, dto1.getEATNO());//EATNO(CSHFCURR)
+				logMsg += "," + dto1.getEATNO();
+				pstmt1.setString(11, dto1.getCSHFCURR());//CSHFCURR(幣別)
+				logMsg += "," + dto1.getCSHFCURR();
+				pstmt1.setInt(12, dto1.getEBKRMD());//EBKRMD(銀行匯款日)
+				logMsg += "," + dto1.getEBKRMD();
+				pstmt1.setDouble(13, dto1.getENTAMT());//ENTAMT(核銷金額)
+				logMsg += "," + dto1.getENTAMT();
+				pstmt1.setString(14, dto1.getCSHFAU());//CSHFAU(資料產生者)
+				logMsg += "," + dto1.getCSHFAU();
+				pstmt1.setInt(15, dto1.getCSHFAD());//CSHFAD(資料產生日期)
+				logMsg += "," + dto1.getCSHFAD();
+				pstmt1.setInt(16, dto1.getCSHFAT());//CSHFAT(資料產生時間)
+				logMsg += "," + dto1.getCSHFAT();
+				
+				log.info("更新登帳檔CAPCSHF-登帳核銷檔資料:" + getUpdateSqlForCAPCSHF() + "," + logMsg);
 				pstmt1.executeUpdate();
 
 				//更新預備核銷檔CAPCSHFB
+				/**
+				 * UPDATE CAPCSHFB SET 
+					CRODAY=?, //1,核銷帳作業日
+					CSFBUU=?, //2,資料更新者
+					CSFBUD=?, //3,資料更新日期
+					CSFBUT=?, //4,資料更新時間
+					CSFBPOCURR=?, //5,保單幣別
+					CSFBAMTREF=?, //6,參考核銷金額
+					CAEGDT=? //7,全球入帳日
+					WHERE 
+					CRODAY=0 and //核銷帳作業日
+					CBKCD=? AND //8,銀行代碼
+					CATNO=? AND //9,銀行帳號
+					CSFBCURR=? AND //10,幣別
+					CBKRMD=? AND //11,銀行匯款日
+					CROAMT=? AND //12,核銷金額
+					CSFBAU=? AND //13,資料產生者
+					CSFBAD=? AND //14,資料產生日期
+					CSFBAT=? //15,資料產生時間
+				 */
+				if(list2.size()==0){
+					log.info("list2-[fbData]無值!! 不會update CAPCSHFB及ORGNFBD");
+				}
 				for(int j=0; j<list2.size(); j++)
 				{
 					dto2 = list2.get(j);
@@ -475,34 +612,65 @@ public class CroOutOneServlet extends InitDBServlet {
 						continue;
 
 					pstmt2.clearParameters();
-					pstmt2.setInt(1, Integer.parseInt(strUpdDate));
-					pstmt2.setString(2, strLogonUser);
-					pstmt2.setInt(3, Integer.parseInt(strUpdDate));
-					pstmt2.setInt(4, Integer.parseInt(strUpdTime));
-					pstmt2.setString(5, dto1.getCSHFPOCURR());
-					pstmt2.setDouble(6, dto1.getENTAMT());
-					pstmt2.setInt(7, dto1.getEAEGDT());
-					pstmt2.setString(8, dto2.getCBKCD());
-					pstmt2.setString(9, dto2.getCATNO());
-					pstmt2.setString(10, dto2.getCCURR());
-					pstmt2.setInt(11, dto2.getCBKRMD());
-					pstmt2.setDouble(12, dto2.getCROAMT());
-					pstmt2.setString(13, dto2.getCSFBAU());
-					pstmt2.setInt(14, dto2.getCSFBAD());
-					pstmt2.setInt(15, dto2.getCSFBAT());
+					String logMsg2 = "";
+					pstmt2.setInt(1, Integer.parseInt(strUpdDate));//CRODAY(核銷帳作業日)=
+					logMsg2 += Integer.parseInt(strUpdDate);
+					pstmt2.setString(2, strLogonUser);//CSFBUU(資料更新者)=
+					logMsg2 += "," + strLogonUser;
+					pstmt2.setInt(3, Integer.parseInt(strUpdDate));//CSFBUD(資料更新日期)=
+					logMsg2 += "," + Integer.parseInt(strUpdDate);
+					pstmt2.setInt(4, Integer.parseInt(strUpdTime));//CSFBUT(資料更新時間)=
+					logMsg2 += "," + Integer.parseInt(strUpdTime);
+					pstmt2.setString(5, dto1.getCSHFPOCURR());//CSFBPOCURR(保單幣別)
+					logMsg2 += "," + dto1.getCSHFPOCURR();
+					pstmt2.setDouble(6, dto1.getENTAMT());//CSFBAMTREF(參考核銷金額)
+					logMsg2 += "," + dto1.getENTAMT();
+					pstmt2.setInt(7, dto1.getEAEGDT());//CAEGDT(全球入帳日)
+					logMsg2 += "," + dto1.getEAEGDT();
+					pstmt2.setString(8, dto2.getCBKCD());//CBKCD(銀行代碼)=
+					logMsg2 += "," + dto2.getCBKCD();
+					pstmt2.setString(9, dto2.getCATNO());//CATNO(銀行帳號)=
+					logMsg2 += "," + dto2.getCATNO();
+					pstmt2.setString(10, dto2.getCCURR());//CSFBCURR(幣別)=
+					logMsg2 += "," + dto2.getCCURR();
+					pstmt2.setInt(11, dto2.getCBKRMD());//CBKRMD(銀行匯款日)=
+					logMsg2 += "," + dto2.getCBKRMD();
+					pstmt2.setDouble(12, dto2.getCROAMT());//CROAMT(核銷金額)=
+					logMsg2 += "," + dto2.getCROAMT();
+					pstmt2.setString(13, dto2.getCSFBAU());//CSFBAU(資料產生者)=
+					logMsg2 += "," + dto2.getCSFBAU();
+					pstmt2.setInt(14, dto2.getCSFBAD());//CSFBAD(資料產生日期)=
+					logMsg2 += "," + dto2.getCSFBAD();
+					pstmt2.setInt(15, dto2.getCSFBAT());//CSFBAT(資料產生時間)=
+					logMsg2 += "," + dto2.getCSFBAT();
+					
+					log.info("更新預備核銷檔CAPCSHFB:" + getUpdateSqlForCAPCSHFB() + "," + logMsg2);
 					pstmt2.executeUpdate();
 
-					//更新憑證明細檔
+					//更新憑證明細檔ORGNFBD, RCPP入帳憑証關聯明細檔
+					/**
+					 * UPDATE ORGNFBD //RCPP入帳憑証關聯明細檔
+						SET FBDSEQ=? //憑証流水號
+						WHERE 
+						FBDREPNO=? and //送金單
+						FBDREPSEQ=? //送金單序號
+					 */
 					pstmt2.clearParameters();
+					String logMsg3 = "";
 					pstmt2 = con.prepareStatement(getUpdateSqlForORGNFBD());
 					pstmt2.setInt(1, iSeq);
+					logMsg3 += iSeq;
 					pstmt2.setString(2, dto2.getCSFBRECTNO());
+					logMsg3 += "," + dto2.getCSFBRECTNO();
 					pstmt2.setInt(3, dto2.getCSFBRECSEQ());
+					logMsg3 += "," + dto2.getCSFBRECSEQ();
+					
+					log.info("更新憑證明細檔ORGNFBD:" + getUpdateSqlForORGNFBD() + "," + logMsg3);
 					pstmt2.executeUpdate();
 					iSeq++;
 
 					break;
-				}
+				} 
 			}
 
 			strMsg = "執行銷帳完成!!";
@@ -552,19 +720,32 @@ public class CroOutOneServlet extends InitDBServlet {
 			{
 				strChecked = (req.getParameter("ch"+i) != null)?CommonUtil.AllTrim(req.getParameter("ch"+i)):"";
 				if(strChecked.equals("Y")) {
+					String logMsg = "";
 					dto = orgData.get(i);
-					dto.setEBKCD(req.getParameter("txtBKCODE"+i));
-					dto.setEATNO(req.getParameter("txtBKACNT"+i));
-					dto.setEBKRMD(Integer.parseInt(req.getParameter("txtRMDT"+i)));
-					dto.setEAEGDT(Integer.parseInt(req.getParameter("txtEAEGDT"+i)));
-					dto.setENTAMT(Double.parseDouble(req.getParameter("txtMAMT"+i)));
-					if(req.getParameter("EN"+i) != null)
-						dto.setEUSREM2(req.getParameter("EN"+i));
+					dto.setEBKCD(req.getParameter("txtBKCODE"+i));//1
+					logMsg+="dto.setEBKCD:" + req.getParameter("txtBKCODE"+i);
+					dto.setEATNO(req.getParameter("txtBKACNT"+i));//2
+					logMsg+=",dto.setEATNO:" + req.getParameter("txtBKACNT"+i);
+					dto.setEBKRMD(Integer.parseInt(req.getParameter("txtRMDT"+i)));//3
+					logMsg+=",dto.setEBKRMD:" + req.getParameter("txtRMDT"+i);
+					dto.setEAEGDT(Integer.parseInt(req.getParameter("txtEAEGDT"+i)));//4
+					logMsg+=",dto.setEAEGDT:" + req.getParameter("txtEAEGDT"+i);
+					dto.setENTAMT(Double.parseDouble(req.getParameter("txtMAMT"+i)));//5
+					logMsg+=",dto.setENTAMT:" + req.getParameter("txtMAMT"+i);
+					if(req.getParameter("EN"+i) != null){
+						dto.setEUSREM2(req.getParameter("EN"+i));//6
+						logMsg+=",dto.setEUSREM2:" + req.getParameter("EN"+i);
+					}						
 
-					dto.setCROTYPE(req.getParameter("txtCroType"));
-					if(req.getParameter("txtPoCurr") != null && !req.getParameter("txtPoCurr").equals(""))
-						dto.setCSHFPOCURR(req.getParameter("txtPoCurr"));
+					dto.setCROTYPE(req.getParameter("txtCroType"));//7
+					logMsg+=",dto.setCROTYPE:" + req.getParameter("txtCroType");
+					
+					if(req.getParameter("txtPoCurr") != null && !req.getParameter("txtPoCurr").equals("")){
+						dto.setCSHFPOCURR(req.getParameter("txtPoCurr"));//8
+						logMsg+=",dto.setCSHFPOCURR:" + req.getParameter("txtPoCurr");
+					}
 
+					log.info("dto(CapcshfDTO)是" + logMsg);
 					list.add(dto);
 				}
 			}

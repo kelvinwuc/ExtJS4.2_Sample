@@ -92,6 +92,16 @@ public class DISBAccCodeDetailVO implements java.io.Serializable {
 	private String conversionCredit = "0";
 	
 	private String sort = "";
+	
+	private String payCompany = "";
+
+	public String getPayCompany() {
+		return payCompany;
+	}
+
+	public void setPayCompany(String payCompany) {
+		this.payCompany = payCompany;
+	}
 
 	public String getStrActCd1() {
 		return strActCd1;

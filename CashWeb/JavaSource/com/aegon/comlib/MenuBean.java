@@ -2,11 +2,16 @@ package com.aegon.comlib;
 
 import java.util.Vector;
 
+import sun.util.logging.resources.logging;
+import org.apache.log4j.Logger;
+
 // Referenced classes of package com.aegon.comlib:
 //            RootClass, UserInfo
 
 public class MenuBean extends RootClass
 {
+	private Logger log = Logger.getLogger(getClass());
+	
     UserInfo userInfo;
     int iMenuIndex;
     private int iCurrItem;
@@ -24,6 +29,7 @@ public class MenuBean extends RootClass
 
     public MenuBean(UserInfo thisUserInfo)
     {
+    	log.info("產生menu.jsp需要的選單內容");
         userInfo = null;
         iMenuIndex = 0;
         iCurrItem = 0;
@@ -99,6 +105,7 @@ public class MenuBean extends RootClass
     {
 //        writeDebugLog(3, getClass().getName() + ".processFunction()", "process fucn_id = '" + getUserInfo().getFunctionIdDown(iCurrItem).trim() + "' func_name = '" + getUserInfo().getFuncName(iCurrItem).trim() + "'");
         strMenuHtml = strMenuHtml + "<DIV id=\"" + getUserInfo().getFunctionIdDown(iCurrItem).trim() + "\" " + " href=\"" + getUserInfo().getUrl(iCurrItem).trim() + "\"" + " target=\"" + getUserInfo().getTargetWindow(iCurrItem).trim() + "\"" + " onClick=\"mOnClick('" + getUserInfo().getFunctionIdDown(iCurrItem).trim() + "','" + getUserInfo().getUrl(iCurrItem).trim() + "','" + getUserInfo().getTargetWindow(iCurrItem).trim() + "');\"" + " style=\"cursor:hand;width:117;text-decoration: none;background-image:url(" + getUserInfo().getImageFileOff(iCurrItem).trim() + ");\"" + " onMouseOver=\"" + strOnMouseOver + "\" onMouseOut=\"" + strOnMouseOut + "\">" + "<FONT size=2 style=\"position: relative;top:2;left:18;color:white; \">" + getUserInfo().getFuncName(iCurrItem).trim() + "</FONT></DIV>";
+        log.info("strMenuHtml是\r\n" + strMenuHtml);
     }
 
     private void processSubMenu(String strClassName, String strOnMouseOver, String strOnMouseOut, String strOnClick)
@@ -120,6 +127,7 @@ public class MenuBean extends RootClass
                 break;
         }
         strMenuHtml += "</DIV>\r\n";
+        log.info(strMenuHtml);
     }
 
     private void writeOneMenu(String strFuncId, String strFuncName, String strClassName, String strOnMouseOver, String strOnMouseOut, String strOnClick)
@@ -132,10 +140,12 @@ public class MenuBean extends RootClass
             strMenuHtml += getUserInfo().getImageFileOffUp(iCurrItem);
         strMenuHtml += ");\"><FONT size=2 style=\"position: relative;top:2;left:18;color:white; \">" + strFuncName + "</FONT></SPAN>\r\n";
         strMenuHtml = strMenuHtml + "<DIV id=\"" + strFuncId + "\" style=\"display:none;margin-left : 5px;margin-top:0px;\">\r\n";
+        //log.info("strMenuHtml是" + strMenuHtml);
     }
 
     public String getHvMenuHtml(int iHeight, int iWidth)
     {
+    	log.info("開始產生選單內容");
         String strCurrMenu = new String("");
         boolean bShouldEnd = false;
         String strMenuPrefix = new String("Menu");
@@ -175,6 +185,7 @@ public class MenuBean extends RootClass
             }
 
 //        writeDebugLog(3, getClass().getName() + ".getHvMenuHtml()", "Exit");
+        log.info(strMenuHtml);
         return strMenuHtml;
     }
 
@@ -210,6 +221,8 @@ public class MenuBean extends RootClass
 //        writeDebugLog(3, getClass().getName() + ".writeHvOneMenu()", "Enter, the current item is '" + String.valueOf(iCurrItem) + "', the func_id is '" + strFuncId + "', the func_name is '" + strFuncName + "'");
         int iSubItemCount = getSubItemCount(strFuncId);
         strMenuHtml += " " + strMenuVariable + " = new Array(\"" + strFuncName + "\",\"\",\"\"," + String.valueOf(iSubItemCount) + "," + String.valueOf(iHeight) + "," + String.valueOf(iWidth) + ");\r\n";
+        
+        //log.info("strMenuHtml選單內容是\r\n" + strMenuHtml);
     }
 
     private int getSubItemCount(String strCurrFuncId)
@@ -227,6 +240,7 @@ public class MenuBean extends RootClass
     public String getNoOffFirstLineMenus()
     {
         String strTmp = getHvMenuHtml(0, 0);
+        log.info(String.valueOf(iFirstLevelCount));
         return String.valueOf(iFirstLevelCount);
     }
 

@@ -1,9 +1,9 @@
 /** =============================================================================
  *  ------------------------------------------------------------------------------------------------------------------
- *   ª›®D≥Ê∏π       ≠◊ßÔ™Ã                ≠◊ßÔ§È    			  ≠◊ßÔ§∫Æe
+ *   ÈúÄÊ±ÇÂñÆËôü       ‰øÆÊîπËÄÖ                ‰øÆÊîπÊó•    			  ‰øÆÊîπÂÖßÂÆπ
  *  ------------------------------------------------------------------------------------------------------------------
- *    R00393    Leo Huang    			2010/09/16           ≤{¶bÆ…∂°®˙Capsil¿ÁπBÆ…∂°
- *    R00393    Leo Huang    			2010/10/01           µ¥πÔ∏ÙÆ|¬‡¨€πÔ∏ÙÆ|
+ *    R00393    Leo Huang    			2010/09/16           ÁèæÂú®ÊôÇÈñìÂèñCapsilÁáüÈÅãÊôÇÈñì
+ *    R00393    Leo Huang    			2010/10/01           ÁµïÂ∞çË∑ØÂæëËΩâÁõ∏Â∞çË∑ØÂæë
  *  =============================================================================
  */
 package com.aegon.comlib;
@@ -12,10 +12,13 @@ import java.io.*;
 import java.sql.*;
 import java.text.*;
 import java.util.*;
-
+import org.apache.log4j.Logger;
 
 
 public class UserInfo extends RootClass {
+	
+	private Logger logger = Logger.getLogger(getClass());
+	
 	private String strPassword = new String("");
 	private String strResetPasswordFlag = new String("");
 	private String strUserId = new String("");
@@ -50,32 +53,7 @@ public class UserInfo extends RootClass {
 	private String strSA = "";
 
 	private CommonUtil commonUtil = null;
-	/*
-		private String strDbName = new String("AegonWeb");
-		private String strUserIdTableName = new String("tUser");
-		private String strGroupFunctionTableName = new String("tgroup_function");
-		private String strFunctionTreeTableName = new String("tfunction_tree");
-		private String strUserGroupTableName = new String("tuser_group");
-		private String strFunctionTableName = new String("tFunction");
-		private String strUserIdFieldName = new String("UserId");
-		private String strUserNameFieldName = new String("UserName");
-		private String strDefaultGroupFieldName = new String("DefaultGroupId");
-		private String strPasswordFieldName = new String("Password");
-		private String strLastPasswordDateFieldName = new String("LastPasswordDate");
-		private String strLastLoginDateFieldName = new String("LastLogonDate");
-		private String strPasswordValidDaysFieldName = new String("PasswordValidDay");
-		private String strUserTypeFieldName = new String("UserType");
-		private String strUserStatusFieldName = "UserStatus";
-		private String strHitCountUrlFieldName = new String("hit_count_url");
-		private String strSubFunctionFieldName = new String("SubFunction");
 	
-		private String strDpDskFieldName = new String("");
-		private String strOfficeFieldName = new String("");
-		private String strBranchFieldName = new String("");
-		private String strBranch = new String("");
-		private String strDpDsk = new String("");
-		private String strOffice = new String("");
-	*/
 	private SimpleDateFormat sdfDateFormatter =
 		new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", java.util.Locale.TAIWAN);
 	private int passwordErrorCounter = 0;
@@ -103,13 +81,13 @@ public class UserInfo extends RootClass {
 	}
 	private Vector vtFunctionTree = new Vector(10, 10);
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 */
@@ -117,13 +95,13 @@ public class UserInfo extends RootClass {
 		super();
 	}
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 */
@@ -139,13 +117,13 @@ public class UserInfo extends RootClass {
 		this.setUserId(strThisUserId);
 	}
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 */
@@ -161,13 +139,13 @@ public class UserInfo extends RootClass {
 			thisDbFactory.getGlobalEnviron().getPasswordCaseSenstivity();
 	}
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 */
@@ -192,13 +170,13 @@ public class UserInfo extends RootClass {
 		}
 	}
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 */
@@ -220,13 +198,13 @@ public class UserInfo extends RootClass {
 		this.setUserId(strThisUserId);
 	}
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 */
@@ -254,13 +232,13 @@ public class UserInfo extends RootClass {
 	public boolean getAutoRefresh() {
 		return bAutoRefresh;
 	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.lang.String
@@ -275,13 +253,13 @@ public class UserInfo extends RootClass {
 		}
 		return strPassword;
 	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.lang.String
@@ -292,13 +270,13 @@ public class UserInfo extends RootClass {
 		else
 			return "";
 	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.lang.String
@@ -312,13 +290,13 @@ public class UserInfo extends RootClass {
 		}
 		return strUserName;
 	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.lang.String
@@ -342,13 +320,13 @@ public class UserInfo extends RootClass {
 		return strBranchCode;
 	}
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 * @return java.lang.String
@@ -364,13 +342,13 @@ public class UserInfo extends RootClass {
 	} 
 	
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 * @return java.lang.String
@@ -385,13 +363,13 @@ public class UserInfo extends RootClass {
 		return strUserDept;
 	} 
 	/**RC0036
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2014/6/27)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2014/6/27)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 * @return java.lang.String
@@ -406,13 +384,13 @@ public class UserInfo extends RootClass {
 		return strUserArea;
 	} 
 	/**RC0036
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2014/6/27)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2014/6/27)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 * @return java.lang.String
@@ -429,13 +407,13 @@ public class UserInfo extends RootClass {
 
 
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 * @return java.lang.String
@@ -451,13 +429,13 @@ public class UserInfo extends RootClass {
 	} 
 	
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 */
@@ -467,9 +445,7 @@ public class UserInfo extends RootClass {
 		boolean bReturnStatus = true;
 		//	writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.refresh()","Enter ");
 		if (dbFactory == null) {
-			setLastError(
-				"UserInfo.refresh()",
-				"The DbFactory is empty, can't refresh");
+			setLastError("UserInfo.refresh()","The DbFactory is empty, can't refresh");
 			bReturnStatus = false;
 		} else {
 			if (commonUtil == null) {
@@ -480,7 +456,7 @@ public class UserInfo extends RootClass {
 		if (bReturnStatus) {
 			//		writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.refresh()","dbFactory is O.K. ");
 			if (this.getUserId().equals("")) {
-				setLastError("UserInfo.refresh()", "±b∏π•º≥]©w");
+				setLastError("UserInfo.refresh()", "Â∏≥ËôüÊú™Ë®≠ÂÆö");
 				bReturnStatus = false;
 			}
 		}
@@ -490,9 +466,7 @@ public class UserInfo extends RootClass {
 			if (conDbConnection == null) {
 				conDbConnection = dbFactory.getConnection("UserInfo.refresh()");
 				if (conDbConnection == null) {
-					setLastError(
-						"UserInfo.refresh()",
-						dbFactory.getLastErrorMessage());
+					setLastError("UserInfo.refresh()",dbFactory.getLastErrorMessage());
 					bReturnStatus = false;
 				}
 			}
@@ -501,20 +475,10 @@ public class UserInfo extends RootClass {
 		if (bReturnStatus) {
 			//		writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.refresh()","pass connection check ");
 			try {
-				strUserSql =
-					"select * from "
-						+ (String) dbFactory
-							.getGlobalEnviron()
-							.getServletContext()
-							.getAttribute(
-							Constant.TABLE_NAME_USER_ID)
-						+ " where "
-						+ (String) dbFactory
-							.getGlobalEnviron()
-							.getServletContext()
-							.getAttribute(
-							Constant.FIELD_NAME_USER_ID)
-						+ " = ?";
+				//Êü•Ë©¢USERË≥áÊñôË°®
+				//SELECT * FROM USER WHERE USRID = ?
+				strUserSql = "select * from " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.TABLE_NAME_USER_ID)
+						+ " where " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_ID) + " = ?";
 				pstmTmp = conDbConnection.prepareStatement(strUserSql);
 			} catch (SQLException e) {
 				setLastError("UserInfo.refresh()", e);
@@ -526,6 +490,7 @@ public class UserInfo extends RootClass {
 			//		writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.refresh()","pass create statement ");
 			try {
 				pstmTmp.setString(1, this.getUserId());
+				logger.info("strUserSqlÊòØ" + strUserSql + ",USRID:" + this.getUserId());
 			} catch (SQLException e) {
 				setLastError("UserInfo.refresh()", e);
 				bReturnStatus = false;
@@ -546,293 +511,79 @@ public class UserInfo extends RootClass {
 			//		writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.refresh()","pass execute statement ");
 			try {
 				if (rstTmp.next()) {
+					//ÂæûuserË≥áÊñôË°®Â∞áÂêÑÊ¨Ñ‰ΩçÂØ´Ëá≥UserInfo
 					strEmail = CommonUtil.AllTrim(rstTmp.getString("EMAIL"));
 					strSQ = CommonUtil.AllTrim(rstTmp.getString("SCTQ"));
 					strSA = CommonUtil.AllTrim(rstTmp.getString("SCTA"));
 
-					if (checkForFieldName(rstTmp,
-						(String) dbFactory
-							.getGlobalEnviron()
-							.getServletContext()
-							.getAttribute(
-							Constant.FIELD_NAME_USER_NAME))) {
-						if (rstTmp
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_USER_NAME))
-							!= null)
-							strUserName =
-								rstTmp
-									.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant.FIELD_NAME_USER_NAME))
-									.trim();
+					if (checkForFieldName(rstTmp,(String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_NAME))) {
+						if (rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_NAME))	!= null)
+							strUserName = rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_NAME)).trim();
 						else
 							strUserName = new String("");
 					}
-					if (checkForFieldName(rstTmp,
-						(String) dbFactory
-							.getGlobalEnviron()
-							.getServletContext()
-							.getAttribute(
-							Constant.FIELD_NAME_DEFAULT_GROUP_ID))) {
-						if (rstTmp
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_DEFAULT_GROUP_ID))
-							!= null)
-							strDefaultGroup =
-								rstTmp
-									.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant
-												.FIELD_NAME_DEFAULT_GROUP_ID))
-									.trim();
+					if (checkForFieldName(rstTmp,(String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_DEFAULT_GROUP_ID))) {
+						if (rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_DEFAULT_GROUP_ID)) != null)
+							strDefaultGroup = rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_DEFAULT_GROUP_ID)).trim();
 						else
 							strDefaultGroup = new String("");
 					}
-					if (checkForFieldName(rstTmp,
-						(String) dbFactory
-							.getGlobalEnviron()
-							.getServletContext()
-							.getAttribute(
-							Constant.FIELD_NAME_PASSWORD))) {
-						if (rstTmp
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_PASSWORD))
-							!= null)
-							strPassword =
-								rstTmp
-									.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant.FIELD_NAME_PASSWORD))
-									.trim();
+					if (checkForFieldName(rstTmp,(String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_PASSWORD))) {
+						if (rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_PASSWORD)) != null)
+							strPassword = rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_PASSWORD)).trim();
 						else
 							strPassword = new String("");
 					}
-					if (checkForFieldName(rstTmp,
-						(String) dbFactory
-							.getGlobalEnviron()
-							.getServletContext()
-							.getAttribute(
-							Constant.FIELD_NAME_LAST_PASSWORD_DATE))) {
+					if (checkForFieldName(rstTmp,(String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_LAST_PASSWORD_DATE))) {
 						//					if( rstTmp.getDate(strLastPasswordDateFieldName) != null )
-						dteLastPasswordDate =
-							commonUtil.convertROC2WestenDate1(
-								rstTmp.getString(
-									(String) dbFactory
-										.getGlobalEnviron()
-										.getServletContext()
-										.getAttribute(
-										Constant
-											.FIELD_NAME_LAST_PASSWORD_DATE)));
+						dteLastPasswordDate = commonUtil.convertROC2WestenDate1(rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_LAST_PASSWORD_DATE)));
 						//					else
 						//						dteLastPasswordDate		= new java.util.Date();
 					}
 
-					if (checkForFieldName(rstTmp,
-						(String) dbFactory
-							.getGlobalEnviron()
-							.getServletContext()
-							.getAttribute(
-							Constant.FIELD_NAME_PASSWORD_VALID_DAY))) {
-						if (rstTmp
-							.getInt(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_PASSWORD_VALID_DAY))
-							!= 0)
-							iPasswordExpirationDays =
-								rstTmp.getInt(
-									(String) dbFactory
-										.getGlobalEnviron()
-										.getServletContext()
-										.getAttribute(
-										Constant
-											.FIELD_NAME_PASSWORD_VALID_DAY));
+					if (checkForFieldName(rstTmp,(String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_PASSWORD_VALID_DAY))) {
+						if (rstTmp.getInt((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_PASSWORD_VALID_DAY)) != 0)
+							iPasswordExpirationDays = rstTmp.getInt((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_PASSWORD_VALID_DAY));
 					}
-					if (checkForFieldName(rstTmp,
-						(String) dbFactory
-							.getGlobalEnviron()
-							.getServletContext()
-							.getAttribute(
-							Constant.FIELD_NAME_USER_TYPE))) {
-						if (rstTmp
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_USER_TYPE))
-							!= null)
-							strUserType =
-								rstTmp
-									.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant.FIELD_NAME_USER_TYPE))
-									.trim();
+					if (checkForFieldName(rstTmp,(String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_TYPE))) {
+						if (rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_TYPE)) != null)
+							strUserType = rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_TYPE)).trim();
 						else
 							strUserType = new String("");
 					}
-					if (checkForFieldName(rstTmp,
-						(String) dbFactory
-							.getGlobalEnviron()
-							.getServletContext()
-							.getAttribute(
-							Constant.FIELD_NAME_USER_DEPT))) {
-						if (rstTmp
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_USER_DEPT))
-							!= null)
-							strUserDept =
-								rstTmp
-									.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant.FIELD_NAME_USER_DEPT))
-									.trim();
+					if (checkForFieldName(rstTmp,(String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_DEPT))) {
+						if (rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_DEPT)) != null)
+							strUserDept = rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_DEPT)).trim();
 						else
 							strUserDept = new String("");
 					}
-/*RC0036*/			if (checkForFieldName(rstTmp,
-							(String) dbFactory
-								.getGlobalEnviron()
-								.getServletContext()
-								.getAttribute(
-								Constant.FIELD_NAME_USER_AREA))) {
-							if (rstTmp
-								.getString(
-									(String) dbFactory
-							    		.getGlobalEnviron()
-										.getServletContext()
-										.getAttribute(
-										Constant.FIELD_NAME_USER_AREA))
-								!= null)
-								strUserArea =
-									rstTmp
-										.getString(
-											(String) dbFactory
-												.getGlobalEnviron()
-												.getServletContext()
-												.getAttribute(
-												Constant.FIELD_NAME_USER_AREA))
-										.trim();
+/*RC0036*/			if (checkForFieldName(rstTmp,(String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_AREA))) {
+							if (rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_AREA)) != null)
+								strUserArea = rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_AREA)).trim();
 							else
 								strUserArea = new String("");
 						}
-/*RC0036*/			if (checkForFieldName(rstTmp,
-		                     (String) dbFactory
-			                     .getGlobalEnviron()
-			                     .getServletContext()
-			                     .getAttribute(
-		                         Constant.FIELD_NAME_USER_BRCH))) {
-		                     if (rstTmp
-			                     .getString(
-				                     (String) dbFactory
-					                     .getGlobalEnviron()
-					                     .getServletContext()
-					                     .getAttribute(
-					                     Constant.FIELD_NAME_USER_BRCH))
-			                     != null)
-			                     strUserBrch =
-				                     rstTmp
-				                         .getString(
-						                     (String) dbFactory
-					                        	 .getGlobalEnviron()
-							                     .getServletContext()
-							                     .getAttribute(
-						                         Constant.FIELD_NAME_USER_BRCH))
-					                     .trim();
+/*RC0036*/			if (checkForFieldName(rstTmp,(String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_BRCH))) {
+		                     if (rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_BRCH)) != null)
+			                     strUserBrch = rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_BRCH)).trim();
 		                      else
 			                      strUserBrch = new String("");
 	                    }
 
-					if (checkForFieldName(rstTmp,
-						(String) dbFactory
-							.getGlobalEnviron()
-							.getServletContext()
-							.getAttribute(
-							Constant.FIELD_NAME_USER_RIGHT))) {
-						if (rstTmp
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_USER_RIGHT))
-							!= null)
-							strUserRight =
-								rstTmp
-									.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant.FIELD_NAME_USER_RIGHT))
-									.trim();
+					if (checkForFieldName(rstTmp,(String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_RIGHT))) {
+						if (rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_RIGHT)) != null)
+							strUserRight = rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_RIGHT)).trim();
 						else
 							strUserRight = new String("");
 					}
-					if (checkForFieldName(rstTmp,
-						(String) dbFactory
-							.getGlobalEnviron()
-							.getServletContext()
-							.getAttribute(
-							Constant.FIELD_NAME_USER_STATUS))) {
-						if (rstTmp
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_USER_STATUS))
-							!= null)
-							strUserStatus =
-								rstTmp
-									.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant.FIELD_NAME_USER_STATUS))
-									.trim();
+					if (checkForFieldName(rstTmp,(String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_STATUS))) {
+						if (rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_STATUS))!= null)
+							strUserStatus = rstTmp.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_STATUS)).trim();
 						else
 							strUserStatus = new String("");
 					}
 				} else {
-					setLastError(
-						"UserInfo.refresh()",
-						"±b∏π '" + this.getUserId() + "' §£¶s¶b©Û∏ÍÆ∆Æw§§");
+					setLastError("UserInfo.refresh()","Â∏≥Ëôü '" + this.getUserId() + "' ‰∏çÂ≠òÂú®ÊñºË≥áÊñôÂ∫´‰∏≠");
 					bReturnStatus = false;
 				}
 			} catch (SQLException e) {
@@ -850,15 +601,17 @@ public class UserInfo extends RootClass {
 			setLastError("UserInfo.refresh()", e);
 		}
 
-		/*	 •˝≠n≥]©w¨∞•Hßπ¶®refresh,¶]¨∞retriveProgramStructure()∑|¿ÀÆ÷¶π§@flag*/
+		/*	 ÂÖàË¶ÅË®≠ÂÆöÁÇ∫‰ª•ÂÆåÊàêrefresh,Âõ†ÁÇ∫retriveProgramStructure()ÊúÉÊ™¢Ê†∏Ê≠§‰∏Äflag*/
 		if (bReturnStatus) {
 			bRefreshed = true;
 		}
 
 		if (bReturnStatus)
+			//Âü∑Ë°åretriveProgramStructure()--->Êü•Ë©¢USERÁöÑÊ¨äÈôê,ÂèØ‰ΩøÁî®ÁöÑmenu
+			//Êü•Ë©¢USERGRPÂèäGRPFUN
 			bReturnStatus = retriveProgramStructure();
 
-		/*	 ≠YretriveProgramStructure()¶^¿≥¶≥ø˘ª~¶A±NbRefreshed∫Xº–≥]©w¶^•ºRefresh*/
+		/*	 Ëã•retriveProgramStructure()ÂõûÊáâÊúâÈåØË™§ÂÜçÂ∞ábRefreshedÊóóÊ®ôË®≠ÂÆöÂõûÊú™Refresh*/
 		if (!bReturnStatus)
 			bRefreshed = false;
 
@@ -866,10 +619,7 @@ public class UserInfo extends RootClass {
 		if (conDbConnection != null) {
 			try {
 				if (conDbConnection.isClosed()) {
-					writeDebugLog(
-						Constant.DEBUG_WARNING,
-						"UserInfo.refresh()",
-						"The connection has been closed already");
+					writeDebugLog(Constant.DEBUG_WARNING,"UserInfo.refresh()","The connection has been closed already");
 					conDbConnection = null;
 				} else {
 					dbFactory.releaseConnection(conDbConnection);
@@ -879,23 +629,20 @@ public class UserInfo extends RootClass {
 				setLastError("UserInfo.refresh()", e);
 			}
 		}
-		//	if( bReturnStatus )
-		//		writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.refresh()","Exit with status true ");
-		//	else
-		//		writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.refresh()","Exit with status false ");
 		return bReturnStatus;
-	}
-
+	} //END refresh
+	
 	public void setAutoRefresh(boolean bThisAutoRefresh) {
 		bAutoRefresh = bThisAutoRefresh;
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 05:16:43)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 05:16:43)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @param thisDbFactory dbFactory
@@ -905,78 +652,67 @@ public class UserInfo extends RootClass {
 			setLastError("UserInfo.setDbFactory()", "input parameter is null");
 		} else {
 			dbFactory = thisDbFactory;
-			this.setDebugFileName(
-				thisDbFactory.getGlobalEnviron().getDebugFileName());
+			this.setDebugFileName(thisDbFactory.getGlobalEnviron().getDebugFileName());
 			this.setDebug(thisDbFactory.getGlobalEnviron().getDebug());
 			this.setSessionId(thisDbFactory.getSessionId());
 		}
 
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:37:51)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:37:51)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @param strThisUserId java.lang.String
 			 */
 	public java.util.Date getLastLoginDate() {
 		if (!bRefreshed) {
-			setLastError(
-				"UserInfo.getUserName()",
-				"Not Refresh yet, wrong state");
+			setLastError("UserInfo.getUserName()","Not Refresh yet, wrong state");
 			dteLastLoginDate = null;
 		}
 		return dteLastLoginDate;
 	}
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 * @return java.lang.String
 	 */
 	/* 
 	 *
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 * @return java.lang.String
 	 */
 	public boolean checkUserStatus() {
 		boolean bReturn = true;
-
 		//	writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.checkUserStatus()","Enter");
 		if (!bRefreshed) {
-			if (!this.refresh())
-				bReturn = false;
+			if (!this.refresh()) bReturn = false;
 		}
 
 		if (bReturn) {
-			writeDebugLog(
-				Constant.DEBUG_DEBUG,
-				"UserInfo.checkUserStatus()",
-				"The user id = '"
-					+ this.getUserId()
-					+ "', status = '"
-					+ this.getUserStatus()
-					+ "'");
+			writeDebugLog( Constant.DEBUG_DEBUG, "UserInfo.checkUserStatus()","The user id = '" + this.getUserId() + "', status = '" + this.getUserStatus() + "'");
 			if (!this.getUserStatus().equals("A")) {
-				setLastError("UserInfo.checkUserStatus()", "®œ•Œ™Ãº»Æ…•¢Æƒ");
+				setLastError("UserInfo.checkUserStatus()", "‰ΩøÁî®ËÄÖÊö´ÊôÇÂ§±Êïà");
 				bReturn = false;
 			}
 		}
@@ -984,60 +720,22 @@ public class UserInfo extends RootClass {
 	}
 
 	public boolean getOneFunction(String strFuncId, String strSubFunction) {
-	
-		
 		boolean bReturnStatus = true;
-		String strFunctionTreeSql =
-			new String(
-				"select "
-					+ (String) dbFactory
-						.getGlobalEnviron()
-						.getServletContext()
-						.getAttribute(
-						Constant.FIELD_NAME_FUNCTION_ID_UP)
-					+ ","
-					+ (String) dbFactory
-						.getGlobalEnviron()
-						.getServletContext()
-						.getAttribute(
-						Constant.FIELD_NAME_SEQ)
-					+ ","
-					+ (String) dbFactory
-						.getGlobalEnviron()
-						.getServletContext()
-						.getAttribute(
-						Constant.FIELD_NAME_FUNCTION_ID_DOWN)
-					+ " from "
-					+ (String) dbFactory
-						.getGlobalEnviron()
-						.getServletContext()
-						.getAttribute(
-						Constant.TABLE_NAME_FUNCTION_TREE)
-					+ " where "
-					+ (String) dbFactory
-						.getGlobalEnviron()
-						.getServletContext()
-						.getAttribute(
-						Constant.FIELD_NAME_FUNCTION_ID_UP)
-					+ " = ?");
+		//Êü•Ë©¢FUNCTREEË≥áÊñôË°®ÁöÑFUNUP
+		//SELECT FUNUP,SEQ,FUNDWN FROM FUNCTREE WHERE FUNUP = ?
+		String strFunctionTreeSql = new String("select " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_ID_UP)+ "," + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_SEQ) + "," + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_ID_DOWN)
+					+ " from "+ (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.TABLE_NAME_FUNCTION_TREE)
+					+ " where "+ (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_ID_UP) + " = ?");
 
-		System.out.print("strFunctionTreeSql==>"+strFunctionTreeSql);	//test		
-		String strFunctionDetailSql =
-			new String(
-				"select * from "
-					+ (String) dbFactory
-						.getGlobalEnviron()
-						.getServletContext()
-						.getAttribute(
-						Constant.TABLE_NAME_FUNCTION)
-					+ " where "
-					+ (String) dbFactory
-						.getGlobalEnviron()
-						.getServletContext()
-						.getAttribute(
-						Constant.FIELD_NAME_FUNCTION_ID)
-					+ " = ?");
-		System.out.print("strFunctionDetailSql==>"+strFunctionDetailSql);	//test
+		/*System.out.println("strFunctionTreeSql==>"+strFunctionTreeSql);	//test	
+		logger.info("strFunctionTreeSql==>"+strFunctionTreeSql);*/
+		
+		//Êü•Ë©¢FUNCË≥áÊñôË°®
+		//SELECT * FROM FUNC WHERE FUNID = ?
+		String strFunctionDetailSql = new String("select * from " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.TABLE_NAME_FUNCTION)
+											+ " where "+ (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_ID) + " = ?");
+		/*System.out.println("strFunctionDetailSql==>"+strFunctionDetailSql);	//test
+		logger.info("strFunctionDetailSql==>"+strFunctionDetailSql);*/
 		PreparedStatement pstmFunctionTree = null;
 		PreparedStatement pstmFunctionDetail = null;
 		ResultSet rstFunctionTree = null;
@@ -1046,9 +744,10 @@ public class UserInfo extends RootClass {
 
 		try {
 			strLocation = "UserInfo.getOneFunction1";
-			pstmFunctionTree =
-				conDbConnection.prepareStatement(strFunctionTreeSql);
+			logger.info(strFunctionTreeSql + ", FUNUP:" + strFuncId);
+			pstmFunctionTree = conDbConnection.prepareStatement(strFunctionTreeSql);
 			pstmFunctionTree.setString(1, strFuncId);
+			
 			rstFunctionTree = pstmFunctionTree.executeQuery();
 			boolean bIsMenu = false;
 			while (rstFunctionTree.next()) {
@@ -1058,260 +757,75 @@ public class UserInfo extends RootClass {
 				bIsMenu = true;
 				for (i = 0; i < vtFunctionTree.size(); i++) {
 					objTmp = (stFunction) vtFunctionTree.elementAt(i);
-					if (objTmp
-						.strFunctionIdUp
-						.equals(
-							rstFunctionTree
-								.getString(
-									(String) dbFactory
-										.getGlobalEnviron()
-										.getServletContext()
-										.getAttribute(
-										Constant.FIELD_NAME_FUNCTION_ID_UP))
-								.trim())
-						&& objTmp.strSeq.equals(
-							rstFunctionTree
-								.getString(
-									(String) dbFactory
-										.getGlobalEnviron()
-										.getServletContext()
-										.getAttribute(
-										Constant.FIELD_NAME_SEQ))
-								.trim())
-						&& objTmp.strFunctionIdDown.equals(
-							rstFunctionTree
-								.getString(
-									(String) dbFactory
-										.getGlobalEnviron()
-										.getServletContext()
-										.getAttribute(
-										Constant.FIELD_NAME_FUNCTION_ID_DOWN))
-								.trim())) {
+					if (objTmp.strFunctionIdUp.equals(rstFunctionTree.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_ID_UP)).trim())
+						&& objTmp.strSeq.equals(rstFunctionTree.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_SEQ)).trim())
+						&& objTmp.strFunctionIdDown.equals(rstFunctionTree.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_ID_DOWN)).trim())) {
 						bFound = true;
 						break;
 					}
 				} //for
-				if (bFound)
-					break;
-				//•˝±N§Wºh™∫µ{¶°©˙≤”∏¸§J®t≤Œ§§
+				if (bFound) break;
+				//ÂÖàÂ∞á‰∏äÂ±§ÁöÑÁ®ãÂºèÊòéÁ¥∞ËºâÂÖ•Á≥ªÁµ±‰∏≠
 				strLocation = "UserInfo.getOneFunction2";
 				stFunction tmpStFunction = new stFunction();
-				tmpStFunction.strFunctionIdUp =
-					rstFunctionTree
-						.getString(
-							(String) dbFactory
-								.getGlobalEnviron()
-								.getServletContext()
-								.getAttribute(
-								Constant.FIELD_NAME_FUNCTION_ID_UP))
-						.trim();
-				tmpStFunction.strSeq =
-					rstFunctionTree
-						.getString(
-							(String) dbFactory
-								.getGlobalEnviron()
-								.getServletContext()
-								.getAttribute(
-								Constant.FIELD_NAME_SEQ))
-						.trim();
-				tmpStFunction.strFunctionIdDown =
-					rstFunctionTree
-						.getString(
-							(String) dbFactory
-								.getGlobalEnviron()
-								.getServletContext()
-								.getAttribute(
-								Constant.FIELD_NAME_FUNCTION_ID_DOWN))
-						.trim();
-				if (pstmFunctionDetail == null)
-					pstmFunctionDetail =
-						conDbConnection.prepareStatement(strFunctionDetailSql);
+				tmpStFunction.strFunctionIdUp = rstFunctionTree.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_ID_UP)).trim();
+				tmpStFunction.strSeq = rstFunctionTree.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_SEQ)).trim();
+				tmpStFunction.strFunctionIdDown = rstFunctionTree.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_ID_DOWN)).trim();
+				logger.info(strFunctionDetailSql + ",FUNID:" + tmpStFunction.strFunctionIdUp);
+				if (pstmFunctionDetail == null) pstmFunctionDetail = conDbConnection.prepareStatement(strFunctionDetailSql);
 				strLocation = "UserInfo.getOneFunction3";
 				pstmFunctionDetail.setString(1, tmpStFunction.strFunctionIdUp);
+				
 				rstFunctionDetail = pstmFunctionDetail.executeQuery();
 				if (rstFunctionDetail.next()) {
-					tmpStFunction.strFuncNameUp =
-						rstFunctionDetail
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_FUNCTION_NAME))
-							.trim();
-					tmpStFunction.strRemarkUp =
-						rstFunctionDetail
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_REMARK))
-							.trim();
-					tmpStFunction.strHitCountUrlUp =
-						rstFunctionDetail
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_HIT_COUNT_URL))
-							.trim();
-					// 93/03/29 added by Andy : ±Nµ{¶°≈v≠≠•[§J,≠Y¶≠¥¡™∫®t≤Œ®S¶≥®œ•Œµ{¶°≈v≠≠,¥N∑|≤£•Õexception,©ø≤§•¶
+					tmpStFunction.strFuncNameUp = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_NAME)).trim();
+					tmpStFunction.strRemarkUp = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_REMARK)).trim();
+					tmpStFunction.strHitCountUrlUp = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_HIT_COUNT_URL)).trim();
+					// 93/03/29 added by Andy : Â∞áÁ®ãÂºèÊ¨äÈôêÂä†ÂÖ•,Ëã•Êó©ÊúüÁöÑÁ≥ªÁµ±Ê≤íÊúâ‰ΩøÁî®Á®ãÂºèÊ¨äÈôê,Â∞±ÊúÉÁî¢Áîüexception,ÂøΩÁï•ÂÆÉ
 					try {
-						int iColumn =
-							rstFunctionDetail.findColumn(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_FUNCTION_SUB_FUNCTION));
-						tmpStFunction.strSubFunctionUp =
-							rstFunctionDetail.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_FUNCTION_SUB_FUNCTION));
+						int iColumn = rstFunctionDetail.findColumn((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_SUB_FUNCTION));
+						tmpStFunction.strSubFunctionUp = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_SUB_FUNCTION));
 					} catch (SQLException ex) {
 					}
 					// 93/03/29 added by Andy : end
 				} else {
-					this.setLastError(
-						"UserInfo.getOneFunction()",
-						"Function id '"
-							+ tmpStFunction.strFunctionIdUp
-							+ "'•º¶s©Ûtfunction§§");
+					this.setLastError("UserInfo.getOneFunction()","Function id '"+ tmpStFunction.strFunctionIdUp+ "'Êú™Â≠òÊñºtfunction‰∏≠");
 					bReturnStatus = false;
 				}
-				//¶A±N§Uºh™∫µ{¶°©˙≤”∏¸§J®t≤Œ§§
+				//ÂÜçÂ∞á‰∏ãÂ±§ÁöÑÁ®ãÂºèÊòéÁ¥∞ËºâÂÖ•Á≥ªÁµ±‰∏≠
 				strLocation = "UserInfo.getOneFunction4";
-				pstmFunctionDetail.setString(
-					1,
-					tmpStFunction.strFunctionIdDown);
+				pstmFunctionDetail.setString(1,tmpStFunction.strFunctionIdDown);
 				rstFunctionDetail = pstmFunctionDetail.executeQuery();
 				if (rstFunctionDetail.next()) {
 					strLocation = "UserInfo.getOneFunction5";
-					tmpStFunction.strFuncName =
-						rstFunctionDetail
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_FUNCTION_NAME))
-							.trim();
-					tmpStFunction.strProperty =
-						rstFunctionDetail
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_PROPERTY))
-							.trim();
-				    //R00393 edit by Leo Huang		
-				    /*  
-					tmpStFunction.strUrl =
-						rstFunctionDetail
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_URL))
-							.trim();*/
-					tmpStFunction.strUrl =dbFactory.getRootFolder()+
-						rstFunctionDetail
-							 .getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_URL))
-							.trim();					
+					tmpStFunction.strFuncName = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_NAME)).trim();
+					tmpStFunction.strProperty = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_PROPERTY)).trim();
+				   
+					tmpStFunction.strUrl =dbFactory.getRootFolder() + rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_URL)).trim();					
 					//R00393 edit by Leo Huang
-					tmpStFunction.strTargetWindow =
-						rstFunctionDetail
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_TARGET_WINDOW))
-							.trim();
-					tmpStFunction.strRemark =
-						rstFunctionDetail
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_REMARK))
-							.trim();
-					tmpStFunction.strHitCountUrl =
-						rstFunctionDetail
-							.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_HIT_COUNT_URL))
-							.trim();
-					// 93/03/29 added by Andy : ±Nµ{¶°≈v≠≠•[§J,≠Y¶≠¥¡™∫®t≤Œ®S¶≥®œ•Œµ{¶°≈v≠≠,¥N∑|≤£•Õexception,©ø≤§•¶
+					tmpStFunction.strTargetWindow = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_TARGET_WINDOW)).trim();
+					tmpStFunction.strRemark = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_REMARK)).trim();
+					tmpStFunction.strHitCountUrl = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_HIT_COUNT_URL)).trim();
+					// 93/03/29 added by Andy : Â∞áÁ®ãÂºèÊ¨äÈôêÂä†ÂÖ•,Ëã•Êó©ÊúüÁöÑÁ≥ªÁµ±Ê≤íÊúâ‰ΩøÁî®Á®ãÂºèÊ¨äÈôê,Â∞±ÊúÉÁî¢Áîüexception,ÂøΩÁï•ÂÆÉ
 					try {
-						int iColumn =
-							rstFunctionDetail.findColumn(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_FUNCTION_SUB_FUNCTION));
-						tmpStFunction.strSubFunction =
-							rstFunctionDetail.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_FUNCTION_SUB_FUNCTION));
+						int iColumn = rstFunctionDetail.findColumn((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_SUB_FUNCTION));
+						tmpStFunction.strSubFunction =rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_SUB_FUNCTION));
 					} catch (SQLException ex) {
+						//do nothing
 					}
+					
+					//Â∞átmpStFunctionÁöÑÈÅ∏ÂñÆÂÖßÂÆπÁâ©‰ª∂,Êñ∞Â¢ûËá≥vtFunctionTree
 					vtFunctionTree.addElement(tmpStFunction);
-					/*				
-									writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.getOneFunction()",
-										"func_id_up = '"+
-										rstFunctionTree.getString("func_id_up").trim()+
-										"', func_id_down = '"+
-										rstFunctionTree.getString("func_id_down").trim()+
-										"', func_name = '"+rstFunctionDetail.getString("func_name").trim()+
-										"', image_file_on = '"+tmpStFunction.strImageFileOn+
-										"', image_file_off = '"+tmpStFunction.strImageFileOff+
-										"', property = '"+tmpStFunction.strProperty+
-										"', url = '"+tmpStFunction.strUrl+
-										"', target_window = '"+tmpStFunction.strTargetWindow+
-										"', remark = '"+tmpStFunction.strRemark+"'");
-					*/
-					if (rstFunctionDetail
-						.getString(
-							(String) dbFactory
-								.getGlobalEnviron()
-								.getServletContext()
-								.getAttribute(
-								Constant.FIELD_NAME_PROPERTY))
-						.equalsIgnoreCase("M"))
+					
+					//Âà§Êñ∑FUNCË≥áÊñôË°®ÁöÑPROPÊ¨Ñ‰ΩçÊòØÂê¶ÁÇ∫M
+					if (rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_PROPERTY)).equalsIgnoreCase("M")) {
+						logger.info("getOneFunction(" + tmpStFunction.strFunctionIdDown + ",null)");
+					    //Âü∑Ë°ågetOneFunction
 						getOneFunction(tmpStFunction.strFunctionIdDown, null);
+					}
+						
 				} else {
-					this.setLastError(
-						"UserInfo.getOneFunction()",
-						"Function id '"
-							+ tmpStFunction.strFunctionIdDown
-							+ "'•º¶s©Û"
-							+ (String) dbFactory
-								.getGlobalEnviron()
-								.getServletContext()
-								.getAttribute(
-								Constant.TABLE_NAME_FUNCTION)
-							+ "§§");
+					this.setLastError("UserInfo.getOneFunction()", "Function id '" + tmpStFunction.strFunctionIdDown + "'Êú™Â≠òÊñº" + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.TABLE_NAME_FUNCTION) + "‰∏≠");
 					bReturnStatus = false;
 				}
 			} //while (rstFunctionTree.next())
@@ -1322,7 +836,7 @@ public class UserInfo extends RootClass {
 				for (i = 0; i < vtFunctionTree.size(); i++) {
 					objTmp = (stFunction) vtFunctionTree.elementAt(i);
 					if (objTmp.strFunctionIdDown.equals(strFuncId.trim())) {
-						// 93/03/29 added by Andy : ≠Y¨O∏”µ{¶°¨O•—´e≠±∂«§J§ßµ{¶°¶W∫Ÿ,≈v≠≠•Á¨O•—´e≠±∂«§J,•—group_function§§©“©w∏q§ß≈v≠≠
+						// 93/03/29 added by Andy : Ëã•ÊòØË©≤Á®ãÂºèÊòØÁî±ÂâçÈù¢ÂÇ≥ÂÖ•‰πãÁ®ãÂºèÂêçÁ®±,Ê¨äÈôê‰∫¶ÊòØÁî±ÂâçÈù¢ÂÇ≥ÂÖ•,Áî±group_function‰∏≠ÊâÄÂÆöÁæ©‰πãÊ¨äÈôê
 						objTmp.strSubFunction = strSubFunction;
 						bFound = true;
 						break;
@@ -1334,99 +848,25 @@ public class UserInfo extends RootClass {
 					tmpStFunction.strSeq = new String("");
 					tmpStFunction.strFunctionIdDown = strFuncId.trim();
 					strLocation = "UserInfo.getOneFunction6";
-					if (pstmFunctionDetail == null)
-						pstmFunctionDetail =
-							conDbConnection.prepareStatement(
-								strFunctionDetailSql);
-					pstmFunctionDetail.setString(
-						1,
-						tmpStFunction.strFunctionIdDown);
-					//				writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.getOneFunction()","func_id_down = '"+tmpStFunction.strFunctionIdDown+"'");
+					if (pstmFunctionDetail == null) pstmFunctionDetail = conDbConnection.prepareStatement(strFunctionDetailSql);
+					pstmFunctionDetail.setString(1,tmpStFunction.strFunctionIdDown);
+					//writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.getOneFunction()","func_id_down = '"+tmpStFunction.strFunctionIdDown+"'");
 					rstFunctionDetail = pstmFunctionDetail.executeQuery();
 					if (rstFunctionDetail.next()) {
 						strLocation = "UserInfo.getOneFunction7";
-						tmpStFunction.strFuncName =
-							rstFunctionDetail
-								.getString(
-									(String) dbFactory
-										.getGlobalEnviron()
-										.getServletContext()
-										.getAttribute(
-										Constant.FIELD_NAME_FUNCTION_NAME))
-								.trim();
+						tmpStFunction.strFuncName = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_NAME)).trim();
 						strLocation = "UserInfo.getOneFunction71";
-						tmpStFunction.strProperty =
-							rstFunctionDetail
-								.getString(
-									(String) dbFactory
-										.getGlobalEnviron()
-										.getServletContext()
-										.getAttribute(
-										Constant.FIELD_NAME_PROPERTY))
-								.trim();
-						//R00393 edit by Leo Huang 
-						/*
-						tmpStFunction.strUrl =
-							rstFunctionDetail
-								.getString(
-									(String) dbFactory
-										.getGlobalEnviron()
-										.getServletContext()
-										.getAttribute(
-										Constant.FIELD_NAME_URL))
-								.trim();*/
-						tmpStFunction.strUrl =dbFactory.getRootFolder()+
-								rstFunctionDetail
-									.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant.FIELD_NAME_URL))
-								.trim();							
-//						R00393 edit by Leo Huang 
-						tmpStFunction.strTargetWindow =
-							rstFunctionDetail
-								.getString(
-									(String) dbFactory
-										.getGlobalEnviron()
-										.getServletContext()
-										.getAttribute(
-										Constant.FIELD_NAME_TARGET_WINDOW))
-								.trim();
-						tmpStFunction.strRemark =
-							rstFunctionDetail
-								.getString(
-									(String) dbFactory
-										.getGlobalEnviron()
-										.getServletContext()
-										.getAttribute(
-										Constant.FIELD_NAME_REMARK))
-								.trim();
-						tmpStFunction.strHitCountUrl =
-							rstFunctionDetail
-								.getString(
-									(String) dbFactory
-										.getGlobalEnviron()
-										.getServletContext()
-										.getAttribute(
-										Constant.FIELD_NAME_HIT_COUNT_URL))
-								.trim();
-						// 93/03/29 added by Andy : ≠Y¨O∏”µ{¶°¨O•—´e≠±∂«§J§ßµ{¶°¶W∫Ÿ,≈v≠≠•Á¨O•—´e≠±∂«§J,•—group_function§§©“©w∏q§ß≈v≠≠
+						tmpStFunction.strProperty = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_PROPERTY)).trim();
+						tmpStFunction.strUrl =dbFactory.getRootFolder() + rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_URL)).trim();							
+ 
+						tmpStFunction.strTargetWindow = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_TARGET_WINDOW)).trim();
+						tmpStFunction.strRemark = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_REMARK)).trim();
+						tmpStFunction.strHitCountUrl = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_HIT_COUNT_URL)).trim();
+						// 93/03/29 added by Andy : Ëã•ÊòØË©≤Á®ãÂºèÊòØÁî±ÂâçÈù¢ÂÇ≥ÂÖ•‰πãÁ®ãÂºèÂêçÁ®±,Ê¨äÈôê‰∫¶ÊòØÁî±ÂâçÈù¢ÂÇ≥ÂÖ•,Áî±group_function‰∏≠ÊâÄÂÆöÁæ©‰πãÊ¨äÈôê
 						tmpStFunction.strSubFunction = strSubFunction;
 						vtFunctionTree.addElement(tmpStFunction);
 					} else {
-						this.setLastError(
-							"UserInfo.getOneFunction()",
-							"Function id '"
-								+ tmpStFunction.strFunctionIdDown
-								+ "'•º¶s©Û"
-								+ (String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.TABLE_NAME_FUNCTION)
-								+ "§§");
+						this.setLastError("UserInfo.getOneFunction()","Function id '" + tmpStFunction.strFunctionIdDown + "'Êú™Â≠òÊñº" + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.TABLE_NAME_FUNCTION) + "‰∏≠");
 						bReturnStatus = false;
 					}
 				} //if (!bFound)
@@ -1443,147 +883,72 @@ public class UserInfo extends RootClass {
 		boolean bReturnStatus = true;
 		PreparedStatement pstmTmp = null;
 		ResultSet rstTmp = null;
-		String strUserGroupSql =
-			new String(
-				"select * from "
-					+ (String) dbFactory
-						.getGlobalEnviron()
-						.getServletContext()
-						.getAttribute(
-						Constant.TABLE_NAME_USER_GROUP)
-					+ " where "
-					+ (String) dbFactory
-						.getGlobalEnviron()
-						.getServletContext()
-						.getAttribute(
-						Constant.FIELD_NAME_USER_GROUP_USER_ID)
-					+ " = ?");
-		String strGroupFunctionSql =
-			new String(
-				"select * from "
-					+ (String) dbFactory
-						.getGlobalEnviron()
-						.getServletContext()
-						.getAttribute(
-						Constant.TABLE_NAME_GROUP_FUNCTION)
-					+ " where "
-					+ (String) dbFactory
-						.getGlobalEnviron()
-						.getServletContext()
-						.getAttribute(
-						Constant.FIELD_NAME_GROUP_ID)
-					+ " = ?");
+		//Êü•Ë©¢USERGRPË≥áÊñôË°®,SELECT * FROM USERGRP WHERE USRID = ?
+		String strUserGroupSql = new String("select * from " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.TABLE_NAME_USER_GROUP) 
+											+ " where " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_GROUP_USER_ID) + " = ?");
+		//Êü•Ë©¢GRPFUNË≥áÊñôË°®,SELECT * FROM GRPFUN WHERE GRPID = ?
+		String strGroupFunctionSql = new String("select * from " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.TABLE_NAME_GROUP_FUNCTION)
+											+ " where " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_GROUP_ID) + " = ?");
 		PreparedStatement pstmUserGroup = null;
 		PreparedStatement pstmGroupFunction = null;
 		ResultSet rstUserGroup = null;
 		ResultSet rstGroupFunction = null;
 
-		if (!bRefreshed)
-			if (!this.refresh())
-				bReturnStatus = false;
+		if (!bRefreshed) {
+			if (!this.refresh()) bReturnStatus = false;
+		}
+			
 		vtFunctionTree.setSize(0);
+		
 		if (bReturnStatus) {
-			if (conDbConnection == null)
-				conDbConnection =
-					dbFactory.getAS400Connection(
-						"UserInfo.retriveProgramStructure()");
-			if (conDbConnection == null)
-				bReturnStatus = false;
+			if (conDbConnection == null) conDbConnection = dbFactory.getAS400Connection("UserInfo.retriveProgramStructure()");
+			if (conDbConnection == null) bReturnStatus = false;
 			if (bReturnStatus) {
 				try {
-					//				writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.retriveProgramStructure()","Begin to retrive the function tree");
-					//				writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.retriveProgramStructure()","The default group is '"+strDefaultGroup+"'");
+					
 					if (!strDefaultGroup.equals("")) {
 						if (pstmGroupFunction == null)
-							pstmGroupFunction =
-								conDbConnection.prepareStatement(
-									strGroupFunctionSql);
+							pstmGroupFunction = conDbConnection.prepareStatement(strGroupFunctionSql);
+						logger.info(strGroupFunctionSql + "," + strDefaultGroup.trim());
 						pstmGroupFunction.setString(1, strDefaultGroup);
 						rstGroupFunction = pstmGroupFunction.executeQuery();
 						while (rstGroupFunction.next()) {
-							// 93/03/29 added by Andy : ±Nµ{¶°≈v≠≠•[§J,≠Y¶≠¥¡™∫®t≤Œ®S¶≥®œ•Œµ{¶°≈v≠≠,¥N∑|≤£•Õexception,©ø≤§•¶
+							// 93/03/29 added by Andy : Â∞áÁ®ãÂºèÊ¨äÈôêÂä†ÂÖ•,Ëã•Êó©ÊúüÁöÑÁ≥ªÁµ±Ê≤íÊúâ‰ΩøÁî®Á®ãÂºèÊ¨äÈôê,Â∞±ÊúÉÁî¢Áîüexception,ÂøΩÁï•ÂÆÉ
 							String strSubFunction = null;
 							try {
-								int iColumn =
-									rstGroupFunction.findColumn(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant
-												.FIELD_NAME_GROUP_FUNCTION_SUB_FUNCTION));
-								strSubFunction =
-									rstGroupFunction.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant
-												.FIELD_NAME_GROUP_FUNCTION_SUB_FUNCTION));
+								int iColumn = rstGroupFunction.findColumn((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_GROUP_FUNCTION_SUB_FUNCTION));
+								strSubFunction = rstGroupFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_GROUP_FUNCTION_SUB_FUNCTION));
 							} catch (SQLException ex) {
+								//do nothing
 							}
-							boolean bTmp =
-								getOneFunction(
-									rstGroupFunction.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant.FIELD_NAME_FUNCTION_ID)),
-									strSubFunction);
-							if (!bTmp)
-								bReturnStatus = bTmp;
+							logger.info("getOneFunction(" + rstGroupFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_ID)).trim() + "," + strSubFunction.trim() + ")");
+							//Âü∑Ë°ågetOneFunction()-->ÊâæÂá∫func
+							//ËÆÄÂèñFUNCTREEÂèäFUNCË≥áÊñôË°®
+							boolean bTmp = getOneFunction(rstGroupFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_ID)),strSubFunction);
+							if (!bTmp) bReturnStatus = bTmp;
 						}
 					}
-					pstmUserGroup =
-						conDbConnection.prepareStatement(strUserGroupSql);
+					pstmUserGroup = conDbConnection.prepareStatement(strUserGroupSql);
+					logger.info(strUserGroupSql + "," + this.getUserId());
 					pstmUserGroup.setString(1, this.getUserId());
 					rstUserGroup = pstmUserGroup.executeQuery();
 					while (rstUserGroup.next()) {
-						if (pstmGroupFunction == null)
-							pstmGroupFunction =
-								conDbConnection.prepareStatement(
-									strGroupFunctionSql);
-						pstmGroupFunction.setString(
-							1,
-							rstUserGroup.getString(
-								(String) dbFactory
-									.getGlobalEnviron()
-									.getServletContext()
-									.getAttribute(
-									Constant.FIELD_NAME_GROUP_ID)));
+						if (pstmGroupFunction == null) pstmGroupFunction = conDbConnection.prepareStatement(strGroupFunctionSql);
+						logger.info(strGroupFunctionSql + "," + rstUserGroup.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_GROUP_ID)).trim());
+						pstmGroupFunction.setString(1,rstUserGroup.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_GROUP_ID)));
 						rstGroupFunction = pstmGroupFunction.executeQuery();
 						while (rstGroupFunction.next()) {
-							// 93/03/29 added by Andy : ±Nµ{¶°≈v≠≠•[§J,≠Y¶≠¥¡™∫®t≤Œ®S¶≥®œ•Œµ{¶°≈v≠≠,¥N∑|≤£•Õexception,©ø≤§•¶
+							// 93/03/29 added by Andy : Â∞áÁ®ãÂºèÊ¨äÈôêÂä†ÂÖ•,Ëã•Êó©ÊúüÁöÑÁ≥ªÁµ±Ê≤íÊúâ‰ΩøÁî®Á®ãÂºèÊ¨äÈôê,Â∞±ÊúÉÁî¢Áîüexception,ÂøΩÁï•ÂÆÉ
 							String strSubFunction = null;
 							try {
-								int iColumn =
-									rstGroupFunction.findColumn(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant
-												.FIELD_NAME_GROUP_FUNCTION_SUB_FUNCTION));
-								strSubFunction =
-									rstGroupFunction.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant
-												.FIELD_NAME_GROUP_FUNCTION_SUB_FUNCTION));
+								int iColumn = rstGroupFunction.findColumn((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_GROUP_FUNCTION_SUB_FUNCTION));
+								strSubFunction = rstGroupFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_GROUP_FUNCTION_SUB_FUNCTION));
 							} catch (SQLException ex) {
+								//do nothing
 							}
-							boolean bTmp =
-								getOneFunction(
-									rstGroupFunction.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant.FIELD_NAME_FUNCTION_ID)),
-									strSubFunction);
+							logger.info("getOneFunction(" + rstGroupFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_ID)).trim() + "," + strSubFunction.trim() + ")");
+							//Âü∑Ë°ågetOneFunction,ËÆÄÂèñ....
+							boolean bTmp = getOneFunction(rstGroupFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_ID)),strSubFunction);
 							if (!bTmp)
 								bReturnStatus = bTmp;
 						}
@@ -1595,37 +960,17 @@ public class UserInfo extends RootClass {
 			}
 		} //if (bReturnStatus)
 		/*
-		 * 93/03/30 added by Andy : ºW•[ UserFunction §§§ß≈v≠≠
+		 * 93/03/30 added by Andy : Â¢ûÂä† UserFunction ‰∏≠‰πãÊ¨äÈôê
 		 * */
-		if (bReturnStatus
-			&& dbFactory.getGlobalEnviron().getServletContext().getAttribute(
-				Constant.TABLE_NAME_USER_FUNCTION)
-				!= null) {
-			String strUserFunctionSql =
-				new String(
-					"select * from "
-						+ (String) dbFactory
-							.getGlobalEnviron()
-							.getServletContext()
-							.getAttribute(
-							Constant.TABLE_NAME_USER_FUNCTION)
-						+ " where "
-						+ (String) dbFactory
-							.getGlobalEnviron()
-							.getServletContext()
-							.getAttribute(
-							Constant.FIELD_NAME_USER_ID)
-						+ " = ?");
+		if (bReturnStatus && dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.TABLE_NAME_USER_FUNCTION) != null) {
+			String strUserFunctionSql = new String("select * from "+ (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.TABLE_NAME_USER_FUNCTION)
+												+ " where " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_ID) + " = ?");
 			
 			PreparedStatement pstmUserFunction = null;
 			ResultSet rstUserFunction = null;
 			try {
-				if (conDbConnection == null)
-					conDbConnection =
-						dbFactory.getAS400Connection(
-							"UserInfo.retriveProgramStructure()");
-				if (conDbConnection == null)
-					bReturnStatus = false;
+				if (conDbConnection == null) conDbConnection = dbFactory.getAS400Connection("UserInfo.retriveProgramStructure()");
+				if (conDbConnection == null) bReturnStatus = false;
 				if (bReturnStatus) {
 					stFunction objTmp = null;
 					boolean bFound = false;
@@ -1636,224 +981,58 @@ public class UserInfo extends RootClass {
 					while (rstUserFunction.next()) {
 						bFound = false;
 						int iIndex = 0;
-						for (iIndex = 0;
-							iIndex < vtFunctionTree.size();
-							iIndex++) {
-							objTmp =
-								(stFunction) vtFunctionTree.elementAt(iIndex);
-							if (objTmp
-								.strFunctionIdDown
-								.equals(
-									rstUserFunction
-										.getString(
-											(String) dbFactory
-												.getGlobalEnviron()
-												.getServletContext()
-												.getAttribute(
-												Constant
-													.FIELD_NAME_SUB_FUNCTION_FUNCTION_ID))
-										.trim())) {
+						for (iIndex = 0; iIndex < vtFunctionTree.size(); iIndex++) {
+							objTmp = (stFunction) vtFunctionTree.elementAt(iIndex);
+							if (objTmp.strFunctionIdDown.equals(rstUserFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_SUB_FUNCTION_FUNCTION_ID)).trim())) {
 								bFound = true;
 								break;
 							}
 						} //for
-						//≠Ï•˝¥N¶s¶b§ßµ{¶°•\Ø‡•u≠nßÛ∑sSubFunction,§£¶s¶b™∫µ{¶°•\Ø‡¥N≠n±N®‰∑sºW¶‹µ≤∫c§§
-						//≠Y¨O exclude ¨∞ 'Y' ™Ì•‹≠n±N∏”•\Ø‡ßR∞£,ß_´h™Ì•‹≠n•[§J
+						//ÂéüÂÖàÂ∞±Â≠òÂú®‰πãÁ®ãÂºèÂäüËÉΩÂè™Ë¶ÅÊõ¥Êñ∞SubFunction,‰∏çÂ≠òÂú®ÁöÑÁ®ãÂºèÂäüËÉΩÂ∞±Ë¶ÅÂ∞áÂÖ∂Êñ∞Â¢ûËá≥ÁµêÊßã‰∏≠
+						//Ëã•ÊòØ exclude ÁÇ∫ 'Y' Ë°®Á§∫Ë¶ÅÂ∞áË©≤ÂäüËÉΩÂà™Èô§,Âê¶ÂâáË°®Á§∫Ë¶ÅÂä†ÂÖ•
 						if (bFound) {
-							if (rstUserFunction
-								.getString(
-									(String) dbFactory
-										.getGlobalEnviron()
-										.getServletContext()
-										.getAttribute(
-										Constant.FIELD_NAME_EXCLUDE))
-								!= null
-								&& rstUserFunction
-									.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant.FIELD_NAME_EXCLUDE))
-									.trim()
-									.equals("Y"))
+							if (rstUserFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_EXCLUDE)) != null
+								&& rstUserFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_EXCLUDE)).trim().equals("Y")) {
+								//ÂæûvtFunctionTreeÁßªÈô§
 								vtFunctionTree.remove(iIndex);
-							else {
-								objTmp =
-									(stFunction) vtFunctionTree.elementAt(
-										iIndex);
-								objTmp.strSubFunction =
-									rstUserFunction
-										.getString(
-											(String) dbFactory
-												.getGlobalEnviron()
-												.getServletContext()
-												.getAttribute(
-												Constant
-													.FIELD_NAME_SUB_FUNCTION))
-										.trim();
+							} else {
+								objTmp = (stFunction) vtFunctionTree.elementAt(iIndex);
+								objTmp.strSubFunction = rstUserFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_SUB_FUNCTION)).trim();
+								//Êñ∞Â¢ûËá≥vtFunctionTree
 								vtFunctionTree.set(iIndex, objTmp);
 							}
 						} else {
 							PreparedStatement pstmFunctionDetail = null;
 							ResultSet rstFunctionDetail = null;
-							String strFunctionDetailSql =
-								new String(
-									"select * from "
-										+ (String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant.TABLE_NAME_FUNCTION)
-										+ " where "
-										+ (String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant.FIELD_NAME_FUNCTION_ID)
-										+ " = ?");
+							String strFunctionDetailSql = new String("select * from "+ (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.TABLE_NAME_FUNCTION)
+																+ " where " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_ID) + " = ?");
 						
-							if (pstmFunctionDetail == null)
-								pstmFunctionDetail =
-									conDbConnection.prepareStatement(
-										strFunctionDetailSql);
-							pstmFunctionDetail.setString(
-								1,
-								rstUserFunction
-									.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant
-												.FIELD_NAME_SUB_FUNCTION_FUNCTION_ID))
-									.trim());
-							rstFunctionDetail =
-								pstmFunctionDetail.executeQuery();
+							if (pstmFunctionDetail == null) pstmFunctionDetail = conDbConnection.prepareStatement(strFunctionDetailSql);
+							pstmFunctionDetail.setString(1,rstUserFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_SUB_FUNCTION_FUNCTION_ID)).trim());
+							rstFunctionDetail = pstmFunctionDetail.executeQuery();
 							if (rstFunctionDetail.next()) {
-								if (rstFunctionDetail
-									.getString(
-										(String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant.FIELD_NAME_PROPERTY))
-									.equalsIgnoreCase("M"))
-									getOneFunction(
-										rstUserFunction
-											.getString(
-												(String) dbFactory
-													.getGlobalEnviron()
-													.getServletContext()
-													.getAttribute(
-													Constant
-														.FIELD_NAME_SUB_FUNCTION_FUNCTION_ID))
-											.trim(),
-										null);
-								else {
+								if (rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_PROPERTY)).equalsIgnoreCase("M")){
+									logger.info("getOneFunction(" + rstUserFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_SUB_FUNCTION_FUNCTION_ID)).trim() + ",null)");
+									//Âü∑Ë°ågetOneFunction
+									getOneFunction(rstUserFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_SUB_FUNCTION_FUNCTION_ID)).trim(),null);
+								} else {
 									stFunction tmpStFunction = new stFunction();
-									tmpStFunction.strFunctionIdDown =
-										rstFunctionDetail
-											.getString(
-												(String) dbFactory
-													.getGlobalEnviron()
-													.getServletContext()
-													.getAttribute(
-													Constant
-														.FIELD_NAME_SUB_FUNCTION_FUNCTION_ID))
-											.trim();
-									tmpStFunction.strFuncName =
-										rstFunctionDetail
-											.getString(
-												(String) dbFactory
-													.getGlobalEnviron()
-													.getServletContext()
-													.getAttribute(
-													Constant
-														.FIELD_NAME_FUNCTION_NAME))
-											.trim();
-									tmpStFunction.strProperty =
-										rstFunctionDetail
-											.getString(
-												(String) dbFactory
-													.getGlobalEnviron()
-													.getServletContext()
-													.getAttribute(
-													Constant
-														.FIELD_NAME_PROPERTY))
-											.trim();
-									tmpStFunction.strUrl =
-										rstFunctionDetail
-											.getString(
-												(String) dbFactory
-													.getGlobalEnviron()
-													.getServletContext()
-													.getAttribute(
-													Constant.FIELD_NAME_URL))
-											.trim();
-									tmpStFunction.strTargetWindow =
-										rstFunctionDetail
-											.getString(
-												(String) dbFactory
-													.getGlobalEnviron()
-													.getServletContext()
-													.getAttribute(
-													Constant
-														.FIELD_NAME_TARGET_WINDOW))
-											.trim();
-									tmpStFunction.strRemark =
-										rstFunctionDetail
-											.getString(
-												(String) dbFactory
-													.getGlobalEnviron()
-													.getServletContext()
-													.getAttribute(
-													Constant
-														.FIELD_NAME_REMARK))
-											.trim();
-									tmpStFunction.strHitCountUrl =
-										rstFunctionDetail
-											.getString(
-												(String) dbFactory
-													.getGlobalEnviron()
-													.getServletContext()
-													.getAttribute(
-													Constant
-														.FIELD_NAME_HIT_COUNT_URL))
-											.trim();
-									tmpStFunction.strSubFunction =
-										rstUserFunction
-											.getString(
-												(String) dbFactory
-													.getGlobalEnviron()
-													.getServletContext()
-													.getAttribute(
-													Constant
-														.FIELD_NAME_SUB_FUNCTION))
-											.trim();
+									tmpStFunction.strFunctionIdDown = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_SUB_FUNCTION_FUNCTION_ID)).trim();
+									tmpStFunction.strFuncName = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_FUNCTION_NAME)).trim();
+									tmpStFunction.strProperty = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_PROPERTY)).trim();
+									tmpStFunction.strUrl = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_URL)).trim();
+									tmpStFunction.strTargetWindow = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_TARGET_WINDOW)).trim();
+									tmpStFunction.strRemark = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_REMARK)).trim();
+									tmpStFunction.strHitCountUrl = rstFunctionDetail.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_HIT_COUNT_URL)).trim();
+									tmpStFunction.strSubFunction =rstUserFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_SUB_FUNCTION)).trim();
 									vtFunctionTree.addElement(tmpStFunction);
 								}
 							} // if (rstFunctionDetail.next())
 							else {
-								this.setLastError(
-									"retriveProgramStructure()",
-									"Function id '"
-										+ rstUserFunction
-											.getString(
-												(String) dbFactory
-													.getGlobalEnviron()
-													.getServletContext()
-													.getAttribute(
-													Constant
-														.FIELD_NAME_SUB_FUNCTION_FUNCTION_ID))
-											.trim()
-										+ "'•º¶s©Û"
-										+ (String) dbFactory
-											.getGlobalEnviron()
-											.getServletContext()
-											.getAttribute(
-											Constant.TABLE_NAME_FUNCTION)
-										+ "§§");
+								this.setLastError("retriveProgramStructure()","Function id '"
+										+ rstUserFunction.getString((String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_SUB_FUNCTION_FUNCTION_ID)).trim()
+										+ "'Êú™Â≠òÊñº"
+										+ (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.TABLE_NAME_FUNCTION)+ "‰∏≠");
 								bReturnStatus = false;
 							}
 						} //if( bFound && rstUserFunction.getString((String)dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_EXCLUDE)).trim().equals("Y"))
@@ -1861,41 +1040,29 @@ public class UserInfo extends RootClass {
 				} //if (bReturnStatus)
 			} //try
 			catch (SQLException ex) {
-				setLastError(
-					"UserInfo.retriveProgramStructure():UserFunction",
-					ex);
+				setLastError("UserInfo.retriveProgramStructure():UserFunction",ex);
 				bReturnStatus = false;
 			} //catch( SQLException ex )
 		} //if( bReturnStatus )
 		else {
-			writeDebugLog(
-				Constant.DEBUG_DEBUG,
-				"UserInfo.retriveProgramStructure()",
-				"This System has no UserFunc extention ");
+			writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.retriveProgramStructure()","This System has no UserFunc extention ");
 		}
 
 		for (int i = 0; i < vtFunctionTree.size(); i++) {
-			writeDebugLog(
-				Constant.DEBUG_DEBUG,
-				"UserInfo.retriveProgramStructure()",
-				"The '"
+			writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.retriveProgramStructure()","The '"
 					+ String.valueOf(i)
 					+ "'th func_id_up = '"
 					+ ((stFunction) vtFunctionTree.elementAt(i)).strFunctionIdUp
 					+ "', seq = '"
 					+ ((stFunction) vtFunctionTree.elementAt(i)).strSeq
 					+ "', func_id_down = '"
-					+ (
-						(stFunction) vtFunctionTree.elementAt(
-							i)).strFunctionIdDown
+					+ ((stFunction) vtFunctionTree.elementAt(i)).strFunctionIdDown
 					+ "', func_name_up = '"
 					+ ((stFunction) vtFunctionTree.elementAt(i)).strFuncNameUp
 					+ "', image_file__on_up = '"
 					+ ((stFunction) vtFunctionTree.elementAt(i)).strImageFileOnUp
 					+ "', image_file__off_up = '"
-					+ (
-						(stFunction) vtFunctionTree.elementAt(
-							i)).strImageFileOffUp
+					+ ((stFunction) vtFunctionTree.elementAt(i)).strImageFileOffUp
 					+ "', remark_up = '"
 					+ ((stFunction) vtFunctionTree.elementAt(i)).strRemarkUp
 					+ "', sub_function_up = '"
@@ -1919,61 +1086,58 @@ public class UserInfo extends RootClass {
 					+ "'");
 		}
 		return bReturnStatus;
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/7 §U§» 09:21:32)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/7 ‰∏ãÂçà 09:21:32)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.util.Vector
 			 */
 	public Vector getUserFunctionTree() {
 		return vtFunctionTree;
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:39:01)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:39:01)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 */
 	public boolean setUserId(String strThisUserId) {
 		boolean bReturnStatus = true;
 		if (strThisUserId != null) {
-			//		if( !strThisUserId.equals( strUserId ) )
-			//		{
-			//			writeDebugLog(Constant.DEBUG_INFORMATION,"UserInfo.setUserid()","User id has been set from '"+this.getUserId()+"' to '"+strThisUserId+"' successfully");
 			strUserId = strThisUserId;
 			bRefreshed = false;
 			bPasswordChecked = false;
 			if (bAutoRefresh)
+				logger.info("bAutoRefreshÊòØ" + bAutoRefresh);
 				bReturnStatus = this.refresh();
-			//		}
-			//		else
-			//			writeDebugLog(Constant.DEBUG_INFORMATION,"UserInfo.setUserid()","User id has not been set because the input user id '"+strThisUserId+"' is identical to original user id '"+this.getUserId()+"'.");
 		} else {
 			strUserId = "";
 			bRefreshed = false;
 			bPasswordChecked = false;
-			//		writeDebugLog(Constant.DEBUG_WARNING,"UserInfo.setUserid()","The input User id is null set to '"+this.getUserId()+"'.");
 		}
 		return bReturnStatus;
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G(2001/3/8 §U§» 01:22:38)
-			 * ∂«§J∞—º∆°G
-			 * ´ÿ•ﬂ™Ã  °GAdministrator
-			 * ∂«¶^≠»  °G 
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö(2001/3/8 ‰∏ãÂçà 01:22:38)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * Âª∫Á´ãËÄÖ  ÔºöAdministrator
+			 * ÂÇ≥ÂõûÂÄº  Ôºö 
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * 
@@ -1990,9 +1154,7 @@ public class UserInfo extends RootClass {
 				int i;
 				bReturnStatus = false;
 				for (i = 0; i < vtFunctionTree.size(); i++) {
-					if (((stFunction) vtFunctionTree.elementAt(i))
-						.strProperty
-						.equalsIgnoreCase("P")) {
+					if (((stFunction) vtFunctionTree.elementAt(i)).strProperty.equalsIgnoreCase("P")) {
 						bReturnStatus = true;
 						break;
 					}
@@ -2000,14 +1162,15 @@ public class UserInfo extends RootClass {
 			}
 		}
 		return bReturnStatus;
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/9 §W§» 04:25:31)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/9 ‰∏äÂçà 04:25:31)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.lang.String
@@ -2017,23 +1180,18 @@ public class UserInfo extends RootClass {
 		if (iIndex < this.getSizeOfUserFuncTree())
 			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strFuncName;
 		else {
-			setLastError(
-				"UserInfo.getFuncName()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+			setLastError("UserInfo.getFuncName()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/9 §W§» 04:25:31)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/9 ‰∏äÂçà 04:25:31)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.lang.String
@@ -2041,26 +1199,20 @@ public class UserInfo extends RootClass {
 			 */
 	public String getFuncNameUp(int iIndex) {
 		if (iIndex < vtFunctionTree.size())
-			return (
-				(stFunction) vtFunctionTree.elementAt(iIndex)).strFuncNameUp;
+			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strFuncNameUp;
 		else {
-			setLastError(
-				"UserInfo.getFuncNameIdUp()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+			setLastError("UserInfo.getFuncNameIdUp()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/9 §W§» 04:25:31)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/9 ‰∏äÂçà 04:25:31)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.lang.String
@@ -2068,27 +1220,20 @@ public class UserInfo extends RootClass {
 			 */
 	public String getFunctionIdDown(int iIndex) {
 		if (iIndex < vtFunctionTree.size())
-			return (
-				(stFunction) vtFunctionTree.elementAt(
-					iIndex)).strFunctionIdDown;
+			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strFunctionIdDown;
 		else {
-			setLastError(
-				"UserInfo.getFunctionIdDown()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+			setLastError("UserInfo.getFunctionIdDown()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/9 §W§» 04:25:31)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/9 ‰∏äÂçà 04:25:31)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.lang.String
@@ -2096,69 +1241,48 @@ public class UserInfo extends RootClass {
 			 */
 	public String getFunctionIdUp(int iIndex) {
 		if (iIndex < vtFunctionTree.size())
-			return (
-				(stFunction) vtFunctionTree.elementAt(iIndex)).strFunctionIdUp;
+			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strFunctionIdUp;
 		else {
-			setLastError(
-				"UserInfo.getFunctionIdUp()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+			setLastError("UserInfo.getFunctionIdUp()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/9 §W§» 04:25:31)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/9 ‰∏äÂçà 04:25:31)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.lang.String
 			 * @param iIndex int
 			 */
 	public String getImageFileOn(int iIndex) {
-		if (iIndex < vtFunctionTree.size())
-			return (
-				(stFunction) vtFunctionTree.elementAt(iIndex)).strImageFileOn;
+		if (iIndex < vtFunctionTree.size())return ((stFunction) vtFunctionTree.elementAt(iIndex)).strImageFileOn;
 		else {
-			setLastError(
-				"UserInfo.getImageFile()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+			setLastError("UserInfo.getImageFile()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
 	}
 	public String getImageFileOff(int iIndex) {
 		if (iIndex < vtFunctionTree.size())
-			return (
-				(stFunction) vtFunctionTree.elementAt(iIndex)).strImageFileOff;
+			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strImageFileOff;
 		else {
-			setLastError(
-				"UserInfo.getImageFile()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+			setLastError("UserInfo.getImageFile()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
 	}
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/9 §W§» 04:25:31)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/9 ‰∏äÂçà 04:25:31)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 * @return java.lang.String
@@ -2166,43 +1290,28 @@ public class UserInfo extends RootClass {
 	 */
 	public String getImageFileOnUp(int iIndex) {
 		if (iIndex < vtFunctionTree.size())
-			return (
-				(stFunction) vtFunctionTree.elementAt(iIndex)).strImageFileOnUp;
+			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strImageFileOnUp;
 		else {
-			setLastError(
-				"UserInfo.getIamgeFileUp()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+			setLastError("UserInfo.getIamgeFileUp()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
 	}
 	public String getImageFileOffUp(int iIndex) {
 		if (iIndex < vtFunctionTree.size())
-			return (
-				(stFunction) vtFunctionTree.elementAt(
-					iIndex)).strImageFileOffUp;
+			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strImageFileOffUp;
 		else {
-			setLastError(
-				"UserInfo.getIamgeFileUp()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+			setLastError("UserInfo.getIamgeFileUp()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
 	}
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/9 §W§» 04:25:31)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/9 ‰∏äÂçà 04:25:31)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 * @return java.lang.String
@@ -2212,23 +1321,18 @@ public class UserInfo extends RootClass {
 		if (iIndex < vtFunctionTree.size())
 			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strProperty;
 		else {
-			setLastError(
-				"UserInfo.getProperty()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+			setLastError("UserInfo.getProperty()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/9 §W§» 04:25:31)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/9 ‰∏äÂçà 04:25:31)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.lang.String
@@ -2238,38 +1342,26 @@ public class UserInfo extends RootClass {
 		if (iIndex < vtFunctionTree.size())
 			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strRemark;
 		else {
-			setLastError(
-				"UserInfo.getRemark()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+			setLastError("UserInfo.getRemark()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
 	}
 	public String getHitCountUrl(int iIndex) {
 		if (iIndex < vtFunctionTree.size())
-			return (
-				(stFunction) vtFunctionTree.elementAt(iIndex)).strHitCountUrl;
+			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strHitCountUrl;
 		else {
-			setLastError(
-				"UserInfo.getHitCountUrl()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+			setLastError("UserInfo.getHitCountUrl()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/9 §W§» 04:25:31)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/9 ‰∏äÂçà 04:25:31)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.lang.String
@@ -2279,165 +1371,123 @@ public class UserInfo extends RootClass {
 		if (iIndex < vtFunctionTree.size())
 			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strRemarkUp;
 		else {
-			setLastError(
-				"UserInfo.getRemarkUp()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+			setLastError("UserInfo.getRemarkUp()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
 	}
 	public String getHitCountUrlUp(int iIndex) {
-		if (iIndex < vtFunctionTree.size())
-			return (
-				(stFunction) vtFunctionTree.elementAt(iIndex)).strHitCountUrlUp;
-		else {
-			setLastError(
-				"UserInfo.getHitCountUrlUp()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+		if (iIndex < vtFunctionTree.size()) {
+			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strHitCountUrlUp;
+		} else {
+			setLastError("UserInfo.getHitCountUrlUp()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/9 §W§» 04:25:31)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/9 ‰∏äÂçà 04:25:31)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.lang.String
 			 * @param iIndex int
 			 */
 	public String getSeq(int iIndex) {
-		if (iIndex < vtFunctionTree.size())
+		if (iIndex < vtFunctionTree.size()) {
 			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strSeq;
-		else {
-			setLastError(
-				"UserInfo.getSeq()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+		} else {
+			setLastError("UserInfo.getSeq()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/9 §W§» 04:23:22)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/9 ‰∏äÂçà 04:23:22)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return int
 			 */
 	public int getSizeOfUserFuncTree() {
 		return vtFunctionTree.size();
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/9 §W§» 04:25:31)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/9 ‰∏äÂçà 04:25:31)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.lang.String
 			 * @param iIndex int
 			 */
 	public String getTargetWindow(int iIndex) {
-		if (iIndex < vtFunctionTree.size())
-			return (
-				(stFunction) vtFunctionTree.elementAt(iIndex)).strTargetWindow;
-		else {
-			setLastError(
-				"UserInfo.getTargetWindow()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+		if (iIndex < vtFunctionTree.size()) {
+			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strTargetWindow;
+		} else {
+			setLastError("UserInfo.getTargetWindow()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/9 §W§» 04:25:31)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/9 ‰∏äÂçà 04:25:31)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return java.lang.String
 			 * @param iIndex int
 			 */
 	public String getUrl(int iIndex) {
-		if (iIndex < vtFunctionTree.size()) 
+		if (iIndex < vtFunctionTree.size()) {
 			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strUrl;
-		else {
-			setLastError(
-				"UserInfo.getUrl()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+		} else {
+			setLastError("UserInfo.getUrl()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
 	}
 
 	public String getSubFunctionUp(int iIndex) {
-		if (iIndex < vtFunctionTree.size())
-			return (
-				(stFunction) vtFunctionTree.elementAt(iIndex)).strSubFunctionUp;
-		else {
-			setLastError(
-				"UserInfo.getSubFunctionUp()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+		if (iIndex < vtFunctionTree.size()) {
+			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strSubFunctionUp;
+		} else {
+			setLastError("UserInfo.getSubFunctionUp()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
 	}
 
 	public String getSubFunction(int iIndex) {
-		if (iIndex < vtFunctionTree.size())
-			return (
-				(stFunction) vtFunctionTree.elementAt(iIndex)).strSubFunction;
-		else {
-			setLastError(
-				"UserInfo.getSubFunction()",
-				"The size of vtFunctionTree is '"
-					+ String.valueOf(vtFunctionTree.size())
-					+ "', input index is '"
-					+ String.valueOf(iIndex)
-					+ "' out of range");
+		if (iIndex < vtFunctionTree.size()){
+			return ((stFunction) vtFunctionTree.elementAt(iIndex)).strSubFunction;
+		} else {
+			setLastError("UserInfo.getSubFunction()","The size of vtFunctionTree is '"+ String.valueOf(vtFunctionTree.size())+ "', input index is '"+ String.valueOf(iIndex)+ "' out of range");
 			return null;
 		}
 	}
 
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/3 §U§» 04:41:18)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/3 ‰∏ãÂçà 04:41:18)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 * @return boolean
@@ -2447,62 +1497,24 @@ public class UserInfo extends RootClass {
 		int iReturnStatus = 1;
 		boolean bTmpStatus = false;
 		PreparedStatement pstmUpdateTuser = null;
-		String strUpdateTuserSql =
-			new String(
-				"update "
-					+ (String) dbFactory
-						.getGlobalEnviron()
-						.getServletContext()
-						.getAttribute(
-						Constant.TABLE_NAME_USER_ID)
-					+ " set "
-					+ (String) dbFactory
-						.getGlobalEnviron()
-						.getServletContext()
-						.getAttribute(
-						Constant.FIELD_NAME_LAST_LOGON_DATE)
-					+ " = ? where "
-					+ (String) dbFactory
-						.getGlobalEnviron()
-						.getServletContext()
-						.getAttribute(
-						Constant.FIELD_NAME_USER_ID)
-					+ " = ?");
-		EncryptionBean encoder =
-			new EncryptionBean(dbFactory.getGlobalEnviron(), dbFactory);
+		String strUpdateTuserSql = new String("update " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.TABLE_NAME_USER_ID)
+					+ " set " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_LAST_LOGON_DATE) + " = ? " +
+					"where " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_ID)+ " = ?");
+		
+		EncryptionBean encoder = new EncryptionBean(dbFactory.getGlobalEnviron(), dbFactory);
 		String strEncryptedPassword = new String("");
 
 		bPasswordChecked = false;
 		if (strThisPassword != null) {
-			writeDebugLog(
-				Constant.DEBUG_DEBUG,
-				"UserInfo.checkPassword()",
-				"Input password is '"
-					+ strThisPassword
-					+ "', the password in database is '"
-					+ this.getPassword()
-					+ "'");
-			writeDebugLog(
-				Constant.DEBUG_DEBUG,
-				"UserInfo.checkPassword()",
-				"The last password date = '"
-					+ getROCDate(dteLastPasswordDate)
-					+ "' password expiration days is '"
-					+ String.valueOf(iPasswordExpirationDays)
-					+ "', password warning days is '"
-					+ String.valueOf(iPasswordWarningDays)
-					+ "'");
-			if (!bCaseSenstive)
-				strThisPassword = strThisPassword.toUpperCase();
-			if (dbFactory.getGlobalEnviron().getPasswordEncrypted())
-				strEncryptedPassword =
-					encoder.getEncryptedPassword(strThisPassword);
-			else
+			writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.checkPassword()","Input password is '"+ strThisPassword+ "', the password in database is '"+ this.getPassword()+ "'");
+			writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.checkPassword()","The last password date = '"+ getROCDate(dteLastPasswordDate)+ "' password expiration days is '"+ String.valueOf(iPasswordExpirationDays)+ "', password warning days is '"+ String.valueOf(iPasswordWarningDays)+ "'");
+			if (!bCaseSenstive) strThisPassword = strThisPassword.toUpperCase();
+			if (dbFactory.getGlobalEnviron().getPasswordEncrypted()) {
+				strEncryptedPassword = encoder.getEncryptedPassword(strThisPassword);
+			} else {
 				strEncryptedPassword = strThisPassword;
-			writeDebugLog(
-				Constant.DEBUG_DEBUG,
-				"UserInfo.checkPassword()",
-				"The Encrypted password is '" + strEncryptedPassword + "'");
+			}
+			writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.checkPassword()","The Encrypted password is '" + strEncryptedPassword + "'");
 			bTmpStatus = strEncryptedPassword.equals(this.getPassword());
 			if (bTmpStatus) {
 				bPasswordChecked = true;
@@ -2511,129 +1523,64 @@ public class UserInfo extends RootClass {
 				//Calendar cldToday = Calendar.getInstance();
 				Calendar cldToday = commonUtil.getBizDateByRCalendar();
 				System.out.println(cldToday.getTime());
-//	R00393			Edit by Leo Huang (EAONTECH) Start
+				//	R00393-Edit by Leo Huang (EAONTECH) Start
 				try {
 					conDb = dbFactory.getConnection("UserInfo.checkPassword()");
-					
 					if (conDb != null) {
-						pstmUpdateTuser =
-							conDb.prepareStatement(strUpdateTuserSql);
-						pstmUpdateTuser.setString(
-							1,
-							commonUtil.convertWesten2ROCDate1(cldToday.getTime()));
+						pstmUpdateTuser = conDb.prepareStatement(strUpdateTuserSql);
+						pstmUpdateTuser.setString(1,commonUtil.convertWesten2ROCDate1(cldToday.getTime()));
 						pstmUpdateTuser.setString(2, strUserId);
 						int i = pstmUpdateTuser.executeUpdate();
 						if (i != 1) {
-							setLastError(
-								this.getClass().getName() + "checkPassword()",
-								"Update USER LLOGD fiail");
+							setLastError(this.getClass().getName() + "checkPassword()","Update USER LLOGD fiail");
 						}
 					}
 					dbFactory.releaseConnection(conDb);
 				} catch (Exception ex) {
-					setLastError(
-						this.getClass().getName() + "checkPassword()",
-						ex);
-					if (conDb != null)
-						dbFactory.releaseConnection(conDb);
+					setLastError(this.getClass().getName() + "checkPassword()",ex);
+					if (conDb != null) dbFactory.releaseConnection(conDb);
 				}
 				iReturnStatus = 0;
 				if (bCheckPasswordAging) {
 					if (dteLastPasswordDate != null) {
-						long lDaysLeft =
-							CommonUtil.diffDate(
-								cldToday.getTime(),
-								dteLastPasswordDate);
-						//					writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.checkPassword()","The Days left is '"+String.valueOf(lDaysLeft)+"'");
+						long lDaysLeft = CommonUtil.diffDate(cldToday.getTime(),dteLastPasswordDate);
+						//writeDebugLog(Constant.DEBUG_DEBUG,"UserInfo.checkPassword()","The Days left is '"+String.valueOf(lDaysLeft)+"'");
 						if (lDaysLeft > iPasswordExpirationDays) {
-							//§wπL¥¡
+							//Â∑≤ÈÅéÊúü
 							iReturnStatus = 1;
-							setLastError(
-								"UserInfo.checkPassword()",
-								strUserId
-									+ " ™∫±KΩX§wπL¥¡:´e¶∏ßÛßÔ±KΩXÆ…∂°¨∞ "
-									+ getROCDate(dteLastPasswordDate)
-									+ " , §w∂WπL "
-									+ String.valueOf(iPasswordExpirationDays)
-									+ " §—•H§W,Ω–•˝ßÛßÔ±KΩX¶A∂i¶Ê®‰•Lß@∑~");
-//±KΩX®Ï¥¡ƒµßi•\Ø‡§£•˛,º»Æ…®˙Æ¯
-//						} else {
-//							if (lDaysLeft
-//								> (iPasswordExpirationDays
-//									- iPasswordWarningDays)) {
-								//≠nƒµßi
-//								iReturnStatus = 2;
-//								setLastError(
-//									"UserInfo.checkPassword()",
-//									strUserId
-//										+ " ™∫±KΩX¡Ÿ≥— "
-//										+ String.valueOf(
-//											iPasswordExpirationDays
-//												- lDaysLeft)
-//										+ " §—¥N≠n®Ï¥¡,¨Oß_≠nßÛßÔ±KΩX?");
-//							}
+							setLastError("UserInfo.checkPassword()",strUserId+ " ÁöÑÂØÜÁ¢ºÂ∑≤ÈÅéÊúü:ÂâçÊ¨°Êõ¥ÊîπÂØÜÁ¢ºÊôÇÈñìÁÇ∫ "+ getROCDate(dteLastPasswordDate)+ " , Â∑≤Ë∂ÖÈÅé "+ String.valueOf(iPasswordExpirationDays)+ " Â§©‰ª•‰∏ä,Ë´ãÂÖàÊõ¥ÊîπÂØÜÁ¢ºÂÜçÈÄ≤Ë°åÂÖ∂‰ªñ‰ΩúÊ•≠");
 						}
 					} else {
-						//					bPasswordChecked = false;
-						iReturnStatus = 9; //≤ƒ§@¶∏µnø˝
-						setLastError(
-							"UserInfo.checkPassword()",
-							strUserId + "≤ƒ§@¶∏µn§J®t≤Œ,Ω–ßÛ∑s±KΩX§ŒΩTª{≠”§H∏ÍÆ∆;±KΩX•ºßÛ∑s,´hµL™kæﬁß@®‰•¶•\Ø‡");
+						//bPasswordChecked = false;
+						iReturnStatus = 9; //Á¨¨‰∏ÄÊ¨°ÁôªÈåÑ
+						setLastError("UserInfo.checkPassword()",strUserId + "Á¨¨‰∏ÄÊ¨°ÁôªÂÖ•Á≥ªÁµ±,Ë´ãÊõ¥Êñ∞ÂØÜÁ¢ºÂèäÁ¢∫Ë™çÂÄã‰∫∫Ë≥áÊñô;ÂØÜÁ¢ºÊú™Êõ¥Êñ∞,ÂâáÁÑ°Ê≥ïÊìç‰ΩúÂÖ∂ÂÆÉÂäüËÉΩ");
 					}
 				}
-				// ±N±KΩXø˘ª~¶∏º∆¬kπs
+				// Â∞áÂØÜÁ¢ºÈåØË™§Ê¨°Êï∏Ê≠∏Èõ∂
 				passwordErrorCounter = 0;
 			} else {
 				bPasswordChecked = false;
 				iReturnStatus = 10;
 				if (strUserType != null && strUserType.equalsIgnoreCase("K")) {
-					// ƒ›©Û∏g•N§j≤≥™∫®œ•Œ™Ã§£ª›¬Í©w±KΩXø˘ª~¶∏º∆
+					// Â±¨ÊñºÁ∂ì‰ª£Â§ßÁúæÁöÑ‰ΩøÁî®ËÄÖ‰∏çÈúÄÈéñÂÆöÂØÜÁ¢ºÈåØË™§Ê¨°Êï∏
 					passwordErrorCounter = 0;
 				}
 				
 				if (++passwordErrorCounter >= maxPasswordError) {
 					// Change user status to invalid --> I
-					String sqlUpdateStatus =
-						"update "
-							+ (String) dbFactory
-								.getGlobalEnviron()
-								.getServletContext()
-								.getAttribute(
-								Constant.TABLE_NAME_USER_ID)
-							+ " set "
-							+ (String) dbFactory
-								.getGlobalEnviron()
-								.getServletContext()
-								.getAttribute(
-								Constant.FIELD_NAME_USER_STATUS)
-							+ " = 'I' where "
-							+ (String) dbFactory
-								.getGlobalEnviron()
-								.getServletContext()
-								.getAttribute(
-								Constant.FIELD_NAME_USER_ID)
-							+ " ='"
-							+ strUserId
-							+ "' ";
+					String sqlUpdateStatus = "update " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.TABLE_NAME_USER_ID)
+							+ " set " + (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_STATUS)+ " = 'I' " +
+							"where "+ (String) dbFactory.getGlobalEnviron().getServletContext().getAttribute(Constant.FIELD_NAME_USER_ID) + " ='" + strUserId + "' ";
 					Connection con = null;
 					Statement stmt = null;
 					try {
-						con =
-							dbFactory.getConnection("UserInfo.checkPassword()");
+						con = dbFactory.getConnection("UserInfo.checkPassword()");
 						stmt = con.createStatement();
 						if (stmt.executeUpdate(sqlUpdateStatus) > 0) {
-							setLastError(
-								"UserInfo.checkPassword()",
-								strUserId
-									+ " ±KΩXø˘ª~¶∏º∆∂WπL "
-									+ String.valueOf(maxPasswordError)
-									+ " ±b∏π±N¬Í©w !");
+							setLastError("UserInfo.checkPassword()",strUserId + " ÂØÜÁ¢ºÈåØË™§Ê¨°Êï∏Ë∂ÖÈÅé " + String.valueOf(maxPasswordError) + " Â∏≥ËôüÂ∞áÈéñÂÆö !");
 						}
 					} catch (SQLException ex) {
-						writeDebugLog(
-							Constant.DEBUG_ERROR,
-							"UserInfo.checkPassword()",
-							ex.getMessage());
+						writeDebugLog(Constant.DEBUG_ERROR,"UserInfo.checkPassword()",ex.getMessage());
 					} finally {
 						try {
 							if (stmt != null)
@@ -2644,28 +1591,26 @@ public class UserInfo extends RootClass {
 						}
 					}
 				} else {
-					setLastError(
-						"UserInfo.checkPassword()",
-						strUserId + " ±KΩXø˘ª~(Ω–¿À¨d±zøÈ§J±KΩX™∫§j§pºg)");
+					setLastError("UserInfo.checkPassword()",strUserId + " ÂØÜÁ¢ºÈåØË™§(Ë´ãÊ™¢Êü•ÊÇ®Ëº∏ÂÖ•ÂØÜÁ¢ºÁöÑÂ§ßÂ∞èÂØ´)");
 				}
 
 			}
 		} else {
-			//		writeDebugLog(Constant.DEBUG_WARNING,"UserInfo.checkPassword()","Input password is null");
 			bPasswordChecked = false;
 			iReturnStatus = 1;
 		}
 		return iReturnStatus;
 		//	bPasswordChecked = true;
 		//	return 0;
-	} /**
-			 * §Ë™k¶W∫Ÿ°G°C
-			 * §Ë™k•\Ø‡°G°C
-			 * ´ÿ•ﬂ§È¥¡°G (2001/3/17 §W§» 08:24:57)
-			 * ∂«§J∞—º∆°G
-			 * ∂«¶^≠»  °G
-			 * ≠◊ßÔ¨ˆø˝°G
-			 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	} 
+	/**
+			 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+			 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/17 ‰∏äÂçà 08:24:57)
+			 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+			 * ÂÇ≥ÂõûÂÄº  Ôºö
+			 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+			 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 			 * ========= =========== ===========================================================
 			 * 
 			 * @return boolean
@@ -2678,16 +1623,17 @@ public class UserInfo extends RootClass {
 		if (strFuncId == null) {
 			setLastError("checkPrivilege()", "The input parameter is null");
 		} else {
-			if (!bRefreshed)
-				bReturnStatus = this.refresh();
+			if (!bRefreshed) bReturnStatus = this.refresh();
 
 			bReturnStatus = isPasswordChecked();
 
 			if (bReturnStatus) {
 				bReturnStatus = false;
+				logger.info("getSizeOfUserFuncTree:" + getSizeOfUserFuncTree());
 				if (this.getSizeOfUserFuncTree() > 0) {
 					for (i = 0; i < this.getSizeOfUserFuncTree(); i++) {
 						if (this.getFunctionIdDown(i).equals(strFuncId)) {
+							logger.info("strFuncId:" + strFuncId);
 							bReturnStatus = true;
 							break;
 						}
@@ -2705,21 +1651,16 @@ public class UserInfo extends RootClass {
 		boolean bReturnStatus = true;
 
 		if (strFuncId == null || strSubFunction == null) {
-			setLastError(
-				"checkPrivilegeAndSubFunction()",
-				"The function id or sub function is null");
+			setLastError("checkPrivilegeAndSubFunction()","The function id or sub function is null");
 		} else {
-			if (!bRefreshed)
-				bReturnStatus = this.refresh();
+			if (!bRefreshed) bReturnStatus = this.refresh();
 
 			bReturnStatus = isPasswordChecked();
 
 			if (bReturnStatus) {
 				bReturnStatus = false;
 				if (this.getSizeOfUserFuncTree() > 0) {
-					for (iIndex = 0;
-						iIndex < this.getSizeOfUserFuncTree();
-						iIndex++) {
+					for (iIndex = 0; iIndex < this.getSizeOfUserFuncTree(); iIndex++) {
 						if (this.getFunctionIdDown(iIndex).equals(strFuncId)) {
 							bReturnStatus = true;
 							break;
@@ -2727,16 +1668,11 @@ public class UserInfo extends RootClass {
 					}
 				}
 				/*
-				 *	93/03/30 added by Andy : ¶A¿ÀÆ÷∏”µ{¶°§ß§l•\Ø‡ 
+				 *	93/03/30 added by Andy : ÂÜçÊ™¢Ê†∏Ë©≤Á®ãÂºè‰πãÂ≠êÂäüËÉΩ 
 				 */
 				if (bReturnStatus) {
-					if (this.getSubFunction(this.getFunctionIdDown(iIndex))
-						!= null) {
-						if (this
-							.getSubFunction(this.getFunctionIdDown(iIndex))
-							.toLowerCase()
-							.indexOf(strSubFunction.toUpperCase())
-							== -1)
+					if (this.getSubFunction(this.getFunctionIdDown(iIndex)) != null) {
+						if (this.getSubFunction(this.getFunctionIdDown(iIndex)).toLowerCase().indexOf(strSubFunction.toUpperCase()) == -1)
 							bReturnStatus = false;
 					} else
 						bReturnStatus = false;
@@ -2747,13 +1683,13 @@ public class UserInfo extends RootClass {
 	}
 
 	/**
-		 * §Ë™k¶W∫Ÿ°G°C
-		 * §Ë™k•\Ø‡°G°C
-		 * ´ÿ•ﬂ§È¥¡°G (2001/3/10 §U§» 11:07:38)
-		 * ∂«§J∞—º∆°G
-		 * ∂«¶^≠»  °G
-		 * ≠◊ßÔ¨ˆø˝°G
-		 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+		 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+		 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+		 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/10 ‰∏ãÂçà 11:07:38)
+		 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+		 * ÂÇ≥ÂõûÂÄº  Ôºö
+		 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+		 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 		 * ========= =========== ===========================================================
 		 * 
 		 * @return com.aegon.comlib.dbFactory
@@ -2776,8 +1712,7 @@ public class UserInfo extends RootClass {
 				}
 			}
 			if (i >= this.getSizeOfUserFuncTree()) {
-				strReturnFuncName =
-					"'" + strThisFuncId + "' not found in function tree";
+				strReturnFuncName = "'" + strThisFuncId + "' not found in function tree";
 			}
 		} else {
 			setLastError("UserInfo.getFuncName()", "The input func id is null");
@@ -2790,13 +1725,13 @@ public class UserInfo extends RootClass {
 	}
 
 	/**
-		 * §Ë™k¶W∫Ÿ°G°C
-		 * §Ë™k•\Ø‡°G°C
-		 * ´ÿ•ﬂ§È¥¡°G (2001/3/11 §U§» 07:41:32)
-		 * ∂«§J∞—º∆°G
-		 * ∂«¶^≠»  °G
-		 * ≠◊ßÔ¨ˆø˝°G
-		 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+		 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+		 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+		 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/11 ‰∏ãÂçà 07:41:32)
+		 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+		 * ÂÇ≥ÂõûÂÄº  Ôºö
+		 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+		 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 		 * ========= =========== ===========================================================
 		 * 
 		 * @param bThisCaseSenstive boolean
@@ -2805,13 +1740,13 @@ public class UserInfo extends RootClass {
 		bCaseSenstive = bThisCaseSenstive;
 	}
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/11 §U§» 07:49:43)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/11 ‰∏ãÂçà 07:49:43)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 * @param bThisCheckPasswordAging boolean
@@ -2821,13 +1756,13 @@ public class UserInfo extends RootClass {
 	}
 
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/9 §W§» 04:25:31)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/9 ‰∏äÂçà 04:25:31)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 * @return java.lang.String
@@ -2838,13 +1773,13 @@ public class UserInfo extends RootClass {
 	}
 
 	/**
-	 * §Ë™k¶W∫Ÿ°G°C
-	 * §Ë™k•\Ø‡°G°C
-	 * ´ÿ•ﬂ§È¥¡°G (2001/3/11 §U§» 07:49:43)
-	 * ∂«§J∞—º∆°G
-	 * ∂«¶^≠»  °G
-	 * ≠◊ßÔ¨ˆø˝°G
-	 * §È   ¥¡    ≠◊ ßÔ ™Ã     ≠◊      ßÔ      §∫       Æe
+	 * ÊñπÊ≥ïÂêçÁ®±Ôºö„ÄÇ
+	 * ÊñπÊ≥ïÂäüËÉΩÔºö„ÄÇ
+	 * Âª∫Á´ãÊó•ÊúüÔºö (2001/3/11 ‰∏ãÂçà 07:49:43)
+	 * ÂÇ≥ÂÖ•ÂèÉÊï∏Ôºö
+	 * ÂÇ≥ÂõûÂÄº  Ôºö
+	 * ‰øÆÊîπÁ¥ÄÈåÑÔºö
+	 * Êó•   Êúü    ‰øÆ Êîπ ËÄÖ     ‰øÆ      Êîπ      ÂÖß       ÂÆπ
 	 * ========= =========== ===========================================================
 	 * 
 	 * @param bThisPasswordChecked boolean
@@ -2852,27 +1787,27 @@ public class UserInfo extends RootClass {
 	public void setPasswordChecked(boolean bThisPasswordChecked) {
 		bPasswordChecked = bThisPasswordChecked;
 	}
-
 	/**
-		 * Ω–©Û¶π≥B•[§J§Ë™k™∫ª°©˙°C
-		 * ´ÿ•ﬂ§È¥¡°G (2002/9/26 §W§» 08:47:31)
+		 * Ë´ãÊñºÊ≠§ËôïÂä†ÂÖ•ÊñπÊ≥ïÁöÑË™™Êòé„ÄÇ
+		 * Âª∫Á´ãÊó•ÊúüÔºö (2002/9/26 ‰∏äÂçà 08:47:31)
 		 * @return int
 		 */
 	public int getPasswordExpirationDays() {
 		return iPasswordExpirationDays;
 	}
 	/**
-		 * Ω–©Û¶π≥B•[§J§Ë™k™∫ª°©˙°C
-		 * ´ÿ•ﬂ§È¥¡°G (2002/10/3 §U§» 02:41:04)
+		 * Ë´ãÊñºÊ≠§ËôïÂä†ÂÖ•ÊñπÊ≥ïÁöÑË™™Êòé„ÄÇ
+		 * Âª∫Á´ãÊó•ÊúüÔºö (2002/10/3 ‰∏ãÂçà 02:41:04)
 		 * @return java.lang.String
 		 * @param strThisDpDsk java.lang.String
 		 */
 	public void setPasswordExpirationDays(int iThisPasswordExpirationDays) {
 		if (iThisPasswordExpirationDays >= 0)
 			iPasswordExpirationDays = iThisPasswordExpirationDays;
-	} /**
-			 * Ω–©Û¶π≥B•[§J§Ë™k™∫ª°©˙°C
-			 * ´ÿ•ﬂ§È¥¡°G (2002/10/3 §U§» 02:43:13)
+	} 
+	/**
+			 * Ë´ãÊñºÊ≠§ËôïÂä†ÂÖ•ÊñπÊ≥ïÁöÑË™™Êòé„ÄÇ
+			 * Âª∫Á´ãÊó•ÊúüÔºö (2002/10/3 ‰∏ãÂçà 02:43:13)
 			 * @param strThisOffice java.lang.String
 			 */
 
@@ -2898,8 +1833,7 @@ public class UserInfo extends RootClass {
 	}
 
 	public void setPassowrdWarningDays(int iThisPassowrdWarningDays) {
-		if (iThisPassowrdWarningDays >= 0)
-			iPasswordWarningDays = iThisPassowrdWarningDays;
+		if (iThisPassowrdWarningDays >= 0) iPasswordWarningDays = iThisPassowrdWarningDays;
 	}
 
 	public String getSubFunction(String strThisFuncId) {
@@ -2914,13 +1848,10 @@ public class UserInfo extends RootClass {
 				}
 			}
 			if (i >= this.getSizeOfUserFuncTree()) {
-				strReturnSubFunction =
-					"'" + strThisFuncId + "' not found in function tree";
+				strReturnSubFunction = "'" + strThisFuncId + "' not found in function tree";
 			}
 		} else {
-			setLastError(
-				"UserInfo.getSubFunction()",
-				"The input func id is null");
+			setLastError("UserInfo.getSubFunction()","The input func id is null");
 		}
 		return strReturnSubFunction;
 	}

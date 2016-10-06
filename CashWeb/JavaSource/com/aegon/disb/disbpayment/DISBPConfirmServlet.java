@@ -24,6 +24,7 @@ import com.aegon.comlib.DbFactory;
 import com.aegon.comlib.GlobalEnviron;
 import com.aegon.disb.util.DISBBean;
 import com.aegon.disb.util.DISBPaymentDetailVO;
+import org.apache.log4j.Logger;
 
 /**
  * System   :
@@ -111,6 +112,8 @@ import com.aegon.disb.util.DISBPaymentDetailVO;
  */
  
 public class DISBPConfirmServlet extends HttpServlet {
+	
+	private Logger log = Logger.getLogger(getClass());
 
 	private GlobalEnviron globalEnviron = null;
 	private DbFactory dbFactory = null;
@@ -184,6 +187,7 @@ public class DISBPConfirmServlet extends HttpServlet {
 				objPaymentDetailVO.setStrPNO(((DISBPaymentDetailVO) alPDetail.get(i)).getStrPNO());
 				objPaymentDetailVO.setIPDate(((DISBPaymentDetailVO) alPDetail.get(i)).getIPDate());
 				objPaymentDetailVO.setStrPDispatch(((DISBPaymentDetailVO) alPDetail.get(i)).getStrPDispatch());
+				objPaymentDetailVO.setCompany(((DISBPaymentDetailVO) alPDetail.get(i)).getCompany());
 				alCheckPnoList.add(objPaymentDetailVO);
 			}
 		}
@@ -241,6 +245,7 @@ public class DISBPConfirmServlet extends HttpServlet {
 						 */
 						int intPdate = 0; // 付款日期
 						intPdate = objPaymentDetailVO.getIPDate();
+						log.info("intPdate" + intPdate);
 						String strPDispatch = objPaymentDetailVO.getStrPDispatch(); // 急件否
 						if (strPDispatch.equals("Y")) {
 							if (intPdate < intEntryPDate) {
@@ -253,11 +258,23 @@ public class DISBPConfirmServlet extends HttpServlet {
 						}
 
 						strSql = " update CAPPAYF set PDATE = ?, PCFMDT2 = ?, PCFMTM2 = ?, PCFMUSR2=?, ";
+						
+						//RD0382:OIU
+						String company = "";
+						company = objPaymentDetailVO.getCompany();
+						log.info("company是" + company);
+						if("OIU".equals(company) ){
+							strSql += "PAY_COMPANY= 'OIU', ";
+						}else{
+							strSql += "PAY_COMPANY='', ";
+						}
+						
 						strSql += "UPDDT= ?, UPDTM = ?, UPDUSR =?  where PNO =? ";
 
 						// 下log
 						strReturnMsg = disbBean.insertCAPPAYFLOG(strPNO, strLogonUser, iUpdDate, iUpdTime, con);
 						if (strReturnMsg.equals("")) {
+							log.info(strSql + ",intPdate是" + intPdate);
 							pstmtTmp = con.prepareStatement(strSql);
 							pstmtTmp.setInt(1, intPdate);
 							pstmtTmp.setInt(2, iUpdDate);
@@ -267,7 +284,7 @@ public class DISBPConfirmServlet extends HttpServlet {
 							pstmtTmp.setInt(6, iUpdTime);
 							pstmtTmp.setString(7, strLogonUser);
 							pstmtTmp.setString(8, strPNO);
-
+							
 							if (pstmtTmp.executeUpdate() != 1) {
 								strReturnMsg = "確認失敗";
 							} else {
@@ -319,6 +336,9 @@ public class DISBPConfirmServlet extends HttpServlet {
 		ResultSet rs = null;
 		DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);// R70292
 		String strSql = ""; // SQL String
+		String strSql2 = ""; // SQL String
+		String strSqlOrder = ""; // SQL String
+		String strSqlMerge = ""; // SQL String
 		DISBPaymentDetailVO objPDetailVO = null;
 		List alPDetail = new ArrayList();
 
@@ -333,6 +353,7 @@ public class DISBPConfirmServlet extends HttpServlet {
 		String strCurrency = ""; // 幣別
 		String strPMETHOD = ""; // 付款方式R60550
 		int iNextDT = 0; // 下一個付款日R70292
+		String company = ""; //RD0382:OIU
 
 		strPDate = request.getParameter("txtPDate");
 		if (strPDate != null) {
@@ -388,15 +409,54 @@ public class DISBPConfirmServlet extends HttpServlet {
 			strPMETHOD = strPMETHOD.trim();
 		else
 			strPMETHOD = "";
+		
+		//RD0382:OIU
+		company = request.getParameter("selCompany");
+		company = (company != null) ? CommonUtil.AllTrim(company) : "" ;
+		
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}
 
-		strSql = "select A.ENTRYDT,A.PAMT,A.PCFMDT1,A.PCFMTM1,A.PCFMDT2,A.PCFMTM2,A.PDATE,A.UPDDT,A.UPDTM,A.APPNO,A.POLICYNO,A.ENTRYUSR,A.PAUTHCODE,A.PBACCOUNT,A.PBBANK,A.PCFMUSR1,A.PCFMUSR2,A.PCHECKNO,A.PCRDEFFMY,A.PCRDNO,A.PCRDTYPE,A.PDESC,A.PDISPATCH,A.PID,A.PMETHOD,A.PNAME,A.PNO,A.PNOH,A.PRACCOUNT,A.PRBANK,A.PSRCGP,A.PSRCCODE,A.PSTATUS,A.PVOIDABLE,A.PDISPATCH,A.BRANCH,B.DEPT,A.PCURR";
+		//先查詢有保單號碼的記錄
+		strSql = "select A.ENTRYDT,A.PAMT,A.PCFMDT1,A.PCFMTM1,A.PCFMDT2,A.PCFMTM2,A.PDATE,A.UPDDT,A.UPDTM,A.APPNO,A.POLICYNO,A.ENTRYUSR,A.PAUTHCODE,A.PBACCOUNT,A.PBBANK,A.PCFMUSR1,A.PCFMUSR2,A.PCHECKNO,A.PCRDEFFMY,A.PCRDNO,A.PCRDTYPE,A.PDESC,A.PDISPATCH,A.PID,A.PMETHOD,A.PNAME,A.PNO,A.PNOH,A.PRACCOUNT,A.PRBANK,A.PSRCGP,A.PSRCCODE,A.PSTATUS,A.PVOIDABLE,A.PDISPATCH,A.BRANCH,B.DEPT,A.PCURR ";
+		
+		//if("6".equals(company) || "0".equals(company)){
+		strSql += ",CASE WHEN PO.POIUIND ='6' THEN 'OIU' ELSE '總公司' END AS POLICY_TYPE";
+		/*}else{
+			strSql += ",'總公司' AS POLICY_TYPE";
+		}*/
+		 
 		strSql += ",A.PPAYCURR,A.PPAYAMT ";// R60550
 		strSql += "from CAPPAYF A ";
-		strSql += "left outer join USER B  on B.USRID=A.ENTRYUSR   ";
+		strSql += "left outer join USER B  on B.USRID=A.ENTRYUSR ";
+		
+		//RD0382:OIU
+		//if("6".equals(company) || "0".equals(company)){
+		strSql += "left outer join ORDUPO PO ON PO.FLD0001='  ' AND A.POLICY_NO<>'' AND PO.FLD0002=A.POLICY_NO ";
+		//strSql += "left outer join ORDUPO PO ON PO.FLD0001='  ' AND ((A.POLICY_NO<>'' AND PO.FLD0002=A.POLICY_NO) OR (A.POLICY_NO='' AND PO.POAPNO=A.APP_NO))  ";
+		//}		
+		 
 		strSql += "WHERE A.PCFMDT1<>0 AND A.PCFMTM1<>0 AND A.PCFMUSR1 <>''  ";
 		strSql += "and A.PCFMDT2=0 AND A.PCFMTM2=0 AND A.PCFMUSR2 =''   ";
 		strSql += "AND A.PSTATUS=''  AND A.PVOIDABLE<>'Y' and A.PAMT>0  ";
-
+		
+		///RD0382:OIU
+		/*if("6".equals(company)){
+			strSql += "AND A.PAY_COMPANY='OIU' ";
+		}else if("0".equals(company)){
+			strSql += "AND A.PAY_COMPANY<>'OIU' ";
+		}*/
+		//修正為依ORDUPO的POIUIND判斷
+		if("6".equals(company)){
+			strSql += "AND PO.POIUIND='6' ";
+		}else if("0".equals(company)){
+			strSql += "AND (PO.POIUIND<>'6' OR PO.POIUIND IS NULL) ";
+		}
+		strSql += " AND A.POLICY_NO<>'' "; 
+		
 		/*
 		 * 修改取得支付條件(限CAPSIL壽險資料) 
 		 * 1.如PMETHOD IN('A','C') -->輸入日期要符合前端所輸之輸入日期
@@ -476,8 +536,130 @@ public class DISBPConfirmServlet extends HttpServlet {
 		}
 
 		// 依部門 輸入者及保單號碼排序
-		strSql += " order by B.DEPT,A.ENTRYUSR,A.POLICYNO ";
+		//strSql += " order by B.DEPT,A.ENTRYUSR,A.POLICYNO ";
+		
+		
+		//UNION無保單的記錄
+		strSql2 = "select A.ENTRYDT,A.PAMT,A.PCFMDT1,A.PCFMTM1,A.PCFMDT2,A.PCFMTM2,A.PDATE,A.UPDDT,A.UPDTM,A.APPNO,A.POLICYNO,A.ENTRYUSR,A.PAUTHCODE,A.PBACCOUNT,A.PBBANK,A.PCFMUSR1,A.PCFMUSR2,A.PCHECKNO,A.PCRDEFFMY,A.PCRDNO,A.PCRDTYPE,A.PDESC,A.PDISPATCH,A.PID,A.PMETHOD,A.PNAME,A.PNO,A.PNOH,A.PRACCOUNT,A.PRBANK,A.PSRCGP,A.PSRCCODE,A.PSTATUS,A.PVOIDABLE,A.PDISPATCH,A.BRANCH,B.DEPT,A.PCURR ";
+		
+		//if("6".equals(company) || "0".equals(company)){
+		strSql2 += ",CASE WHEN PO.POIUIND ='6' THEN 'OIU' ELSE '總公司' END AS POLICY_TYPE";
+		/*}else{
+			strSql += ",'總公司' AS POLICY_TYPE";
+		}*/
+		
+		strSql2 += ",A.PPAYCURR,A.PPAYAMT ";// R60550
+		strSql2 += "from CAPPAYF A ";
+		strSql2 += "left outer join USER B  on B.USRID=A.ENTRYUSR ";
+		
+		//RD0382:OIU
+		//if("6".equals(company) || "0".equals(company)){
+		strSql2 += "left outer join ORDUPO PO ON PO.FLD0001='  ' AND A.POLICY_NO='' AND PO.POAPNO=A.APP_NO ";
+		//strSql += "left outer join ORDUPO PO ON PO.FLD0001='  ' AND ((A.POLICY_NO<>'' AND PO.FLD0002=A.POLICY_NO) OR (A.POLICY_NO='' AND PO.POAPNO=A.APP_NO))  ";
+		//}		
+		 
+		strSql2 += "WHERE A.PCFMDT1<>0 AND A.PCFMTM1<>0 AND A.PCFMUSR1 <>''  ";
+		strSql2 += "and A.PCFMDT2=0 AND A.PCFMTM2=0 AND A.PCFMUSR2 =''   ";
+		strSql2 += "AND A.PSTATUS=''  AND A.PVOIDABLE<>'Y' and A.PAMT>0  ";
+		
+		///RD0382:OIU
+		/*if("6".equals(company)){
+			strSql += "AND A.PAY_COMPANY='OIU' ";
+		}else if("0".equals(company)){
+			strSql += "AND A.PAY_COMPANY<>'OIU' ";
+		}*/
+		//修正為依ORDUPO的POIUIND判斷
+		if("6".equals(company)){
+			strSql2 += "AND PO.POIUIND='6' AND A.POLICY_NO='' ";
+		}else if("0".equals(company)){
+			strSql2 += "AND (PO.POIUIND<>'6' OR PO.POIUIND IS NULL) ";
+		}
+		strSql2 += " AND A.POLICY_NO='' ";
+		
 
+		/*
+		 * 修改取得支付條件(限CAPSIL壽險資料) 
+		 * 1.如PMETHOD IN('A','C') -->輸入日期要符合前端所輸之輸入日期
+		 *   如PMETHOD ='B' -->付款日期要符合前端所輸之付款日期 R70088 SPUL配息支票件需同於匯款,於付款日才能確認
+		 *   R70292 支票件要以下一工作日為抓取條件 
+		 * 2.金額 > 0
+		 */
+
+		if (strPSrcGp.equals("CP") || strPSrcGp.equals("")) {
+			if (!strPDate.equals("")) {
+				if (!strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
+					strSql2 += " and ((A.PMETHOD IN ('B','D')  and A.PDATE <= " + strPDate;// R60550
+					strSql2 += "   and A.ENTRYDT <= " + strEntryEndDate + " ) ";
+					strSql2 += "     or (A.PMETHOD IN('A','C','E') and A.ENTRYDT between " + strEntryStartDate + "  and " + strEntryEndDate + " AND A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SN滿期金
+					strSql2 += "     or (A.PMETHOD IN('A','C') AND A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT;// R00440 SN滿期金
+					strSql2 += "       and A.ENTRYDT <= " + strEntryEndDate + " ))";
+				} else if (!strEntryStartDate.equals("") && strEntryEndDate.equals("")) {
+					strSql2 += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ")  ";// R60550
+					strSql2 += "  or (A.PMETHOD IN ('A','C','E') and A.ENTRYDT >= " + strEntryStartDate + " and A.PSRCCODE NOT IN ('B8','B9','BB'))";// R00440 SN滿期金
+					strSql2 += "  or (A.PMETHOD IN ('A','C') and A.PDATE <= " + iNextDT + " and A.PSRCCODE IN ('B8','B9','BB')) ) ";// R00440 SN滿期金
+				} else if (strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
+					strSql2 += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN ('A','C') and A.PSRCCODE NOT IN ('B8','B9','BB'))";// /R00440 SN滿期金
+					strSql2 += " or (A.PMETHOD IN ('A','C','E') and A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT + "))";// /R00440 SN滿期金
+					strSql2 += "   and A.ENTRYDT <= " + strEntryEndDate;
+				} else {
+					strSql2 += " and ((A.PMETHOD IN ('B','D') and A.PDATE <= " + strPDate + ") or (A.PMETHOD IN('A','C','E') and A.PSRCCODE NOT IN ('BB','B8','B9'))";// R00440 SN滿期金
+					strSql2 += " or (A.PMETHOD IN ('A','C') and A.PSRCCODE IN ('B8','B9','BB') and A.PDATE <= " + iNextDT + "))";// R00440 SN滿期金
+				}
+			} else {
+				if (!strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
+					strSql2 += " and  A.ENTRYDT between " + strEntryStartDate + "  and " + strEntryEndDate;
+				} else if (!strEntryStartDate.equals("") && strEntryEndDate.equals("")) {
+					strSql2 += " and A.ENTRYDT >= " + strEntryStartDate;
+				} else if (strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
+					strSql2 += " and  A.ENTRYDT <= " + strEntryEndDate;
+				}
+			}
+		} else {
+			// 非 capsil件
+			if (!strPDate.equals("")) {
+				strSql2 += " and A.PDATE <= " + strPDate;
+			}
+			if (!strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
+				strSql2 += " and  A.ENTRYDT between " + strEntryStartDate + "  and " + strEntryEndDate;
+			} else if (!strEntryStartDate.equals("") && strEntryEndDate.equals("")) {
+				strSql2 += " and A.ENTRYDT >= " + strEntryStartDate;
+			} else if (strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {
+				strSql2 += " and  A.ENTRYDT <= " + strEntryEndDate;
+			}
+		}
+
+		if (strDispatch.equals("Y")) {
+			strSql2 += "  and A.PDISPATCH= '" + strDispatch + "' ";
+		} else if (strDispatch.equals("N")) {
+			strSql2 += "  and A.PDISPATCH='' ";
+		}
+
+		if (!strPSrcGp.equals("")) {
+			strSql2 += "  and A.PSRCGP= '" + strPSrcGp + "' ";
+		}
+
+		if (!strDept.equals("")) {
+			strSql2 += "  and B.DEPT = '" + strDept + "' ";
+		}
+
+		if (!strEntryUsr.equals("")) {
+			strSql2 += "  and A.ENTRYUSR = '" + strEntryUsr + "' ";
+		}
+		if (!strCurrency.equals("")) {
+			strSql2 += " and A.PCURR = '" + strCurrency + "'";
+		} else {
+			strSql += " and A.PCURR in ('NT','US')";
+		}
+		// R60550
+		if (!strPMETHOD.equals("")) {
+			strSql2 += " and A.PMETHOD = '" + strPMETHOD + "'";
+		}
+
+		// 依部門 輸入者及保單號碼排序
+		//strSql += " order by B.DEPT,A.ENTRYUSR,A.POLICYNO ";
+		strSqlOrder = " order by DEPT,A.ENTRYUSR,A.POLICYNO,A.PNO ";//20160614,新增A.PNO為排序,見April的信,SPA的佣金給付要照excel的順序
+		
+		strSql = "SELECT * FROM (" + strSql + " UNION " + strSql2 + ") A " + strSqlOrder;
 		System.out.println("DISBPConfirmServlet.inquiryDB()--> strSql =" + strSql);
 
 		try {
@@ -539,6 +721,8 @@ public class DISBPConfirmServlet extends HttpServlet {
 				objPDetailVO.setStrPCurr(rs.getString("PCURR"));// 幣別
 				objPDetailVO.setStrPPAYCURR(rs.getString("PPAYCURR"));// R60550外幣幣別
 				objPDetailVO.setIPPAYAMT(rs.getDouble("PPAYAMT"));// R60550外幣金額
+				
+				objPDetailVO.setCompany(rs.getString("POLICY_TYPE"));//RD0382:OIU
 
 				alPDetail.add(objPDetailVO);
 			}
@@ -550,6 +734,7 @@ public class DISBPConfirmServlet extends HttpServlet {
 				request.setAttribute("txtMsg", "查無相關資料");
 			}
 		} catch (SQLException ex) {
+			log.error(ex.getMessage(),ex);
 			request.setAttribute("txtMsg", "查詢失敗" + ex);
 			alPDetail = null;
 		} finally {
@@ -602,6 +787,7 @@ public class DISBPConfirmServlet extends HttpServlet {
 		String strCurrency = ""; // 幣別
 		String strPMETHOD = ""; // 付款方式R60550
 		int iNextDT = 0; // 下一個付款日R70292
+		String strCompany = ""; //RD0382:OIU
 
 		strPDate = request.getParameter("txtPDate");
 		if (strPDate != null) {
@@ -616,13 +802,29 @@ public class DISBPConfirmServlet extends HttpServlet {
 		strEntryUsr = request.getParameter("txtEntryUsr") != null ? request.getParameter("txtEntryUsr").trim() : "";
 		strCurrency = request.getParameter("selCurrency") != null ? request.getParameter("selCurrency").trim() : "";
 		strPMETHOD = request.getParameter("selPMETHOD") != null ? request.getParameter("selPMETHOD").trim() : "";
+		
+		strCompany = request.getParameter("selCompany") != null ? request.getParameter("selCompany").trim() : ""; //RD0382:OIU
+		strCompany = (strCompany != null) ? CommonUtil.AllTrim(strCompany) : "" ;
 
 		String strSql = "select count(A.PNO) as ROWCOUNT,sum(A.PAMT) as PAMT,A.ENTRYUSR "
 				+ "from CAPPAYF A "
-				+ "left outer join USER B  on B.USRID=A.ENTRYUSR  "
-				+ "WHERE A.PCFMDT1<>0 AND A.PCFMTM1<>0 AND A.PCFMUSR1 <>''  "
-				+ "and A.PCFMDT2=0 AND A.PCFMTM2=0 AND A.PCFMUSR2 =''  "
-				+ "AND A.PSTATUS=''  AND A.PVOIDABLE<>'Y' and A.PAMT>0 ";
+				+ "left outer join USER B  on B.USRID=A.ENTRYUSR  ";
+		
+		//RD0382:OIU
+		if("6".equals(strCompany) || "0".equals(strCompany)){
+			strSql += "left outer join ORDUPO PO ON PO.FLD0001='  ' AND PO.FLD0002=A.POLICY_NO "; 
+		}		
+				
+		strSql += "WHERE A.PCFMDT1<>0 AND A.PCFMTM1<>0 AND A.PCFMUSR1 <>''  ";
+		strSql += "and A.PCFMDT2=0 AND A.PCFMTM2=0 AND A.PCFMUSR2 =''  ";
+		strSql += "AND A.PSTATUS=''  AND A.PVOIDABLE<>'Y' and A.PAMT>0 ";
+		
+		//RD0382:OIU
+		if("6".equals(strCompany)){
+			strSql += "AND PO.POIUIND='6' ";
+		}else if("0".equals(strCompany)){
+			strSql += "AND (PO.POIUIND<>'6' OR PO.POIUIND IS NULL) ";
+		}
 
 		if (!strPDate.equals("")) {
 			if (!strEntryStartDate.equals("") && !strEntryEndDate.equals("")) {

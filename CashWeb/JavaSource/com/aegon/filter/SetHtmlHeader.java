@@ -70,7 +70,8 @@ public class SetHtmlHeader implements Filter {
 		context = config.getServletContext();
 		try{
 			String path = context.getRealPath("/");
-			String log4jpropfile = path + "\\WEB-INF\\classes\\log4j.properties";
+			//String log4jpropfile = path + "\\WEB-INF\\classes\\log4j.properties";
+			String log4jpropfile = path + "\\WEB-INF\\log4j.properties";
 
 			if (config.getInitParameter("logflag")!=null) {
 				LogFlag = config.getInitParameter("logflag");

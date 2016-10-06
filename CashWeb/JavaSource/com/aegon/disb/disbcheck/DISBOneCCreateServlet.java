@@ -1,8 +1,8 @@
 /** =============================================================================
  *  ------------------------------------------------------------------------------------------------------------------
- *   »İ¨D³æ¸¹       ­×§ïªÌ                ­×§ï¤é    			  ­×§ï¤º®e
+ *   éœ€æ±‚å–®è™Ÿ       ä¿®æ”¹è€…                ä¿®æ”¹æ—¥    			  ä¿®æ”¹å…§å®¹
  *  ------------------------------------------------------------------------------------------------------------------
- *    R00393            Leo Huang    			2010/09/15           ²{¦b®É¶¡¨úCapsilÀç¹B®É¶¡
+ *    R00393            Leo Huang    			2010/09/15           ç¾åœ¨æ™‚é–“å–Capsilç‡Ÿé‹æ™‚é–“
  *  =============================================================================
  */
 package com.aegon.disb.disbcheck;
@@ -37,13 +37,13 @@ import com.aegon.comlib.*;
  * $bill cash day
  * $
  * $Revision 1.2  2010/11/23 06:27:42  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.1  2006/06/29 09:40:38  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.2  2005/04/04 07:02:22  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -125,15 +125,15 @@ public class DISBOneCCreateServlet extends HttpServlet {
 		int iUpdTime =
 			Integer.parseInt((String) sdfFormatter.format(cldToday.getTime()));
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-		String strCBKNO = ""; //»È¦æ¦æ®w
-		String strCACCOUNT = ""; //»È¦æ±b¸¹		
-		String strCBNO = ""; //²¼¾Ú§å¸¹
-		String strCNO = ""; //²¼¾Ú¸¹½X
-		String strCASHDT = ""; //§I²{¤é
-		int iCASHDT = 0;//§I²{¤é
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strCBKNO = ""; //éŠ€è¡Œè¡Œåº«
+		String strCACCOUNT = ""; //éŠ€è¡Œå¸³è™Ÿ		
+		String strCBNO = ""; //ç¥¨æ“šæ‰¹è™Ÿ
+		String strCNO = ""; //ç¥¨æ“šè™Ÿç¢¼
+		String strCASHDT = ""; //å…Œç¾æ—¥
+		int iCASHDT = 0;//å…Œç¾æ—¥
 	
-		/*¨ú±o«eºİÄæ¦ì¸ê®Æ*/
+		/*å–å¾—å‰ç«¯æ¬„ä½è³‡æ–™*/
 		strCBKNO = request.getParameter("txtUCBKNO");
 		if (strCBKNO != null)
 			strCBKNO = strCBKNO.trim();
@@ -174,8 +174,8 @@ public class DISBOneCCreateServlet extends HttpServlet {
 		
 	
 	
-		/*§ó·s¨ì¤ä¥I¥DÀÉ*/
-		//William wu 2012/12/25 PA0024 ²¼¾Ú§I²{¤é
+		/*æ›´æ–°åˆ°æ”¯ä»˜ä¸»æª”*/
+		//William wu 2012/12/25 PA0024 ç¥¨æ“šå…Œç¾æ—¥
 		strSql = " update CAPCHKF  set CSTATUS='C',CCASHDT=?,CRTNDT=?,ENTRYDT=?,ENTRYTM=? ,ENTRYUSR=? ";
 	    strSql	+= " where CNO =?  AND CBKNO=? AND CACCOUNT=? AND CBNO=? ";
 	//	System.out.println(
@@ -196,14 +196,14 @@ public class DISBOneCCreateServlet extends HttpServlet {
 				pstmtTmp.setString(9, strCBNO);
 				
 				if (pstmtTmp.executeUpdate() != 1) {
-					request.setAttribute("txtMsg", "³æµ§¦^¾P¥¢±Ñ");
+					request.setAttribute("txtMsg", "å–®ç­†å›éŠ·å¤±æ•—");
 				} else {
-					request.setAttribute("txtMsg", "³æµ§¦^¾P¦¨¥\");
+					request.setAttribute("txtMsg", "å–®ç­†å›éŠ·æˆåŠŸ");
 				}
 			pstmtTmp.close();
 		} catch (SQLException e) {
 			
-			request.setAttribute("txtMsg", "³æµ§¦^¾P¥¢±Ñ" + e);
+			request.setAttribute("txtMsg", "å–®ç­†å›éŠ·å¤±æ•—" + e);
 			if (con != null)
 				dbFactory.releaseAS400Connection(con);
 		} finally {

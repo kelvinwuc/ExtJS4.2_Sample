@@ -107,7 +107,9 @@ public class DISBRemitExportDAO {
 	Logger log = Logger.getLogger(getClass());
 	
 	private PreparedStatement preStmt;
+	private PreparedStatement preStmt2;
 	private ResultSet rs = null;
+	private ResultSet rs2 = null;
 	private DbFactory dbFactory = null ;
 
 	private final String QUERY_BATNO = "SELECT  DISTINCT PBATNO,PCURR FROM CAPPAYF " 
@@ -138,27 +140,119 @@ public class DISBRemitExportDAO {
 							+ " ORDER BY A.BATSEQ ";
 
 	//匯款檔
-	private final String QUERY_BY_BATNO_Remit = "SELECT A.BATNO,A.SEQNO,A.RID,A.RTYPE,A.RBK,A.RACCT,A.RAMT,A.RNAME,A.RMEMO"
-								+ ",A.RMTDT,A.RTRNCDE,A.RTRNTM,A.CSTNO,A.RMTCDE,A.RMTFEE,A.PACCT,A.RPAYAMT,A.RPAYCURR,A.RPAYFEEWAY"
-								+ ",A.RBKSWIFT as SWIFTCODE,A.RENGNAME AS PENGNAME,S.BANK_NAME AS SWBKNAME"
-								+ ",A.RBENFEE,A.PBK,RBKCOUNTRY"
-								+ ",USR.DEPT"//RC0036
-								+ " FROM CAPRMTF A"
-								+ " LEFT OUTER JOIN ORCHSWFT S ON A.RBKSWIFT = S.SWIFT_CODE "
-								+ " LEFT OUTER JOIN USER USR on USR.USRID = A.ENTRYUSR"           //RC0036
-								+ " WHERE SUBSTR(A.RBK,1,3)<>? AND A.BATNO=? AND A.RPAYCURR=?"
-								+ " ORDER BY A.RACCT,A.RNAME,A.SEQNO";
+	private final String QUERY_BY_BATNO_Remit = "SELECT A.BATNO,A.SEQNO,A.RID,A.RTYPE,A.RBK,A.RACCT,A.RAMT,A.RNAME,A.RMEMO" +
+								",A.RMTDT,A.RTRNCDE,A.RTRNTM,A.CSTNO,A.RMTCDE,A.RMTFEE,A.PACCT,A.RPAYAMT,A.RPAYCURR,A.RPAYFEEWAY" +
+								",A.RBKSWIFT as SWIFTCODE,A.RENGNAME AS PENGNAME,S.BANK_NAME AS SWBKNAME" +
+								",A.RBENFEE,A.PBK,RBKCOUNTRY" +
+								",USR.DEPT" +//RC0036
+								" FROM CAPRMTF A" +
+								" LEFT OUTER JOIN ORCHSWFT S ON A.RBKSWIFT = S.SWIFT_CODE " +
+								" LEFT OUTER JOIN USER USR on USR.USRID = A.ENTRYUSR"  +          //RC0036
+								" WHERE " +
+								"SUBSTR(A.RBK,1,3)<>? AND " +
+								"A.BATNO=? AND " +
+								"A.RPAYCURR=? " +
+								" RDER BY A.RACCT,A.RNAME,A.SEQNO";
+	
+	//RD0382-配合OIU業務系統功能調整,新增兆豐017匯款檔(跨行)的產生,判斷SWIFT CODE的第5及6碼不可為TW
+	//RE0189:該匯款批號只要不是兆豐-轉帳檔的資料即是該放進兆豐-匯款檔,故維持原RD0382的做法, 20160825-done
+	//兆豐-匯款檔:(1)受款帳號是兆豐及他行(不含凱基及台新)DBU帳號; (2)受款帳號是兆豐及他行境外OBU帳號
+	private final String QUERY_BY_BATNO_Remit017 = "SELECT A.BATNO,A.SEQNO,A.RID,A.RTYPE,A.RBK,A.RACCT,A.RAMT,A.RNAME,A.RMEMO" + 
+			",A.RMTDT,A.RTRNCDE,A.RTRNTM,A.CSTNO,A.RMTCDE,A.RMTFEE,A.PACCT,A.RPAYAMT,A.RPAYCURR,A.RPAYFEEWAY" +
+			",A.RBKSWIFT as SWIFTCODE,A.RENGNAME AS PENGNAME,S.BANK_NAME AS SWBKNAME" +
+			",A.RBENFEE,A.PBK,RBKCOUNTRY" +
+			",USR.DEPT" +
+			" FROM CAPRMTF A" +
+			" LEFT OUTER JOIN ORCHSWFT S ON A.RBKSWIFT = S.SWIFT_CODE " +
+			" LEFT OUTER JOIN USER USR on USR.USRID = A.ENTRYUSR"   +         
+			" WHERE " +
+			"SUBSTR(A.PBK,1,3)=? AND " +
+			"CONCAT(SUBSTRING(RBK,1,3),SUBSTRING(RBKSWIFT,5,2))<>'017TW' AND " + //RE0189:只要不是兆豐OBU境內受款帳號
+			"A.BATNO=? AND " +
+			"A.RPAYCURR=? " +
+			"ORDER BY A.RACCT,A.RNAME,A.SEQNO";
+	
+	//RE0189:
+	//凱基-匯款檔:受款帳號凱基DBU帳號須產生本檔案,20160824-done
+	//20161004,出納Sophia與凱基確認無此英文帳號,但Cash系統要保留此判斷
+	private final String QUERY_BY_BATNO_Remit809 = "SELECT A.BATNO,A.SEQNO,A.RID,A.RTYPE,A.RBK,A.RACCT,A.RAMT,A.RNAME,A.RMEMO" + 
+			",A.RMTDT,A.RTRNCDE,A.RTRNTM,A.CSTNO,A.RMTCDE,A.RMTFEE,A.PACCT,A.RPAYAMT,A.RPAYCURR,A.RPAYFEEWAY" +
+			",A.RBKSWIFT as SWIFTCODE,A.RENGNAME AS PENGNAME,S.BANK_NAME AS SWBKNAME" +
+			",A.RBENFEE,A.PBK,RBKCOUNTRY" +
+			",USR.DEPT" +
+			" FROM CAPRMTF A" +
+			" LEFT OUTER JOIN ORCHSWFT S ON A.RBKSWIFT = S.SWIFT_CODE " +
+			" LEFT OUTER JOIN USER USR on USR.USRID = A.ENTRYUSR"   +         
+			" WHERE " +
+			"SUBSTR(A.PBK,1,3)=? AND " +
+			"( " +
+			"SUBSTRING(RBK,1,3)='809' AND " +
+			"SUBSTRING(RACCT,1,3)<>'018' AND " +
+			"(SUBSTRING(RACCT,1,1) BETWEEN '0' AND '9') AND " +
+			"(SUBSTRING(RACCT,2,1) BETWEEN '0' AND '9') AND " +
+			"(SUBSTRING(RACCT,3,1) BETWEEN '0' AND '9') AND " +
+			"(SUBSTRING(RACCT,4,1) BETWEEN '0' AND '9') " +
+			") AND " +
+			"A.BATNO=? AND " +
+			"A.RPAYCURR=? " +
+			"ORDER BY A.RACCT,A.RNAME,A.SEQNO";
 
 	//轉帳檔
-	private final String QUERY_BY_BATNO_Trans = "SELECT A.BATNO,A.SEQNO,A.RID,A.RTYPE,A.RBK,A.RACCT,A.RAMT,A.RNAME,A.RMEMO"
-								+ ",A.RMTDT,A.RTRNCDE,A.RTRNTM,A.CSTNO,A.RMTCDE,A.RMTFEE,A.PACCT,A.RPAYAMT,A.RPAYCURR,A.RPAYFEEWAY"
-								+ ",A.RBKSWIFT as SWIFTCODE,A.RENGNAME AS PENGNAME,S.BANK_NAME AS SWBKNAME"
-								+ " ,A.RBENFEE,A.PBK,RBKCOUNTRY,USR.DEPT"
-								+ " FROM CAPRMTF A"
-								+ " left outer join ORCHSWFT S ON A.RBKSWIFT = S.SWIFT_CODE"
-								+ " LEFT OUTER JOIN USER USR on USR.USRID = A.ENTRYUSR"           //RC0036
-								+ " WHERE SUBSTR(A.RBK,1,3)=? AND A.BATNO=? AND A.RPAYCURR=?"
-								+ " ORDER BY A.RACCT,A.RNAME,A.SEQNO";
+	private final String QUERY_BY_BATNO_Trans = "SELECT A.BATNO,A.SEQNO,A.RID,A.RTYPE,A.RBK,A.RACCT,A.RAMT,A.RNAME,A.RMEMO" + 
+								",A.RMTDT,A.RTRNCDE,A.RTRNTM,A.CSTNO,A.RMTCDE,A.RMTFEE,A.PACCT,A.RPAYAMT,A.RPAYCURR,A.RPAYFEEWAY" +
+								",A.RBKSWIFT as SWIFTCODE,A.RENGNAME AS PENGNAME,S.BANK_NAME AS SWBKNAME" +
+								" ,A.RBENFEE,A.PBK,RBKCOUNTRY,USR.DEPT" +
+								" FROM CAPRMTF A" +
+								" LEFT OUTER JOIN ORCHSWFT S ON A.RBKSWIFT = S.SWIFT_CODE" +
+								" LEFT OUTER JOIN USER USR on USR.USRID = A.ENTRYUSR" +           //RC0036
+								" WHERE " +
+								"SUBSTRING(A.RBKSWIFT,5,2)='TW' AND " + //RD0382:OIU,新增判斷RBK的SWIFT CODE的第5及6碼須為TW
+								"SUBSTR(A.RBK,1,3)=? AND " +
+								"A.BATNO=? AND " +
+								"A.RPAYCURR=? " + 
+								"ORDER BY A.RACCT,A.RNAME,A.SEQNO";
+	
+	//RE0189:只有809-OBU --> 809-OBU (只要判斷受款帳戶是否為OBU)才產生該檔案
+	//凱基-轉帳檔:只有受款帳號是凱基境內OBU帳號,20160824-done
+	//20161004,出納Sophia與凱基確認無此英文帳號,但Cash系統要保留此判斷
+	private final String QUERY_BY_BATNO_Trans809 = "SELECT A.BATNO,A.SEQNO,A.RID,A.RTYPE,A.RBK,A.RACCT,A.RAMT,A.RNAME,A.RMEMO" + 
+			",A.RMTDT,A.RTRNCDE,A.RTRNTM,A.CSTNO,A.RMTCDE,A.RMTFEE,A.PACCT,A.RPAYAMT,A.RPAYCURR,A.RPAYFEEWAY" +
+			",A.RBKSWIFT as SWIFTCODE,A.RENGNAME AS PENGNAME,S.BANK_NAME AS SWBKNAME" +
+			" ,A.RBENFEE,A.PBK,RBKCOUNTRY,USR.DEPT" +
+			" FROM CAPRMTF A" +
+			" LEFT OUTER JOIN ORCHSWFT S ON A.RBKSWIFT = S.SWIFT_CODE" +
+			" LEFT OUTER JOIN USER USR on USR.USRID = A.ENTRYUSR" +           //RC0036
+			" WHERE " +
+			"SUBSTRING(A.RBKSWIFT,5,2)='TW' AND " + //RD0382:OIU,新增判斷RBK的SWIFT CODE的第5及6碼須為TW
+			"SUBSTR(A.RBK,1,3)=? AND " +
+			"A.BATNO=? AND " +
+			"A.RPAYCURR=? AND " + 
+			"SUBSTRING(RBK,1,3)='809' AND " +
+			"(" +
+			"SUBSTRING(RACCT,1,3)='018' OR " + //凱基OBU判斷
+			"( (UPPER(SUBSTRING(RACCT,1,1))>='A' AND UPPER(SUBSTRING(RACCT,1,1))<='Z') AND " +//凱基OBU判斷
+			"(UPPER(SUBSTRING(RACCT,2,1))>='A' AND UPPER(SUBSTRING(RACCT,2,1))<='Z') AND " +//凱基OBU判斷
+			"(UPPER(SUBSTRING(RACCT,3,1))>='A' AND UPPER(SUBSTRING(RACCT,3,1) )<='Z') AND " +//凱基OBU判斷
+			"(UPPER(SUBSTRING(RACCT,4,1))>='A' AND UPPER(SUBSTRING(RACCT,4,1))<='Z') ) " +//凱基OBU判斷
+			") " +
+			"ORDER BY A.RACCT,A.RNAME,A.SEQNO";
+	
+	//RE0189:兆豐轉帳檔新增"不可為"兆豐OBU轉至兆豐DBU的限縮條件
+	//兆豐-轉帳檔:只有受款帳號是兆豐境內OBU帳號, 20160825-done
+	private final String QUERY_BY_BATNO_Trans017 = "SELECT A.BATNO,A.SEQNO,A.RID,A.RTYPE,A.RBK,A.RACCT,A.RAMT,A.RNAME,A.RMEMO" + 
+			",A.RMTDT,A.RTRNCDE,A.RTRNTM,A.CSTNO,A.RMTCDE,A.RMTFEE,A.PACCT,A.RPAYAMT,A.RPAYCURR,A.RPAYFEEWAY" +
+			",A.RBKSWIFT as SWIFTCODE,A.RENGNAME AS PENGNAME,S.BANK_NAME AS SWBKNAME" +
+			" ,A.RBENFEE,A.PBK,RBKCOUNTRY,USR.DEPT" +
+			" FROM CAPRMTF A" +
+			" LEFT OUTER JOIN ORCHSWFT S ON A.RBKSWIFT = S.SWIFT_CODE" +
+			" LEFT OUTER JOIN USER USR on USR.USRID = A.ENTRYUSR" +           //RC0036
+			" WHERE " +
+			"SUBSTRING(A.RBKSWIFT,5,2)='TW' AND " + //RD0382:OIU,新增判斷RBK的SWIFT CODE的第5及6碼須為TW
+			"(SUBSTRING(RBK,1,3)='017' AND SUBSTRING(RACCT,4,2) IN('17','57','58')) AND " + //RE0189:只有受款帳號是兆豐境內OBU帳號
+			"SUBSTR(A.RBK,1,3)=? AND " +
+			"A.BATNO=? AND " +
+			"A.RPAYCURR=? " + 
+			"ORDER BY A.RACCT,A.RNAME,A.SEQNO";
 
 	public DISBRemitExportDAO(DbFactory factory) {
 		this.dbFactory = factory;
@@ -204,16 +298,17 @@ public class DISBRemitExportDAO {
 		return ret;		
 	}
 	
+	//RD0382:OIU
 	public Vector query(int pcshcm, String company) throws Exception {
 		Vector ret = new Vector();	
 		Connection conn = this.getConnection();
-		String QUERY_BATNO = "SELECT  DISTINCT PBATNO,PCURR FROM CAPPAYF " 
+		String QUERY_BATNO = "SELECT  DISTINCT PBATNO,PCURR,CASE WHEN PAY_COMPANY ='OIU' THEN 'OIU' ELSE '總公司' END AS PAY_COMPANY FROM CAPPAYF " 
 				+" WHERE PCFMDT1 >0 AND PCFMDT2 >0  AND PCSHCM=" + pcshcm;
 		
 		if(!"".equals(company)){
 			if("6".equals(company)){
 				QUERY_BATNO += " AND PAY_COMPANY='OIU' ";
-			}else{
+			}else if("0".equals(company)){
 				QUERY_BATNO += " AND PAY_COMPANY<>'OIU' ";
 			}
 		}
@@ -228,6 +323,7 @@ public class DISBRemitExportDAO {
 				vo = new DISBPaymentDetailVO();
 				vo.setStrPCurr(rs.getString("PCURR"));
 				vo.setStrBatNo(rs.getString("PBATNO"));
+				vo.setCompany(rs.getString("PAY_COMPANY"));
 				ret.add(vo);
 			}
 		} catch(Exception e) {
@@ -253,21 +349,48 @@ public class DISBRemitExportDAO {
 	public Vector queryByBatNo(String batNo,String selCURR,String remitKind) throws Exception {
 		Vector ret = new Vector();	
 		Connection conn = this.getConnection();
+		Connection conn2 = this.getConnection();
+		String sql = "SELECT IFNULL(PAY_BK_SORTCODE,'') AS PAY_BK_SORTCODE,IFNULL(PAY_BK_VERIFYNUMBER,'') AS PAY_BK_VERIFYNUMBER,IFNULL(PAY_ADDR1,'') AS PAY_ADDR1,IFNULL(PAY_SOURCE_CODE,'') AS PAY_SOURCE_CODE,B.SWIFT_CODE AS SWIFTCODE ";
+		sql += "FROM CAPPAYF A ";
+		sql += "LEFT OUTER JOIN ORCHSWFT B ON B.BANK_NO = SUBSTRING(A.PAY_REMIT_BANK,1,3) ";//RE0189:順便解決SWIFT CODE老是有誤的問題
+		sql += "WHERE PBATNO=? AND PAY_REMIT_ACCOUNT LIKE ?";
 		try{
 			if(batNo.substring(0,1).equals("D"))
 			{
 				//RD0440-新增外幣指定銀行-台灣銀行
-				if(batNo.substring(8,11).equals("822") || batNo.substring(8,11).equals("009") || batNo.substring(8,11).equals("004"))
+				//RE0189-OIU新增外幣指定銀行-凱基。台新OIU的匯款及轉帳為同一檔案,且只有在台新境內DBU/OBU帳號才需產生,故只有使用queryByBatNo的t來查詢資料
+				if(batNo.substring(8,11).equals("822") || batNo.substring(8,11).equals("009") || batNo.substring(8,11).equals("004") || batNo.substring(8,11).equals("017") || batNo.substring(8,11).equals("809"))
 				{
-					if(remitKind.equals("r"))
-					{
-						System.out.println("QUERY_BY_BATNO_Remit:" + QUERY_BY_BATNO_Remit);
-						preStmt = conn.prepareStatement(QUERY_BY_BATNO_Remit);
-					}
-					else
-					{
-						System.out.println("QUERY_BY_BATNO_Trans:" + QUERY_BY_BATNO_Trans);
-						preStmt = conn.prepareStatement(QUERY_BY_BATNO_Trans);
+					if(remitKind.equals("r")) {
+						//D:外幣匯款,跨行匯款						
+						if(batNo.substring(8,11).equals("017")) {//RD0382-配合OIU業務系統功能調整,新增兆豐017匯款檔(跨行)的產生
+							System.out.println("QUERY_BY_BATNO_Remit017:" + QUERY_BY_BATNO_Remit017);
+							log.info("QUERY_BY_BATNO_Remit017:" + QUERY_BY_BATNO_Remit017);
+							preStmt = conn.prepareStatement(QUERY_BY_BATNO_Remit017);
+						} else if(batNo.substring(8,11).equals("809")) { //RE0189:新增凱基
+							System.out.println("QUERY_BY_BATNO_Remit809:" + QUERY_BY_BATNO_Remit809);
+							log.info("QUERY_BY_BATNO_Remit017:" + QUERY_BY_BATNO_Remit809);
+							preStmt = conn.prepareStatement(QUERY_BY_BATNO_Remit809);
+						} else {
+							System.out.println("QUERY_BY_BATNO_Remit:" + QUERY_BY_BATNO_Remit);
+							log.info("QUERY_BY_BATNO_Remit:" + QUERY_BY_BATNO_Remit);
+							preStmt = conn.prepareStatement(QUERY_BY_BATNO_Remit);
+						}						
+					} else {
+						//D:外幣匯款,轉帳(同行相存,限RBK的SWIFT CODE第5及6碼為TW)						
+						if(batNo.substring(8,11).equals("017")){
+							System.out.println("QUERY_BY_BATNO_Trans017:" + QUERY_BY_BATNO_Trans017);
+							log.info("QUERY_BY_BATNO_Trans017:" + QUERY_BY_BATNO_Trans017);
+							preStmt = conn.prepareStatement(QUERY_BY_BATNO_Trans017);
+						} else if(batNo.substring(8,11).equals("809")) { //RE0189:新增凱基
+							System.out.println("QUERY_BY_BATNO_Trans809:" + QUERY_BY_BATNO_Trans809);
+							log.info("QUERY_BY_BATNO_Trans809:" + QUERY_BY_BATNO_Trans809);
+							preStmt = conn.prepareStatement(QUERY_BY_BATNO_Trans809);
+						} else {
+							System.out.println("QUERY_BY_BATNO_Trans:" + QUERY_BY_BATNO_Trans);
+							log.info("QUERY_BY_BATNO_Trans:" + QUERY_BY_BATNO_Trans);
+							preStmt = conn.prepareStatement(QUERY_BY_BATNO_Trans);
+						}						
 					}
 					preStmt.setString(1, batNo.substring(8,11));
 					preStmt.setString(2, batNo);
@@ -300,7 +423,6 @@ public class DISBRemitExportDAO {
 				vo.setRBK(CommonUtil.AllTrim(rs.getString("RBK")));
 				vo.setRACCT(CommonUtil.AllTrim(rs.getString("RACCT")));
 				vo.setRAMT(rs.getInt("RAMT"));
-				System.out.println("rs.getString(RAMT):" + rs.getString("RAMT"));
 				vo.setRAMTS(CommonUtil.AllTrim(rs.getString("RAMT")));//RC0036-3
 				vo.setRNAME(CommonUtil.AllTrim(rs.getString("RNAME")));
 				vo.setRMEMO(CommonUtil.AllTrim(rs.getString("RMEMO")));
@@ -320,14 +442,41 @@ public class DISBRemitExportDAO {
 					vo.setRPAYFEEWAY(CommonUtil.AllTrim(rs.getString("RPAYFEEWAY")));
 					vo.setRPAYAMT(rs.getDouble("RPAYAMT"));
 					vo.setPENGNAME(CommonUtil.AllTrim(rs.getString("PENGNAME")));
-					vo.setSWIFTCODE(CommonUtil.AllTrim(rs.getString("SWIFTCODE")));
+					//vo.setSWIFTCODE(CommonUtil.AllTrim(rs.getString("SWIFTCODE")));//RE0189:順便解決SWIFT CODE老是有誤的問題
 					vo.setSWBKNAME(CommonUtil.AllTrim(rs.getString("SWBKNAME")));
 					vo.setRBENFEE(rs.getDouble("RBENFEE"));
 					vo.setPBK(CommonUtil.AllTrim(rs.getString("PBK")));//R70574
 					vo.setRBKCOUNTRY(CommonUtil.AllTrim(rs.getString("RBKCOUNTRY")));
+					
+					//RD0382:OIU
+					try{
+						preStmt2 = conn2.prepareStatement(sql);
+						preStmt2.setString(1, batNo);
+						preStmt2.setString(2, CommonUtil.AllTrim(rs.getString("RACCT")) + "%");
+						rs2 = preStmt2.executeQuery();
+						if(rs2.next()){
+							vo.setPayAddr(CommonUtil.AllTrim(rs2.getString("PAY_ADDR1")));
+							vo.setPayBkVerifyNumber(CommonUtil.AllTrim(rs2.getString("PAY_BK_VERIFYNUMBER")));
+							vo.setPaySourceCode(CommonUtil.AllTrim(rs2.getString("PAY_SOURCE_CODE")));
+							vo.setSWIFTCODE(CommonUtil.AllTrim(rs2.getString("SWIFTCODE")));//RE0189:順便解決SWIFT CODE老是有誤的問題
+						}
+					} catch(Exception e){
+						System.err.println(e.getMessage());
+						throw new Exception(e.getMessage());
+					} finally {
+						try {
+							if (rs2 != null) {
+								rs2.close();
+							}
+							if (preStmt2 != null) {
+								preStmt2.close();
+							}
+						} catch (Exception ex1) {
+						}
+					}
 				}
 				ret.add(vo);
-			}
+			}//END While
 		} catch(Exception e) {
 			System.err.println(e.getMessage());
 			throw new Exception(e.getMessage());
@@ -342,11 +491,14 @@ public class DISBRemitExportDAO {
 				if (conn != null) {
 					dbFactory.releaseAS400Connection(conn);				
 				}
+				if (conn2 != null) {
+					dbFactory.releaseAS400Connection(conn2);				
+				}
 			} catch (Exception ex1) {
 			}
 		}
 		return ret;
-	}
+	}	
 
 	//R80300 信用卡新增下載檔案
 	public Vector queryByBatNoC(String batNo,String selCURR,String remitKind) throws Exception {

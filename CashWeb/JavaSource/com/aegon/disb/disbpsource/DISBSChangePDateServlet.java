@@ -128,10 +128,10 @@ public class DISBSChangePDateServlet extends HttpServlet {
 		if(!strFromBatch.equals("")) {
 			//BATCH作業
 			if(strFromBatch.equalsIgnoreCase("Y")) {
-				strSql += "PSRCCODE IN (" + Constant.Batch_PAY_SRCCODE + ") AND ";
+				strSql += "PSRCCODE IN (" + Constant.Batch_PAY_SRCCODE + ",'BK') AND ";
 			} else {
 			//線上作業
-				strSql += "PSRCCODE NOT IN (" + Constant.Batch_PAY_SRCCODE + ") AND ";
+				strSql += "PSRCCODE NOT IN (" + Constant.Batch_PAY_SRCCODE + ",'BK') AND ";
 			}
 		}
 		strSql += "PMETHOD=? AND PDATE BETWEEN ? AND ? ";

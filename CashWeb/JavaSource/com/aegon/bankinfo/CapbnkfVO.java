@@ -17,6 +17,8 @@ package com.aegon.bankinfo;
  * 
  * CVS History:
  * 
+ * RD0382-OIU專案:20150909,Kelvin Wu,新增【帳戶所屬公司別】
+ * 
  * $Log: CapbnkfVO.java,v $
  * Revision 1.1  2013/12/24 02:14:03  MISSALLY
  * R00135---PA0024---CASH年度專案
@@ -47,7 +49,15 @@ public class CapbnkfVO {
 	private String UpdatedDate = "";
 	private String UpdatedTime = "";
 	private String UpdatedUser = "";
+	
+	private String CompanyType = ""; //RD0382
 
+	public String getCompanyType() {
+		return CompanyType;
+	}
+	public void setCompanyType(String companyType) {
+		CompanyType = companyType;
+	}
 	public String getBankCode() {
 		return BankCode;
 	}

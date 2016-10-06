@@ -227,7 +227,6 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 	//Process the HTTP Post request
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType(CONTENT_TYPE);
-		//System.out.println("我是DISBRemitExportServlet:" + request.getParameter("action"));
 		try {
 			if("query".equals(request.getParameter("action"))) {
 				this.query(request, response);			
@@ -247,6 +246,14 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 
 		/*R60747 將出納日期PCSHDT改為出納確認日PCSHCM  START*/
 		int PCSHCM = Integer.parseInt(StringTool.removeChar(request.getParameter("PCSHCM"),'/'));
+		//RD0382:OIU
+		String company = "";//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}
 		//String company = request.getParameter("selCompany");
 		/*R60747 將出納日期PCSHDT改為出納確認日PCSHCM  END*/
 		System.out.println("PCSHCM="+Integer.parseInt(StringTool.removeChar(request.getParameter("PCSHCM"),'/')));
@@ -255,7 +262,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		DISBRemitExportDAO dao = null;
 		try {
 			dao = new DISBRemitExportDAO((DbFactory) getServletContext().getAttribute(Constant.DB_FACTORY));
-			disbPaymentDetailVec =  dao.query(PCSHCM); /*R60747 將出納日期PCSHDT改為出納確認日PCSHCM */
+			disbPaymentDetailVec =  dao.query(PCSHCM, company); /*R60747 將出納日期PCSHDT改為出納確認日PCSHCM */
 			//disbPaymentDetailVec =  dao.query(PCSHCM, company);
 		} catch(Exception e) {
 			System.err.println(e.toString());			
@@ -297,21 +304,25 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 						Hashtable htPBBankTemp = (Hashtable) alPCURR.get(i);
 						String strETValue = (String) htPBBankTemp.get("ETValue");
 						String strPAYCURR = strETValue.substring(0,2);
+						//RE0189:新增凱基OIU。台新OIU的匯款及轉帳為同一檔案,且只有在台新境內DBU/OBU帳號才需產生,故只有使用queryByBatNo的t來查詢資料
 						if(BATNO.substring(0,1).equals("D") 
-								&& (BATNO.substring(8,11).equals("822") || BATNO.substring(8,11).equals("009") || BATNO.substring(8,11).equals("004")))
+								&& (BATNO.substring(8,11).equals("822") || 
+										BATNO.substring(8,11).equals("009") || 
+										BATNO.substring(8,11).equals("004") || 
+										BATNO.substring(8,11).equals("017") || 
+										BATNO.substring(8,11).equals("809"))) 
 						{
+							//D:外幣匯款,轉帳(同行相存,限RBK的SWIFT CODE第5及6碼為TW)
 							fileLOC = convertDownloadData(new DISBRemitExportDAO((DbFactory) getServletContext().getAttribute(Constant.DB_FACTORY)).queryByBatNo(BATNO,strPAYCURR,"t"),strPAYCURR,BATNO,"t",strLogonUser);
 							if (!fileLOC.equals("")){
 								downfile.add(fileLOC);
 							}								
-							
+							//D:外幣匯款,跨行匯款
 							fileLOC = convertDownloadData(new DISBRemitExportDAO((DbFactory) getServletContext().getAttribute(Constant.DB_FACTORY)).queryByBatNo(BATNO,strPAYCURR,"r"),strPAYCURR,BATNO,"r",strLogonUser);
 							if (!fileLOC.equals("")){
 								downfile.add(fileLOC);
 							}								
-						}
-						else
-						{
+						} else {
 							fileLOC = convertDownloadData(new DISBRemitExportDAO((DbFactory) getServletContext().getAttribute(Constant.DB_FACTORY)).queryByBatNo(BATNO,strPAYCURR,"t"),strPAYCURR,BATNO,"t",strLogonUser);
 							if (!fileLOC.equals(""))
 								downfile.add(fileLOC);
@@ -393,17 +404,19 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		//兆豐銀行
 		if(BKCode.equals("017")){
 			String payBank = "";
-			try{
+			/*try{
 				CaprmtfVO rmtVOtmp = (CaprmtfVO) payments.get(0);
 				payBank = rmtVOtmp.getPACCT();
 			}catch(Exception e){
 				
-			}
+			}*/
 			//RD0382:OIU
-			if("07058016878".equals(payBank)){
-				fileLOC = convertDownloadData017OIU(payments,SelCURR,BATNO,remitKind,strLogonUser);
+			if(remitKind.equals("r")){
+				//跨行匯款,DISBRemitExportDAO.queryByBatNo()有判斷SWIFT CODE的第5及6碼不可為TW
+				fileLOC = convertDownloadData017r(payments,SelCURR,BATNO,remitKind,strLogonUser);
 			}else{
-				fileLOC = convertDownloadData017(payments,SelCURR,BATNO,remitKind,strLogonUser);
+				//轉帳,同行相存(限匯款銀行SWIFT CODE的第5及6碼為TW)
+				fileLOC = convertDownloadData017t(payments,SelCURR,BATNO,remitKind,strLogonUser);
 			}			
 		}
 		//新竹商銀
@@ -444,16 +457,24 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 				//轉帳檔
 				fileLOC = convertDownloadData009t(payments,SelCURR,BATNO,remitKind,strLogonUser);
 		}
-		//EB0537 萬泰銀行
+		//EB0537 凱基(萬泰)銀行
 		if(BKCode.equals("809")) {
-			fileLOC = convertDownloadData809(payments,SelCURR,BATNO,remitKind,strLogonUser);
+			if(remitKind.equals("r")){
+				//RE0189
+				//匯款檔檔(新增,與兆豐layout相同),外幣付款,809-OBU --> 809-DBU (只要判斷受款帳戶是否為DBU)
+				fileLOC = convertDownloadData809r(payments,SelCURR,BATNO,remitKind,strLogonUser);
+			} else {
+				//轉帳檔(既有)
+				//RE0189:外幣付款,只有809-OBU --> 809-OBU (只要判斷受款帳戶是否為OBU)才產生該檔案
+				fileLOC = convertDownloadData809t(payments,SelCURR,BATNO,remitKind,strLogonUser);
+			}			
 		}
 		
 		//RD0440 臺灣銀行
 		if(BKCode.equals("004")) {
 			
 			if (remitKind.equals("r")){
-				//匯款檔,待修改
+				//匯款檔
 				fileLOC = convertDownloadData004r(payments,SelCURR,BATNO,remitKind,strLogonUser);
 			}else{
 				//轉帳檔
@@ -1664,8 +1685,8 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		return fileLOC;
 	}
     
-	// R70088 SUPL配息 兆豐銀行
-	private String convertDownloadData017(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
+	// R70088 SUPL配息 兆豐銀行,轉帳(同行相存)
+	private String convertDownloadData017t(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC = "";
 		// 無資料不處理
 		if (payments.size() <= 0)
@@ -1822,163 +1843,296 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		return fileLOC;
 	}
 	
-	private String convertDownloadData017OIU(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
+	//RD0382:OIU,兆豐匯款檔(跨行),SWIFT CODE第5及6碼不可為TW
+	private String convertDownloadData017r(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
+		
 		String fileLOC = "";
+		
 		// 無資料不處理
 		if (payments.size() <= 0)
 			return fileLOC;
 
-		//取得CAPPAYF的相關欄位資料
-		//SELECT * FROM CAPPAYF WHERE WHERE PBATNO='B0940822132854' AND PAY_REMIT_ACCOUNT='00312999955803'
-		//SELECT * FROM CAPPAYF WHERE WHERE PBATNO=BATNO AND PAY_REMIT_ACCOUNT=entAccountNo
-		
-		String[][] downloadInfo = new String[(payments.size() + 2)][15];
+		// layout 應為 21 欄位, 但 \r\n 後面程式會自動做, 可以省略
+		String[][] downloadInfo = new String[payments.size()][22];
 		DecimalFormat df = new DecimalFormat("000000000000.00");
-		DecimalFormat df2 = new DecimalFormat("00000000000000.00");
 		CaprmtfVO rmtVO;
 		DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);
-		double saveAmt = 0;
-		double saveAmtT = 0;// R70455
-		int saveCount = 0;
-		int saveIndex = 0;
-		String saveRMDT = "";
-		// R80132 String payCURR= disbBean.getCurr(selCURR,4);//幣別 2碼轉為數字碼
-		String payCURR = disbBean.getETableDesc("CURR4", selCURR);// R80132
-		// 發件單位 RA0140---005為忠孝分行的代號，請改為南京東路分行代號070
-		String save070 = "070";
-		for (int count = save070.length(); count < 8; count++) {
-			save070 = save070 + " ";
-		}
-		// 收件單位
-		String save017 = "017";
-		for (int count = save017.length(); count < 8; count++) {
-			save017 = save017 + " ";
-		}
-
-		// -----DETAIL-----
-		for (int index = 0; index < payments.size(); index++) {
+		
+		String remitDateTmp = "";
+		boolean remitDataChange = false;
+		//明細資料
+		for (int index = 0; index < payments.size(); index++) {			
 			rmtVO = (CaprmtfVO) payments.get(index);
-
-			double remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());// R70455
-			saveAmtT = disbBean.DoubleRound(remitAmtNum, 2);// R70455
-			saveAmt = disbBean.DoubleAdd(saveAmt, saveAmtT);// R70455
-			saveCount = index + 1;
-			saveRMDT = rmtVO.getRMTDT();
-			// 扣帳日 六位數字
-			if (saveRMDT.length() > 6)
-				saveRMDT = saveRMDT.substring(1);
-
-			// 3.匯款幣別,X(3)
-			String remitCURR = payCURR;
-			for (int count = remitCURR.length(); count < 3; count++) {
-				remitCURR = remitCURR + " ";
-			}
-			// 4.匯款金額x(15)
-			String remitAmtT = df.format(remitAmtNum);
-			String remitAmt = remitAmtT.substring(0, 12) + remitAmtT.substring(13, 15);
-
-			// 5.受益人帳號x(14)
+			
+			//受款帳號
 			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
+			
+			//RE0189-判斷受款帳號是否為兆豐OBU
+			/*String remitAcct = entAccountNo.trim();
+			String remitBank = rmtVO.getRBK() == null ? "" : rmtVO.getRBK();
+			Boolean isOBU4Remit017 = false;
+			String codeOBU4Remit = "";			
+			if(remitBank.length()>=3 && "017".equals(remitBank.subSequence(0, 3))) codeOBU4Remit = remitAcct.substring(3,5);
+			if("17".equals(codeOBU4Remit) || "57".equals(codeOBU4Remit) || "58".equals(codeOBU4Remit)) isOBU4Remit017 = true;*/
+			
+			//受款帳號
 			if (entAccountNo.length() > 14)
 				entAccountNo = entAccountNo.substring(0, 14);
 			for (int count = entAccountNo.length(); count < 14; count++) {
 				entAccountNo = "0" + entAccountNo;
 			}
-			// 11.保留欄位 x(15)
-			String fillerD1 = "";
-			for (int count = 0; count < 15; count++) {
-				fillerD1 = fillerD1 + " ";
+				
+			
+			//統編/身分字號
+			String custID = CommonUtil.AllTrim(rmtVO.getRID());			
+			
+			//匯款金額		
+			//log.info("rmtVO.getRPAYAMT()是" + rmtVO.getRPAYAMT() + ",rmtVO.getRBENFEE()是" + rmtVO.getRBENFEE());
+			double remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());// R70455
+			//log.info("remitAmtNum是" + remitAmtNum);
+			String remitAmt = "";
+			remitAmt = df.format(remitAmtNum);			
+			
+			//付款帳號
+			String payAccount = "";
+			payAccount = CommonUtil.AllTrim(rmtVO.getPACCT());
+			
+			//SWIFT CODE
+			String swiftCode = "";
+			swiftCode = CommonUtil.AllTrim(rmtVO.getSWIFTCODE());
+			
+			//受款行國別
+			/*String remitContryString = "";
+			if(swiftCode.length()>=8) remitContryString = swiftCode.substring(4, 6);*/
+			
+			String country = "";
+			if(!"".equals(swiftCode) && swiftCode.length()>=8) country = swiftCode.substring(4, 6);
+			
+			
+			//匯款幣別
+			String remitCurrency = "";
+			remitCurrency = CommonUtil.AllTrim(rmtVO.getRPAYCURR());
+			remitCurrency = disbBean.getETableDesc("CURRA", remitCurrency.trim());
+			
+			//英文姓名
+			String entNameT = (rmtVO.getPENGNAME() == null) ? "" : CommonUtil.AllTrim(rmtVO.getPENGNAME()).toUpperCase();
+			
+			//受款人英文地址
+			String engAddr = "";
+			engAddr = CommonUtil.AllTrim(rmtVO.getPayAddr());
+			String engAddr1 = "";
+			String engAddr2 = "";
+			String engAddr3 = "";
+			engAddr1 = engAddr;
+			if(engAddr1.length() > 105) engAddr1 = engAddr.substring(1,105);
+			/*if(engAddr.length()<=35) engAddr1 = engAddr;
+			if(engAddr.length()>35 && engAddr.length()<=70) engAddr2 = engAddr.substring(35,engAddr.length());
+			if(engAddr.length()>70) engAddr3 = engAddr.substring(70);*/
+			
+			//支付原因代碼
+			String paySourceCode = "";
+			paySourceCode = CommonUtil.AllTrim(rmtVO.getPaySourceCode());
+			
+			
+			//CNAPS(CN)/ABA ROUTING(US)/TRANSIT(CA)/BSB(AU)/IBAN(歐)
+			String payBkVerifyNumber = "";
+			payBkVerifyNumber = CommonUtil.AllTrim(rmtVO.getPayBkVerifyNumber());
+			String IBAN = "";
+			if(!"CN".equals(country) && !"US".equals(country) && !"CA".equals(country) && !"AU".equals(country) && !"TW".equals(country)) IBAN = payBkVerifyNumber;
+			
+			//SORT CODE
+			String payBkSortCode = "";
+			payBkSortCode = CommonUtil.AllTrim(rmtVO.getPayBkSortCode());
+			
+			//預定及實際入帳日
+			String remitDate = rmtVO.getRMTDT();
+			if(index >0  && !remitDataChange){
+				if(!remitDateTmp.equals(remitDate)) remitDataChange = true;
 			}
-			// 受款人ID, x(10)空白
-			String custRemitId = rmtVO.getRID();
-			for (int count = custRemitId.length(); count < 10; count++) {
-				custRemitId += " ";
-			}
-			// 14.保留欄位 x(12)
-			String fillerD2 = "";
-			for (int count = 0; count < 12; count++) {
-				fillerD2 = fillerD2 + " ";
-			}
-			// 15.保留欄位 x(12)
-			String fillerD = "";
-			for (int count = 0; count < 12; count++) {
-				fillerD = fillerD + " ";
-			}
+			
+			//手續費支付方式
+			String rPAYFEEWAY = "";
+			rPAYFEEWAY = CommonUtil.AllTrim(rmtVO.getRPAYFEEWAY());		
+			
+			remitDateTmp = remitDate;
+			remitDateTmp = (Integer.parseInt(remitDateTmp.substring(0,3))+1911) + remitDateTmp.substring(3);
+			downloadInfo[index][0] = remitDateTmp; //匯款日期,1
+			downloadInfo[index][1] = payAccount + genSpace(11-payAccount.length()); //付款帳號,2
+			downloadInfo[index][2] = country + genSpace(2-country.length()); //受款銀行國別(取SWIFT CODE第5及6碼),3
+			//log.info("paySourceCode是" + paySourceCode + ",RACCT是" + rmtVO.getRACCT());
+			if("D1".equals(paySourceCode)){
+				downloadInfo[index][3] = "                              129"; //129 保費支出,4
+			}else{
+				downloadInfo[index][3] = "                              399"; //129 保費支出,4
+			}			
+			downloadInfo[index][4] = genSpace(2); //na,5
+			downloadInfo[index][5] = remitDateTmp + remitCurrency; //匯款幣別(支付主檔的相關匯款批號幣別),7
+			downloadInfo[index][6] = remitAmt; //匯款金額 (小數2位),8
+			downloadInfo[index][7] = "TWZ0066516"; //TWZ0066516,9			
+			String company1 = "TRANSGLOBE LIFE INSURANCE INC. OFFSHORE INSURANCE BRANCH ";
+			String payBkAddr1 = "16F, No.288, Sec. 6, Civic Blvd.,  Taipei City 110, Taiwan, R.O.C.";
+			downloadInfo[index][8] = company1; //付款銀行名稱1,10
+			downloadInfo[index][9] = payBkAddr1.toUpperCase(); //付款銀行地址1,12
+			downloadInfo[index][10] = genSpace(193); //na,14
+			swiftCode = "A" + swiftCode;
+			downloadInfo[index][11] = swiftCode.trim() + genSpace(41-swiftCode.trim().length()); //SWIFT CODE,21
+			downloadInfo[index][12] = payBkVerifyNumber.trim() + genSpace(31-payBkVerifyNumber.trim().length()); //CNAPS(CN)/ABA ROUTING(US)/TRANSIT(CA)/BSB(AU),22
+			downloadInfo[index][13] = payBkSortCode + genSpace(104-payBkSortCode.length()); //SORT CODE(GB),23
+			if(IBAN.length()>0){
+				IBAN = "/" + IBAN;
+				downloadInfo[index][14] = IBAN + genSpace(35-IBAN.length()); //IBAN(歐),26
+			}else{
+				entAccountNo = "/" + entAccountNo;
+				downloadInfo[index][14] = entAccountNo + genSpace(35-entAccountNo.length()); //受款人帳號(匯款帳號),26
+			}			
+			downloadInfo[index][15] = entNameT.trim() + genSpace(35-entNameT.trim().length()); //受款人戶名,27
+			downloadInfo[index][16] = engAddr1.trim() + genSpace(105-engAddr1.trim().length()); //受款人英文地址1,28
+			downloadInfo[index][17] = genSpace(0); //受款人英文地址2,29
+			downloadInfo[index][18] = genSpace(0); //受款人英文地址3,30
+			String memo = "PAY FULL AMOUNT";
+			downloadInfo[index][19] = memo + genSpace(16-memo.trim().length()); //附言,31
+			downloadInfo[index][20] = genSpace(135); //na,32
+			downloadInfo[index][21] = rPAYFEEWAY; //na,33,CAPRMTF.RPAYFEEWAY
+		}//end for		
+		
+		fileLOC = disbBean.writeTOfile(downloadInfo, BATNO, selCURR, remitKind, strLogonUser);
+		return fileLOC;
+	}
+	
+	//RE0189:凱基-匯款檔
+private String convertDownloadData809r(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
+		
+		String fileLOC = "";
+		
+		// 無資料不處理
+		if (payments.size() <= 0)
+			return fileLOC;
 
-			downloadInfo[index + 1][0] = "2"; // 表明細資料
-			downloadInfo[index + 1][1] = save070; // 發件單位
-			downloadInfo[index + 1][2] = save017; // 收件單位
-			downloadInfo[index + 1][3] = "200"; // 轉帳類別
-			downloadInfo[index + 1][4] = saveRMDT; // 入/扣帳日
-			downloadInfo[index + 1][5] = entAccountNo;// 帳號
-			downloadInfo[index + 1][6] = remitAmt; // 交易金額
-			downloadInfo[index + 1][7] = "70817744"; // 營利事業統一編號
-			downloadInfo[index + 1][8] = "99"; // 狀況代號
-			// 32專用資料區
-			downloadInfo[index + 1][9] = "*C917"; // 摘要代號
-			downloadInfo[index + 1][10] = fillerD1; // 空白15
-			downloadInfo[index + 1][11] = custRemitId; // 存款人身份證字號
-			downloadInfo[index + 1][12] = payCURR; // 幣別代號
-			downloadInfo[index + 1][13] = fillerD2; // 空白12
-			downloadInfo[index + 1][14] = fillerD; // 空白欄
-			saveIndex = index + 2;
-		}
-		// -----HEAD-----
-		// 空白欄 x(91)
-		String fillerH = "";
-		for (int count = 0; count < 91; count++) {
-			fillerH = fillerH + " ";
-		}
-		downloadInfo[0][0] = "1"; // 表尾筆
-		downloadInfo[0][1] = save070; // 發件單位
-		downloadInfo[0][2] = save017; // 收件單件
-		downloadInfo[0][3] = "200"; // 轉帳類別
-		downloadInfo[0][4] = saveRMDT; // 入扣帳日
-		downloadInfo[0][5] = "1"; // 性質別
-		downloadInfo[0][6] = "32"; // 資料類別
-		downloadInfo[0][7] = fillerH; // 空白欄
-		for (int i = 8; i < 15; i++) {
-			downloadInfo[0][i] = "";
-		}
-		// -----FOOT-----
-		// 成交總金額X(16)
-		String totAmtT = df2.format(saveAmt);
-		String totAmt = totAmtT.substring(0, 14) + totAmtT.substring(15, 17);
-		// 成交總筆數X(10)
-		String totCount = String.valueOf(saveCount);
-		for (int count = 0; count < (10 - String.valueOf(saveCount).length()); count++) {
-			totCount = "0" + totCount;
-		}
-		// 未成交總筆數X(16)放零
-		String totAmtF = "";
-		for (int count = 0; count < 16; count++) {
-			totAmtF = "0" + totAmtF;
-		}
-		// 未成交總筆數X(10)放零
-		String totCountF = "";
-		for (int count = 0; count < 10; count++) {
-			totCountF = "0" + totCountF;
-		}
-		// 空白欄 x(42)
-		String fillerF = "";
-		for (int count = 0; count < 42; count++) {
-			fillerF = fillerF + " ";
-		}
-
-		downloadInfo[saveIndex][0] = "3"; // 表尾筆
-		downloadInfo[saveIndex][1] = save070; // 發件單位
-		downloadInfo[saveIndex][2] = save017; // 收件單件
-		downloadInfo[saveIndex][3] = "200"; // 轉帳類別
-		downloadInfo[saveIndex][4] = saveRMDT; // 入扣帳日
-		downloadInfo[saveIndex][5] = totAmt; // 成交總金額
-		downloadInfo[saveIndex][6] = totCount; // 成交總筆數
-		downloadInfo[saveIndex][7] = totAmtF; // 未成交總金額
-		downloadInfo[saveIndex][8] = totCountF; // 未成交總筆數
-		downloadInfo[saveIndex][9] = fillerF; // 空白欄
-		for (int i = 10; i < 15; i++) {
-			downloadInfo[saveIndex][i] = "";
-		}
-
+		// layout 應為 21 欄位, 但 \r\n 後面程式會自動做, 可以省略
+		String[][] downloadInfo = new String[payments.size()][22];
+		DecimalFormat df = new DecimalFormat("000000000000.00");
+		CaprmtfVO rmtVO;
+		DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);
+		
+		String remitDateTmp = "";
+		boolean remitDataChange = false;
+		//明細資料
+		for (int index = 0; index < payments.size(); index++) {			
+			rmtVO = (CaprmtfVO) payments.get(index);
+			
+			//受款帳號
+			String entAccountNo = rmtVO.getRACCT() == null ? "" : rmtVO.getRACCT();
+			
+			//受款帳號
+			if (entAccountNo.length() > 14)
+				entAccountNo = entAccountNo.substring(0, 14);
+			for (int count = entAccountNo.length(); count < 14; count++) {
+				entAccountNo = "0" + entAccountNo;
+			}
+				
+			
+			//統編/身分字號
+			String custID = CommonUtil.AllTrim(rmtVO.getRID());			
+			
+			//匯款金額		
+			double remitAmtNum = disbBean.DoubleSub(rmtVO.getRPAYAMT(), rmtVO.getRBENFEE());// R70455
+			String remitAmt = "";
+			remitAmt = df.format(remitAmtNum);			
+			
+			//付款帳號
+			String payAccount = "";
+			payAccount = CommonUtil.AllTrim(rmtVO.getPACCT());
+			
+			//SWIFT CODE
+			String swiftCode = "";
+			swiftCode = CommonUtil.AllTrim(rmtVO.getSWIFTCODE());
+			
+			//受款行國別
+			String remitContryString = "";
+			if(swiftCode.length()>=8) remitContryString = swiftCode.substring(4, 6);
+			
+			String country = "";
+			if(!"".equals(swiftCode) && swiftCode.length()>=8) country = swiftCode.substring(4, 6);
+			
+			
+			//匯款幣別
+			String remitCurrency = "";
+			remitCurrency = CommonUtil.AllTrim(rmtVO.getRPAYCURR());
+			remitCurrency = disbBean.getETableDesc("CURRA", remitCurrency.trim());
+			
+			//英文姓名
+			String entNameT = (rmtVO.getPENGNAME() == null) ? "" : CommonUtil.AllTrim(rmtVO.getPENGNAME()).toUpperCase();
+			
+			//受款人英文地址
+			String engAddr = "";
+			engAddr = CommonUtil.AllTrim(rmtVO.getPayAddr());
+			String engAddr1 = "";
+			String engAddr2 = "";
+			String engAddr3 = "";
+			engAddr1 = engAddr;
+			if(engAddr1.length() > 105) engAddr1 = engAddr.substring(1,105);
+			
+			//支付原因代碼
+			String paySourceCode = "";
+			paySourceCode = CommonUtil.AllTrim(rmtVO.getPaySourceCode());
+			
+			
+			//CNAPS(CN)/ABA ROUTING(US)/TRANSIT(CA)/BSB(AU)/IBAN(歐)
+			String payBkVerifyNumber = "";
+			payBkVerifyNumber = CommonUtil.AllTrim(rmtVO.getPayBkVerifyNumber());
+			String IBAN = "";
+			if(!"CN".equals(country) && !"US".equals(country) && !"CA".equals(country) && !"AU".equals(country) && !"TW".equals(country)) IBAN = payBkVerifyNumber;
+			
+			//SORT CODE
+			String payBkSortCode = "";
+			payBkSortCode = CommonUtil.AllTrim(rmtVO.getPayBkSortCode());
+			
+			//預定及實際入帳日
+			String remitDate = rmtVO.getRMTDT();
+			if(index >0  && !remitDataChange){
+				if(!remitDateTmp.equals(remitDate)) remitDataChange = true;
+			}
+			
+			//手續費支付方式
+			String rPAYFEEWAY = "";
+			rPAYFEEWAY = CommonUtil.AllTrim(rmtVO.getRPAYFEEWAY());		
+			
+			remitDateTmp = remitDate;
+			remitDateTmp = (Integer.parseInt(remitDateTmp.substring(0,3))+1911) + remitDateTmp.substring(3);
+			downloadInfo[index][0] = remitDateTmp; //匯款日期,1
+			downloadInfo[index][1] = payAccount + genSpace(11-payAccount.length()); //付款帳號,2
+			downloadInfo[index][2] = country + genSpace(2-country.length()); //受款銀行國別(取SWIFT CODE第5及6碼),3
+			downloadInfo[index][3] = "                              129"; //129 保費支出,4			
+			downloadInfo[index][4] = genSpace(2); //na,5
+			downloadInfo[index][5] = remitDateTmp + remitCurrency; //匯款幣別(支付主檔的相關匯款批號幣別),7
+			downloadInfo[index][6] = remitAmt; //匯款金額 (小數2位),8
+			downloadInfo[index][7] = "TWZ0066516"; //TWZ0066516,9			
+			String company1 = "TRANSGLOBE LIFE INSURANCE INC. OFFSHORE INSURANCE BRANCH ";
+			String payBkAddr1 = "16F, No.288, Sec. 6, Civic Blvd.,  Taipei City 110, Taiwan, R.O.C.";
+			downloadInfo[index][8] = company1; //付款銀行名稱1,10
+			downloadInfo[index][9] = payBkAddr1.toUpperCase(); //付款銀行地址1,12
+			downloadInfo[index][10] = genSpace(193); //na,14
+			swiftCode = "A" + swiftCode;
+			downloadInfo[index][11] = swiftCode.trim() + genSpace(41-swiftCode.trim().length()); //SWIFT CODE,21
+			downloadInfo[index][12] = payBkVerifyNumber.trim() + genSpace(31-payBkVerifyNumber.trim().length()); //CNAPS(CN)/ABA ROUTING(US)/TRANSIT(CA)/BSB(AU),22
+			downloadInfo[index][13] = payBkSortCode + genSpace(104-payBkSortCode.length()); //SORT CODE(GB),23
+			if(IBAN.length()>0){
+				IBAN = "/" + IBAN;
+				downloadInfo[index][14] = IBAN + genSpace(35-IBAN.length()); //IBAN(歐),26
+			}else{
+				entAccountNo = "/" + entAccountNo;
+				downloadInfo[index][14] = entAccountNo + genSpace(35-entAccountNo.length()); //受款人帳號(匯款帳號),26
+			}			
+			downloadInfo[index][15] = entNameT.trim() + genSpace(35-entNameT.trim().length()); //受款人戶名,27
+			downloadInfo[index][16] = engAddr1.trim() + genSpace(105-engAddr1.trim().length()); //受款人英文地址1,28
+			downloadInfo[index][17] = genSpace(0); //受款人英文地址2,29
+			downloadInfo[index][18] = genSpace(0); //受款人英文地址3,30
+			String memo = "PAY FULL AMOUNT";
+			downloadInfo[index][19] = memo + genSpace(16-memo.trim().length()); //附言,31
+			downloadInfo[index][20] = genSpace(135); //na,32
+			downloadInfo[index][21] = rPAYFEEWAY; //na,33,CAPRMTF.RPAYFEEWAY
+		}//end for		
+		
 		fileLOC = disbBean.writeTOfile(downloadInfo, BATNO, selCURR, remitKind, strLogonUser);
 		return fileLOC;
 	}
@@ -2152,7 +2306,8 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		if (payments == null || payments.size() <= 0)
 			return fileLOC;
 
-		String[][] downloadInfo = new String[payments.size() + 1][7]; // 多留一行給表頭
+		//String[][] downloadInfo = new String[payments.size() + 1][7]; // 多留一行給表頭
+		String[][] downloadInfo = new String[payments.size() + 1][8]; // 多留一行給表頭
 		NumberFormat df = new DecimalFormat("##############0.##");
 
 		CaprmtfVO rmtVO;
@@ -2167,6 +2322,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		downloadInfo[0][4] = "入扣帳金額";
 		downloadInfo[0][5] = "扣款ID";
 		downloadInfo[0][6] = "入帳ID"; // RA0081
+		downloadInfo[0][7] = "性質";
 
 		// 寫入資料
 		for (int index = 0; index < payments.size(); index++) {
@@ -2193,6 +2349,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			downloadInfo[pos][4] = df.format(remitAmtNum); // 入扣帳金額
 			downloadInfo[pos][5] = "70817744"; // 扣款 ID - 公司編號,目前沒有常數,先照舊...
 			downloadInfo[pos][6] = rmtVO.getRID(); // 收款人ID
+			downloadInfo[pos][7] = "129";
 		}
 
 		fileLOC = disbBean.writeTOfileXLS(downloadInfo, BATNO, selCURR, remitKind, strLogonUser, true);
@@ -2621,7 +2778,8 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		if (payments.size() <= 0)
 			return fileLOC;
 
-		String[][] downloadInfo = new String[(payments.size() + 2)][8];	//HEAD+LAST
+		//String[][] downloadInfo = new String[(payments.size() + 2)][8];	//HEAD+LAST
+		String[][] downloadInfo = new String[(payments.size() + 2)][11];	//HEAD+LAST,RE0273
 		DecimalFormat df = new DecimalFormat("000000000000.00");
 
 		CaprmtfVO rmtVO;
@@ -2665,15 +2823,26 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			for(int counter=0; counter<14; counter++) {
 				sbNote.append(" ");
 			}
+			
+			//10.身份證, x(10)空白
+			String custRemitId = rmtVO.getRID();
+			for (int count = custRemitId.length(); count < 10; count++) {
+				custRemitId += " ";
+			}
 
 			downloadInfo[index + 1][0] = "2"; 			//區別碼
 			downloadInfo[index + 1][1] = "FX027601009"; //轉帳組別
 			downloadInfo[index + 1][2] = remitDate; 	//轉帳日期
 			downloadInfo[index + 1][3] = entAccountNo; 	//轉帳帳號
 			downloadInfo[index + 1][4] = remitAmt; 		//轉帳金額
-			downloadInfo[index + 1][5] = " "; 			//入扣帳碼
+			downloadInfo[index + 1][5] = "2"; 			//入扣帳碼
 			downloadInfo[index + 1][6] = "99"; 			//轉帳狀況
-			downloadInfo[index + 1][7] = sbNote.toString(); //備註
+			//downloadInfo[index + 1][7] = sbNote.toString(); //備註
+			downloadInfo[index + 1][7] = payCURR; //幣別,//RE0273
+			downloadInfo[index + 1][8] = genSpace(32); //用戶註記資料,//RE0273
+			downloadInfo[index + 1][9] = custRemitId; //身分證字號,//RE0273
+			downloadInfo[index + 1][10] = genSpace(15); //補足空白,//RE0273
+			
 		}
 
 		StringBuffer sbCusNo = new StringBuffer();
@@ -2682,7 +2851,8 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 			sbCusNo.append(" ");
 		}
 		StringBuffer sbNote = new StringBuffer();
-		for(int counter=0; counter<20; counter++) {
+		//for(int counter=0; counter<20; counter++) {
+		for(int counter=0; counter<70; counter++) {//RE0273
 			sbNote.append(" ");
 		}
 
@@ -2690,11 +2860,18 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		downloadInfo[0][0] = "1";			//區別碼
 		downloadInfo[0][1] = "FX027601009"; //轉帳組別
 		downloadInfo[0][2] = remitDate; 	//轉帳日期
-		downloadInfo[0][3] = "2"; 			//入扣帳碼
+		//downloadInfo[0][3] = "2"; 			//入扣帳碼
+		downloadInfo[0][3] = "3"; 			//入扣帳碼,RE0273
 		downloadInfo[0][4] = sbCusNo.toString(); //用戶帳號/約定代號
-		downloadInfo[0][5] = " "; 			//備註
-		downloadInfo[0][6] = payCURR; 			//備註
-		downloadInfo[0][7] = sbNote.toString(); //備註
+		//downloadInfo[0][5] = " "; 			//備註
+		//downloadInfo[0][6] = payCURR; 			//備註
+		//downloadInfo[0][7] = sbNote.toString(); //備註
+		downloadInfo[0][5] = sbNote.toString(); //備註,//RE0273
+		downloadInfo[0][6] = ""; //備註,//RE0273
+		downloadInfo[0][7] = ""; //備註,//RE0273
+		downloadInfo[0][8] = ""; //備註,//RE0273
+		downloadInfo[0][9] = ""; //備註,//RE0273
+		downloadInfo[0][10] = ""; //備註,//RE0273
 
 		//LAST
 		//6.入帳總筆數 x(5)
@@ -2706,7 +2883,8 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 
 		//8.備註 x(7)
 		sbNote = new StringBuffer();
-		for(int counter=0; counter<7; counter++) {
+		//for(int counter=0; counter<7; counter++) {
+		for(int counter=0; counter<53; counter++) {
 			sbNote.append(" ");
 		}
 
@@ -2718,6 +2896,10 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 		downloadInfo[payments.size() + 1][5] = totCount;		//入帳總筆數
 		downloadInfo[payments.size() + 1][6] = totAmt;			//入帳總金額
 		downloadInfo[payments.size() + 1][7] = sbNote.toString();//備註
+		downloadInfo[payments.size() + 1][8] = "";//備註,//RE0273
+		downloadInfo[payments.size() + 1][9] = "";//備註,//RE0273
+		downloadInfo[payments.size() + 1][10] = "";//備註,//RE0273
+		
 
 		fileLOC = disbBean.writeTOfile(downloadInfo, BATNO, selCURR, remitKind, strLogonUser);
 		return fileLOC;
@@ -3248,7 +3430,7 @@ public class DISBRemitExportServlet  extends InitDBServlet {
 	}
 
 	//EB0537 萬泰銀行 (跨行匯匯款不需產生檔案)
-	private String convertDownloadData809(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
+	private String convertDownloadData809t(Vector payments, String selCURR, String BATNO, String remitKind, String strLogonUser) {
 		String fileLOC = "";
 		// 無資料不處理
 		if (payments.size() <= 0)

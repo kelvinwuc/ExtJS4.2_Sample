@@ -16,6 +16,8 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
 
+//import org.eclipse.jst.jsp.core.internal.Logger;
+
 import com.aegon.comlib.AuditLogBean;
 import com.aegon.comlib.Constant;
 import com.aegon.comlib.DbFactory;
@@ -25,7 +27,12 @@ import com.aegon.comlib.RootClass;
 import com.aegon.comlib.SessionInfo;
 import com.aegon.comlib.UserInfo;
 
+import org.apache.log4j.Logger;
+import org.apache.openjpa.lib.log.Log;
+
 public class LogonBean extends HttpServlet {
+	
+	private Logger log = Logger.getLogger(getClass());
 
 	final static int AUTH_TYPE_PASSWORD = 1;
 	final static int AUTH_TYPE_SECRET_WORD = 2;
@@ -102,7 +109,7 @@ public class LogonBean extends HttpServlet {
 
 		// get input parameter
 		if (getInputParameter(req, thisData)) {
-			// process logon
+			// process logon, 讀取USER、USERGRP、GRPFUN、FUNC、FUNCTREE資料表
 			checkLogon(thisData);
 			// setting session attribute
 			session.setAttribute("PasswordAging", new Integer(0));
@@ -118,7 +125,7 @@ public class LogonBean extends HttpServlet {
 			session.setAttribute(Constant.ACTIVE_USER_NAME, thisData.sessionInfo.getUserInfo().getUserName());
 			session.setAttribute(Constant.ACTIVE_USER_TYPE, thisData.sessionInfo.getUserInfo().getUserType());
 			session.setAttribute(Constant.COMPANY_CODE, "  ");
-			session.setAttribute(Constant.SESSION_INFO, thisData.sessionInfo);
+			session.setAttribute(Constant.SESSION_INFO, thisData.sessionInfo);//sessionInfo的UserInfo已將menu準備好了
 
 			AuditLogBean auditLogBean = new AuditLogBean(globalEnviron, dbFactory);
 
@@ -164,6 +171,8 @@ public class LogonBean extends HttpServlet {
 				session.setAttribute("binding.listener", new LogonBindingListener());
 				thisData.sessionInfo.getAuditLogBean().writeAuditLog("Logon", thisData.userId, "L", "Logon successful!");
 				System.out.println("thisData.nextUrl='" + thisData.nextUrl + "'");
+				
+				//若登入驗證成功,頁面將跳轉至/NewMenu/index.html
 				dispatcher = req.getRequestDispatcher(thisData.nextUrl);
 				dispatcher.forward(req, resp);
 				return;
@@ -199,7 +208,8 @@ public class LogonBean extends HttpServlet {
 		}
 		thisUserInfo.setSessionId(thisData.session.getId());
 		thisUserInfo.setDebug(thisData.sessionInfo.getDebug());
-
+		log.info("thisData.userId是" + thisData.userId);
+		//若為首次登入,thisUserInfo.setUserId(thisData.userId)即會執行UserInfo.refresh()並讀取USER、USERGRP、GRPFUN、FUNC、FUNCTREE
 		if (thisUserInfo.setUserId(thisData.userId)) {
 			if (thisUserInfo.checkUserStatus()) {
 

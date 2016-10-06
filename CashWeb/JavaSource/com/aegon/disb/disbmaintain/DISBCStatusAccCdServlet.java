@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.aegon.comlib.CommonUtil;
 import com.aegon.comlib.InitDBServlet;
 import com.aegon.disb.util.DISBBean;
-
+import org.apache.log4j.Logger;
 
 /**
  * System   : CashWeb
@@ -116,6 +116,8 @@ import com.aegon.disb.util.DISBBean;
  */
 
 public class DISBCStatusAccCdServlet extends InitDBServlet {
+	
+	private Logger log = Logger.getLogger(getClass());
 
 	private DISBBean disbBean = null;
 
@@ -166,6 +168,14 @@ public class DISBCStatusAccCdServlet extends InitDBServlet {
 			strUpdDt = "";
 		if (!strUpdDt.equals(""))
 			alDwnDetails = (List) getDwnDetailByUpdDt(request, response, alDwnDetails);
+		
+		/*String company = "";//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}*/
 
 		if (alDwnDetails.size() > 0) {
 			System.out.println("1_alDwnDetails.size()=" + alDwnDetails.size());
@@ -195,6 +205,10 @@ public class DISBCStatusAccCdServlet extends InitDBServlet {
 				for (int i = 0; i < alDwnDetails.size(); i++) {
 
 					DISBAccCodeDetailVO objAccCodeDetail = (DISBAccCodeDetailVO) alDwnDetails.get(i);
+					
+					//RD0382:OIU
+					String company = "";
+					company = objAccCodeDetail.getPayCompany().trim();
 
 					strCate = objAccCodeDetail.getStrCategory();
 					for (int count = strCate.length(); count < 6; count++) {
@@ -278,19 +292,43 @@ public class DISBCStatusAccCdServlet extends InitDBServlet {
 
 					if (!strDAmt.trim().equals("") || !strCAmt.trim().equals("")) 
 					{
-						export += strLedger + ",";
+						//if("6".equals(company)){
+						if("OIU".equals(company)){
+							String currency = strLedger.substring(strLedger.length()-3);
+							if("nc.".equals(currency)){
+								export += strLedger + " OIU,";
+							}else{
+								export += strLedger.substring(0, strLedger.length()-3) + " OIU " + currency + ",";
+							}
+							export += "" + ",";
+						}else /*if("0".equals(company))*/{
+							export += strLedger + ",";
+						}
+						
 						export += strCate + ",";// Category, x(6)
 						export += strSource + ",";// Source,x(11)
 						export += strCurr + ",";// Currency,x(3),
 						export += strActCd1 + ",";// ACTCD1,x(1)
-						export += strActCd2.substring(0, 6) + ",";// ACTCD2,x(10)
-						export += strActCd2.substring(6, 7) + ",";
-						export += strActCd2.substring(7, 8) + ",";
-						export += strActCd2.substring(8, 9) + ",";
-						export += strActCd2.substring(9, 11) + ",";
+						export += strActCd2.substring(0, 6) + ",";// ACTCD2,x(10),F欄
+						//RE0298-逾2年支票不轉收入會計科目,系統需做調整
+						if("299000".equals(strActCd2.substring(0, 6))){
+							export += "0" + ",";//channel,G欄
+							export += "0" + ",";//LOB,H欄
+						}else{
+							export += strActCd2.substring(6, 7) + ",";//channel,G欄
+							export += strActCd2.substring(7, 8) + ",";//LOB,H欄
+						}
+						
+						export += strActCd2.substring(8, 9) + ","; //Z,I欄
+						export += strActCd2.substring(9, 11) + ",";//ZZ,J欄
 						export += strActCd3.substring(0, 3) + ",";// ACTCD3,x(4)
 						export += strActCd3.substring(3, 4) + ",";
-						export += strActCd4 + ",";// ACTCD4,x(2)
+						if("299000".equals(strActCd2.substring(0, 6))){
+							export += "00" + ",";//dept.,M欄
+						}else{
+							export += strActCd4 + ",";// ACTCD4,x(2)
+						}
+						
 						export += strActCd5.substring(0, 2) + ",";// ACTCD5,x(26),R61017 ActCd5由13擴為26碼
 						export += strActCd5.substring(2, 17) + ",";
 						export += strActCd5.substring(17, 20) + ",";
@@ -347,12 +385,29 @@ public class DISBCStatusAccCdServlet extends InitDBServlet {
 			strUpdDt = strUpdDt.trim();
 		else
 			strUpdDt = "";
+		
+		String company = "";//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}
 
 		try {
 			strSql = "select CATEG,ACNTSOUR,ACNTCURR,ACTCD1,ACTCD2,ACTCD3,ACTCD4,ACTCD5,DATE1,CREAMT,DEBAMT,SLIPNO,DESPTXT1 ";
-			strSql += " from CAPCHAF ";
+			strSql += " from CAPCHAF C ";
 			// R00135 僅需產生XXXXXX002TWD傳票號碼之會計分錄
 			strSql += "WHERE SLIPNO like '%002TWD%' and ENTRYDT	=" + strUpdDt;
+			
+			
+			//RD0382:OIU
+			if("6".equals(company)){
+				strSql += " AND TRIM(SUBSTR(DESPTXT1,0,LOCATE('(',DESPTXT1))) IN(SELECT B.PAY_CHECK_NO FROM CAPCHKF A LEFT OUTER JOIN CAPPAYF B ON A.PAY_NO = B.PAY_NO AND B.PAY_COMPANY='6') ";//RD0382:OIU
+			}else if("0".equals(company)){
+				strSql += " AND TRIM(SUBSTR(DESPTXT1,0,LOCATE('(',DESPTXT1))) IN(SELECT B.PAY_CHECK_NO FROM CAPCHKF A LEFT OUTER JOIN CAPPAYF B ON A.PAY_NO = B.PAY_NO AND B.PAY_COMPANY<>'6') ";//RD0382:OIU
+			}
+			
 			strSql += " ORDER BY DESPTXT1,CREAMT ";
 
 			System.out.println("strSql1=" + strSql);
@@ -372,7 +427,13 @@ public class DISBCStatusAccCdServlet extends InitDBServlet {
 				objAccCodeDetail.setStrDate1(rs.getString("DATE1").trim());
 				objAccCodeDetail.setStrDAmt(df.format(rs.getDouble("DEBAMT")));
 				objAccCodeDetail.setStrCAmt(df.format(rs.getDouble("CREAMT")));
-				objAccCodeDetail.setStrSlipNo(rs.getString("SLIPNO").trim());
+				
+				if("6".equals(company)){
+					objAccCodeDetail.setStrSlipNo(rs.getString("SLIPNO").trim().substring(0, 6) + "OIU" + rs.getString("SLIPNO").trim().substring(6));
+				}else if("0".equals(company)){
+					objAccCodeDetail.setStrSlipNo(rs.getString("SLIPNO").trim());
+				}
+				
 				objAccCodeDetail.setStrDesc(rs.getString("DESPTXT1").trim());
 				alReturn.add(objAccCodeDetail);
 			}
@@ -383,6 +444,7 @@ public class DISBCStatusAccCdServlet extends InitDBServlet {
 		} catch (SQLException ex) {
 			request.setAttribute("txtMsg", "查詢失敗" + ex);
 			System.err.println("err Msg=" + ex);
+			log.error(ex.getMessage(), ex);
 			alReturn = null;
 		} finally {
 			try {
@@ -430,6 +492,14 @@ public class DISBCStatusAccCdServlet extends InitDBServlet {
 			strCheqDtE = strCheqDtE.trim();
 		else
 			strCheqDtE = "";
+		
+		String company = "";//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}
 
 		/* Q60159 票據到期日改為區間 日期為票據到期日之迄日 Start */
 		String strCheqDtTemp = strCheqDtE;
@@ -440,15 +510,29 @@ public class DISBCStatusAccCdServlet extends InitDBServlet {
 
 		try {
 			/* Q60159 票據到期日改為區間,group by 增加CHEQUEDT欄位 Start */
-			strSql = "select SUM(CAMT) AS SCAMT,SUBSTRING(CBKNO, 1, 3) AS CBKNO,CACCOUNT,CHEQUEDT from CAPCHKF WHERE 1=1 ";
+			strSql = "select SUM(B.CAMT) AS SCAMT,SUBSTRING(B.CBKNO, 1, 3) AS CBKNO,B.CACCOUNT,B.CHEQUEDT ";
+			strSql += ",IFNULL(A.PAY_COMPANY,'') AS PAY_COMPANY ";//RD0382:OIU
+			strSql += "from CAPCHKF B ";
+			strSql += " LEFT OUTER JOIN CAPPAYF A ON A.PAY_NO = B.PAY_NO "; //RD0382:OIU
+			strSql += " WHERE 1=1 ";
 			if (!strCheqDtS.equals("")) {
-				strSql += " and CHEQUEDT >=   " + Integer.parseInt(strCheqDtS);
+				strSql += " and B.CHEQUEDT >=   " + Integer.parseInt(strCheqDtS);
 			}
 			if (!strCheqDtE.equals("")) {
-				strSql += " and CHEQUEDT <=   " + Integer.parseInt(strCheqDtE);
+				strSql += " and B.CHEQUEDT <=   " + Integer.parseInt(strCheqDtE);
 			}
 
-			strSql += " AND CSTATUS IN('D','C') " + "  GROUP BY CBKNO,CACCOUNT,CHEQUEDT ";
+			strSql += " AND B.CSTATUS IN('D','C') ";
+			
+			//RD0382:OIU
+			if("6".equals(company)){
+				strSql += " AND A.PAY_COMPANY='6' ";
+			}else if("0".equals(company)){
+				strSql += " AND A.PAY_COMPANY<>'6' ";
+			}
+			
+			strSql += " GROUP BY B.CBKNO,B.CACCOUNT,B.CHEQUEDT";
+			strSql += ",A.PAY_COMPANY "; //RD0382:OIU
 			/* Q60159 票據到期日改為區間,group by 增加CHEQUEDT欄位 End */
 
 			System.out.println("strSql2=" + strSql);
@@ -457,6 +541,10 @@ public class DISBCStatusAccCdServlet extends InitDBServlet {
 			alReturn = alDwnDetails;
 			disbBean = new DISBBean(dbFactory);
 			while (rs.next()) {
+				
+				String payCompany = "";//RD0382:OIU
+				payCompany = rs.getString("PAY_COMPANY").trim();//RD0382:OIU
+				
 				/* 產生一筆貸方會計科目 */
 				strActCd3 = disbBean.getACTCDFinRmt(rs.getString("CBKNO"), rs.getString("CACCOUNT"), "NT") == null ? " " : disbBean.getACTCDFinRmt(rs.getString("CBKNO"), rs.getString("CACCOUNT"), "NT").trim();
 
@@ -466,10 +554,17 @@ public class DISBCStatusAccCdServlet extends InitDBServlet {
 					strActCd3 = rs.getString("CBKNO") + strActCd3.substring(12, 13);
 
 				DISBAccCodeDetailVO objAccCodeDetailD = new DISBAccCodeDetailVO();
+				objAccCodeDetailD.setPayCompany(payCompany);//RD0382:OIU
 				objAccCodeDetailD.setStrCategory("Manual");
 				objAccCodeDetailD.setStrSource("Spreadsheet");
 				objAccCodeDetailD.setStrCurr("TWD");
-				objAccCodeDetailD.setStrActCd1("0");
+				
+				if("6".equals(company)){
+					objAccCodeDetailD.setStrActCd1("6");
+				}else {
+					objAccCodeDetailD.setStrActCd1("0");
+				}				
+				
 				objAccCodeDetailD.setStrActCd2("101T1000ZZZ");
 				objAccCodeDetailD.setStrActCd3(strActCd3);
 				objAccCodeDetailD.setStrActCd4("00");
@@ -477,7 +572,13 @@ public class DISBCStatusAccCdServlet extends InitDBServlet {
 				objAccCodeDetailD.setStrDate1(DateTemp);
 				objAccCodeDetailD.setStrCAmt(df.format(rs.getDouble("SCAMT")));
 				objAccCodeDetailD.setStrDAmt("0");
-				objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "500" + "TWD   ");// R80620加上幣別
+				
+				if("6".equals(company)){
+					objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "500" + "TWD   ");// R80620加上幣別
+				}else {
+					objAccCodeDetailD.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "500" + "TWD   ");// R80620加上幣別
+				}
+				
 				objAccCodeDetailD.setStrDesc(DateTemp + "NP" + rs.getString("CBKNO") + "3");
 
 				alReturn.add(objAccCodeDetailD);
@@ -485,10 +586,17 @@ public class DISBCStatusAccCdServlet extends InitDBServlet {
 
 				/* 產生一筆借方會計科目 */
 				DISBAccCodeDetailVO objAccCodeDetailC = new DISBAccCodeDetailVO();
+				objAccCodeDetailD.setPayCompany(payCompany);//RD0382:OIU
 				objAccCodeDetailC.setStrCategory("Manual");
 				objAccCodeDetailC.setStrSource("Spreadsheet");
 				objAccCodeDetailC.setStrCurr("TWD");
-				objAccCodeDetailC.setStrActCd1("0");
+				
+				if("6".equals(company)){
+					objAccCodeDetailC.setStrActCd1("6");
+				}else {
+					objAccCodeDetailC.setStrActCd1("0");
+				}				
+				
 				objAccCodeDetailC.setStrActCd2("27100000ZZZ");
 				objAccCodeDetailC.setStrDate1(DateTemp);
 				objAccCodeDetailC.setStrActCd3("0000");
@@ -496,7 +604,13 @@ public class DISBCStatusAccCdServlet extends InitDBServlet {
 				objAccCodeDetailC.setStrActCd5("00000000000000000000000000"); // R61017 ActCd5由13擴為26碼
 				objAccCodeDetailC.setStrDAmt(df.format(rs.getDouble("SCAMT")));
 				objAccCodeDetailC.setStrCAmt("0");
-				objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "500" + "TWD   ");// R80620加上幣別
+				
+				if("6".equals(company)){
+					objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "OIU" + "500" + "TWD   ");// R80620加上幣別
+				}else {
+					objAccCodeDetailC.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(5, 7) + DateTemp.substring(8) + "500" + "TWD   ");// R80620加上幣別
+				}
+				
 				objAccCodeDetailC.setStrDesc(DateTemp + "NP" + rs.getString("CBKNO") + "3");// Q60159 借方Desc本為空白,改為和貸方Desc 相同 20060815
 				alReturn.add(objAccCodeDetailC);
 				objAccCodeDetailC = null;

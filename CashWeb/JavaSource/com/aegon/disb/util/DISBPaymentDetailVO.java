@@ -389,9 +389,45 @@ public class DISBPaymentDetailVO implements Serializable {
 
 	/*R70600  支付金額台幣參考 */
 	private double iPAMTNT = 0;
-
+	
 	// R00386
 	private int checkedPayDate;
+	
+	//RD0382:OIU,業務所屬公司別
+	private String company = "";
+	
+	//RD0382:OIU,受款人電話
+	private String phone = "";
+	
+	//RD0382:OIU,受款人地址1
+	private String addr1 = "";
+	
+	//RD0382:OIU,受款人地址2
+	private String addr2 = "";
+		
+	//RD0382:OIU,受款人地址3
+	private String addr3 = "";
+	
+	//RD0382:OIU,受款銀行檢核碼
+	private String payBankVerifyNumber = "";
+	
+	//RD0382:OIU,受款銀行SORTCODE
+	private String payBankSortCode = "";
+	
+	//RD0382:OIU,受款銀行分行
+	private String payBankBranch = "";		
+	
+	//RD0382:OIU,受款銀行地址1
+	private String payBankAddr1 = "";
+	
+	//RD0382:OIU,受款銀行地址2
+	private String payBankAddr2 = "";
+		
+	//RD0382:OIU,受款銀行地址3
+	private String payBankAddr3 = "";
+	
+	//RD0382:OIU,匯款銀行名稱
+	private String payRemitBankName = "";
 
 	public double getIPAMT() {
 		return iPAMT;
@@ -1216,5 +1252,101 @@ public class DISBPaymentDetailVO implements Serializable {
 	public void setAnnuityPayDate(int i) {
 		AnnuityPayDate = i;
 	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddr1() {
+		return addr1;
+	}
+
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+	
+	public String getAddr2() {
+		return addr2;
+	}
+
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
+	}
+	
+	public String getAddr3() {
+		return addr3;
+	}
+
+	public void setAddr3(String addr3) {
+		this.addr3 = addr3;
+	}
+
+	public String getPayBankVerifyNumber() {
+		return payBankVerifyNumber;
+	}
+
+	public void setPayBankVerifyNumber(String payBankVerifyNumber) {
+		this.payBankVerifyNumber = payBankVerifyNumber;
+	}
+
+	public String getPayBankSortCode() {
+		return payBankSortCode;
+	}
+
+	public void setPayBankSortCode(String payBankSortCode) {
+		this.payBankSortCode = payBankSortCode;
+	}
+
+	public String getPayBankBranch() {
+		return payBankBranch;
+	}
+
+	public void setPayBankBranch(String payBankBranch) {
+		this.payBankBranch = payBankBranch;
+	}
+
+	public String getPayBankAddr1() {
+		return payBankAddr1;
+	}
+
+	public void setPayBankAddr1(String payBankAddr1) {
+		this.payBankAddr1 = payBankAddr1;
+	}
+
+	public String getPayBankAddr2() {
+		return payBankAddr2;
+	}
+
+	public void setPayBankAddr2(String payBankAddr2) {
+		this.payBankAddr2 = payBankAddr2;
+	}
+
+	public String getPayBankAddr3() {
+		return payBankAddr3;
+	}
+
+	public void setPayBankAddr3(String payBankAddr3) {
+		this.payBankAddr3 = payBankAddr3;
+	}
+
+	public String getPayRemitBankName() {
+		return payRemitBankName;
+	}
+
+	public void setPayRemitBankName(String payRemitBankName) {
+		this.payRemitBankName = payRemitBankName;
+	}	
 
 }

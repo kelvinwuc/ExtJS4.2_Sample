@@ -11,8 +11,12 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.aegon.security.Security;
+import org.apache.log4j.Logger;
 
 public class DbFactory extends RootClass {
+	
+	private Logger log = Logger.getLogger(getClass());
+	
 	private GlobalEnviron globalEnviron = new GlobalEnviron();
 	// R00393 edit by Leo Huang
 	private String RootFolder = "";
@@ -203,6 +207,7 @@ public class DbFactory extends RootClass {
 	public Connection getAS400Connection(String strProgId) {
 		writeDebugLog(Constant.DEBUG_DEBUG, "DbFactory.getAS400Connection()", strProgId);
 		return this.getAS400Connection(strProgId, true, 0);
+		//return this.getAS400Connection(strProgId, true, 1);//Kelvin,Åª¨úproduction DB
 	}
 
 	/**

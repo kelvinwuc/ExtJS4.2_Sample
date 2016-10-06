@@ -3,7 +3,7 @@ package com.aegon.crystalreport;
 /**
  * System   :
  * 
- * Function : ²£¥Í³øªí¦@¥Îµ{¦¡
+ * Function : ç”¢ç”Ÿå ±è¡¨å…±ç”¨ç¨‹å¼
  * 
  * Remark   :
  * 
@@ -19,36 +19,36 @@ package com.aegon.crystalreport;
  * 
  * $$Log: CreateReportRS.java,v $
  * $Revision 1.8  2013/01/08 04:24:04  MISSALLY
- * $±N¤À¤äªºµ{¦¡Merge¦ÜHEAD
+ * $å°‡åˆ†æ”¯çš„ç¨‹å¼Mergeè‡³HEAD
  * $
  * $Revision 1.7.4.1  2012/12/06 06:28:27  MISSALLY
- * $RA0102¡@PA0041
- * $°t¦Xªk¥O­×§ï¹S¦ş¤ä¥I§@·~
+ * $RA0102ã€€PA0041
+ * $é…åˆæ³•ä»¤ä¿®æ”¹é…¬ä½£æ”¯ä»˜ä½œæ¥­
  * $
  * $Revision 1.7  2011/08/31 07:28:19  MISSALLY
  * $R10231
- * $CASH¨t²Î·s¼W¦U¶µ²z½ßµ¹¥I©ú²Óªí
+ * $CASHç³»çµ±æ–°å¢å„é …ç†è³ çµ¦ä»˜æ˜ç´°è¡¨
  * $
  * $Revision 1.6  2011/08/09 01:34:11  MISSALLY
- * $Q10256¡@ ¦³ÃöCASH¨t²Î¿ù»~µLªk¶]¥X³øªí
+ * $Q10256ã€€ æœ‰é—œCASHç³»çµ±éŒ¯èª¤ç„¡æ³•è·‘å‡ºå ±è¡¨
  * $
  * $Revision 1.5  2011/04/14 01:39:46  MISJIMMY
- * $M10004--·s¼Wlog
+ * $M10004--æ–°å¢log
  * $
  * $Revision 1.4  2007/04/13 09:45:14  MISVANESSA
- * $R70292_°t®§¤ä²¼¥ó³W«h§ïÅÜ
+ * $R70292_é…æ¯æ”¯ç¥¨ä»¶è¦å‰‡æ”¹è®Š
  * $
  * $Revision 1.3  2007/01/19 08:26:48  miselsa
- * $Q60236­×§ïRPTÀÉªº³øªí®æ¦¡
+ * $Q60236ä¿®æ”¹RPTæª”çš„å ±è¡¨æ ¼å¼
  * $
  * $Revision 1.2  2006/08/28 07:40:37  miselsa
- * $Q60236¼W¥[¹ô§O¤Î¤p¼ÆÂI
+ * $Q60236å¢åŠ å¹£åˆ¥åŠå°æ•¸é»
  * $
  * $Revision 1.1  2006/06/29 09:40:12  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.4  2005/04/04 07:02:25  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -74,6 +74,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+//import org.apache.openjpa.lib.log.Log;
 
 import com.aegon.comlib.Constant;
 import com.aegon.comlib.DbFactory;
@@ -93,13 +94,13 @@ public class CreateReportRS extends HttpServlet implements Servlet {
 
 	private static final long serialVersionUID = 8160508113339601470L;
 
-	public static String CLIENT_REPORT_NAME = "ReportName";		// ³øªí¦WºÙ
-	public static String CLIENT_PARA_PREFIX = "para_";			// ¶Ç¤J³øªí¤§°Ñ¼Æ
-	public static String CLIENT_OUTPUT_FILE_NAME = "OutputFileName"; // ¶×¥XÀÉ®×¦WºÙ
-	public static String CLIENT_OUTPUT_TYPE = "OutputType";		// ³øªí®æ¦¡ PDF, TXT, XLS
-	public static String CLIENT_REPORT_SQL = "ReportSQL";		// ³øªí DataSource SQL
-	public static String CLIENT_REPORT_PATH = "ReportPath";		// .rptªº¦s©ñ¸ô®|
-	public static String CLIENT_SWITCH_AREA = "switch_";		// «áºİ³B²z°Ñ¼Æ//R70292
+	public static String CLIENT_REPORT_NAME = "ReportName";		// å ±è¡¨åç¨±
+	public static String CLIENT_PARA_PREFIX = "para_";			// å‚³å…¥å ±è¡¨ä¹‹åƒæ•¸
+	public static String CLIENT_OUTPUT_FILE_NAME = "OutputFileName"; // åŒ¯å‡ºæª”æ¡ˆåç¨±
+	public static String CLIENT_OUTPUT_TYPE = "OutputType";		// å ±è¡¨æ ¼å¼ PDF, TXT, XLS
+	public static String CLIENT_REPORT_SQL = "ReportSQL";		// å ±è¡¨ DataSource SQL
+	public static String CLIENT_REPORT_PATH = "ReportPath";		// .rptçš„å­˜æ”¾è·¯å¾‘
+	public static String CLIENT_SWITCH_AREA = "switch_";		// å¾Œç«¯è™•ç†åƒæ•¸//R70292
 
 	private Logger logger = Logger.getLogger(getClass());
 
@@ -111,19 +112,19 @@ public class CreateReportRS extends HttpServlet implements Servlet {
 		public HttpServletRequest req = null;
 		public HttpServletResponse resp = null;
 
-		public String dbServer = null;		// DataBase ©Ò¦bªºServer
-		public String reportServer = null;	// RAS ©Ò¦bªºServer
-		public String reportName = null;	// .rptªº¦WºÙ
-		public String reportPath = null;	// RAS¤W¦s©ñ.rptªº¸ô®|
-		public Map parameters = new HashMap(2, 3); // ³øªí°Ñ¼Æªº collection
-		public String outputType = "";		// ³øªí¿é¥X«¬ºA (PDF, TXT, XLS)
-		public String outputFileName = "";	// ¹w³]ªºÀÉ®×¦WºÙ
+		//public String dbServer = null;		// DataBase æ‰€åœ¨çš„Server
+		public String reportServer = null;	// RAS æ‰€åœ¨çš„Server
+		public String reportName = null;	// .rptçš„åç¨±
+		public String reportPath = null;	// RASä¸Šå­˜æ”¾.rptçš„è·¯å¾‘
+		public Map parameters = new HashMap(2, 3); // å ±è¡¨åƒæ•¸çš„ collection
+		public String outputType = "";		// å ±è¡¨è¼¸å‡ºå‹æ…‹ (PDF, TXT, XLS)
+		public String outputFileName = "";	// é è¨­çš„æª”æ¡ˆåç¨±
 		public String errorMessage = "";
-		public String reportSQL = null;		// ³øªí©Ò¥Î¤§SQL
-		public String userID = null;		// resultSET ©Ò¥Î¤§ID
-		public String userPassword = null;	// resultSET©Ò¥Î¤§password
-		public String odbcName = null;		// ³øªíÀÉ©Ò³sµ²ªº ODBC Driver ¦WºÙ
-		public Map switchparas = new HashMap(2, 3); // «áºİ³B²z°Ñ¼Æ³]©w R70292
+		public String reportSQL = null;		// å ±è¡¨æ‰€ç”¨ä¹‹SQL
+		public String userID = null;		// resultSET æ‰€ç”¨ä¹‹ID
+		public String userPassword = null;	// resultSETæ‰€ç”¨ä¹‹password
+		public String odbcName = null;		// å ±è¡¨æª”æ‰€é€£çµçš„ ODBC Driver åç¨±
+		public Map switchparas = new HashMap(2, 3); // å¾Œç«¯è™•ç†åƒæ•¸è¨­å®š R70292
 
 		DataClass(HttpServletRequest thisReq, HttpServletResponse thisResp) {
 			req = thisReq;
@@ -136,11 +137,11 @@ public class CreateReportRS extends HttpServlet implements Servlet {
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("±Ò°Ê CreateReportRS");
+		System.out.println("å•Ÿå‹• CreateReportRS," + req.getContextPath());
 
 		DataClass thisData = new DataClass(req, resp);
-		System.out.println("±Ò°Ê CreateReportRS inner class");
-		setDefaultValue(thisData); // ³]©w¹w³]­È
+		System.out.println("å•Ÿå‹• CreateReportRS inner class");
+		setDefaultValue(thisData); // è¨­å®šé è¨­å€¼
 
 		if (getInputParameter(thisData)) {
 			if (!createReport(thisData)) {
@@ -152,10 +153,10 @@ public class CreateReportRS extends HttpServlet implements Servlet {
 	}
 
 	/**
-	 * ³øªí¬ÛÃö¸ê°T, ¥Ñ«e¤@¤äµ{¦¡¶Ç¶i¨Ó, ©Ò¥HÅÜ¼Æ¦WºÙ¥²¶·©T©w
+	 * å ±è¡¨ç›¸é—œè³‡è¨Š, ç”±å‰ä¸€æ”¯ç¨‹å¼å‚³é€²ä¾†, æ‰€ä»¥è®Šæ•¸åç¨±å¿…é ˆå›ºå®š
 	 * 
-	 * ReportName : ³øªí¦WºÙ OutputFileName : ¶×¥XÀÉ®×¦WºÙ OutputType : ³øªí®æ¦¡ PDF , TXT ,
-	 * XLS ReportSQL : ³øªí SQL para_* : ¶Ç¤J³øªí¤§°Ñ¼Æ , * ªí¥Ü³]©w¦b Crystal Report¤Wªº°Ñ¼Æ¦WºÙ
+	 * ReportName : å ±è¡¨åç¨± OutputFileName : åŒ¯å‡ºæª”æ¡ˆåç¨± OutputType : å ±è¡¨æ ¼å¼ PDF , TXT ,
+	 * XLS ReportSQL : å ±è¡¨ SQL para_* : å‚³å…¥å ±è¡¨ä¹‹åƒæ•¸ , * è¡¨ç¤ºè¨­å®šåœ¨ Crystal Reportä¸Šçš„åƒæ•¸åç¨±
 	 */
 	private boolean getInputParameter(DataClass thisData) {
 		boolean returnStatus = true;
@@ -177,6 +178,7 @@ public class CreateReportRS extends HttpServlet implements Servlet {
 
 				if (tmpKey.equalsIgnoreCase(CreateReportRS.CLIENT_REPORT_NAME)) {
 					thisData.reportName = (String) thisData.req.getAttribute(tmpKey);
+					System.out.println("report name:" + thisData.reportName);
 				} else if (tmpKey.startsWith(CreateReportRS.CLIENT_PARA_PREFIX)) {
 					tmpKey = tmpKey.substring(5);
 					thisData.parameters.put(tmpKey, (String) thisData.req.getAttribute("para_" + tmpKey));
@@ -191,7 +193,7 @@ public class CreateReportRS extends HttpServlet implements Servlet {
 				} else if (tmpKey.equalsIgnoreCase(CreateReportRS.CLIENT_REPORT_PATH)) {
 					thisData.reportPath = (String) thisData.req.getAttribute(tmpKey);
 
-				// R70292 «áºİ°Ñ¼Æ³B²z
+				// R70292 å¾Œç«¯åƒæ•¸è™•ç†
 				} else if (tmpKey.startsWith(CreateReportRS.CLIENT_SWITCH_AREA)) {
 					tmpKey = tmpKey.substring(7);
 					thisData.switchparas.put(tmpKey, (String) thisData.req.getAttribute("switch_" + tmpKey));
@@ -208,12 +210,12 @@ public class CreateReportRS extends HttpServlet implements Servlet {
 	}
 
 	/**
-	 * ³]©w¬ÛÃö°Ñ¼Æ¹w³]­È
+	 * è¨­å®šç›¸é—œåƒæ•¸é è¨­å€¼
 	 * 
-	 * dbServer :DataBase ©Ò¦bªºServer RAS_SERVER_NAME :RAS ©Ò¦bªºServer RAS_USER_ID
-	 * :resultSET ©Ò¥Î¤§ID RAS_PASSWORD :resultSET©Ò¥Î¤§password RAS_ODBC_NAME
-	 * :³øªíÀÉ©Ò³sµ²ªº ODBC Driver ¦WºÙ reportPath :RAS¤W¦s©ñ.rptªº¸ô®|
-	 * (¹w³]¦s©ñ.rptªº¸ô®|¬°D:\WAS5App\AegonWeb.ear\AegonWeb.war\ReportRPT\)
+	 * dbServer :DataBase æ‰€åœ¨çš„Server RAS_SERVER_NAME :RAS æ‰€åœ¨çš„Server RAS_USER_ID
+	 * :resultSET æ‰€ç”¨ä¹‹ID RAS_PASSWORD :resultSETæ‰€ç”¨ä¹‹password RAS_ODBC_NAME
+	 * :å ±è¡¨æª”æ‰€é€£çµçš„ ODBC Driver åç¨± reportPath :RASä¸Šå­˜æ”¾.rptçš„è·¯å¾‘
+	 * (é è¨­å­˜æ”¾.rptçš„è·¯å¾‘ç‚ºD:\WAS5App\AegonWeb.ear\AegonWeb.war\ReportRPT\)
 	 */
 	private void setDefaultValue(DataClass thisData) {
 		try {
@@ -244,17 +246,17 @@ public class CreateReportRS extends HttpServlet implements Servlet {
 
 			thisData.reportPath = "D:\\WAS5App\\CashWeb.ear\\CashWeb.war\\DISB\\DISBReports\\";
 
-			thisData.outputType = "PDF"; // ¹w³]ªº³øªí¿é¥X«¬ºA¬° PDF
+			thisData.outputType = "PDF"; // é è¨­çš„å ±è¡¨è¼¸å‡ºå‹æ…‹ç‚º PDF
 		} catch (NullPointerException ex) {
 			ex.printStackTrace();
 		}
 	}
 
 	/**
-	 * »s§@³øªí.
+	 * è£½ä½œå ±è¡¨.
 	 * 
-	 * 1.¥ı¿ï¾Ü­n³s±µªºDB , ¶Ç¤JID & PSW §@Connection 2.±NSQL¶Ç¤J Report ªº DataSource 3.³]©w
-	 * Report¬ÛÃö¸ê°T 4.²£¥Í³øªí
+	 * 1.å…ˆé¸æ“‡è¦é€£æ¥çš„DB , å‚³å…¥ID & PSW ä½œConnection 2.å°‡SQLå‚³å…¥ Report çš„ DataSource 3.è¨­å®š
+	 * Reportç›¸é—œè³‡è¨Š 4.ç”¢ç”Ÿå ±è¡¨
 	 */
 	private boolean createReport(DataClass thisData) {
 		boolean returnStatus = true;
@@ -268,12 +270,12 @@ public class CreateReportRS extends HttpServlet implements Servlet {
 			ra.setReportAppServer(thisData.reportServer);
 			System.out.println("RAS=" + ra.getReportAppServer());
 			ra.initialize();
-			System.out.println("RAS initialize ¦¨¥\.");
+			System.out.println("RAS initialize æˆåŠŸ.");
 
-			Properties props = new Properties();
+			/*Properties props = new Properties();
 			props.put("user", thisData.userID);
 			props.put("password", thisData.userPassword);
-			props.put("naming", "system");
+			props.put("naming", "system");*/
 
 			connection = dbFactory.getAS400Connection("CreateReportRS");
 			select = connection.createStatement();
@@ -287,7 +289,7 @@ public class CreateReportRS extends HttpServlet implements Servlet {
 			clientDoc.getDatabaseController().setDataSource(rs, "Command", "Reports");
 			// System.out.println("4thisData.reportSQL="+thisData.reportSQL);
 
-			// R70292 «áºİ°Ñ¼Æ³B²z
+			// R70292 å¾Œç«¯åƒæ•¸è™•ç†
 			String strYORN = (String) thisData.switchparas.get("CallYorN");
 			String strPGM = (String) thisData.switchparas.get("PGM");
 			if (strYORN != null && strYORN.equals("Y")) {
@@ -350,7 +352,7 @@ public class CreateReportRS extends HttpServlet implements Servlet {
 			// for HTTP 1.1
 			thisData.resp.setHeader("Content-Disposition", "inline;filename=" + thisData.outputFileName);
 
-			// ¦pªG³øªí­n§ï¦¨¥t¦s·sÀÉ¤è¦¡, «h­n¥Î attachment , outputFileName¤~¦³®ÄªG
+			// å¦‚æœå ±è¡¨è¦æ”¹æˆå¦å­˜æ–°æª”æ–¹å¼, å‰‡è¦ç”¨ attachment , outputFileNameæ‰æœ‰æ•ˆæœ
 			// thisData.resp.setHeader("Content-Disposition","attachment;filename="
 			// + thisData.outputFileName);
 
@@ -368,6 +370,7 @@ public class CreateReportRS extends HttpServlet implements Servlet {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			returnStatus = false;
+			logger.error(ex.getMessage(), ex);
 		} finally {
 			if (connection != null)
 				dbFactory.releaseConnection(connection);
@@ -387,7 +390,7 @@ public class CreateReportRS extends HttpServlet implements Servlet {
 		return;
 	}
 
-	// R70292 «áºİ°Ñ¼Æ³B²z
+	// R70292 å¾Œç«¯åƒæ•¸è™•ç†
 	private void getProcessPara(DataClass thisData, String strPGM) {
 		DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);
 		if (strPGM.equals("DISBDailyPReports")) {

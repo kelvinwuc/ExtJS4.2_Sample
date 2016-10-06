@@ -25,46 +25,47 @@ package com.aegon.entactbat;
  */
 
 public class CapcshfDTO {
+	
+	//CAPCSHF,登帳核銷檔資料
+	private String EBKCD = "";//銀行代碼
 
-	private String EBKCD = "";
+	private String EATNO = "";//銀行帳號
 
-	private String EATNO = "";
+	private int EBKRMD = 0;//銀行匯款日
 
-	private int EBKRMD = 0;
+	private int EAEGDT = 0;//全球入帳日
 
-	private int EAEGDT = 0;
+	private double ENTAMT = 0;//核銷金額
 
-	private double ENTAMT = 0;
+	private String ECRSRC = "2";//核銷來源
 
-	private String ECRSRC = "2";
+	private String ECRDAY = "0";//核銷帳作業日
 
-	private String ECRDAY = "0";
+	private String EUSREM = "";//使用者登帳備註
 
-	private String EUSREM = "";
+	private String EUSREM2 = "";//登帳備註２
 
-	private String EUSREM2 = "";
+	private String CSHFAU = "EntActBatS";//資料產生者
 
-	private String CSHFAU = "EntActBatS";
+	private int CSHFAD = 0;//資料產生日期
 
-	private int CSHFAD = 0;
+	private int CSHFAT = 0;//資料產生時間
 
-	private int CSHFAT = 0;
+	private String CSHFUU = "";//資料更新者
 
-	private String CSHFUU = "";
+	private int CSHFUD = 0;//資料更新日期
 
-	private int CSHFUD = 0;
+	private int CSHFUT = 0;//資料更新時間
 
-	private int CSHFUT = 0;
+	private String CSHFCURR = "";//幣別
 
-	private String CSHFCURR = "";
+	private String CROTYPE = "0";//資料類別
 
-	private String CROTYPE = "0";
+	private String CSHFPOCURR = "";//保單幣別
 
-	private String CSHFPOCURR = "";
+	private double CERRATE = 0;//匯率
 
-	private double CERRATE = 0;
-
-	private double CENTAMTNT = 0;
+	private double CENTAMTNT = 0;//台幣金額
 
 	public String getEBKCD() {
 		return EBKCD;

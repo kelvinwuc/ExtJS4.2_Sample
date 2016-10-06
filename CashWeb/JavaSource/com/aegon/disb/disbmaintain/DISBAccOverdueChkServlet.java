@@ -142,7 +142,7 @@ public class DISBAccOverdueChkServlet extends InitDBServlet {
 					cell = row.createCell(cellnum++);
 					cell.setCellValue("0");				//Company
 					cell = row.createCell(cellnum++);
-					cell.setCellValue(strActCd2.substring(0, 6));		//Main Account
+					cell.setCellValue(strActCd2.substring(0, 6));		//Main Account,E欄
 					cell = row.createCell(cellnum++);
 					cell.setCellValue(strActCd2.substring(6, 7));	//Channel
 					cell = row.createCell(cellnum++);
@@ -156,7 +156,7 @@ public class DISBAccOverdueChkServlet extends InitDBServlet {
 					cell = row.createCell(cellnum++);
 					cell.setCellValue(strActCd3.substring(3, 4));	//INVESTMENT SEQ
 					cell = row.createCell(cellnum++);
-					cell.setCellValue(strActCd4);					//DEPARTMENT
+					cell.setCellValue(strActCd4);					//DEPARTMENT,L欄
 					cell = row.createCell(cellnum++);
 					cell.setCellValue(strActCd5.substring(0, 2));	//PARTNER
 					cell = row.createCell(cellnum++);
@@ -349,7 +349,14 @@ public class DISBAccOverdueChkServlet extends InitDBServlet {
 
 				if(CSTATUS.equals("2"))
 				{
-					objAccCodeDetailD.setStrActCd2("29900000ZZZ");
+					//20160713-秀萍:工會要求逾兩年期支票不可轉收入,故會計科目要改,此為貸方
+					System.out.println("strYear+strMonth是" + strYear+strMonth);
+					if(Integer.parseInt(strYear+strMonth) < 10506){
+						objAccCodeDetailD.setStrActCd2("29900000ZZZ");
+					}else{
+						objAccCodeDetailD.setStrActCd2("101T1000ZZZ");
+					}					
+					
 					objAccCodeDetailD.setStrActCd3("0000");	//逾兩年無須帶出銀行
 					objAccCodeDetailC.setStrActCd3("0000");	//逾兩年無須帶出銀行
 
@@ -385,7 +392,13 @@ public class DISBAccOverdueChkServlet extends InitDBServlet {
 					} else {
 						cal.setTime(commonUtil.convertROC2WestenDate1(String.valueOf(CHEQUEDT)));
 						try {
-							MAINACCT = DISBCSubjectTool.dealWithOverTwoYear(cal, PSRCCODE, DISBCSubjectTool.getProperties());
+							//20160713-秀萍:工會要求逾兩年期支票不可轉收入,故會計科目要改,此為貸方
+							if(Integer.parseInt(strYear+strMonth) < 10506){
+								MAINACCT = DISBCSubjectTool.dealWithOverTwoYear(cal, PSRCCODE, DISBCSubjectTool.getProperties());
+							}else{
+								MAINACCT = "299000";
+							}
+							
 						} catch(Exception e) {
 							MAINACCT = "      ";
 						}
@@ -410,7 +423,7 @@ public class DISBAccOverdueChkServlet extends InitDBServlet {
 						DEPT = "  ";
 					}
 
-					objAccCodeDetailC.setStrActCd2(MAINACCT+CHANNEL+LOB+"ZZZ");
+					objAccCodeDetailC.setStrActCd2(MAINACCT+CHANNEL+LOB+"ZZZ");//逾兩年期的會計科目
 					objAccCodeDetailC.setStrActCd4(DEPT);
 
 					JOURNAL = "229";

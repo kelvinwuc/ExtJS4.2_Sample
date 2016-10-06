@@ -133,8 +133,12 @@ import com.aegon.codeAttr.RemittancePayRule;
 import com.aegon.comlib.DbFactory;
 import com.aegon.comlib.WorkingDay;
 import com.aegon.disb.util.DISBPaymentDetailVO;
+import org.apache.log4j.Logger;
 
 public class DISBRemitDisposeDAO {
+	
+	private Logger log = Logger.getLogger(getClass());
+	
 	private PreparedStatement preStmt;
 	private ResultSet rs = null;
 	private DbFactory dbFactory = null;
@@ -145,6 +149,7 @@ public class DISBRemitDisposeDAO {
 	private final String QUERY = "SELECT PNAME,PID,PAMT,PRBANK,PRACCOUNT,PCSHDT,ENTRYUSR,PFEEWAY,PSWIFT,PPAYCURR,"
 			+ "PENGNAME,PBKBRCH,PBKCITY,PBKCOTRY,PPAYAMT,ENTRYDT,PINVDT,PSYMBOL,PPAYRATE,PSRCCODE,PCURR,SUBSTRING(FLD0004,17,8) AS PDESC,PPLANT,POLICYNO "// R90735
 /*RC0036*/	+ ", DEPT"
+			+ ",IFNULL(PAY_COMPANY,'') as PAY_COMPANY" //RD0382:OIU
 			// Q10107+ "PENGNAME,PBKBRCH,PBKCITY,PBKCOTRY,PPAYAMT,ENTRYDT,PINVDT,PSYMBOL,PPAYRATE,PSRCCODE,PCURR,SUBSTRING(FLD0004,11) AS PDESC,PPLANT "
 			+ " FROM CAPPAYF LEFT OUTER JOIN ORDUET ON FLD0001= '' AND FLD0002 = 'PAYCD' AND  PSRCCODE = FLD0003 "
 /*RC0036*/	+ " LEFT OUTER JOIN USER ON ENTRYUSR = USRID"
@@ -155,8 +160,8 @@ public class DISBRemitDisposeDAO {
 			+ " FROM CAPPAYF A "
 			+ " LEFT OUTER JOIN USER B ON A.ENTRYUSR = B.USRID"
 			+ " WHERE PSTATUS ='' AND PCFMDT1 >0 AND PCFMDT2 >0 AND PVOIDABLE<>'Y' "
-			+ " AND PMETHOD =? AND PCFMDT2 >=? AND PCFMDT2 <=? AND PDISPATCH=? AND PCURR=? "
-/*RC0036*/	+ " ORDER BY PCFMDT2,PCFMTM2,DEPT,PNAME,PRBANK,PRACCOUNT ";
+			+ " AND PMETHOD =? AND PCFMDT2 >=? AND PCFMDT2 <=? AND PDISPATCH=? AND PCURR=? ";
+/*RC0036*/	//+ " ORDER BY PCFMDT2,PCFMTM2,DEPT,PNAME,PRBANK,PRACCOUNT ";
 			// + " AND PSYMBOL='N' " //取一般保單資料,不含SPUL保單
 			//RC0036+ "ORDER BY DEPT,PNAME,PRBANK,PRACCOUNT ";
 
@@ -263,43 +268,7 @@ public class DISBRemitDisposeDAO {
 	 * @param pDispatch  急件否
 	 * @return
 	 */
-	// R80338 public Vector query(String payMethod, int pDate1, int pDate2,
-	// String pDispatch,String strCurrency,String SYMBOL,String
-	// BeforePINVDT,String PRBank)
-	/*
-	 * public Vector query(String payMethod, int pDate1, int pDate2, String
-	 * pDispatch,String strCurrency,String SYMBOL,String BeforePINVDT,String
-	 * PRBank,String ProjectCode) //R80338 throws Exception{ Vector retVector =
-	 * new Vector(); Connection conn = this.getConnection(); String strSql =
-	 * null; try{ if(payMethod.equals("D")){ strSql = QUERY_LOT_D ; } else{
-	 * strSql =QUERY_LOT; }
-	 * 
-	 * if(SYMBOL.equals("S")){//付款方式為外幣匯款且保單幣別為NT //R80338 strSql
-	 * +=" AND PSYMBOL='S' "; strSql +=" AND PSYMBOL IN('S','D') "; //R80338
-	 * if(!BeforePINVDT.equals("")) { if(BeforePINVDT.equals("Y")){//投資起始日之前的資料
-	 * //R70455 strSql +=" and (entrydt <= PINVDT or PSRCCODE='B8') ";//R70088配息
-	 * strSql +=" and (entrydt <= PINVDT or PSRCCODE IN ('B8','B9')) ";//R70455
-	 * if(!PRBank.equals("")){ strSql +=" and PRBank like '" +
-	 * PRBank.substring(0,3) + "%'";//客戶匯出銀行 } } else{ strSql
-	 * +=" and entrydt > PINVDT"; //R70455 strSql
-	 * +=" and PSRCCODE<>'B8' ";//R70088配息 strSql
-	 * +=" and PSRCCODE NOT IN ('B8','B9') ";//R70455 } }
-	 * 
-	 * if(ProjectCode.equals("UBS")){ //R80338 專案碼 strSql +=
-	 * " AND PROJECTCD = 'UBS' "; //R80338 } else
-	 * if(ProjectCode.equals("OTHERS")){ //R80338 專案碼 strSql +=
-	 * " AND PROJECTCD <> 'UBS' "; //R80338 } strSql +=
-	 * " ORDER BY DEPT,PNAME,PRBANK,PRACCOUNT "; } // R70477 FIX BUG // else{ //
-	 * strSql =QUERY_LOT; // } System.out.println("strSql="+strSql); preStmt =
-	 * conn.prepareStatement(strSql); preStmt.setString(1,payMethod);
-	 * preStmt.setInt(2,pDate1); preStmt.setInt(3,pDate2);
-	 * preStmt.setString(4,pDispatch); preStmt.setString(5,strCurrency); rs =
-	 * preStmt.executeQuery(); retVector.addAll(setValueObject(rs,payMethod));
-	 * }catch(Exception e){ System.err.println(e.getMessage()); throw new
-	 * Exception(e.getMessage()); }finally{ if (rs != null) try { rs.close(); }
-	 * catch (Exception ex1) {} if (preStmt != null) try { preStmt.close(); }
-	 * catch (Exception ex1) {} } return retVector; }
-	 */
+	
 	/**
 	 * R00386 新增, 使用付款規則來查詢
 	 * 
@@ -312,12 +281,12 @@ public class DISBRemitDisposeDAO {
 	 * @param payRule  付款規則
 	 * @return
 	 */
-	public Vector<DISBPaymentDetailVO> query(String payMethod, int pDate1, int pDate2, String pDispatch, String strCurrency, String SYMBOL, String PRBank, String payRule) throws Exception {
+	public Vector<DISBPaymentDetailVO> query(String payMethod, int pDate1, int pDate2, String pDispatch, String strCurrency, String SYMBOL, String PRBank, String payRule, String company) throws Exception {
 
 		Vector<DISBPaymentDetailVO> retList = new Vector<DISBPaymentDetailVO>();
 		Connection conn = null;
 		String strSql = null;
-
+		//log.info("company是" + company);
 		try {
 
 			conn = this.getConnection();
@@ -327,7 +296,7 @@ public class DISBRemitDisposeDAO {
 			} else {
 				strSql = QUERY_LOT;
 			}
-			System.out.println("strSql@@=" + strSql);
+			//System.out.println("strSql@@=" + strSql);
 			// 外幣匯款時, 改依付款規則查詢
 			if (payMethod.equals("D") && payRule != null && payRule.length() > 0) {
 
@@ -335,14 +304,17 @@ public class DISBRemitDisposeDAO {
 
 				if (payRule.equals(RemittancePayRule.PLANV_DIV.getCode())) {
 					// R00440 SN滿期金 strSql += " and (entrydt <= PINVDT or PSRCCODE IN ('B8','B9')) AND PPLANT = 'V' ";
+					//投資型-配息B01T01F
 					strSql += " and (entrydt <= PINVDT or PSRCCODE IN ('B8','B9','BB')) AND PPLANT = 'V' ";// R00440 SN滿期金
 				} else if (payRule.equals(RemittancePayRule.PLANV_NODIV.getCode())) {
+					//投資型-非配息B01T01B
 					strSql += " and entrydt > PINVDT";
 					// R00440 SN滿期金 strSql += " and PSRCCODE NOT IN ('B8','B9') AND PPLANT = 'V'  ";
 					strSql += " and PSRCCODE NOT IN ('B8','B9','BB') AND PPLANT = 'V'  ";// R00440 SN滿期金
 					appendBank = false; // 只有一家銀行, 不用加條件了, 少做少錯
 				} else if (payRule.equals(RemittancePayRule.PLANT.getCode())) {
 					// 傳統型外幣
+					//傳統型B03T01M
 					strSql += " AND PPLANT = ' ' AND PCURR <> 'NT' ";
 				}
 
@@ -353,19 +325,34 @@ public class DISBRemitDisposeDAO {
 			}
 			// RC0036 若付款方式為外幣匯款且僅輸入會出銀行而不限定付款規則
  			if (payMethod.equals("D") && PRBank != null && PRBank.length() > 0 && !PRBank.substring(0, 3).equals("822") ) {
-				strSql += " and PRBank like '" + PRBank.substring(0, 3) + "%'";// 客戶收款的銀行
-			}
+ 				strSql += " and PRBank like '" + PRBank.substring(0, 3) + "%' AND SUBSTRING(PAY_SWIFT,5,2)='TW' ";// 客戶收款的銀行
+ 			}
+			
 			// 付款方式為外幣匯款且保單幣別為NT
 			if (SYMBOL.equals("S")
 					&& (payRule.equals(RemittancePayRule.PLANV_DIV.getCode()) 
 							|| payRule.equals(RemittancePayRule.PLANV_NODIV.getCode()))) 
 				strSql += " AND PSYMBOL IN('S','D') "; // R80338
+			
+			//RD0382:OIU
+			if("6".equals(company)){
+				//RD0382:OIU
+				strSql += " AND PAY_COMPANY='OIU' ";
+			}else if("0".equals(company)){
+				//RD0382:OIU
+				strSql += " AND PAY_COMPANY<>'OIU' ";
+			}
 
-			if (payMethod.equals("D"))
-/*RC0036*/		strSql += " ORDER BY PCFMDT2,PCFMTM2,DEPT,PNAME,PRBANK,PRACCOUNT ";
-				//RC0036		strSql += " ORDER BY DEPT,PNAME,PRBANK,PRACCOUNT,PAYRULECODE ";
+			if (payMethod.equals("D")){
+				strSql += " ORDER BY PCFMDT2,PCFMTM2,DEPT,PNAME,PRBANK,PRACCOUNT ";/*RC0036*/		
+				//strSql += " ORDER BY DEPT,PNAME,PRBANK,PRACCOUNT,PAYRULECODE ";//RC0036		
+			}else{
+				strSql += " ORDER BY PCFMDT2,PCFMTM2,DEPT,PNAME,PRBANK,PRACCOUNT ";
+			}
+
 
 			System.out.println("strSqlxx=" + strSql);
+			log.info("strSql:" + strSql + ",payMethod:" + payMethod + ",pDate1:" + pDate1 + ",pDate2:" + pDate2 + ",pDispatch:" + pDispatch + ",strCurrency:" + strCurrency);
 			preStmt = conn.prepareStatement(strSql);
 			preStmt.setString(1, payMethod);
 			preStmt.setInt(2, pDate1);
@@ -396,6 +383,7 @@ public class DISBRemitDisposeDAO {
 		try {
 			preStmt = conn.prepareStatement(QUERY);
 			System.out.println(QUERY);
+			log.info("QUERY:" + QUERY);
 			preStmt.setString(1, vo.getStrPNO());
 			rs = preStmt.executeQuery();
 			if (rs.next()) {
@@ -424,6 +412,7 @@ public class DISBRemitDisposeDAO {
 				vo.setStrPPlant(rs.getString("PPLANT"));// R00386險種類別
 				vo.setStrPolicyNo(rs.getString("POLICYNO"));//R10190
 				vo.setStrUsrDept(rs.getString("DEPT"));//RC0036
+				vo.setCompany(rs.getString("PAY_COMPANY"));//RD0382:OIU
 			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
@@ -439,7 +428,7 @@ public class DISBRemitDisposeDAO {
 			} catch (Exception ex1) {
 			}
 		}
-	}
+	}	
 
 	/**
 	 * @param pcshdt
@@ -501,6 +490,7 @@ public class DISBRemitDisposeDAO {
 		Connection conn = this.getConnection();
 		try {
 			preStmt = conn.prepareStatement(INSERT_RMTF);
+			log.info("insertRMTF:" + INSERT_RMTF + ",rmtfVo.getRPAYCURR()是" + rmtfVo.getRPAYCURR());
 			preStmt.setString(1, rmtfVo.getBATNO());
 			preStmt.setString(2, rmtfVo.getSEQNO());
 			preStmt.setString(3, rmtfVo.getPBK());
@@ -617,7 +607,7 @@ public class DISBRemitDisposeDAO {
 				// } else
 				vo.setCheckedPayDate(workingDay.nextDay(rs.getInt("PCFMDT2") + 19110000, 1) - 19110000);
 			}
-			System.out.println("DISBRemitDisposeDAO.setValueObject");
+			//System.out.println("DISBRemitDisposeDAO.setValueObject");
 			ret.add(vo);
 		}
 		return ret;

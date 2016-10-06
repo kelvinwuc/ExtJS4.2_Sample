@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
+import org.apache.log4j.Logger;
 
 /**
  * System   : CASHWEB
@@ -45,6 +46,8 @@ import java.util.TimeZone;
  */
 
 public class CommonUtil extends RootClass {
+	
+	private Logger logger = Logger.getLogger(getClass());
 
 	static final byte shiftOut_ = 0x0E;	// Byte used to shift-out of single byte mode @E7C
 	static final byte shiftIn_ = 0x0F;	// Byte used to shift-in to single byte mode @E7C
@@ -436,6 +439,7 @@ public class CommonUtil extends RootClass {
 					if (!conn.isClosed()) {
 						stmt = conn.createStatement();
 						rst = stmt.executeQuery("select FLD0003 from ORDUMC");
+						logger.info("get Capsil Date:select FLD0003 from ORDUMC");
 						rst.next();
 						sDate = rst.getString("FLD0003");
 						System.out.println("sDate=" + sDate);

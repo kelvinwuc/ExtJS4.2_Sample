@@ -1,16 +1,39 @@
 package com.aegon.disb.disbmaintain;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-
-import java.io.*;
-import java.sql.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import com.aegon.comlib.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+
+import com.aegon.comlib.CommonUtil;
+import com.aegon.comlib.Constant;
+import com.aegon.comlib.DbFactory;
+import com.aegon.comlib.GlobalEnviron;
 import com.aegon.disb.util.DISBBean;
 
 /**
@@ -117,6 +140,9 @@ import com.aegon.disb.util.DISBBean;
  */
 
 public class DISBAccRmtFailServlet extends HttpServlet {
+	
+	private Logger log = Logger.getLogger(getClass());
+	
 	private GlobalEnviron globalEnviron = null;
 	private DbFactory dbFactory = null;
 
@@ -151,6 +177,7 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 			this.downloadProcess(request, response);
 		} catch (Exception e) {
 			System.err.println(e.toString());
+			log.error(e.getMessage(), e);
 			RequestDispatcher dispatcher = null;
 			request.setAttribute("txtMsg", e.getMessage());
 			dispatcher = request.getRequestDispatcher("/DISB/DISBMaintain/DISBAccRmtFail.jsp");
@@ -177,17 +204,32 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 			alDwnDetailsD = this.getDPayments(request, response, alDwnDetailsD);
 			this.exportToFile(request, response, alDwnDetails);
 			this.exportToExFile(request, response, alDwnDetailsD);
-			if (alDwnDetails.size() > 0) filesToSend.add(new File(globalEnviron.getAppPath()+ "\\download\\AccRmtFailDetails.txt"));
-			if (alDwnDetailsD.size() > 0) filesToSend.add(new File(globalEnviron.getAppPath()+ "\\download\\AccRmtFailDetailsD.txt"));
+			if (alDwnDetails != null && alDwnDetails.size() > 0) {
+				filesToSend.add(new File(globalEnviron.getAppPath()+ "\\download\\AccRmtFailDetails.txt"));
+				log.info(globalEnviron.getAppPath()+ "\\download\\AccRmtFailDetails.txt");
+			}
+			if (alDwnDetailsD != null && alDwnDetailsD.size() > 0) {
+				filesToSend.add(new File(globalEnviron.getAppPath()+ "\\download\\AccRmtFailDetailsD.txt"));
+				log.info(globalEnviron.getAppPath()+ "\\download\\AccRmtFailDetailsD.txt");
+			}
 		} else {
 			alDwnDetails = this.getBPayments(request, response, alDwnDetails);
 			alDwnDetails = this.getDPayments(request, response, alDwnDetails);
-			this.exportToFile(request, response, alDwnDetails);
-			filesToSend.add(new File(globalEnviron.getAppPath()+ "\\download\\AccRmtFailDetails.txt"));
+			if(alDwnDetails != null && alDwnDetails.size() > 0){
+				this.exportToFile(request, response, alDwnDetails);
+				filesToSend.add(new File(globalEnviron.getAppPath()+ "\\download\\AccRmtFailDetails.txt"));
+				log.info(globalEnviron.getAppPath()+ "\\download\\AccRmtFailDetails.txt");
+			}			
 		}
 
 		// R10314
-		int cnt = alDwnDetails.size()+alDwnDetailsD.size();
+		int cnt = 0;
+		if(alDwnDetails != null && alDwnDetails != null){
+			cnt += alDwnDetails.size();
+		}
+		if(alDwnDetailsD != null && alDwnDetailsD != null){
+			cnt += alDwnDetailsD.size();
+		}
 		
 		if (cnt > 0){
 			sendDownloadFile(request,response,filesToSend);
@@ -216,6 +258,7 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 			zos.setLevel(ZipOutputStream.STORED);
 			sendMultipleFiles(zos, filesToSend);
 		} catch (IOException e) {
+			log.error(e.getMessage(), e);
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 		}finally {
 			if (zos != null) {
@@ -229,15 +272,31 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 		FileWriter fstream = null;
 		BufferedWriter out = null;
 		String file_name = globalEnviron.getAppPath()+ "\\download\\AccRmtFailDetails.txt";
-		File file = new File(file_name);
+		log.info(file_name);
+		File file = new File(file_name);		
 		boolean exists = file.exists();
 		if (!exists) {
-			file.createNewFile();
+			try{
+				file.createNewFile();
+			}catch(IOException e){
+				log.error(e.getMessage(), e);
+			}catch(Exception e){
+				log.error(e.getMessage(), e);
+			}			
 		} else {
 			file.delete();
 			file.createNewFile();
 		}
-		if (alDwnDetails.size() > 0) {
+		
+		/*String company = "";//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}*/
+		
+		if (alDwnDetails !=null && alDwnDetails.size() > 0) {
 			// ServletOutputStream os = response.getOutputStream();
 			//R10314
 			Collections.sort(alDwnDetails, new Comparator(){
@@ -267,9 +326,15 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 				String strLedger = null;
 				for (int i = 0; i < alDwnDetails.size(); i++) {
 					DISBAccCodeDetailVO objAccCodeDetail = (DISBAccCodeDetailVO) alDwnDetails.get(i);
+					
+					String company = "";//RD0382:OIU
+					company = objAccCodeDetail.getPayCompany().trim();
+					log.info("objAccCodeDetail.getPayCompany()是_1" + objAccCodeDetail.getPayCompany());
 
 					strCurrency = objAccCodeDetail.getStrCurr();
 					strLedger = disbBean.getLedger(CommonUtil.AllTrim(disbBean.getETableDesc("CURRC", strCurrency)));
+					log.info("strLedger:" + strLedger + ",strCurrency:" + strCurrency);					
+					
 					strActCd2 = objAccCodeDetail.getStrActCd2();
 					for (int count = strActCd2.length(); count < 11; count++) {// 10->11
 						strActCd2 += " ";
@@ -329,6 +394,25 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 					for (int count = String.valueOf(i + 1).length(); count < 5; count++) {  // R80132 由 9 -->12 R8062012-15
 						count1 = "0" + count1;
 					}
+					
+					//RD0382:OIU
+					String companyCode = "";
+					String strSlipNoTmp = "";
+					//if("6".equals(company)){
+					if("OIU".equals(company)){
+						String tailStr = "";
+						tailStr = strLedger.substring(strLedger.length()-3);
+						if("nc.".equals(tailStr)){
+							strLedger += " OIU " + strCurrency;
+						}else{
+							strLedger = strLedger.substring(0,strLedger.length()-strCurrency.length()) + "OIU " +strLedger.substring(strLedger.length()-strCurrency.length());
+						}
+						companyCode = "6" + ",";
+						strSlipNoTmp = strSlipNo.trim().substring(0,6) + "OIU" + strSlipNo.trim().substring(strSlipNo.trim().length()-6) + ",";
+					}else{
+						companyCode = "0" + ",";
+						strSlipNoTmp = strSlipNo.trim() + ",";
+					}
 
 					if (!strDAmt.trim().equals("")|| !strCAmt.trim().equals("")) {
 						System.out.println(strDAmt.trim());
@@ -337,7 +421,7 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 						export += "Manual" + ",";// Category, x(6)
 						export += "Spreadsheet" + ",";// Source,x(11)
 						export += strCurrency + ",";
-						export += "0" + ",";// ACTCD1,x(1)
+						export += companyCode;// ACTCD1,x(1) //RD0382:OIU
 						export += strActCd2.substring(0, 6) + ",";// ACTCD2,x(10)
 						export += strActCd2.substring(6, 7) + ",";
 						export += strActCd2.substring(7, 8) + ",";
@@ -355,7 +439,7 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 						export += strPCfmDt.trim() + ",";// 支付確認日迄日,YYYY/MM/DD,x(10)
 						export += strDAmt.trim() + ",";// 借方金額,x(12),預設為0,不足前補空白,// 000,000
 						export += strCAmt.trim() + ",";// 貸方金額,x(12),預設為0,不足前補空白,// 000,000
-						export += strSlipNo.trim() + ",";// SlipNo,x(11),// 支付確認日迄日之西元年後二碼+MMDD// + 3個特定碼 R80132 由// 9 -->12 + 幣別
+						export += strSlipNoTmp;// SlipNo,x(11),// 支付確認日迄日之西元年後二碼+MMDD// + 3個特定碼 R80132 由// 9 -->12 + 幣別 //RD0382:OIU
 						export += strDesc.trim() + ",";// Description ,x(30),不足後補空白
 						export += "User" + ","; // R80620 Conversion Type
 						export += "1" + ","; // R80620 Conversion Rate
@@ -382,6 +466,7 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 		BufferedWriter out = null;
 		String file_name = globalEnviron.getAppPath()+ "\\download\\AccRmtFailDetailsD.txt";
 		File file = new File(file_name);
+		log.info(file_name);
 		boolean exists = file.exists();
 		if (!exists) {
 			file.createNewFile();
@@ -389,6 +474,15 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 			file.delete();
 			file.createNewFile();
 		}
+		
+		/*String company = "";//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}*/
+		
 		if (alDwnDetailsD.size() > 0) {
 			//R10314
 			Collections.sort(alDwnDetailsD, new Comparator(){
@@ -402,6 +496,11 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 				String export = "";
 				for (int i = 0; i < alDwnDetailsD.size(); i++) {
 					DISBAccCodeDetailVO objAccCodeDetail = (DISBAccCodeDetailVO) alDwnDetailsD.get(i);
+					
+					String company = "";//RD0382:OIU
+					company = objAccCodeDetail.getPayCompany().trim();
+					log.info("objAccCodeDetail.getPayCompany()_2是" + objAccCodeDetail.getPayCompany());
+					
 					String strCheckDt = null;
 					String strActCd2 = null;
 					String strActCd3 = null;
@@ -493,11 +592,24 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 						System.out.println(strDAmt.trim());
 						System.out.println(strCAmt.trim());
 
-						export += "TransGlobe Life Insurance Inc.,";//R10314
+						//RD0382:OIU
+						String companyCode = "";
+						String strSlipNoTmp = "";
+						//if("6".equals(company)){
+						if("OIU".equals(company)){
+							export += "TransGlobe Life Insurance Inc. OIU,";//RD0382:OIU
+							companyCode = "6" + ",";
+							strSlipNoTmp = strSlipNo.trim().substring(0,6) + "OIU" + strSlipNo.trim().substring(strSlipNo.trim().length()-6) + ",";
+						}else {
+							export += "TransGlobe Life Insurance Inc.,";//R10314
+							companyCode = "0" + ",";
+							strSlipNoTmp = strSlipNo.trim() + ",";
+						}						
+						
 						export += "Manual" + ",";// Category, x(6)
 						export += "Spreadsheet" + ",";// Source,x(11)
-						export += strCurrency + ",";
-						export += "0" + ",";// ACTCD1,x(1)
+						export += strCurrency + ",";						
+						export += companyCode;// ACTCD1,x(1) //RD0382:OIU
 						export += strActCd2.substring(0, 6) + ",";// ACTCD2,x(10)
 						export += strActCd2.substring(6, 7) + ",";
 						export += strActCd2.substring(7, 8) + ",";
@@ -514,8 +626,8 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 						export += strActCd5.substring(23, 26) + ",";
 						export += strPCfmDt.trim() + ",";// 支付確認日迄日,YYYY/MM/DD,x(10)
 						export += strDAmt.trim() + ",";// 借方金額,x(12),預設為0,不足前補空白, 000,000
-						export += strCAmt.trim() + ",";// 貸方金額,x(12),預設為0,不足前補空白, 000,000
-						export += strSlipNo.trim() + ",";// SlipNo,x(11),支付確認日迄日之西元年後二碼+MMDD+ 3個特定碼 R80132 由9 -->12 + 幣別
+						export += strCAmt.trim() + ",";// 貸方金額,x(12),預設為0,不足前補空白, 000,000						
+						export += strSlipNoTmp;// SlipNo,x(11),支付確認日迄日之西元年後二碼+MMDD+ 3個特定碼 R80132 由9 -->12 + 幣別 //RD0382:OIU
 						export += strDesc.trim() + ",";// Description,x(30),不足後補空白
 						export += "User" + ","; // R80620 Conversion Type
 						export += strCRate + ",";
@@ -554,6 +666,12 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 		String strCurrency = "";
 		String strActCd3 = "";// R80656
 		DISBBean disbBean = new DISBBean(dbFactory);// R70088
+		String company = "";//RD0382:OIU
+		
+		//RD0382:OIU
+		if(alDwnDetails == null){
+			return alReturn;
+		}
 
 		strPStartDate = request.getParameter("txtPStartDate");
 		if (strPStartDate != null)
@@ -566,20 +684,41 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 			strCurrency = strCurrency.trim();
 		else
 			strCurrency = "";
+		
+		//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}
 
 		/* 1. 取得符合執行日期符合前端匯退日期區間的支付失敗之匯款資料,小計成一筆(貸方) */
 		try {
 			// 借方傳票摘要同一執行退匯日且同一付款銀行帳號合併一筆分錄
 			strSql = "SELECT DENSE_RANK() OVER (ORDER BY a.PBBANK,a.PBACCOUNT,a.PMETHOD,a.PCURR,a.PPAYRATE,A.PPAYCURR,b.FFEEWAY,a.REMITFAILD) AS SORT," ;
 			strSql += "SUM(a.PAMT) AS PAMT,a.PBBANK,a.PBACCOUNT,a.PMETHOD,a.PCURR,a.PPAYRATE,SUM(a.PPAYAMT) AS PPAYAMT,A.PPAYCURR,b.FFEEWAY,SUM(b.FPAYAMT) AS FPAYAMT,a.REMITFAILD ";
+			strSql += ",IFNULL(a.PAY_COMPANY,'') AS PAY_COMPANY ";//RD0382:OIU
 			strSql += " from CAPPAYF a left join caprfef b on a.pno=b.fpnoh ";
 			strSql += "WHERE PMETHOD ='D' and PSTATUS = 'A' ";
 			strSql += " and PBNKRFDT = " + strPStartDate;// R10314
 			strSql += " and PCURR='" + strCurrency + "' ";
-			strSql += " GROUP BY a.PBBANK,a.PBACCOUNT,a.PMETHOD,a.PCURR,a.PPAYRATE,A.PPAYCURR,b.FFEEWAY,a.REMITFAILD ";// R10314
-			System.out.println("strSqlD_1" + strSql);
+			
+			//RD0382:OIU
+			if("6".equals(company)){
+				strSql += "AND A.PAY_COMPANY='OIU'  ";
+			}else if("0".equals(company)){
+				strSql += "AND A.PAY_COMPANY<>'OIU'  ";
+			}
+			
+			strSql += " GROUP BY a.PBBANK,a.PBACCOUNT,a.PMETHOD,a.PCURR,a.PPAYRATE,A.PPAYCURR,b.FFEEWAY,a.REMITFAILD";// R10314
+			strSql += ",A.PAY_COMPANY "; //RD0382:OIU
+			
+			System.out.println("strSqlD_1:" + strSql);
+			log.info("strSqlD_1:" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
+			
 			alReturn = alDwnDetails;
 			while (rs.next()) {
 				// 借方
@@ -592,6 +731,9 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 				double FeeAmtTp = 0.00;// 公司應付匯退手續費金額
 				double PAYAMTTp = 0;// 公司銀行存款金額帳
 				double PAMTTp = 0;
+				
+				String payCompany = "";//RD0382:OIU
+				payCompany = rs.getString("PAY_COMPANY");//RD0382:OIU
 
 				String PAYCURR = rs.getString("PPAYCURR");// R70366
 				String FFEEWAY = rs.getString("FFEEWAY");// 匯退處理費誰負擔
@@ -625,7 +767,7 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 				String DateTemp = Integer.toString(1911 + Integer.parseInt(strPStartDate.substring(0, 3)))+ "/"+ strPStartDate.substring(3, 5)+ "/"+ strPStartDate.substring(5, 7);//銀行退匯回存日
 				String DateTemp1 = Integer.toString(1911 + Integer.parseInt(strPStartDate.substring(0, 3)))+ strPStartDate.substring(3, 5) + strPStartDate.substring(5, 7);//銀行退匯回存日
 				String DateTemp2 = Integer.toString(1911 + Integer.parseInt(strRFDate.substring(0, 3)))+ "/"+ strRFDate.substring(3, 5)+ "/"+ strRFDate.substring(5, 7);//退匯日
-
+				objAccCodeDetailC.setPayCompany(payCompany);//RD0382:OIU
 				if (FFEEWAY.equals("BEN")) {
 					objAccCodeDetailC.setStrActCd2(disbBean.getACTCD2(disbBean.getETableDesc("CURRA", PAYCURR.trim())));// R80132
 					objAccCodeDetailC.setStrActCd3(strActCd3);// R80656
@@ -706,6 +848,7 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 					// 產生一筆銀手續費
 					if (FPAYAMT > 0) {
 						DISBAccCodeDetailVO objAccCodeDetailC1 = new DISBAccCodeDetailVO();
+						objAccCodeDetailC1.setPayCompany(payCompany);//RD0382:OIU
 						objAccCodeDetailC1.setStrActCd2("82550090ZZZ");
 						objAccCodeDetailC1.setStrActCd3("0000");
 						objAccCodeDetailC1.setStrActCd4("43");
@@ -754,12 +897,23 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 			//貸方
 			strSql = "SELECT DENSE_RANK() OVER (ORDER BY a.PBBANK,a.PBACCOUNT,a.PMETHOD,a.PCURR,a.PPAYRATE,A.PNAME,A.PPAYCURR,b.FFEEWAY,a.REMITFAILD) AS SORT," ;
 			strSql += "SUM(a.PAMT) AS PAMT,a.PBBANK,a.PBACCOUNT,a.PMETHOD,a.PCURR,a.PPAYRATE,SUM(a.PPAYAMT) AS PPAYAMT,A.PNAME,A.POLICYNO,A.PPAYCURR,b.FFEEWAY,SUM(b.FPAYAMT) AS FPAYAMT,SUM(a.PAMTNT) AS PAYAMTNT,a.REMITFAILD ";
+			strSql += ",IFNULL(a.PAY_COMPANY,'') AS PAY_COMPANY ";//RD0382:OIU
 			strSql += " from CAPPAYF a left join caprfef b on a.pno=b.fpnoh ";
 			strSql += "WHERE PMETHOD ='D' and PSTATUS = 'A' ";
 			strSql += " and PBNKRFDT = " + strPStartDate;
 			strSql += " and PCURR='" + strCurrency + "' ";
-			strSql += " GROUP BY a.PBBANK,a.PBACCOUNT,a.PMETHOD,a.PCURR,a.PPAYRATE,A.PNAME,A.POLICYNO,A.PPAYCURR,b.FFEEWAY,a.REMITFAILD ";
-			System.out.println("strSqlD_2" + strSql);
+			
+			if("6".equals(company)){
+				strSql += "AND A.PAY_COMPANY='OIU'  ";
+			}else if("0".equals(company)){
+				strSql += "AND A.PAY_COMPANY<>'OIU'  ";
+			}
+			
+			strSql += " GROUP BY a.PBBANK,a.PBACCOUNT,a.PMETHOD,a.PCURR,a.PPAYRATE,A.PNAME,A.POLICYNO,A.PPAYCURR,b.FFEEWAY,a.REMITFAILD";
+			strSql += ",A.PAY_COMPANY "; //RD0382:OIU
+			
+			System.out.println("strSqlD_2:" + strSql);
+			log.info("strSqlD_2:" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 			alReturn = alDwnDetails;
@@ -773,6 +927,9 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 				double FeeAmtTp = 0.00;// 公司應付匯退手續費金額
 				double PAYAMTTp = 0;// 公司銀行存款金額帳
 				double PAMTTp = 0;
+				
+				String payCompany = "";//RD0382:OIU
+				payCompany = rs.getString("PAY_COMPANY");//RD0382:OIU
 
 				String PAYCURR = rs.getString("PPAYCURR");// R70366
 				String FFEEWAY = rs.getString("FFEEWAY");// 匯退處理費誰負擔
@@ -802,6 +959,7 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 
 				if (FFEEWAY.equals("BEN")) {
 					DISBAccCodeDetailVO objAccCodeDetailD = new DISBAccCodeDetailVO();
+					objAccCodeDetailD.setPayCompany(payCompany);//RD0382:OIU
 					objAccCodeDetailD.setStrActCd2("29004000ZZZ");
 					objAccCodeDetailD.setStrActCd3("0000");
 					objAccCodeDetailD.setStrActCd4("00");// R60550
@@ -840,6 +998,7 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 				} else {
 
 					DISBAccCodeDetailVO objAccCodeDetailD = new DISBAccCodeDetailVO();
+					objAccCodeDetailD.setPayCompany(payCompany);//RD0382:OIU
 					objAccCodeDetailD.setStrActCd2("29004000ZZZ");
 					objAccCodeDetailD.setStrActCd3("0000");
 					objAccCodeDetailD.setStrActCd4("00");
@@ -914,6 +1073,7 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 		String strCurrency = "";
 		String strActCd3 = "";// R80656
 		DISBBean disbBean = new DISBBean(dbFactory);// R70088
+		String company = "";//RD0382:OIU
 
 		strPStartDate = request.getParameter("txtPStartDate");
 		if (strPStartDate != null)
@@ -926,30 +1086,52 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 			strCurrency = strCurrency.trim();
 		else
 			strCurrency = "";
+		
+		//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}
 
 		/* 1. 取得符合執行日期符合前端匯退日期區間的支付失敗之匯款資料,小計成一筆(貸方) */
 
 		try {
-			strSql =
+			
 			// R70366 "select SUM(PAMT) AS SPAMT,PMETHOD,PCURR";
 			// 借方傳票摘要同一執行退匯日且同一付款銀行帳號合併一筆分錄
-			"select SUM(PAMT) AS SPAMT,PBBANK,PBACCOUNT,PMETHOD,PCURR,PBNKRFDT,REMITFAILD,DENSE_RANK() OVER (ORDER BY PBBANK,PBACCOUNT,PMETHOD,PCURR,PBNKRFDT,REMITFAILD) AS SORT   ";// R70366 R10314
-			strSql += " from CAPPAYF ";
+			strSql = "select SUM(PAMT) AS SPAMT,PBBANK,PBACCOUNT,PMETHOD,PCURR,PBNKRFDT,REMITFAILD,DENSE_RANK() OVER (ORDER BY PBBANK,PBACCOUNT,PMETHOD,PCURR,PBNKRFDT,REMITFAILD) AS SORT   ";// R70366 R10314
+			strSql += ",IFNULL(a.PAY_COMPANY,'') AS PAY_COMPANY ";//RD0382:OIU
+			strSql += " from CAPPAYF A ";
 			strSql += "WHERE  PMETHOD ='B' and PSTATUS = 'A' ";
 			// strSql += " and UPDDT between " + strPStartDate + "  and " +
 			// strPEndDate ;
 			strSql += " and PBNKRFDT = " + strPStartDate;// R10314
 			strSql += " and PCURR='" + strCurrency + "'";
 			// R70366strSql += " GROUP BY PMETHOD,PCURR ";
-			strSql += " GROUP BY PBBANK,PBACCOUNT,PMETHOD,PCURR,PBNKRFDT,REMITFAILD ";// R70366
+			
+			if("6".equals(company)){
+				strSql += "AND A.PAY_COMPANY='OIU'  ";
+			}else if("0".equals(company)){
+				strSql += "AND A.PAY_COMPANY<>'OIU'  ";
+			}
+			
+			strSql += " GROUP BY PBBANK,PBACCOUNT,PMETHOD,PCURR,PBNKRFDT,REMITFAILD";// R70366
+			strSql += ",A.PAY_COMPANY "; //RD0382:OIU
 
-			System.out.println("strSql_1" + strSql);
+			System.out.println("strSql_1:" + strSql);
+			log.info("strSql_1:" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 			alReturn = alDwnDetails;
 			while (rs.next()) {
+				String payCompany = "";//RD0382:OIU
+				payCompany = rs.getString("PAY_COMPANY");//RD0382:OIU
+				
 				// System.out.println("test");
 				DISBAccCodeDetailVO objAccCodeDetail = new DISBAccCodeDetailVO();
+				objAccCodeDetail.setPayCompany(payCompany);//RD0382:OIU
 				String PCURR = rs.getString("PCURR");// R70366
 				strActCd3 = disbBean.getACTCDFinRmt(rs.getString("PBBANK").substring(0, 3), rs.getString("PBACCOUNT"), "NT") == null ? " ": disbBean.getACTCDFinRmt(rs.getString("PBBANK").substring(0, 3),rs.getString("PBACCOUNT"), "NT").trim();
 				if (strActCd3.length() < 13)
@@ -996,21 +1178,35 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 
 			/* 1. 取得符合執行日期符合前端匯退日期區間的支付失敗之匯款明細資料--借方 */
 			strSql = "select DENSE_RANK() OVER (ORDER BY PBBANK,PBACCOUNT,PMETHOD,PCURR,PBNKRFDT,REMITFAILD) AS SORT,PAMT ,PMETHOD,PNAME,PCURR,REMITFAILD ";//R10314
-			strSql += " from CAPPAYF ";
+			strSql += ",IFNULL(a.PAY_COMPANY,'') AS PAY_COMPANY ";//RD0382:OIU
+			strSql += " from CAPPAYF A ";
 			strSql += "WHERE  PMETHOD ='B' and PSTATUS ='A' ";
 			// strSql += " and UPDDT between " + strPStartDate + "  and " +
 			// strPEndDate ;
 			strSql += " and PBNKRFDT = " + strPStartDate;// R10314
 			strSql += " and PCURR='" + strCurrency + "'";
-			System.out.println("strSql_4" + strSql);
+			
+			//RD0382:OIU
+			if("6".equals(company)){
+				strSql += "AND A.PAY_COMPANY='OIU'  ";
+			}else if("0".equals(company)){
+				strSql += "AND A.PAY_COMPANY<>'OIU'  ";
+			}
+			
+			System.out.println("strSql_4:" + strSql);
+			log.info("strSql_4:" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 			while (rs.next()) {
-
+				
+				String payCompany = "";//RD0382:OIU
+				payCompany = rs.getString("PAY_COMPANY");//RD0382:OIU
+				
 				String DateTemp = Integer.toString(1911 + Integer.parseInt(strPStartDate.substring(0, 3)))+ "/"+ strPStartDate.substring(3, 5)+ "/"+ strPStartDate.substring(5, 7);//銀行退匯回存日
 				String DateTemp1 = Integer.toString(1911 + Integer.parseInt(strPStartDate.substring(0, 3)))+ strPStartDate.substring(3, 5) + strPStartDate.substring(5, 7);//銀行退匯回存日
 
 				DISBAccCodeDetailVO objAccCodeDetail = new DISBAccCodeDetailVO();
+				objAccCodeDetail.setPayCompany(payCompany);//RD0382:OIU
 				objAccCodeDetail.setStrActCd2("29004000ZZZ");
 				objAccCodeDetail.setStrActCd3("0000");
 				objAccCodeDetail.setStrActCd4("00");// R60550
@@ -1039,18 +1235,34 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 			// 信用卡匯款失敗，借方傳票摘要同一執行退匯日且同一付款銀行帳號合併一筆分錄
 			strSql = "select SUM(PAMT) AS SPAMT,PBBANK,PBACCOUNT,PMETHOD,PCURR,REMITFAILD ";// R10314
 			strSql += ",DENSE_RANK() OVER (ORDER BY PBBANK,PBACCOUNT,PMETHOD,PCURR,REMITFAILD) AS SORT ";	//RA0102
-			strSql += " from CAPPAYF ";
+			strSql += ",IFNULL(a.PAY_COMPANY,'') AS PAY_COMPANY "; //RD0382:OIU
+			strSql += " from CAPPAYF A ";
 			strSql += "WHERE  PMETHOD ='C' and PSTATUS = 'A' ";
 			// strSql += " and UPDDT between " + strPStartDate + "  and " +
 			// strPEndDate ;
 			strSql += " and PBNKRFDT = " + strPStartDate;// R10314
 			strSql += " and PCURR='" + strCurrency + "'";
+			
+			//RD0382:OIU
+			if("6".equals(company)){
+				strSql += "AND A.PAY_COMPANY='OIU'  ";
+			}else if("0".equals(company)){
+				strSql += "AND A.PAY_COMPANY<>'OIU'  ";
+			}
+			
 			strSql += " GROUP BY PBBANK,PBACCOUNT,PMETHOD,PCURR,REMITFAILD ";// R10314
-			System.out.println("strSql_5" + strSql);
+			strSql += ",A.PAY_COMPANY "; //RD0382:OIU
+			
+			System.out.println("strSql_5:" + strSql);
+			log.info("strSql_5:" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 			alReturn = alDwnDetails;
 			while (rs.next()) {
+				
+				String payCompany = "";//RD0382:OIU
+				payCompany = rs.getString("PAY_COMPANY");//RD0382:OIU
+				
 				// R10314
 				String strRFDate = "";
 				if (rs.getString("REMITFAILD").length() < 7)
@@ -1063,6 +1275,7 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 				String DateTemp2 = Integer.toString(1911 + Integer.parseInt(strRFDate.substring(0, 3)))+ "/"+ strRFDate.substring(3, 5)+ "/"+ strRFDate.substring(5, 7);//退匯日
 
 				DISBAccCodeDetailVO objAccCodeDetail = new DISBAccCodeDetailVO();
+				objAccCodeDetail.setPayCompany(payCompany);//RD0382:OIU
 				if (rs.getString("PMETHOD").trim().equals("C")) {
 					objAccCodeDetail.setStrActCd2("11100000ZZZ");
 					objAccCodeDetail.setStrActCd3("0000");
@@ -1093,21 +1306,35 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 			/* 1. 取得符合執行日期符合前端匯退日期區間的支付失敗之信用卡明細資料--借方 */
 			strSql = "select PAMT ,PMETHOD,PNAME ,PCURR ";
 			strSql += ",DENSE_RANK() OVER (ORDER BY PBBANK,PBACCOUNT,PMETHOD,PCURR,REMITFAILD) AS SORT ";	//RA0102
-			strSql += " from CAPPAYF ";
+			strSql += ",IFNULL(a.PAY_COMPANY,'') AS PAY_COMPANY ";
+			strSql += " from CAPPAYF A ";
 			strSql += "WHERE  PMETHOD ='C' and PSTATUS ='A' ";
 			// strSql += " and UPDDT between " + strPStartDate + "  and " +
 			// strPEndDate ;
 			strSql += " and PBNKRFDT = " + strPStartDate;// R10314
 			strSql += " and PCURR='" + strCurrency + "'";
-			System.out.println("strSql_6" + strSql);
+			
+			//RD0382:OIU
+			if("6".equals(company)){
+				strSql += "AND A.PAY_COMPANY='OIU'  ";
+			}else if("0".equals(company)){
+				strSql += "AND A.PAY_COMPANY<>'OIU'  ";
+			}
+			
+			System.out.println("strSql_6:" + strSql);
+			log.info("strSql_6:" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 			while (rs.next()) {
 
+				String payCompany = "";//RD0382:OIU
+				payCompany = rs.getString("PAY_COMPANY");//RD0382:OIU
+				
 				String DateTemp = Integer.toString(1911 + Integer.parseInt(strPStartDate.substring(0, 3)))+ "/"+ strPStartDate.substring(3, 5)+ "/"+ strPStartDate.substring(5, 7);//銀行退匯回存日
 				String DateTemp1 = Integer.toString(1911 + Integer.parseInt(strPStartDate.substring(0, 3)))+ strPStartDate.substring(3, 5) + strPStartDate.substring(5, 7);//銀行退匯回存日
 
 				DISBAccCodeDetailVO objAccCodeDetail = new DISBAccCodeDetailVO();
+				objAccCodeDetail.setPayCompany(payCompany);//RD0382:OIU
 				objAccCodeDetail.setStrActCd2("29004000ZZZ");
 				objAccCodeDetail.setStrActCd3("0000");
 				objAccCodeDetail.setStrActCd4("00");// R60550
@@ -1170,6 +1397,7 @@ public class DISBAccRmtFailServlet extends HttpServlet {
 					zos.write(bytes, 0, bytesRead);
 				}
 			} catch (IOException e) {
+				log.error(e.getMessage(), e);
 				System.out.println("Cannot find " + f.getAbsolutePath());
 			} finally {
 				if (zos != null)

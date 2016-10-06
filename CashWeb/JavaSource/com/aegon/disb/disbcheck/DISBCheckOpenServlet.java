@@ -3,7 +3,7 @@ package com.aegon.disb.disbcheck;
 /**
  * System   :
  * 
- * Function : ²¼¾Ú¶}¥ß
+ * Function : ç¥¨æ“šé–‹ç«‹
  * 
  * Remark   :
  * 
@@ -19,43 +19,43 @@ package com.aegon.disb.disbcheck;
  * 
  * $$Log: DISBCheckOpenServlet.java,v $
  * $Revision 1.8  2013/12/24 02:17:18  MISSALLY
- * $R00135---PA0024---CASH¦~«×±M®×
+ * $R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ
  * $
  * $Revision 1.7  2013/01/08 04:24:05  MISSALLY
- * $±N¤À¤äªºµ{¦¡Merge¦ÜHEAD
+ * $å°‡åˆ†æ”¯çš„ç¨‹å¼Mergeè‡³HEAD
  * $
  * $Revision 1.6.4.1  2012/12/06 06:28:26  MISSALLY
- * $RA0102¡@PA0041
- * $°t¦Xªk¥O­×§ï¹S¦ş¤ä¥I§@·~
+ * $RA0102ã€€PA0041
+ * $é…åˆæ³•ä»¤ä¿®æ”¹é…¬ä½£æ”¯ä»˜ä½œæ¥­
  * $
  * $Revision 1.6  2011/10/21 10:04:37  MISSALLY
- * $R10260---¥~¹ô¶Ç²Î«¬«O³æ¥Í¦sª÷µ¹¥I§@·~
+ * $R10260---å¤–å¹£å‚³çµ±å‹ä¿å–®ç”Ÿå­˜é‡‘çµ¦ä»˜ä½œæ¥­
  * $
  * $Revision 1.5  2011/08/29 06:56:47  MISSALLY
  * $Q10183
- * $²¼¾Ú¶}¥ß®É­Y¹J¨ì­n´«²¼¾Ú§å¸¹®É»İ¤H¤u¤Ä¿ï, ­×¥¿¬°¨t²Î¦Û°Ê§@·~
+ * $ç¥¨æ“šé–‹ç«‹æ™‚è‹¥é‡åˆ°è¦æ›ç¥¨æ“šæ‰¹è™Ÿæ™‚éœ€äººå·¥å‹¾é¸, ä¿®æ­£ç‚ºç³»çµ±è‡ªå‹•ä½œæ¥­
  * $
  * $Revision 1.4  2011/07/14 11:34:05  MISSALLY
  * $Q10183
- * $²¼¾Ú¶}¥ß®É­Y¹J¨ì­n´«²¼¾Ú§å¸¹®É»İ¤H¤u¤Ä¿ï, ­×¥¿¬°¨t²Î¦Û°Ê§@·~
+ * $ç¥¨æ“šé–‹ç«‹æ™‚è‹¥é‡åˆ°è¦æ›ç¥¨æ“šæ‰¹è™Ÿæ™‚éœ€äººå·¥å‹¾é¸, ä¿®æ­£ç‚ºç³»çµ±è‡ªå‹•ä½œæ¥­
  * $
  * $Revision 1.3  2010/11/23 06:27:42  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.2  2009/12/03 04:10:42  missteven
- * $R90628 ²¼¾Ú®w¦s·s¼W
+ * $R90628 ç¥¨æ“šåº«å­˜æ–°å¢
  * $
  * $Revision 1.1  2006/06/29 09:40:37  MISangel
  * $Init Project
  * $
  * $Revision 1.1.2.12  2005/06/01 10:40:33  miselsa
- * $R30530¨Ì³¡ªù ¿é¤JªÌ¤Î«O³æ¸¹½X±Æ§Ç
+ * $R30530ä¾éƒ¨é–€ è¼¸å…¥è€…åŠä¿å–®è™Ÿç¢¼æ’åº
  * $
  * $Revision 1.1.2.11  2005/04/28 08:56:24  miselsa
- * $R30530¥­¦æ´ú¸Õªº­×§ï
+ * $R30530å¹³è¡Œæ¸¬è©¦çš„ä¿®æ”¹
  * $
  * $Revision 1.1.2.10  2005/04/04 07:02:22  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -121,7 +121,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 		return;
 	}
 
-	/** ²¼¾Ú¶}¥ß */
+	/** ç¥¨æ“šé–‹ç«‹ */
 	private synchronized void checkOpenProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		String strLogonUser = (String) session.getAttribute(Constant.LOGON_USER_ID);
@@ -132,17 +132,17 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 		Connection con = dbFactory.getAS400Connection("DISBCheckOpenServlet.checkOpenProcess()");
 		String strReturnMsg = "";
 		List alEmptyCheckBook = new ArrayList();
-		List alCheckInfo = new ArrayList(); //¦s©ñ²¼¾Ú©ú²Ó¸ê®Æ
+		List alCheckInfo = new ArrayList(); //å­˜æ”¾ç¥¨æ“šæ˜ç´°è³‡æ–™
 		DISBCheckControlInfoVO objCControlVO = null;
 
 		int iUpdDate = Integer.parseInt((String) commonUtil.convertWesten2ROCDate1(cldToday.getTime()));
 		int iUpdTime = Integer.parseInt((String) sdfFormatter.format(cldToday.getTime()));
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-		String strOCBNo = "";	//­ì©l²¼¾Ú§å¸¹
-		String strOCSNo = "";	//­ì©l¤ä²¼°_©l¸¹
-		String strOCount = "";	//­ì©l¥i¥Î¥ó¼Æ
-		int iOCount = 0;		//­ì©l¥i¥Î¥ó¼Æ
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strOCBNo = "";	//åŸå§‹ç¥¨æ“šæ‰¹è™Ÿ
+		String strOCSNo = "";	//åŸå§‹æ”¯ç¥¨èµ·å§‹è™Ÿ
+		String strOCount = "";	//åŸå§‹å¯ç”¨ä»¶æ•¸
+		int iOCount = 0;		//åŸå§‹å¯ç”¨ä»¶æ•¸
 
 		strOCBNo = request.getParameter("txtOCBNo");
 		if (strOCBNo != null)
@@ -164,10 +164,10 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 		if (!strOCount.equals(""))
 			iOCount = Integer.parseInt(strOCount);
 
-		/*  §PÂ_¬O§_¦³ªÅ¥Õ¤ä²¼¥i¥Î¤Î¥i¥Î±i¼Æ¤Î¤ä²¼¥»¬O§_¬Û²Å */
+		/*  åˆ¤æ–·æ˜¯å¦æœ‰ç©ºç™½æ”¯ç¥¨å¯ç”¨åŠå¯ç”¨å¼µæ•¸åŠæ”¯ç¥¨æœ¬æ˜¯å¦ç›¸ç¬¦ */
 		alEmptyCheckBook = getEmptyCheckBook(request, response);
 		if (alEmptyCheckBook.size() > 0) {
-			/*§PÂ_­ì¨Óªº¸ê®Æ¬O§_¬Û¦P*/
+			/*åˆ¤æ–·åŸä¾†çš„è³‡æ–™æ˜¯å¦ç›¸åŒ*/
 			strReturnMsg = (String) alEmptyCheckBook.get(0);
 			if (strReturnMsg.equals("")) {
 
@@ -192,27 +192,27 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 				System.out.println("iNCount=" + iNCount);
 
 				if (!(strOCBNo.equals(strNCBNo) && strOCSNo.equals(strNCSNo) && iOCount == iNCount)) {
-					strReturnMsg = "¥i¥ÎªÅ¥Õ¤ä²¼¸ê®Æ¤£²Å, ½Ğ­«·s¬d¸ß";
+					strReturnMsg = "å¯ç”¨ç©ºç™½æ”¯ç¥¨è³‡æ–™ä¸ç¬¦, è«‹é‡æ–°æŸ¥è©¢";
 				}
 			}
 		} else {
-			strReturnMsg = "©I¥s¬d¸ßªÅ¥Õ¤ä²¼¥¢±Ñ";
+			strReturnMsg = "å‘¼å«æŸ¥è©¢ç©ºç™½æ”¯ç¥¨å¤±æ•—";
 		}
 
 		try {
 			if (strReturnMsg.equals("")) {
-				/*±N¤ä²¼¤À°tµ¹¤ä¥I®×¥ó*/
+				/*å°‡æ”¯ç¥¨åˆ†é…çµ¦æ”¯ä»˜æ¡ˆä»¶*/
 				alCheckInfo = maintainPList(request, response, alEmptyCheckBook);
-				/*§ó·s¸ê®Æ®w*/
+				/*æ›´æ–°è³‡æ–™åº«*/
 				if (alCheckInfo.size() > 0) {
-					/*§ó·s²¼¾Ú©ú²ÓÀÉ */
+					/*æ›´æ–°ç¥¨æ“šæ˜ç´°æª” */
 					strReturnMsg = updateCheckInfo(alCheckInfo, iUpdDate, con);
 					if (strReturnMsg.equals("")) {
-						/*§ó·s¤ä¥I¥DÀÉ*/
+						/*æ›´æ–°æ”¯ä»˜ä¸»æª”*/
 						strReturnMsg = updatePDetails(alCheckInfo, iUpdDate, iUpdTime, strLogonUser, con);
 					}
 				} else {
-					strReturnMsg = "¸ê®Æ¦³»~, ½Ğ­«¸Õ";
+					strReturnMsg = "è³‡æ–™æœ‰èª¤, è«‹é‡è©¦";
 				}
 			}
 			if (!strReturnMsg.equals("")) {
@@ -221,7 +221,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 				}
 			}
 		} catch (SQLException e) {
-			strReturnMsg = "½T»{¥¢±Ñ-->" + e;
+			strReturnMsg = "ç¢ºèªå¤±æ•—-->" + e;
 			if (con != null)
 				dbFactory.releaseAS400Connection(con);
 		} finally {
@@ -229,7 +229,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 				dbFactory.releaseAS400Connection(con);
 			}
 		}
-		//¦pªGstrReturnMsg¬°ªÅ¥Õ, «h¥Nªí²¼¾Ú¶}¥ßµ{¦¡¦¨¥\, »İ°õ¦æ³øªí
+		//å¦‚æœstrReturnMsgç‚ºç©ºç™½, å‰‡ä»£è¡¨ç¥¨æ“šé–‹ç«‹ç¨‹å¼æˆåŠŸ, éœ€åŸ·è¡Œå ±è¡¨
 		if (!strReturnMsg.equals("")) {
 			request.setAttribute("txtMsg", strReturnMsg);
 			session.removeAttribute("PDetailListTemp");
@@ -237,12 +237,12 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 			session.removeAttribute("CheckControlList");
 			request.setAttribute("txtAction", "DISBCheckOpen");
 		} else {
-			//°õ¦æ²¼¾Ú¦C¦L
+			//åŸ·è¡Œç¥¨æ“šåˆ—å°
 			request.setAttribute("ReportName", "ChequeRpt.rpt");
 			request.setAttribute("OutputFileName", "ChequeRpt.rpt");
 			request.setAttribute("OutputType", "TXT");
 
-			//§ä¥X­n¦C¦Lªº²¼¸¹
+			//æ‰¾å‡ºè¦åˆ—å°çš„ç¥¨è™Ÿ
 			String strCheckNo = "";
 			String strCheckNoS = "";
 			String strCheckNoE = "";
@@ -258,9 +258,9 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 			}
 			strCheckNo = (strCheckNo.length() > 0)?strCheckNo.substring(0, strCheckNo.length()-1):"";
 
-			System.out.println("°_¸¹ : " + strCheckNoS);
-			System.out.println("¥ó¼Æ : " + iChecked);
-			System.out.println("¨´¸¹ : " + strCheckNoE);
+			System.out.println("èµ·è™Ÿ : " + strCheckNoS);
+			System.out.println("ä»¶æ•¸ : " + iChecked);
+			System.out.println("è¿„è™Ÿ : " + strCheckNoE);
 
 			request.setAttribute("para_Cheque", strCheckNo);
 			request.setAttribute("para_rePrtFlag", "N");
@@ -272,7 +272,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 		return;
 	}
 
-	/**	¬d¸ß */
+	/**	æŸ¥è©¢ */
 	private void inquiryDBProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
 		RequestDispatcher dispatcher = null;
@@ -286,22 +286,22 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 		session.removeAttribute("PDetailList");
 		session.removeAttribute("CheckControlList");
 
-		/*  ¥ı¨ú±o¦³ªÅ¥Õ¤ä²¼²¼¸¹ªº¤ä²¼¥»-->¥i¥Î±i¼Æ */
+		/*  å…ˆå–å¾—æœ‰ç©ºç™½æ”¯ç¥¨ç¥¨è™Ÿçš„æ”¯ç¥¨æœ¬-->å¯ç”¨å¼µæ•¸ */
 		alEmptyCheckBook = getEmptyCheckBook(request, response);
 		if (alEmptyCheckBook.size() > 0) {
 			strReturnMsg = (String) alEmptyCheckBook.get(0);
 			alEmptyCheckBook.remove(0);
 		} else {
-			strReturnMsg = "©I¥s¬d¸ßªÅ¥Õ¸ê®Æ¥¢±Ñ";
+			strReturnMsg = "å‘¼å«æŸ¥è©¢ç©ºç™½è³‡æ–™å¤±æ•—";
 		}
 		if (strReturnMsg.equals("")) {
-			/* ¨ú±o¥¼°õ¦æ¹L¤ä²¼¶}¥ßªº¤ä¥I¥DÀÉ¸ê®Æ */
+			/* å–å¾—æœªåŸ·è¡Œéæ”¯ç¥¨é–‹ç«‹çš„æ”¯ä»˜ä¸»æª”è³‡æ–™ */
 			alPDetail = inquiryPDetails(request, response);
 			if (alPDetail.size() > 0) {
 				strReturnMsg = (String) alPDetail.get(0);
 				alPDetail.remove(0);
 			} else {
-				strReturnMsg = "©I¥s¬d¸ß¤ä¥I¥DÀÉ¥¢±Ñ";
+				strReturnMsg = "å‘¼å«æŸ¥è©¢æ”¯ä»˜ä¸»æª”å¤±æ•—";
 			}
 		}
 		if (!strReturnMsg.equals("")) {
@@ -318,7 +318,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 		return;
 	}
 
-	/**	¨ú±o¥¼°õ¦æ¹L¤ä²¼¶}¥ßªº¤ä¥I¥DÀÉ¸ê®Æ */
+	/**	å–å¾—æœªåŸ·è¡Œéæ”¯ç¥¨é–‹ç«‹çš„æ”¯ä»˜ä¸»æª”è³‡æ–™ */
 	private List inquiryPDetails(HttpServletRequest request, HttpServletResponse response) {
 		Connection con = null;
 		Statement stmt = null;
@@ -330,10 +330,10 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 		DISBPaymentDetailVO objPDetailVO = null;
 		List alPDetail = new ArrayList();
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-		String strPStartDate = "";	//¤ä¥I½T»{¤é´Á°_¤é
-		String strPEndDate = "";	//¤ä¥I½T»{¤é´Á¨´¤é
-		String strDispatch = "";	//«æ¥ó§_
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strPStartDate = "";	//æ”¯ä»˜ç¢ºèªæ—¥æœŸèµ·æ—¥
+		String strPEndDate = "";	//æ”¯ä»˜ç¢ºèªæ—¥æœŸè¿„æ—¥
+		String strDispatch = "";	//æ€¥ä»¶å¦
 
 		strPStartDate = request.getParameter("txtPStartDate");
 		if (strPStartDate != null)
@@ -359,7 +359,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 		strSql += "A.PNO,A.PNOH,A.PRACCOUNT,A.PRBANK,A.PSRCGP,A.PSRCCODE,A.PSTATUS,A.PVOIDABLE,A.PDISPATCH,";
 		strSql += "A.BRANCH,B.DEPT ";
 		strSql += " from CAPPAYF A ";
-		strSql += " left outer join USER B  on B.USRID=A.ENTRYUSR "; //³æ¦ì±Æ§Ç 
+		strSql += " left outer join USER B  on B.USRID=A.ENTRYUSR "; //å–®ä½æ’åº 
 		strSql += " WHERE A.PCFMDT1<>0 AND A.PCFMTM1<>0 AND A.PCFMUSR1 <>'' ";
 		strSql += " AND A.PCFMTM2<>0 AND A.PCFMUSR2 <>''  AND A.PSTATUS=''  AND A.PCHECKNO='' ";
 		strSql += " AND A.PVOIDABLE<>'Y'  AND A.PMETHOD='A'  ";
@@ -378,7 +378,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 			strSql += "  and A.PDISPATCH='' ";
 		}
 
-		// ¨Ì³¡ªù ¿é¤JªÌ¤Î«O³æ¸¹½X±Æ§Ç  RA0102 ¼W¥[¤ä¥I§Ç¸¹
+		// ä¾éƒ¨é–€ è¼¸å…¥è€…åŠä¿å–®è™Ÿç¢¼æ’åº  RA0102 å¢åŠ æ”¯ä»˜åºè™Ÿ
 		strSql += " order by B.DEPT,A.ENTRYUSR,A.POLICYNO,A.PNO ";
 
 		System.out.println("DISBCheckOpenServlet.inqueryDB()--> strSql =" + strSql);
@@ -389,20 +389,20 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 			rs = stmt.executeQuery(strSql);
 			while (rs.next()) {
 				objPDetailVO = new DISBPaymentDetailVO();
-				objPDetailVO.setIPAMT(rs.getDouble("PAMT"));	//¤ä¥Iª÷ÃB
-				objPDetailVO.setIPDate(rs.getInt("PDATE"));		//¥I´Ú¤é´Á
-				objPDetailVO.setStrAppNo(rs.getString("APPNO"));//­n«O®Ñ¸¹½X
-				objPDetailVO.setStrPolicyNo(rs.getString("POLICYNO"));	//«O³æ¸¹½X
-				objPDetailVO.setStrPDesc(rs.getString("PDESC"));//¤ä¥I´y­z
-				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));//«æ¥ó§_
-				objPDetailVO.setStrPId(rs.getString("PID"));	//¨ü´Ú¤HID
-				objPDetailVO.setStrPMethod(rs.getString("PMETHOD"));	//¥I´Ú¤è¦¡
-				objPDetailVO.setStrPName(rs.getString("PNAME"));//¨ü´Ú¤H©m¦W
-				objPDetailVO.setStrPNO(rs.getString("PNO"));	//¤ä¥I§Ç¸¹
-				objPDetailVO.setStrPNoH(rs.getString("PNOH"));	//­ì¤ä¥I§Ç¸¹
-				objPDetailVO.setStrPStatus(rs.getString("PSTATUS"));	//¥I´Úª¬ºA
-				objPDetailVO.setStrBranch(rs.getString("BRANCH"));		//«O³æ©ÒÄİ³æ¦ì
-				objPDetailVO.setStrPVoidable(rs.getString("PVOIDABLE"));//§@¼o§_
+				objPDetailVO.setIPAMT(rs.getDouble("PAMT"));	//æ”¯ä»˜é‡‘é¡
+				objPDetailVO.setIPDate(rs.getInt("PDATE"));		//ä»˜æ¬¾æ—¥æœŸ
+				objPDetailVO.setStrAppNo(rs.getString("APPNO"));//è¦ä¿æ›¸è™Ÿç¢¼
+				objPDetailVO.setStrPolicyNo(rs.getString("POLICYNO"));	//ä¿å–®è™Ÿç¢¼
+				objPDetailVO.setStrPDesc(rs.getString("PDESC"));//æ”¯ä»˜æè¿°
+				objPDetailVO.setStrPDispatch(rs.getString("PDISPATCH"));//æ€¥ä»¶å¦
+				objPDetailVO.setStrPId(rs.getString("PID"));	//å—æ¬¾äººID
+				objPDetailVO.setStrPMethod(rs.getString("PMETHOD"));	//ä»˜æ¬¾æ–¹å¼
+				objPDetailVO.setStrPName(rs.getString("PNAME"));//å—æ¬¾äººå§“å
+				objPDetailVO.setStrPNO(rs.getString("PNO"));	//æ”¯ä»˜åºè™Ÿ
+				objPDetailVO.setStrPNoH(rs.getString("PNOH"));	//åŸæ”¯ä»˜åºè™Ÿ
+				objPDetailVO.setStrPStatus(rs.getString("PSTATUS"));	//ä»˜æ¬¾ç‹€æ…‹
+				objPDetailVO.setStrBranch(rs.getString("BRANCH"));		//ä¿å–®æ‰€å±¬å–®ä½
+				objPDetailVO.setStrPVoidable(rs.getString("PVOIDABLE"));//ä½œå»¢å¦
 				alPDetail.add(objPDetailVO);
 			}
 			rs.close();
@@ -410,10 +410,10 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 			if (alPDetail.size() > 0) {
 				strReturnMsg = "";
 			} else {
-				strReturnMsg = "¬dµL¬ÛÃö¸ê®Æ";
+				strReturnMsg = "æŸ¥ç„¡ç›¸é—œè³‡æ–™";
 			}
 		} catch (SQLException ex) {
-			request.setAttribute("txtMsg", "¬d¸ß¥¢±Ñ" + ex);
+			request.setAttribute("txtMsg", "æŸ¥è©¢å¤±æ•—" + ex);
 			alPDetail = null;
 		} finally {
 			dbFactory.releaseAS400Connection(con);
@@ -422,7 +422,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 		return alPDetail;
 	}
 
-	/**	¨ú±oªÅ¥Õ¤ä²¼¥» */
+	/**	å–å¾—ç©ºç™½æ”¯ç¥¨æœ¬ */
 	private synchronized List getEmptyCheckBook(HttpServletRequest request, HttpServletResponse response) {
 
 		Connection con = null;
@@ -436,11 +436,11 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 		List alCControll = new ArrayList();
 		String strReturnMsg = "";
 
-		/* ±µ¦¬«eºİÄæ¦ì©w¸q */
-		String strCBKNo = "";	//»È¦æ¦æ®w
-		String strCAccount = "";//»È¦æ±b¸¹
+		/* æ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strCBKNo = "";	//éŠ€è¡Œè¡Œåº«
+		String strCAccount = "";//éŠ€è¡Œå¸³è™Ÿ
 
-		/*¨ú±o«eºİÄæ¦ì¸ê®Æ*/
+		/*å–å¾—å‰ç«¯æ¬„ä½è³‡æ–™*/
 		strCBKNo = request.getParameter("txtPBBank");
 		if (strCBKNo != null)
 			strCBKNo = CommonUtil.AllTrim(strCBKNo);
@@ -459,7 +459,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 			con = dbFactory.getAS400Connection("DISBCheckStockServlet.inquiryDB()");
 			stmt = con.createStatement();
 
-			/*1.¨ú±o¥Ø«e¤´¦³ªÅ¥Õ¤ä²¼ªº¤ä²¼¥»*/
+			/*1.å–å¾—ç›®å‰ä»æœ‰ç©ºç™½æ”¯ç¥¨çš„æ”¯ç¥¨æœ¬*/
 			strSql = "SELECT DISTINCT A.CBNO,A.CACCOUNT,A.CBKNO,A.CHKSNO,A.CHKENO,A.APPROVSTA ";
 			strSql += "FROM CAPCKNOF A ";
 			strSql += "LEFT OUTER JOIN CAPCHKF B ON A.CBKNO = B.CBKNO AND A.CACCOUNT=B.CACCOUNT AND A.CBNO = B.CBNO ";
@@ -469,12 +469,12 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 			rs = stmt.executeQuery(strSql);
 			while (rs.next()) {
 				objCControlVOTemp = new DISBCheckControlInfoVO();
-				objCControlVOTemp.setStrCBKNo(rs.getString("CBKNO"));		//»È¦æ¦æ®w	
-				objCControlVOTemp.setStrCAccount(rs.getString("CACCOUNT"));	//»È¦æ±b¸¹
-				objCControlVOTemp.setStrCBNo(rs.getString("CBNO"));		//²¼¾Ú§å¸¹
-				objCControlVOTemp.setStrCSNo(rs.getString("CHKSNO"));	//²¼¾Ú°_¸¹
-				objCControlVOTemp.setStrCENo(rs.getString("CHKENO"));	//²¼¾Ú°W¸¹
-				objCControlVOTemp.setStrApprovStat(rs.getString("APPROVSTA"));	//²¼¾Úª¬ºAR90628
+				objCControlVOTemp.setStrCBKNo(rs.getString("CBKNO"));		//éŠ€è¡Œè¡Œåº«	
+				objCControlVOTemp.setStrCAccount(rs.getString("CACCOUNT"));	//éŠ€è¡Œå¸³è™Ÿ
+				objCControlVOTemp.setStrCBNo(rs.getString("CBNO"));		//ç¥¨æ“šæ‰¹è™Ÿ
+				objCControlVOTemp.setStrCSNo(rs.getString("CHKSNO"));	//ç¥¨æ“šèµ·è™Ÿ
+				objCControlVOTemp.setStrCENo(rs.getString("CHKENO"));	//ç¥¨æ“šè¨–è™Ÿ
+				objCControlVOTemp.setStrApprovStat(rs.getString("APPROVSTA"));	//ç¥¨æ“šç‹€æ…‹R90628
 				alCControll.add(objCControlVOTemp);
 			}
 			rs.close();
@@ -485,7 +485,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 					objCControlVOTemp = (DISBCheckControlInfoVO) alCControll.get(i);
 					if (!"N".equals(objCControlVOTemp.getStrApprovStat())) 
 					{
-						/*2.§PÂ_¬O§_§¹¥ş³Q¥Î¹L*/
+						/*2.åˆ¤æ–·æ˜¯å¦å®Œå…¨è¢«ç”¨é*/
 //						int iCSNoTemp = Integer.parseInt(CommonUtil.AllTrim(objCControlVOTemp.getStrCSNo()).substring(2));
 //						int iCENoTemp = Integer.parseInt(CommonUtil.AllTrim(objCControlVOTemp.getStrCENo()).substring(2));
 //						int iCheckCount = (iCENoTemp - iCSNoTemp) + 1;
@@ -500,7 +500,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 						{ // if2
 //							if (rs.getInt("CNOCOUNT") < iCheckCount) 
 //							{ //if 3
-								/*3.§ä¥X©|¥¼³Q¥Î¹Lªº*/
+								/*3.æ‰¾å‡ºå°šæœªè¢«ç”¨éçš„*/
 								strSql = "select a.CNO AS CNO ";
 								strSql += "from CAPCHKF a ";
 								strSql += "where CBKNO='" + CommonUtil.AllTrim(objCControlVOTemp.getStrCBKNo()) + "' ";
@@ -519,7 +519,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 								}
 								rs.close();
 								if (alTemp.size() > 0) {
-									//¦³¸ê®Æ
+									//æœ‰è³‡æ–™
 									objCControlVO.setIEmptyCheck(alTemp.size());
 									objCControlVO.setStrCAccount(objCControlVOTemp.getStrCAccount());
 									objCControlVO.setStrCBKNo(objCControlVOTemp.getStrCBKNo());
@@ -538,25 +538,25 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 									}
 									alReturnInfo.add(objCControlVO);
 //									break;
-								} //¦³¸ê®Æ
+								} //æœ‰è³‡æ–™
 //							} //if 3
 //							else {
-								//¸Ó¥»©|¥¼§¹¥ş¥Î¹L
+								//è©²æœ¬å°šæœªå®Œå…¨ç”¨é
 //								objCControlVOTemp.setIEmptyCheck(iCheckCount);
 //								alReturnInfo.add(objCControlVOTemp);
 //								break;
 //							} //if 3
 						} //if 2
 					} else {
-						strReturnMsg = "²¼¾Ú§å¸¹¡G" + CommonUtil.AllTrim(objCControlVOTemp.getStrCBNo()) + "¡Aª¬ºA¬°®Ö­ã¥Ó½Ğ¤¤¡C\n½Ğ§¹¦¨®Ö­ã¥Ó½Ğ§@·~¡A­«·s°õ¦æ¶}²¼§@·~!";
+						strReturnMsg = "ç¥¨æ“šæ‰¹è™Ÿï¼š" + CommonUtil.AllTrim(objCControlVOTemp.getStrCBNo()) + "ï¼Œç‹€æ…‹ç‚ºæ ¸å‡†ç”³è«‹ä¸­ã€‚\nè«‹å®Œæˆæ ¸å‡†ç”³è«‹ä½œæ¥­ï¼Œé‡æ–°åŸ·è¡Œé–‹ç¥¨ä½œæ¥­!";
 					}
 					rs.close();
 				} //for 1	
 			} else {
-				strReturnMsg = "®w¦s¤¤µL¥i¥ÎªÅ¥Õ¤ä²¼¥»";
+				strReturnMsg = "åº«å­˜ä¸­ç„¡å¯ç”¨ç©ºç™½æ”¯ç¥¨æœ¬";
 			}
 		} catch (SQLException ex) {
-			strReturnMsg = "¬d¸ß¥¢±Ñ:" + ex;
+			strReturnMsg = "æŸ¥è©¢å¤±æ•—:" + ex;
 			alCControll = null;
 		} finally {
 			try { if (rs != null) rs.close(); } catch (Exception ex1) { }
@@ -567,7 +567,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 		return alReturnInfo;
 	}
 
-	/** ¤À°t¤ä²¼ */
+	/** åˆ†é…æ”¯ç¥¨ */
 	private List maintainPList(HttpServletRequest request, HttpServletResponse response, List emptyCheckBook) {
 		List alReturn = new ArrayList();
 
@@ -580,10 +580,10 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 		DISBCheckControlInfoVO objCControlVO = null;
 		DISBCheckDetailVO objCDetailVO = null;
 		String strIsChecked = "";
-		String strCBKNo = "";		//»È¦æ¦æ®w
-		String strCAccount = "";	//»È¦æ±b¸¹
-		String strCBNo = "";		//²¼¾Ú§å¸¹
-		String strCNo = "";			//¤ä²¼¸¹½X
+		String strCBKNo = "";		//éŠ€è¡Œè¡Œåº«
+		String strCAccount = "";	//éŠ€è¡Œå¸³è™Ÿ
+		String strCBNo = "";		//ç¥¨æ“šæ‰¹è™Ÿ
+		String strCNo = "";			//æ”¯ç¥¨è™Ÿç¢¼
 
 		int preCount = 0;
 		boolean isNextNo = false;
@@ -658,7 +658,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 		return alReturn;
 	}
 
-	/**	§ó·s²¼¾ÚÀÉ */
+	/**	æ›´æ–°ç¥¨æ“šæª” */
 	private String updateCheckInfo(List alCheckInfo, int iUpdDate, Connection con) throws ServletException, IOException {
 		System.out.println("@@@@@inside updateCheckInfo");
 		PreparedStatement pstmtTmp = null;
@@ -695,9 +695,9 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 						pstmtTmp = con.prepareStatement(strSql);
 						int iupdate = pstmtTmp.executeUpdate();
 						if (iupdate == 1) {
-							System.out.println("updateCheckInfo_executeUpdate¦¨¥\");
+							System.out.println("updateCheckInfo_executeUpdateæˆåŠŸ");
 						} else {
-							strReturnMsg = "§ó·s²¼¾Ú©ú²ÓÀÉ¥¢±Ñ";
+							strReturnMsg = "æ›´æ–°ç¥¨æ“šæ˜ç´°æª”å¤±æ•—";
 							return strReturnMsg;
 						}
 						pstmtTmp.close();
@@ -705,12 +705,12 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 				} //1
 			} //0
 		} catch (SQLException ex) {
-			strReturnMsg = "§ó·s²¼¾Ú©ú²ÓÀÉ¥¢±Ñ:ex=" + ex;
+			strReturnMsg = "æ›´æ–°ç¥¨æ“šæ˜ç´°æª”å¤±æ•—:ex=" + ex;
 		}
 		return strReturnMsg;
 	}
 
-	/**	§ó·s¤ä¥IÀÉ */
+	/**	æ›´æ–°æ”¯ä»˜æª” */
 	private String updatePDetails(List alCheckInfo, int iUpdDate, int iUpdTime, String strLogonUser, Connection con) throws ServletException, IOException {
 		System.out.println("@@@@@inside updatePConfirmed");
 		PreparedStatement pstmtTmp = null;
@@ -729,7 +729,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 						strSql = " update CAPPAYF set PBBANK = ?, PBACCOUNT = ?, PCHECKNO = ?, PCSHDT = ? ";
 						strSql += ",PSTATUS = 'B', UPDDT = ?, UPDTM = ?, UPDUSR = ?  where PNO = ?";
 
-						//¤Ulog
+						//ä¸‹log
 						strReturnMsg = disbBean.insertCAPPAYFLOG(CommonUtil.AllTrim(objCDetailVO.getStrPNO()), strLogonUser, iUpdDate, iUpdTime, con);
 						if (strReturnMsg.equals("")) {
 							pstmtTmp = con.prepareStatement(strSql);
@@ -743,7 +743,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 							pstmtTmp.setString(8,CommonUtil.AllTrim(objCDetailVO.getStrPNO()));
 
 							if (pstmtTmp.executeUpdate() < 1) {
-								strReturnMsg = "§ó·s¤ä¥I¥DÀÉ¥¢±Ñ";
+								strReturnMsg = "æ›´æ–°æ”¯ä»˜ä¸»æª”å¤±æ•—";
 								return strReturnMsg;
 							}
 							pstmtTmp.close();
@@ -754,7 +754,7 @@ public class DISBCheckOpenServlet extends InitDBServlet {
 				}
 			}
 		} catch (SQLException e) {
-			strReturnMsg = "§ó·s¤ä¥I¥DÀÉ¥¢±Ñ: e=" + e;
+			strReturnMsg = "æ›´æ–°æ”¯ä»˜ä¸»æª”å¤±æ•—: e=" + e;
 		}
 		return strReturnMsg;
 	}

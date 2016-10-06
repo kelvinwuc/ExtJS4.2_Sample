@@ -28,9 +28,9 @@ import com.aegon.disb.util.DISBCheckControlInfoVO;
 /**
  * System   : CashWeb
  * 
- * Function : ²¼¾Ú®w¦s
+ * Function : ç¥¨æ“šåº«å­˜
  * 
- * Remark   : ºÞ²z¨t²Î-°]°È
+ * Remark   : ç®¡ç†ç³»çµ±-è²¡å‹™
  * 
  * Revision : $$Revision: 1.7 $$
  * 
@@ -44,27 +44,27 @@ import com.aegon.disb.util.DISBCheckControlInfoVO;
  * 
  * $$Log: DISBCheckStockServlet.java,v $
  * $Revision 1.7  2013/12/24 02:17:18  MISSALLY
- * $R00135---PA0024---CASH¦~«×±M®×
+ * $R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ
  * $
  * $Revision 1.6  2012/07/17 02:50:31  MISSALLY
  * $RA0043 / RA0081
- * $1.¤@»È¥x·s¤U¸üÀÉ®æ¦¡½Õ¾ã
- * $2.²¼¾Ú®w¦s¤§®Ö­ãÅv­­§ïÅª³]©w
+ * $1.ä¸€éŠ€å°æ–°ä¸‹è¼‰æª”æ ¼å¼èª¿æ•´
+ * $2.ç¥¨æ“šåº«å­˜ä¹‹æ ¸å‡†æ¬Šé™æ”¹è®€è¨­å®š
  * $
  * $Revision 1.5  2010/11/23 06:27:42  MISJIMMY
- * $R00226-¦Ê¦~±M®×
+ * $R00226-ç™¾å¹´å°ˆæ¡ˆ
  * $
  * $Revision 1.4  2010/03/11 03:13:01  missteven
  * $change wokflow
  * $
  * $Revision 1.3  2009/12/03 04:09:44  missteven
- * $R90628 ²¼¾Ú®w¦s·s¼W
+ * $R90628 ç¥¨æ“šåº«å­˜æ–°å¢ž
  * $
  * $Revision 1.2  2006/07/24 02:49:42  MISangel
- * $­×¥¿bug
+ * $ä¿®æ­£bug
  * $
  * $Revision 1.1.2.4  2005/04/04 07:02:22  miselsa
- * $R30530 ¤ä¥I¨t²Î
+ * $R30530 æ”¯ä»˜ç³»çµ±
  * $$
  *  
  */
@@ -149,15 +149,15 @@ public class DISBCheckStockServlet extends HttpServlet {
 		int iUpdDate = Integer.parseInt((String) commonUtil.convertWesten2ROCDate1(cldToday.getTime()));
 		int iUpdTime = Integer.parseInt((String) sdfFormatter.format(cldToday.getTime()));
 
-		/* ±µ¦¬«eºÝÄæ¦ì©w¸q */
-		String strCBKNo = "";		// »È¦æ¦æ®w
-		String strCAccount = "";	// »È¦æ±b¸¹
-		String strCSNo = "";		// ²¼¾Ú°_¸¹
-		String strCENo = "";		// ²¼¾Ú¨´¸¹
-		String strBatNo = "";		// ²¼¾Ú§å¸¹
-		String strChdFlg = "";		// ¤H¤u¥Î²¼§_
+		/* æŽ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strCBKNo = "";		// éŠ€è¡Œè¡Œåº«
+		String strCAccount = "";	// éŠ€è¡Œå¸³è™Ÿ
+		String strCSNo = "";		// ç¥¨æ“šèµ·è™Ÿ
+		String strCENo = "";		// ç¥¨æ“šè¿„è™Ÿ
+		String strBatNo = "";		// ç¥¨æ“šæ‰¹è™Ÿ
+		String strChdFlg = "";		// äººå·¥ç”¨ç¥¨å¦
 
-		/* ¨ú±o«eºÝÄæ¦ì¸ê®Æ */
+		/* å–å¾—å‰ç«¯æ¬„ä½è³‡æ–™ */
 		strCBKNo = request.getParameter("txtCBank");
 		if (strCBKNo != null)
 			strCBKNo = strCBKNo.trim();
@@ -189,13 +189,13 @@ public class DISBCheckStockServlet extends HttpServlet {
 			strChdFlg = "";
 
 		try {
-			/* ¦A¦¸§PÂ_¸Ó¤ä²¼²¼¸¹°Ï¶¡¬O§_³Q¦s¦b */
+			/* å†æ¬¡åˆ¤æ–·è©²æ”¯ç¥¨ç¥¨è™Ÿå€é–“æ˜¯å¦è¢«å­˜åœ¨ */
 			bFlag = disbBean.isValidCheckNo(strCSNo, strCENo);
 			if (!bFlag) {
-				/* ¨ú±o²¼¾Ú§å¸¹ */
+				/* å–å¾—ç¥¨æ“šæ‰¹è™Ÿ */
 				strBatNo = getCheckBatNo(strCBKNo, strCAccount, con);
 				if (!strBatNo.equals("")) {
-					/* ·s¼W¸ê®Æ¨ì²¼¾Ú±±¨îÀÉ¤¤ */
+					/* æ–°å¢žè³‡æ–™åˆ°ç¥¨æ“šæŽ§åˆ¶æª”ä¸­ */
 					objCControlVO = new DISBCheckControlInfoVO();
 					objCControlVO.setIEntryDt(iUpdDate);
 					objCControlVO.setIEntryTm(iUpdTime);
@@ -208,20 +208,20 @@ public class DISBCheckStockServlet extends HttpServlet {
 
 					strReturnMsg = insertCheckControl(objCControlVO, con);
 					if (strReturnMsg.equals("")) {
-						/* ·s¼W¦hµ§¸ê®Æ¨ì²¼¾Ú©ú²ÓÀÉ¤¤ */
+						/* æ–°å¢žå¤šç­†è³‡æ–™åˆ°ç¥¨æ“šæ˜Žç´°æª”ä¸­ */
 						strReturnMsg = insertCheckDetails(objCControlVO, strChdFlg, con);
 					}
 				}
 			}
 
-			if (!strReturnMsg.equals("")) // ¦p¦³¿ù»~®É«h roll back
+			if (!strReturnMsg.equals("")) // å¦‚æœ‰éŒ¯èª¤æ™‚å‰‡ roll back
 			{
 				request.setAttribute("txtMsg", strReturnMsg);
 				if (isAEGON400) {
 					con.rollback();
 				}
 			} else {
-				request.setAttribute("txtMsg", "²¼¾Ú®w¦s·s¼W¦¨¥\");
+				request.setAttribute("txtMsg", "ç¥¨æ“šåº«å­˜æ–°å¢žæˆåŠŸ");
 			}
 		} catch (SQLException ex) {
 			request.setAttribute("txtMsg", ex);
@@ -280,8 +280,8 @@ public class DISBCheckStockServlet extends HttpServlet {
 		String strReturnMsg = "";
 
 		try {
-			String strCSNo = objCControlVO.getStrCSNo().trim(); // ²¼¾Ú°_¸¹
-			String strCENo = objCControlVO.getStrCENo().trim(); // ²¼¾Ú¨´¸¹
+			String strCSNo = objCControlVO.getStrCSNo().trim(); // ç¥¨æ“šèµ·è™Ÿ
+			String strCENo = objCControlVO.getStrCENo().trim(); // ç¥¨æ“šè¿„è™Ÿ
 			String strCNo = "";
 			String strPreFix = strCSNo.substring(0, 2);
 
@@ -316,7 +316,7 @@ public class DISBCheckStockServlet extends HttpServlet {
 
 				/*
 				 * if (pstmtTmp.executeUpdate() != 1) { strReturnMsg
-				 * ="·s¼W²¼¾Ú©ú²ÓÀÉ¥¢±Ñ"; return strReturnMsg; }
+				 * ="æ–°å¢žç¥¨æ“šæ˜Žç´°æª”å¤±æ•—"; return strReturnMsg; }
 				 */
 			}
 			// int[] row = pstmtTmp.executeBatch();
@@ -324,7 +324,7 @@ public class DISBCheckStockServlet extends HttpServlet {
 
 			// pstmtTmp.close();
 		} catch (SQLException e) {
-			strReturnMsg = "·s¼W²¼¾Ú©ú²ÓÀÉ¥¢±Ñ: e=" + e;
+			strReturnMsg = "æ–°å¢žç¥¨æ“šæ˜Žç´°æª”å¤±æ•—: e=" + e;
 			System.err.println(e.getMessage());
 		} finally {
 			try { if (pstmtTmp != null) pstmtTmp.close(); } catch (Exception ex1) {}
@@ -353,13 +353,13 @@ public class DISBCheckStockServlet extends HttpServlet {
 			pstmtTmp.setString(8, objCControlVO.getStrEntryUsr());
 
 			if (pstmtTmp.executeUpdate() != 1) {
-				strReturnMsg = "·s¼W²¼¾Ú±±¨îÀÉ¥¢±Ñ";
+				strReturnMsg = "æ–°å¢žç¥¨æ“šæŽ§åˆ¶æª”å¤±æ•—";
 				return strReturnMsg;
 			}
 			pstmtTmp.close();
 
 		} catch (SQLException e) {
-			strReturnMsg = "·s¼W²¼¾Ú±±¨îÀÉ¥¢±Ñ: e=" + e;
+			strReturnMsg = "æ–°å¢žç¥¨æ“šæŽ§åˆ¶æª”å¤±æ•—: e=" + e;
 			System.err.println(e.getMessage());
 		} finally {
 			try { if (pstmtTmp != null) pstmtTmp.close(); } catch (Exception ex1) {}
@@ -375,14 +375,14 @@ public class DISBCheckStockServlet extends HttpServlet {
 		DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);
 		String strReturnMsg = "";
 
-		/* ±µ¦¬«eºÝÄæ¦ì©w¸q */
-		String strCBKNo = ""; // »È¦æ¦æ®w
-		String strCAccount = ""; // »È¦æ±b¸¹
-		String strCBNo = ""; // ²¼¾Ú§å¸¹
-		String strCSNo = ""; // ²¼¾Ú°_¸¹
-		String strCENo = ""; // ²¼¾Ú¨´¸¹
+		/* æŽ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strCBKNo = ""; // éŠ€è¡Œè¡Œåº«
+		String strCAccount = ""; // éŠ€è¡Œå¸³è™Ÿ
+		String strCBNo = ""; // ç¥¨æ“šæ‰¹è™Ÿ
+		String strCSNo = ""; // ç¥¨æ“šèµ·è™Ÿ
+		String strCENo = ""; // ç¥¨æ“šè¿„è™Ÿ
 
-		/* ¨ú±o«eºÝÄæ¦ì¸ê®Æ */
+		/* å–å¾—å‰ç«¯æ¬„ä½è³‡æ–™ */
 		strCBKNo = request.getParameter("txtDCBKNo");
 		if (strCBKNo != null)
 			strCBKNo = strCBKNo.trim();
@@ -414,17 +414,17 @@ public class DISBCheckStockServlet extends HttpServlet {
 			strCENo = "";
 
 		try {
-			/* ¦A¦¸§PÂ_¸Ó¤ä²¼¥»¬O§_³Q¨Ï¥Î */
+			/* å†æ¬¡åˆ¤æ–·è©²æ”¯ç¥¨æœ¬æ˜¯å¦è¢«ä½¿ç”¨ */
 			strReturnMsg = disbBean.isCheckBookUsed(strCBKNo, strCAccount, strCBNo, strCSNo, strCENo);
 
 			if (strReturnMsg.equals("")) {
-				/* §R°£²¼¾Ú¥DÀÉ */
+				/* åˆªé™¤ç¥¨æ“šä¸»æª” */
 				strReturnMsg = deleteCheckControl(strCBKNo, strCAccount, strCBNo, con);
 				if (strReturnMsg.equals("")) {
-					/* §R°£²¼¾Ú©ú²ÓÀÉ */
+					/* åˆªé™¤ç¥¨æ“šæ˜Žç´°æª” */
 					strReturnMsg = deleteCheckDetails(strCBKNo, strCAccount, strCBNo, con);
 					if (strReturnMsg.equals("")) {
-						request.setAttribute("txtMsg", "§R°£¦¨¥\");
+						request.setAttribute("txtMsg", "åˆªé™¤æˆåŠŸ");
 					}
 				}
 			}
@@ -439,7 +439,7 @@ public class DISBCheckStockServlet extends HttpServlet {
 				return;
 			}
 		} catch (Exception e) {
-			request.setAttribute("txtMsg", "²¼¾Ú®w¦s§R°£¥¢±Ñ-->" + e);
+			request.setAttribute("txtMsg", "ç¥¨æ“šåº«å­˜åˆªé™¤å¤±æ•—-->" + e);
 			if (con != null) {
 				dbFactory.releaseAS400Connection(con);
 			}
@@ -470,13 +470,13 @@ public class DISBCheckStockServlet extends HttpServlet {
 			pstmtTmp.setString(3, strCBNo);
 
 			if (pstmtTmp.executeUpdate() < 1) {
-				strReturnMsg = "§R°£²¼¾Ú©ú²ÓÀÉ¥¢±Ñ";
+				strReturnMsg = "åˆªé™¤ç¥¨æ“šæ˜Žç´°æª”å¤±æ•—";
 				return strReturnMsg;
 			}
 			pstmtTmp.close();
 
 		} catch (SQLException e) {
-			strReturnMsg = "§R°£²¼¾Ú©ú²ÓÀÉ¥¢±Ñ: e=" + e;
+			strReturnMsg = "åˆªé™¤ç¥¨æ“šæ˜Žç´°æª”å¤±æ•—: e=" + e;
 			System.err.println(e.getMessage());
 		} finally {
 			try { if (pstmtTmp != null) pstmtTmp.close(); } catch (Exception ex1) { }
@@ -498,13 +498,13 @@ public class DISBCheckStockServlet extends HttpServlet {
 			pstmtTmp.setString(2, strCAccount);
 			pstmtTmp.setString(3, strCBNo);
 			if (pstmtTmp.executeUpdate() < 1) {
-				strReturnMsg = "§R°£²¼¾Ú±±¨îÀÉ¥¢±Ñ";
+				strReturnMsg = "åˆªé™¤ç¥¨æ“šæŽ§åˆ¶æª”å¤±æ•—";
 				return strReturnMsg;
 			}
 
 			pstmtTmp.close();
 		} catch (SQLException e) {
-			strReturnMsg = "§R°£²¼¾Ú±±¨îÀÉ¥¢±Ñ: e=" + e;
+			strReturnMsg = "åˆªé™¤ç¥¨æ“šæŽ§åˆ¶æª”å¤±æ•—: e=" + e;
 			System.err.println(e.getMessage());
 		} finally {
 			try { if (pstmtTmp != null) pstmtTmp.close(); } catch (Exception ex1) { }
@@ -530,15 +530,15 @@ public class DISBCheckStockServlet extends HttpServlet {
 			pstmtTmp.setString(4, strCAccount);
 			pstmtTmp.setString(5, strCBNo);
 			if (pstmtTmp.executeUpdate() < 1)
-				strReturnMsg = "®Ö­ã·s¼W²¼¾Ú±±¨îÀÉ¥¢±Ñ";
+				strReturnMsg = "æ ¸å‡†æ–°å¢žç¥¨æ“šæŽ§åˆ¶æª”å¤±æ•—";
 			else
-				strReturnMsg = "®Ö­ã·s¼W²¼¾Ú±±¨îÀÉ¦¨¥\";
+				strReturnMsg = "æ ¸å‡†æ–°å¢žç¥¨æ“šæŽ§åˆ¶æª”æˆåŠŸ";
 			pstmtTmp.close();
 			request.setAttribute("txtMsg", strReturnMsg);
 			request.setAttribute("txtAction", "D");
 			request.getRequestDispatcher("/DISB/DISBCheck/DISBCheckStock.jsp").forward(request, response);
 		} catch (SQLException e) {
-			strReturnMsg = "®Ö­ã·s¼W²¼¾Ú±±¨îÀÉ¥¢±Ñ: e=" + e;
+			strReturnMsg = "æ ¸å‡†æ–°å¢žç¥¨æ“šæŽ§åˆ¶æª”å¤±æ•—: e=" + e;
 			System.err.println(e.getMessage());
 		} finally {
 			if (con != null)
@@ -558,7 +558,7 @@ public class DISBCheckStockServlet extends HttpServlet {
 		String strCENo = request.getParameter("txtDCENo") != null ? request.getParameter("txtDCENo").trim() : "";
 		String strReturnMsg = "";
 		try {
-			/* ¦A¦¸§PÂ_¸Ó¤ä²¼¥»¬O§_³Q¨Ï¥Î */
+			/* å†æ¬¡åˆ¤æ–·è©²æ”¯ç¥¨æœ¬æ˜¯å¦è¢«ä½¿ç”¨ */
 			strReturnMsg = disbBean.isCheckBookUsed(strCBKNo, strCAccount, strCBNo, strCSNo, strCENo);
 
 			if (strReturnMsg.equals("")) {
@@ -569,16 +569,16 @@ public class DISBCheckStockServlet extends HttpServlet {
 				pstmtTmp.setString(4, strCAccount);
 				pstmtTmp.setString(5, strCBNo);
 				if (pstmtTmp.executeUpdate() < 1)
-					strReturnMsg = "¥Ó½Ð§R°£²¼¾Ú±±¨îÀÉ¥¢±Ñ";
+					strReturnMsg = "ç”³è«‹åˆªé™¤ç¥¨æ“šæŽ§åˆ¶æª”å¤±æ•—";
 				else
-					strReturnMsg = "¥Ó½Ð§R°£²¼¾Ú±±¨îÀÉ¦¨¥\";
+					strReturnMsg = "ç”³è«‹åˆªé™¤ç¥¨æ“šæŽ§åˆ¶æª”æˆåŠŸ";
 				pstmtTmp.close();
 			}
 			request.setAttribute("txtMsg", strReturnMsg);
 			request.setAttribute("txtAction", "D");
 			request.getRequestDispatcher("/DISB/DISBCheck/DISBCheckStock.jsp").forward(request, response);
 		} catch (SQLException e) {
-			strReturnMsg = "¥Ó½Ð§R°£²¼¾Ú±±¨îÀÉ¥¢±Ñ: e=" + e;
+			strReturnMsg = "ç”³è«‹åˆªé™¤ç¥¨æ“šæŽ§åˆ¶æª”å¤±æ•—: e=" + e;
 			System.err.println(e.getMessage());
 		} finally {
 			if (con != null)
@@ -604,15 +604,15 @@ public class DISBCheckStockServlet extends HttpServlet {
 			pstmtTmp.setString(4, strCAccount);
 			pstmtTmp.setString(5, strCBNo);
 			if (pstmtTmp.executeUpdate() < 1)
-				strReturnMsg = "®Ö­ã§R°£²¼¾Ú±±¨îÀÉ¥¢±Ñ";
+				strReturnMsg = "æ ¸å‡†åˆªé™¤ç¥¨æ“šæŽ§åˆ¶æª”å¤±æ•—";
 			else
-				strReturnMsg = "®Ö­ã§R°£²¼¾Ú±±¨îÀÉ¦¨¥\";
+				strReturnMsg = "æ ¸å‡†åˆªé™¤ç¥¨æ“šæŽ§åˆ¶æª”æˆåŠŸ";
 			pstmtTmp.close();
 			request.setAttribute("txtMsg", strReturnMsg);
 			request.setAttribute("txtAction", "D");
 			request.getRequestDispatcher("/DISB/DISBCheck/DISBCheckStock.jsp").forward(request, response);
 		} catch (SQLException e) {
-			strReturnMsg = "®Ö­ã§R°£²¼¾Ú±±¨îÀÉ¥¢±Ñ: e=" + e;
+			strReturnMsg = "æ ¸å‡†åˆªé™¤ç¥¨æ“šæŽ§åˆ¶æª”å¤±æ•—: e=" + e;
 			System.err.println(e.getMessage());
 		} finally {
 			if (con != null)
@@ -633,11 +633,11 @@ public class DISBCheckStockServlet extends HttpServlet {
 		List alCControll = new ArrayList();
 		DISBBean disbBean = new DISBBean(globalEnviron, dbFactory);// R90628
 
-		/* ±µ¦¬«eºÝÄæ¦ì©w¸q */
-		String strCBKNo = ""; // »È¦æ¦æ®w
-		String strCAccount = ""; // »È¦æ±b¸¹
+		/* æŽ¥æ”¶å‰ç«¯æ¬„ä½å®šç¾© */
+		String strCBKNo = ""; // éŠ€è¡Œè¡Œåº«
+		String strCAccount = ""; // éŠ€è¡Œå¸³è™Ÿ
 
-		/* ¨ú±o«eºÝÄæ¦ì¸ê®Æ */
+		/* å–å¾—å‰ç«¯æ¬„ä½è³‡æ–™ */
 		strCBKNo = request.getParameter("txtCBank");
 		if (strCBKNo != null)
 			strCBKNo = strCBKNo.trim();
@@ -663,16 +663,16 @@ public class DISBCheckStockServlet extends HttpServlet {
 			rs = stmt.executeQuery(strSql);
 			while (rs.next()) {
 				objCControlVO = new DISBCheckControlInfoVO();
-				objCControlVO.setStrCBKNo(rs.getString("CBKNO")); // »È¦æ¦æ®w
-				objCControlVO.setStrCAccount(rs.getString("CACCOUNT")); // »È¦æ±b¸¹
-				objCControlVO.setStrCBNo(rs.getString("CBNO"));// ²¼¾Ú§å¸¹
-				objCControlVO.setStrCSNo(rs.getString("CHKSNO"));// ²¼¾Ú°_¸¹
-				objCControlVO.setStrCENo(rs.getString("CHKENO"));// ²¼¾Ú°W¸¹
-				objCControlVO.setIEntryDt(rs.getInt("ENTRYDT"));// ¿é¤J¤é´Á
-				objCControlVO.setIEntryTm(rs.getInt("ENTRYTM"));// ¿é¤J®É¶¡
-				objCControlVO.setStrEntryUsr(rs.getString("ENTRYUSR"));// ¿é¤J¤H­û
-				objCControlVO.setStrApprovStat(rs.getString("APPROVSTA"));// ®Ö­ãª¬ºA
-				objCControlVO.setStrApprovUser(rs.getString("APPROVUSR"));// ®Ö·Ç¤H­û
+				objCControlVO.setStrCBKNo(rs.getString("CBKNO")); // éŠ€è¡Œè¡Œåº«
+				objCControlVO.setStrCAccount(rs.getString("CACCOUNT")); // éŠ€è¡Œå¸³è™Ÿ
+				objCControlVO.setStrCBNo(rs.getString("CBNO"));// ç¥¨æ“šæ‰¹è™Ÿ
+				objCControlVO.setStrCSNo(rs.getString("CHKSNO"));// ç¥¨æ“šèµ·è™Ÿ
+				objCControlVO.setStrCENo(rs.getString("CHKENO"));// ç¥¨æ“šè¨–è™Ÿ
+				objCControlVO.setIEntryDt(rs.getInt("ENTRYDT"));// è¼¸å…¥æ—¥æœŸ
+				objCControlVO.setIEntryTm(rs.getInt("ENTRYTM"));// è¼¸å…¥æ™‚é–“
+				objCControlVO.setStrEntryUsr(rs.getString("ENTRYUSR"));// è¼¸å…¥äººå“¡
+				objCControlVO.setStrApprovStat(rs.getString("APPROVSTA"));// æ ¸å‡†ç‹€æ…‹
+				objCControlVO.setStrApprovUser(rs.getString("APPROVUSR"));// æ ¸æº–äººå“¡
 				int useCount = disbBean.isCheckBookUseCount(rs.getString("CBKNO"), rs.getString("CACCOUNT"), rs.getString("CBNO"), rs.getString("CHKSNO"), rs.getString("CHKENO"));
 				objCControlVO.setIEmptyCheck(useCount);
 				String strReturnMsg = disbBean.isCheckBookUsed(rs.getString("CBKNO"), rs.getString("CACCOUNT"), rs.getString("CBNO"), rs.getString("CHKSNO"), rs.getString("CHKENO"));
@@ -684,10 +684,10 @@ public class DISBCheckStockServlet extends HttpServlet {
 				session.setAttribute("SelectedBank", strCBKNo + "/" + strCAccount);
 				request.setAttribute("txtMsg", "");
 			} else {
-				request.setAttribute("txtMsg", "¬dµL¬Û²Å¸ê®Æ");
+				request.setAttribute("txtMsg", "æŸ¥ç„¡ç›¸ç¬¦è³‡æ–™");
 			}
 		} catch (SQLException ex) {
-			request.setAttribute("txtMsg", "¬d¸ß¥¢±Ñ" + ex);
+			request.setAttribute("txtMsg", "æŸ¥è©¢å¤±æ•—" + ex);
 			alCControll = null;
 			System.err.println(ex.getMessage());
 		} finally {
@@ -713,17 +713,17 @@ public class DISBCheckStockServlet extends HttpServlet {
 	private String getAPPDISC(String status, int count, String strReturnMsg) {
 		String strMsg = "";
 		if ("N".equals(status)) {
-			strMsg = "®Ö­ã¥Ó½Ð¤¤";
+			strMsg = "æ ¸å‡†ç”³è«‹ä¸­";
 		} else if ("A".equals(status) && "".equals(strReturnMsg)) {
-			strMsg = "¤w®Ö­ã¨Ï¥Î";
+			strMsg = "å·²æ ¸å‡†ä½¿ç”¨";
 		} else if ("A".equals(status) && !"".equals(strReturnMsg) && count > 0) {
-			strMsg = "¨Ï¥Î¤¤";
+			strMsg = "ä½¿ç”¨ä¸­";
 		} else if ("A".equals(status) && !"".equals(strReturnMsg) && count == 0) {
-			strMsg = "¨Ï¥Î§¹²¦";
+			strMsg = "ä½¿ç”¨å®Œç•¢";
 		} else if ("R".equals(status)) {
-			strMsg = "¥Ó½Ð§R°£¤¤";
+			strMsg = "ç”³è«‹åˆªé™¤ä¸­";
 		} else if ("D".equals(status)) {
-			strMsg = "¤w®Ö­ã§R°£";
+			strMsg = "å·²æ ¸å‡†åˆªé™¤";
 		}
 		return strMsg;
 	}

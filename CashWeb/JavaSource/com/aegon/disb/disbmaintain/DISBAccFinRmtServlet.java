@@ -91,6 +91,7 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 	private static final String CONTENT_TYPE = "text/html; charset=Big5";
 	private DecimalFormat df2 = new DecimalFormat("0.00");
 	private DecimalFormat df3 = new DecimalFormat("0.0000"); // R80338 匯率
+	private String company = "";//RD0382:OIU
 
 	public void init() throws ServletException {
 		super.init();
@@ -122,9 +123,18 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 
 		String selCurrency = request.getParameter("selCurrency") != null ? request.getParameter("selCurrency") : "";
 		String strPMethod = request.getParameter("PMethod") != null ? request.getParameter("PMethod") : "";
+		
+		//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}
 
+		//取得資料
 		alDwnDetails = (List<DISBAccCodeDetailVO>) getNormalPayments(request, response, alDwnDetails);
-		System.out.println("alDwnDetails=" + alDwnDetails.size());
+		System.out.println("alDwnDetails=是" + alDwnDetails.size());
 
 		if (alDwnDetails.size() > 0) {
 			ServletOutputStream os = response.getOutputStream();
@@ -191,10 +201,19 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 					cell = row.createCell(cellnum++);
 					cell.setCellValue("Spreadsheet");	//Source,B
 					cell = row.createCell(cellnum++);
-					cell.setCellValue(strPAYCurrency);	//Currency,C
+					if("6".equals(company) && "外幣匯款匯費".equals(strDesc.trim())){
+						cell.setCellValue("USD");	//Currency,C
+					}else{
+						cell.setCellValue(strPAYCurrency);	//Currency,C
+					}					
 					cell = row.createCell(cellnum++);
 					//RD0382,OIU專案的公司別
-					cell.setCellValue("0");				//Company,D
+					if("6".equals(company)){
+						cell.setCellValue("6");				//Company,D
+					}else {
+						cell.setCellValue("0");				//Company,D
+					}
+					
 					cell = row.createCell(cellnum++);
 					cell.setCellValue(strActCd2);		//Main Account,E
 					cell = row.createCell(cellnum++);
@@ -264,7 +283,7 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 					}
 
 					cell.setCellValue(strSlipNo);	//Batch Name,AA
-					log.info("strSlipNo是" + strSlipNo);
+					//log.info("strSlipNo是" + strSlipNo);
 					cell = row.createCell(cellnum++);
 					cell.setCellValue(count1); //AB
 				}
@@ -307,6 +326,7 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 		String DateTemp1 = ""; // 出納日 -1
 		String strDesc_1 = "";
 		String strPDispatch = "";
+		String company = "";//RD0382:OIU
 
 		String strPPAYCURR_Keep_1 = "";
 		String strPBK_Keep_1 = "";
@@ -378,6 +398,14 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 			strPDispatch = strPDispatch.trim();
 		else
 			strPDispatch = "";
+		
+		//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}
 
 		try {
 			alReturn = alDwnDetails;
@@ -385,15 +413,42 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 			strSql = null;
 
 			if (strPMethod.trim().equals("D")) {
-				strSql = "select C.PPAYCURR AS PPAYCURR,A.PBK AS PBK,A.PACCT AS PACCT,C.PCSHCM AS PCSHCM,C.PCSHDT AS PCSHDT,B.DEPT AS DEPT,A.RPAYRATE,SUM(A.RAMT) AS RAMT,SUM(A.RMTFEE) AS RMTFEE,SUM(A.RPAYAMT) as RPAYAMT";
+				strSql = "select C.PPAYCURR AS PPAYCURR,A.PBK AS PBK,A.PACCT AS PACCT,C.PCSHCM AS PCSHCM,C.PCSHDT AS PCSHDT,";
+				strSql += "B.DEPT AS DEPT,";
+				/*strSql += "CASE WHEN SUBSTR(B.DFTGRP,1,3)='CSC' THEN 'CSC' ";//RE0225-新增匯費對應碼規則
+				strSql += "WHEN SUBSTR(B.DFTGRP,1,2)='NB' THEN 'NB' ";//RE0225-新增匯費對應碼規則
+				strSql += "WHEN SUBSTR(B.DFTGRP,1,3)='CLAM' THEN 'CLM' ";//RE0225-新增匯費對應碼規則
+				strSql += "WHEN SUBSTR(B.DFTGRP,1,2)='PA' THEN 'PA' ";//RE0225-新增匯費對應碼規則
+				strSql += "WHEN SUBSTR(B.DFTGRP,1,5)='Group' THEN 'GP' ";//RE0225-新增匯費對應碼規則
+				strSql += "WHEN SUBSTR(B.DFTGRP,1,3)='FIN' THEN 'FIN' ";//RE0225-新增匯費對應碼規則
+				strSql += "ELSE '' END AS DEPT,";//RE0225-新增匯費對應碼規則
+*/				strSql += "A.RPAYRATE,SUM(A.RAMT) AS RAMT,SUM(A.RMTFEE) AS RMTFEE,SUM(A.RPAYAMT) as RPAYAMT";			
 			} else {
 				if (!strPDispatch.trim().equals("Y")){//RC0036
 					//strSql = "select A.PBK AS PBK,A.PACCT AS PACCT,C.PCSHCM AS PCSHCM,C.PCSHDT AS PCSHDT,B.DEPT AS DEPT,SUM(A.RAMT) AS RAMT,SUM(A.RMTFEE) AS RMTFEE";
 					//TEST 
-					strSql = "SELECT T.PBK AS PBK,T.PACCT AS PACCT,T.PCSHCM AS PCSHCM,T.PCSHDT AS PCSHDT,T.DEPT AS DEPT,SUM(T.RAMT) AS RAMT,SUM(T.RMTFEE) AS RMTFEE";
+					strSql = "SELECT T.PBK AS PBK,T.PACCT AS PACCT,T.PCSHCM AS PCSHCM,T.PCSHDT AS PCSHDT,";
+					strSql += "T.DEPT AS DEPT,";
+					/*strSql += "CASE WHEN SUBSTR(T.DFTGRP,1,3)='CSC' THEN 'CSC' ";//RE0225-新增匯費對應碼規則
+					strSql += "WHEN SUBSTR(T.DFTGRP,1,2)='NB' THEN 'NB' ";//RE0225-新增匯費對應碼規則
+					strSql += "WHEN SUBSTR(T.DFTGRP,1,3)='CLAM' THEN 'CLM' ";//RE0225-新增匯費對應碼規則
+					strSql += "WHEN SUBSTR(T.DFTGRP,1,2)='PA' THEN 'PA' ";//RE0225-新增匯費對應碼規則
+					strSql += "WHEN SUBSTR(T.DFTGRP,1,5)='Group' THEN 'GP' ";//RE0225-新增匯費對應碼規則
+					strSql += "WHEN SUBSTR(T.DFTGRP,1,3)='FIN' THEN 'FIN' ";//RE0225-新增匯費對應碼規則
+					strSql += "ELSE '' END AS DEPT,";//RE0225-新增匯費對應碼規則
+*/					strSql += " SUM(T.RAMT) AS RAMT,SUM(T.RMTFEE) AS RMTFEE";
 					strSql += " FROM (select  DISTINCT A.PBK AS PBK,A.PACCT AS PACCT,C.PCSHCM AS PCSHCM,C.PCSHDT AS PCSHDT,B.DEPT AS DEPT,A.SEQNO AS SEQNO,A.RAMT AS RAMT,A.RMTFEE AS RMTFEE ";
 				}else{
-					strSql = "select C.PBATNO AS PBATNO,A.PBK AS PBK,A.PACCT AS PACCT,C.PCSHCM AS PCSHCM,C.PCSHDT AS PCSHDT,B.DEPT AS DEPT,A.RAMT AS RAMT,A.RMTFEE AS RMTFEE,CASE WHEN SUBSTR(A.RBK,1,3) = SUBSTR(A.PBK,1,3) THEN 'Y' ELSE 'N' END AS ISCHECK";	
+					strSql = "select C.PBATNO AS PBATNO,A.PBK AS PBK,A.PACCT AS PACCT,C.PCSHCM AS PCSHCM,C.PCSHDT AS PCSHDT,";
+					strSql += "B.DEPT AS DEPT,";
+					/*strSql += "CASE WHEN SUBSTR(B.DFTGRP,1,3)='CSC' THEN 'CSC' ";//RE0225-新增匯費對應碼規則
+					strSql += "WHEN SUBSTR(B.DFTGRP,1,2)='NB' THEN 'NB' ";//RE0225-新增匯費對應碼規則
+					strSql += "WHEN SUBSTR(B.DFTGRP,1,3)='CLAM' THEN 'CLM' ";//RE0225-新增匯費對應碼規則
+					strSql += "WHEN SUBSTR(B.DFTGRP,1,2)='PA' THEN 'PA' ";//RE0225-新增匯費對應碼規則
+					strSql += "WHEN SUBSTR(B.DFTGRP,1,5)='Group' THEN 'GP' ";//RE0225-新增匯費對應碼規則
+					strSql += "WHEN SUBSTR(B.DFTGRP,1,3)='FIN' THEN 'FIN' ";//RE0225-新增匯費對應碼規則
+					strSql += "ELSE '' END AS DEPT,";//RE0225-新增匯費對應碼規則
+*/					strSql += "A.RAMT AS RAMT,A.RMTFEE AS RMTFEE,CASE WHEN SUBSTR(A.RBK,1,3) = SUBSTR(A.PBK,1,3) THEN 'Y' ELSE 'N' END AS ISCHECK";	
 			
 				}
 			}	
@@ -401,9 +456,15 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 			strSql += " LEFT OUTER JOIN USER B ON A.ENTRYUSR = B.USRID";
 			// Q80628 strSql += " LEFT OUTER JOIN (SELECT DISTINCT PPAYCURR,PDATE,PCSHCM,PCSHDT,PBATNO,BATSEQ,PMETHOD,PCFMDT2 FROM CAPPAYF) C ";
 			if (strPMethod.trim().equals("D")) {
-				strSql += " LEFT OUTER JOIN (SELECT DISTINCT PPAYCURR,PDATE,PCSHCM,PCSHDT,PBATNO,BATSEQ,PMETHOD,PCFMDT2,PDISPATCH FROM CAPPAYF) C ";
+				//strSql += " LEFT OUTER JOIN (SELECT DISTINCT PPAYCURR,PDATE,PCSHCM,PCSHDT,PBATNO,BATSEQ,PMETHOD,PCFMDT2,PDISPATCH FROM CAPPAYF) C ";
+				//RD0382:OIU
+				if("6".equals(company) || "0".equals(company)){
+					strSql += " LEFT OUTER JOIN (SELECT DISTINCT PPAYCURR,PDATE,PCSHCM,PCSHDT,PBATNO,BATSEQ,PMETHOD,PCFMDT2,PDISPATCH,PAY_COMPANY FROM CAPPAYF) C ";
+				} else{
+					strSql += " LEFT OUTER JOIN (SELECT DISTINCT PPAYCURR,PDATE,PCSHCM,PCSHDT,PBATNO,BATSEQ,PMETHOD,PCFMDT2,PDISPATCH FROM CAPPAYF) C ";
+				}				
 			} else {
-				strSql += " LEFT OUTER JOIN (SELECT DISTINCT PDATE,PCSHCM,PCSHDT,PBATNO,BATSEQ,PMETHOD,PCFMDT2,PDISPATCH FROM CAPPAYF) C ";
+				strSql += " LEFT OUTER JOIN (SELECT DISTINCT PDATE,PCSHCM,PCSHDT,PBATNO,BATSEQ,PMETHOD,PCFMDT2,PDISPATCH,PAY_COMPANY FROM CAPPAYF) C ";
 			}
 			strSql += " on C.PBATNO=A.BATNO and C.BATSEQ=A.SEQNO ";
 			strSql += " WHERE A.RAMT<>0";
@@ -426,19 +487,32 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 			}else{
 				strSql += " and C.PDISPATCH <> 'Y' ";
 			}
+			
+			//RD0382:OIU
+			if("6".equals(company)){
+				strSql += " AND C.PAY_COMPANY='OIU' ";
+			}else if("0".equals(company)){
+				strSql += " AND C.PAY_COMPANY<>'OIU' ";
+			}
+			
 			if (strPMethod.trim().equals("D")) {
 				strSql += " GROUP BY PPAYCURR,PBK,PACCT,PCSHCM,PCSHDT,DEPT,RPAYRATE";
 				strSql += " ORDER BY PPAYCURR,PBK,PACCT,PCSHCM,PCSHDT,DEPT";
-			} else {
+				/*strSql += " GROUP BY PPAYCURR,PBK,PACCT,PCSHCM,PCSHDT,DFTGRP,RPAYRATE";//RE0225-新增匯費對應碼規則
+				strSql += " ORDER BY PPAYCURR,PBK,PACCT,PCSHCM,PCSHDT,DFTGRP";//RE0225-新增匯費對應碼規則
+*/			} else {
 				if (!strPDispatch.trim().equals("Y")){//RC0036
 					strSql += ") T ";//TEST
 					strSql += " GROUP BY PBK,PACCT,PCSHCM,PCSHDT,DEPT";
-				    strSql += " ORDER BY PBK,PACCT,PCSHCM,PCSHDT,DEPT";
-				}
+					strSql += " ORDER BY PBK,PACCT,PCSHCM,PCSHDT,DEPT";
+					/*strSql += " GROUP BY PBK,PACCT,PCSHCM,PCSHDT,DFTGRP";//RE0225-新增匯費對應碼規則				    
+				    strSql += " ORDER BY PBK,PACCT,PCSHCM,PCSHDT,DFTGRP";//RE0225-新增匯費對應碼規則
+*/				}
 			}
 				
 			
 			System.out.println("strSql=" + strSql);
+			log.info("strSql=" + strSql);
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(strSql);
 
@@ -544,7 +618,7 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 					objAccCodeDetailM3.setStrActCd1("90ZZZ");
 					objAccCodeDetailM3.setStrActCd3("0000");
 					strActCode4_1 = "63";
-
+					//log.info("rs.getString(DEPT)是" + rs.getString("DEPT"));
 					if (rs.getString("DEPT") != null) {
 						strDEPT = rs.getString("DEPT");
 						if (strDEPT.trim().equals("NB")) {
@@ -561,7 +635,9 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 						if (strDEPT.trim().equals("PA")) {
 							strActCode4_1 = "43";
 						}
-						if (strDEPT.trim().equals("ACCT")) {
+						//RD0571:新增FIN 
+						if (strDEPT.trim().equals("ACCT")
+							|| strDEPT.trim().equals("FIN")) {
 							strActCode4_1 = "43";
 						}
 						if (strDEPT.trim().equals("CLM")) {
@@ -577,13 +653,18 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 					}
 
 					// 付款幣別 for 規則 : 外幣保單, 台幣付款--> TW, 其餘-->00 , 目前只會匯費會這樣
-					if (!strCurrency.trim().equals("NT")) {
-						strActCode4_2 = "TW";
-					} else {
+					if ("6".equals(company)) {
 						strActCode4_2 = "00";
+					}else{
+						if (!strCurrency.trim().equals("NT")) {
+							strActCode4_2 = "TW";
+						} else {
+							strActCode4_2 = "00";
+						}
 					}
+					
 					objAccCodeDetailM3.setStrActCd4(strActCode4_1 + strActCode4_2);
-					//log.info("setStrActCd4是" + strActCode4_1 + strActCode4_2);
+					log.info("setStrActCd4是" + strActCode4_1 + strActCode4_2 + ",company:" + company);
 
 					if (!strCurrency.trim().equals("NT")) {
 						objAccCodeDetailM3.setStrActCd5(disbBean.getETableDesc("CURRA", strCurrency.trim()));
@@ -604,15 +685,14 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 					}
 
 					if (!strCurrency.trim().equals("NT")) {
-						//RD0382:OIU,要在這裡新增,AA欄位
-						/*if(OIU){
+						if("6".equals(company)){
 							objAccCodeDetailM3.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + "OIU" + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()));
-						}else{*/
+						}else{
 							objAccCodeDetailM3.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()));
-						//}						
+						}																		
 						//log.info("iAmtRMTFEE是" + iAmtRMTFEE + ",setStrSlipNo是" + DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()));
 					} else {
-						objAccCodeDetailM3.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode);
+						objAccCodeDetailM3.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode);						
 						//log.info("iAmtRMTFEE是" + iAmtRMTFEE + ",setStrSlipNo是" + DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode);
 					}
 
@@ -629,8 +709,14 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 						iConverRate2 = disbBean.getERRate(strCurrency.trim(), DateTemp1, "B");
 						iConverRate = 1 / iConverRate2;
 						log.info("DateTemp1(B)是" + DateTemp1 + ",iConverRate是" + iConverRate + ",iConverRate2是" + iConverRate2);
-						objAccCodeDetailM3.setStrConverRate(df3.format(iConverRate));
-						objAccCodeDetailM3.setStrDesc(strDesc_1 + "(Rate 1:" + df3.format(iConverRate2) + ")");
+						
+						if("6".equals(company)){
+							objAccCodeDetailM3.setStrConverRate("1");
+							objAccCodeDetailM3.setStrDesc(strDesc_1);
+						}else{
+							objAccCodeDetailM3.setStrConverRate(df3.format(iConverRate));
+							objAccCodeDetailM3.setStrDesc(strDesc_1 + "(Rate 1:" + df3.format(iConverRate2) + ")");
+						}						
 					} else {
 						objAccCodeDetailM3.setStrConverRate(df3.format(1));
 						objAccCodeDetailM3.setStrDesc(strDesc_1);
@@ -778,11 +864,12 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 					alReturn.add(objAccCodeDetailM61);
 				}
 				
-			}
+			}//急件的if
 			
 			// 支付金額彙總成一筆，且為非急件
+			log.info("iPayAmt_TOT_1是" + iPayAmt_TOT_1 + ",strPDispatch是" + strPDispatch.trim());
 			if (iPayAmt_TOT_1 > 0 && !strPDispatch.trim().equals("Y")) {
-
+				
 				List<DISBAccCodeDetailVO> alDwnDetails2 = new ArrayList<DISBAccCodeDetailVO>();
 
 				if (strPMethod.trim().trim().equals("B")) {
@@ -797,10 +884,12 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 			rs.close();
 
 		} catch (SQLException ex) {
+			log.error(ex.getMessage(),ex);
 			System.err.println("ex" + ex);
 			request.setAttribute("txtMsg", "查詢失敗" + ex);
 			alReturn = null;
 		} catch (Exception ex) {
+			log.error(ex.getMessage(),ex);
 			System.err.println("DISBAccFinRmt Exception=" + ex.getMessage());
 		} finally {
 			try {
@@ -987,6 +1076,7 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 		strCurrency = CURRENCY;
 		
 		objAccCodeDetailM.setStrCurr(disbBean.getETableDesc("CURRA", strPayCurr.trim()));//TEST 版本還原
+		
 		objAccCodeDetailM.setStrActCd2("271001");
 		objAccCodeDetailM.setStrActCd1("00ZZZ");
 		objAccCodeDetailM.setStrActCd3("0000");
@@ -1013,7 +1103,12 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 		}
 
 		if (!strCurrency.trim().equals("NT")) {
-			objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()) + "   ");
+			//RD0382:OIU
+			if("6".equals(company)){
+				objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + "OIU" + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()) + "   ");
+			}else{
+				objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()) + "   ");
+			}			
 			//log.info("setStrSlipNo是" + DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()) + "   ");
 		} else {
 			objAccCodeDetailM.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + "      ");
@@ -1037,8 +1132,16 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 		// 貸方 --匯費 , 外幣匯款
 		if (RMTFEE > 0) { // 匯費 >0 才寫分錄
 			DISBAccCodeDetailVO objAccCodeDetailM4 = new DISBAccCodeDetailVO();
-			objAccCodeDetailM4.setStrCurr(disbBean.getETableDesc("CURRA", "NT"));
-			objAccCodeDetailM4.setStrActCd2("101720");
+			
+			objAccCodeDetailM4.setStrCurr(disbBean.getETableDesc("CURRA", "NT"));		
+			//RD0382:OIU			
+			if("6".equals(company)){
+				objAccCodeDetailM4.setStrActCd2("101721");
+			}else{
+				
+				objAccCodeDetailM4.setStrActCd2("101720");
+			}	
+			
 			objAccCodeDetailM4.setStrActCd1("00ZZZ");
 
 			strBankCode = PBK.substring(0, 3);
@@ -1057,17 +1160,23 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 				// R80413 strActCode3 =
 				// disbBean.getACTCDFinRmt(strBankCode,PACCT);
 				strActCode3 = disbBean.getACTCDFinRmt(strBankCode, PACCT, strPayCurr); // R80413
+				log.info("strActCode3是" + strActCode3);
 				objAccCodeDetailM4.setStrActCd3(strBankCode + strActCode3.substring(12, 13));
 				//log.info("setStrActCd3是" + strBankCode + strActCode3.substring(12, 13));
 			}
 
 			strActCode4_1 = "00";
 			// R80338 付款幣別 for 規則 : 外幣保單, 台幣付款--> TW, 其餘-->00 , 目前只會匯費會這樣
-			if (!strCurrency.trim().equals("NT")) {
-				strActCode4_2 = "TW";
-			} else {
+			if("6".equals(company)){
 				strActCode4_2 = "00";
+			}else{
+				if (!strCurrency.trim().equals("NT")) {
+					strActCode4_2 = "TW";
+				} else {
+					strActCode4_2 = "00";
+				}
 			}
+			
 			objAccCodeDetailM4.setStrActCd4(strActCode4_1 + strActCode4_2);
 			log.info("setStrActCd4是" + strActCode4_1 + strActCode4_2);
 			if (!strCurrency.trim().equals("NT")) {
@@ -1089,7 +1198,11 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 			}
 
 			if (!strCurrency.trim().equals("NT")) {
-				objAccCodeDetailM4.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()) + "   ");
+				if("6".equals(company)){
+					objAccCodeDetailM4.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + "OIU" + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()) + "   ");
+				}else{
+					objAccCodeDetailM4.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()) + "   ");
+				}				
 				//log.info("setStrSlipNo是" + DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()) + "   ");
 			} else {
 				objAccCodeDetailM4.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + "      ");
@@ -1106,8 +1219,14 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 				iConverRate2 = disbBean.getERRate(strCurrency.trim(), DateTemp1, "B");//TEST版本還原
 				iConverRate = 1 / iConverRate2;
 				log.info("DateTemp1(B)是" + DateTemp1 + ",iConverRate是" + iConverRate + ",iConverRate2是" + iConverRate2);
-				objAccCodeDetailM4.setStrConverRate(df3.format(iConverRate));
-				objAccCodeDetailM4.setStrDesc(strDesc_1 + "(Rate 1:" + df3.format(iConverRate2) + ")");
+				
+				if("6".equals(company)){
+					objAccCodeDetailM4.setStrConverRate("1");
+					objAccCodeDetailM4.setStrDesc(strDesc_1);
+				}else {
+					objAccCodeDetailM4.setStrConverRate(df3.format(iConverRate));
+					objAccCodeDetailM4.setStrDesc(strDesc_1 + "(Rate 1:" + df3.format(iConverRate2) + ")");
+				}				
 			} else {
 				objAccCodeDetailM4.setStrConverRate(df3.format(1));
 				objAccCodeDetailM4.setStrDesc(strDesc_1);
@@ -1125,7 +1244,7 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 		strPayCurr = PPAYCURR;
 		
 		objAccCodeDetailM2.setStrCurr(disbBean.getETableDesc("CURRA", strPayCurr.trim()));//TEST 版本還原
-		
+				
 		if (strPayCurr.trim().equals("NT") || strPayCurr.trim().equals("")) {
 			strActCode2 = disbBean.getACTCD2(disbBean.getETableDesc("CURRA", "NT"));
 		} else {
@@ -1165,7 +1284,11 @@ public class DISBAccFinRmtServlet extends InitDBServlet {
 		}
 
 		if (!strCurrency.trim().equals("NT")) {
-			objAccCodeDetailM2.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()) + "   ");
+			if("6".equals(company)){
+				objAccCodeDetailM2.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + "OIU" + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()) + "   ");
+			}else{
+				objAccCodeDetailM2.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()) + "   ");
+			}			
 			//log.info("setStrSlipNo是" + DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + disbBean.getETableDesc("CURRA", strCurrency.trim()) + "   ");
 		} else {
 			objAccCodeDetailM2.setStrSlipNo(DateTemp.substring(2, 4) + DateTemp.substring(4, 6) + DateTemp.substring(6, 8) + strSlipCode + "      ");

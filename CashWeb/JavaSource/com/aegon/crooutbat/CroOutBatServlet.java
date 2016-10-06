@@ -82,9 +82,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
+
 public class CroOutBatServlet extends InitDBServlet {
        
 	private static final long serialVersionUID = 1464047546454134796L;
+	
+	private Logger log = Logger.getLogger(getClass());
 
 	public void init() throws ServletException {
 		super.init();
@@ -101,7 +105,7 @@ public class CroOutBatServlet extends InitDBServlet {
 		HttpSession session = request.getSession(true);
 		
 		/* 接收前端的參數 */
-		String strEAEGDT = (request.getParameter("txtEAEGDT") == null) ? "" : request.getParameter("txtEAEGDT");
+		String strEAEGDT = (request.getParameter("txtEAEGDT") == null) ? "" : request.getParameter("txtEAEGDT");//全球人壽入帳日
 		int iEAEGDT = (strEAEGDT.equals("")) ? 0 : Integer.parseInt(strEAEGDT);
 		String strCROTYPE = (request.getParameter("selCROTYPE") == null) ? "" : request.getParameter("selCROTYPE");
 		String strPOCURR = (request.getParameter("txtPOCURR") == null) ? "" : request.getParameter("txtPOCURR");
@@ -113,7 +117,8 @@ public class CroOutBatServlet extends InitDBServlet {
 
 		// CAPCSHFB 預備核銷檔
 		String strSelectCAPCSHFBSQL = " SELECT CBKCD,CATNO,CBKRMD,CAEGDT,CSFBCURR,SUM(CROAMT) as sumCROAMT FROM CAPCSHFB ";
-		strSelectCAPCSHFBSQL += "WHERE CRODAY=0 AND CROSRC NOT IN ('2','3','4','8','F','G','H') AND CAEGDT=" + iEAEGDT;
+		//strSelectCAPCSHFBSQL += "WHERE CRODAY=0 AND CROSRC NOT IN ('2','3','4','8','F','G','H') AND CAEGDT=" + iEAEGDT;
+		strSelectCAPCSHFBSQL += "WHERE CRODAY=0 AND (CROSRC NOT IN ('2','3','4','8','F','G','H') OR (CROSRC='4' AND CSFBAU='CAP1185BW')) AND CAEGDT=" + iEAEGDT;//EE0090:20160729,新增全國繳費網為可銷帳
 		if(strCROTYPE.equals("G")) {
 			strSelectCAPCSHFBSQL += " AND CROSRC='9' ";
 		} else {
@@ -124,8 +129,10 @@ public class CroOutBatServlet extends InitDBServlet {
 		strSelectCAPCSHFBSQL += "group by CBKCD,CATNO,CBKRMD,CAEGDT,CSFBCURR ";
 		strSelectCAPCSHFBSQL += "order by CBKCD,CATNO,CBKRMD,CAEGDT,CSFBCURR " ;
 		System.out.println("strSelectCAPCSHFBSQL="+strSelectCAPCSHFBSQL);
+		log.info("strSelectCAPCSHFBSQL="+strSelectCAPCSHFBSQL);
 
-		String strQryCAPCSHFBSQL = " SELECT * FROM CAPCSHFB WHERE CRODAY=0 and CROSRC NOT IN ('2','3','4','8','F','G','H') and CBKCD=? AND CATNO=? AND CSFBCURR=? AND CBKRMD=? ";
+		//String strQryCAPCSHFBSQL = " SELECT * FROM CAPCSHFB WHERE CRODAY=0 and CROSRC NOT IN ('2','3','4','8','F','G','H') and CBKCD=? AND CATNO=? AND CSFBCURR=? AND CBKRMD=? ";
+		String strQryCAPCSHFBSQL = " SELECT * FROM CAPCSHFB WHERE CRODAY=0 and (CROSRC NOT IN ('2','3','4','8','F','G','H') OR (CROSRC='4' AND CSFBAU='CAP1185BW')) and CBKCD=? AND CATNO=? AND CSFBCURR=? AND CBKRMD=? "; //EE0090:20160729,新增全國繳費網為可銷帳
 		if(strCROTYPE.equals("G")) {
 			strQryCAPCSHFBSQL += " AND CROSRC='9' ";
 		} else {
@@ -155,6 +162,7 @@ public class CroOutBatServlet extends InitDBServlet {
 		}
 		strQryByCertificateSQL += "ORDER BY a.EBKCD,a.EATNO,a.EBKRMD,d.FBMNO,a.CSHFCURR,a.ENTAMT,b.CROAMT ";
 		System.out.println("strQryByCertificateSQL="+strQryByCertificateSQL);
+		log.info("strQryByCertificateSQL="+strQryByCertificateSQL);
 
 		// UPDATE CAPCSHF 登帳檔
 		String strUpdateCAPCSHFSQL = " UPDATE CAPCSHF SET EAEGDT=?,ECRDAY=?,CSHFUU=?,CSHFUD=?,CSHFUT=?,CSHFPOCURR=?,CROTYPE=? "
@@ -198,6 +206,7 @@ public class CroOutBatServlet extends InitDBServlet {
 			//處理GTMS新增時間重覆問題
 			try {
 				stmtGTMS = conn.createStatement();
+				log.info("整批銷帳(處理GTMS新增時間重覆問題)step 1-1(strQueryGTMS):" + strQueryGTMS);
 				rstGTMS = stmtGTMS.executeQuery(strQueryGTMS);
 				if(rstGTMS.next()) {
 					isDuplicate = true;
@@ -206,7 +215,9 @@ public class CroOutBatServlet extends InitDBServlet {
 				stmtGTMS.close();
 				if(isDuplicate) {
 					stmtGTMS = conn.createStatement();
+					log.info("整批銷帳(處理GTMS新增時間重覆問題,isDuplicate=true)step 1-2(strQueryRRNGTMS):" + strQueryRRNGTMS);
 					rstGTMS = stmtGTMS.executeQuery(strQueryRRNGTMS);
+					log.info("整批銷帳(處理GTMS新增時間重覆問題,isDuplicate=true)step 1-3(strUpdateGTMS):" + strUpdateGTMS);
 					pstmtGTMSU = conn.prepareStatement(strUpdateGTMS);
 					String  strRRN = "";
 					String  strAT = "";
@@ -234,6 +245,7 @@ public class CroOutBatServlet extends InitDBServlet {
 
 			//處理保單幣別為空白
 			try {
+				log.info("整批銷帳(處理保單幣別為空白)step 2(strUpdatePOCURR):" + strUpdatePOCURR);
 				pstmtPOCURR = conn.prepareStatement(strUpdatePOCURR);
 				pstmtPOCURR.setInt(1, iEAEGDT);
 				pstmtPOCURR.executeUpdate();
@@ -261,6 +273,7 @@ public class CroOutBatServlet extends InitDBServlet {
 
 			//銷帳處理 BY 憑證
 			stmtMT = conn.createStatement();
+			log.info("整批銷帳(銷帳處理 BY 憑證)step 3(strQryByCertificateSQL):" + strQryByCertificateSQL);
 			rstMT = stmtMT.executeQuery(strQryByCertificateSQL);
 			while(rstMT.next()) 
 			{
@@ -327,6 +340,7 @@ public class CroOutBatServlet extends InitDBServlet {
 					pstmtFU.setString(13, rstMT.getString("CSHFAU"));
 					pstmtFU.setInt(14, rstMT.getInt("CSHFAD"));
 					pstmtFU.setInt(15, rstMT.getInt("CSHFAT"));
+					log.info("整批銷帳step 4(strUpdateCAPCSHFSQL):" + strUpdateCAPCSHFSQL);
 					pstmtFU.executeUpdate();
 
 					for(int i=0; i<tmpList.size(); i++) 
@@ -348,12 +362,14 @@ public class CroOutBatServlet extends InitDBServlet {
 						pstmtFBU.setString(12, fbVo.getCSFBAU());
 						pstmtFBU.setInt(13, fbVo.getCSFBAD());
 						pstmtFBU.setInt(14, fbVo.getCSFBAT());
+						log.info("整批銷帳step 5(strUpdateCAPCSHFBSQL):" + strUpdateCAPCSHFBSQL);
 						pstmtFBU.executeUpdate();
 
 						pstmtDU.clearParameters();
 						pstmtDU.setInt(1, iSeq);
 						pstmtDU.setString(2, fbVo.getCSFBRECTNO());
 						pstmtDU.setInt(3, fbVo.getCSFBRECSEQ());
+						log.info("整批銷帳step 6(strUpdateORGNFBDSQL):" + strUpdateORGNFBDSQL);
 						pstmtDU.executeUpdate();
 
 						iSeq++;
@@ -378,6 +394,7 @@ public class CroOutBatServlet extends InitDBServlet {
 				pstmtQF.setString(2, CommonUtil.AllTrim(rstFB.getString("CATNO")));
 				pstmtQF.setString(3, CommonUtil.AllTrim(rstFB.getString("CSFBCURR")));
 				pstmtQF.setInt(4, rstFB.getInt("CBKRMD"));
+				log.info("整批銷帳step 7(strQryCAPCSHFSQL):" + strQryCAPCSHFSQL);
 				rstQF = pstmtQF.executeQuery();
 				while(rstQF.next())
 				{
@@ -388,6 +405,7 @@ public class CroOutBatServlet extends InitDBServlet {
 					pstmtQFB.setString(2, rstQF.getString("EATNO"));
 					pstmtQFB.setString(3, rstQF.getString("CSHFCURR"));
 					pstmtQFB.setInt(4, rstQF.getInt("EBKRMD"));
+					log.info("整批銷帳step 8(strQryCAPCSHFBSQL):" + strQryCAPCSHFBSQL);
 					rstQFB = pstmtQFB.executeQuery();
 
 					dAmtFB = 0.00;
@@ -428,6 +446,7 @@ public class CroOutBatServlet extends InitDBServlet {
 							pstmtFU.setString(13, rstQF.getString("CSHFAU"));
 							pstmtFU.setInt(14, rstQF.getInt("CSHFAD"));
 							pstmtFU.setInt(15, rstQF.getInt("CSHFAT"));
+							log.info("整批銷帳step 9(strUpdateCAPCSHFSQL):" + strUpdateCAPCSHFSQL);
 							pstmtFU.executeUpdate();
 
 							pstmtFBU.clearParameters();
@@ -445,12 +464,14 @@ public class CroOutBatServlet extends InitDBServlet {
 							pstmtFBU.setString(12, rstQFB.getString("CSFBAU"));
 							pstmtFBU.setInt(13, rstQFB.getInt("CSFBAD"));
 							pstmtFBU.setInt(14, rstQFB.getInt("CSFBAT"));
+							log.info("整批銷帳step 10(strUpdateCAPCSHFBSQL):" + strUpdateCAPCSHFBSQL);
 							pstmtFBU.executeUpdate();
 
 							pstmtDU.clearParameters();
 							pstmtDU.setInt(1, iSeq);
 							pstmtDU.setString(2, rstQFB.getString("CSFBRECTNO"));
 							pstmtDU.setInt(3, rstQFB.getInt("CSFBRECSEQ"));
+							log.info("整批銷帳step 11(strUpdateORGNFBDSQL):" + strUpdateORGNFBDSQL);
 							pstmtDU.executeUpdate();
 
 							iSeq++;
@@ -506,6 +527,7 @@ public class CroOutBatServlet extends InitDBServlet {
 						pstmtFU.setString(13, rstQF.getString("CSHFAU"));
 						pstmtFU.setInt(14, rstQF.getInt("CSHFAD"));
 						pstmtFU.setInt(15, rstQF.getInt("CSHFAT"));
+						log.info("整批銷帳step 12(strUpdateCAPCSHFSQL):" + strUpdateCAPCSHFSQL);
 						pstmtFU.executeUpdate();
 
 						for(int i=0; i<tmpList.size(); i++) {
@@ -526,12 +548,14 @@ public class CroOutBatServlet extends InitDBServlet {
 							pstmtFBU.setString(12, fbVo.getCSFBAU());
 							pstmtFBU.setInt(13, fbVo.getCSFBAD());
 							pstmtFBU.setInt(14, fbVo.getCSFBAT());
+							log.info("整批銷帳step 13(strUpdateCAPCSHFBSQL):" + strUpdateCAPCSHFBSQL);
 							pstmtFBU.executeUpdate();
 
 							pstmtDU.clearParameters();
 							pstmtDU.setInt(1, iSeq);
 							pstmtDU.setString(2, fbVo.getCSFBRECTNO());
 							pstmtDU.setInt(3, fbVo.getCSFBRECSEQ());
+							log.info("整批銷帳step 14(strUpdateORGNFBDSQL):" + strUpdateORGNFBDSQL);
 							pstmtDU.executeUpdate();
 
 							iSeq++;

@@ -11,6 +11,7 @@ import javax.servlet.http.*;
 import com.aegon.comlib.*;
 import com.aegon.disb.util.DISBBean;
 import com.aegon.disb.util.DISBPaymentDetailVO;
+import org.apache.log4j.Logger;
 
 /**
  * System   :
@@ -92,6 +93,8 @@ import com.aegon.disb.util.DISBPaymentDetailVO;
  */
 
 public class DISBPMaintainServlet extends HttpServlet {
+	
+	private Logger logger = Logger.getLogger(getClass());
 
 	private GlobalEnviron globalEnviron = null;
 	private DbFactory dbFactory = null;

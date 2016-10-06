@@ -26,6 +26,7 @@ import com.aegon.comlib.GlobalEnviron;
 import com.aegon.disb.util.DISBBean;
 import com.aegon.disb.util.DISBPaymentDetailVO;
 import com.aegon.disb.util.LapsePaymentVO;
+import org.apache.log4j.Logger;
 
 /**
  * System   :
@@ -141,6 +142,8 @@ import com.aegon.disb.util.LapsePaymentVO;
  */
 
 public class DISBRemitFailedServlet extends HttpServlet {
+	
+	private Logger log = Logger.getLogger(getClass());
 
 	private GlobalEnviron globalEnviron = null;
 	private DbFactory dbFactory = null;
@@ -177,7 +180,7 @@ public class DISBRemitFailedServlet extends HttpServlet {
 			strAction = strAction.trim();
 		else
 			strAction = "";
-
+		log.info("strAction:" + strAction);
 		try {
 			if (strAction.equals("I"))
 				inquiryDB(request, response);
@@ -220,6 +223,7 @@ public class DISBRemitFailedServlet extends HttpServlet {
 		String strPCSHCM = "";	//R80391出納確認日
 		int iPCSHCM = 0;		//R80391出納確認日
 		String strBRDate = "" ;//R10134 銀行退匯回存日期
+		String company = ""; //RD0382:OIU
 
 		//R60550
 		String strFEECURR = "";
@@ -316,6 +320,14 @@ public class DISBRemitFailedServlet extends HttpServlet {
 				strPBAccount = "";
 			}
 		}
+		
+		//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}
 
 		strSql = "select A.PNO,A.PNOH,A.PAMT,A.PSNAME,A.PDATE,A.PNAME,A.PID,A.PCURR,A.PMETHOD,A.PDESC";
 		strSql += ",A.PSRCGP,A.PSRCCODE,A.PSTATUS,A.PVOIDABLE,A.PDISPATCH,A.PBACCOUNT,A.PBBANK,A.PRACCOUNT";
@@ -354,11 +366,18 @@ public class DISBRemitFailedServlet extends HttpServlet {
 
 		if (!strCurrency.equals(""))
 			strSql += " AND A.PCURR = '" + strCurrency + "'";
+		
+		//RD0382:OIU
+		if("6".equals(company)){
+			strSql += " AND A.PAY_COMPANY = 'OIU' ";
+		}else if("0".equals(company)){
+			strSql += " AND A.PAY_COMPANY <> 'OIU' ";
+		}
 
 		strSql += "	ORDER BY A.PAMT ";
 
 		System.out.println(" inside DISBRemitFailedServlet.inquiryDB()--> strSql =" + strSql);
-
+		log.info(" inside DISBRemitFailedServlet.inquiryDB()--> strSql =" + strSql);
 		try {
 			con = dbFactory.getAS400Connection("DISBPMaintainServlet.inqueryDB()");
 			stmt = con.createStatement();
@@ -798,6 +817,9 @@ public class DISBRemitFailedServlet extends HttpServlet {
 			strRemitFailDate = "";
 		if (!strRemitFailDate.equals(""))
 			iRemitFailDate = Integer.parseInt(strRemitFailDate);
+		
+		//RD0382:OIU
+		String company = request.getParameter("selCompany");
 
 		strSql = "select A.PNO,A.PNOH,A.PAMT,A.PSNAME,A.PDATE,A.PNAME,A.PID,A.PCURR,A.PMETHOD,A.PDESC,";
 		strSql += "A.PSRCGP,A.PSRCCODE,A.PSTATUS,A.PVOIDABLE,A.PDISPATCH,A.PBACCOUNT,A.PBBANK,A.PRACCOUNT,";
@@ -833,11 +855,19 @@ public class DISBRemitFailedServlet extends HttpServlet {
 
 		if(!strRemitFailDate.equals(""))
 			strSql += " AND A.REMITFAILD=" + iRemitFailDate;
+		
+		//RD0382:OIU
+		if("6".equals(company)){
+			strSql += " AND A.PAY_COMPANY = 'OIU' ";
+		}else if("0".equals(company)){
+			strSql += " AND A.PAY_COMPANY <> 'OIU' ";
+		}
 
 		strSql += "	ORDER BY A.PAMT ";
 
 		System.out.println(" inside DISBRemitFailedServlet.inquiryRemitFailed()--> strSql =" + strSql);
-
+		log.info(" inside DISBRemitFailedServlet.inquiryRemitFailed()--> strSql =" + strSql);
+		
 		try {
 			con = dbFactory.getAS400Connection("DISBPMaintainServlet.inquiryRemitFailed()");
 			stmt = con.createStatement();
@@ -1004,7 +1034,7 @@ public class DISBRemitFailedServlet extends HttpServlet {
 								pstmtTmp.setString(8, strRemitFailDesc);
 								pstmtTmp.setInt(9, iBRemitFailDate);
 								pstmtTmp.setString(10, strPNO);
-	
+								log.info("strSql:" + strSql + ";UPDDT=" + iUpdDate + ",UPDTM=" + iUpdTime + ",UPDUSR=" + strLogonUser);
 								if (pstmtTmp.executeUpdate() != 1) {
 									strReturnMsg = "退匯處理失敗";
 									request.setAttribute("txtMsg", "退匯處理失敗");

@@ -195,6 +195,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 		String PCURR = request.getParameter("selCurrency");// R70477 保單幣別
 		// String ProjectCode = request.getParameter("selProjectCode");//R80338 // 專案碼
 		String payRule = request.getParameter("txtPayRule"); // R00386 付款規則
+		String company = request.getParameter("selCompany"); // RD0382:OIU
 
 		Vector disbPaymentDetailVec = null;
 		DISBRemitDisposeDAO dao = null;
@@ -206,7 +207,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 					Integer.parseInt(StringTool.removeChar(pDate2, '/')),
 					pDispatch,
 					// R80338 strCurrency,SYMBOL,BeforePINVDT,PRBank);
-					strCurrency, SYMBOL, PRBank, payRule); // R80338
+					strCurrency, SYMBOL, PRBank, payRule, company); // R80338
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -225,6 +226,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 		request.setAttribute("selCurrency", PCURR); // R70477
 		request.setAttribute("payRule", payRule); // R00386
 		request.setAttribute("pDispatch", pDispatch); // RC0036
+		request.setAttribute("SELCompany", company); //RE0189:凱基OIU
 	}
 
 	private void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -348,6 +350,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 						rmtVO.setPBK(PBANK.substring(0, 7));// 付款銀行
 						rmtVO.setPACCT(PBANK.substring(8));// 付款帳號
 						rmtVO.setRAMT(wsAMT);// 金額x(13)
+						log.info("rmtVO.setRMTFEE設定手續費");
 						rmtVO.setRMTFEE((int) disBBean.getPFee(payment.getStrPBBank().trim(), wsBANK, wsAMT, payment.getStrPMethod().trim(), "", ""));// 匯費
 						rmtVO.setENTRYDT(updateDate);// 輸入日期
 						rmtVO.setENTRYTM(updateTime);// 輸入時間
@@ -408,6 +411,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 			rmtVO.setPBK(PBANK.substring(0, 7));// 付款銀行
 			rmtVO.setPACCT(PBANK.substring(8));// 付款帳號
 			rmtVO.setRAMT(wsAMT);// 金額x(13)
+			log.info("rmtVO.setRMTFEE設定手續費");
 			rmtVO.setRMTFEE((int) disBBean.getPFee(PBANK.substring(0, 7), wsBANK, wsAMT, PMETHOD, "", ""));// 匯費
 			rmtVO.setENTRYDT(updateDate);// 輸入日期
 			rmtVO.setENTRYTM(updateTime);// 輸入時間
@@ -464,6 +468,16 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 		String PBANK = request.getParameter("PBBANK").trim();// 付款銀行,付款帳號
 		String PMETHOD = request.getParameter("PMETHOD").trim();// 付款方式
 		DecimalFormat df = new DecimalFormat("###,###,##0.0000");
+		
+		String company = "";//RD0382:OIU
+		
+		//RD0382:OIU
+		company = request.getParameter("selCompany");
+		if (company != null){
+			company = company.trim();
+		}else{
+			company = "";
+		}
 
 		/* R60747 增加出納確認日欄位 Start */
 		String PCSHCM = request.getParameter("txtPCSHCM");
@@ -518,7 +532,8 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 		double wsTEMPamt = 0;// R70455
 		boolean wsFcTri = false;
 		boolean currFcTri = false;
-
+		String oiuFlag = "";
+		String swiftFlag = "";
 		try {
 			LapsePaymentVO lapsePayVO = null;
 			List listlapsePay = new ArrayList();
@@ -538,7 +553,14 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 				payment.setIPCSHCM(iPCSHCM);/* R60747 增加出納確認日欄位 */
 				payment.setStrPCheckNO("");//RC0036
 				currFcTri = (payment.getStrPPlant().equals(" ") && !payment.getStrPCurr().equals("NT")); // R00386 美元傳統型保單
-
+				//log.info("index是" + index);
+				try{
+					oiuFlag = payment.getCompany().trim();
+					swiftFlag = payment.getStrPSWIFT().trim();
+				}catch(Exception e){
+					log.error(e.getMessage(), e);
+				}
+				
 				if (index == 0) {
 					ISeqNo += 1;// 序號
 
@@ -610,19 +632,35 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 						} else {
 							wsSWITCH = "";
 						}
+						//log.info("wsPAYFEEWAY是" + wsPAYFEEWAY);
 						if (wsPAYFEEWAY.equals("OUR") || wsPAYFEEWAY.equals("SHA")) {
 							try {
+								//log.info("payment.getCompany()是" + payment.getCompany() + ",PBANK.substring(0, 3)是" + PBANK.substring(0, 3));
 								//RD0440:新增外幣指定銀行-台灣銀行
 								if(PBANK.substring(0, 3).equals("004")) {
 									//rmtVO.setRMTFEE((int) disBBean.getPayFee004(payment.getStrPBBank(), wsBANK, wsACCOUNT, wsAMT, PCSHCM));
+									//log.info("rmtVO.setRMTFEE設定手續費");
 									rmtVO.setRMTFEE((int) disBBean.getPayFee004(payment.getStrPBBank(), wsBANK, wsACCOUNT, wsAMT, PCSHCM, wsPPAYCURR, wsRPAYRATE));
+								}else if(PBANK.substring(0, 3).equals("017") && "OIU".equals(payment.getCompany().trim())){
+									//RD0382:OIU,兆豐
+									rmtVO.setRMTFEE((int) disBBean.getPayFeeOIU(payment.getStrPBBank(), wsBANK, wsACCOUNT, wsAMT, payment.getStrPSWIFT()));
+								}else if(PBANK.substring(0, 3).equals("812") && "OIU".equals(payment.getCompany().trim())){
+									//RD0382:OIU,台新
+									rmtVO.setRMTFEE((int) disBBean.getPayFeeOIU(payment.getStrPBBank(), wsBANK, wsACCOUNT, wsAMT, payment.getStrPSWIFT()));
+								}else if(PBANK.substring(0, 3).equals("809") && "OIU".equals(payment.getCompany().trim())){
+									//RE0189:OIU,凱基
+									rmtVO.setRMTFEE((int) disBBean.getPayFeeOIU(payment.getStrPBBank(), wsBANK, wsACCOUNT, wsAMT, payment.getStrPSWIFT()));
 								}else{
+									//log.info("rmtVO.setRMTFEE設定手續費");
 									rmtVO.setRMTFEE((int) disBBean.getPayFee(payment.getStrPBBank(), wsBANK, wsACCOUNT));
 								}	
 							} catch (RemittanceFeeNotFoundException e) {
+								/*log.info("RemittanceFeeNotFoundException");
+								log.info("rmtVO.setRMTFEE設定手續費");*/
 								rmtVO.setRMTFEE((int) disBBean.getPFee(payment.getStrPBBank().trim(), wsBANK, wsAMT, payment.getStrPMethod().trim(), wsSWIFT, wsSWITCH));
 							}
 						} else {
+							//log.info("rmtVO.setRMTFEE設定手續費");
 							rmtVO.setRMTFEE((int) 0);
 						}
 						rmtVO.setENTRYDT(updateDate);// 輸入日期
@@ -636,6 +674,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 							// wsRBENFEE = (double)
 							// disBBean.getPFeeBEN(payment.getStrPBBank().trim(),
 							// wsRPAYRATE);
+							//log.info("rmtVO.setRMTFEE設定手續費");
 							rmtVO.setRMTFEE(0);
 							wsRBENFEE = 0;
 						}
@@ -643,8 +682,11 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 						//QA0281 付款銀行為一銀時有手續費產生
 						if(PBANK.substring(0, 3).equals("007")) {
 							try {
+								//log.info("rmtVO.setRMTFEE設定手續費");
 								rmtVO.setRMTFEE((int) disBBean.getPayFee(payment.getStrPBBank(), wsBANK, wsACCOUNT));
 							} catch (RemittanceFeeNotFoundException e) {
+								/*log.info("RemittanceFeeNotFoundException");
+								log.info("rmtVO.setRMTFEE設定手續費");*/
 								rmtVO.setRMTFEE((int) disBBean.getPFee(payment.getStrPBBank().trim(), wsBANK, wsAMT, payment.getStrPMethod().trim(), wsSWIFT, wsSWITCH));
 							}
 						}
@@ -663,6 +705,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 						rmtVO.setRBKCOUNTRY(wsPCOUNTRY);// 國別
 						// System.out.println("0wsRPAYAMT="+wsRPAYAMT);
 						/* 前面相同的加總資料 */
+						//log.info("wsPPAYCURR是" + wsPPAYCURR);
 						dao.insertRMTF(rmtVO);
 
 						rmtVO = new CaprmtfVO();
@@ -775,16 +818,34 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 			if (wsPAYFEEWAY.equals("OUR") || wsPAYFEEWAY.equals("SHA")) {
 				try {
 					//RD0440:新增外幣指定銀行-台灣銀行
+					//log.info("oiuFlag是" + oiuFlag.trim() + ",swiftFlag是" + swiftFlag.trim() + ",PBANK.substring(0, 3)是" + PBANK.substring(0, 3));
 					if(PBANK.substring(0, 3).equals("004")) {
 						//rmtVO.setRMTFEE((int) disBBean.getPayFee004(PBANK.substring(0, 7), wsBANK, wsACCOUNT, wsAMT, PCSHCM));
+						//log.info("rmtVO.setRMTFEE設定手續費");
 						rmtVO.setRMTFEE((int) disBBean.getPayFee004(PBANK.substring(0, 7), wsBANK, wsACCOUNT, wsAMT, PCSHCM, wsPPAYCURR, wsRPAYRATE));
+					}else if(PBANK.substring(0, 3).equals("017") && "OIU".equals(oiuFlag.trim())){
+						//RD0382:OIU,兆豐
+						rmtVO.setRMTFEE((int) disBBean.getPayFeeOIU(PBANK.substring(0, 3), wsBANK, wsACCOUNT, wsAMT, swiftFlag));
+						
+					}else if(PBANK.substring(0, 3).equals("812") && "OIU".equals(oiuFlag.trim())){
+						//RD0382:OIU,台新
+						rmtVO.setRMTFEE((int) disBBean.getPayFeeOIU(PBANK.substring(0, 3), wsBANK, wsACCOUNT, wsAMT, swiftFlag));
+						
+					}else if(PBANK.substring(0, 3).equals("809") && "OIU".equals(oiuFlag.trim())){
+						//RE0198:OIU,凱基
+						rmtVO.setRMTFEE((int) disBBean.getPayFeeOIU(PBANK.substring(0, 3), wsBANK, wsACCOUNT, wsAMT, swiftFlag));
+						
 					}else{
+						//log.info("rmtVO.setRMTFEE設定手續費");
 						rmtVO.setRMTFEE((int) disBBean.getPayFee(PBANK.substring(0, 7), wsBANK, wsACCOUNT));
 					}					
 				} catch (RemittanceFeeNotFoundException e) {
+					/*log.info("disBBean.getPFee:RemittanceFeeNotFoundException");
+					log.info("rmtVO.setRMTFEE設定手續費");*/
 					rmtVO.setRMTFEE((int) disBBean.getPFee(PBANK.substring(0, 7), wsBANK, wsAMT, PMETHOD, wsSWIFT, wsSWITCH));
 				}
 			} else {
+				//log.info("rmtVO.setRMTFEE設定手續費");
 				rmtVO.setRMTFEE((int) 0);
 			}
 			
@@ -795,6 +856,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 				// try{
 				// wsRBENFEE = disBBean.getPayFee( PBANK.substring(0,7), wsBANK,
 				// wsACCOUNT );
+				//log.info("rmtVO.setRMTFEE設定手續費");
 				rmtVO.setRMTFEE(0);
 				wsRBENFEE = 0;
 				// }catch( RemittanceFeeNotFoundException e ) {
@@ -805,8 +867,11 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 			//QA0281 付款銀行為一銀時有手續費產生
 			if(PBANK.substring(0, 3).equals("007")) {
 				try {
+					//log.info("rmtVO.setRMTFEE設定手續費");
 					rmtVO.setRMTFEE((int) disBBean.getPayFee(PBANK.substring(0, 7), wsBANK, wsACCOUNT));
 				} catch (RemittanceFeeNotFoundException e) {
+					/*log.info("disBBean.getPFee:007");
+					log.info("rmtVO.setRMTFEE設定手續費");*/
 					rmtVO.setRMTFEE((int) disBBean.getPFee(PBANK.substring(0, 7), wsBANK, wsAMT, PMETHOD, wsSWIFT, wsSWITCH));
 				}
 			}		
@@ -826,6 +891,7 @@ public class DISBRemitDisposeServlet extends InitDBServlet {
 			rmtVO.setRBKCOUNTRY(wsPCOUNTRY);// 國別
 
 			/* 最後一筆的彙總資料 */
+			//log.info("wsPPAYCURR是" + wsPPAYCURR);
 			dao.insertRMTF(rmtVO);
 
 			//R10190 將外幣失效保單的匯款資訊寫入失效給付通知書工作檔

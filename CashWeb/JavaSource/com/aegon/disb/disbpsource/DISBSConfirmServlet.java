@@ -96,8 +96,11 @@ import com.aegon.comlib.DbFactory;
 import com.aegon.comlib.GlobalEnviron;
 import com.aegon.disb.util.DISBBean;
 import com.aegon.disb.util.DISBPaymentDetailVO;
+import org.apache.log4j.Logger;
 
 public class DISBSConfirmServlet extends HttpServlet {
+	
+	private Logger log = Logger.getLogger(getClass());
 
 	private GlobalEnviron globalEnviron = null;
 	private DbFactory dbFactory = null;
@@ -399,6 +402,7 @@ public class DISBSConfirmServlet extends HttpServlet {
 			}
 
 			System.out.println(" inside DISBSConfirmServlet.inqueryDB()--> strSql =" + strSql);
+			log.info(" inside DISBSConfirmServlet.inqueryDB()--> strSql =" + strSql);
 
 			try {
 				stmt = con.createStatement();

@@ -3,7 +3,7 @@ package com.aegon.crystalreport;
 /**
  * System   : CashWeb
  * 
- * Function : ¹ü¤Æ»È¦æ´CÅé»¼°e³æ
+ * Function : å½°åŒ–éŠ€è¡Œåª’é«”éé€å–®
  * 
  * Remark   : 
  * 
@@ -19,13 +19,13 @@ package com.aegon.crystalreport;
  * 
  * $$Log: CreateReportCHBMediaDelivery.java,v $
  * $Revision 1.3  2014/02/06 09:52:59  MISSALLY
- * $RB0806---­×§ï¹ü»È´CÅé»¼°e³æ
+ * $RB0806---ä¿®æ”¹å½°éŠ€åª’é«”éé€å–®
  * $
  * $Revision 1.2  2013/12/24 02:16:19  MISSALLY
- * $R00135---PA0024---CASH¦~«×±M®×
+ * $R00135---PA0024---CASHå¹´åº¦å°ˆæ¡ˆ
  * $
  * $Revision 1.1  2013/04/12 06:10:25  MISSALLY
- * $RA0074 FNEº¡´Á¥Í¦sª÷¨ü¯q¤H±b¤á¤Îµ¹¥I
+ * $RA0074 FNEæ»¿æœŸç”Ÿå­˜é‡‘å—ç›Šäººå¸³æˆ¶åŠçµ¦ä»˜
  * $$
  *  
  */
@@ -77,16 +77,16 @@ public class CreateReportCHBMediaDelivery extends HttpServlet implements Servlet
 		dbFactory = (DbFactory) application.getAttribute(Constant.DB_FACTORY);
 		RequestDispatcher dispatcher = null;
 		
-		//±µ¦¬«eºİ°Ñ¼Æ
+		//æ¥æ”¶å‰ç«¯åƒæ•¸
 		String reportPath = request.getParameter("ReportPath");
 		String reportName = request.getParameter("ReportName");
 		String strBatchNO = request.getParameter("para_batchno");
 
-		//ÂsÄı¸ê®Æ
+		//ç€è¦½è³‡æ–™
 		Connection connection = null;
 		ResultSet rs = null;
 
-		//²£¥Í³øªí
+		//ç”¢ç”Ÿå ±è¡¨
 		String errorMessage = "";
 		try {
 			connection = dbFactory.getAS400Connection("CreateReportCHBMediaDelivery");
@@ -109,7 +109,7 @@ public class CreateReportCHBMediaDelivery extends HttpServlet implements Servlet
 			ra.createService("com.crystaldecisions.sdk.occa.report.application.ReportClientDocument");
 			ra.setReportAppServer(reportServer);
 			ra.initialize();
-			System.out.println("RAS initialize ¦¨¥\.");
+			System.out.println("RAS initialize æˆåŠŸ.");
 
 			Properties props = new Properties();
 			props.put("user", reportUserID);
@@ -183,16 +183,16 @@ public class CreateReportCHBMediaDelivery extends HttpServlet implements Servlet
 	}
 
 	/**
-	 * ®ÖÃÒÁ`¼Æ¡× A ¡Ï B ¡Ï B' ¡Ï C
+	 * æ ¸è­‰ç¸½æ•¸ï¼ A ï¼‹ B ï¼‹ B' ï¼‹ C
 	 *
-	 *	A ¡× ¥»¦¸Âà±b¸ê®Æ¹w©w¼·±b¤é´Á¡C
-	 *	B ¡× ¥»¦¸Âà±b¸ê®Æ³æµ§³Ì°ªÂà±bª÷ÃB±b¤á¤§±b¸¹¡]14¦ì¤¤²Ä7¦ì¶}©l¨ú 6 ¦ì¼Æ¦r)¡A¦ı¦³¦hµ§¦Pª÷ÃB®É¡A¥H²Ä¤@µ§±b¸¹¬°·Ç¡C
-	 *	B'¡× ¥»µ§±b¤á (§Y B)¤§Âà±bª÷ÃB¡]¥H¤¸¬°³æ¦ì¡^¡C
-	 *	C ¡× ¥»¦¸¸ê®Æ¦Uµ§±b¸¹¤§²Ö­p¼Æ¡]¨ú¨C¤@µ§±b¸¹ 6 ¦ì¼Æ(14¦ì¤¤²Ä7¦ì¶}©l¨ú 6 ¦ì)¤©¥H²Ö¥[¡^¡C
+	 *	A ï¼ æœ¬æ¬¡è½‰å¸³è³‡æ–™é å®šæ’¥å¸³æ—¥æœŸã€‚
+	 *	B ï¼ æœ¬æ¬¡è½‰å¸³è³‡æ–™å–®ç­†æœ€é«˜è½‰å¸³é‡‘é¡å¸³æˆ¶ä¹‹å¸³è™Ÿï¼ˆ14ä½ä¸­ç¬¬7ä½é–‹å§‹å– 6 ä½æ•¸å­—)ï¼Œä½†æœ‰å¤šç­†åŒé‡‘é¡æ™‚ï¼Œä»¥ç¬¬ä¸€ç­†å¸³è™Ÿç‚ºæº–ã€‚
+	 *	B'ï¼ æœ¬ç­†å¸³æˆ¶ (å³ B)ä¹‹è½‰å¸³é‡‘é¡ï¼ˆä»¥å…ƒç‚ºå–®ä½ï¼‰ã€‚
+	 *	C ï¼ æœ¬æ¬¡è³‡æ–™å„ç­†å¸³è™Ÿä¹‹ç´¯è¨ˆæ•¸ï¼ˆå–æ¯ä¸€ç­†å¸³è™Ÿ 6 ä½æ•¸(14ä½ä¸­ç¬¬7ä½é–‹å§‹å– 6 ä½)äºˆä»¥ç´¯åŠ ï¼‰ã€‚
 	 *
-	 *	®ÖÃÒÁ`¼Æ³Ì¦h¥H 10 ¦ì¼Æ¦r¬°­­¡Aµo¥Í·¸¦ì®É¡A¨ú³Ì¥k 10 ¦ì§Y¥i¡C
+	 *	æ ¸è­‰ç¸½æ•¸æœ€å¤šä»¥ 10 ä½æ•¸å­—ç‚ºé™ï¼Œç™¼ç”Ÿæº¢ä½æ™‚ï¼Œå–æœ€å³ 10 ä½å³å¯ã€‚
 	 *
-	 * @param batno : ¶×´Ú§å¸¹
+	 * @param batno : åŒ¯æ¬¾æ‰¹è™Ÿ
 	 * @return
 	 */
 	private ResultSet dataProcess(Connection conn, String batno) throws Exception {

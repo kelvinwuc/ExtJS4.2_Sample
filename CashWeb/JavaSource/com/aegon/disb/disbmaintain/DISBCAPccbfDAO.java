@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 /**
  * System   : CashWeb
  * 
@@ -37,6 +39,9 @@ import java.sql.SQLException;
  */
 
 public class DISBCAPccbfDAO {
+	
+	private Logger log = Logger.getLogger(getClass());
+	
 	private PreparedStatement preStmt = null;
 	private Connection conn = null;
 
@@ -78,17 +83,21 @@ public class DISBCAPccbfDAO {
 		int ret = 0;
 		conn = this.getConnection();
 		try {
+			log.info("sql:" + INSERT + "," + ccbfVo.getBKNO() + "," + ccbfVo.getBKNM() + "," + ccbfVo.getBKFNM() + "," + ccbfVo.getENTRYDT() + "," + ccbfVo.getENTRYTM() + "," + ccbfVo.getENTRYUSR());
+			//ccbfVo.setBKNM("");
 			preStmt = conn.prepareStatement(INSERT);
 			preStmt.setString(1, ccbfVo.getBKNO());
 			preStmt.setString(2, ccbfVo.getBKNM());
 			preStmt.setString(3, ccbfVo.getBKFNM());
 			preStmt.setInt(4, ccbfVo.getENTRYDT());
 			preStmt.setInt(5, ccbfVo.getENTRYTM());
-			preStmt.setString(6, ccbfVo.getENTRYUSR());
+			preStmt.setString(6, ccbfVo.getENTRYUSR());			
 			ret = preStmt.executeUpdate();
 			System.out.println("INSERT CAPCCBF (" + ccbfVo.getBKNO() + ") ¦@" + ret + "µ§.");
+			log.info("INSERT CAPCCBF (" + ccbfVo.getBKNO() + ") ¦@" + ret + "µ§.");
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
+			log.error(e.getMessage(), e);
 		} finally {
 			try { if (preStmt != null) preStmt.close(); } catch (Exception ex1) { }
 		}
@@ -100,7 +109,7 @@ public class DISBCAPccbfDAO {
 		conn = this.getConnection();
 		try {
 			preStmt = conn.prepareStatement(DELETE);
-			preStmt.setString(1, ccbfVo.getBKNO());
+			preStmt.setString(1, ccbfVo.getBKNO());			
 			ret = preStmt.executeUpdate();
 			System.out.println("DELETE CAPCCBF (" + ccbfVo.getBKNO() + ") ¦@" + ret + "µ§.");
 		} catch (Exception e) {

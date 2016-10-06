@@ -16,7 +16,12 @@ import java.text.DecimalFormat;
 
 import javax.servlet.ServletContext;
 
+//import org.apache.openjpa.lib.log.Log;
+//import org.eclipse.jst.jsp.core.internal.Logger;
+
 import java.sql.*;
+import org.apache.log4j.Logger;
+
 /*
  * System   :
  * 
@@ -48,6 +53,8 @@ import java.sql.*;
  *  
  */
 public class DISBDailyPRServlet  extends com.aegon.comlib.InitDBServlet {
+	
+	private Logger log = Logger.getLogger(getClass());
 
 	private static final String CONTENT_TYPE = "text/html; charset=Big5";
 	private String path = "";
@@ -163,7 +170,88 @@ public class DISBDailyPRServlet  extends com.aegon.comlib.InitDBServlet {
 		}
 		
 		/*QC0343 SQL調整*/
-		String ReportSQL = "SELECT A.*,B.DEPT as PAY_DEPT,'89' AS USERRIGHT ,B.DEPT AS USERDEPT,A.PDESC,C.BKNM,D.CNO,B.USRBRCH AS USRBRCH,B.USRAREA AS USRAREA,B.USRNAM,E.FLD0004 AS DEPTNM,F.FLD0004 AS BRCHNM,G.* "+ 
+		//uid="20140807104557";//測試
+		String ReportSQL = "SELECT A.*,";
+		/*String ReportSQL = "SELECT ";
+		ReportSQL += "A.PAY_NO,";//OK
+		ReportSQL += "A.PAY_METHOD,";//OK
+		ReportSQL += "A.PAY_DATE,";//OK
+		ReportSQL += "A.PAY_NAME,";//OK
+		ReportSQL += "A.PAY_SRC_NAME,";//OK
+		ReportSQL += "A.PAY_ID,";//OK
+		ReportSQL += "A.PAY_CURRENCY,";//OK
+		ReportSQL += "A.PAY_AMOUNT,";//OK
+		ReportSQL += "A.PAY_STATUS,";//OK
+		ReportSQL += "A.PAY_CONFIRM_DATE1,";//OK
+		ReportSQL += "A.PAY_CONFIRM_TIME1,";//OK
+		ReportSQL += "A.PAY_CONFIRM_USER1,";//OK
+		ReportSQL += "A.PAY_CONFIRM_DATE2,";//OK
+		ReportSQL += "A.PAY_CONFIRM_TIME2,";//OK
+		ReportSQL += "A.PAY_CONFIRM_USER2,";//OK
+		ReportSQL += "A.PAY_DESCRIPTION,";//OK
+		ReportSQL += "A.PAY_SOURCE_GROUP,";//OK
+		ReportSQL += "A.PAY_SOURCE_CODE,";//OK
+		ReportSQL += "A.PAY_PLAN_TYPE,";//OK
+		ReportSQL += "A.PAY_SOURCE_PGM,";//OK
+		ReportSQL += "A.PAY_VOIDABLE,";//OK
+		ReportSQL += "A.PAY_DISPATCH,";//OK
+		ReportSQL += "A.PAY_BUDGET_BANK,";//OK
+		ReportSQL += "A.PAY_BUDGET_ACCOUNT,";//OK
+		ReportSQL += "A.PAY_CHECK_NO,";//OK
+		ReportSQL += "A.PAY_CHECK_M1,";//OK
+		ReportSQL += "A.PAY_CHECK_M2,";//OK
+		ReportSQL += "A.PAY_REMIT_BANK,";//OK
+		ReportSQL += "A.PAY_REMIT_ACCOUNT,";//OK
+		ReportSQL += "A.PAY_CREDIT_CARD,";//OK
+		ReportSQL += "A.PAY_CREDIT_TYPE,";//OK
+		ReportSQL += "A.PAY_AUTHORITY_DATE,";//OK
+		ReportSQL += "A.PAY_AUTHORITY_CODE,";//OK
+		ReportSQL += "A.PAY_CARD_MMYYYY,";//OK
+		ReportSQL += "A.POLICY_NO,";//OK
+		ReportSQL += "A.APP_NO,";//OK
+		ReportSQL += "A.PAY_BRANCH,";//OK
+		ReportSQL += "A.REMIT_FEE,";//OK
+		ReportSQL += "A.PAY_CASH_DATE,";//OK
+		ReportSQL += "A.PAY_BATCH_NO,";//OK
+		ReportSQL += "A.PAY_NO_HISTORY,";//OK
+		ReportSQL += "A.ENTRY_DATE,";//OK
+		ReportSQL += "A.ENTRY_TIME,";//OK
+		ReportSQL += "A.ENTRY_USER,";//OK
+		ReportSQL += "A.ENTRY_PROGRAM,";//OK
+		ReportSQL += "A.UPDATE_DATE,";//OK
+		ReportSQL += "A.UPDATE_TIME,";//OK
+		ReportSQL += "A.UPDATE_USER,";//OK
+		ReportSQL += "A.PAY_MEMO,";//OK
+		ReportSQL += "A.BAT_SEQ,";//OK
+		ReportSQL += "A.PAY_CASH_CONFIRM,";//OK
+		ReportSQL += "A.PAY_PAYCURR,";//OK
+		ReportSQL += "A.PAY_PAYAMT,";//OK
+		ReportSQL += "A.PAY_PAYRATE,";//OK
+		ReportSQL += "A.PAY_FEEWAY,";//OK
+		ReportSQL += "A.PAY_SYMBOL,";//OK
+		ReportSQL += "A.PAY_INV_DATE,";//OK
+		ReportSQL += "A.PAY_SWIFT,";//OK
+		ReportSQL += "A.PAY_BK_COUNTRY,";//OK
+		ReportSQL += "A.PAY_BK_CITY,";
+		ReportSQL += "A.PAY_BK_BRCH,";
+		ReportSQL += "A.PAY_ENG_NAME,";//OK
+		ReportSQL += "A.PAY_ORGPAMT,";//OK
+		ReportSQL += "A.PAY_ORGCRDNO,";//OK
+		ReportSQL += "A.PAY_PROJECT_CODE,";//OK
+		ReportSQL += "A.PAY_REMIT_BACK,";//OK
+		ReportSQL += "A.PAY_BACK_REMARK,";//OK
+		ReportSQL += "A.PAY_METHOD_ORG,";//OK
+		ReportSQL += "A.PAY_AMOUNT_NT,";//OK
+		ReportSQL += "A.PAY_REMITFAIL_DATE,";//OK
+		ReportSQL += "A.PAY_REMITFAIL_TIME,";//OK
+		ReportSQL += "A.PAY_REMITFAIL_CODE,";//OK
+		ReportSQL += "A.PAY_REMITFAIL_DESC,";//OK
+		ReportSQL += "A.PAY_CLAM_CCLMNUM,";//OK
+		ReportSQL += "A.BANK_REMITFAIL_DATE,";//OK
+		ReportSQL += "A.PAY_SERVICING_BRANCH,";//OK
+		ReportSQL += "A.ANNUITY_PAY_DATE,";*/ //OK
+
+		ReportSQL += "B.DEPT as PAY_DEPT,'89' AS USERRIGHT ,B.DEPT AS USERDEPT,A.PDESC,C.BKNM,D.CNO,B.USRBRCH AS USRBRCH,B.USRAREA AS USRAREA,B.USRNAM,E.FLD0004 AS DEPTNM,F.FLD0004 AS BRCHNM,G.* "+ 
 						   "from CAPPAYF A left outer join USER B  on B.USRID=A.ENTRY_USER "+
 				           "left outer join CAPCCBF C on C.BKNO=A.PRBANK "+
 				           "left outer join ORDUET E on E.FLD0002 = 'DEPT' AND E.FLD0003 = B.DEPT "+
@@ -177,9 +265,15 @@ public class DISBDailyPRServlet  extends com.aegon.comlib.InitDBServlet {
 						   "WHERE A.PNO = D.PNO "+
 						   "AND D.SID = '"+uid+"' "+
 						   "ORDER BY B.DEPT,B.USRBRCH,A.ENTRY_USER ASC ";
+		log.info("ReportSQL是" + ReportSQL);
 		request.setAttribute("ReportSQL", ReportSQL);
 		dispatcher = request.getRequestDispatcher("/servlet/com.aegon.crystalreport.CreateReportRS");
-		dispatcher.forward(request, response);
+		try{
+			dispatcher.forward(request, response);
+		}catch(Exception e){
+			log.error(e.getMessage(), e);
+		}
+		
 		return;
 	}
 	  	
